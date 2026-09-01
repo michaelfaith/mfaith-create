@@ -1,8 +1,7 @@
-<h1 align="center">Create TypeScript App</h1>
+<h1 align="center">@mfaith/create</h1>
 
 <p align="center">
-	Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
-	🎁
+	A quickstart-friendly repo template with comprehensive, opinionated tooling.
 </p>
 
 <p align="center">
@@ -11,16 +10,12 @@
 	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 59" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-59-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
-	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
-	<a href="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/JoshuaKGoldberg/create-typescript-app?label=%F0%9F%A7%AA%20coverage" /></a>
-	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg" /></a>
-	<a href="http://npmjs.com/package/create-typescript-app" target="_blank"><img alt="📦 npm version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
-	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+	<a href="https://codecov.io/gh/michaelfaith/new-repo-template" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/michaelfaith/new-repo-template?label=%F0%9F%A7%AA%20coverage" /></a>
+	<a href="https://github.com/michaelfaith/new-repo-template/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg" /></a>
+	<a href="http://npmjs.com/package/new-repo-template" target="_blank"><img alt="📦 npm version" src="https://img.shields.io/npm/v/new-repo-template?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 </p>
 
-<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" height="128" src="./docs/create-typescript-app.png" width="128">
-
-`create-typescript-app` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
+`@mfaith/create` is a one-stop-shop solution to set up a new repository with the latest and greatest TypeScript tooling and open source conventions.
 It includes options not just for building and testing but also automated release management, contributor recognition, GitHub repository settings, and more.
 
 ## Usage
@@ -31,10 +26,16 @@ First make sure you have the following installed:
 - [pnpm](https://pnpm.io)
 - _(optional, but helpful)_ [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
 
-Then in an existing repository or in your directory where you'd like to make a new repository:
+```shell
+pnpm create @mfaith
+```
 
 ```shell
-npx create-typescript-app
+npm init @mfaith
+```
+
+```shell
+yarn create @mfaith
 ```
 
 You can read more about the supported runtime modes in their docs pages:
@@ -45,21 +46,18 @@ You can read more about the supported runtime modes in their docs pages:
 
 ## Documentation
 
-You can read more about `create-typescript-app` and the tooling it supports:
+You can read more about `@mfaith/create` and the tooling it supports:
 
 1. [**Blocks**](./docs/Blocks.md): a breakdown of all the pieces this template can set up.
 2. [**CLI**](./docs/CLI.md): providing granular options to customize how the template is run.
 3. [**FAQs**](./docs/FAQs.md): frequently asked questions and troubleshooting
 
-> [!NOTE]  
-> This template is opinionated and not endorsed by the TypeScript team.
-> It can be configured to set up a _lot_ of tooling out of the box.
-> If you don't want to use any particular tool, you can always remove it manually.
+> [!NOTE]
+> This project was forked with 💖 from `create-typescript-app`.
 
 ## Development
 
-See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
-Thanks! 🎁
+See [`CONTRIBUTING`](./.github/CONTRIBUTING.md), then [`DEVELOPMENT`](./.github/DEVELOPMENT.md).
 
 ## Contributors
 
@@ -152,3 +150,7 @@ Thanks! 🎁
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
+
+## License
+
+See the [LICENSE](./LICENSE.md) file for license rights and limitations (MIT).
