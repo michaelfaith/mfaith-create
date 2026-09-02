@@ -1,15 +1,15 @@
 {
-	"name": "create-typescript-app",
-	"version": "2.63.2",
-	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
+	"name": "@mfaith/create",
+	"version": "0.0.0",
+	"description": "A quickstart-friendly repo template with comprehensive, opinionated tooling.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/JoshuaKGoldberg/create-typescript-app.git"
+		"url": "git+https://github.com/michaelfaith/mfaith-create.git"
 	},
 	"license": "MIT",
 	"author": {
-		"name": "Josh Goldberg ✨",
-		"email": "npm@joshuakgoldberg.com"
+		"name": "michael faith",
+		"url": "https://michael.faith"
 	},
 	"sideEffects": false,
 	"type": "module",

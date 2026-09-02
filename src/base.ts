@@ -49,6 +49,10 @@ export const base = createBase({
 			.string()
 			.optional()
 			.describe("username on npm to publish packages under"),
+		authorUrl: z
+			.string()
+			.optional()
+			.describe("URL to the author's homepage or profile"),
 		bin: z
 			.union([z.string(), z.record(z.string())])
 			.optional()
@@ -140,6 +144,10 @@ export const base = createBase({
 			})
 			.optional()
 			.describe("additional properties to include in `package.json`"),
+		packageName: z
+			.string()
+			.optional()
+			.describe("name of the package to publish to npm"),
 		pnpm: z
 			.string()
 			.optional()

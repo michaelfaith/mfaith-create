@@ -113,12 +113,12 @@ describe("blockAllContributors", () => {
 					{
 						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
 						contributions: ["bug", "code", "design", "doc", "test", "tool"],
-						login: "JoshuaKGoldberg",
-						name: "Josh Goldberg",
-						profile: "http://www.joshuakgoldberg.com",
+						login: "michaelfaith",
+						name: "michael faith",
+						profile: "https://michael.faith",
 					},
 				],
-				owner: "JoshuaKGoldberg",
+				owner: "michaelfaith",
 			},
 		});
 
@@ -159,7 +159,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="https://michael.faith"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Amichaelfaith" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Code">💻</a> <a href="#design-michaelfaith" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Tests">⚠️</a> <a href="#tool-michaelfaith" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -199,9 +199,9 @@ describe("blockAllContributors", () => {
 			        "test",
 			        "tool"
 			      ],
-			      "login": "JoshuaKGoldberg",
-			      "name": "Josh Goldberg",
-			      "profile": "http://www.joshuakgoldberg.com"
+			      "login": "michaelfaith",
+			      "name": "michael faith",
+			      "profile": "https://michael.faith"
 			    }
 			  ],
 			  "contributorsPerLine": 7,
@@ -210,7 +210,7 @@ describe("blockAllContributors", () => {
 			    "README.md"
 			  ],
 			  "projectName": "test-repository",
-			  "projectOwner": "JoshuaKGoldberg",
+			  "projectOwner": "michaelfaith",
 			  "repoType": "github"
 			}",
 			    ".github": {
@@ -242,7 +242,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli@6.23.1 add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+			        "pnpx all-contributors-cli@6.23.1 add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
 			      ],
 			      "phase": 3,
 			    },
@@ -304,7 +304,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>

@@ -38,17 +38,17 @@ describe(readDescription, () => {
 		expect(description).toBe(updated);
 	});
 
-	it("returns the existing description when they are equal to crate-typescript-app's and the repository is create-typescript-app", async () => {
+	it("returns the existing description when they are equal to mfaith-create's and the repository is mfaith-create", async () => {
 		const description = await readDescription(
 			() => Promise.resolve({ description: packageData.description }),
 			() => Promise.resolve(`<p align="center">${packageData.description}</p>`),
-			() => Promise.resolve("create-typescript-app"),
+			() => Promise.resolve("mfaith-create"),
 		);
 
 		expect(description).toBe(packageData.description);
 	});
 
-	it("returns undefined when the descriptions are create-typescript-app's and the repository is not", async () => {
+	it("returns undefined when the descriptions are mfaith-create's and the repository is not", async () => {
 		const description = await readDescription(
 			() => Promise.resolve({ description: packageData.description }),
 			() => Promise.resolve(`<p align="center">${packageData.description}</p>`),

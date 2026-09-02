@@ -174,13 +174,13 @@ function printContributorCell(contributor: Contributor) {
 			.map((contribution) => {
 				switch (contribution) {
 					case "bug":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3A${contributor.login}" title="Bug reports">🐛</a>`;
+						return `<a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3A${contributor.login}" title="Bug reports">🐛</a>`;
 					case "code":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Code">💻</a>`;
+						return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Code">💻</a>`;
 					case "design":
 						return `<a href="#design-${contributor.login}" title="Design">🎨</a>`;
 					case "doc":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Documentation">📖</a>`;
+						return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Documentation">📖</a>`;
 					case "ideas":
 						return `<a href="#ideas-${contributor.login}" title="Ideas, Planning, & Feedback">🤔</a>`;
 					case "infra":
@@ -188,9 +188,9 @@ function printContributorCell(contributor: Contributor) {
 					case "maintenance":
 						return `<a href="#maintenance-${contributor.login}" title="Maintenance">🚧</a>`;
 					case "review":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/pulls?q=is%3Apr+reviewed-by%3A${contributor.login}" title="Reviewed Pull Requests">👀</a>`;
+						return `<a href="https://github.com/michaelfaith/mfaith-create/pulls?q=is%3Apr+reviewed-by%3A${contributor.login}" title="Reviewed Pull Requests">👀</a>`;
 					case "test":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Tests">⚠️</a>`;
+						return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Tests">⚠️</a>`;
 					case "tool":
 						return `<a href="#tool-${contributor.login}" title="Tools">🔧</a>`;
 				}

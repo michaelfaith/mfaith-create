@@ -44,7 +44,14 @@ export const blockPackageJson = base.createBlock({
 						removeUndefinedObjects({
 							...options.packageData,
 							...addons.properties,
-							author: { email: options.email.npm, name: options.author },
+							author: {
+								name: options.author,
+								...(options.email.npm
+									? { email: options.email.npm }
+									: options.authorUrl
+										? { url: options.authorUrl }
+										: {}),
+							},
 							bin: options.bin,
 							dependencies: Object.keys(dependencies).length
 								? dependencies
@@ -63,7 +70,7 @@ export const blockPackageJson = base.createBlock({
 							}),
 							files: processFiles(addons.properties.files),
 							keywords: options.keywords,
-							name: options.repository,
+							name: options.packageName ?? options.repository,
 							repository: {
 								type: "git",
 								url: `git+https://github.com/${options.owner}/${options.repository}.git`,

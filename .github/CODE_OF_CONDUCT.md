@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# Code of Conduct
 
 ## Our Pledge
 
@@ -59,8 +59,8 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-github@joshuakgoldberg.com.
+reported to the community leaders responsible for enforcement on
+[Bluesky](https://bsky.app/profile/michael.faith).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -89,9 +89,10 @@ actions.
 **Consequence**: A warning with consequences for continued behavior.
 No interaction with the people involved, including unsolicited interaction with
 those enforcing the Code of Conduct, for a specified period of time.
-This includes avoiding interactions in community spaces as well as external
-channels like social media.
-Violating these terms may lead to a temporary or permanent ban.
+This includes avoiding interactions in community spaces as well as external channels
+like social media.
+Violating these terms may lead to a temporary or permanent
+ban.
 
 ### 3. Temporary Ban
 
@@ -100,9 +101,8 @@ sustained inappropriate behavior.
 
 **Consequence**: A temporary ban from any sort of interaction or public
 communication with the community for a specified period of time.
-No public or private interaction with the people involved, including unsolicited
-interaction with those enforcing the Code of Conduct, is allowed during this
-period.
+No public or private interaction with the people involved, including unsolicited interaction
+with those enforcing the Code of Conduct, is allowed during this period.
 Violating these terms may lead to a permanent ban.
 
 ### 4. Permanent Ban

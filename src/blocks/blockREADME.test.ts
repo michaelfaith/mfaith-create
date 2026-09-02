@@ -20,18 +20,13 @@ describe(blockREADME, () => {
 
 			<p align="center">One sentence.</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			## Usage
 
 			Test usage.
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -57,18 +52,13 @@ describe(blockREADME, () => {
 				Second sentence.
 			</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			## Usage
 
 			Test usage.
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -97,18 +87,13 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			## Usage
 
 			Use it.
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			Additional docs.
 			",
@@ -138,10 +123,6 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			And a one.
 			And a two.
 
@@ -151,8 +132,7 @@ describe(blockREADME, () => {
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -181,18 +161,13 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			## Usage
 
 			Test usage.
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 
 			And a one.
@@ -220,10 +195,6 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			<img align="right" alt="My logo" src="img.jpg">
 
 			## Usage
@@ -232,8 +203,7 @@ describe(blockREADME, () => {
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -261,10 +231,6 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			<img align="right" alt="My logo" height="100" src="img.jpg" width="128">
 
 			## Usage
@@ -273,8 +239,7 @@ describe(blockREADME, () => {
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -309,10 +274,6 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			<img align="right" alt="My logo" height="100" src="img.jpg" width="128">
 
 			And a one.
@@ -324,8 +285,7 @@ describe(blockREADME, () => {
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -343,18 +303,13 @@ describe(blockREADME, () => {
 
 			<p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
-
 			## Usage
 
 			Test usage.
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			",
 			  },
@@ -397,7 +352,6 @@ describe(blockREADME, () => {
 				<img alt="Badge A" src="https://img.shields.io/badge/my_badge-000000" />
 				<a href="https://create.bingo" target="_blank"><img alt="Badge With Link" src="https://img.shields.io/badge/my_badge-000000" /></a>
 				<img alt="Badge Z" src="https://img.shields.io/badge/my_badge-000000" />
-				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 			</p>
 
 			## Usage
@@ -406,8 +360,7 @@ describe(blockREADME, () => {
 
 			## Development
 
-			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-			Thanks! 💖
+			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
 			## Other
 
