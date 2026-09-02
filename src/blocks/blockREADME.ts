@@ -54,19 +54,14 @@ export const blockREADME = base.createBlock({
 				"README.md": `<h1 align="center">${options.title}</h1>
 
 <p align="center">${formatDescription(options.description)}</p>
-
-<p align="center">
-${formatBadges(badges)}
-</p>
-${[logo, explainer].filter(Boolean).join("")}
+${(badges.length ? ['\n<p align="center">', formatBadges(badges), "</p>\n"] : []).join("\n")}${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
 ${options.documentation.readme.usage ?? defaultUsage.join("\n\n")}
 
 ## Development
 
-See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-Thanks! ${options.emoji}
+See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 ${[...sections, options.documentation.readme.additional]
 	.filter(Boolean)
 	.map((section) => `\n${section}`)
@@ -94,16 +89,7 @@ function formatBadge(badge: Badge) {
 }
 
 function formatBadges(badges: Badge[]) {
-	return [
-		...badges,
-		{
-			alt: "💪 TypeScript: Strict",
-			src: "https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg",
-		},
-	]
-		.sort(badgeSorter)
-		.map(formatBadge)
-		.join("\n");
+	return [...badges].sort(badgeSorter).map(formatBadge).join("\n");
 }
 
 function formatDescription(description: string) {

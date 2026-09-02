@@ -26,7 +26,7 @@ export async function readDescription(
 	// If the package.json is create-typescript-app's but the repository isn't,
 	// we're almost certainly in transition mode after cloning the template.
 	if (
-		(await getRepository()) !== "create-typescript-app" &&
+		(await getRepository()) !== "mfaith-create" &&
 		fromPackageJson === packageData.description
 	) {
 		return undefined;
