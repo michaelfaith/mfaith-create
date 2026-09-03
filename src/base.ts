@@ -328,7 +328,7 @@ export const base = createBase({
 
 		const getWords = lazyValue(async () => await readWords(take));
 
-		const getWorkflowData = lazyValue(
+		const getWorkflowVersions = lazyValue(
 			async () => await readWorkflowsVersions(take),
 		);
 
@@ -357,7 +357,7 @@ export const base = createBase({
 			type: getType,
 			version: getVersion,
 			words: getWords,
-			workflowsVersions: getWorkflowData,
+			workflowsVersions: getWorkflowVersions,
 		};
 	},
 });

@@ -5,18 +5,20 @@
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/8071845?v=4",
       "contributions": [
+        "bug",
         "code",
-        "content",
+        "design",
         "doc",
         "ideas",
         "infra",
         "maintenance",
-        "projectManagement",
+        "review",
+        "test",
         "tool"
       ],
       "login": "michaelfaith",
       "name": "michael faith",
-      "profile": ""
+      "profile": "https://github.com/michaelfaith"
     }
   ],
   "contributorsPerLine": 7,

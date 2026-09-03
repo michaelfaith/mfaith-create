@@ -11,7 +11,7 @@ vi.mock("./options/readEmailFromGit.js", () => ({
 }));
 
 describe("base", () => {
-	test("production from create-typescript-app", async () => {
+	test("production from mfaith-create", async () => {
 		const options = await prepareOptions(base);
 
 		expect(options).toEqual({

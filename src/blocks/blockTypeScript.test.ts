@@ -81,6 +81,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "ignores": [
 			          "/lib",
+			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
 			      "block": [Function],
@@ -240,6 +241,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "ignores": [
 			          "/lib",
+			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
 			      "block": [Function],
@@ -397,6 +399,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "ignores": [
 			          "/lib",
+			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
 			      "block": [Function],
@@ -563,6 +566,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "ignores": [
 			          "/lib",
+			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
 			      "block": [Function],

@@ -1,8 +1,8 @@
 import { blockAllContributors } from "./blockAllContributors.js";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
 import { blockCodecov } from "./blockCodecov.js";
+import { blockCodeOfConduct } from "./blockCodeOfConduct.js";
 import { blockContributingDocs } from "./blockContributingDocs.js";
-import { blockContributorCovenant } from "./blockContributorCovenant.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
@@ -53,8 +53,8 @@ export const blocks = {
 	blockAllContributors,
 	blockAreTheTypesWrong,
 	blockCodecov,
+	blockCodeOfConduct,
 	blockContributingDocs,
-	blockContributorCovenant,
 	blockCSpell,
 	blockDevelopmentDocs,
 	blockESLint,
@@ -105,8 +105,8 @@ export const blocks = {
 export { blockAllContributors } from "./blockAllContributors.js";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
 export { blockCodecov } from "./blockCodecov.js";
+export { blockCodeOfConduct } from "./blockCodeOfConduct.js";
 export { blockContributingDocs } from "./blockContributingDocs.js";
-export { blockContributorCovenant } from "./blockContributorCovenant.js";
 export { blockCSpell } from "./blockCSpell.js";
 export { blockCTATransitions } from "./blockCTATransitions.js";
 export { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";

@@ -10,7 +10,7 @@ This table summarizes each block and which base levels they're included in:
 | AllContributors                    | `--add-allcontributors`, `--exclude-allcontributors`                                       |         | ✅     | 💯         |
 | Are The Types Wrong                | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                               |         |        |            |
 | Contributing Docs                  | `--add-contributing-docs`, `--exclude-contributing-docs`                                   | ✔️      | ✅     | 💯         |
-| Contributor Covenant               | `--add-contributor-covenant`, `--exclude-contributor-covenant`                             | ✔️      | ✅     | 💯         |
+| Code of Conduct                    | `--add-code-of-conduct`, `--exclude-code-of-conduct`                                       | ✔️      | ✅     | 💯         |
 | CSpell                             | `--add-cspell`, `--exclude-cspell`                                                         |         |        | 💯         |
 | Codecov                            | `--add-codecov`, `--exclude-codecov`                                                       |         | ✅     | 💯         |
 | Development Docs                   | `--add-development-docs`, `--exclude-development-docs`                                     | ✔️      | ✅     | 💯         |

@@ -1,6 +1,6 @@
 import { base } from "../base.js";
+import { blockCodeOfConduct } from "../blocks/blockCodeOfConduct.js";
 import { blockContributingDocs } from "../blocks/blockContributingDocs.js";
-import { blockContributorCovenant } from "../blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "../blocks/blockESLint.js";
 import { blockExampleFiles } from "../blocks/blockExampleFiles.js";
@@ -35,7 +35,7 @@ export const presetMinimal = base.createPreset({
 	},
 	blocks: [
 		blockContributingDocs,
-		blockContributorCovenant,
+		blockCodeOfConduct,
 		blockDevelopmentDocs,
 		blockESLint,
 		blockExports,

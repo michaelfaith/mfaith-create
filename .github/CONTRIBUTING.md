@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `@mfaith/create`! 🗂
+Thanks for your interest in contributing to `@mfaith/create`! 💖
 
 > [!TIP]
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
@@ -57,9 +57,11 @@ When a PR is not in draft, it's considered ready for review.
 Please don't manually `@` tag anybody to request a review.
 A maintainer will look at it when they're able to.
 
+PRs should have passing [GitHub status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) before review is requested (unless there are explicit questions asked in the PR about any failures).
+
 #### Asking Questions
 
-If you need help and / or have a question, posting a comment in the PR is a great way to do so.
+If you need help and/or have a question, posting a comment in the PR is a great way to do so.
 There's no need to tag anybody individually.
 One of us will drop by and help when we can.
 
