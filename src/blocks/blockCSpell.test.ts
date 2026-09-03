@@ -8,6 +8,11 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
+vi.mock("../data/packageData.js", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+}));
+
 describe(blockCSpell, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockCSpell, {
@@ -58,7 +63,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.1.1",
+			            "cspell": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -128,7 +133,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.1.1",
+			            "cspell": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -197,7 +202,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.1.1",
+			            "cspell": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -264,7 +269,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.1.1",
+			            "cspell": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -339,7 +344,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.1.1",
+			            "cspell": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
