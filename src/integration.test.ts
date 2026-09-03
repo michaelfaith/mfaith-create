@@ -141,8 +141,11 @@ If you're interested in learning more, see the 'getting started' docs on:
 			? prettier.format(text, { filepath: filePath, useTabs: true })
 			: text;
 
-	// Hack to work around https://github.com/bingo-js/bingo/issues/419
+	// @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	if (actual[".husky"]?.["pre-commit"]?.[1]?.executable === false) {
+		// @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		actual[".husky"]["pre-commit"][1].executable = true;
 	}
 
