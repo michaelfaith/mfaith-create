@@ -1,8 +1,13 @@
 import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { blockPrettier } from "./blockPrettier.js";
 import { optionsBase } from "./options.fakes.js";
+
+vi.mock("../data/packageData.js", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+}));
 
 describe(blockPrettier, () => {
 	test("without addons or mode", () => {
@@ -59,9 +64,9 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
+			            "husky": "1.2.3",
+			            "lint-staged": "1.2.3",
+			            "prettier": "1.2.3",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -174,9 +179,9 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
+			            "husky": "1.2.3",
+			            "lint-staged": "1.2.3",
+			            "prettier": "1.2.3",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -330,12 +335,12 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
-			            "prettier-plugin-curly": "0.4.1",
-			            "prettier-plugin-packagejson": "3.0.2",
-			            "prettier-plugin-sh": "0.19.0",
+			            "husky": "1.2.3",
+			            "lint-staged": "1.2.3",
+			            "prettier": "1.2.3",
+			            "prettier-plugin-curly": "1.2.3",
+			            "prettier-plugin-packagejson": "1.2.3",
+			            "prettier-plugin-sh": "1.2.3",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
