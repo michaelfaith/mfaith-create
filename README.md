@@ -28,14 +28,6 @@ First make sure you have the following installed:
 pnpm create @mfaith
 ```
 
-```shell
-npm init @mfaith
-```
-
-```shell
-yarn create @mfaith
-```
-
 You can read more about the supported runtime modes in their docs pages:
 
 - [**Setting up from the terminal**](./docs/Setup.md): creating a new repository locally on the command-line _(recommended)_
