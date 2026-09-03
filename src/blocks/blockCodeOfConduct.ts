@@ -1,9 +1,9 @@
 import { base } from "../base.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
-export const blockContributorCovenant = base.createBlock({
+export const blockCodeOfConduct = base.createBlock({
 	about: {
-		name: "Contributor Covenant",
+		name: "Code of Conduct",
 	},
 	produce({ options }) {
 		return {

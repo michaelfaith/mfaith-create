@@ -1,12 +1,12 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockContributorCovenant } from "./blockContributorCovenant.js";
+import { blockCodeOfConduct } from "./blockCodeOfConduct.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockContributorCovenant", () => {
+describe("blockCodeOfConduct", () => {
 	test("without mode", () => {
-		const creation = testBlock(blockContributorCovenant, {
+		const creation = testBlock(blockCodeOfConduct, {
 			options: optionsBase,
 		});
 
@@ -156,7 +156,7 @@ describe("blockContributorCovenant", () => {
 	});
 
 	test("transition mode", () => {
-		const creation = testBlock(blockContributorCovenant, {
+		const creation = testBlock(blockCodeOfConduct, {
 			mode: "transition",
 			options: optionsBase,
 		});

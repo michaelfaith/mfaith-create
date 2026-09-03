@@ -31,8 +31,8 @@ describe(blockReleaseIt, () => {
 			        "badges": [
 			          {
 			            "alt": "📦 npm version",
-			            "href": "http://npmjs.com/package/test-repository",
-			            "src": "https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm",
+			            "href": "http://npmjs.com/package/test-package-name",
+			            "src": "https://img.shields.io/npm/v/test-package-name?color=21bb42&label=%F0%9F%93%A6%20npm",
 			          },
 			        ],
 			      },
@@ -73,7 +73,7 @@ describe(blockReleaseIt, () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/test-owner/test-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/\${{ env.npm_version }})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-package-name/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
 
@@ -122,7 +122,7 @@ describe(blockReleaseIt, () => {
 			  },
 			  "suggestions": [
 			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
-			   https://www.npmjs.com/package/test-repository/access",
+			   https://www.npmjs.com/package/test-package-name/access",
 			  ],
 			}
 		`);
@@ -171,8 +171,8 @@ describe(blockReleaseIt, () => {
 			        "badges": [
 			          {
 			            "alt": "📦 npm version",
-			            "href": "http://npmjs.com/package/test-repository",
-			            "src": "https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm",
+			            "href": "http://npmjs.com/package/test-package-name",
+			            "src": "https://img.shields.io/npm/v/test-package-name?color=21bb42&label=%F0%9F%93%A6%20npm",
 			          },
 			        ],
 			      },
@@ -213,7 +213,7 @@ describe(blockReleaseIt, () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/test-owner/test-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/\${{ env.npm_version }})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-package-name/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
 
@@ -265,7 +265,7 @@ describe(blockReleaseIt, () => {
 			  },
 			  "suggestions": [
 			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
-			   https://www.npmjs.com/package/test-repository/access",
+			   https://www.npmjs.com/package/test-package-name/access",
 			  ],
 			}
 		`);

@@ -39,8 +39,7 @@ vi.mock("./utils/resolveBin.js", () => ({
 //
 // For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
-// eslint-disable-next-line vitest/no-disabled-tests
-test.skip("Producing the everything preset matches the files in this repository", async () => {
+test("Producing the everything preset matches the files in this repository", async () => {
 	const actual = (await intake(".", {
 		exclude: /node_modules|^\.git$/,
 	})) as IntakeDirectory;
@@ -141,6 +140,11 @@ If you're interested in learning more, see the 'getting started' docs on:
 		/all-contributorsrc|js|md|ts|yaml/.test(filePath)
 			? prettier.format(text, { filepath: filePath, useTabs: true })
 			: text;
+
+	// Hack to work around https://github.com/bingo-js/bingo/issues/419
+	if (actual[".husky"]?.["pre-commit"]?.[1]?.executable === false) {
+		actual[".husky"]["pre-commit"][1].executable = true;
+	}
 
 	expect(
 		diffCreatedDirectory(actual, created.files, processText),

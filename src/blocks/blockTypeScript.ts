@@ -98,7 +98,7 @@ greet("Hello, world! ${options.emoji}");
 					],
 				}),
 				blockGitignore({
-					ignores: ["/lib"],
+					ignores: ["/lib", "tsconfig.tsbuildinfo"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
