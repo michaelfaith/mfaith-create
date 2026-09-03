@@ -28,6 +28,7 @@ import { readNpmDefaults } from "./options/readNpmDefaults.js";
 import { readOwner } from "./options/readOwner.js";
 import { readPackageAuthor } from "./options/readPackageAuthor.js";
 import { readPackageData } from "./options/readPackageData.js";
+import { readPackageName } from "./options/readPackageName.js";
 import { readPnpm } from "./options/readPnpm.js";
 import { readReadmeAdditional } from "./options/readReadmeAdditional.js";
 import { readReadmeExplainer } from "./options/readReadmeExplainer.js";
@@ -283,6 +284,10 @@ export const base = createBase({
 			async () => await readPackageAuthor(getPackageData),
 		);
 
+		const getPackageName = lazyValue(
+			async () => await readPackageName(getPackageData, options),
+		);
+
 		const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
 
 		const getReadme = lazyValue(
@@ -344,6 +349,7 @@ export const base = createBase({
 			node: getNode,
 			owner: getOwner,
 			packageData: getPackageData,
+			packageName: getPackageName,
 			pnpm: getPnpm,
 			repository: getRepository,
 			rulesetId: getRulesetId,

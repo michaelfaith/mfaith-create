@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `eslint-plugin-package-json`! 🗂
+Thanks for your interest in contributing to `@mfaith/create`! 🗂
 
 > [!TIP]
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
@@ -11,7 +11,7 @@ This project has a [Code of Conduct](./CODE_OF_CONDUCT.md) all contributors are 
 
 ## Reporting Issues
 
-Please do [report an issue](https://github.com/michaelfaith/eslint-plugin-package-json/issues/new/choose) if there are any bugs, documentation improvements, or general enhancements you'd like to see in the repository!
+Please do [report an issue](https://github.com/michaelfaith/mfaith-create/issues/new/choose) if there are any bugs, documentation improvements, or general enhancements you'd like to see in the repository!
 Please fully fill out all required fields in the most appropriate issue form.
 
 ## Contributing Code
@@ -24,8 +24,8 @@ There are two steps involved:
 
 ### Finding an Issue
 
-With the exception of very small typos, all changes to this repository generally need to correspond to an [unassigned open issue marked as `status: accepting prs`](https://github.com/michaelfaith/eslint-plugin-package-json/issues?q=is%3Aissue+is%3Aopen+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
-If this is your first time contributing, consider searching for [unassigned issues that also have the `good first issue` label](https://github.com/michaelfaith/eslint-plugin-package-json/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
+With the exception of very small typos, all changes to this repository generally need to correspond to an [unassigned open issue marked as `status: accepting prs`](https://github.com/michaelfaith/mfaith-create/issues?q=is%3Aissue+is%3Aopen+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
+If this is your first time contributing, consider searching for [unassigned issues that also have the `good first issue` label](https://github.com/michaelfaith/mfaith-create/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
 If the issue you'd like to address hasn't been logged yet, see [Reporting Issues](#reporting-issues) for filing your own (please do!).
 
 ### Sending a Pull Request
@@ -36,7 +36,7 @@ Be sure to fill out the pull request template's requested information -- otherwi
 PRs are also expected to have a title that adheres to the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0) format.
 Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
-Check [previously merged PRs](https://github.com/michaelfaith/eslint-plugin-package-json/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
+Check [previously merged PRs](https://github.com/michaelfaith/mfaith-create/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
 
 #### Draft PRs
 

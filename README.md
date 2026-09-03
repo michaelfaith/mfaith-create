@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 59" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-59-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-59-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/michaelfaith/mfaith-create" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/michaelfaith/mfaith-create?label=%F0%9F%A7%AA%20coverage" /></a>
