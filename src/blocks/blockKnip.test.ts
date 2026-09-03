@@ -50,7 +50,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "6.33.0",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -131,7 +131,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "6.33.0",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -208,7 +208,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "6.33.0",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",

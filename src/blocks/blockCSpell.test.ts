@@ -58,7 +58,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "10.1.1",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -128,7 +128,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "10.1.1",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -149,7 +149,7 @@ describe(blockCSpell, () => {
 		const creation = testBlock(blockCSpell, {
 			options: {
 				...optionsBase,
-				words: ["joshuakgoldberg"],
+				words: ["michaelfaith"],
 			},
 		});
 
@@ -197,7 +197,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "10.1.1",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -208,7 +208,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"],"words":["michaelfaith"]}",
 			  },
 			}
 		`);
@@ -264,7 +264,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "10.1.1",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -280,7 +280,7 @@ describe(blockCSpell, () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "email" --words "github" --words "github@email.com" --words "npm" --words "npm@email.com" --words "emoji" --words "💖" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
+			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "contact" --words "email" --words "github@email.com" --words "url" --words "http://contact.url" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "emoji" --words "💖" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "packageName" --words "test-package-name" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
 			      ],
 			      "phase": 3,
 			    },
@@ -339,7 +339,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "10.1.1",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",

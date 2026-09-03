@@ -12,23 +12,9 @@ describe("blockContributorCovenant", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "badges": [
-			          {
-			            "alt": "🤝 Code of Conduct: Kept",
-			            "href": "https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md",
-			            "src": "https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
 			  "files": {
 			    ".github": {
-			      "CODE_OF_CONDUCT.md": "# Contributor Covenant Code of Conduct
+			      "CODE_OF_CONDUCT.md": "# Code of Conduct
 
 			## Our Pledge
 
@@ -89,8 +75,7 @@ describe("blockContributorCovenant", () => {
 			## Enforcement
 
 			Instances of abusive, harassing, or otherwise unacceptable behavior may be
-			reported to the community leaders responsible for enforcement at
-			github@email.com.
+			reported to the community leaders responsible for enforcement at http://contact.url.
 			All complaints will be reviewed and investigated promptly and fairly.
 
 			All community leaders are obligated to respect the privacy and security of the
@@ -181,18 +166,6 @@ describe("blockContributorCovenant", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "badges": [
-			          {
-			            "alt": "🤝 Code of Conduct: Kept",
-			            "href": "https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md",
-			            "src": "https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "files": [
 			          "CODE_OF_CONDUCT.md",
 			        ],
@@ -202,7 +175,7 @@ describe("blockContributorCovenant", () => {
 			  ],
 			  "files": {
 			    ".github": {
-			      "CODE_OF_CONDUCT.md": "# Contributor Covenant Code of Conduct
+			      "CODE_OF_CONDUCT.md": "# Code of Conduct
 
 			## Our Pledge
 
@@ -263,8 +236,7 @@ describe("blockContributorCovenant", () => {
 			## Enforcement
 
 			Instances of abusive, harassing, or otherwise unacceptable behavior may be
-			reported to the community leaders responsible for enforcement at
-			github@email.com.
+			reported to the community leaders responsible for enforcement at http://contact.url.
 			All complaints will be reviewed and investigated promptly and fairly.
 
 			All community leaders are obligated to respect the privacy and security of the

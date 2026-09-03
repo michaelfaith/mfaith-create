@@ -8,13 +8,13 @@ import { readAccess } from "./options/readAccess.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readAuthor } from "./options/readAuthor.js";
 import { readBin } from "./options/readBin.js";
+import { readContact } from "./options/readContact.js";
+import { readContactFromCodeOfConduct } from "./options/readContactFromCodeOfConduct.js";
 import { readDescription } from "./options/readDescription.js";
 import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.js";
 import { readDocumentation } from "./options/readDocumentation.js";
-import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.js";
 import { readEmailFromGit } from "./options/readEmailFromGit.js";
 import { readEmailFromNpm } from "./options/readEmailFromNpm.js";
-import { readEmails } from "./options/readEmails.js";
 import { readEmoji } from "./options/readEmoji.js";
 import { readExistingLabels } from "./options/readExistingLabels.js";
 import { readFileSafe } from "./options/readFileSafe.js";
@@ -49,14 +49,25 @@ export const base = createBase({
 			.string()
 			.optional()
 			.describe("username on npm to publish packages under"),
-		authorUrl: z
-			.string()
-			.optional()
-			.describe("URL to the author's homepage or profile"),
 		bin: z
 			.union([z.string(), z.record(z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
+		contact: z
+			.union([
+				z.string(),
+				z.object({
+					bluesky: z.string().optional(),
+					email: z.string().optional(),
+					url: z.string().optional(),
+				}),
+			])
+			// TODO: Test this? Is it still working?
+			// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991
+			.transform((email) => (typeof email === "string" ? { email } : email))
+			.describe(
+				"contact information to be listed as the point of contact in docs and packages",
+			),
 		contributors: z
 			.array(zContributor)
 			.optional()
@@ -69,22 +80,6 @@ export const base = createBase({
 		documentation: zDocumentation.describe(
 			"additional docs to add to .md files",
 		),
-		email: z
-			.union([
-				z.string(),
-				z.object({
-					github: z.string(),
-					npm: z.string(),
-				}),
-			])
-			// TODO: Test this? Is it still working?
-			// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991
-			.transform((email) =>
-				typeof email === "string" ? { github: email, npm: email } : email,
-			)
-			.describe(
-				"email address to be listed as the point of contact in docs and packages",
-			),
 		emoji: z
 			.string()
 			.optional()
@@ -193,6 +188,16 @@ export const base = createBase({
 				),
 		);
 
+		const getContact = lazyValue(
+			async () =>
+				await readContact(
+					getContactFromCodeOfConduct,
+					getEmailFromGit,
+					getEmailFromNpm,
+					getPackageAuthor,
+				),
+		);
+
 		const getBin = lazyValue(async () => await readBin(getPackageData));
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
@@ -217,22 +222,12 @@ export const base = createBase({
 				),
 		);
 
-		const getEmail = lazyValue(
-			async () =>
-				await readEmails(
-					getEmailFromCodeOfConduct,
-					getEmailFromGit,
-					getEmailFromNpm,
-					getPackageAuthor,
-				),
-		);
-
 		const getKeywords = lazyValue(
 			async () => await readKeywords(getPackageData),
 		);
 
-		const getEmailFromCodeOfConduct = lazyValue(
-			async () => await readEmailFromCodeOfConduct(take),
+		const getContactFromCodeOfConduct = lazyValue(
+			async () => await readContactFromCodeOfConduct(take),
 		);
 
 		const getEmailFromGit = lazyValue(async () => await readEmailFromGit(take));
@@ -336,10 +331,10 @@ export const base = createBase({
 			access: getAccess,
 			author: getAuthor,
 			bin: getBin,
+			contact: getContact,
 			contributors: getAllContributors,
 			description: getDescription,
 			documentation: getDocumentation,
-			email: getEmail,
 			emoji: getEmoji,
 			existingLabels: getExistingLabels,
 			funding: getFunding,

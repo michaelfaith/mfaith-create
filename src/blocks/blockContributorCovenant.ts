@@ -1,5 +1,4 @@
 import { base } from "../base.js";
-import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 export const blockContributorCovenant = base.createBlock({
@@ -8,20 +7,9 @@ export const blockContributorCovenant = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
-				blockREADME({
-					badges: [
-						{
-							alt: "🤝 Code of Conduct: Kept",
-							href: `https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md`,
-							src: "https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42",
-						},
-					],
-				}),
-			],
 			files: {
 				".github": {
-					"CODE_OF_CONDUCT.md": `# Contributor Covenant Code of Conduct
+					"CODE_OF_CONDUCT.md": `# Code of Conduct
 
 ## Our Pledge
 
@@ -82,8 +70,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-${options.email.github}.
+reported to the community leaders responsible for enforcement ${formatContact(options.contact)}.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -167,3 +154,15 @@ Translations are available at
 		};
 	},
 });
+
+function formatContact(contact: {
+	bluesky?: string;
+	email?: string;
+	url?: string;
+}) {
+	if (contact.bluesky) {
+		return `on [Bluesky](https://bsky.app/profile/${contact.bluesky})`;
+	} else {
+		return `at ${contact.url || contact.email}`;
+	}
+}

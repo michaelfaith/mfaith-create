@@ -5,6 +5,7 @@ import { PartialPackageData } from "../types.js";
 export interface PackageAuthor {
 	email?: string | undefined;
 	name?: string | undefined;
+	url?: string | undefined;
 }
 
 export async function readPackageAuthor(
