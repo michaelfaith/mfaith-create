@@ -46,10 +46,10 @@ export const blockPackageJson = base.createBlock({
 							...addons.properties,
 							author: {
 								name: options.author,
-								...(options.email.npm
-									? { email: options.email.npm }
-									: options.authorUrl
-										? { url: options.authorUrl }
+								...(options.contact.url
+									? { url: options.contact.url }
+									: options.contact.email
+										? { email: options.contact.email }
 										: {}),
 							},
 							bin: options.bin,
@@ -70,7 +70,7 @@ export const blockPackageJson = base.createBlock({
 							}),
 							files: processFiles(addons.properties.files),
 							keywords: options.keywords,
-							name: options.packageName ?? options.repository,
+							name: options.packageName,
 							repository: {
 								type: "git",
 								url: `git+https://github.com/${options.owner}/${options.repository}.git`,

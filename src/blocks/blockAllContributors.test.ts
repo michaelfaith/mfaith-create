@@ -63,7 +63,7 @@ describe("blockAllContributors", () => {
 			  "files": [
 			    "README.md"
 			  ],
-			  "projectName": "test-repository",
+			  "projectName": "test-package-name",
 			  "projectOwner": "test-owner",
 			  "repoType": "github"
 			}",
@@ -209,7 +209,7 @@ describe("blockAllContributors", () => {
 			  "files": [
 			    "README.md"
 			  ],
-			  "projectName": "test-repository",
+			  "projectName": "test-package-name",
 			  "projectOwner": "michaelfaith",
 			  "repoType": "github"
 			}",
@@ -354,7 +354,7 @@ describe("blockAllContributors", () => {
 			  "files": [
 			    "README.md"
 			  ],
-			  "projectName": "test-repository",
+			  "projectName": "test-package-name",
 			  "projectOwner": "test-owner",
 			  "repoType": "github"
 			}",

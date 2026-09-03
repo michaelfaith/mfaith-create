@@ -204,9 +204,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				blockVSCode({
 					extensions: ["dbaeumer.vscode-eslint"],
 					settings: {
-						"editor.codeActionsOnSave": {
-							"source.fixAll.eslint": "explicit",
-						},
 						"eslint.probe": [
 							"javascript",
 							"javascriptreact",

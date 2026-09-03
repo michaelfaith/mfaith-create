@@ -75,7 +75,7 @@ export const blockAllContributors = base.createBlock({
 						contributorsPerLine: 7,
 						contributorsSortAlphabetically: true,
 						files: ["README.md"],
-						projectName: options.repository,
+						projectName: options.packageName,
 						projectOwner: options.owner,
 						repoType: "github",
 					},

@@ -71,7 +71,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -88,9 +88,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -192,7 +189,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -209,9 +206,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -349,7 +343,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -366,9 +360,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -540,7 +531,7 @@ describe(blockESLint, () => {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
 			            "@eslint/markdown": "8.0.3",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "eslint-plugin-regexp": "3.2.0",
 			            "eslint-plugin-unknown": "1.2.3",
@@ -559,9 +550,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -710,7 +698,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -727,9 +715,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -857,7 +842,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -874,9 +859,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1017,7 +999,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1034,9 +1016,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1165,7 +1144,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1182,9 +1161,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1291,7 +1267,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1308,9 +1284,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1417,7 +1390,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1434,9 +1407,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1540,7 +1510,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1557,9 +1527,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",
@@ -1663,7 +1630,7 @@ describe(blockESLint, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
+			            "@types/node": "26.4.0",
 			            "eslint": "10.8.1",
 			            "typescript-eslint": "8.67.0",
 			          },
@@ -1680,9 +1647,6 @@ describe(blockESLint, () => {
 			          "dbaeumer.vscode-eslint",
 			        ],
 			        "settings": {
-			          "editor.codeActionsOnSave": {
-			            "source.fixAll.eslint": "explicit",
-			          },
 			          "eslint.probe": [
 			            "javascript",
 			            "javascriptreact",

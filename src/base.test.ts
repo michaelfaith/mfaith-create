@@ -13,6 +13,11 @@ describe("base", () => {
 			access: "public",
 			author: "michael faith",
 			bin: "bin/index.js",
+			contact: {
+				bluesky: "michael.faith",
+				email: "michaelfaith@users.noreply.github.com",
+				url: "https://michael.faith",
+			},
 			contributors: (
 				JSON.parse(
 					(await readFile(".all-contributorsrc")).toString(),
