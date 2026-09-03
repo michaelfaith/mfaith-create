@@ -5,24 +5,29 @@ import { PartialPackageData } from "../types.js";
 const repositoryRegex =
 	/^(?:git\+)?https:\/\/github\.com\/[^/]+\/(.+?)(?:\.git)?$/;
 
-export async function readRepository(
-	getGitDefaults: () => Promise<GitUrl | undefined>,
-	getPackageDataFull: () => Promise<PartialPackageData>,
-	options: { directory?: string; repository?: string },
-) {
-	const packageData = await getPackageDataFull();
-	let repositoryFromGit: string | undefined;
+const getRepositoryFromPackageData = async (
+	getPackageData: () => Promise<PartialPackageData>,
+): Promise<string | undefined> => {
+	const packageData = await getPackageData();
 	if (
 		typeof packageData.repository === "object" &&
 		packageData.repository.url
 	) {
-		repositoryFromGit = repositoryRegex.exec(packageData.repository.url)?.[1];
+		return repositoryRegex.exec(packageData.repository.url)?.[1];
 	}
 
+	return undefined;
+};
+
+export async function readRepository(
+	getGitDefaults: () => Promise<GitUrl | undefined>,
+	getPackageData: () => Promise<PartialPackageData>,
+	options: { directory?: string; repository?: string },
+) {
 	return (
 		options.repository ??
 		(await getGitDefaults())?.name ??
-		repositoryFromGit ??
+		(await getRepositoryFromPackageData(getPackageData)) ??
 		options.directory
 	);
 }
