@@ -8,6 +8,11 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
+vi.mock("../data/packageData.js", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+}));
+
 describe(blockKnip, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockKnip, {
@@ -50,7 +55,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.33.0",
+			            "knip": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -131,7 +136,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.33.0",
+			            "knip": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -208,7 +213,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.33.0",
+			            "knip": "1.2.3",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
