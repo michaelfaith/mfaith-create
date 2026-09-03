@@ -1,9 +1,14 @@
 import { prepareOptions } from "bingo";
 import { readFile } from "node:fs/promises";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { base } from "./base.js";
 import { AllContributorsData } from "./types.js";
+
+vi.mock("./options/readEmailFromGit.js", () => ({
+	readEmailFromGit: () =>
+		Promise.resolve("michaelfaith@users.noreply.github.com"),
+}));
 
 describe("base", () => {
 	test("production from create-typescript-app", async () => {
