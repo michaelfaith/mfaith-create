@@ -54,6 +54,7 @@ describe("base", () => {
 			},
 			owner: "michaelfaith",
 			packageData: expect.any(Object),
+			packageName: "@mfaith/create",
 			pnpm: expect.any(String),
 			repository: "mfaith-create",
 			title: "@mfaith/create",
