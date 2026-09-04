@@ -116,8 +116,10 @@ If you're interested in learning more, see the 'getting started' docs on:
 				}),
 				blockKnip({
 					ignoreDependencies: [
+						"@release-it/conventional-changelog",
 						"all-contributors-cli",
 						"cspell-populate-words",
+						"release-it",
 						"remove-dependencies",
 						"trash-cli",
 					],
