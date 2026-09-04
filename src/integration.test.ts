@@ -13,6 +13,7 @@ import {
 	blockCSpell,
 	blockESLint,
 	blockExports,
+	blockGitignore,
 	blockKnip,
 	blockRenovate,
 	blockTemplatedWith,
@@ -114,6 +115,8 @@ If you're interested in learning more, see the 'getting started' docs on:
 						},
 					],
 				}),
+				// TODO: This is only needed until we have a ReleasePlease block
+				blockGitignore({ ignores: ["/CHANGELOG.md"] }),
 				blockKnip({
 					ignoreDependencies: [
 						"@release-it/conventional-changelog",

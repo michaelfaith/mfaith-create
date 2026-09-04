@@ -3,6 +3,7 @@ import { z } from "zod";
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
@@ -28,6 +29,7 @@ export const blockReleaseIt = base.createBlock({
 
 		return {
 			addons: [
+				blockGitignore({ ignores: ["/CHANGELOG.md"] }),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(
