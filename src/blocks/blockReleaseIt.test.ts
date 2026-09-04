@@ -110,7 +110,7 @@ describe(blockReleaseIt, () => {
 			          fetch-depth: 0
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
@@ -258,7 +258,7 @@ describe(blockReleaseIt, () => {
 			          fetch-depth: 0
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - run: zero
 			      - run: one
 			      - run: two

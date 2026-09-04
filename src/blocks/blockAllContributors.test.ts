@@ -76,7 +76,7 @@ describe("blockAllContributors", () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
@@ -222,7 +222,7 @@ describe("blockAllContributors", () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
@@ -367,7 +367,7 @@ describe("blockAllContributors", () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0

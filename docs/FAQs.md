@@ -35,7 +35,7 @@ Here we'll outline the steps required to migrate an @mfaith/create app to a GitH
          runs-on: ubuntu-latest
          steps:
            - uses: actions/checkout@v4
-           - uses: ./.github/actions/prepare
+           - uses: ./.github/actions/setup
            - run: pnpm build
 
            - name: Compare dist/index.js
