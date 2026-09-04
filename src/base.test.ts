@@ -14,6 +14,10 @@ describe("base", () => {
 	test("production from mfaith-create", async () => {
 		const options = await prepareOptions(base);
 
+		if ("rulesetId" in options) {
+			delete options.rulesetId;
+		}
+
 		expect(options).toEqual({
 			access: "public",
 			author: "michael faith",

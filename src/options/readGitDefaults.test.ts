@@ -21,14 +21,14 @@ describe(readGitDefaults, () => {
 
 	it("resolves the parsed url when get-url origin url succeeds", async () => {
 		const take = vi.fn().mockResolvedValueOnce({
-			stdout: "https://github.com/JoshuaKGoldberg/create-typescript-app.git",
+			stdout: "https://github.com/michaelfaith/mfaith-create.git",
 		});
 
 		const actual = await readGitDefaults(take);
 
 		expect(actual).toMatchObject({
-			name: "create-typescript-app",
-			owner: "JoshuaKGoldberg",
+			name: "mfaith-create",
+			owner: "michaelfaith",
 		});
 	});
 });

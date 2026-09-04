@@ -1,23 +1,23 @@
 # FAQs
 
-## Do you have a guide to working with a `create-typescript-app` repository?
+## Do you have a guide to working with a `@mfaith/create` repository?
 
 Yes!
 See [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
-It'll walk you through the common activities you'll need to contribute to a repository scaffolded with `create-typescript-app`.
+It'll walk you through the common activities you'll need to contribute to a repository scaffolded with `@mfaith/create`.
 
 ## Can I use _(insert tool here)_ with this template?
 
 Yes!
 After you set up a repository, you can substitute in any tools you'd like.
 
-If you think the tool would be broadly useful to most consumers of this template, feel free to [file a feature request](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yaml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E) to add it in.
+If you think the tool would be broadly useful to most consumers of this template, feel free to [file a feature request](https://github.com/michaelfaith/mfaith-create/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yaml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E) to add it in.
 
 ## Can I create a GitHub action?
 
 Yes!
 If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
-Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
+Here we'll outline the steps required to migrate an @mfaith/create app to a GitHub Action:
 
 1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
    As a consequence we should:
@@ -95,7 +95,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    npx lint-staged
    ```
 
-1. Create an [`action.yaml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
+2. Create an [`action.yaml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
@@ -112,12 +112,14 @@ Then:
    {
    	"exports": {
    		".": {
-   			"types": {
-   				"import": "lib/index.d.ts",
-   				"require": "lib/index.d.cts"
+   			"import": {
+   				"types": "lib/index.d.ts",
+   				"default": "lib/index.js"
    			},
-   			"import": "lib/index.js",
-   			"require": "lib/index.cjs"
+   			"require": {
+   				"types": "lib/index.d.cts",
+   				"default": "lib/index.cjs"
+   			}
    		}
    	}
    }
@@ -131,15 +133,15 @@ To be safe, consider checking with [arethetypeswrong](https://arethetypeswrong.g
 2. Run `npm pack`
 3. Upload that generated `.tgz` file to [arethetypeswrong.github.io](https://arethetypeswrong.github.io)
 
-### Why doesn't `create-typescript-app` have an option to dual emit CJS and ESM?
+### Why doesn't `@mfaith/create` have an option to dual emit CJS and ESM?
 
 Dual CJS/ESM emit is a stopgap solution while the JavaScript ecosystem migrates towards full ESM support in most-to-all popular user packages.
-Most packages newly created with `create-typescript-app` should target just ESM by default.
+Most packages newly created with `@mfaith/create` should target just ESM by default.
 
-Some packages published with `create-typescript` legitimately need dual CJS/ESM output because they're used by frameworks that don't yet fully support ESM.
+Some packages published with `@mfaith/create` legitimately need dual CJS/ESM output because they're used by frameworks that don't yet fully support ESM.
 That's reasonable.
 
-Unless you know a package needs to support a CJS consumer, please strongly consider keeping it ESM-only (the `create-typescript-app` default).
+Unless you know a package needs to support a CJS consumer, please strongly consider keeping it ESM-only (the `@mfaith/create` default).
 ESM-only packages have a smaller footprint by virtue of including fewer files.
 
 ## What about `eslint-config-prettier`?
@@ -167,26 +169,3 @@ This repository is meant to serve as a starter that includes all the general too
 Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
-
-## Why tabs?
-
-This repository template configures `useTabs: true` in the root-level `prettier.config.ts`.
-It does so because tabs have been phrased by the community as generally better for accessibility:
-
-- <https://github.com/11ty/eleventy/issues/3098>
-- <https://github.com/prettier/prettier/issues/7475>
-
-Note that those points on tabs over spaces have generally been made by accessibility-experienced _individuals_ rather than accessibility-focused _organizations_.
-If you know of any accessibility organization that's published more formal recommendations or research, please do file an issue here for this FAQ entry to be updated.
-
-You can adjust the tab size that GitHub uses to display files from your [account settings page](https://github.com/settings/appearance#tab-size-heading) (the default is 8 spaces).
-
-If you really want spaces in your project you can always remove the `"useTabs": true`.
-
-## How can I use `bin`?
-
-The `--bin` option allows you to create a `package.json` bin value to include for npx-style running.
-An example of this would be `"bin/index.js"`.
-You'll need to create the folders and files that `bin` references.
-
-If you'd like an example of what that looks like, take a look at the [CTA source code](https://github.com/JoshuaKGoldberg/create-typescript-app/blob/e7fafcb8968f8f6c551ab0917c9a6a849a3cba28/bin/index.js)!

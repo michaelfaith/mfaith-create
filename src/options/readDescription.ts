@@ -23,7 +23,7 @@ export async function readDescription(
 		return marked.parseInline(fromPackageJson);
 	}
 
-	// If the package.json is create-typescript-app's but the repository isn't,
+	// If the package.json is @mfaith/create's but the repository isn't,
 	// we're almost certainly in transition mode after cloning the template.
 	if (
 		(await getRepository()) !== "mfaith-create" &&

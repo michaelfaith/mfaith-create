@@ -2,14 +2,13 @@ import { base } from "../base.js";
 import { packageData } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
 
-export const blockCTATransitions = base.createBlock({
+export const blockRepoTransitions = base.createBlock({
 	about: {
-		name: "CTA Transitions",
+		name: "Transitions",
 	},
 	produce({ options }) {
 		return {
@@ -17,7 +16,7 @@ export const blockCTATransitions = base.createBlock({
 				blockPackageJson({
 					properties: {
 						devDependencies: {
-							"create-typescript-app": packageData.version,
+							"@mfaith/create": packageData.version,
 						},
 					},
 				}),
@@ -30,7 +29,7 @@ export const blockCTATransitions = base.createBlock({
 					actions: {
 						transition: {
 							"action.yaml": formatYaml({
-								description: "Runs create-typescript-app in transition mode",
+								description: "Runs @mfaith/create in transition mode",
 								inputs: {
 									token: {
 										description:
@@ -43,7 +42,7 @@ export const blockCTATransitions = base.createBlock({
 									steps: [
 										{ uses: "./.github/actions/prepare" },
 										{
-											run: "npx create-typescript-app",
+											run: "npx @mfaith/create",
 											shell: "bash",
 										},
 										{
@@ -57,7 +56,7 @@ export const blockCTATransitions = base.createBlock({
 												commit_author:
 													"The Friendly Bingo Bot <bot@create.bingo>",
 												commit_message:
-													"Check in changes from re-running npx create-typescript-app",
+													"Check in changes from re-running npx @mfaith/create",
 												commit_user_email: "bot@create.bingo",
 												commit_user_name: "The Friendly Bingo Bot",
 											},
@@ -72,14 +71,14 @@ export const blockCTATransitions = base.createBlock({
 											with: {
 												issue: "${{ github.event.pull_request.number }}",
 												message: [
-													"🤖 Beep boop! I ran `npx create-typescript-app` and it updated some files.",
+													"🤖 Beep boop! I ran `npx @mfaith/create` and it updated some files.",
 													"",
 													"I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.",
 													"",
 													"Cheers!",
 													" — _The Friendly Bingo Bot_ 💝",
 													"",
-													"> ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your `.github/workflows/cta-transitions.yaml` file.",
+													"> ℹ️ These automatic commits keep your repository up-to-date with new versions of [@mfaith/create](https://github.com/michaelfaith/mfaith-create). If you want to opt out, delete your `.github/workflows/repo-transitions.yaml` file.",
 												].join("\n"),
 											},
 										},
@@ -118,9 +117,9 @@ export const blockCTATransitions = base.createBlock({
 						},
 					},
 					workflows: {
-						"cta.yaml": createSoloWorkflowFile({
+						"repo-transition.yaml": createSoloWorkflowFile({
 							jobName: "Transition",
-							name: "CTA",
+							name: "Transition Repo",
 							on: {
 								pull_request: {
 									branches: ["main"],
@@ -132,7 +131,7 @@ export const blockCTATransitions = base.createBlock({
 							steps: [
 								{
 									id: "checkout",
-									if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
+									if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, '@mfaith/create')`,
 									uses: resolveUses(
 										"actions/checkout",
 										"v4",
@@ -155,25 +154,13 @@ export const blockCTATransitions = base.createBlock({
 								},
 								{
 									if: "steps.checkout.outcome == 'skipped'",
-									run: "echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'",
+									run: "echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to @mfaith/create.'",
 								},
 							],
 						}),
 					},
 				},
 			},
-		};
-	},
-	transition() {
-		return {
-			addons: [
-				blockRemoveFiles({
-					files: [
-						".github/actions/transition/action.yml",
-						".github/workflows/cta.yml",
-					],
-				}),
-			],
 		};
 	},
 });

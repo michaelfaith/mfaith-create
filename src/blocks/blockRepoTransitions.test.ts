@@ -2,15 +2,14 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { packageData } from "../data/packageData.js";
-import { blockCTATransitions } from "./blockCTATransitions.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
+import { blockRepoTransitions } from "./blockRepoTransitions.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockCTATransitions", () => {
+describe("blockRepoTransitions", () => {
 	test("production", () => {
-		const creation = testBlock(blockCTATransitions, {
+		const creation = testBlock(blockRepoTransitions, {
 			options: optionsBase,
 		});
 
@@ -18,7 +17,7 @@ describe("blockCTATransitions", () => {
 			blockPackageJson({
 				properties: {
 					devDependencies: {
-						"create-typescript-app": packageData.version,
+						"@mfaith/create": packageData.version,
 					},
 				},
 			}),
@@ -31,7 +30,7 @@ describe("blockCTATransitions", () => {
 			  ".github": {
 			    "actions": {
 			      "transition": {
-			        "action.yaml": "description: Runs create-typescript-app in transition mode
+			        "action.yaml": "description: Runs @mfaith/create in transition mode
 
 			inputs:
 			  token:
@@ -43,13 +42,13 @@ describe("blockCTATransitions", () => {
 			runs:
 			  steps:
 			    - uses: ./.github/actions/prepare
-			    - run: npx create-typescript-app
+			    - run: npx @mfaith/create
 			      shell: bash
 			    - id: auto-commit-action
 			      uses: stefanzweifel/git-auto-commit-action@v5
 			      with:
 			        commit_author: The Friendly Bingo Bot <bot@create.bingo>
-			        commit_message: Check in changes from re-running npx create-typescript-app
+			        commit_message: Check in changes from re-running npx @mfaith/create
 			        commit_user_email: bot@create.bingo
 			        commit_user_name: The Friendly Bingo Bot
 			    - if: steps.auto-commit-action.outputs.changes_detected == 'true'
@@ -57,14 +56,14 @@ describe("blockCTATransitions", () => {
 			      with:
 			        issue: \${{ github.event.pull_request.number }}
 			        message: |-
-			          🤖 Beep boop! I ran \`npx create-typescript-app\` and it updated some files.
+			          🤖 Beep boop! I ran \`npx @mfaith/create\` and it updated some files.
 
 			          I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.
 
 			          Cheers!
 			           — _The Friendly Bingo Bot_ 💝
 
-			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta-transitions.yaml\` file.
+			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [@mfaith/create](https://github.com/michaelfaith/mfaith-create). If you want to opt out, delete your \`.github/workflows/repo-transitions.yaml\` file.
 			    - id: package-change
 			      uses: JoshuaKGoldberg/package-change-detector-action@0.1.0
 			      with:
@@ -83,7 +82,7 @@ describe("blockCTATransitions", () => {
 			      },
 			    },
 			    "workflows": {
-			      "cta.yaml": "jobs:
+			      "repo-transition.yaml": "jobs:
 			  transition:
 			    name: Transition
 			    permissions:
@@ -91,7 +90,7 @@ describe("blockCTATransitions", () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - id: checkout
-			        if: (github.actor == 'test-owner' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')
+			        if: (github.actor == 'test-owner' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, '@mfaith/create')
 			        uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
@@ -103,10 +102,10 @@ describe("blockCTATransitions", () => {
 			        with:
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
-			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
+			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to @mfaith/create.'
 
 
-			name: CTA
+			name: Transition Repo
 
 
 			on:
@@ -118,21 +117,5 @@ describe("blockCTATransitions", () => {
 			  },
 			}
 		`);
-	});
-
-	test("transition mode", () => {
-		const creation = testBlock(blockCTATransitions, {
-			mode: "transition",
-			options: optionsBase,
-		});
-
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({
-				files: [
-					".github/actions/transition/action.yml",
-					".github/workflows/cta.yml",
-				],
-			}),
-		);
 	});
 });
