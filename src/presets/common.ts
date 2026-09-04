@@ -3,7 +3,6 @@ import { blockAllContributors } from "../blocks/blockAllContributors.js";
 import { blockCodecov } from "../blocks/blockCodecov.js";
 import { blockFunding } from "../blocks/blockFunding.js";
 import { blockOctoGuide } from "../blocks/blockOctoGuide.js";
-import { blockReleaseIt } from "../blocks/blockReleaseIt.js";
 import { blockVitest } from "../blocks/blockVitest.js";
 import { presetMinimal } from "./minimal.js";
 
@@ -19,7 +18,6 @@ export const presetCommon = base.createPreset({
 		blockCodecov,
 		blockFunding,
 		blockOctoGuide,
-		blockReleaseIt,
 		blockVitest,
 	],
 });
