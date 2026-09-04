@@ -1,6 +1,6 @@
 # Blocks
 
-`create-typescript-app` provides several dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management.
+`@mfaith/create` provides several dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management.
 Each can be individually turned off or on.
 
 This table summarizes each block and which base levels they're included in:
@@ -48,7 +48,7 @@ This table summarizes each block and which base levels they're included in:
 | Prettier Plugin Sentences Per Line | `--add-prettier-plugin-sentences-per-line`, `--exclude-prettier-plugin-sentences-per-line` |         |        | 💯         |
 | Prettier Plugin Sh                 | `--add-prettier-plugin-sh`, `--exclude-prettier-plugin-sh`                                 |         |        | 💯         |
 | README.md                          | `--add-readme-md`, `--exclude-readme-md`                                                   | ✔️      | ✅     | 💯         |
-| release-it                         | `--add-release-it`, `--exclude-release-it`                                                 |         | ✅     | 💯         |
+| release-it                         | `--add-release-it`, `--exclude-release-it`                                                 |         |        |            |
 | Renovate                           | `--add-renovate`, `--exclude-renovate`                                                     |         |        | 💯         |
 | Security Docs                      | `--add-security-docs`, `--exclude-security-docs`                                           | ✔️      | ✅     | 💯         |
 | Side Effects                       | `--add-side-effects`, `--exclude-side-effects`                                             | ✔️      | ✅     | 💯         |
@@ -62,10 +62,10 @@ This table summarizes each block and which base levels they're included in:
 For example, this uses ncc instead of the default tsdown builder:
 
 ```shell
-npx create-typescript-app --add-ncc --exclude-tsdown
+pnpm create @mfaith --add-ncc --exclude-tsdown
 ```
 
-See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
+See also [CLI](./CLI.md) for customizing templated repositories when running `pnpm create @mfaith`.
 
 ## "Minimal" Base Level
 
@@ -182,7 +182,7 @@ pnpm tsc --watch
 ## "Common" Base Level
 
 These added tooling pieces are those that aren't quite essential for a repository, but are still very commonly useful.
-This is recommended for most users of `create-typescript-app` to start with.
+This is recommended for most users of `@mfaith/create` to start with.
 
 - [Contributors](#contributors)
 - [Lint Knip](#lint-knip)
@@ -267,11 +267,11 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Renovate](#renovate)
     - [Testing](#testing)
   - ["Everything" Base Level](#everything-base-level)
+    - [Dedupe Check](#dedupe-check)
     - [Lint ESLint](#lint-eslint)
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
     - [Lint Package JSON](#lint-package-json)
-    - [Lint Packages](#lint-packages)
     - [Lint Perfectionist](#lint-perfectionist)
     - [Lint Regexp](#lint-regexp)
     - [Lint Spelling](#lint-spelling)
@@ -279,6 +279,10 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
+
+### Dedupe Check
+
+Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate package dependencies.
 
 ### Lint ESLint
 
@@ -295,16 +299,6 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 ### Lint Package JSON
 
 [`eslint-plugin-package-json`](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): Linting for `package.json` files.
-
-### Lint Packages
-
-Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate package dependencies.
-
-```shell
-pnpm lint:packages
-```
-
-> This is grouped with _"Lint"_ tooling pieces, but will likely eventually be renamed ([#896](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/896)).
 
 ### Lint Perfectionist
 
@@ -323,8 +317,6 @@ Helps detect typos based on a configurable user dictionary (`cspell.json`).
 ```shell
 pnpm lint:spelling
 ```
-
-> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#897](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/897)).
 
 ### Lint Strict
 

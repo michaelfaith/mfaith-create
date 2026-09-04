@@ -12,10 +12,10 @@ import { presetMinimal } from "./presets/minimal.js";
 
 export const template = base.createStratumTemplate({
 	about: {
-		name: "Create TypeScript App",
+		name: "@mfaith/create",
 		repository: {
-			owner: "JoshuaKGoldberg",
-			repository: "create-typescript-app",
+			owner: "michaelfaith",
+			repository: "mfaith-create",
 		},
 	},
 	blocks: [

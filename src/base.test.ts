@@ -57,6 +57,7 @@ describe("base", () => {
 			packageName: "@mfaith/create",
 			pnpm: expect.any(String),
 			repository: "mfaith-create",
+			rulesetId: expect.anything(),
 			title: "@mfaith/create",
 			type: expect.any(String),
 			version: expect.any(String),

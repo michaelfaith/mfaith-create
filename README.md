@@ -10,7 +10,6 @@
 	<!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/michaelfaith/mfaith-create" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/michaelfaith/mfaith-create?label=%F0%9F%A7%AA%20coverage" /></a>
 	<a href="https://github.com/michaelfaith/mfaith-create/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg" /></a>
-	<a href="http://npmjs.com/package/@mfaith/create" target="_blank"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 </p>
 
 `@mfaith/create` is a one-stop-shop solution to set up a new repository with the latest and greatest TypeScript tooling and open source conventions.
@@ -32,7 +31,7 @@ You can read more about the supported runtime modes in their docs pages:
 
 - [**Setting up from the terminal**](./docs/Setup.md): creating a new repository locally on the command-line _(recommended)_
 - [**Transitioning an existing repository**](./docs/Transition.md): adding this template's tooling on top of an existing repository
-- [**Using the template repository**](./docs/UseThisTemplate.md): creating a new repository with the [_Use this template_](https://github.com/michaelfaith/create-typescript-app/generate) button on GitHub
+- [**Using the template repository**](./docs/UseThisTemplate.md): creating a new repository with the [_Use this template_](https://github.com/michaelfaith/mfaith-create/generate) button on GitHub
 
 ## Documentation
 
