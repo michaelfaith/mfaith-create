@@ -39,7 +39,7 @@ jobs:
     needs: release_please
     permissions:
       contents: read
-      id-token: write # Required for OIDC
+      id-token: write
     runs-on: ubuntu-latest
     outputs:
       dist_tag: ${{ steps.determine_dist_tag.outputs.dist_tag }}
@@ -93,7 +93,7 @@ jobs:
 
             The release is available on:
 
-            * [GitHub releases](https://github.com/michaelfaith/new-repo-template/releases/tag/{release_tag})
-            * [npm package (@${{ needs.publish.outputs.dist_tag }} dist-tag)](https://www.npmjs.com/package/package-json-validator/v/${{ env.npm_version }})
+            * [GitHub releases](https://github.com/michaelfaith/mfaith-create/releases/tag/{release_tag})
+            * [npm package (@${{ needs.publish.outputs.dist_tag }} dist-tag)](https://www.npmjs.com/package/@mfaith/create/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
