@@ -49,7 +49,7 @@ pnpm create @mfaith --preset everything
 Pre-populating all required base options:
 
 ```shell
-pnpm create @mfaith --directory my-app --description "My app! 💖" --preset everything
+pnpm create @mfaith --directory my-app --description "My app! ✨" --preset everything
 ```
 
 See [Bingo > Stratum > Concepts > Templates > `--preset`](https://www.create.bingo/engines/stratum/concepts/templates#--preset) for more details on presets.
@@ -66,7 +66,7 @@ Each defaults to a value based on the running system, including an repository if
 | `--authorUrl`   | `string`   | URL to the author's homepage or profile                                                                             | _(none)_                                                                                       |
 | `--bin`         | `string`   | Value to set in `package.json`'s `"bin"` property                                                                   | _(none)_                                                                                       |
 | `--contact`     | `string`   | Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)        | Yours from `gh`, `git config`, or `npm whoami`                                                 |
-| `--emoji`       | `string`   | decorative emoji to use in descriptions and docs                                                                    | The last emoji from `description`, or `"💖"`                                                   |
+| `--emoji`       | `string`   | decorative emoji to use in descriptions and docs                                                                    | The last emoji from `description`, or `"✨"`                                                   |
 | `--funding`     | `string`   | GitHub organization or username to mention in `funding.yaml`                                                        | The same as `owner`                                                                            |
 | `--keywords`    | `string[]` | Any number of keywords to include in `package.json`                                                                 | _(none)_                                                                                       |
 | `--owner`       | `string`   | Organization or user owning the repository                                                                          | Yours from `gh` or `git config`                                                                |

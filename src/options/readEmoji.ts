@@ -17,6 +17,6 @@ export async function readEmoji(
 		).findLast(
 			(grapheme) =>
 				pictographicPattern.test(grapheme) || keyCapPattern.test(grapheme),
-		) ?? "💖"
+		) ?? "✨"
 	);
 }

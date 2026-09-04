@@ -46,7 +46,7 @@ describe("base", () => {
 					usage: expect.any(String),
 				},
 			},
-			emoji: "💖",
+			emoji: "✨",
 			existingLabels: expect.any(Array),
 			guide: {
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",

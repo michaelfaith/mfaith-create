@@ -285,7 +285,7 @@ describe(blockCSpell, () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "contact" --words "email" --words "github@email.com" --words "url" --words "http://contact.url" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "emoji" --words "💖" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "packageName" --words "test-package-name" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
+			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "contact" --words "email" --words "github@email.com" --words "url" --words "http://contact.url" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "emoji" --words "✨" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "packageName" --words "test-package-name" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
 			      ],
 			      "phase": 3,
 			    },

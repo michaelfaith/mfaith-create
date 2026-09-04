@@ -13,7 +13,7 @@ export const optionsBase = {
 			usage: "Test usage.",
 		},
 	},
-	emoji: "💖",
+	emoji: "✨",
 	node: {
 		minimum: "20.12.0",
 	},

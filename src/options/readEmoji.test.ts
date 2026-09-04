@@ -8,7 +8,7 @@ describe(readEmoji, () => {
 
 		const actual = await readEmoji(getDescription);
 
-		expect(actual).toBe("💖");
+		expect(actual).toBe("✨");
 	});
 
 	it("resolves with undefined when the description does not have any emoji", async () => {
@@ -16,7 +16,7 @@ describe(readEmoji, () => {
 
 		const actual = await readEmoji(getDescription);
 
-		expect(actual).toBe("💖");
+		expect(actual).toBe("✨");
 	});
 
 	it("resolves with the emoji when the description has one emoji", async () => {
