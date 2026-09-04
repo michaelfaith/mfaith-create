@@ -151,6 +151,7 @@ greet("Hello, world! ${options.emoji}");
 						skipLibCheck: true,
 						strict: true,
 						target: "ES2023",
+						types: ["node"],
 						...compilerOptions,
 					}),
 					include: ["src"],
