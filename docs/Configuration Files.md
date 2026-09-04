@@ -1,14 +1,14 @@
 # Configuration Files
 
-`create-typescript-app` supports a `create-typescript-app.config.js` configuration file per [Bingo > Configuration](https://www.create.bingo/configuration).
+`@mfaith/create` supports a `create-repo.config.js` configuration file per [Bingo > Configuration](https://www.create.bingo/configuration).
 Bingo configuration files are generally used for describing complex options that can't be inferred from existing repositories.
-`create-typescript-app` is built on the [Stratum engine](https:://create.bingo/engines/stratum/about), so its configuration files adhere to [Bingo > Stratum > Details > Configurations](https://www.create.bingo/engines/stratum/details/configurations):
+`@mfaith/create` is built on the [Stratum engine](https:://create.bingo/engines/stratum/about), so its configuration files adhere to [Bingo > Stratum > Details > Configurations](https://www.create.bingo/engines/stratum/details/configurations):
 
 - [`options`](#options): any type-safe options the template has declared
 - [`refinements`](#refinements): any customizations specified by the template
 
-> [!TIP]  
-> `create-typescript-app` defaults `options` to their values in an existing repository.
+> [!TIP]
+> `@mfaith/create` defaults `options` to their values in an existing repository.
 > You most likely only need to use `refinements` to specify changes that can't be inferred.
 
 ## `options`
@@ -16,7 +16,7 @@ Bingo configuration files are generally used for describing complex options that
 Any type-safe options the template has declared.
 This includes the options described in [CLI](./CLI.md).
 
-Some of create-typescript-app's options are rich objects, typically very long strings, or otherwise not reasonable on the CLI.
+Some of `@mfaith/create`'s options are rich objects, typically very long strings, or otherwise not reasonable on the CLI.
 These options are generally only programmatically used internally, but can still be specified in a configuration file:
 
 | Option              | Description                                                              | Default (If Available)                                    |
@@ -34,8 +34,8 @@ These options are generally only programmatically used internally, but can still
 For example, changing `node` versions to values different from what would be inferred:
 
 ```ts
-// create-typescript-app.config.js
-import { createConfig } from "create-typescript-app";
+// create-repo.config.js
+import { createConfig } from "@mfaith/create";
 
 export default createConfig({
 	options: {
@@ -47,13 +47,13 @@ export default createConfig({
 });
 ```
 
-> [!TIP]  
-> Running `npx create-typescript-app` will apply any new `options` values to the repository.
-> You can generally remove `options` from your configuration file after running `npx create-typescript-app`.
+> [!TIP]
+> Running `pnpm create @mfaith` will apply any new `options` values to the repository.
+> You can generally remove `options` from your configuration file after running `pnpm create @mfaith`.
 
 ## `refinements`
 
-[Refinements](https://www.create.bingo/engines/stratum/details/configurations#refinements) can be used to modify the "Blocks" of tooling provided by create-typescript-app.
+[Refinements](https://www.create.bingo/engines/stratum/details/configurations#refinements) can be used to modify the "Blocks" of tooling provided by `@mfaith/create`.
 
 See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them, and their corresponding `--exclude-*` flags.
 
@@ -61,24 +61,24 @@ See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them,
 
 Any additional [Addons](https://www.create.bingo/engines/stratum/concepts/blocks#addons) provided to Blocks provided by the selected Preset.
 
-For example, this configuration file adds the word `"joshuakgoldberg"` to the CSpell Block's Addons:
+For example, this configuration file adds the word `"michaelfaith"` to the CSpell Block's Addons:
 
 ```ts
-// create-typescript-app.config.js
-import { blockCSpell, createConfig } from "create-typescript-app";
+// create-repo.config.js
+import { blockCSpell, createConfig } from "@mfaith/create";
 
 export default createConfig({
 	refinements: {
 		addons: [
 			blockCSpell({
-				words: ["joshuakgoldberg"],
+				words: ["michaelfaith"],
 			}),
 		],
 	},
 });
 ```
 
-Running `npx create-typescript-app` in a repository with that configuration file would add `"joshuakgoldberg"` to the `words` in `cspell.json`.
+Running `pnpm create @mfaith` in a repository with that configuration file would add `"michaelfaith"` to the `words` in `cspell.json`.
 
 ### `blocks`
 
@@ -88,11 +88,11 @@ Any customizations to the Blocks provided by the selected Preset.
 
 Any Blocks to add to what the Preset provides.
 
-For example, this configuration file adds in `create-typescript-app`'s provided "arethetypeswrong" Block:
+For example, this configuration file adds in `@mfaith/create`'s provided "arethetypeswrong" Block:
 
 ```ts
-// create-typescript-app.config.js
-import { blockAreTheTypesWrong, createConfig } from "create-typescript-app";
+// create-repo.config.js
+import { blockAreTheTypesWrong, createConfig } from "@mfaith/create";
 
 export default createConfig({
 	refinements: {
@@ -103,17 +103,17 @@ export default createConfig({
 });
 ```
 
-Running `npx create-typescript-app` in a repository with that configuration file would add in the created outputs from `blockAreTheTypesWrong`.
+Running `pnpm create @mfaith` in a repository with that configuration file would add in the created outputs from `blockAreTheTypesWrong`.
 
 #### `exclude`
 
 Any Blocks to exclude from what the Preset provides.
 
-For example, this configuration file omits the default _"This package was templated with..."_ notice that comes with `create-typescript-app`:
+For example, this configuration file omits the default _"This package was templated with..."_ notice that comes with `@mfaith/create`:
 
 ```ts
-// create-typescript-app.config.js
-import { blockTemplatedBy, createConfig } from "create-typescript-app";
+// create-repo.config.js
+import { blockTemplatedBy, createConfig } from "@mfaith/create";
 
 export default createConfig({
 	refinements: {
@@ -124,18 +124,18 @@ export default createConfig({
 });
 ```
 
-Running `npx create-typescript-app` in a repository with that configuration file would not include that Block, and so its generated README.md would not include the notice.
+Running `pnpm create @mfaith` in a repository with that configuration file would not include that Block, and so its generated README.md would not include the notice.
 
 #### Custom Blocks and Addons
 
 Custom Blocks can provide Addons to any other Blocks, including those provided by the package.
 This allows your repositories to blend in seamlessly with the features provided by your Template.
 
-For example, to add an [`@arethetypeswrong/cli`](https://www.npmjs.com/package/@arethetypeswrong/cli) lint task to the `package.json` file, a repository using the `create-typescript-app` Template could create and use a custom Block:
+For example, to add an [`@arethetypeswrong/cli`](https://www.npmjs.com/package/@arethetypeswrong/cli) lint task to the `package.json` file, a repository using the `@mfaith/create` Template could create and use a custom Block:
 
 ```ts
 // blockLintAreTheTypesWrong.js
-import { base, blockPackageJson } from "create-typescript-app";
+import { base, blockPackageJson } from "@mfaith/create";
 
 export const blockLintAreTheTypesWrong = base.createBlock({
 	about: {
@@ -161,8 +161,8 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 ```
 
 ```ts
-// create-typescript-app.config.js
-import { createConfig } from "create-typescript-app";
+// create-repo.config.js
+import { createConfig } from "@mfaith/create";
 
 import { blockLintAreTheTypesWrong } from "./blockLintAreTheTypesWrong.js";
 

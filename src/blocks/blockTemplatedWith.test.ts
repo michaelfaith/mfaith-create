@@ -22,7 +22,7 @@ describe("blockTemplatedWith", () => {
 			        "notices": [
 			          "
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
-			          "> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo framework](https://create.bingo).
+			          "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
 			",
 			        ],
 			      },
@@ -37,7 +37,7 @@ describe("blockTemplatedWith", () => {
 		const creation = testBlock(blockTemplatedWith, {
 			options: {
 				...optionsBase,
-				owner: "JoshuaKGoldberg",
+				owner: "michaelfaith",
 			},
 		});
 
@@ -47,7 +47,7 @@ describe("blockTemplatedWith", () => {
 			    {
 			      "addons": {
 			        "notices": [
-			          "> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo framework](https://create.bingo).
+			          "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
 			",
 			        ],
 			      },

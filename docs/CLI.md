@@ -1,24 +1,24 @@
 # CLI
 
-`create-typescript-app` supports all the flags supported by [Bingo CLI](https://www.create.bingo/cli)s.
+`@mfaith/create` supports all the flags supported by [Bingo CLI](https://www.create.bingo/cli)s.
 It also provides a collection of custom flags per [Bingo CLI > Template Flags](https://www.create.bingo/cli#template-flags).
 
 ```shell
-npx create-typescript-app
+pnpm create @mfaith
 ```
 
 ## Remote Repositories
 
-By default, `npx create-typescript-app` creates only a local Git repository.
+By default, `pnpm create @mfaith` creates only a local Git repository.
 It will not send network requests to create a repository on GitHub.
 
-However, if you have an `origin` remote on GitHub, `create-typescript-app` will synchronize the local repository with it.
+However, if you have an `origin` remote on GitHub, `@mfaith/create` will synchronize the local repository with it.
 That includes pushing the latest commits, setting repository labels, updating repository settings such as allowed merge strategies.
 
 A `--remote` CLI flag exists as a convenience to create a remote repository on GitHub:
 
 ```shell
-npx create-typescript-app --remote
+pnpm create @mfaith --remote
 ```
 
 You can run with `--remote` when creating a new repository or transitioning an existing local Git repository.
@@ -34,7 +34,7 @@ Each will be prompted for when creating a new repository if not explicitly provi
 | `--directory`   | which directory and repository name to use     |
 | `--preset`      | starting set of tooling to use                 |
 
-`npx create-typescript-app` provides three `--preset` options:
+`pnpm create @mfaith` provides three `--preset` options:
 
 1. **Minimal**: Just bare starter tooling: building, formatting, linting, and type checking.
 2. **Common**: Bare starters plus testing and automation for all-contributors and releases.
@@ -43,13 +43,13 @@ Each will be prompted for when creating a new repository if not explicitly provi
 For example, to create a new repository with the _Everything_ preset and prompt for `description` and `directory`:
 
 ```shell
-npx create-typescript-app --preset everything
+pnpm create @mfaith --preset everything
 ```
 
 Pre-populating all required base options:
 
 ```shell
-npx create-typescript-app --directory my-app --description "My app! 💖" --preset everything
+pnpm create @mfaith --directory my-app --description "My app! 💖" --preset everything
 ```
 
 See [Bingo > Stratum > Concepts > Templates > `--preset`](https://www.create.bingo/engines/stratum/concepts/templates#--preset) for more details on presets.
@@ -81,14 +81,14 @@ Each defaults to a value based on the running system, including an repository if
 For example, customizing the npm author and funding source to different values than what would be inferred:
 
 ```shell
-npx create-typescript-app --author my-npm-username --funding MyGitHubOrganization
+pnpm create @mfaith --author my-npm-username --funding MyGitHubOrganization
 ```
 
 Array flags can be specified as multiple times.
 For example, customizing keywords to two:
 
 ```shell
-npx create-typescript-app --keywords eslint --keywords typescript
+pnpm create @mfaith --keywords eslint --keywords typescript
 ```
 
 ## Block Exclusion Flags
@@ -99,7 +99,7 @@ Each Block may be excluded with a CLI flag whose name matches `--exclude-*`.
 For example, initializing with all tooling except for Renovate:
 
 ```shell
-npx create-typescript-app --exclude-renovate
+pnpm create @mfaith --exclude-renovate
 ```
 
 See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them, and their corresponding `--exclude-*` flags.

@@ -1,9 +1,9 @@
 # Setup Mode
 
-You can run `npx create-typescript-app` in your terminal to interactively create a new repository:
+You can run `@mfaith/create` in your terminal to interactively create a new repository:
 
 ```shell
-npx create-typescript-app
+pnpm create @mfaith
 ```
 
 The setup script will by default:
@@ -33,7 +33,7 @@ See [CLI.md](./CLI.md).
 For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
-npx create-typescript-app --mode create --exclude-templated-with
+pnpm create @mfaith --mode create --exclude-templated-with
 ```
 
 See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

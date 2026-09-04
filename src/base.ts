@@ -63,8 +63,6 @@ export const base = createBase({
 					url: z.string().optional(),
 				}),
 			])
-			// TODO: Test this? Is it still working?
-			// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991
 			.transform((email) => (typeof email === "string" ? { email } : email))
 			.describe(
 				"contact information to be listed as the point of contact in docs and packages",
