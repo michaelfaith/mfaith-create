@@ -29,7 +29,7 @@ export const blockGitHubActionsCI = base.createBlock({
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
-			[".github", "actions", "prepare", "action.yaml"],
+			[".github", "actions", "setup", "action.yaml"],
 			["runs", "steps"],
 		);
 		if (!steps) {
@@ -90,9 +90,9 @@ export const blockGitHubActionsCI = base.createBlock({
 			files: {
 				".github": {
 					actions: {
-						prepare: {
+						setup: {
 							"action.yaml": formatYaml({
-								description: "Prepares the repo for a typical CI job",
+								description: "Sets up the repo for a typical CI job",
 								name: "Setup",
 								runs: {
 									steps: [
@@ -170,7 +170,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				blockRemoveFiles({
 					files: [
 						".circleci",
-						".github/actions/prepare/action.yml",
+						".github/actions/setup/action.yml",
 						".github/workflows/ci.yml",
 						".github/workflows/pr-review-requested.yml",
 						"travis.{yaml,yml}",

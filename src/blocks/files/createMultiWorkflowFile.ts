@@ -38,7 +38,7 @@ export function createMultiWorkflowFile({
 							uses: resolveUses("actions/checkout", "v4", workflowsVersions),
 							with: job.checkoutWith,
 						},
-						{ uses: "./.github/actions/prepare" },
+						{ uses: "./.github/actions/setup" },
 						...job.steps,
 					],
 				},

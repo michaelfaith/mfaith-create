@@ -135,7 +135,7 @@ export const blockReleaseIt = base.createBlock({
 									},
 								},
 								{
-									uses: "./.github/actions/prepare",
+									uses: "./.github/actions/setup",
 								},
 								...builders
 									.sort((a, b) => a.order - b.order)

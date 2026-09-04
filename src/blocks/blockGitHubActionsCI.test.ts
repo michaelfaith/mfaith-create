@@ -29,8 +29,8 @@ describe(blockGitHubActionsCI, () => {
 			  "files": {
 			    ".github": {
 			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			        "setup": {
+			          "action.yaml": "description: Sets up the repo for a typical CI job
 
 			name: Setup
 
@@ -103,8 +103,8 @@ describe(blockGitHubActionsCI, () => {
 			  "files": {
 			    ".github": {
 			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			        "setup": {
+			          "action.yaml": "description: Sets up the repo for a typical CI job
 
 			name: Setup
 
@@ -171,8 +171,8 @@ describe(blockGitHubActionsCI, () => {
 			  "files": {
 			    ".github": {
 			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			        "setup": {
+			          "action.yaml": "description: Sets up the repo for a typical CI job
 
 			name: Setup
 
@@ -240,7 +240,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "files": [
 			          ".circleci",
-			          ".github/actions/prepare/action.yml",
+			          ".github/actions/setup/action.yml",
 			          ".github/workflows/ci.yml",
 			          ".github/workflows/pr-review-requested.yml",
 			          "travis.{yaml,yml}",
@@ -252,8 +252,8 @@ describe(blockGitHubActionsCI, () => {
 			  "files": {
 			    ".github": {
 			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			        "setup": {
+			          "action.yaml": "description: Sets up the repo for a typical CI job
 
 			name: Setup
 
@@ -338,8 +338,8 @@ describe(blockGitHubActionsCI, () => {
 			  "files": {
 			    ".github": {
 			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			        "setup": {
+			          "action.yaml": "description: Sets up the repo for a typical CI job
 
 			name: Setup
 
@@ -363,7 +363,7 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - uses: actions/setup-node@v4
 			        with:
 			          cache: pnpm
@@ -374,7 +374,7 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
+			      - uses: ./.github/actions/setup
 			      - env:
 			          VAR_ENV: 'true'
 			        if: always()
@@ -436,7 +436,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": ["invalid YAML!"],
 							},
 						},
@@ -452,7 +452,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": [
 									dump({
 										other: {
@@ -474,7 +474,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": [
 									dump({
 										runs: {
@@ -496,7 +496,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": [
 									dump({
 										runs: {
@@ -522,7 +522,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": [
 									dump({
 										runs: {
@@ -550,7 +550,7 @@ describe(blockGitHubActionsCI, () => {
 				files: {
 					".github": {
 						actions: {
-							prepare: {
+							setup: {
 								"action.yaml": [
 									dump({
 										runs: {

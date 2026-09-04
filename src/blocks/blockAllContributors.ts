@@ -100,7 +100,7 @@ export const blockAllContributors = base.createBlock({
 									),
 									with: { "fetch-depth": 0 },
 								},
-								{ uses: "./.github/actions/prepare" },
+								{ uses: "./.github/actions/setup" },
 								{
 									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
 									uses: resolveUses(
