@@ -16,7 +16,7 @@ describe("blockContributingDocs", () => {
 			    ".github": {
 			      "CONTRIBUTING.md": "# Contributing
 
-			Thanks for your interest in contributing to \`test-package-name\`! 💖
+			Thanks for your interest in contributing to \`test-package-name\`! ✨
 
 			> [!TIP]
 			> After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
@@ -130,7 +130,7 @@ describe("blockContributingDocs", () => {
 			    ".github": {
 			      "CONTRIBUTING.md": "# Contributing
 
-			Thanks for your interest in contributing to \`test-package-name\`! 💖
+			Thanks for your interest in contributing to \`test-package-name\`! ✨
 
 			> [!TIP]
 			> After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.

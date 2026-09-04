@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `@mfaith/create`! 💖
+Thanks for your interest in contributing to `@mfaith/create`! ✨
 
 > [!TIP]
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.

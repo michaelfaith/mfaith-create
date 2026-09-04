@@ -22,8 +22,8 @@ describe(readReadmeFootnotes, () => {
 	it("resolves undefined when there is no content after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
-			
-> 💖 This package was templated with etc. etc.
+
+> ✨ This package was templated with etc. etc.
 
 `);
 
@@ -35,8 +35,8 @@ describe(readReadmeFootnotes, () => {
 	it("resolves the content when there plain text content after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
-			
-> 💖 This package was templated with etc. etc.
+
+> ✨ This package was templated with etc. etc.
 
 After.
 `);
@@ -49,8 +49,8 @@ After.
 	it("resolves the content when there are footnotes after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
-			
-> 💖 This package was templated with etc. etc.
+
+> ✨ This package was templated with etc. etc.
 
 [^1]: After.
 `);
@@ -66,7 +66,7 @@ After.
 
 <!-- You can remove this notice etc. etc. -->
 
-> 💖 This package was templated with etc. etc.
+> ✨ This package was templated with etc. etc.
 
 [^1]: After.
 `);

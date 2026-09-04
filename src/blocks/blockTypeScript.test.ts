@@ -76,7 +76,7 @@ describe(blockTypeScript, () => {
 			\`\`\`ts
 			import { greet } from "test-repository";
 
-			greet("Hello, world! 💖");
+			greet("Hello, world! ✨");
 			\`\`\`",
 			        ],
 			      },
@@ -236,7 +236,7 @@ describe(blockTypeScript, () => {
 			\`\`\`ts
 			import { greet } from "test-repository";
 
-			greet("Hello, world! 💖");
+			greet("Hello, world! ✨");
 			\`\`\`",
 			        ],
 			      },
@@ -394,7 +394,7 @@ describe(blockTypeScript, () => {
 			\`\`\`ts
 			import { greet } from "test-repository";
 
-			greet("Hello, world! 💖");
+			greet("Hello, world! ✨");
 			\`\`\`",
 			        ],
 			      },
@@ -561,7 +561,7 @@ describe(blockTypeScript, () => {
 			\`\`\`ts
 			import { greet } from "test-repository";
 
-			greet("Hello, world! 💖");
+			greet("Hello, world! ✨");
 			\`\`\`",
 			        ],
 			      },

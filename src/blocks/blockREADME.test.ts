@@ -335,7 +335,7 @@ describe(blockREADME, () => {
 						src: "https://img.shields.io/badge/my_badge-000000",
 					},
 				],
-				notices: ["> Hello, world! 💖"],
+				notices: ["> Hello, world! ✨"],
 				sections: [`## Other\n\nHello!`],
 			},
 			options: optionsBase,
@@ -366,7 +366,7 @@ describe(blockREADME, () => {
 
 			Hello!
 
-			> Hello, world! 💖",
+			> Hello, world! ✨",
 			  },
 			}
 		`);
