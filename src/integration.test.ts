@@ -13,8 +13,8 @@ import {
 	blockCSpell,
 	blockESLint,
 	blockExports,
-	blockGitignore,
 	blockKnip,
+	blockPrettier,
 	blockRenovate,
 	blockTemplatedWith,
 	presets,
@@ -115,8 +115,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 						},
 					],
 				}),
-				// TODO: This is only needed until we have a ReleasePlease block
-				blockGitignore({ ignores: ["/CHANGELOG.md"] }),
 				blockKnip({
 					ignoreDependencies: [
 						"@release-it/conventional-changelog",
@@ -130,6 +128,8 @@ If you're interested in learning more, see the 'getting started' docs on:
 				blockExports({
 					runArgs: ["--version"],
 				}),
+				// TODO: This is only needed until we have a ReleasePlease block
+				blockPrettier({ ignores: ["/CHANGELOG.md"] }),
 				blockRenovate({
 					ignoreDeps: ["all-contributors-cli"],
 				}),

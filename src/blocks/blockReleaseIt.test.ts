@@ -14,14 +14,6 @@ describe(blockReleaseIt, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/CHANGELOG.md",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "12.0.0",
@@ -31,6 +23,14 @@ describe(blockReleaseIt, () => {
 			            "should-semantic-release": undefined,
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/CHANGELOG.md",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -162,14 +162,6 @@ describe(blockReleaseIt, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/CHANGELOG.md",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "12.0.0",
@@ -179,6 +171,14 @@ describe(blockReleaseIt, () => {
 			            "should-semantic-release": undefined,
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/CHANGELOG.md",
+			        ],
 			      },
 			      "block": [Function],
 			    },
