@@ -28,6 +28,14 @@ describe(blockReleaseIt, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/CHANGELOG.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "badges": [
 			          {
 			            "alt": "📦 npm version",
@@ -163,6 +171,14 @@ describe(blockReleaseIt, () => {
 			            "should-semantic-release": undefined,
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/CHANGELOG.md",
+			        ],
 			      },
 			      "block": [Function],
 			    },

@@ -4,6 +4,7 @@ import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
@@ -39,6 +40,7 @@ export const blockReleaseIt = base.createBlock({
 						},
 					},
 				}),
+				blockPrettier({ ignores: ["/CHANGELOG.md"] }),
 				blockREADME({
 					badges: [
 						{
