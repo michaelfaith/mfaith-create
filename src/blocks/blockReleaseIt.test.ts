@@ -74,7 +74,6 @@ describe(blockReleaseIt, () => {
 			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
-			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 			          comment-template: |
 			              :tada: This is included in version {release_link} :tada:
 
@@ -84,6 +83,7 @@ describe(blockReleaseIt, () => {
 			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-package-name/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 
 
 			name: Post Release
@@ -110,7 +110,7 @@ describe(blockReleaseIt, () => {
 			          fetch-depth: 0
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
-			      - uses: ./.github/actions/setup
+			      - uses: $/.github/actions/setup
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
@@ -222,7 +222,6 @@ describe(blockReleaseIt, () => {
 			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
-			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 			          comment-template: |
 			              :tada: This is included in version {release_link} :tada:
 
@@ -232,6 +231,7 @@ describe(blockReleaseIt, () => {
 			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-package-name/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 
 
 			name: Post Release
@@ -258,7 +258,7 @@ describe(blockReleaseIt, () => {
 			          fetch-depth: 0
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
-			      - uses: ./.github/actions/setup
+			      - uses: $/.github/actions/setup
 			      - run: zero
 			      - run: one
 			      - run: two

@@ -1,5 +1,4 @@
 import { WorkflowsVersions } from "../../schemas.js";
-import { resolveUses } from "../actions/resolveUses.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
@@ -23,27 +22,8 @@ export type MultiWorkflowJobStep = { if?: string } & (
 export function createMultiWorkflowFile({
 	jobs,
 	name,
-	workflowsVersions,
 }: MultiWorkflowFileOptions) {
 	return formatWorkflowYaml({
-		jobs: Object.fromEntries(
-			jobs.map((job) => [
-				createJobName(job.name),
-				{
-					if: job.if,
-					name: job.name,
-					"runs-on": "ubuntu-latest",
-					steps: [
-						{
-							uses: resolveUses("actions/checkout", "v4", workflowsVersions),
-							with: job.checkoutWith,
-						},
-						{ uses: "./.github/actions/setup" },
-						...job.steps,
-					],
-				},
-			]),
-		),
 		name,
 		on: {
 			pull_request: null,
@@ -51,5 +31,16 @@ export function createMultiWorkflowFile({
 				branches: ["main"],
 			},
 		},
+		jobs: Object.fromEntries(
+			jobs.map((job) => [
+				createJobName(job.name),
+				{
+					if: job.if,
+					name: job.name,
+					"runs-on": "ubuntu-latest",
+					steps: job.steps,
+				},
+			]),
+		),
 	});
 }

@@ -10,7 +10,6 @@ const options: DumpOptions = {
 		...nullCoreTag,
 		represent: () => "~",
 	}),
-	sortKeys: true,
 	// https://github.com/nodeca/js-yaml/pull/515
 	transform(documents) {
 		visit(documents, (node) => {
