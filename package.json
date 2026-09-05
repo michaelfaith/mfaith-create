@@ -1,6 +1,6 @@
 {
 	"name": "@mfaith/create",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "A quickstart-friendly repo template with comprehensive, opinionated tooling.",
 	"repository": {
 		"type": "git",
