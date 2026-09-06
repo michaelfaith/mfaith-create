@@ -6,218 +6,100 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockGitHubActionsCI, () => {
-	test("without options.node.pinned", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			options: {
-				...optionsBase,
-				node: {
-					minimum: "20.12.0",
-				},
-			},
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "setup": {
-			          "action.yaml": "description: Sets up the repo for a typical CI job
-
-			name: Setup
-
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 20.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-
-			name: PR Review Requested
-
-
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
-		`);
-	});
-
-	test("with options.node.pinned", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			options: {
-				...optionsBase,
-				node: {
-					minimum: "20.12.0",
-					pinned: "22.12.0",
-				},
-			},
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "setup": {
-			          "action.yaml": "description: Sets up the repo for a typical CI job
-
-			name: Setup
-
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 22.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-
-			name: PR Review Requested
-
-
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
-		`);
-	});
-
-	test("without addons or mode", () => {
+	test("production", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "setup": {
-			          "action.yaml": "description: Sets up the repo for a typical CI job
+{
+  "addons": [
+    {
+      "addons": {
+        "requiredStatusChecks": undefined,
+      },
+      "block": [Function],
+    },
+  ],
+  "files": {
+    ".github": {
+      "actions": {
+        "setup": {
+          "action.yaml": "name: Setup
 
-			name: Setup
+description: Sets up the repo for a typical CI job
 
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 20.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+inputs:
+  cache:
+    description: Cache the pnpm store
+    default: true
+    required: false
+  install-flags:
+    description: Flags to pass to \`pnpm install\`
+    required: false
+    type: string
+  node-version:
+    description: Node.js version to use
+    default: '20'
+    required: false
+  skip-checkout:
+    description: Skip the checkout step if the repo is already checked out
+    default: false
+    required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
+
+runs:
+  steps:
+    - uses: actions/checkout@v7
+      if: \${{ inputs.skip-checkout == 'false' }}
+    - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      with:
+        cache: \${{ inputs.cache }}
+        install: \${{ inputs.install-flags == '' }}
+        runtime: node@\${{ inputs.node-version }}
+    - run: pnpm install \${{ inputs.install-flags }}
+      if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      shell: bash
+  using: composite
+",
+        },
+      },
+      "workflows": {
+        "ci.yaml": undefined,
+        "pr-review-requested.yaml": "jobs:
+  pr_review_requested:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: 'status: waiting for author'
+      - if: failure()
+        run: |
+          echo "Don't worry if the previous step failed."
+          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
 
-			name: PR Review Requested
+name: PR Review Requested
 
 
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
+on:
+  pull_request_target:
+    types:
+      - review_requested
+",
+      },
+    },
+  },
+}
 		`);
 	});
 
@@ -228,77 +110,106 @@ describe(blockGitHubActionsCI, () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": [
-			          ".circleci",
-			          ".github/actions/setup/action.yml",
-			          ".github/workflows/ci.yml",
-			          ".github/workflows/pr-review-requested.yml",
-			          "travis.{yaml,yml}",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "setup": {
-			          "action.yaml": "description: Sets up the repo for a typical CI job
+{
+  "addons": [
+    {
+      "addons": {
+        "requiredStatusChecks": undefined,
+      },
+      "block": [Function],
+    },
+    {
+      "addons": {
+        "files": [
+          ".circleci",
+          ".github/actions/setup/action.yml",
+          ".github/workflows/ci.yml",
+          ".github/workflows/pr-review-requested.yml",
+          "travis.{yaml,yml}",
+        ],
+      },
+      "block": [Function],
+    },
+  ],
+  "files": {
+    ".github": {
+      "actions": {
+        "setup": {
+          "action.yaml": "name: Setup
 
-			name: Setup
+description: Sets up the repo for a typical CI job
 
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 20.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+inputs:
+  cache:
+    description: Cache the pnpm store
+    default: true
+    required: false
+  install-flags:
+    description: Flags to pass to \`pnpm install\`
+    required: false
+    type: string
+  node-version:
+    description: Node.js version to use
+    default: '20'
+    required: false
+  skip-checkout:
+    description: Skip the checkout step if the repo is already checked out
+    default: false
+    required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
+
+runs:
+  steps:
+    - uses: actions/checkout@v7
+      if: \${{ inputs.skip-checkout == 'false' }}
+    - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      with:
+        cache: \${{ inputs.cache }}
+        install: \${{ inputs.install-flags == '' }}
+        runtime: node@\${{ inputs.node-version }}
+    - run: pnpm install \${{ inputs.install-flags }}
+      if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      shell: bash
+  using: composite
+",
+        },
+      },
+      "workflows": {
+        "ci.yaml": undefined,
+        "pr-review-requested.yaml": "jobs:
+  pr_review_requested:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: 'status: waiting for author'
+      - if: failure()
+        run: |
+          echo "Don't worry if the previous step failed."
+          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
 
-			name: PR Review Requested
+name: PR Review Requested
 
 
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
+on:
+  pull_request_target:
+    types:
+      - review_requested
+",
+      },
+    },
+  },
+}
 		`);
 	});
 
@@ -318,108 +229,134 @@ describe(blockGitHubActionsCI, () => {
 						],
 					},
 				],
+				nodeVersion: 24,
 			},
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": [
-			          "Engines Check",
-			          "Validate",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "setup": {
-			          "action.yaml": "description: Sets up the repo for a typical CI job
+{
+  "addons": [
+    {
+      "addons": {
+        "requiredStatusChecks": [
+          "Engines Check",
+          "Validate",
+        ],
+      },
+      "block": [Function],
+    },
+  ],
+  "files": {
+    ".github": {
+      "actions": {
+        "setup": {
+          "action.yaml": "name: Setup
 
-			name: Setup
+description: Sets up the repo for a typical CI job
 
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 20.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": "jobs:
-			  engines_check:
-			    name: Engines Check
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/setup
-			      - uses: actions/setup-node@v4
-			        with:
-			          node-version: 20.12.0
-			      - env:
-			          pnpm_config_engine_strict: 'true'
-			        run: pnpm install --prod --ignore-scripts
-			  validate:
-			    name: Validate
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/setup
-			      - env:
-			          VAR_ENV: 'true'
-			        if: always()
-			        run: pnpm validate
-			        with:
-			          VAR_WITH: 'true'
+inputs:
+  cache:
+    description: Cache the pnpm store
+    default: true
+    required: false
+  install-flags:
+    description: Flags to pass to \`pnpm install\`
+    required: false
+    type: string
+  node-version:
+    description: Node.js version to use
+    default: '24'
+    required: false
+  skip-checkout:
+    description: Skip the checkout step if the repo is already checked out
+    default: false
+    required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
 
-
-			name: CI
-
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+runs:
+  steps:
+    - uses: actions/checkout@v7
+      if: \${{ inputs.skip-checkout == 'false' }}
+    - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      with:
+        cache: \${{ inputs.cache }}
+        install: \${{ inputs.install-flags == '' }}
+        runtime: node@\${{ inputs.node-version }}
+    - run: pnpm install \${{ inputs.install-flags }}
+      if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
+      shell: bash
+  using: composite
+",
+        },
+      },
+      "workflows": {
+        "ci.yaml": "name: CI
 
 
-			name: PR Review Requested
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
 
 
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
+jobs:
+  engines_check:
+    name: Engines Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: $/.github/actions/setup
+        with:
+          cache: false
+          install-flags: --prod --ignore-scripts
+          strict-engines: true
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: $/.github/actions/setup
+      - env:
+          VAR_ENV: 'true'
+        if: always()
+        with:
+          VAR_WITH: 'true'
+        run: pnpm validate
+",
+        "pr-review-requested.yaml": "jobs:
+  pr_review_requested:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: 'status: waiting for author'
+      - if: failure()
+        run: |
+          echo "Don't worry if the previous step failed."
+          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+
+
+name: PR Review Requested
+
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+",
+      },
+    },
+  },
+}
 		`);
 	});
 
@@ -448,7 +385,7 @@ describe(blockGitHubActionsCI, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yaml does not contain a runs entry", () => {
+		it("returns undefined when action.yaml has no inputs", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
@@ -456,7 +393,7 @@ describe(blockGitHubActionsCI, () => {
 							setup: {
 								"action.yaml": [
 									dump({
-										other: {
+										runs: {
 											steps: [],
 										},
 									}),
@@ -470,7 +407,7 @@ describe(blockGitHubActionsCI, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yaml runs steps is not an array", () => {
+		it("returns undefined env when action.yaml contains a test action with no node-version in its inputs", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
@@ -478,8 +415,12 @@ describe(blockGitHubActionsCI, () => {
 							setup: {
 								"action.yaml": [
 									dump({
-										runs: {
-											steps: true,
+										inputs: {
+											"some-other-prop": {
+												description: "Node.js version to use",
+												default: 24,
+												required: false,
+											},
 										},
 									}),
 								],
@@ -492,60 +433,8 @@ describe(blockGitHubActionsCI, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined env when action.yaml contains a test action with actions/setup-node step", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/other@v1",
-												},
-											],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined env when action.yaml contains a test action with no env in its actions/setup-node step", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/setup-node@v4",
-												},
-											],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns nodeVersion when action.yaml contains a test action with node-version in its actions/setup/node step", () => {
-			const nodeVersion = "20.10.0";
+		it("returns nodeVersion when action.yaml contains a test action with node-version in its inputs", () => {
+			const nodeVersion = "24";
 
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
@@ -554,15 +443,12 @@ describe(blockGitHubActionsCI, () => {
 							setup: {
 								"action.yaml": [
 									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/setup-node@v4",
-													with: {
-														"node-version": nodeVersion,
-													},
-												},
-											],
+										inputs: {
+											"node-version": {
+												description: "Node.js version to use",
+												default: nodeVersion,
+												required: false,
+											},
 										},
 									}),
 								],

@@ -1,83 +1,65 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { intakeActionInput } from "./actions/inputs.js";
 import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
+import { zActionStep } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
 
+const zJob = z.object({
+	checkoutWith: z.record(z.string(), z.string()).optional(),
+	if: z.string().optional(),
+	name: z.string(),
+	steps: z.array(zActionStep),
+});
+type Job = z.infer<typeof zJob>;
+
+const addSetupToSteps = (job: Job): Job => ({
+	...job,
+	steps: [{ uses: "$/.github/actions/setup" }, ...job.steps],
+});
+
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
 	},
 	addons: {
-		jobs: z
-			.array(
-				z.object({
-					checkoutWith: z.record(z.string(), z.string()).optional(),
-					if: z.string().optional(),
-					name: z.string(),
-					steps: z.array(zActionStep),
-				}),
-			)
-			.optional(),
+		jobs: z.array(zJob).optional(),
 		nodeVersion: z.union([z.number(), z.string()]).optional(),
 	},
 	intake({ files }) {
-		const steps = intakeFileYamlSteps(
+		const nodeVersionInput = intakeActionInput(
 			files,
 			[".github", "actions", "setup", "action.yaml"],
-			["runs", "steps"],
+			"node-version",
 		);
-		if (!steps) {
+		if (!nodeVersionInput) {
 			return undefined;
 		}
 
-		const setupNodeStep = steps.find(
-			(step) =>
-				typeof step.uses === "string" &&
-				step.uses.startsWith("actions/setup-node"),
-		);
-		if (!setupNodeStep) {
-			return undefined;
-		}
-
-		const nodeVersion = setupNodeStep.with?.["node-version"];
-		if (!nodeVersion) {
-			return undefined;
-		}
-
-		return { nodeVersion };
+		return { nodeVersion: String(nodeVersionInput.default) };
 	},
 	produce({ addons, options }) {
 		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
 			addons;
-		const minimumNodeVersion = options.node.minimum
-			.replace(/^\D*/u, "")
-			.split(/[^\d.]/u)[0];
 		const jobsWithEnginesCheck =
 			jobs &&
 			[
-				...jobs,
+				...jobs.map(addSetupToSteps),
 				{
 					name: "Engines Check",
 					steps: [
 						{
-							uses: resolveUses(
-								"actions/setup-node",
-								"v4",
-								options.workflowsVersions,
-							),
+							uses: "$/.github/actions/setup",
 							with: {
-								"node-version": minimumNodeVersion,
+								cache: false,
+								"install-flags": "--prod --ignore-scripts",
+								"strict-engines": true,
 							},
-						},
-						{
-							env: { pnpm_config_engine_strict: "true" },
-							run: "pnpm install --prod --ignore-scripts",
 						},
 					],
 				},
@@ -94,30 +76,72 @@ export const blockGitHubActionsCI = base.createBlock({
 					actions: {
 						setup: {
 							"action.yaml": formatYaml({
-								description: "Sets up the repo for a typical CI job",
 								name: "Setup",
+								description: "Sets up the repo for a typical CI job",
+								inputs: {
+									cache: {
+										description: "Cache the pnpm store",
+										default: true,
+										required: false,
+									},
+									"install-flags": {
+										description: "Flags to pass to `pnpm install`",
+										required: false,
+										type: "string",
+									},
+									"node-version": {
+										description: "Node.js version to use",
+										default:
+											typeof nodeVersion === "string"
+												? nodeVersion.split(".")[0]
+												: String(nodeVersion),
+										required: false,
+									},
+									"skip-checkout": {
+										description:
+											"Skip the checkout step if the repo is already checked out",
+										default: false,
+										required: false,
+									},
+									"strict-engines": {
+										description: "Enable `engineStrict` on `pnpm install`",
+										default: false,
+										required: false,
+									},
+								},
 								runs: {
 									steps: [
 										{
 											uses: resolveUses(
-												"pnpm/action-setup",
-												"v4",
+												"actions/checkout",
+												"v7",
 												options.workflowsVersions,
 											),
+											if: "${{ inputs.skip-checkout == 'false' }}",
 										},
 										{
 											uses: resolveUses(
-												"actions/setup-node",
-												"v4",
+												"pnpm/setup",
+												"v2",
 												options.workflowsVersions,
 											),
+											env: {
+												pnpm_config_engine_strict:
+													"${{ inputs.strict-engines && 'true' || '' }}",
+											},
 											with: {
-												cache: "pnpm",
-												"node-version": nodeVersion,
+												cache: "${{ inputs.cache }}",
+												install: "${{ inputs.install-flags == '' }}",
+												runtime: "node@${{ inputs.node-version }}",
 											},
 										},
 										{
-											run: "pnpm install --frozen-lockfile",
+											run: "pnpm install ${{ inputs.install-flags }}",
+											if: "${{ inputs.install-flags != '' }}",
+											env: {
+												pnpm_config_engine_strict:
+													"${{ inputs.strict-engines && 'true' || '' }}",
+											},
 											shell: "bash",
 										},
 									],

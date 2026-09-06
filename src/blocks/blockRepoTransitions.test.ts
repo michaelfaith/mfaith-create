@@ -41,7 +41,7 @@ describe("blockRepoTransitions", () => {
 
 			runs:
 			  steps:
-			    - uses: ./.github/actions/setup
+			    - uses: $/.github/actions/setup
 			    - run: npx @mfaith/create
 			      shell: bash
 			    - id: auto-commit-action

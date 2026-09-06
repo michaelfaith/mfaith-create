@@ -1,14 +1,43 @@
+name: Setup
+
 description: Sets up the repo for a typical CI job
 
-name: Setup
+inputs:
+  cache:
+    description: Cache the pnpm store
+    default: true
+    required: false
+  install-flags:
+    description: Flags to pass to `pnpm install`
+    required: false
+    type: string
+  node-version:
+    description: Node.js version to use
+    default: "24"
+    required: false
+  skip-checkout:
+    description: Skip the checkout step if the repo is already checked out
+    default: false
+    required: false
+  strict-engines:
+    description: Enable `engineStrict` on `pnpm install`
+    default: false
+    required: false
 
 runs:
   steps:
-    - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
-    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      if: ${{ inputs.skip-checkout == 'false' }}
+    - uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+      env:
+        pnpm_config_engine_strict: ${{ inputs.strict-engines && 'true' || '' }}
       with:
-        cache: pnpm
-        node-version: 24.19.0
-    - run: pnpm install --frozen-lockfile
+        cache: ${{ inputs.cache }}
+        install: ${{ inputs.install-flags == '' }}
+        runtime: node@${{ inputs.node-version }}
+    - run: pnpm install ${{ inputs.install-flags }}
+      if: ${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: ${{ inputs.strict-engines && 'true' || '' }}
       shell: bash
   using: composite

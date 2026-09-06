@@ -40,7 +40,7 @@ export const blockRepoTransitions = base.createBlock({
 								name: "Transition",
 								runs: {
 									steps: [
-										{ uses: "./.github/actions/setup" },
+										{ uses: "$/.github/actions/setup" },
 										{
 											run: "npx @mfaith/create",
 											shell: "bash",

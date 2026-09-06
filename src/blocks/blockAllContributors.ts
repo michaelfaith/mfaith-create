@@ -100,14 +100,17 @@ export const blockAllContributors = base.createBlock({
 									),
 									with: { "fetch-depth": 0 },
 								},
-								{ uses: "./.github/actions/setup" },
 								{
-									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
+									uses: "$/.github/actions/setup",
+									with: { "skip-checkout": true },
+								},
+								{
 									uses: resolveUses(
 										"JoshuaKGoldberg/all-contributors-auto-action",
 										"v0.5.0",
 										options.workflowsVersions,
 									),
+									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
 								},
 							],
 						}),

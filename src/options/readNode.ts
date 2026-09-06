@@ -2,15 +2,17 @@ import { defaults } from "../constants.js";
 import { PartialPackageData } from "../types.js";
 import { swallowError } from "../utils/swallowError.js";
 
+const numberRegex = /\d/u;
+
 export async function readNode(
 	getNvmrc: () => Promise<Error | string>,
-	getPackageDataFull: () => Promise<PartialPackageData>,
+	getPackageData: () => Promise<PartialPackageData>,
 ) {
-	const { engines } = await getPackageDataFull();
+	const { engines } = await getPackageData();
 
 	return {
 		minimum:
-			(engines?.node && /\d/u.test(engines.node) && engines.node) ||
+			(engines?.node && numberRegex.test(engines.node) && engines.node) ||
 			defaults.node.minimum,
 		pinned: swallowError(await getNvmrc())?.trim() || defaults.node.pinned,
 	};

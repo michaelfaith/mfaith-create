@@ -1,7 +1,7 @@
 import { PartialPackageData } from "../types.js";
 
 export async function readAccess(
-	getPackageDataFull: () => Promise<PartialPackageData | undefined>,
+	getPackageData: () => Promise<PartialPackageData | undefined>,
 ) {
-	return (await getPackageDataFull())?.publishConfig?.access ?? "public";
+	return (await getPackageData())?.publishConfig?.access ?? "public";
 }
