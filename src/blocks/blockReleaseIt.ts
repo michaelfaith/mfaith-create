@@ -7,7 +7,6 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
 export const blockReleaseIt = base.createBlock({
@@ -47,14 +46,6 @@ export const blockReleaseIt = base.createBlock({
 							alt: "📦 npm version",
 							href: `http://npmjs.com/package/${options.packageName}`,
 							src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
-						},
-					],
-				}),
-				blockRepositorySecrets({
-					secrets: [
-						{
-							description: "a GitHub PAT with repo and workflow permissions",
-							name: "ACCESS_TOKEN",
 						},
 					],
 				}),
@@ -131,7 +122,6 @@ export const blockReleaseIt = base.createBlock({
 									with: {
 										"fetch-depth": 0,
 										ref: "main",
-										token: "${{ secrets.ACCESS_TOKEN }}",
 									},
 								},
 								{
@@ -141,14 +131,14 @@ export const blockReleaseIt = base.createBlock({
 									.sort((a, b) => a.order - b.order)
 									.map(({ run }) => ({ run })),
 								{
-									env: {
-										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
-									},
 									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
 										"v0.4.0",
 										options.workflowsVersions,
 									),
+									env: {
+										GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+									},
 								},
 							],
 						}),

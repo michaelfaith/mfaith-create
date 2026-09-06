@@ -46,17 +46,6 @@ describe(blockReleaseIt, () => {
 			      },
 			      "block": [Function],
 			    },
-			    {
-			      "addons": {
-			        "secrets": [
-			          {
-			            "description": "a GitHub PAT with repo and workflow permissions",
-			            "name": "ACCESS_TOKEN",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -72,10 +61,10 @@ describe(blockReleaseIt, () => {
 
 			jobs:
 			  post_release:
+			    runs-on: ubuntu-latest
 			    permissions:
 			      issues: write
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			        with:
@@ -109,20 +98,19 @@ describe(blockReleaseIt, () => {
 
 			jobs:
 			  release:
+			    runs-on: ubuntu-latest
 			    permissions:
 			      contents: write
 			      id-token: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
 			          ref: main
-			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: $/.github/actions/setup
-			      - env:
-			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			      - uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			        env:
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 			",
 			      },
 			    },
@@ -194,17 +182,6 @@ describe(blockReleaseIt, () => {
 			      },
 			      "block": [Function],
 			    },
-			    {
-			      "addons": {
-			        "secrets": [
-			          {
-			            "description": "a GitHub PAT with repo and workflow permissions",
-			            "name": "ACCESS_TOKEN",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -220,10 +197,10 @@ describe(blockReleaseIt, () => {
 
 			jobs:
 			  post_release:
+			    runs-on: ubuntu-latest
 			    permissions:
 			      issues: write
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			        with:
@@ -257,23 +234,22 @@ describe(blockReleaseIt, () => {
 
 			jobs:
 			  release:
+			    runs-on: ubuntu-latest
 			    permissions:
 			      contents: write
 			      id-token: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
 			          ref: main
-			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: $/.github/actions/setup
 			      - run: zero
 			      - run: one
 			      - run: two
-			      - env:
-			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			      - uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			        env:
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 			",
 			      },
 			    },

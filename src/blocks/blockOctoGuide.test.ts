@@ -52,11 +52,11 @@ describe(blockOctoGuide, () => {
 			jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    runs-on: ubuntu-latest
 			    permissions:
 			      discussions: write
 			      issues: write
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
 			        with:
@@ -129,11 +129,11 @@ describe(blockOctoGuide, () => {
 			jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    runs-on: ubuntu-latest
 			    permissions:
 			      discussions: write
 			      issues: write
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
 			        with:
@@ -196,11 +196,11 @@ describe(blockOctoGuide, () => {
 			jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    runs-on: ubuntu-latest
 			    permissions:
 			      discussions: write
 			      issues: write
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
 			        with:

@@ -41,17 +41,6 @@ describe("blockAllContributors", () => {
       },
       "block": [Function],
     },
-    {
-      "addons": {
-        "secrets": [
-          {
-            "description": "a GitHub PAT with repo and workflow permissions",
-            "name": "ACCESS_TOKEN",
-          },
-        ],
-      },
-      "block": [Function],
-    },
   ],
   "files": {
     ".all-contributorsrc": "{
@@ -80,7 +69,12 @@ on:
 
 jobs:
   contributors:
-    runs-on: ubuntu-latest
+    if: github.event.repository.fork != true
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -90,7 +84,7 @@ jobs:
           skip-checkout: true
       - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
         env:
-          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 ",
       },
     },
@@ -174,17 +168,6 @@ jobs:
       },
       "block": [Function],
     },
-    {
-      "addons": {
-        "secrets": [
-          {
-            "description": "a GitHub PAT with repo and workflow permissions",
-            "name": "ACCESS_TOKEN",
-          },
-        ],
-      },
-      "block": [Function],
-    },
   ],
   "files": {
     ".all-contributorsrc": "{
@@ -228,7 +211,12 @@ on:
 
 jobs:
   contributors:
-    runs-on: ubuntu-latest
+    if: github.event.repository.fork != true
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -238,7 +226,7 @@ jobs:
           skip-checkout: true
       - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
         env:
-          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 ",
       },
     },
@@ -321,17 +309,6 @@ jobs:
       },
       "block": [Function],
     },
-    {
-      "addons": {
-        "secrets": [
-          {
-            "description": "a GitHub PAT with repo and workflow permissions",
-            "name": "ACCESS_TOKEN",
-          },
-        ],
-      },
-      "block": [Function],
-    },
   ],
   "files": {
     ".all-contributorsrc": "{
@@ -375,7 +352,12 @@ on:
 
 jobs:
   contributors:
-    runs-on: ubuntu-latest
+    if: github.event.repository.fork != true
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -385,7 +367,7 @@ jobs:
           skip-checkout: true
       - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
         env:
-          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 ",
       },
     },

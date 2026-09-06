@@ -47,6 +47,7 @@ interface WorkflowFileOptions {
 	name: string;
 	on?: WorkflowFileOn;
 	permissions?: WorkflowFilePermissions;
+	"runs-on"?: string;
 	steps: WorkflowFileStep[];
 }
 
@@ -84,8 +85,8 @@ export function createSoloWorkflowFile({
 			[createJobName(jobName ?? name)]: {
 				...(options.if && { if: options.if }),
 				...(jobName && { name: jobName }),
+				"runs-on": options["runs-on"] || "ubuntu-latest",
 				permissions,
-				"runs-on": "ubuntu-latest",
 				steps: options.steps,
 			},
 		},

@@ -142,14 +142,13 @@ export const blockRepoTransitions = base.createBlock({
 										ref: "${{github.event.pull_request.head.ref}}",
 										repository:
 											"${{github.event.pull_request.head.repo.full_name}}",
-										token: "${{ secrets.ACCESS_TOKEN }}",
 									},
 								},
 								{
 									if: "steps.checkout.outcome != 'skipped'",
 									uses: "./.github/actions/transition",
 									with: {
-										token: "${{ secrets.ACCESS_TOKEN }}",
+										token: "${{ secrets.GITHUB_TOKEN }}",
 									},
 								},
 								{
