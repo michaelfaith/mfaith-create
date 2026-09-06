@@ -94,9 +94,9 @@ describe("blockRepoTransitions", () => {
 			jobs:
 			  transition:
 			    name: Transition
+			    runs-on: ubuntu-latest
 			    permissions:
 			      pull-requests: write
-			    runs-on: ubuntu-latest
 			    steps:
 			      - id: checkout
 			        if: (github.actor == 'test-owner' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, '@mfaith/create')
@@ -105,11 +105,10 @@ describe("blockRepoTransitions", () => {
 			          fetch-depth: 0
 			          ref: \${{github.event.pull_request.head.ref}}
 			          repository: \${{github.event.pull_request.head.repo.full_name}}
-			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome != 'skipped'
 			        uses: ./.github/actions/transition
 			        with:
-			          token: \${{ secrets.ACCESS_TOKEN }}
+			          token: \${{ secrets.GITHUB_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to @mfaith/create.'
 			",

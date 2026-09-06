@@ -50,14 +50,6 @@ export const blockReleaseIt = base.createBlock({
 						},
 					],
 				}),
-				blockRepositorySecrets({
-					secrets: [
-						{
-							description: "a GitHub PAT with repo and workflow permissions",
-							name: "ACCESS_TOKEN",
-						},
-					],
-				}),
 			],
 			files: {
 				".github": {
@@ -131,7 +123,6 @@ export const blockReleaseIt = base.createBlock({
 									with: {
 										"fetch-depth": 0,
 										ref: "main",
-										token: "${{ secrets.ACCESS_TOKEN }}",
 									},
 								},
 								{
@@ -141,14 +132,14 @@ export const blockReleaseIt = base.createBlock({
 									.sort((a, b) => a.order - b.order)
 									.map(({ run }) => ({ run })),
 								{
-									env: {
-										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
-									},
 									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
 										"v0.4.0",
 										options.workflowsVersions,
 									),
+									env: {
+										GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+									},
 								},
 							],
 						}),

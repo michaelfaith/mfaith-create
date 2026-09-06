@@ -56,14 +56,6 @@ export const blockAllContributors = base.createBlock({
 						? [printAllContributorsTable(options.contributors)]
 						: undefined,
 				}),
-				blockRepositorySecrets({
-					secrets: [
-						{
-							description: "a GitHub PAT with repo and workflow permissions",
-							name: "ACCESS_TOKEN",
-						},
-					],
-				}),
 			],
 			files: {
 				".all-contributorsrc": JSON.stringify(
@@ -91,6 +83,13 @@ export const blockAllContributors = base.createBlock({
 									branches: ["main"],
 								},
 							},
+							if: "github.event.repository.fork != true",
+							"runs-on": "ubuntu-slim",
+							permissions: {
+								contents: "read",
+								issues: "write",
+								"pull-requests": "write",
+							},
 							steps: [
 								{
 									uses: resolveUses(
@@ -110,7 +109,7 @@ export const blockAllContributors = base.createBlock({
 										"v0.5.0",
 										options.workflowsVersions,
 									),
-									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
+									env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" },
 								},
 							],
 						}),

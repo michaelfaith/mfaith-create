@@ -37,10 +37,10 @@ jobs:
     name: Publish Package
     if: ${{ needs.release_please.outputs.releases_created == 'true' }}
     needs: release_please
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-    runs-on: ubuntu-latest
     outputs:
       dist_tag: ${{ steps.determine_dist_tag.outputs.dist_tag }}
     steps:

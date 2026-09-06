@@ -84,9 +84,9 @@ on:
 
 jobs:
   pr_review_requested:
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions-ecosystem/action-remove-labels@v1
         with:
@@ -194,9 +194,9 @@ on:
 
 jobs:
   pr_review_requested:
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions-ecosystem/action-remove-labels@v1
         with:
@@ -341,9 +341,9 @@ on:
 
 jobs:
   pr_review_requested:
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions-ecosystem/action-remove-labels@v1
         with:

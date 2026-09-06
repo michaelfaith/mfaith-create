@@ -23,11 +23,9 @@ For example, if the repository previously used Jest for testing:
 
 You'll then need to manually go through the following two steps to set up tooling on GitHub:
 
-1. Create one token in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) _(unless you chose to opt out of releases)_:
-   - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
-2. Install two GitHub apps:
-   - [Codecov](https://github.com/marketplace/codecov) _(unless you chose to opt out of tests)_
-   - [Renovate](https://github.com/marketplace/renovate) _(unless you chose to opt out of renovate)_
+- Install two GitHub apps:
+  - [Codecov](https://github.com/marketplace/codecov) _(unless you chose to opt out of tests)_
+  - [Renovate](https://github.com/marketplace/renovate) _(unless you chose to opt out of renovate)_
 
 Your repository will then have an approximate copy of this template's tooling ready for you to review!
 Hooray! 🥳
