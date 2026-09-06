@@ -366,9 +366,10 @@ describe(blockGitHubActionsCI, () => {
 			      - uses: ./.github/actions/setup
 			      - uses: actions/setup-node@v4
 			        with:
-			          cache: pnpm
 			          node-version: 20.12.0
-			      - run: pnpm install --prod --engine-strict --ignore-scripts
+			      - env:
+			          pnpm_config_engine_strict: 'true'
+			        run: pnpm install --prod --ignore-scripts
 			  validate:
 			    name: Validate
 			    runs-on: ubuntu-latest
