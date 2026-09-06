@@ -37,7 +37,6 @@ export default defineConfig(
 			jsdoc.configs["flat/logical-typescript-error"],
 			jsdoc.configs["flat/stylistic-typescript-error"],
 			n.configs["flat/recommended"],
-			perfectionist.configs["recommended-natural"],
 			regexp.configs["flat/recommended"],
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
@@ -50,6 +49,7 @@ export default defineConfig(
 				},
 			},
 		},
+		plugins: { perfectionist },
 		rules: {
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/prefer-nullish-coalescing": [
@@ -64,6 +64,8 @@ export default defineConfig(
 				"error",
 				{ allowExperimental: true, ignores: ["import.meta.dirname"] },
 			],
+			"perfectionist/sort-exports": "error",
+			"perfectionist/sort-imports": "error",
 
 			// Stylistic concerns that don't interfere with Prettier
 			"logical-assignment-operators": [

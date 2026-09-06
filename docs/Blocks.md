@@ -272,7 +272,6 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
     - [Lint Package JSON](#lint-package-json)
-    - [Lint Perfectionist](#lint-perfectionist)
     - [Lint Regexp](#lint-regexp)
     - [Lint Spelling](#lint-spelling)
     - [Lint Strict](#lint-strict)
@@ -299,11 +298,6 @@ Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate package dependen
 ### Lint Package JSON
 
 [`eslint-plugin-package-json`](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): Linting for `package.json` files.
-
-### Lint Perfectionist
-
-[`eslint-plugin-perfectionist`](https://eslint-plugin-perfectionist.azat.io): Lints for sorting properties, imports, etc.
-This plugin is quite particular -perfectionist, even- but all its rules include auto-fixers that can correct complaints for you.
 
 ### Lint Regexp
 

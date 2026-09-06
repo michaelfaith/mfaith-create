@@ -21,6 +21,7 @@ import {
 	ExtensionRules,
 	zExtension,
 	zPackageImport,
+	type ExtensionPlugins,
 } from "./eslint/schemas.js";
 import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
@@ -64,6 +65,7 @@ export const blockESLint = base.createBlock({
 		const importLines = [
 			'import eslint from "@eslint/js";',
 			'import { defineConfig, globalIgnores } from "eslint/config";',
+			'import perfectionist from "eslint-plugin-perfectionist";',
 			'import tseslint from "typescript-eslint";',
 			...imports.map(
 				(packageImport) =>
@@ -107,6 +109,16 @@ export const blockESLint = base.createBlock({
 						},
 					},
 				},
+				plugins: {
+					perfectionist: "perfectionist",
+				},
+				rules: {
+					"perfectionist/sort-exports": "error",
+					"perfectionist/sort-imports": "error",
+				},
+				settings: {
+					perfectionist: { partitionByComment: true, type: "natural" },
+				},
 			},
 			...extensions,
 			...(options.type === "commonjs"
@@ -119,7 +131,7 @@ export const blockESLint = base.createBlock({
 				: []),
 		);
 
-		const extensionLines = extensionEntries
+		const coreConfigLines = extensionEntries
 			.sort((a, b) =>
 				processForSort(a.files).localeCompare(processForSort(b.files)),
 			)
@@ -171,6 +183,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 								"@eslint/js",
 								"@types/node",
 								"eslint",
+								"eslint-plugin-perfectionist",
 								"typescript-eslint",
 								...imports
 									.filter((imported) => typeof imported.source === "string")
@@ -224,7 +237,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 export default defineConfig(
 	globalIgnores( [${ignoreLines.join(", ")}], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	${extensionLines.join(",")}
+	${coreConfigLines.join(",")}
 );`,
 			},
 			scripts: [
@@ -288,7 +301,7 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 	return grouped;
 }
 
-function printExtension(extension: Extension) {
+function printExtension(extension: Extension): string {
 	return [
 		"{",
 		extension.extends && `extends: [${extension.extends.join(", ")}],`,
@@ -297,6 +310,7 @@ function printExtension(extension: Extension) {
 			`languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.linterOptions &&
 			`linterOptions: ${JSON.stringify(extension.linterOptions)}`,
+		extension.plugins && `plugins: ${printPlugins(extension.plugins)},`,
 		extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
 		extension.settings &&
 			`settings: ${JSON.stringify(sortKeys(extension.settings))},`,
@@ -306,7 +320,7 @@ function printExtension(extension: Extension) {
 		.join(" ");
 }
 
-function printExtensionRules(rules: ExtensionRules) {
+function printExtensionRules(rules: ExtensionRules): string {
 	if (!Array.isArray(rules)) {
 		return JSON.stringify(rules);
 	}
@@ -323,9 +337,29 @@ function printExtensionRules(rules: ExtensionRules) {
 	].join("");
 }
 
-function printGroupComment(comment: string | undefined) {
+function printGroupComment(comment: string | undefined): string {
 	return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
 }
+
+function printPlugins(plugins: ExtensionPlugins): string {
+	const lines = ["{"];
+	for (const [pluginName, pluginSpecifier] of Object.entries(plugins)) {
+		if (pluginName === pluginSpecifier) {
+			lines.push(`${pluginName},`);
+		} else if (doesKeyNeedQuotes(pluginName)) {
+			lines.push(`"${pluginName}": ${pluginSpecifier},`);
+		} else {
+			lines.push(`${pluginName}: ${pluginSpecifier},`);
+		}
+	}
+
+	lines.push("}");
+	return lines.join("");
+}
+
+const noQuotesRequiredRegex = /^[A-Z_$][\w$]*$/i;
+
+const doesKeyNeedQuotes = (key: string) => !noQuotesRequiredRegex.test(key);
 
 function processForSort(files: string[]) {
 	return files.join("").replaceAll("{", "");

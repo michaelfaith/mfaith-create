@@ -8,7 +8,6 @@ import { blockESLintMarkdownLinks } from "../blocks/blockESLintMarkdownLinks.js"
 import { blockESLintMoreStyling } from "../blocks/blockESLintMoreStyling.js";
 import { blockESLintNode } from "../blocks/blockESLintNode.js";
 import { blockESLintPackageJson } from "../blocks/blockESLintPackageJson.js";
-import { blockESLintPerfectionist } from "../blocks/blockESLintPerfectionist.js";
 import { blockESLintRegexp } from "../blocks/blockESLintRegexp.js";
 import { blockESLintYML } from "../blocks/blockESLintYML.js";
 import { blockKnip } from "../blocks/blockKnip.js";
@@ -41,7 +40,6 @@ export const presetEverything = base.createPreset({
 		blockESLintMoreStyling,
 		blockESLintNode,
 		blockESLintPackageJson,
-		blockESLintPerfectionist,
 		blockESLintRegexp,
 		blockESLintYML,
 		blockKnip,
