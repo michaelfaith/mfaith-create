@@ -60,6 +60,7 @@ test("Producing the everything preset matches the files in this repository", asy
 						"TSESTree",
 						"apexskier",
 						"attw",
+						"autorelease",
 						"dbaeumer",
 						"infile",
 						"joshuakgoldberg",
