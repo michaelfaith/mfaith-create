@@ -79,6 +79,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -193,6 +194,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -343,6 +345,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -529,6 +532,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "eslint-plugin-perfectionist": "1.2.3",
             "eslint-plugin-regexp": "1.2.3",
             "eslint-plugin-unknown": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -690,6 +694,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -830,6 +835,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -984,6 +990,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -1125,6 +1132,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -1244,6 +1252,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -1363,6 +1372,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -1479,6 +1489,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
@@ -1595,6 +1606,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "@types/node": "1.2.3",
             "eslint": "1.2.3",
             "eslint-plugin-perfectionist": "1.2.3",
+            "jiti": "1.2.3",
             "typescript-eslint": "1.2.3",
           },
           "scripts": {
