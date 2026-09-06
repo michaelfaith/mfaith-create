@@ -56,7 +56,9 @@ export const blockGitHubActionsCI = base.createBlock({
 						{
 							uses: "$/.github/actions/setup",
 							with: {
-								"install-flags": "--prod --engine-strict --ignore-scripts",
+								cache: false,
+								"install-flags": "--prod --ignore-scripts",
+								"strict-engines": true,
 							},
 						},
 					],
@@ -101,6 +103,11 @@ export const blockGitHubActionsCI = base.createBlock({
 										default: false,
 										required: false,
 									},
+									"strict-engines": {
+										description: "Enable `engineStrict` on `pnpm install`",
+										default: false,
+										required: false,
+									},
 								},
 								runs: {
 									steps: [
@@ -118,6 +125,10 @@ export const blockGitHubActionsCI = base.createBlock({
 												"v2",
 												options.workflowsVersions,
 											),
+											env: {
+												pnpm_config_engine_strict:
+													"${{ inputs.strict-engines && 'true' || '' }}",
+											},
 											with: {
 												cache: "${{ inputs.cache }}",
 												install: "${{ inputs.install-flags == '' }}",
@@ -127,6 +138,10 @@ export const blockGitHubActionsCI = base.createBlock({
 										{
 											run: "pnpm install ${{ inputs.install-flags }}",
 											if: "${{ inputs.install-flags != '' }}",
+											env: {
+												pnpm_config_engine_strict:
+													"${{ inputs.strict-engines && 'true' || '' }}",
+											},
 											shell: "bash",
 										},
 									],

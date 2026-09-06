@@ -46,18 +46,26 @@ inputs:
     description: Skip the checkout step if the repo is already checked out
     default: false
     required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
 
 runs:
   steps:
     - uses: actions/checkout@v7
       if: \${{ inputs.skip-checkout == 'false' }}
     - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       with:
         cache: \${{ inputs.cache }}
         install: \${{ inputs.install-flags == '' }}
         runtime: node@\${{ inputs.node-version }}
     - run: pnpm install \${{ inputs.install-flags }}
       if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       shell: bash
   using: composite
 ",
@@ -148,18 +156,26 @@ inputs:
     description: Skip the checkout step if the repo is already checked out
     default: false
     required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
 
 runs:
   steps:
     - uses: actions/checkout@v7
       if: \${{ inputs.skip-checkout == 'false' }}
     - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       with:
         cache: \${{ inputs.cache }}
         install: \${{ inputs.install-flags == '' }}
         runtime: node@\${{ inputs.node-version }}
     - run: pnpm install \${{ inputs.install-flags }}
       if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       shell: bash
   using: composite
 ",
@@ -255,18 +271,26 @@ inputs:
     description: Skip the checkout step if the repo is already checked out
     default: false
     required: false
+  strict-engines:
+    description: Enable \`engineStrict\` on \`pnpm install\`
+    default: false
+    required: false
 
 runs:
   steps:
     - uses: actions/checkout@v7
       if: \${{ inputs.skip-checkout == 'false' }}
     - uses: pnpm/setup@v2
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       with:
         cache: \${{ inputs.cache }}
         install: \${{ inputs.install-flags == '' }}
         runtime: node@\${{ inputs.node-version }}
     - run: pnpm install \${{ inputs.install-flags }}
       if: \${{ inputs.install-flags != '' }}
+      env:
+        pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
       shell: bash
   using: composite
 ",
@@ -290,7 +314,9 @@ jobs:
     steps:
       - uses: $/.github/actions/setup
         with:
-          install-flags: --prod --engine-strict --ignore-scripts
+          cache: false
+          install-flags: --prod --ignore-scripts
+          strict-engines: true
   validate:
     name: Validate
     runs-on: ubuntu-latest
