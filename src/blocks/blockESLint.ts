@@ -184,6 +184,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
                 "@types/node",
                 "eslint",
                 "eslint-plugin-perfectionist",
+                "jiti",
                 "typescript-eslint",
                 ...imports
                   .filter((imported) => typeof imported.source === "string")
