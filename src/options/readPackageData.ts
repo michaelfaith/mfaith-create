@@ -5,13 +5,13 @@ import { PartialPackageData } from "../types.js";
 import { swallowError } from "../utils/swallowError.js";
 
 export async function readPackageData(
-	take: TakeInput,
+  take: TakeInput,
 ): Promise<PartialPackageData> {
-	return (
-		swallowError(
-			await take(inputFromFileJSON, {
-				filePath: "./package.json",
-			}),
-		) || {}
-	);
+  return (
+    swallowError(
+      await take(inputFromFileJSON, {
+        filePath: "./package.json",
+      }),
+    ) || {}
+  );
 }

@@ -17,29 +17,29 @@ import { base } from "./index.js";
 // | `--example` | `boolean` | same description from base.ts | `false` |
 // ```
 describe("Docs: Options", () => {
-	it("includes mentions of all options from the Base", async () => {
-		const existingOptions = new Set(
-			(
-				await Promise.all([
-					splitFileIntoOptions("docs/CLI.md"),
-					splitFileIntoOptions("docs/Configuration Files.md"),
-				])
-			).flat(),
-		);
+  it("includes mentions of all options from the Base", async () => {
+    const existingOptions = new Set(
+      (
+        await Promise.all([
+          splitFileIntoOptions("docs/CLI.md"),
+          splitFileIntoOptions("docs/Configuration Files.md"),
+        ])
+      ).flat(),
+    );
 
-		const missingOptions = Object.keys(base.options).filter(
-			(key) => !existingOptions.has(key),
-		);
+    const missingOptions = Object.keys(base.options).filter(
+      (key) => !existingOptions.has(key),
+    );
 
-		expect(missingOptions).toEqual([]);
-	});
+    expect(missingOptions).toEqual([]);
+  });
 });
 
 async function splitFileIntoOptions(filePath: string) {
-	const text = (await fs.readFile(filePath)).toString();
+  const text = (await fs.readFile(filePath)).toString();
 
-	return text
-		.split(/[\r\n]+/)
-		.map((line) => /`(?:--)?(\w+)` /.exec(line)?.[1])
-		.filter((line) => typeof line === "string");
+  return text
+    .split(/[\r\n]+/)
+    .map((line) => /`(?:--)?(\w+)` /.exec(line)?.[1])
+    .filter((line) => typeof line === "string");
 }

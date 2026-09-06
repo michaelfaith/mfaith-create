@@ -110,18 +110,18 @@ Then:
 
    ```json package.json
    {
-   	"exports": {
-   		".": {
-   			"import": {
-   				"types": "lib/index.d.ts",
-   				"default": "lib/index.js"
-   			},
-   			"require": {
-   				"types": "lib/index.d.cts",
-   				"default": "lib/index.cjs"
-   			}
-   		}
-   	}
+     "exports": {
+       ".": {
+         "import": {
+           "types": "lib/index.d.ts",
+           "default": "lib/index.js"
+         },
+         "require": {
+           "types": "lib/index.d.cts",
+           "default": "lib/index.cjs"
+         }
+       }
+     }
    }
    ```
 

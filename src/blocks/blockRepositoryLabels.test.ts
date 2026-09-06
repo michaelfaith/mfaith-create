@@ -8,12 +8,12 @@ import { optionsBase } from "./options.fakes.js";
 import { outcomeLabels } from "./outcomeLabels.js";
 
 describe("blockRepositoryLabels", () => {
-	test("when options.existingLabels is undefined", () => {
-		const creation = testBlock(blockRepositoryLabels, {
-			options: { ...optionsBase, existingLabels: undefined },
-		});
+  test("when options.existingLabels is undefined", () => {
+    const creation = testBlock(blockRepositoryLabels, {
+      options: { ...optionsBase, existingLabels: undefined },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
 			    {
@@ -223,14 +223,14 @@ describe("blockRepositoryLabels", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("when options.existingLabels contains default entries", () => {
-		const creation = testBlock(blockRepositoryLabels, {
-			options: { ...optionsBase, existingLabels: githubDefaultLabels },
-		});
+  test("when options.existingLabels contains default entries", () => {
+    const creation = testBlock(blockRepositoryLabels, {
+      options: { ...optionsBase, existingLabels: githubDefaultLabels },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
 			    {
@@ -449,31 +449,31 @@ describe("blockRepositoryLabels", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("when options.existingLabels contains duplicate entries", () => {
-		const creation = testBlock(blockRepositoryLabels, {
-			options: {
-				...optionsBase,
-				existingLabels: [
-					...outcomeLabels.filter(
-						(label) => !label.name.includes("documentation"),
-					),
-					{
-						color: "0075ca",
-						description: "Improvements or additions to docs 📝",
-						name: "docs",
-					},
-					{
-						color: "0075ca",
-						description: "Improvements or additions to docs 📝",
-						name: "area: documentation",
-					},
-				],
-			},
-		});
+  test("when options.existingLabels contains duplicate entries", () => {
+    const creation = testBlock(blockRepositoryLabels, {
+      options: {
+        ...optionsBase,
+        existingLabels: [
+          ...outcomeLabels.filter(
+            (label) => !label.name.includes("documentation"),
+          ),
+          {
+            color: "0075ca",
+            description: "Improvements or additions to docs 📝",
+            name: "docs",
+          },
+          {
+            color: "0075ca",
+            description: "Improvements or additions to docs 📝",
+            name: "area: documentation",
+          },
+        ],
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
 			    {
@@ -489,5 +489,5 @@ describe("blockRepositoryLabels", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

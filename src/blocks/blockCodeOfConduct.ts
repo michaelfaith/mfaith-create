@@ -2,14 +2,14 @@ import { base } from "../base.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 export const blockCodeOfConduct = base.createBlock({
-	about: {
-		name: "Code of Conduct",
-	},
-	produce({ options }) {
-		return {
-			files: {
-				".github": {
-					"CODE_OF_CONDUCT.md": `# Code of Conduct
+  about: {
+    name: "Code of Conduct",
+  },
+  produce({ options }) {
+    return {
+      files: {
+        ".github": {
+          "CODE_OF_CONDUCT.md": `# Code of Conduct
 
 ## Our Pledge
 
@@ -144,25 +144,25 @@ Translations are available at
 [faq]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 `,
-				},
-			},
-		};
-	},
-	transition() {
-		return {
-			addons: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
-		};
-	},
+        },
+      },
+    };
+  },
+  transition() {
+    return {
+      addons: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
+    };
+  },
 });
 
 function formatContact(contact: {
-	bluesky?: string;
-	email?: string;
-	url?: string;
+  bluesky?: string;
+  email?: string;
+  url?: string;
 }) {
-	if (contact.bluesky) {
-		return `on [Bluesky](https://bsky.app/profile/${contact.bluesky})`;
-	} else {
-		return `at ${contact.url || contact.email}`;
-	}
+  if (contact.bluesky) {
+    return `on [Bluesky](https://bsky.app/profile/${contact.bluesky})`;
+  } else {
+    return `at ${contact.url || contact.email}`;
+  }
 }

@@ -3,24 +3,24 @@ import parse from "parse-author";
 import { PartialPackageData } from "../types.js";
 
 export interface PackageAuthor {
-	email?: string | undefined;
-	name?: string | undefined;
-	url?: string | undefined;
+  email?: string | undefined;
+  name?: string | undefined;
+  url?: string | undefined;
 }
 
 export async function readPackageAuthor(
-	getPackageDataFull: () => Promise<PartialPackageData>,
+  getPackageDataFull: () => Promise<PartialPackageData>,
 ): Promise<PackageAuthor> {
-	const packageData = await getPackageDataFull();
+  const packageData = await getPackageDataFull();
 
-	switch (typeof packageData.author) {
-		case "object":
-			return packageData.author;
+  switch (typeof packageData.author) {
+    case "object":
+      return packageData.author;
 
-		case "string":
-			return parse(packageData.author);
+    case "string":
+      return parse(packageData.author);
 
-		default:
-			return {};
-	}
+    default:
+      return {};
+  }
 }

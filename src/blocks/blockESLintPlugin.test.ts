@@ -5,12 +5,12 @@ import { blockESLintPlugin } from "./blockESLintPlugin.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockESLintPlugin, () => {
-	test("without addons, mode, or options", () => {
-		const creation = testBlock(blockESLintPlugin, {
-			options: optionsBase,
-		});
+  test("without addons, mode, or options", () => {
+    const creation = testBlock(blockESLintPlugin, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -185,17 +185,17 @@ describe(blockESLintPlugin, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("with options.type set to commonjs", () => {
-		const creation = testBlock(blockESLintPlugin, {
-			options: {
-				...optionsBase,
-				type: "commonjs",
-			},
-		});
+  test("with options.type set to commonjs", () => {
+    const creation = testBlock(blockESLintPlugin, {
+      options: {
+        ...optionsBase,
+        type: "commonjs",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -370,15 +370,15 @@ describe(blockESLintPlugin, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("setup mode", () => {
-		const creation = testBlock(blockESLintPlugin, {
-			mode: "setup",
-			options: optionsBase,
-		});
+  test("setup mode", () => {
+    const creation = testBlock(blockESLintPlugin, {
+      mode: "setup",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -661,20 +661,20 @@ describe(blockESLintPlugin, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("addons", () => {
-		const creation = testBlock(blockESLintPlugin, {
-			addons: {
-				configEmoji: [
-					["recommended", "✅"],
-					["legacy-recommended", "✔️"],
-				],
-			},
-			options: optionsBase,
-		});
+  test("addons", () => {
+    const creation = testBlock(blockESLintPlugin, {
+      addons: {
+        configEmoji: [
+          ["recommended", "✅"],
+          ["legacy-recommended", "✔️"],
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -850,113 +850,113 @@ describe(blockESLintPlugin, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns nothing when .eslint-doc-generatorrc.js and .eslint-doc-generatorrc.mjs do not exist", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {},
-				options: optionsBase,
-			});
+  describe("intake", () => {
+    it("returns nothing when .eslint-doc-generatorrc.js and .eslint-doc-generatorrc.mjs do not exist", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {},
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual(undefined);
-		});
+      expect(actual).toEqual(undefined);
+    });
 
-		it("returns nothing when .eslint-doc-generatorrc.js does not have a to const config =", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {
-					".eslint-doc-generatorrc.js": [`const other = {};`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when .eslint-doc-generatorrc.js does not have a to const config =", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {
+          ".eslint-doc-generatorrc.js": [`const other = {};`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual(undefined);
-		});
+      expect(actual).toEqual(undefined);
+    });
 
-		it("returns nothing when .eslint-doc-generatorrc.js passes nothing to config =", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {
-					".eslint-doc-generatorrc.js": [`const config = {};`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when .eslint-doc-generatorrc.js passes nothing to config =", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {
+          ".eslint-doc-generatorrc.js": [`const config = {};`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual(undefined);
-		});
+      expect(actual).toEqual(undefined);
+    });
 
-		it("returns nothing when .eslint-doc-generatorrc.js passes invalid syntax to config =", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {
-					".eslint-doc-generatorrc.js": [`const config = { ! }`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when .eslint-doc-generatorrc.js passes invalid syntax to config =", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {
+          ".eslint-doc-generatorrc.js": [`const config = { ! }`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual(undefined);
-		});
+      expect(actual).toEqual(undefined);
+    });
 
-		it("returns nothing when .eslint-doc-generatorrc.js passes unrelated properties to config =", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {
-					".eslint-doc-generatorrc.js": [`const config = { other: true }`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when .eslint-doc-generatorrc.js passes unrelated properties to config =", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {
+          ".eslint-doc-generatorrc.js": [`const config = { other: true }`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual(undefined);
-		});
+      expect(actual).toEqual(undefined);
+    });
 
-		it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.js", () => {
-			const actual = testIntake(blockESLintPlugin, {
-				files: {
-					".eslint-doc-generatorrc.js": [
-						`const config = { configEmoji: [["recommended", "✅"]] }`,
-					],
-				},
-				options: optionsBase,
-			});
+    it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.js", () => {
+      const actual = testIntake(blockESLintPlugin, {
+        files: {
+          ".eslint-doc-generatorrc.js": [
+            `const config = { configEmoji: [["recommended", "✅"]] }`,
+          ],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({
-				configEmoji: [["recommended", "✅"]],
-			});
-		});
-	});
+      expect(actual).toEqual({
+        configEmoji: [["recommended", "✅"]],
+      });
+    });
+  });
 
-	it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs", () => {
-		const actual = testIntake(blockESLintPlugin, {
-			files: {
-				".eslint-doc-generatorrc.mjs": [
-					`const config = { configEmoji: [["recommended", "✅"]] }`,
-				],
-			},
-			options: optionsBase,
-		});
+  it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs", () => {
+    const actual = testIntake(blockESLintPlugin, {
+      files: {
+        ".eslint-doc-generatorrc.mjs": [
+          `const config = { configEmoji: [["recommended", "✅"]] }`,
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(actual).toEqual({
-			configEmoji: [["recommended", "✅"]],
-		});
-	});
+    expect(actual).toEqual({
+      configEmoji: [["recommended", "✅"]],
+    });
+  });
 
-	it("returns configEmoji when it exists with other data in .eslint-doc-generatorrc.js", () => {
-		const actual = testIntake(blockESLintPlugin, {
-			files: {
-				".eslint-doc-generatorrc.js": [
-					`const config = { configEmoji: [["recommended", "✅"]], other: true }`,
-				],
-			},
-			options: optionsBase,
-		});
+  it("returns configEmoji when it exists with other data in .eslint-doc-generatorrc.js", () => {
+    const actual = testIntake(blockESLintPlugin, {
+      files: {
+        ".eslint-doc-generatorrc.js": [
+          `const config = { configEmoji: [["recommended", "✅"]], other: true }`,
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(actual).toEqual({
-			configEmoji: [["recommended", "✅"]],
-		});
-	});
+    expect(actual).toEqual({
+      configEmoji: [["recommended", "✅"]],
+    });
+  });
 
-	it("returns configEmoji when it exists with other, non-JSON5 data in a full .eslint-doc-generatorrc.js", () => {
-		const actual = testIntake(blockESLintPlugin, {
-			files: {
-				".eslint-doc-generatorrc.js": [
-					`import prettier from "prettier";
+  it("returns configEmoji when it exists with other, non-JSON5 data in a full .eslint-doc-generatorrc.js", () => {
+    const actual = testIntake(blockESLintPlugin, {
+      files: {
+        ".eslint-doc-generatorrc.js": [
+          `import prettier from "prettier";
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
@@ -974,16 +974,16 @@ const config = {
 
 export default config;
 `,
-				],
-			},
-			options: optionsBase,
-		});
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(actual).toEqual({
-			configEmoji: [
-				["recommended", "✅"],
-				["legacy-recommended", "✔️"],
-			],
-		});
-	});
+    expect(actual).toEqual({
+      configEmoji: [
+        ["recommended", "✅"],
+        ["legacy-recommended", "✔️"],
+      ],
+    });
+  });
 });

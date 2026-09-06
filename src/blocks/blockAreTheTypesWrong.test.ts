@@ -5,12 +5,12 @@ import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockAreTheTypesWrong", () => {
-	test("production", () => {
-		const creation = testBlock(blockAreTheTypesWrong, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockAreTheTypesWrong, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -34,5 +34,5 @@ describe("blockAreTheTypesWrong", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

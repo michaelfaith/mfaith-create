@@ -5,12 +5,12 @@ import { blockGitignore } from "./blockGitignore.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockGitignore, () => {
-	test("without addons", () => {
-		const creation = testBlock(blockGitignore, {
-			options: optionsBase,
-		});
+  test("without addons", () => {
+    const creation = testBlock(blockGitignore, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".gitignore": "/node_modules
@@ -18,17 +18,17 @@ describe(blockGitignore, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockGitignore, {
-			addons: {
-				ignores: ["/lib"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockGitignore, {
+      addons: {
+        ignores: ["/lib"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".gitignore": "/lib
@@ -37,5 +37,5 @@ describe(blockGitignore, () => {
 			  },
 			}
 		`);
-	});
+  });
 });

@@ -5,21 +5,21 @@ import { blockKnip } from "./blockKnip.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockKnip, () => {
-	test("without addons", () => {
-		const creation = testBlock(blockKnip, {
-			options: optionsBase,
-		});
+  test("without addons", () => {
+    const creation = testBlock(blockKnip, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -88,19 +88,19 @@ describe(blockKnip, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockKnip, {
-			addons: {
-				entry: ["src/index.ts"],
-				ignoreDependencies: ["abc", "def"],
-				project: ["src/**/*.ts"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockKnip, {
+      addons: {
+        entry: ["src/index.ts"],
+        ignoreDependencies: ["abc", "def"],
+        project: ["src/**/*.ts"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -169,15 +169,15 @@ describe(blockKnip, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockKnip, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockKnip, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -255,61 +255,61 @@ describe(blockKnip, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns undefined when knip.config.ts and knip.json do not exist", () => {
-			const actual = testIntake(blockKnip, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns undefined when knip.config.ts and knip.json do not exist", () => {
+      const actual = testIntake(blockKnip, {
+        files: {},
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when knip.config.ts exists and does not contain ignoreDependencies", () => {
-			const actual = testIntake(blockKnip, {
-				files: {
-					"knip.config.ts": [`export default { other: true };`],
-				},
-			});
+    it("returns undefined when knip.config.ts exists and does not contain ignoreDependencies", () => {
+      const actual = testIntake(blockKnip, {
+        files: {
+          "knip.config.ts": [`export default { other: true };`],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies", () => {
-			const ignoreDependencies = ["a", "b", "c"];
+    it("returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies", () => {
+      const ignoreDependencies = ["a", "b", "c"];
 
-			const actual = testIntake(blockKnip, {
-				files: {
-					"knip.config.ts": [
-						`export default { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };`,
-					],
-				},
-			});
+      const actual = testIntake(blockKnip, {
+        files: {
+          "knip.config.ts": [
+            `export default { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };`,
+          ],
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDependencies });
-		});
+      expect(actual).toEqual({ ignoreDependencies });
+    });
 
-		it("returns undefined when knip.json exists and does not contain ignoreDependencies", () => {
-			const actual = testIntake(blockKnip, {
-				files: {
-					"knip.json": [JSON.stringify({ other: true })],
-				},
-			});
+    it("returns undefined when knip.json exists and does not contain ignoreDependencies", () => {
+      const actual = testIntake(blockKnip, {
+        files: {
+          "knip.json": [JSON.stringify({ other: true })],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns ignoreDependencies when knip.json exists and contains ignoreDependencies", () => {
-			const ignoreDependencies = ["a", "b", "c"];
+    it("returns ignoreDependencies when knip.json exists and contains ignoreDependencies", () => {
+      const ignoreDependencies = ["a", "b", "c"];
 
-			const actual = testIntake(blockKnip, {
-				files: {
-					"knip.json": [JSON.stringify({ ignoreDependencies })],
-				},
-			});
+      const actual = testIntake(blockKnip, {
+        files: {
+          "knip.json": [JSON.stringify({ ignoreDependencies })],
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDependencies });
-		});
-	});
+      expect(actual).toEqual({ ignoreDependencies });
+    });
+  });
 });

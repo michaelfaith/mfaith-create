@@ -1,6 +1,6 @@
 export function getPrimaryBin(
-	bin: Record<string, string | undefined> | string | undefined,
-	repository: string,
+  bin: Record<string, string | undefined> | string | undefined,
+  repository: string,
 ) {
-	return typeof bin === "object" ? bin[repository] : bin;
+  return typeof bin === "object" ? bin[repository] : bin;
 }

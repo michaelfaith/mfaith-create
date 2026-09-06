@@ -3,35 +3,35 @@ import { describe, expect, test } from "vitest";
 import { mergeAllExtensions } from "./mergeAllExtensions.js";
 
 describe(mergeAllExtensions, () => {
-	test("when the first provides everything", () => {
-		const actual = mergeAllExtensions(
-			{
-				extends: ["a.configs.recommended"],
-				files: ["**/*.a"],
-				languageOptions: {
-					languageOption: true,
-				},
-				linterOptions: {
-					linterOption: true,
-				},
-				plugins: {
-					"plugin-a-key": "plugin-a-value",
-				},
-				rules: {
-					"a/b": "error",
-				},
-				settings: {
-					react: {
-						version: "detect",
-					},
-				},
-			},
-			{
-				files: ["**/*.a"],
-			},
-		);
+  test("when the first provides everything", () => {
+    const actual = mergeAllExtensions(
+      {
+        extends: ["a.configs.recommended"],
+        files: ["**/*.a"],
+        languageOptions: {
+          languageOption: true,
+        },
+        linterOptions: {
+          linterOption: true,
+        },
+        plugins: {
+          "plugin-a-key": "plugin-a-value",
+        },
+        rules: {
+          "a/b": "error",
+        },
+        settings: {
+          react: {
+            version: "detect",
+          },
+        },
+      },
+      {
+        files: ["**/*.a"],
+      },
+    );
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "extends": [
@@ -60,37 +60,37 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 
-	test("when the second provides everything", () => {
-		const actual = mergeAllExtensions(
-			{
-				files: ["**/*.a"],
-			},
-			{
-				extends: ["a.configs.recommended"],
-				files: ["**/*.a"],
-				languageOptions: {
-					languageOption: true,
-				},
-				linterOptions: {
-					linterOption: true,
-				},
-				plugins: {
-					"plugin-a-key": "plugin-a-value",
-				},
-				rules: {
-					"a/b": "error",
-				},
-				settings: {
-					react: {
-						version: "detect",
-					},
-				},
-			},
-		);
+  test("when the second provides everything", () => {
+    const actual = mergeAllExtensions(
+      {
+        files: ["**/*.a"],
+      },
+      {
+        extends: ["a.configs.recommended"],
+        files: ["**/*.a"],
+        languageOptions: {
+          languageOption: true,
+        },
+        linterOptions: {
+          linterOption: true,
+        },
+        plugins: {
+          "plugin-a-key": "plugin-a-value",
+        },
+        rules: {
+          "a/b": "error",
+        },
+        settings: {
+          react: {
+            version: "detect",
+          },
+        },
+      },
+    );
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "extends": [
@@ -119,21 +119,21 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 
-	test("where neither rules group has a comment", () => {
-		const actual = mergeAllExtensions(
-			{
-				files: ["**/*.js"],
-				rules: { a: "error" },
-			},
-			{
-				files: ["**/*.js"],
-				rules: { b: "error" },
-			},
-		);
+  test("where neither rules group has a comment", () => {
+    const actual = mergeAllExtensions(
+      {
+        files: ["**/*.js"],
+        rules: { a: "error" },
+      },
+      {
+        files: ["**/*.js"],
+        rules: { b: "error" },
+      },
+    );
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "extends": [],
@@ -151,26 +151,26 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 
-	test("where only the first rules group has a comment", () => {
-		const actual = mergeAllExtensions(
-			{
-				files: ["**/*.js"],
-				rules: [
-					{
-						comment: "One standalone comment",
-						entries: { a: "error" },
-					},
-				],
-			},
-			{
-				files: ["**/*.js"],
-				rules: { b: "error" },
-			},
-		);
+  test("where only the first rules group has a comment", () => {
+    const actual = mergeAllExtensions(
+      {
+        files: ["**/*.js"],
+        rules: [
+          {
+            comment: "One standalone comment",
+            entries: { a: "error" },
+          },
+        ],
+      },
+      {
+        files: ["**/*.js"],
+        rules: { b: "error" },
+      },
+    );
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "extends": [],
@@ -197,26 +197,26 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 
-	test("where only the second rules group has a comment", () => {
-		const actual = mergeAllExtensions(
-			{
-				files: ["**/*.js"],
-				rules: { b: "error" },
-			},
-			{
-				files: ["**/*.js"],
-				rules: [
-					{
-						comment: "One standalone comment",
-						entries: { a: "error" },
-					},
-				],
-			},
-		);
+  test("where only the second rules group has a comment", () => {
+    const actual = mergeAllExtensions(
+      {
+        files: ["**/*.js"],
+        rules: { b: "error" },
+      },
+      {
+        files: ["**/*.js"],
+        rules: [
+          {
+            comment: "One standalone comment",
+            entries: { a: "error" },
+          },
+        ],
+      },
+    );
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "extends": [],
@@ -243,28 +243,28 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 
-	test("with identical comments in the same extension", () => {
-		const actual = mergeAllExtensions({
-			files: ["**/*.js"],
-			rules: [
-				{
-					comment: "Duplicated comment",
-					entries: { a: "error" },
-				},
-				{
-					comment: "Standalone comment",
-					entries: { b: "error" },
-				},
-				{
-					comment: "Duplicated comment",
-					entries: { c: "error" },
-				},
-			],
-		});
+  test("with identical comments in the same extension", () => {
+    const actual = mergeAllExtensions({
+      files: ["**/*.js"],
+      rules: [
+        {
+          comment: "Duplicated comment",
+          entries: { a: "error" },
+        },
+        {
+          comment: "Standalone comment",
+          entries: { b: "error" },
+        },
+        {
+          comment: "Duplicated comment",
+          entries: { c: "error" },
+        },
+      ],
+    });
 
-		expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchInlineSnapshot(`
 			[
 			  {
 			    "files": [
@@ -293,5 +293,5 @@ describe(mergeAllExtensions, () => {
 			  },
 			]
 		`);
-	});
+  });
 });

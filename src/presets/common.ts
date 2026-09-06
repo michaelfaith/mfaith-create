@@ -7,17 +7,17 @@ import { blockVitest } from "../blocks/blockVitest.js";
 import { presetMinimal } from "./minimal.js";
 
 export const presetCommon = base.createPreset({
-	about: {
-		description:
-			"Bare starters plus testing and automation for all-contributors and releases.",
-		name: "Common",
-	},
-	blocks: [
-		...presetMinimal.blocks,
-		blockAllContributors,
-		blockCodecov,
-		blockFunding,
-		blockOctoGuide,
-		blockVitest,
-	],
+  about: {
+    description:
+      "Bare starters plus testing and automation for all-contributors and releases.",
+    name: "Common",
+  },
+  blocks: [
+    ...presetMinimal.blocks,
+    blockAllContributors,
+    blockCodecov,
+    blockFunding,
+    blockOctoGuide,
+    blockVitest,
+  ],
 });

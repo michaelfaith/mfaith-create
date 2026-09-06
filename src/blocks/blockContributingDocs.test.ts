@@ -5,12 +5,12 @@ import { blockContributingDocs } from "./blockContributingDocs.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockContributingDocs", () => {
-	test("without mode", () => {
-		const creation = testBlock(blockContributingDocs, {
-			options: optionsBase,
-		});
+  test("without mode", () => {
+    const creation = testBlock(blockContributingDocs, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -106,15 +106,15 @@ describe("blockContributingDocs", () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockContributingDocs, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockContributingDocs, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -220,5 +220,5 @@ describe("blockContributingDocs", () => {
 			  },
 			}
 		`);
-	});
+  });
 });

@@ -11,22 +11,22 @@ import { presetEverything } from "./presets/everything.js";
 import { presetMinimal } from "./presets/minimal.js";
 
 export const template = base.createStratumTemplate({
-	about: {
-		name: "@mfaith/create",
-		repository: {
-			owner: "michaelfaith",
-			repository: "mfaith-create",
-		},
-	},
-	blocks: [
-		blockAreTheTypesWrong,
-		blockRepoTransitions,
-		blockESLintPlugin,
-		blockNcc,
-		blockRemoveDependencies,
-		blockRemoveFiles,
-		blockWebExt,
-	],
-	presets: [presetMinimal, presetCommon, presetEverything],
-	suggested: presetCommon,
+  about: {
+    name: "@mfaith/create",
+    repository: {
+      owner: "michaelfaith",
+      repository: "mfaith-create",
+    },
+  },
+  blocks: [
+    blockAreTheTypesWrong,
+    blockRepoTransitions,
+    blockESLintPlugin,
+    blockNcc,
+    blockRemoveDependencies,
+    blockRemoveFiles,
+    blockWebExt,
+  ],
+  presets: [presetMinimal, presetCommon, presetEverything],
+  suggested: presetCommon,
 });

@@ -5,12 +5,12 @@ import { blockESLintYML } from "./blockESLintYML.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockESLintYML", () => {
-	test("production", () => {
-		const creation = testBlock(blockESLintYML, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockESLintYML, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -50,5 +50,5 @@ describe("blockESLintYML", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

@@ -1,10 +1,10 @@
 import { PartialPackageData } from "../types.js";
 
 export async function readPackageName(
-	getPackageData: () => Promise<PartialPackageData>,
-	options: { packageName?: string },
+  getPackageData: () => Promise<PartialPackageData>,
+  options: { packageName?: string },
 ) {
-	const packageData = await getPackageData();
+  const packageData = await getPackageData();
 
-	return options.packageName ?? packageData.name;
+  return options.packageName ?? packageData.name;
 }

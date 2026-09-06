@@ -5,48 +5,48 @@ import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 describe(blockRemoveDependencies, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockRemoveDependencies, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockRemoveDependencies, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+    expect(creation).toMatchInlineSnapshot(`{}`);
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockRemoveDependencies, {
-			addons: {
-				dependencies: ["a", "b", "c"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockRemoveDependencies, {
+      addons: {
+        dependencies: ["a", "b", "c"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+    expect(creation).toMatchInlineSnapshot(`{}`);
+  });
 
-	test("with mode", () => {
-		const creation = testBlock(blockRemoveDependencies, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("with mode", () => {
+    const creation = testBlock(blockRemoveDependencies, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+    expect(creation).toMatchInlineSnapshot(`{}`);
+  });
 
-	test("with addons and mode", () => {
-		const creation = testBlock(blockRemoveDependencies, {
-			addons: {
-				dependencies: ["a", "b", "c"],
-			},
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("with addons and mode", () => {
+    const creation = testBlock(blockRemoveDependencies, {
+      addons: {
+        dependencies: ["a", "b", "c"],
+      },
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "scripts": [
 			    {
@@ -58,5 +58,5 @@ describe(blockRemoveDependencies, () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

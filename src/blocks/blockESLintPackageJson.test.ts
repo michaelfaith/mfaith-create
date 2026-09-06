@@ -5,12 +5,12 @@ import { blockESLintPackageJson } from "./blockESLintPackageJson.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockESLintPackageJson", () => {
-	test("without mode", () => {
-		const creation = testBlock(blockESLintPackageJson, {
-			options: optionsBase,
-		});
+  test("without mode", () => {
+    const creation = testBlock(blockESLintPackageJson, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -48,15 +48,15 @@ describe("blockESLintPackageJson", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockESLintPackageJson, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockESLintPackageJson, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -119,5 +119,5 @@ describe("blockESLintPackageJson", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

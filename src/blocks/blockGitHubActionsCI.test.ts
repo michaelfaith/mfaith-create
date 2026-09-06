@@ -6,12 +6,12 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockGitHubActionsCI, () => {
-	test("production", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockGitHubActionsCI, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -101,15 +101,15 @@ jobs:
   },
 }
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockGitHubActionsCI, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -211,30 +211,30 @@ jobs:
   },
 }
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			addons: {
-				jobs: [
-					{
-						name: "Validate",
-						steps: [
-							{
-								env: { VAR_ENV: "true" },
-								if: "always()",
-								run: "pnpm validate",
-								with: { VAR_WITH: "true" },
-							},
-						],
-					},
-				],
-				nodeVersion: 24,
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockGitHubActionsCI, {
+      addons: {
+        jobs: [
+          {
+            name: "Validate",
+            steps: [
+              {
+                env: { VAR_ENV: "true" },
+                if: "always()",
+                run: "pnpm validate",
+                with: { VAR_WITH: "true" },
+              },
+            ],
+          },
+        ],
+        nodeVersion: 24,
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -358,107 +358,107 @@ jobs:
   },
 }
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns undefined when action.yaml does not exist", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns undefined when action.yaml does not exist", () => {
+      const actual = testIntake(blockGitHubActionsCI, {
+        files: {},
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when action.yaml contains invalid YAML", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": ["invalid YAML!"],
-							},
-						},
-					},
-				},
-			});
+    it("returns undefined when action.yaml contains invalid YAML", () => {
+      const actual = testIntake(blockGitHubActionsCI, {
+        files: {
+          ".github": {
+            actions: {
+              setup: {
+                "action.yaml": ["invalid YAML!"],
+              },
+            },
+          },
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when action.yaml has no inputs", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
+    it("returns undefined when action.yaml has no inputs", () => {
+      const actual = testIntake(blockGitHubActionsCI, {
+        files: {
+          ".github": {
+            actions: {
+              setup: {
+                "action.yaml": [
+                  dump({
+                    runs: {
+                      steps: [],
+                    },
+                  }),
+                ],
+              },
+            },
+          },
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined env when action.yaml contains a test action with no node-version in its inputs", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": [
-									dump({
-										inputs: {
-											"some-other-prop": {
-												description: "Node.js version to use",
-												default: 24,
-												required: false,
-											},
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
+    it("returns undefined env when action.yaml contains a test action with no node-version in its inputs", () => {
+      const actual = testIntake(blockGitHubActionsCI, {
+        files: {
+          ".github": {
+            actions: {
+              setup: {
+                "action.yaml": [
+                  dump({
+                    inputs: {
+                      "some-other-prop": {
+                        description: "Node.js version to use",
+                        default: 24,
+                        required: false,
+                      },
+                    },
+                  }),
+                ],
+              },
+            },
+          },
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns nodeVersion when action.yaml contains a test action with node-version in its inputs", () => {
-			const nodeVersion = "24";
+    it("returns nodeVersion when action.yaml contains a test action with node-version in its inputs", () => {
+      const nodeVersion = "24";
 
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							setup: {
-								"action.yaml": [
-									dump({
-										inputs: {
-											"node-version": {
-												description: "Node.js version to use",
-												default: nodeVersion,
-												required: false,
-											},
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
+      const actual = testIntake(blockGitHubActionsCI, {
+        files: {
+          ".github": {
+            actions: {
+              setup: {
+                "action.yaml": [
+                  dump({
+                    inputs: {
+                      "node-version": {
+                        description: "Node.js version to use",
+                        default: nodeVersion,
+                        required: false,
+                      },
+                    },
+                  }),
+                ],
+              },
+            },
+          },
+        },
+      });
 
-			expect(actual).toEqual({ nodeVersion });
-		});
-	});
+      expect(actual).toEqual({ nodeVersion });
+    });
+  });
 });

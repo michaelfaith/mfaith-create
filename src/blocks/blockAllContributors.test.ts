@@ -6,10 +6,10 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockAllContributors", () => {
-	it("defaults contributors to [] when not provided", () => {
-		const creation = testBlock(blockAllContributors, { options: optionsBase });
+  it("defaults contributors to [] when not provided", () => {
+    const creation = testBlock(blockAllContributors, { options: optionsBase });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -99,26 +99,26 @@ jobs:
   ],
 }
 `);
-	});
+  });
 
-	it("runs add including existing owner contributions when they exist", () => {
-		const creation = testBlock(blockAllContributors, {
-			options: {
-				...optionsBase,
-				contributors: [
-					{
-						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
-						contributions: ["bug", "code", "design", "doc", "test", "tool"],
-						login: "michaelfaith",
-						name: "michael faith",
-						profile: "https://michael.faith",
-					},
-				],
-				owner: "michaelfaith",
-			},
-		});
+  it("runs add including existing owner contributions when they exist", () => {
+    const creation = testBlock(blockAllContributors, {
+      options: {
+        ...optionsBase,
+        contributors: [
+          {
+            avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
+            contributions: ["bug", "code", "design", "doc", "test", "tool"],
+            login: "michaelfaith",
+            name: "michael faith",
+            profile: "https://michael.faith",
+          },
+        ],
+        owner: "michaelfaith",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -241,25 +241,25 @@ jobs:
   ],
 }
 `);
-	});
+  });
 
-	it("adds full owner contributions when no existing contributor is the owner", () => {
-		const creation = testBlock(blockAllContributors, {
-			options: {
-				...optionsBase,
-				contributors: [
-					{
-						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
-						contributions: ["bug", "code", "design", "doc", "test", "tool"],
-						login: "other",
-						name: "Other",
-						profile: "http://www.example.com",
-					},
-				],
-			},
-		});
+  it("adds full owner contributions when no existing contributor is the owner", () => {
+    const creation = testBlock(blockAllContributors, {
+      options: {
+        ...optionsBase,
+        contributors: [
+          {
+            avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
+            contributions: ["bug", "code", "design", "doc", "test", "tool"],
+            login: "other",
+            name: "Other",
+            profile: "http://www.example.com",
+          },
+        ],
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -382,16 +382,16 @@ jobs:
   ],
 }
 `);
-	});
+  });
 
-	it("removes the previous .yml workflow file when in transition mode", () => {
-		const creation = testBlock(blockAllContributors, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  it("removes the previous .yml workflow file when in transition mode", () => {
+    const creation = testBlock(blockAllContributors, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({ files: [".github/workflows/contributors.yml"] }),
-		);
-	});
+    expect(creation.addons).toContainEqual(
+      blockRemoveFiles({ files: [".github/workflows/contributors.yml"] }),
+    );
+  });
 });

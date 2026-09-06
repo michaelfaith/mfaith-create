@@ -3,145 +3,145 @@ import { describe, expect, it, vi } from "vitest";
 import { readLogo } from "./readLogo.js";
 
 vi.mock("node:fs/promises", () => ({
-	readFile: vi.fn(() => Promise.resolve(Buffer.from([0]))),
+  readFile: vi.fn(() => Promise.resolve(Buffer.from([0]))),
 }));
 
 const mockReadLogoSizing = vi.fn().mockResolvedValue({});
 
 vi.mock("./readLogoSizing.js", () => ({
-	get readLogoSizing() {
-		return mockReadLogoSizing;
-	},
+  get readLogoSizing() {
+    return mockReadLogoSizing;
+  },
 }));
 
 describe(readLogo, () => {
-	describe("logo", () => {
-		it("resolves undefined when an image cannot be found", async () => {
-			const logo = await readLogo(() => Promise.resolve(`nothing.`));
+  describe("logo", () => {
+    it("resolves undefined when an image cannot be found", async () => {
+      const logo = await readLogo(() => Promise.resolve(`nothing.`));
 
-			expect(logo).toBeUndefined();
-		});
+      expect(logo).toBeUndefined();
+    });
 
-		it("resolves undefined when the found image has no src", async () => {
-			const logo = await readLogo(() => Promise.resolve(`\n<img src=""/>`));
+    it("resolves undefined when the found image has no src", async () => {
+      const logo = await readLogo(() => Promise.resolve(`\n<img src=""/>`));
 
-			expect(logo).toBeUndefined();
-		});
+      expect(logo).toBeUndefined();
+    });
 
-		it("resolves undefined when the found image is an All Contributors badge", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(
-					`\n<img alt="All Contributors: 1" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />`,
-				),
-			);
+    it("resolves undefined when the found image is an All Contributors badge", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(
+          `\n<img alt="All Contributors: 1" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />`,
+        ),
+      );
 
-			expect(logo).toBeUndefined();
-		});
+      expect(logo).toBeUndefined();
+    });
 
-		it("resolves undefined when the found image is a shields.io badge", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(
-					`\n<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
-				),
-			);
+    it("resolves undefined when the found image is a shields.io badge", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(
+          `\n<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
+        ),
+      );
 
-			expect(logo).toBeUndefined();
-		});
+      expect(logo).toBeUndefined();
+    });
 
-		it("parses when found in an unquoted string", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("parses when found in an unquoted string", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img src=abc/def.jpg/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("parses when found in a single quoted string", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("parses when found in a single quoted string", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img src='abc/def.jpg'/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("parses when found in a double quoted string", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("parses when found in a double quoted string", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img src="abc/def.jpg"/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("includes alt text when it exists in double quotes", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("includes alt text when it exists in double quotes", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img alt="Project logo: a fancy circle" src="abc/def.jpg"/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo: a fancy circle",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo: a fancy circle",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("includes alt text when it exists in single quotes", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("includes alt text when it exists in single quotes", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo: a fancy circle",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo: a fancy circle",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("includes sizing when readLogoSizing returns sizing", async () => {
-			const sizing = { height: 117, width: 128 };
+    it("includes sizing when readLogoSizing returns sizing", async () => {
+      const sizing = { height: 117, width: 128 };
 
-			mockReadLogoSizing.mockReturnValueOnce(sizing);
+      mockReadLogoSizing.mockReturnValueOnce(sizing);
 
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <img alt='Project logo: a fancy circle' height='117px' src='abc/def.jpg' width=' 117px'/>`),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo: a fancy circle",
-				src: "abc/def.jpg",
-				...sizing,
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo: a fancy circle",
+        src: "abc/def.jpg",
+        ...sizing,
+      });
+    });
 
-		it("parses when found after a badge image", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("parses when found after a badge image", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
 <img src=abc/def.jpg/>
 `),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo",
-				src: "abc/def.jpg",
-			});
-		});
+      expect(logo).toEqual({
+        alt: "Project logo",
+        src: "abc/def.jpg",
+      });
+    });
 
-		it("parses when found after an h1 and many badge images", async () => {
-			const logo = await readLogo(() =>
-				Promise.resolve(`
+    it("parses when found after an h1 and many badge images", async () => {
+      const logo = await readLogo(() =>
+        Promise.resolve(`
 <h1 align="center">@mfaith/create</h1>
 
 <p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁</p>
@@ -159,12 +159,12 @@ describe(readLogo, () => {
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/mfaith-create.png">
 `),
-			);
+      );
 
-			expect(logo).toEqual({
-				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
-				src: "./docs/mfaith-create.png",
-			});
-		});
-	});
+      expect(logo).toEqual({
+        alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
+        src: "./docs/mfaith-create.png",
+      });
+    });
+  });
 });

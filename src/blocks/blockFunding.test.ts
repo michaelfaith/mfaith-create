@@ -6,14 +6,14 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockFunding", () => {
-	test("transition mode", () => {
-		const creation = testBlock(blockFunding, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockFunding, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({ files: [".github/FUNDING.yml"] }),
-		);
-	});
+    expect(creation.addons).toContainEqual(
+      blockRemoveFiles({ files: [".github/FUNDING.yml"] }),
+    );
+  });
 });

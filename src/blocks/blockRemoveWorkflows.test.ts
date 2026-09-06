@@ -5,32 +5,32 @@ import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockRemoveWorkflows, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockRemoveWorkflows, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockRemoveWorkflows, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+    expect(creation).toMatchInlineSnapshot(`{}`);
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockRemoveWorkflows, {
-			addons: {
-				workflows: ["a", "b", "c"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockRemoveWorkflows, {
+      addons: {
+        workflows: ["a", "b", "c"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+    expect(creation).toMatchInlineSnapshot(`{}`);
+  });
 
-	test("with mode", () => {
-		const creation = testBlock(blockRemoveWorkflows, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("with mode", () => {
+    const creation = testBlock(blockRemoveWorkflows, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -42,18 +42,18 @@ describe(blockRemoveWorkflows, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("with addons and mode", () => {
-		const creation = testBlock(blockRemoveWorkflows, {
-			addons: {
-				workflows: ["a", "b", "c"],
-			},
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("with addons and mode", () => {
+    const creation = testBlock(blockRemoveWorkflows, {
+      addons: {
+        workflows: ["a", "b", "c"],
+      },
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -69,5 +69,5 @@ describe(blockRemoveWorkflows, () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

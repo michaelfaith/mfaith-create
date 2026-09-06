@@ -5,12 +5,12 @@ import { blockVSCode } from "./blockVSCode.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockVSCode, () => {
-	test("without addons", () => {
-		const creation = testBlock(blockVSCode, {
-			options: optionsBase,
-		});
+  test("without addons", () => {
+    const creation = testBlock(blockVSCode, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -49,19 +49,19 @@ describe(blockVSCode, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with empty addons", () => {
-		const creation = testBlock(blockVSCode, {
-			addons: {
-				debuggers: [],
-				settings: {},
-				tasks: [],
-			},
-			options: optionsBase,
-		});
+  test("with empty addons", () => {
+    const creation = testBlock(blockVSCode, {
+      addons: {
+        debuggers: [],
+        settings: {},
+        tasks: [],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -100,33 +100,33 @@ describe(blockVSCode, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with full addons", () => {
-		const creation = testBlock(blockVSCode, {
-			addons: {
-				debuggers: [
-					{
-						name: "fake-debugger",
-						other: true,
-					},
-				],
-				settings: {
-					"editor.formatOnSave": true,
-				},
-				tasks: [
-					{
-						detail: "Build the project",
-						label: "build",
-						script: "build",
-						type: "npm",
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with full addons", () => {
+    const creation = testBlock(blockVSCode, {
+      addons: {
+        debuggers: [
+          {
+            name: "fake-debugger",
+            other: true,
+          },
+        ],
+        settings: {
+          "editor.formatOnSave": true,
+        },
+        tasks: [
+          {
+            detail: "Build the project",
+            label: "build",
+            script: "build",
+            type: "npm",
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -165,5 +165,5 @@ describe(blockVSCode, () => {
 			  },
 			}
 		`);
-	});
+  });
 });

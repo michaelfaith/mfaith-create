@@ -6,22 +6,22 @@ import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
 import {
-	base,
-	BaseOptions,
-	blockAreTheTypesWrong,
-	blockCodecov,
-	blockCSpell,
-	blockESLint,
-	blockExports,
-	blockKnip,
-	blockPrettier,
-	blockRenovate,
-	blockTemplatedWith,
-	presets,
+  base,
+  BaseOptions,
+  blockAreTheTypesWrong,
+  blockCodecov,
+  blockCSpell,
+  blockESLint,
+  blockExports,
+  blockKnip,
+  blockPrettier,
+  blockRenovate,
+  blockTemplatedWith,
+  presets,
 } from "./index.js";
 
 vi.mock("./utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `node_modules/${bin}`,
+  resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 
 // This test checks the Bingo production using options inferred from disk,
@@ -41,121 +41,121 @@ vi.mock("./utils/resolveBin.js", () => ({
 // For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
 test("Producing the everything preset matches the files in this repository", async () => {
-	const actual = (await intake(".", {
-		exclude: /node_modules|^\.git$/,
-	})) as IntakeDirectory;
+  const actual = (await intake(".", {
+    exclude: /node_modules|^\.git$/,
+  })) as IntakeDirectory;
 
-	const created = producePreset(presets.everything, {
-		options: (await prepareOptions(base)) as BaseOptions,
-		refinements: {
-			addons: [
-				blockCodecov({
-					env: {
-						CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
-					},
-				}),
-				blockCSpell({
-					words: [
-						"Anson",
-						"TSESTree",
-						"apexskier",
-						"attw",
-						"autorelease",
-						"dbaeumer",
-						"infile",
-						"joshuakgoldberg",
-						"mfaith",
-						"michaelfaith",
-						"mshick",
-						"octoguide",
-						"stefanzweifel",
-						"ts-prunerc",
-						"webpro",
-					],
-				}),
-				blockESLint({
-					explanations: [
-						`👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+  const created = producePreset(presets.everything, {
+    options: (await prepareOptions(base)) as BaseOptions,
+    refinements: {
+      addons: [
+        blockCodecov({
+          env: {
+            CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+          },
+        }),
+        blockCSpell({
+          words: [
+            "Anson",
+            "TSESTree",
+            "apexskier",
+            "attw",
+            "autorelease",
+            "dbaeumer",
+            "infile",
+            "joshuakgoldberg",
+            "mfaith",
+            "michaelfaith",
+            "mshick",
+            "octoguide",
+            "stefanzweifel",
+            "ts-prunerc",
+            "webpro",
+          ],
+        }),
+        blockESLint({
+          explanations: [
+            `👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
 it's not something you need to exhaustively understand immediately. 💙
 
 If you're interested in learning more, see the 'getting started' docs on:
 - ESLint: https://eslint.org
 - typescript-eslint: https://typescript-eslint.io`,
-					],
-					extensions: [
-						{
-							files: ["**/*.{js,ts}"],
-							rules: [
-								{
-									comment:
-										"These on-by-default rules work well for this repo if configured",
-									entries: {
-										"@typescript-eslint/prefer-nullish-coalescing": [
-											"error",
-											{ ignorePrimitives: true },
-										],
-										"@typescript-eslint/restrict-template-expressions": [
-											"error",
-											{
-												allowBoolean: true,
-												allowNullish: true,
-												allowNumber: true,
-											},
-										],
-										"n/no-unsupported-features/node-builtins": [
-											"error",
-											{
-												allowExperimental: true,
-												ignores: ["import.meta.dirname"],
-											},
-										],
-									},
-								},
-							],
-						},
-					],
-				}),
-				blockKnip({
-					ignoreDependencies: [
-						"@release-it/conventional-changelog",
-						"all-contributors-cli",
-						"cspell-populate-words",
-						"release-it",
-						"remove-dependencies",
-						"trash-cli",
-					],
-				}),
-				blockExports({
-					runArgs: ["--version"],
-				}),
-				// TODO: This is only needed until we have a ReleasePlease block
-				blockPrettier({ ignores: ["/CHANGELOG.md"] }),
-				blockRenovate({
-					ignoreDeps: ["all-contributors-cli"],
-				}),
-			],
-			blocks: {
-				add: [blockAreTheTypesWrong],
-				exclude: [blockTemplatedWith],
-			},
-		},
-	});
+          ],
+          extensions: [
+            {
+              files: ["**/*.{js,ts}"],
+              rules: [
+                {
+                  comment:
+                    "These on-by-default rules work well for this repo if configured",
+                  entries: {
+                    "@typescript-eslint/prefer-nullish-coalescing": [
+                      "error",
+                      { ignorePrimitives: true },
+                    ],
+                    "@typescript-eslint/restrict-template-expressions": [
+                      "error",
+                      {
+                        allowBoolean: true,
+                        allowNullish: true,
+                        allowNumber: true,
+                      },
+                    ],
+                    "n/no-unsupported-features/node-builtins": [
+                      "error",
+                      {
+                        allowExperimental: true,
+                        ignores: ["import.meta.dirname"],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        }),
+        blockKnip({
+          ignoreDependencies: [
+            "@release-it/conventional-changelog",
+            "all-contributors-cli",
+            "cspell-populate-words",
+            "release-it",
+            "remove-dependencies",
+            "trash-cli",
+          ],
+        }),
+        blockExports({
+          runArgs: ["--version"],
+        }),
+        // TODO: This is only needed until we have a ReleasePlease block
+        blockPrettier({ ignores: ["/CHANGELOG.md"] }),
+        blockRenovate({
+          ignoreDeps: ["all-contributors-cli"],
+        }),
+      ],
+      blocks: {
+        add: [blockAreTheTypesWrong],
+        exclude: [blockTemplatedWith],
+      },
+    },
+  });
 
-	const processText = (text: string, filePath: string) =>
-		/all-contributorsrc|js|md|ts|yaml/.test(filePath)
-			? prettier.format(text, { filepath: filePath, useTabs: true })
-			: text;
+  const processText = (text: string, filePath: string) =>
+    /all-contributorsrc|js|md|ts|yaml/.test(filePath)
+      ? prettier.format(text, { filepath: filePath })
+      : text;
 
-	// @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-	if (actual[".husky"]?.["pre-commit"]?.[1]?.executable === false) {
-		// @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-		actual[".husky"]["pre-commit"][1].executable = true;
-	}
+  // @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  if (actual[".husky"]?.["pre-commit"]?.[1]?.executable === false) {
+    // @ts-expect-error -- Hack to work around https://github.com/bingo-js/bingo/issues/419
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    actual[".husky"]["pre-commit"][1].executable = true;
+  }
 
-	expect(
-		diffCreatedDirectory(actual, created.files, processText),
-	).toBeUndefined();
+  expect(
+    diffCreatedDirectory(actual, created.files, processText),
+  ).toBeUndefined();
 });

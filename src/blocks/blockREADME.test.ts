@@ -5,15 +5,15 @@ import { blockREADME } from "./blockREADME.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockREADME, () => {
-	test("description with one sentence", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				description: "One sentence.",
-			},
-		});
+  test("description with one sentence", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        description: "One sentence.",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -32,17 +32,17 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("description with two sentences", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				description: "First sentence. Second sentence.",
-			},
-		});
+  test("description with two sentences", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        description: "First sentence. Second sentence.",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -64,23 +64,23 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.documentation", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				documentation: {
-					development: "Development docs.",
-					readme: {
-						additional: "Additional docs.",
-						usage: "Use it.",
-					},
-				},
-			},
-		});
+  test("options.documentation", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        documentation: {
+          development: "Development docs.",
+          readme: {
+            additional: "Additional docs.",
+            usage: "Use it.",
+          },
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -100,23 +100,23 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.documentation.readme.explainer", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				documentation: {
-					...optionsBase.documentation,
-					readme: {
-						...optionsBase.documentation.readme,
-						explainer: "And a one.\nAnd a two.",
-					},
-				},
-			},
-		});
+  test("options.documentation.readme.explainer", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        documentation: {
+          ...optionsBase.documentation,
+          readme: {
+            ...optionsBase.documentation.readme,
+            explainer: "And a one.\nAnd a two.",
+          },
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -138,23 +138,23 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.documentation.readme.footnotes", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				documentation: {
-					...optionsBase.documentation,
-					readme: {
-						...optionsBase.documentation.readme,
-						footnotes: "And a one.\nAnd a two.",
-					},
-				},
-			},
-		});
+  test("options.documentation.readme.footnotes", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        documentation: {
+          ...optionsBase.documentation,
+          readme: {
+            ...optionsBase.documentation.readme,
+            footnotes: "And a one.\nAnd a two.",
+          },
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -175,20 +175,20 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.logo without sizing", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				logo: {
-					alt: "My logo",
-					src: "img.jpg",
-				},
-			},
-		});
+  test("options.logo without sizing", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        logo: {
+          alt: "My logo",
+          src: "img.jpg",
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -209,22 +209,22 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.logo with sizing", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				logo: {
-					alt: "My logo",
-					height: 100,
-					src: "img.jpg",
-					width: 128,
-				},
-			},
-		});
+  test("options.logo with sizing", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        logo: {
+          alt: "My logo",
+          height: 100,
+          src: "img.jpg",
+          width: 128,
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -245,29 +245,29 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("options.explainer and options.logo", () => {
-		const creation = testBlock(blockREADME, {
-			options: {
-				...optionsBase,
-				documentation: {
-					...optionsBase.documentation,
-					readme: {
-						...optionsBase.documentation.readme,
-						explainer: "And a one.\nAnd a two.",
-					},
-				},
-				logo: {
-					alt: "My logo",
-					height: 100,
-					src: "img.jpg",
-					width: 128,
-				},
-			},
-		});
+  test("options.explainer and options.logo", () => {
+    const creation = testBlock(blockREADME, {
+      options: {
+        ...optionsBase,
+        documentation: {
+          ...optionsBase.documentation,
+          readme: {
+            ...optionsBase.documentation.readme,
+            explainer: "And a one.\nAnd a two.",
+          },
+        },
+        logo: {
+          alt: "My logo",
+          height: 100,
+          src: "img.jpg",
+          width: 128,
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -291,12 +291,12 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("without addons", () => {
-		const creation = testBlock(blockREADME, { options: optionsBase });
+  test("without addons", () => {
+    const creation = testBlock(blockREADME, { options: optionsBase });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -315,33 +315,33 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockREADME, {
-			addons: {
-				badges: [
-					{
-						alt: "Badge Z",
-						src: "https://img.shields.io/badge/my_badge-000000",
-					},
-					{
-						alt: "Badge A",
-						src: "https://img.shields.io/badge/my_badge-000000",
-					},
-					{
-						alt: "Badge With Link",
-						href: "https://create.bingo",
-						src: "https://img.shields.io/badge/my_badge-000000",
-					},
-				],
-				notices: ["> Hello, world! ✨"],
-				sections: [`## Other\n\nHello!`],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockREADME, {
+      addons: {
+        badges: [
+          {
+            alt: "Badge Z",
+            src: "https://img.shields.io/badge/my_badge-000000",
+          },
+          {
+            alt: "Badge A",
+            src: "https://img.shields.io/badge/my_badge-000000",
+          },
+          {
+            alt: "Badge With Link",
+            href: "https://create.bingo",
+            src: "https://img.shields.io/badge/my_badge-000000",
+          },
+        ],
+        notices: ["> Hello, world! ✨"],
+        sections: [`## Other\n\nHello!`],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    "README.md": "<h1 align="center">Test Title</h1>
@@ -370,5 +370,5 @@ describe(blockREADME, () => {
 			  },
 			}
 		`);
-	});
+  });
 });

@@ -5,10 +5,10 @@ import { blockExports } from "./blockExports.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockExports, () => {
-	it("without addons", () => {
-		const creation = testBlock(blockExports, { options: optionsBase });
+  it("without addons", () => {
+    const creation = testBlock(blockExports, { options: optionsBase });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -32,18 +32,18 @@ describe(blockExports, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	it("with addons", () => {
-		const creation = testBlock(blockExports, {
-			addons: {
-				filePath: "other.js",
-				runArgs: ["--version"],
-			},
-			options: optionsBase,
-		});
+  it("with addons", () => {
+    const creation = testBlock(blockExports, {
+      addons: {
+        filePath: "other.js",
+        runArgs: ["--version"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -67,5 +67,5 @@ describe(blockExports, () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

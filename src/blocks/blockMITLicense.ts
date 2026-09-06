@@ -3,29 +3,29 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 
 export const blockMITLicense = base.createBlock({
-	about: {
-		name: "MIT License",
-	},
-	produce({ options }) {
-		return {
-			addons: [
-				blockREADME({
-					badges: [
-						{
-							alt: "📝 License: MIT",
-							href: `https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md`,
-							src: "https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg",
-						},
-					],
-				}),
-				blockPackageJson({
-					properties: {
-						license: "MIT",
-					},
-				}),
-			],
-			files: {
-				"LICENSE.md": `# MIT License
+  about: {
+    name: "MIT License",
+  },
+  produce({ options }) {
+    return {
+      addons: [
+        blockREADME({
+          badges: [
+            {
+              alt: "📝 License: MIT",
+              href: `https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md`,
+              src: "https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg",
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            license: "MIT",
+          },
+        }),
+      ],
+      files: {
+        "LICENSE.md": `# MIT License
 
 Copyright © ${new Date().getFullYear()} ${options.author}
 
@@ -48,7 +48,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
-			},
-		};
-	},
+      },
+    };
+  },
 });
