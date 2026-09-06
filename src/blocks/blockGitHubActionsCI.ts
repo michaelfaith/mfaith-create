@@ -72,11 +72,13 @@ export const blockGitHubActionsCI = base.createBlock({
 								options.workflowsVersions,
 							),
 							with: {
-								cache: "pnpm",
 								"node-version": minimumNodeVersion,
 							},
 						},
-						{ run: "pnpm install --prod --engine-strict --ignore-scripts" },
+						{
+							env: { pnpm_config_engine_strict: "true" },
+							run: "pnpm install --prod --ignore-scripts",
+						},
 					],
 				},
 			].toSorted((a, b) => a.name.localeCompare(b.name));
