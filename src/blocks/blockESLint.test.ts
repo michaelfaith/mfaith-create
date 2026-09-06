@@ -947,6 +947,7 @@ export default defineConfig(
 						},
 						plugins: {
 							"plugin-a-key": "plugin-a-value",
+							import: "importPlugin",
 						},
 						rules: {
 							"a/b": "error",
@@ -1064,7 +1065,7 @@ import tseslint from "typescript-eslint";
 export default defineConfig(
 	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
   },
   "scripts": [
