@@ -82,7 +82,16 @@ describe("blockRepoTransitions", () => {
 			      },
 			    },
 			    "workflows": {
-			      "repo-transition.yaml": "jobs:
+			      "repo-transition.yaml": "name: Transition Repo
+
+
+			on:
+			  pull_request:
+			    branches:
+			      - main
+
+
+			jobs:
 			  transition:
 			    name: Transition
 			    permissions:
@@ -103,15 +112,6 @@ describe("blockRepoTransitions", () => {
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to @mfaith/create.'
-
-
-			name: Transition Repo
-
-
-			on:
-			  pull_request:
-			    branches:
-			      - main
 			",
 			    },
 			  },

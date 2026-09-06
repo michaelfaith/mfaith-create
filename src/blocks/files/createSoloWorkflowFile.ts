@@ -77,6 +77,8 @@ export function createSoloWorkflowFile({
 	...options
 }: WorkflowFileOptions) {
 	return formatWorkflowYaml({
+		name,
+		on,
 		concurrency,
 		jobs: {
 			[createJobName(jobName ?? name)]: {
@@ -87,7 +89,5 @@ export function createSoloWorkflowFile({
 				steps: options.steps,
 			},
 		},
-		name,
-		on,
 	});
 }

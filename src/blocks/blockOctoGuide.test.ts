@@ -16,22 +16,7 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
-			  octoguide:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    permissions:
-			      discussions: write
-			      issues: write
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
-			        with:
-			          config: recommended
-			          github-token: \${{ secrets.GITHUB_TOKEN }}
-
-
-			name: OctoGuide
+			        "octoguide.yaml": "name: OctoGuide
 
 
 			on:
@@ -62,6 +47,21 @@ describe(blockOctoGuide, () => {
 			    types:
 			      - edited
 			      - opened
+
+
+			jobs:
+			  octoguide:
+			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			        with:
+			          config: recommended
+			          github-token: \${{ secrets.GITHUB_TOKEN }}
 			",
 			      },
 			    },
@@ -93,22 +93,7 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
-			  octoguide:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    permissions:
-			      discussions: write
-			      issues: write
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
-			        with:
-			          config: recommended
-			          github-token: \${{ secrets.GITHUB_TOKEN }}
-
-
-			name: OctoGuide
+			        "octoguide.yaml": "name: OctoGuide
 
 
 			on:
@@ -139,6 +124,21 @@ describe(blockOctoGuide, () => {
 			    types:
 			      - edited
 			      - opened
+
+
+			jobs:
+			  octoguide:
+			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			        with:
+			          config: recommended
+			          github-token: \${{ secrets.GITHUB_TOKEN }}
 			",
 			      },
 			    },
@@ -160,22 +160,7 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
-			  octoguide:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    permissions:
-			      discussions: write
-			      issues: write
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
-			        with:
-			          config: strict
-			          github-token: \${{ secrets.GITHUB_TOKEN }}
-
-
-			name: OctoGuide
+			        "octoguide.yaml": "name: OctoGuide
 
 
 			on:
@@ -206,6 +191,21 @@ describe(blockOctoGuide, () => {
 			    types:
 			      - edited
 			      - opened
+
+
+			jobs:
+			  octoguide:
+			    if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			        with:
+			          config: strict
+			          github-token: \${{ secrets.GITHUB_TOKEN }}
 			",
 			      },
 			    },
