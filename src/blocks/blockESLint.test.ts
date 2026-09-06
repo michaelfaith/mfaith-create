@@ -104,12 +104,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -223,12 +217,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescript",
             "typescriptreact",
             "yaml",
-          ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
           ],
         },
       },
@@ -379,12 +367,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescript",
             "typescriptreact",
             "yaml",
-          ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
           ],
         },
       },
@@ -572,12 +554,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -739,12 +715,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -884,12 +854,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescript",
             "typescriptreact",
             "yaml",
-          ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
           ],
         },
       },
@@ -1045,12 +1009,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -1192,12 +1150,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -1316,12 +1268,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescript",
             "typescriptreact",
             "yaml",
-          ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
           ],
         },
       },
@@ -1442,12 +1388,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -1564,12 +1504,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescriptreact",
             "yaml",
           ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
-          ],
         },
       },
       "block": [Function],
@@ -1685,12 +1619,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             "typescript",
             "typescriptreact",
             "yaml",
-          ],
-          "eslint.rules.customizations": [
-            {
-              "rule": "*",
-              "severity": "warn",
-            },
           ],
         },
       },
