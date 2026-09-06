@@ -8,6 +8,11 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
+vi.mock("../data/packageData.js", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+}));
+
 describe(blockVitest, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockVitest, {
@@ -178,10 +183,10 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.1.10",
-			            "@vitest/eslint-plugin": "1.6.27",
-			            "console-fail-test": "0.6.1",
-			            "vitest": "4.1.10",
+			            "@vitest/coverage-v8": "1.2.3",
+			            "@vitest/eslint-plugin": "1.2.3",
+			            "console-fail-test": "1.2.3",
+			            "vitest": "1.2.3",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -424,10 +429,10 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.1.10",
-			            "@vitest/eslint-plugin": "1.6.27",
-			            "console-fail-test": "0.6.1",
-			            "vitest": "4.1.10",
+			            "@vitest/coverage-v8": "1.2.3",
+			            "@vitest/eslint-plugin": "1.2.3",
+			            "console-fail-test": "1.2.3",
+			            "vitest": "1.2.3",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -708,10 +713,10 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.1.10",
-			            "@vitest/eslint-plugin": "1.6.27",
-			            "console-fail-test": "0.6.1",
-			            "vitest": "4.1.10",
+			            "@vitest/coverage-v8": "1.2.3",
+			            "@vitest/eslint-plugin": "1.2.3",
+			            "console-fail-test": "1.2.3",
+			            "vitest": "1.2.3",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",
@@ -963,10 +968,10 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.1.10",
-			            "@vitest/eslint-plugin": "1.6.27",
-			            "console-fail-test": "0.6.1",
-			            "vitest": "4.1.10",
+			            "@vitest/coverage-v8": "1.2.3",
+			            "@vitest/eslint-plugin": "1.2.3",
+			            "console-fail-test": "1.2.3",
+			            "vitest": "1.2.3",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",
