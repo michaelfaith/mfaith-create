@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.1.1](https://github.com/michaelfaith/mfaith-create/compare/v0.1.0...v0.1.1) (2026-09-06)
+
+
+### 🚀 Features
+
+* remove `useTabs` from Prettier config ([#106](https://github.com/michaelfaith/mfaith-create/issues/106)) ([a0b6f4d](https://github.com/michaelfaith/mfaith-create/commit/a0b6f4d6e2fa08a302222d892903bd18a94e88a3))
+* remove use of PATs ([#104](https://github.com/michaelfaith/mfaith-create/issues/104)) ([264183a](https://github.com/michaelfaith/mfaith-create/commit/264183a31098f67136cb342174cafcb97be3b892))
+
+
+### 🩹 Bug Fixes
+
+* correct the fallback default values of node minimum node support ([#107](https://github.com/michaelfaith/mfaith-create/issues/107)) ([2becb3c](https://github.com/michaelfaith/mfaith-create/commit/2becb3c20cddcd7964522b38c1724161ceaa1dc9))
+* install `jiti` in the eslint block ([#109](https://github.com/michaelfaith/mfaith-create/issues/109)) ([5291c85](https://github.com/michaelfaith/mfaith-create/commit/5291c859dd9f53b58c728e878d2228c2edc48d11))
+* order yaml workflows and templates correctly ([#102](https://github.com/michaelfaith/mfaith-create/issues/102)) ([784f2d5](https://github.com/michaelfaith/mfaith-create/commit/784f2d52ec52247bed1c283405b782be5e943809))
+* remove `eslint.rules.customizations` property from vscode settings ([#105](https://github.com/michaelfaith/mfaith-create/issues/105)) ([c7be5e2](https://github.com/michaelfaith/mfaith-create/commit/c7be5e297f0e1541d5f226a7a4cabb0bd62b87fd))
+
 ## 0.1.0 (2026-09-06)
 
 
