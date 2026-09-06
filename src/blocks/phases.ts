@@ -1,7 +1,7 @@
 export const CommandPhase = {
-	Migrations: 0,
-	Install: 1,
-	Build: 2,
-	Process: 3,
-	Format: 4,
+  Migrations: 0,
+  Install: 1,
+  Build: 2,
+  Process: 3,
+  Format: 4,
 } as const;

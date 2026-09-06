@@ -5,21 +5,21 @@ import { blockCSpell } from "./blockCSpell.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockCSpell, () => {
-	test("without addons or options", () => {
-		const creation = testBlock(blockCSpell, {
-			options: optionsBase,
-		});
+  test("without addons or options", () => {
+    const creation = testBlock(blockCSpell, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -78,18 +78,18 @@ describe(blockCSpell, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockCSpell, {
-			addons: {
-				ignorePaths: ["lib/"],
-				words: ["joshuakgoldberg"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockCSpell, {
+      addons: {
+        ignorePaths: ["lib/"],
+        words: ["joshuakgoldberg"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -148,17 +148,17 @@ describe(blockCSpell, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with options", () => {
-		const creation = testBlock(blockCSpell, {
-			options: {
-				...optionsBase,
-				words: ["michaelfaith"],
-			},
-		});
+  test("with options", () => {
+    const creation = testBlock(blockCSpell, {
+      options: {
+        ...optionsBase,
+        words: ["michaelfaith"],
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -217,15 +217,15 @@ describe(blockCSpell, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("setup mode", () => {
-		const creation = testBlock(blockCSpell, {
-			mode: "setup",
-			options: optionsBase,
-		});
+  test("setup mode", () => {
+    const creation = testBlock(blockCSpell, {
+      mode: "setup",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -292,15 +292,15 @@ describe(blockCSpell, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockCSpell, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockCSpell, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -368,50 +368,50 @@ describe(blockCSpell, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns undefined when cspell.json does not exist", () => {
-			const actual = testIntake(blockCSpell, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns undefined when cspell.json does not exist", () => {
+      const actual = testIntake(blockCSpell, {
+        files: {},
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when cspell.json does not contain truthy data", () => {
-			const actual = testIntake(blockCSpell, {
-				files: {
-					"cspell.json": [JSON.stringify(null)],
-				},
-			});
+    it("returns undefined when cspell.json does not contain truthy data", () => {
+      const actual = testIntake(blockCSpell, {
+        files: {
+          "cspell.json": [JSON.stringify(null)],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when cspell.json contains invalid data", () => {
-			const actual = testIntake(blockCSpell, {
-				files: {
-					"cspell.json": [JSON.stringify({ ignorePaths: true })],
-				},
-			});
+    it("returns undefined when cspell.json contains invalid data", () => {
+      const actual = testIntake(blockCSpell, {
+        files: {
+          "cspell.json": [JSON.stringify({ ignorePaths: true })],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns the data when cspell.json contains ignorePaths and words", () => {
-			const data = {
-				ignorePaths: ["other"],
-				words: ["abc", "def"],
-			};
+    it("returns the data when cspell.json contains ignorePaths and words", () => {
+      const data = {
+        ignorePaths: ["other"],
+        words: ["abc", "def"],
+      };
 
-			const actual = testIntake(blockCSpell, {
-				files: {
-					"cspell.json": [JSON.stringify(data)],
-				},
-			});
+      const actual = testIntake(blockCSpell, {
+        files: {
+          "cspell.json": [JSON.stringify(data)],
+        },
+      });
 
-			expect(actual).toEqual(data);
-		});
-	});
+      expect(actual).toEqual(data);
+    });
+  });
 });

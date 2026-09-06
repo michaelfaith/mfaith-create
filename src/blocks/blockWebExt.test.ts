@@ -5,12 +5,12 @@ import { blockWebExt } from "./blockWebExt.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockWebExt", () => {
-	test("production", () => {
-		const creation = testBlock(blockWebExt, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockWebExt, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -151,5 +151,5 @@ describe("blockWebExt", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

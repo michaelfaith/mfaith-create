@@ -5,21 +5,21 @@ import { blockVitest } from "./blockVitest.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockVitest, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockVitest, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockVitest, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -257,15 +257,15 @@ describe(blockVitest, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockVitest, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockVitest, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -533,23 +533,23 @@ describe(blockVitest, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockVitest, {
-			addons: {
-				coverage: {
-					exclude: ["other"],
-					include: ["src/"],
-				},
-				environment: "happy-dom",
-				exclude: ["lib/"],
-				flags: ["--typecheck"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockVitest, {
+      addons: {
+        coverage: {
+          exclude: ["other"],
+          include: ["src/"],
+        },
+        environment: "happy-dom",
+        exclude: ["lib/"],
+        flags: ["--typecheck"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -789,22 +789,22 @@ describe(blockVitest, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with duplicate excludes addons", () => {
-		const creation = testBlock(blockVitest, {
-			addons: {
-				coverage: {
-					exclude: ["other"],
-					include: ["src/"],
-				},
-				exclude: ["lib/", "node_modules", "node_modules"],
-				flags: ["--typecheck"],
-			},
-			options: optionsBase,
-		});
+  test("with duplicate excludes addons", () => {
+    const creation = testBlock(blockVitest, {
+      addons: {
+        coverage: {
+          exclude: ["other"],
+          include: ["src/"],
+        },
+        exclude: ["lib/", "node_modules", "node_modules"],
+        flags: ["--typecheck"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -1043,60 +1043,60 @@ describe(blockVitest, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [`defineConfig({ other: true })`],
-				},
-				options: optionsBase,
-			});
+  describe("intake", () => {
+    it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [`defineConfig({ other: true })`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({});
-		});
+      expect(actual).toEqual({});
+    });
 
-		it("returns nothing when vitest.config.ts passes unknown test data to defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [`defineConfig({ test: true })`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when vitest.config.ts passes unknown test data to defineConfig", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [`defineConfig({ test: true })`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({});
-		});
+      expect(actual).toEqual({});
+    });
 
-		it("returns nothing when vitest.config.ts passes invalid test syntax to defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [`defineConfig({ test: { ! } })`],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when vitest.config.ts passes invalid test syntax to defineConfig", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [`defineConfig({ test: { ! } })`],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({});
-		});
+      expect(actual).toEqual({});
+    });
 
-		it("returns nothing when vitest.config.ts passes invalid test data to defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [
-						`defineConfig({ test: { coverage: 'invalid' } })`,
-					],
-				},
-				options: optionsBase,
-			});
+    it("returns nothing when vitest.config.ts passes invalid test data to defineConfig", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [
+            `defineConfig({ test: { coverage: 'invalid' } })`,
+          ],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({});
-		});
+      expect(actual).toEqual({});
+    });
 
-		it("returns coverage and exclude when they exist in vitest.config.ts", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [
-						`import { defineConfig } from "vitest/config";
+    it("returns coverage and exclude when they exist in vitest.config.ts", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [
+            `import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
@@ -1112,25 +1112,25 @@ export default defineConfig({
 	},
 });
 `,
-					],
-				},
-				options: optionsBase,
-			});
+          ],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({
-				coverage: {
-					exclude: ["src/index.ts"],
-					include: ["src", "other"],
-				},
-				exclude: ["lib", "node_modules"],
-			});
-		});
+      expect(actual).toEqual({
+        coverage: {
+          exclude: ["src/index.ts"],
+          include: ["src", "other"],
+        },
+        exclude: ["lib", "node_modules"],
+      });
+    });
 
-		it("returns environment when it exists in vitest.config.ts", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [
-						`import { defineConfig } from "vitest/config";
+    it("returns environment when it exists in vitest.config.ts", () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          "vitest.config.ts": [
+            `import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
@@ -1138,32 +1138,32 @@ export default defineConfig({
 	},
 });
 `,
-					],
-				},
-				options: optionsBase,
-			});
+          ],
+        },
+        options: optionsBase,
+      });
 
-			expect(actual).toEqual({
-				environment: "happy-dom",
-			});
-		});
+      expect(actual).toEqual({
+        environment: "happy-dom",
+      });
+    });
 
-		it("returns flags when it exists in package.json", () => {
-			const actual = testIntake(blockVitest, {
-				files: {},
-				options: {
-					...optionsBase,
-					packageData: {
-						scripts: {
-							test: "vitest --typecheck",
-						},
-					},
-				},
-			});
+    it("returns flags when it exists in package.json", () => {
+      const actual = testIntake(blockVitest, {
+        files: {},
+        options: {
+          ...optionsBase,
+          packageData: {
+            scripts: {
+              test: "vitest --typecheck",
+            },
+          },
+        },
+      });
 
-			expect(actual).toEqual({
-				flags: ["--typecheck"],
-			});
-		});
-	});
+      expect(actual).toEqual({
+        flags: ["--typecheck"],
+      });
+    });
+  });
 });

@@ -13,90 +13,90 @@ import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockESLintPlugin = base.createBlock({
-	about: {
-		name: "ESLint Plugin",
-	},
-	addons: {
-		configEmoji: zConfigEmoji,
-	},
-	intake({ files }) {
-		const docGeneratorConfigRaw = intakeFile(files, [
-			[".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
-		]);
+  about: {
+    name: "ESLint Plugin",
+  },
+  addons: {
+    configEmoji: zConfigEmoji,
+  },
+  intake({ files }) {
+    const docGeneratorConfigRaw = intakeFile(files, [
+      [".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
+    ]);
 
-		return docGeneratorConfigRaw
-			? blockESLintPluginIntake(docGeneratorConfigRaw[0])
-			: undefined;
-	},
-	produce({ addons, options }) {
-		const { configEmoji } = addons;
-		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
-		const pluginName = options.repository
-			.replace(/^eslint-plugin-/, "")
-			.replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
+    return docGeneratorConfigRaw
+      ? blockESLintPluginIntake(docGeneratorConfigRaw[0])
+      : undefined;
+  },
+  produce({ addons, options }) {
+    const { configEmoji } = addons;
+    const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
+    const pluginName = options.repository
+      .replace(/^eslint-plugin-/, "")
+      .replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
-		return {
-			addons: [
-				blockCSpell({
-					words: ["eslint-doc-generatorrc"],
-				}),
-				blockDevelopmentDocs({
-					sections: {
-						Building: {
-							innerSections: [
-								{
-									contents: `
+    return {
+      addons: [
+        blockCSpell({
+          words: ["eslint-doc-generatorrc"],
+        }),
+        blockDevelopmentDocs({
+          sections: {
+            Building: {
+              innerSections: [
+                {
+                  contents: `
 Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
 
 \`\`\`shell
 pnpm build:docs
 \`\`\`
 		`,
-									heading: "Building Docs",
-								},
-							],
-						},
-						Linting: {
-							contents: {
-								items: [
-									`- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules`,
-								],
-							},
-						},
-					},
-				}),
-				blockESLint({
-					extensions: [
-						{
-							extends: ['eslintPlugin.configs["flat/recommended"]'],
-							files: [getScriptFileExtension(options)],
-						},
-					],
-					ignores: [configFileName, "docs/rules/*/*.ts"],
-					imports: [
-						{
-							source: {
-								packageName: "eslint-plugin-eslint-plugin",
-								version: "6.4.0",
-							},
-							specifier: "eslintPlugin",
-						},
-					],
-				}),
-				blockGitHubActionsCI({
-					jobs: [
-						{
-							name: "Lint Docs",
-							steps: [
-								{ run: "pnpm build || exit 0" },
-								{ run: "pnpm lint:docs" },
-							],
-						},
-					],
-				}),
-				blockREADME({
-					defaultUsage: [
-						`Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+                  heading: "Building Docs",
+                },
+              ],
+            },
+            Linting: {
+              contents: {
+                items: [
+                  `- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules`,
+                ],
+              },
+            },
+          },
+        }),
+        blockESLint({
+          extensions: [
+            {
+              extends: ['eslintPlugin.configs["flat/recommended"]'],
+              files: [getScriptFileExtension(options)],
+            },
+          ],
+          ignores: [configFileName, "docs/rules/*/*.ts"],
+          imports: [
+            {
+              source: {
+                packageName: "eslint-plugin-eslint-plugin",
+                version: "6.4.0",
+              },
+              specifier: "eslintPlugin",
+            },
+          ],
+        }),
+        blockGitHubActionsCI({
+          jobs: [
+            {
+              name: "Lint Docs",
+              steps: [
+                { run: "pnpm build || exit 0" },
+                { run: "pnpm lint:docs" },
+              ],
+            },
+          ],
+        }),
+        blockREADME({
+          defaultUsage: [
+            `Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
 \`\`\`shell
 npm i ${options.repository} -D
@@ -116,32 +116,32 @@ export default [
 These are all set to \`"error"\` in the recommended config:
 
 <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->`,
-					],
-				}),
-				blockPackageJson({
-					properties: {
-						dependencies: {
-							"@typescript-eslint/utils": "^8.29.0",
-						},
-						devDependencies: {
-							"@typescript-eslint/rule-tester": "8.29.1",
-							"eslint-doc-generator": "2.1.0",
-							"eslint-plugin-eslint-plugin": "6.4.0",
-						},
-						scripts: {
-							"build:docs": "pnpm build --no-dts && eslint-doc-generator",
-							"lint:docs": "eslint-doc-generator --check",
-						},
-					},
-				}),
-				blockVitest({
-					coverage: {
-						exclude: ["src/index.ts", "src/rules/index.ts"],
-					},
-				}),
-			],
-			files: {
-				[configFileName]: `import prettier from "prettier";
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            dependencies: {
+              "@typescript-eslint/utils": "^8.29.0",
+            },
+            devDependencies: {
+              "@typescript-eslint/rule-tester": "8.29.1",
+              "eslint-doc-generator": "2.1.0",
+              "eslint-plugin-eslint-plugin": "6.4.0",
+            },
+            scripts: {
+              "build:docs": "pnpm build --no-dts && eslint-doc-generator",
+              "lint:docs": "eslint-doc-generator --check",
+            },
+          },
+        }),
+        blockVitest({
+          coverage: {
+            exclude: ["src/index.ts", "src/rules/index.ts"],
+          },
+        }),
+      ],
+      files: {
+        [configFileName]: `import prettier from "prettier";
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
@@ -155,26 +155,26 @@ const config = {
 
 export default config;
 `,
-			},
-			scripts: [
-				{
-					commands: ["pnpm build"],
-					phase: CommandPhase.Build,
-				},
-				{
-					commands: ["pnpm eslint-doc-generator --init-rule-docs"],
-					phase: CommandPhase.Process,
-				},
-			],
-		};
-	},
-	setup({ options }) {
-		const pluginName = options.repository.replace("eslint-plugin-", "");
+      },
+      scripts: [
+        {
+          commands: ["pnpm build"],
+          phase: CommandPhase.Build,
+        },
+        {
+          commands: ["pnpm eslint-doc-generator --init-rule-docs"],
+          phase: CommandPhase.Process,
+        },
+      ],
+    };
+  },
+  setup({ options }) {
+    const pluginName = options.repository.replace("eslint-plugin-", "");
 
-		return {
-			files: {
-				src: {
-					"index.ts": `import Module from "node:module";
+    return {
+      files: {
+        src: {
+          "index.ts": `import Module from "node:module";
 
 import { rules } from "./rules/index.js";
 
@@ -207,8 +207,8 @@ export { rules };
 
 export default plugin;
 `,
-					rules: {
-						"enums.test.ts": `import { rule } from "./enums.js";
+          rules: {
+            "enums.test.ts": `import { rule } from "./enums.js";
 import { ruleTester } from "./ruleTester.js";
 
 ruleTester.run("enums", rule, {
@@ -229,7 +229,7 @@ ruleTester.run("enums", rule, {
 	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 });
 `,
-						"enums.ts": `import { createRule } from "../utils.js";
+            "enums.ts": `import { createRule } from "../utils.js";
 
 export const rule = createRule({
 	create(context) {
@@ -256,13 +256,13 @@ export const rule = createRule({
 	name: "enums",
 });
 `,
-						"index.ts": `import { rule as enums } from "./enums.js";
+            "index.ts": `import { rule as enums } from "./enums.js";
 
 export const rules = {
 	enums,
 };
 `,
-						"ruleTester.ts": `import { RuleTester } from "@typescript-eslint/rule-tester";
+            "ruleTester.ts": `import { RuleTester } from "@typescript-eslint/rule-tester";
 import * as vitest from "vitest";
 
 RuleTester.afterAll = vitest.afterAll;
@@ -272,16 +272,16 @@ RuleTester.describe = vitest.describe;
 
 export const ruleTester = new RuleTester();
 `,
-					},
-					"utils.ts": `import { ESLintUtils } from "@typescript-eslint/utils";
+          },
+          "utils.ts": `import { ESLintUtils } from "@typescript-eslint/utils";
 
 export const createRule = ESLintUtils.RuleCreator(
 	(name) =>
 		\`https://github.com/${options.owner}/${options.repository}/blob/main/docs/rules/\${name}.md\`,
 );
 `,
-				},
-			},
-		};
-	},
+        },
+      },
+    };
+  },
 });

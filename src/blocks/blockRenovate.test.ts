@@ -5,12 +5,12 @@ import { blockRenovate } from "./blockRenovate.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockRenovate, () => {
-	test("without addons", () => {
-		const creation = testBlock(blockRenovate, {
-			options: optionsBase,
-		});
+  test("without addons", () => {
+    const creation = testBlock(blockRenovate, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -32,17 +32,17 @@ describe(blockRenovate, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockRenovate, {
-			addons: {
-				ignoreDeps: ["all-contributors-cli"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockRenovate, {
+      addons: {
+        ignoreDeps: ["all-contributors-cli"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -64,72 +64,72 @@ describe(blockRenovate, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns no ignoreDeps when .github/renovate.json does not exist", () => {
-			const actual = testIntake(blockRenovate, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns no ignoreDeps when .github/renovate.json does not exist", () => {
+      const actual = testIntake(blockRenovate, {
+        files: {},
+      });
 
-			expect(actual).toEqual({ ignoreDeps: [] });
-		});
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
 
-		it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
-			const actual = testIntake(blockRenovate, {
-				files: {
-					".github": {
-						"renovate.json": [JSON.stringify(null)],
-					},
-				},
-			});
+    it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
+      const actual = testIntake(blockRenovate, {
+        files: {
+          ".github": {
+            "renovate.json": [JSON.stringify(null)],
+          },
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDeps: [] });
-		});
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
 
-		it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
-			const actual = testIntake(blockRenovate, {
-				files: {
-					".github": {
-						"renovate.json": [JSON.stringify({ other: true })],
-					},
-				},
-			});
+    it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
+      const actual = testIntake(blockRenovate, {
+        files: {
+          ".github": {
+            "renovate.json": [JSON.stringify({ other: true })],
+          },
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDeps: [] });
-		});
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
 
-		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
-			const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
+    it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
+      const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
 
-			const actual = testIntake(blockRenovate, {
-				files: {
-					".github": {
-						"renovate.json": [JSON.stringify({ ignoreDeps })],
-					},
-				},
-			});
+      const actual = testIntake(blockRenovate, {
+        files: {
+          ".github": {
+            "renovate.json": [JSON.stringify({ ignoreDeps })],
+          },
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDeps });
-		});
+      expect(actual).toEqual({ ignoreDeps });
+    });
 
-		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
-			const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
+    it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
+      const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
 
-			const actual = testIntake(blockRenovate, {
-				files: {
-					".github": {
-						"renovate.json": [
-							JSON.stringify({
-								ignoreDeps,
-								other: true,
-							}),
-						],
-					},
-				},
-			});
+      const actual = testIntake(blockRenovate, {
+        files: {
+          ".github": {
+            "renovate.json": [
+              JSON.stringify({
+                ignoreDeps,
+                other: true,
+              }),
+            ],
+          },
+        },
+      });
 
-			expect(actual).toEqual({ ignoreDeps });
-		});
-	});
+      expect(actual).toEqual({ ignoreDeps });
+    });
+  });
 });

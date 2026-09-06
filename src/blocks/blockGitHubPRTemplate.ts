@@ -1,14 +1,14 @@
 import { base } from "../base.js";
 
 export const blockGitHubPRTemplate = base.createBlock({
-	about: {
-		name: "GitHub Issue Templates",
-	},
-	produce({ options }) {
-		return {
-			files: {
-				".github": {
-					"PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${options.repository}! ${options.emoji}
+  about: {
+    name: "GitHub Issue Templates",
+  },
+  produce({ options }) {
+    return {
+      files: {
+        ".github": {
+          "PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${options.repository}! ${options.emoji}
 Please fill out all fields below and make sure each item is true and [x] checked.
 Otherwise we may not be able to review your PR. -->
 
@@ -22,8 +22,8 @@ Otherwise we may not be able to review your PR. -->
 
 <!-- Description of what is changed and how the code change does that. -->
 `,
-				},
-			},
-		};
-	},
+        },
+      },
+    };
+  },
 });

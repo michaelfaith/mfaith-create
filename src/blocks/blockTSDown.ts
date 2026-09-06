@@ -18,45 +18,45 @@ const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
 
 export const blockTSDown = base.createBlock({
-	about: {
-		name: "TSDown",
-	},
-	addons: {
-		entry: zEntry.default([]),
-		properties: zProperties.default({}),
-		runInCI: z.array(z.string()).default([]),
-	},
-	intake({ files }) {
-		const rawData =
-			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
-			intakeFileDefineConfig(files, ["tsup.config.ts"]);
-		if (!rawData) {
-			return undefined;
-		}
+  about: {
+    name: "TSDown",
+  },
+  addons: {
+    entry: zEntry.default([]),
+    properties: zProperties.default({}),
+    runInCI: z.array(z.string()).default([]),
+  },
+  intake({ files }) {
+    const rawData =
+      intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
+      intakeFileDefineConfig(files, ["tsup.config.ts"]);
+    if (!rawData) {
+      return undefined;
+    }
 
-		const { entry: rawEntry, ...rest } = rawData;
+    const { entry: rawEntry, ...rest } = rawData;
 
-		return {
-			entry: zEntry.safeParse(rawEntry).data,
-			properties: removeUndefinedObjects({
-				...zProperties.safeParse(rest).data,
+    return {
+      entry: zEntry.safeParse(rawEntry).data,
+      properties: removeUndefinedObjects({
+        ...zProperties.safeParse(rest).data,
 
-				// In case of a tsup.config.ts migrated to tsdown.config.ts
-				bundle: undefined,
-				clean: rest.clean === false ? false : undefined,
-				format: rest.format === "esm" ? undefined : rest.format,
-			}),
-		};
-	},
-	produce({ addons, options }) {
-		const { entry, properties, runInCI } = addons;
+        // In case of a tsup.config.ts migrated to tsdown.config.ts
+        bundle: undefined,
+        clean: rest.clean === false ? false : undefined,
+        format: rest.format === "esm" ? undefined : rest.format,
+      }),
+    };
+  },
+  produce({ addons, options }) {
+    const { entry, properties, runInCI } = addons;
 
-		return {
-			addons: [
-				blockDevelopmentDocs({
-					sections: {
-						Building: {
-							contents: `
+    return {
+      addons: [
+        blockDevelopmentDocs({
+          sections: {
+            Building: {
+              contents: `
 Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 \`\`\`shell
@@ -69,86 +69,86 @@ Add \`--watch\` to run the builder in a watch mode that continuously cleans and 
 pnpm build --watch
 \`\`\`
 `,
-						},
-					},
-				}),
-				blockESLint({
-					beforeLint: `Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
-				}),
-				blockGitHubActionsCI({
-					jobs: [
-						{
-							name: "Build",
-							steps: [
-								{ run: "pnpm build" },
-								...runInCI.map((run) => ({ run })),
-							],
-						},
-					],
-				}),
-				blockPackageJson({
-					properties: {
-						devDependencies: getPackageDependencies("tsdown"),
-						scripts: {
-							build: "tsdown",
-						},
-					},
-				}),
-				blockReleaseIt({
-					builders: [
-						{
-							order: 0,
-							run: "pnpm build",
-						},
-					],
-				}),
-			],
-			files: {
-				"tsdown.config.ts": `import { defineConfig } from "tsdown";
+            },
+          },
+        }),
+        blockESLint({
+          beforeLint: `Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
+        }),
+        blockGitHubActionsCI({
+          jobs: [
+            {
+              name: "Build",
+              steps: [
+                { run: "pnpm build" },
+                ...runInCI.map((run) => ({ run })),
+              ],
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: getPackageDependencies("tsdown"),
+            scripts: {
+              build: "tsdown",
+            },
+          },
+        }),
+        blockReleaseIt({
+          builders: [
+            {
+              order: 0,
+              run: "pnpm build",
+            },
+          ],
+        }),
+      ],
+      files: {
+        "tsdown.config.ts": `import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
-					fixedExtension: false,
-					outDir: "lib",
-					unbundle: true,
-					...properties,
-				})});
+          entry: Array.from(new Set(["src/**/*.ts", ...entry])),
+          fixedExtension: false,
+          outDir: "lib",
+          unbundle: true,
+          ...properties,
+        })});
 `,
-			},
-			scripts: options.bin
-				? [
-						{
-							commands: ["pnpm build"],
-							phase: CommandPhase.Build,
-						},
-					]
-				: undefined,
-		};
-	},
-	transition() {
-		return {
-			addons: [
-				blockRemoveDependencies({
-					dependencies: [
-						"@babel/cli",
-						"@babel/core",
-						"@babel/preset-typescript",
-						"babel",
-					],
-				}),
-				blockRemoveFiles({
-					files: [
-						".babelrc*",
-						"babel.config.*",
-						"dist",
-						"lib",
-						"tsup.config.*",
-					],
-				}),
-				blockRemoveWorkflows({
-					workflows: ["build", "tsup"],
-				}),
-			],
-		};
-	},
+      },
+      scripts: options.bin
+        ? [
+            {
+              commands: ["pnpm build"],
+              phase: CommandPhase.Build,
+            },
+          ]
+        : undefined,
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveDependencies({
+          dependencies: [
+            "@babel/cli",
+            "@babel/core",
+            "@babel/preset-typescript",
+            "babel",
+          ],
+        }),
+        blockRemoveFiles({
+          files: [
+            ".babelrc*",
+            "babel.config.*",
+            "dist",
+            "lib",
+            "tsup.config.*",
+          ],
+        }),
+        blockRemoveWorkflows({
+          workflows: ["build", "tsup"],
+        }),
+      ],
+    };
+  },
 });

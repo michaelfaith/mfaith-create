@@ -9,23 +9,23 @@ const mockIntakeData = { ignores: ["lib"] };
 const mockBlockESLintIntake = vi.fn().mockReturnValue(mockIntakeData);
 
 vi.mock("./eslint/blockESLintIntake.js", () => ({
-	get blockESLintIntake() {
-		return mockBlockESLintIntake;
-	},
+  get blockESLintIntake() {
+    return mockBlockESLintIntake;
+  },
 }));
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockESLint, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockESLint, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockESLint, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -131,15 +131,15 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockESLint, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockESLint, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -278,18 +278,18 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("transition mode with options.type set to commonjs", () => {
-		const creation = testBlock(blockESLint, {
-			mode: "transition",
-			options: {
-				...optionsBase,
-				type: "commonjs",
-			},
-		});
+  test("transition mode with options.type set to commonjs", () => {
+    const creation = testBlock(blockESLint, {
+      mode: "transition",
+      options: {
+        ...optionsBase,
+        type: "commonjs",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -428,50 +428,50 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockESLint, {
-			addons: {
-				beforeLint: "Before lint.",
-				explanations: ["This is a great config!", "You should use it!"],
-				extensions: [
-					{
-						extends: ["a.configs.recommended"],
-						files: ["**/*.a"],
-						rules: {
-							"a/b": "error",
-							"a/c": ["error", { d: "e" }],
-						},
-					},
-					{
-						extends: ["b.configs.recommended"],
-						files: ["**/*.b"],
-						rules: {
-							"b/c": "error",
-							"b/d": ["error", { e: "f" }],
-						},
-						settings: {
-							react: {
-								version: "detect",
-							},
-						},
-					},
-				],
-				ignores: ["generated"],
-				imports: [
-					{ source: "@eslint/markdown", specifier: "a" },
-					{ source: "eslint-plugin-regexp", specifier: "b" },
-					{
-						source: { packageName: "eslint-plugin-unknown", version: "1.2.3" },
-						specifier: "c",
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockESLint, {
+      addons: {
+        beforeLint: "Before lint.",
+        explanations: ["This is a great config!", "You should use it!"],
+        extensions: [
+          {
+            extends: ["a.configs.recommended"],
+            files: ["**/*.a"],
+            rules: {
+              "a/b": "error",
+              "a/c": ["error", { d: "e" }],
+            },
+          },
+          {
+            extends: ["b.configs.recommended"],
+            files: ["**/*.b"],
+            rules: {
+              "b/c": "error",
+              "b/d": ["error", { e: "f" }],
+            },
+            settings: {
+              react: {
+                version: "detect",
+              },
+            },
+          },
+        ],
+        ignores: ["generated"],
+        imports: [
+          { source: "@eslint/markdown", specifier: "a" },
+          { source: "eslint-plugin-regexp", specifier: "b" },
+          {
+            source: { packageName: "eslint-plugin-unknown", version: "1.2.3" },
+            specifier: "c",
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -591,52 +591,52 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with identical addon rules comments across two extensions", () => {
-		const creation = testBlock(blockESLint, {
-			addons: {
-				extensions: [
-					{
-						files: ["**/*.js"],
-						rules: [
-							{
-								comment: "Duplicated comment",
-								entries: { a: "error" },
-							},
-							{
-								comment: "Standalone comment",
-								entries: { b: "error" },
-							},
-							{
-								comment: "Duplicated comment",
-								entries: { c: "error" },
-							},
-						],
-					},
-					{
-						files: ["**/*.js"],
-						rules: [
-							{
-								comment: "Duplicated comment",
-								entries: { d: "error" },
-							},
-							{
-								comment: "Standalone comment",
-								entries: { e: "error" },
-							},
-							{
-								comment: "Duplicated comment",
-								entries: { f: "error" },
-							},
-						],
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with identical addon rules comments across two extensions", () => {
+    const creation = testBlock(blockESLint, {
+      addons: {
+        extensions: [
+          {
+            files: ["**/*.js"],
+            rules: [
+              {
+                comment: "Duplicated comment",
+                entries: { a: "error" },
+              },
+              {
+                comment: "Standalone comment",
+                entries: { b: "error" },
+              },
+              {
+                comment: "Duplicated comment",
+                entries: { c: "error" },
+              },
+            ],
+          },
+          {
+            files: ["**/*.js"],
+            rules: [
+              {
+                comment: "Duplicated comment",
+                entries: { d: "error" },
+              },
+              {
+                comment: "Standalone comment",
+                entries: { e: "error" },
+              },
+              {
+                comment: "Duplicated comment",
+                entries: { f: "error" },
+              },
+            ],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -748,35 +748,35 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with multiline addon rules comments", () => {
-		const creation = testBlock(blockESLint, {
-			addons: {
-				extensions: [
-					{
-						files: ["**/*.js"],
-						rules: [
-							{
-								comment: "One line",
-								entries: { a: "error" },
-							},
-							{
-								comment: "Two lines\ntwo lines",
-								entries: { a: "error" },
-							},
-							{
-								comment: "Three lines\nthree lines\nthree lines",
-								entries: { a: "error" },
-							},
-						],
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with multiline addon rules comments", () => {
+    const creation = testBlock(blockESLint, {
+      addons: {
+        extensions: [
+          {
+            files: ["**/*.js"],
+            rules: [
+              {
+                comment: "One line",
+                entries: { a: "error" },
+              },
+              {
+                comment: "Two lines\ntwo lines",
+                entries: { a: "error" },
+              },
+              {
+                comment: "Three lines\nthree lines\nthree lines",
+                entries: { a: "error" },
+              },
+            ],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -894,43 +894,43 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with addon extensions merging where the first provides everything", () => {
-		const creation = testBlock(blockESLint, {
-			addons: {
-				extensions: [
-					{
-						extends: ["a.configs.recommended"],
-						files: ["**/*.a"],
-						languageOptions: {
-							languageOption: true,
-						},
-						linterOptions: {
-							linterOption: true,
-						},
-						plugins: {
-							"plugin-a-key": "plugin-a-value",
-							import: "importPlugin",
-						},
-						rules: {
-							"a/b": "error",
-						},
-						settings: {
-							react: {
-								version: "detect",
-							},
-						},
-					},
-					{
-						files: ["**/*.a"],
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with addon extensions merging where the first provides everything", () => {
+    const creation = testBlock(blockESLint, {
+      addons: {
+        extensions: [
+          {
+            extends: ["a.configs.recommended"],
+            files: ["**/*.a"],
+            languageOptions: {
+              languageOption: true,
+            },
+            linterOptions: {
+              linterOption: true,
+            },
+            plugins: {
+              "plugin-a-key": "plugin-a-value",
+              import: "importPlugin",
+            },
+            rules: {
+              "a/b": "error",
+            },
+            settings: {
+              react: {
+                version: "detect",
+              },
+            },
+          },
+          {
+            files: ["**/*.a"],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1036,42 +1036,42 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with addon extensions merging where the second provides everything", () => {
-		const creation = testBlock(blockESLint, {
-			addons: {
-				extensions: [
-					{
-						files: ["**/*.a"],
-					},
-					{
-						extends: ["a.configs.recommended"],
-						files: ["**/*.a"],
-						languageOptions: {
-							languageOption: true,
-						},
-						linterOptions: {
-							linterOption: true,
-						},
-						plugins: {
-							"plugin-a-key": "plugin-a-value",
-						},
-						rules: {
-							"a/b": "error",
-						},
-						settings: {
-							react: {
-								version: "detect",
-							},
-						},
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with addon extensions merging where the second provides everything", () => {
+    const creation = testBlock(blockESLint, {
+      addons: {
+        extensions: [
+          {
+            files: ["**/*.a"],
+          },
+          {
+            extends: ["a.configs.recommended"],
+            files: ["**/*.a"],
+            languageOptions: {
+              languageOption: true,
+            },
+            linterOptions: {
+              linterOption: true,
+            },
+            plugins: {
+              "plugin-a-key": "plugin-a-value",
+            },
+            rules: {
+              "a/b": "error",
+            },
+            settings: {
+              react: {
+                version: "detect",
+              },
+            },
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1177,17 +1177,17 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with object options.bin", () => {
-		const creation = testBlock(blockESLint, {
-			options: {
-				...optionsBase,
-				bin: { repo: "bin/index.js" },
-			},
-		});
+  test("with object options.bin", () => {
+    const creation = testBlock(blockESLint, {
+      options: {
+        ...optionsBase,
+        bin: { repo: "bin/index.js" },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1296,17 +1296,17 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with string options.bin", () => {
-		const creation = testBlock(blockESLint, {
-			options: {
-				...optionsBase,
-				bin: "bin/index.js",
-			},
-		});
+  test("with string options.bin", () => {
+    const creation = testBlock(blockESLint, {
+      options: {
+        ...optionsBase,
+        bin: "bin/index.js",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1415,17 +1415,17 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with options.type set to commonjs", () => {
-		const creation = testBlock(blockESLint, {
-			options: {
-				...optionsBase,
-				type: "commonjs",
-			},
-		});
+  test("with options.type set to commonjs", () => {
+    const creation = testBlock(blockESLint, {
+      options: {
+        ...optionsBase,
+        type: "commonjs",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1531,17 +1531,17 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	test("with options.type set to module", () => {
-		const creation = testBlock(blockESLint, {
-			options: {
-				...optionsBase,
-				type: "module",
-			},
-		});
+  test("with options.type set to module", () => {
+    const creation = testBlock(blockESLint, {
+      options: {
+        ...optionsBase,
+        type: "module",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
     {
@@ -1647,41 +1647,41 @@ export default defineConfig(
   ],
 }
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns undefined when there is no eslint.config file", () => {
-			const actual = testIntake(blockESLint, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns undefined when there is no eslint.config file", () => {
+      const actual = testIntake(blockESLint, {
+        files: {},
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns data when there is an eslint.config.ts file", () => {
-			const sourceText = "export default ...";
+    it("returns data when there is an eslint.config.ts file", () => {
+      const sourceText = "export default ...";
 
-			const actual = testIntake(blockESLint, {
-				files: {
-					"eslint.config.ts": [sourceText],
-				},
-			});
+      const actual = testIntake(blockESLint, {
+        files: {
+          "eslint.config.ts": [sourceText],
+        },
+      });
 
-			expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
-			expect(actual).toBe(mockIntakeData);
-		});
+      expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
+      expect(actual).toBe(mockIntakeData);
+    });
 
-		it("returns data when there is an eslint.config.mts file", () => {
-			const sourceText = "export default ...";
+    it("returns data when there is an eslint.config.mts file", () => {
+      const sourceText = "export default ...";
 
-			const actual = testIntake(blockESLint, {
-				files: {
-					"eslint.config.mts": [sourceText],
-				},
-			});
+      const actual = testIntake(blockESLint, {
+        files: {
+          "eslint.config.mts": [sourceText],
+        },
+      });
 
-			expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
-			expect(actual).toBe(mockIntakeData);
-		});
-	});
+      expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
+      expect(actual).toBe(mockIntakeData);
+    });
+  });
 });

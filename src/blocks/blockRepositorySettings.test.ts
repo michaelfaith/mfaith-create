@@ -5,12 +5,12 @@ import { blockRepositorySettings } from "./blockRepositorySettings.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockRepositorySettings", () => {
-	test("with a short description", () => {
-		const creation = testBlock(blockRepositorySettings, {
-			options: optionsBase,
-		});
+  test("with a short description", () => {
+    const creation = testBlock(blockRepositorySettings, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
 			    {
@@ -42,17 +42,17 @@ describe("blockRepositorySettings", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("with a long HTML description", () => {
-		const creation = testBlock(blockRepositorySettings, {
-			options: {
-				...optionsBase,
-				description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,
-			},
-		});
+  test("with a long HTML description", () => {
+    const creation = testBlock(blockRepositorySettings, {
+      options: {
+        ...optionsBase,
+        description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
 			    {
@@ -84,5 +84,5 @@ describe("blockRepositorySettings", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

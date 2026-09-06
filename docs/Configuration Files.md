@@ -38,12 +38,12 @@ For example, changing `node` versions to values different from what would be inf
 import { createConfig } from "@mfaith/create";
 
 export default createConfig({
-	options: {
-		node: {
-			minimum: ">=20.19.0",
-			pinned: "22.14.0",
-		},
-	},
+  options: {
+    node: {
+      minimum: ">=20.19.0",
+      pinned: "22.14.0",
+    },
+  },
 });
 ```
 
@@ -68,13 +68,13 @@ For example, this configuration file adds the word `"michaelfaith"` to the CSpel
 import { blockCSpell, createConfig } from "@mfaith/create";
 
 export default createConfig({
-	refinements: {
-		addons: [
-			blockCSpell({
-				words: ["michaelfaith"],
-			}),
-		],
-	},
+  refinements: {
+    addons: [
+      blockCSpell({
+        words: ["michaelfaith"],
+      }),
+    ],
+  },
 });
 ```
 
@@ -95,11 +95,11 @@ For example, this configuration file adds in `@mfaith/create`'s provided "arethe
 import { blockAreTheTypesWrong, createConfig } from "@mfaith/create";
 
 export default createConfig({
-	refinements: {
-		blocks: {
-			add: [blockAreTheTypesWrong],
-		},
-	},
+  refinements: {
+    blocks: {
+      add: [blockAreTheTypesWrong],
+    },
+  },
 });
 ```
 
@@ -116,11 +116,11 @@ For example, this configuration file omits the default _"This package was templa
 import { blockTemplatedBy, createConfig } from "@mfaith/create";
 
 export default createConfig({
-	refinements: {
-		blocks: {
-			exclude: [blockTemplatedBy],
-		},
-	},
+  refinements: {
+    blocks: {
+      exclude: [blockTemplatedBy],
+    },
+  },
 });
 ```
 
@@ -138,25 +138,25 @@ For example, to add an [`@arethetypeswrong/cli`](https://www.npmjs.com/package/@
 import { base, blockPackageJson } from "@mfaith/create";
 
 export const blockLintAreTheTypesWrong = base.createBlock({
-	about: {
-		name: "Lint Are The Types Wrong",
-	},
-	produce() {
-		return {
-			addons: [
-				blockPackageJson({
-					properties: {
-						devDependencies: {
-							"@arethetypeswrong/cli": "0.17.3",
-						},
-						scripts: {
-							"lint:arethetypeswrong": "attw --pack .",
-						},
-					},
-				}),
-			],
-		};
-	},
+  about: {
+    name: "Lint Are The Types Wrong",
+  },
+  produce() {
+    return {
+      addons: [
+        blockPackageJson({
+          properties: {
+            devDependencies: {
+              "@arethetypeswrong/cli": "0.17.3",
+            },
+            scripts: {
+              "lint:arethetypeswrong": "attw --pack .",
+            },
+          },
+        }),
+      ],
+    };
+  },
 });
 ```
 
@@ -167,10 +167,10 @@ import { createConfig } from "@mfaith/create";
 import { blockLintAreTheTypesWrong } from "./blockLintAreTheTypesWrong.js";
 
 export default createConfig({
-	refinements: {
-		blocks: {
-			add: [blockLintAreTheTypesWrong],
-		},
-	},
+  refinements: {
+    blocks: {
+      add: [blockLintAreTheTypesWrong],
+    },
+  },
 });
 ```

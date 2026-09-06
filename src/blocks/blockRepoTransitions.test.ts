@@ -8,24 +8,24 @@ import { blockRepoTransitions } from "./blockRepoTransitions.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockRepoTransitions", () => {
-	test("production", () => {
-		const creation = testBlock(blockRepoTransitions, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockRepoTransitions, {
+      options: optionsBase,
+    });
 
-		expect(creation.addons).toEqual([
-			blockPackageJson({
-				properties: {
-					devDependencies: {
-						"@mfaith/create": packageData.version,
-					},
-				},
-			}),
-			blockRepositoryBranchRuleset({
-				requiredStatusChecks: ["Transition"],
-			}),
-		]);
-		expect(creation.files).toMatchInlineSnapshot(`
+    expect(creation.addons).toEqual([
+      blockPackageJson({
+        properties: {
+          devDependencies: {
+            "@mfaith/create": packageData.version,
+          },
+        },
+      }),
+      blockRepositoryBranchRuleset({
+        requiredStatusChecks: ["Transition"],
+      }),
+    ]);
+    expect(creation.files).toMatchInlineSnapshot(`
 			{
 			  ".github": {
 			    "actions": {
@@ -116,5 +116,5 @@ describe("blockRepoTransitions", () => {
 			  },
 			}
 		`);
-	});
+  });
 });

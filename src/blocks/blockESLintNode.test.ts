@@ -5,16 +5,16 @@ import { blockESLintNode } from "./blockESLintNode.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 describe("blockESLintNode", () => {
-	test("production", () => {
-		const creation = testBlock(blockESLintNode, {
-			options: optionsBase,
-		});
+  test("production", () => {
+    const creation = testBlock(blockESLintNode, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -52,5 +52,5 @@ describe("blockESLintNode", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

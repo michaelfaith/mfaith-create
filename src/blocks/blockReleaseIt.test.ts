@@ -6,10 +6,10 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockReleaseIt, () => {
-	test("without addons", () => {
-		const creation = testBlock(blockReleaseIt, { options: optionsBase });
+  test("without addons", () => {
+    const creation = testBlock(blockReleaseIt, { options: optionsBase });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -122,30 +122,30 @@ describe(blockReleaseIt, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockReleaseIt, {
-			addons: {
-				builders: [
-					{
-						order: 1,
-						run: "one",
-					},
-					{
-						order: 0,
-						run: "zero",
-					},
-					{
-						order: 2,
-						run: "two",
-					},
-				],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockReleaseIt, {
+      addons: {
+        builders: [
+          {
+            order: 1,
+            run: "one",
+          },
+          {
+            order: 0,
+            run: "zero",
+          },
+          {
+            order: 2,
+            run: "two",
+          },
+        ],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -261,21 +261,21 @@ describe(blockReleaseIt, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockReleaseIt, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockReleaseIt, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({
-				files: [
-					".github/workflows/post-release.yml",
-					".github/workflows/release.yml",
-				],
-			}),
-		);
-	});
+    expect(creation.addons).toContainEqual(
+      blockRemoveFiles({
+        files: [
+          ".github/workflows/post-release.yml",
+          ".github/workflows/release.yml",
+        ],
+      }),
+    );
+  });
 });

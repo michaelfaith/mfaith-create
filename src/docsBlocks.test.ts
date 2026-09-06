@@ -23,69 +23,68 @@ const expectedLines = await createExpectedLines();
 //
 // Rows are kept sorted by alphabetical order of name.
 describe("docs/Blocks.md", () => {
-	for (const [i, line] of expectedLines.entries()) {
-		const name = line.split(" | ")[0].replace("| ", "").trim();
-		if (!name) {
-			continue;
-		}
+  for (const [i, line] of expectedLines.entries()) {
+    const name = line.split(" | ")[0].replace("| ", "").trim();
+    if (!name) {
+      continue;
+    }
 
-		test(name, () => {
-			const actualLine = actualLines.find((line) => line.includes(`| ${name}`));
-			const expectedLine = expectedLines[i];
+    test(name, () => {
+      const actualLine = actualLines.find((line) => line.includes(`| ${name}`));
+      const expectedLine = expectedLines[i];
 
-			expect(actualLine).toBe(expectedLine);
-		});
-	}
+      expect(actualLine).toBe(expectedLine);
+    });
+  }
 });
 
 async function createActualLines() {
-	const actualFile = (await fs.readFile("docs/Blocks.md")).toString();
+  const actualFile = (await fs.readFile("docs/Blocks.md")).toString();
 
-	actualFile
-		.split("\n")
-		.filter((line) => !line.includes("----"))
-		.map((line) => line.toLowerCase());
+  actualFile
+    .split("\n")
+    .filter((line) => !line.includes("----"))
+    .map((line) => line.toLowerCase());
 
-	return splitTable(actualFile);
+  return splitTable(actualFile);
 }
 
 async function createExpectedLines() {
-	const lines = [
-		"| Block | Flags | Minimal | Common | Everything |",
-		"| ----- | ----- | ------- | ------ | ---------- |",
-	];
+  const lines = [
+    "| Block | Flags | Minimal | Common | Everything |",
+    "| ----- | ----- | ------- | ------ | ---------- |",
+  ];
 
-	for (const block of Object.values(blocks) as Block[]) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const name = block.about!.name!;
+  for (const block of Object.values(blocks) as Block[]) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const name = block.about!.name!;
 
-		lines.push(
-			[
-				name,
-				`${createFlag("add", name)}, ${createFlag("exclude", name)}`,
-				presets.minimal.blocks.includes(block) ? "✔️" : " ",
-				presets.common.blocks.includes(block) ? "✅" : " ",
-				presets.everything.blocks.includes(block) ? "💯" : " ",
-				"",
-			].join(" | "),
-		);
-	}
+    lines.push(
+      [
+        name,
+        `${createFlag("add", name)}, ${createFlag("exclude", name)}`,
+        presets.minimal.blocks.includes(block) ? "✔️" : " ",
+        presets.common.blocks.includes(block) ? "✅" : " ",
+        presets.everything.blocks.includes(block) ? "💯" : " ",
+        "",
+      ].join(" | "),
+    );
+  }
 
-	const expectedTable = await prettier.format(lines.join("\n"), {
-		parser: "markdown",
-		useTabs: true,
-	});
+  const expectedTable = await prettier.format(lines.join("\n"), {
+    parser: "markdown",
+  });
 
-	return splitTable(expectedTable);
+  return splitTable(expectedTable);
 }
 
 function createFlag(prefix: string, name: string) {
-	return `\`--${prefix}-${name.replaceAll(/\W+/g, "-").toLowerCase()}\``;
+  return `\`--${prefix}-${name.replaceAll(/\W+/g, "-").toLowerCase()}\``;
 }
 
 function splitTable(table: string) {
-	return table
-		.split("\n")
-		.filter((line) => !line.includes("----"))
-		.map((line) => line.toLowerCase());
+  return table
+    .split("\n")
+    .filter((line) => !line.includes("----"))
+    .map((line) => line.toLowerCase());
 }

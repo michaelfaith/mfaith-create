@@ -5,17 +5,17 @@ import { blockPrettier } from "./blockPrettier.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockPrettier, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockPrettier, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockPrettier, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -109,7 +109,7 @@ describe(blockPrettier, () => {
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {"useTabs":true} satisfies Config;
+			export default {} satisfies Config;
 			",
 			  },
 			  "scripts": [
@@ -122,15 +122,15 @@ describe(blockPrettier, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockPrettier, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockPrettier, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -252,7 +252,7 @@ describe(blockPrettier, () => {
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {"useTabs":true} satisfies Config;
+			export default {} satisfies Config;
 			",
 			  },
 			  "scripts": [
@@ -265,25 +265,25 @@ describe(blockPrettier, () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockPrettier, {
-			addons: {
-				ignores: ["generated"],
-				overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
-				plugins: [
-					"./lib/index.js",
-					"prettier-plugin-curly",
-					"prettier-plugin-packagejson",
-					"prettier-plugin-sh",
-				],
-				runBefore: ["pnpm build || exit 0"],
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockPrettier, {
+      addons: {
+        ignores: ["generated"],
+        overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+        plugins: [
+          "./lib/index.js",
+          "prettier-plugin-curly",
+          "prettier-plugin-packagejson",
+          "prettier-plugin-sh",
+        ],
+        runBefore: ["pnpm build || exit 0"],
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -384,7 +384,7 @@ describe(blockPrettier, () => {
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true} satisfies Config;
+			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
 			",
 			  },
 			  "scripts": [
@@ -398,5 +398,5 @@ describe(blockPrettier, () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

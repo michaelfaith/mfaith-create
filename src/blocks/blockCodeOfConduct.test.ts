@@ -5,12 +5,12 @@ import { blockCodeOfConduct } from "./blockCodeOfConduct.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockCodeOfConduct", () => {
-	test("without mode", () => {
-		const creation = testBlock(blockCodeOfConduct, {
-			options: optionsBase,
-		});
+  test("without mode", () => {
+    const creation = testBlock(blockCodeOfConduct, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -153,15 +153,15 @@ describe("blockCodeOfConduct", () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockCodeOfConduct, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockCodeOfConduct, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -314,5 +314,5 @@ describe("blockCodeOfConduct", () => {
 			  },
 			}
 		`);
-	});
+  });
 });

@@ -2,24 +2,24 @@ import { TakeInput } from "bingo";
 import { inputFromFile } from "input-from-file";
 
 export async function readGuide(take: TakeInput) {
-	const development = await take(inputFromFile, {
-		filePath: ".github/DEVELOPMENT.md",
-	});
+  const development = await take(inputFromFile, {
+    filePath: ".github/DEVELOPMENT.md",
+  });
 
-	if (development instanceof Error) {
-		return undefined;
-	}
+  if (development instanceof Error) {
+    return undefined;
+  }
 
-	const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
-		development,
-	);
+  const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
+    development,
+  );
 
-	if (!tag) {
-		return undefined;
-	}
+  if (!tag) {
+    return undefined;
+  }
 
-	return {
-		href: tag[2],
-		title: tag[1],
-	};
+  return {
+    href: tag[2],
+    title: tag[1],
+  };
 }

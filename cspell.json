@@ -1,31 +1,31 @@
 {
-	"dictionaries": ["npm", "node", "typescript"],
-	"ignorePaths": [
-		".all-contributorsrc",
-		".github",
-		"CHANGELOG.md",
-		"coverage",
-		"lib",
-		"node_modules",
-		"pnpm-lock.yaml"
-	],
-	"words": [
-		"Anson",
-		"TSESTree",
-		"apexskier",
-		"attw",
-		"autorelease",
-		"bsky",
-		"dbaeumer",
-		"eslint-doc-generatorrc",
-		"infile",
-		"joshuakgoldberg",
-		"mfaith",
-		"michaelfaith",
-		"mshick",
-		"octoguide",
-		"stefanzweifel",
-		"ts-prunerc",
-		"webpro"
-	]
+  "dictionaries": ["npm", "node", "typescript"],
+  "ignorePaths": [
+    ".all-contributorsrc",
+    ".github",
+    "CHANGELOG.md",
+    "coverage",
+    "lib",
+    "node_modules",
+    "pnpm-lock.yaml"
+  ],
+  "words": [
+    "Anson",
+    "TSESTree",
+    "apexskier",
+    "attw",
+    "autorelease",
+    "bsky",
+    "dbaeumer",
+    "eslint-doc-generatorrc",
+    "infile",
+    "joshuakgoldberg",
+    "mfaith",
+    "michaelfaith",
+    "mshick",
+    "octoguide",
+    "stefanzweifel",
+    "ts-prunerc",
+    "webpro"
+  ]
 }

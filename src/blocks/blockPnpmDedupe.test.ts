@@ -5,12 +5,12 @@ import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockPnpmDedupe", () => {
-	test("without mode", () => {
-		const creation = testBlock(blockPnpmDedupe, {
-			options: optionsBase,
-		});
+  test("without mode", () => {
+    const creation = testBlock(blockPnpmDedupe, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -39,15 +39,15 @@ describe("blockPnpmDedupe", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockPnpmDedupe, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockPnpmDedupe, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -84,5 +84,5 @@ describe("blockPnpmDedupe", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

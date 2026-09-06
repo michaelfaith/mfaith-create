@@ -5,12 +5,12 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockDevelopmentDocs, () => {
-	test("without addons or mode", () => {
-		const creation = testBlock(blockDevelopmentDocs, {
-			options: optionsBase,
-		});
+  test("without addons or mode", () => {
+    const creation = testBlock(blockDevelopmentDocs, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -28,15 +28,15 @@ describe(blockDevelopmentDocs, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockDevelopmentDocs, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockDevelopmentDocs, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -64,46 +64,46 @@ describe(blockDevelopmentDocs, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockDevelopmentDocs, {
-			addons: {
-				hints: ["> Be excellent to each other!"],
-				sections: {
-					First: {
-						contents: "abc def",
-					},
-					Fourth: {},
-					Second: {
-						contents: {
-							after: ["second-after"],
-							before: "second-before",
-							items: ["- a", "- b", "- c"],
-							plural: "seconds",
-						},
-						innerSections: [
-							{
-								contents: "second-inner",
-								heading: "Seconds Inside",
-							},
-						],
-					},
-					Third: {
-						contents: {},
-						innerSections: [
-							{
-								contents: "second-inner",
-								heading: "Seconds Inside",
-							},
-						],
-					},
-				},
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockDevelopmentDocs, {
+      addons: {
+        hints: ["> Be excellent to each other!"],
+        sections: {
+          First: {
+            contents: "abc def",
+          },
+          Fourth: {},
+          Second: {
+            contents: {
+              after: ["second-after"],
+              before: "second-before",
+              items: ["- a", "- b", "- c"],
+              plural: "seconds",
+            },
+            innerSections: [
+              {
+                contents: "second-inner",
+                heading: "Seconds Inside",
+              },
+            ],
+          },
+          Third: {
+            contents: {},
+            innerSections: [
+              {
+                contents: "second-inner",
+                heading: "Seconds Inside",
+              },
+            ],
+          },
+        },
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -143,20 +143,20 @@ describe(blockDevelopmentDocs, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with options.documentation", () => {
-		const creation = testBlock(blockDevelopmentDocs, {
-			options: {
-				...optionsBase,
-				documentation: {
-					...optionsBase.documentation,
-					development: "More documentation.",
-				},
-			},
-		});
+  test("with options.documentation", () => {
+    const creation = testBlock(blockDevelopmentDocs, {
+      options: {
+        ...optionsBase,
+        documentation: {
+          ...optionsBase.documentation,
+          development: "More documentation.",
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -175,20 +175,20 @@ describe(blockDevelopmentDocs, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with options.guide", () => {
-		const creation = testBlock(blockDevelopmentDocs, {
-			options: {
-				...optionsBase,
-				guide: {
-					href: "https://example.com",
-					title: "My Guide",
-				},
-			},
-		});
+  test("with options.guide", () => {
+    const creation = testBlock(blockDevelopmentDocs, {
+      options: {
+        ...optionsBase,
+        guide: {
+          href: "https://example.com",
+          title: "My Guide",
+        },
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
 			    ".github": {
@@ -209,5 +209,5 @@ describe(blockDevelopmentDocs, () => {
 			  },
 			}
 		`);
-	});
+  });
 });

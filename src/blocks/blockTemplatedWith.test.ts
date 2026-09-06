@@ -5,16 +5,16 @@ import { blockTemplatedWith } from "./blockTemplatedWith.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
+  resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 describe("blockTemplatedWith", () => {
-	test("production with unknown owner", () => {
-		const creation = testBlock(blockTemplatedWith, {
-			options: optionsBase,
-		});
+  test("production with unknown owner", () => {
+    const creation = testBlock(blockTemplatedWith, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -31,17 +31,17 @@ describe("blockTemplatedWith", () => {
 			  ],
 			}
 		`);
-	});
+  });
 
-	test("production with JoshuaKGoldberg as owner", () => {
-		const creation = testBlock(blockTemplatedWith, {
-			options: {
-				...optionsBase,
-				owner: "michaelfaith",
-			},
-		});
+  test("production with JoshuaKGoldberg as owner", () => {
+    const creation = testBlock(blockTemplatedWith, {
+      options: {
+        ...optionsBase,
+        owner: "michaelfaith",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -56,5 +56,5 @@ describe("blockTemplatedWith", () => {
 			  ],
 			}
 		`);
-	});
+  });
 });

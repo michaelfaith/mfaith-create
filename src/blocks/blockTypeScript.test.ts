@@ -5,17 +5,17 @@ import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../data/packageData.js", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
 }));
 
 describe(blockTypeScript, () => {
-	test("without addons or options", () => {
-		const creation = testBlock(blockTypeScript, {
-			options: optionsBase,
-		});
+  test("without addons or options", () => {
+    const creation = testBlock(blockTypeScript, {
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -163,19 +163,19 @@ describe(blockTypeScript, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with addons", () => {
-		const creation = testBlock(blockTypeScript, {
-			addons: {
-				compilerOptions: {
-					strictBindCallApply: false,
-				},
-			},
-			options: optionsBase,
-		});
+  test("with addons", () => {
+    const creation = testBlock(blockTypeScript, {
+      addons: {
+        compilerOptions: {
+          strictBindCallApply: false,
+        },
+      },
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -323,17 +323,17 @@ describe(blockTypeScript, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("with options.bin", () => {
-		const creation = testBlock(blockTypeScript, {
-			options: {
-				...optionsBase,
-				bin: "bin/index.mjs",
-			},
-		});
+  test("with options.bin", () => {
+    const creation = testBlock(blockTypeScript, {
+      options: {
+        ...optionsBase,
+        bin: "bin/index.mjs",
+      },
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -492,15 +492,15 @@ describe(blockTypeScript, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	test("transition mode", () => {
-		const creation = testBlock(blockTypeScript, {
-			mode: "transition",
-			options: optionsBase,
-		});
+  test("transition mode", () => {
+    const creation = testBlock(blockTypeScript, {
+      mode: "transition",
+      options: optionsBase,
+    });
 
-		expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
 			    {
@@ -656,64 +656,64 @@ describe(blockTypeScript, () => {
 			  },
 			}
 		`);
-	});
+  });
 
-	describe("intake", () => {
-		it("returns undefined when tsconfig.json does not exist", () => {
-			const actual = testIntake(blockTypeScript, {
-				files: {},
-			});
+  describe("intake", () => {
+    it("returns undefined when tsconfig.json does not exist", () => {
+      const actual = testIntake(blockTypeScript, {
+        files: {},
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when tsconfig.json does not contain truthy data", () => {
-			const actual = testIntake(blockTypeScript, {
-				files: {
-					"tsconfig.json": [JSON.stringify(null)],
-				},
-			});
+    it("returns undefined when tsconfig.json does not contain truthy data", () => {
+      const actual = testIntake(blockTypeScript, {
+        files: {
+          "tsconfig.json": [JSON.stringify(null)],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns undefined when tsconfig.json does not contain compilerOptions", () => {
-			const actual = testIntake(blockTypeScript, {
-				files: {
-					"tsconfig.json": [JSON.stringify({ other: true })],
-				},
-			});
+    it("returns undefined when tsconfig.json does not contain compilerOptions", () => {
+      const actual = testIntake(blockTypeScript, {
+        files: {
+          "tsconfig.json": [JSON.stringify({ other: true })],
+        },
+      });
 
-			expect(actual).toBeUndefined();
-		});
+      expect(actual).toBeUndefined();
+    });
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
-			const compilerOptions = { module: "ESNext" };
+    it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
+      const compilerOptions = { module: "ESNext" };
 
-			const actual = testIntake(blockTypeScript, {
-				files: {
-					"tsconfig.json": [JSON.stringify({ compilerOptions })],
-				},
-			});
+      const actual = testIntake(blockTypeScript, {
+        files: {
+          "tsconfig.json": [JSON.stringify({ compilerOptions })],
+        },
+      });
 
-			expect(actual).toEqual({ compilerOptions });
-		});
+      expect(actual).toEqual({ compilerOptions });
+    });
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
-			const compilerOptions = { module: "ESNext" };
+    it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
+      const compilerOptions = { module: "ESNext" };
 
-			const actual = testIntake(blockTypeScript, {
-				files: {
-					"tsconfig.json": [
-						JSON.stringify({
-							compilerOptions,
-							other: true,
-						}),
-					],
-				},
-			});
+      const actual = testIntake(blockTypeScript, {
+        files: {
+          "tsconfig.json": [
+            JSON.stringify({
+              compilerOptions,
+              other: true,
+            }),
+          ],
+        },
+      });
 
-			expect(actual).toEqual({ compilerOptions });
-		});
-	});
+      expect(actual).toEqual({ compilerOptions });
+    });
+  });
 });

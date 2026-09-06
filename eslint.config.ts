@@ -24,100 +24,100 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores(
-		["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
-		"Global Ignores",
-	),
-	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	{
-		extends: [
-			comments.recommended,
-			eslint.configs.recommended,
-			jsdoc.configs["flat/contents-typescript-error"],
-			jsdoc.configs["flat/logical-typescript-error"],
-			jsdoc.configs["flat/stylistic-typescript-error"],
-			n.configs["flat/recommended"],
-			regexp.configs["flat/recommended"],
-			tseslint.configs.strictTypeChecked,
-			tseslint.configs.stylisticTypeChecked,
-		],
-		files: ["**/*.{js,ts}"],
-		languageOptions: {
-			parserOptions: {
-				projectService: {
-					allowDefaultProject: ["*.config.*s", "bin/index.js"],
-				},
-			},
-		},
-		plugins: { perfectionist },
-		rules: {
-			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/prefer-nullish-coalescing": [
-				"error",
-				{ ignorePrimitives: true },
-			],
-			"@typescript-eslint/restrict-template-expressions": [
-				"error",
-				{ allowBoolean: true, allowNullish: true, allowNumber: true },
-			],
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true, ignores: ["import.meta.dirname"] },
-			],
-			"perfectionist/sort-exports": "error",
-			"perfectionist/sort-imports": "error",
+  globalIgnores(
+    ["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
+    "Global Ignores",
+  ),
+  { linterOptions: { reportUnusedDisableDirectives: "error" } },
+  {
+    extends: [
+      comments.recommended,
+      eslint.configs.recommended,
+      jsdoc.configs["flat/contents-typescript-error"],
+      jsdoc.configs["flat/logical-typescript-error"],
+      jsdoc.configs["flat/stylistic-typescript-error"],
+      n.configs["flat/recommended"],
+      regexp.configs["flat/recommended"],
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
+    files: ["**/*.{js,ts}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ["*.config.*s", "bin/index.js"],
+        },
+      },
+    },
+    plugins: { perfectionist },
+    rules: {
+      // These on-by-default rules work well for this repo if configured
+      "@typescript-eslint/prefer-nullish-coalescing": [
+        "error",
+        { ignorePrimitives: true },
+      ],
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        { allowBoolean: true, allowNullish: true, allowNumber: true },
+      ],
+      "n/no-unsupported-features/node-builtins": [
+        "error",
+        { allowExperimental: true, ignores: ["import.meta.dirname"] },
+      ],
+      "perfectionist/sort-exports": "error",
+      "perfectionist/sort-imports": "error",
 
-			// Stylistic concerns that don't interfere with Prettier
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"no-useless-rename": "error",
-			"object-shorthand": "error",
-			"operator-assignment": "error",
-		},
-		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
-	},
-	{
-		extends: [jsonc.configs["flat/recommended-with-json"]],
-		files: ["**/*.json"],
-	},
-	{
-		extends: [markdown.configs.recommended, markdownLinks.configs.recommended],
-		files: ["**/*.md"],
-		rules: {
-			// https://github.com/eslint/markdown/issues/294
-			"markdown/no-missing-label-refs": "off",
-		},
-	},
-	{
-		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts"],
-		rules: { "n/no-missing-import": "off" },
-	},
-	{
-		extends: [vitest.configs.recommended],
-		files: ["**/*.test.*"],
-		rules: {
-			"@typescript-eslint/no-unsafe-assignment": "off",
-			"vitest/prefer-describe-function-title": "error",
-		},
-		settings: { vitest: { typecheck: true } },
-	},
-	{
-		extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
-		files: ["**/*.{yml,yaml}"],
-		rules: {
-			"yml/file-extension": "error",
-			"yml/sort-sequence-values": [
-				"error",
-				{ order: { type: "asc" }, pathPattern: "^.*$" },
-			],
-		},
-	},
-	{
-		extends: [packageJson.configs.recommended, packageJson.configs.stylistic],
-		files: ["package.json"],
-	},
+      // Stylistic concerns that don't interfere with Prettier
+      "logical-assignment-operators": [
+        "error",
+        "always",
+        { enforceForIfStatements: true },
+      ],
+      "no-useless-rename": "error",
+      "object-shorthand": "error",
+      "operator-assignment": "error",
+    },
+    settings: { perfectionist: { partitionByComment: true, type: "natural" } },
+  },
+  {
+    extends: [jsonc.configs["flat/recommended-with-json"]],
+    files: ["**/*.json"],
+  },
+  {
+    extends: [markdown.configs.recommended, markdownLinks.configs.recommended],
+    files: ["**/*.md"],
+    rules: {
+      // https://github.com/eslint/markdown/issues/294
+      "markdown/no-missing-label-refs": "off",
+    },
+  },
+  {
+    extends: [tseslint.configs.disableTypeChecked],
+    files: ["**/*.md/*.ts"],
+    rules: { "n/no-missing-import": "off" },
+  },
+  {
+    extends: [vitest.configs.recommended],
+    files: ["**/*.test.*"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "vitest/prefer-describe-function-title": "error",
+    },
+    settings: { vitest: { typecheck: true } },
+  },
+  {
+    extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
+    files: ["**/*.{yml,yaml}"],
+    rules: {
+      "yml/file-extension": "error",
+      "yml/sort-sequence-values": [
+        "error",
+        { order: { type: "asc" }, pathPattern: "^.*$" },
+      ],
+    },
+  },
+  {
+    extends: [packageJson.configs.recommended, packageJson.configs.stylistic],
+    files: ["package.json"],
+  },
 );
