@@ -229,6 +229,7 @@ on:
 						],
 					},
 				],
+				nodeVersion: 24,
 			},
 			options: optionsBase,
 		});
@@ -265,7 +266,7 @@ inputs:
     type: string
   node-version:
     description: Node.js version to use
-    default: '20'
+    default: '24'
     required: false
   skip-checkout:
     description: Skip the checkout step if the repo is already checked out
