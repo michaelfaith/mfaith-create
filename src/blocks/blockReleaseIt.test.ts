@@ -61,7 +61,16 @@ describe(blockReleaseIt, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yaml": "jobs:
+			        "post-release.yaml": "name: Post Release
+
+
+			on:
+			  release:
+			    types:
+			      - published
+
+
+			jobs:
 			  post_release:
 			    permissions:
 			      issues: write
@@ -84,17 +93,17 @@ describe(blockReleaseIt, () => {
 
 			              Cheers! 📦🚀
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-
-
-			name: Post Release
+			",
+			        "release.yaml": "name: Release
 
 
 			on:
-			  release:
-			    types:
-			      - published
-			",
-			        "release.yaml": "concurrency:
+			  push:
+			    branches:
+			      - main
+
+
+			concurrency:
 			  group: \${{ github.workflow }}
 
 
@@ -114,15 +123,6 @@ describe(blockReleaseIt, () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
-
-
-			name: Release
-
-
-			on:
-			  push:
-			    branches:
-			      - main
 			",
 			      },
 			    },
@@ -209,7 +209,16 @@ describe(blockReleaseIt, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yaml": "jobs:
+			        "post-release.yaml": "name: Post Release
+
+
+			on:
+			  release:
+			    types:
+			      - published
+
+
+			jobs:
 			  post_release:
 			    permissions:
 			      issues: write
@@ -232,17 +241,17 @@ describe(blockReleaseIt, () => {
 
 			              Cheers! 📦🚀
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-
-
-			name: Post Release
+			",
+			        "release.yaml": "name: Release
 
 
 			on:
-			  release:
-			    types:
-			      - published
-			",
-			        "release.yaml": "concurrency:
+			  push:
+			    branches:
+			      - main
+
+
+			concurrency:
 			  group: \${{ github.workflow }}
 
 
@@ -265,15 +274,6 @@ describe(blockReleaseIt, () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
-
-
-			name: Release
-
-
-			on:
-			  push:
-			    branches:
-			      - main
 			",
 			      },
 			    },

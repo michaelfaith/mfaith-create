@@ -73,7 +73,16 @@ runs:
       },
       "workflows": {
         "ci.yaml": undefined,
-        "pr-review-requested.yaml": "jobs:
+        "pr-review-requested.yaml": "name: PR Review Requested
+
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+
+
+jobs:
   pr_review_requested:
     permissions:
       pull-requests: write
@@ -86,15 +95,6 @@ runs:
         run: |
           echo "Don't worry if the previous step failed."
           echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-
-name: PR Review Requested
-
-
-on:
-  pull_request_target:
-    types:
-      - review_requested
 ",
       },
     },
@@ -183,7 +183,16 @@ runs:
       },
       "workflows": {
         "ci.yaml": undefined,
-        "pr-review-requested.yaml": "jobs:
+        "pr-review-requested.yaml": "name: PR Review Requested
+
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+
+
+jobs:
   pr_review_requested:
     permissions:
       pull-requests: write
@@ -196,15 +205,6 @@ runs:
         run: |
           echo "Don't worry if the previous step failed."
           echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-
-name: PR Review Requested
-
-
-on:
-  pull_request_target:
-    types:
-      - review_requested
 ",
       },
     },
@@ -330,7 +330,16 @@ jobs:
           VAR_WITH: 'true'
         run: pnpm validate
 ",
-        "pr-review-requested.yaml": "jobs:
+        "pr-review-requested.yaml": "name: PR Review Requested
+
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+
+
+jobs:
   pr_review_requested:
     permissions:
       pull-requests: write
@@ -343,15 +352,6 @@ jobs:
         run: |
           echo "Don't worry if the previous step failed."
           echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-
-name: PR Review Requested
-
-
-on:
-  pull_request_target:
-    types:
-      - review_requested
 ",
       },
     },

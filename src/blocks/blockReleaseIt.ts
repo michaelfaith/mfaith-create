@@ -108,9 +108,6 @@ export const blockReleaseIt = base.createBlock({
 							],
 						}),
 						"release.yaml": createSoloWorkflowFile({
-							concurrency: {
-								group: "${{ github.workflow }}",
-							},
 							name: "Release",
 							on: {
 								push: {
@@ -120,6 +117,9 @@ export const blockReleaseIt = base.createBlock({
 							permissions: {
 								contents: "write",
 								"id-token": "write",
+							},
+							concurrency: {
+								group: "${{ github.workflow }}",
 							},
 							steps: [
 								{

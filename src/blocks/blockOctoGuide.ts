@@ -43,7 +43,6 @@ export const blockOctoGuide = base.createBlock({
 				".github": {
 					workflows: {
 						"octoguide.yaml": createSoloWorkflowFile({
-							if: "${{ !endsWith(github.actor, '[bot]') }}",
 							name: "OctoGuide",
 							on: {
 								discussion: {
@@ -65,6 +64,7 @@ export const blockOctoGuide = base.createBlock({
 									types: ["edited", "opened"],
 								},
 							},
+							if: "${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}",
 							permissions: {
 								discussions: "write",
 								issues: "write",
