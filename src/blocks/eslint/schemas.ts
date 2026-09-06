@@ -25,6 +25,13 @@ export const zExtensionRuleGroup = z.object({
 
 export type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
 
+export const zExtensionPlugins: z.ZodType<ExtensionPlugins> = z.record(
+	z.string(),
+	z.string(),
+);
+
+export type ExtensionPlugins = Record<string, string>;
+
 export const zRulesArray = z.array(zExtensionRuleGroup);
 
 export type RulesArray = z.infer<typeof zRulesArray>;
@@ -42,7 +49,7 @@ export const zExtension = z.object({
 	files: z.array(z.string()),
 	languageOptions: z.unknown().optional(),
 	linterOptions: z.unknown().optional(),
-	plugins: z.record(z.string(), z.string()).optional(),
+	plugins: zExtensionPlugins.optional(),
 	rules: zExtensionRules.optional(),
 	settings: z.record(z.string(), z.unknown()).optional(),
 });
