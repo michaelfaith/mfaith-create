@@ -15,7 +15,6 @@ import {
   blockExports,
   blockKnip,
   blockPrettier,
-  blockRenovate,
   blockTemplatedWith,
   presets,
 } from "./index.js";
@@ -131,9 +130,6 @@ If you're interested in learning more, see the 'getting started' docs on:
         }),
         // TODO: This is only needed until we have a ReleasePlease block
         blockPrettier({ ignores: ["/CHANGELOG.md"] }),
-        blockRenovate({
-          ignoreDeps: ["all-contributors-cli"],
-        }),
       ],
       blocks: {
         add: [blockAreTheTypesWrong],

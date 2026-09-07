@@ -27,7 +27,7 @@ describe(blockRenovate, () => {
 			  ],
 			  "files": {
 			    ".github": {
-			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["codecov/codecov-action"],"labels":["dependencies"],"minimumReleaseAge":"7 days","patch":{"enabled":false},"postUpdateOptions":["pnpmDedupe"]}",
+			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"labels":["dependencies"],"minimumReleaseAge":"7 days","patch":{"enabled":false},"postUpdateOptions":["pnpmDedupe"]}",
 			    },
 			  },
 			}
@@ -59,7 +59,7 @@ describe(blockRenovate, () => {
 			  ],
 			  "files": {
 			    ".github": {
-			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli","codecov/codecov-action"],"labels":["dependencies"],"minimumReleaseAge":"7 days","patch":{"enabled":false},"postUpdateOptions":["pnpmDedupe"]}",
+			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","patch":{"enabled":false},"postUpdateOptions":["pnpmDedupe"]}",
 			    },
 			  },
 			}
