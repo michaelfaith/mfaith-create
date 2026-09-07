@@ -1,4 +1,4 @@
-import type { NodeVersions } from './schemas.ts';
+import type { NodeVersions } from './Options.ts';
 
 export const defaults: { node: NodeVersions } = {
   node: {

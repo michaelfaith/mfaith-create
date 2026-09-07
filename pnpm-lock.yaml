@@ -1783,6 +1783,10 @@ packages:
     resolution: {integrity: sha512-unn80/qC5BZlppL1HLrveT+RGXYFDXW/shM/CgDFHGIKuIvVJlnq66XKhY7B2H/vceLsow4r15Jhd/6gfuR56g==}
     engines: {node: '>=18'}
 
+  bingo-fs@0.5.7:
+    resolution: {integrity: sha512-unn80/qC5BZlppL1HLrveT+RGXYFDXW/shM/CgDFHGIKuIvVJlnq66XKhY7B2H/vceLsow4r15Jhd/6gfuR56g==}
+    engines: {node: '>=18'}
+
   bingo-requests@0.5.6:
     resolution: {integrity: sha512-cpvNWqMlFkbynxJzyKJ4B/R57zR2MsPkJSldNJRxSTN6LlgB9uzQ8jAeDZy2ENoUHNlH5nApv2JyHxVqFxcjSg==}
     engines: {node: '>=18'}
@@ -5257,6 +5261,8 @@ snapshots:
   balanced-match@4.0.4: {}
 
   before-after-hook@4.0.0: {}
+
+  bingo-fs@0.5.7: {}
 
   bingo-fs@0.5.7: {}
 

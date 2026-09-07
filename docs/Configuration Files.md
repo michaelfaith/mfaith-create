@@ -35,16 +35,18 @@ For example, changing `node` versions to values different from what would be inf
 
 ```ts
 // mfaith-create.config.ts
-import { createConfig } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create';
 
-export default createConfig({
+const config: Config = createConfig({
   options: {
     node: {
-      minimum: '>=20.19.0',
+      supported: '>=20.19.0',
       pinned: '22.14.0',
     },
   },
 });
+
+export default config;
 ```
 
 > [!TIP]
@@ -65,9 +67,9 @@ For example, this configuration file adds the word `"michaelfaith"` to the CSpel
 
 ```ts
 // mfaith-create.config.ts
-import { blockCSpell, createConfig } from '@mfaith/create';
+import { blockCSpell, type Config, createConfig } from '@mfaith/create';
 
-export default createConfig({
+const config: Config = createConfig({
   refinements: {
     addons: [
       blockCSpell({
@@ -76,6 +78,8 @@ export default createConfig({
     ],
   },
 });
+
+export default config;
 ```
 
 Running `pnpm create @mfaith` in a repository with that configuration file would add `"michaelfaith"` to the `words` in `cspell.json`.
@@ -92,15 +96,21 @@ For example, this configuration file adds in `@mfaith/create`'s provided "arethe
 
 ```ts
 // mfaith-create.config.ts
-import { blockAreTheTypesWrong, createConfig } from '@mfaith/create';
+import {
+  blockAreTheTypesWrong,
+  type Config,
+  createConfig,
+} from '@mfaith/create';
 
-export default createConfig({
+const config: Config = createConfig({
   refinements: {
     blocks: {
       add: [blockAreTheTypesWrong],
     },
   },
 });
+
+export default config;
 ```
 
 Running `pnpm create @mfaith` in a repository with that configuration file would add in the created outputs from `blockAreTheTypesWrong`.
@@ -113,15 +123,17 @@ For example, this configuration file omits the default _"This package was templa
 
 ```ts
 // mfaith-create.config.ts
-import { blockTemplatedBy, createConfig } from '@mfaith/create';
+import { blockTemplatedBy, type Config, createConfig } from '@mfaith/create';
 
-export default createConfig({
+const config: Config = createConfig({
   refinements: {
     blocks: {
       exclude: [blockTemplatedBy],
     },
   },
 });
+
+export default config;
 ```
 
 Running `pnpm create @mfaith` in a repository with that configuration file would not include that Block, and so its generated README.md would not include the notice.
@@ -162,15 +174,17 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 
 ```ts
 // mfaith-create.config.ts
-import { createConfig } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create';
 
 import { blockLintAreTheTypesWrong } from './blockLintAreTheTypesWrong.ts';
 
-export default createConfig({
+const config: Config = createConfig({
   refinements: {
     blocks: {
       add: [blockLintAreTheTypesWrong],
     },
   },
 });
+
+export default config;
 ```

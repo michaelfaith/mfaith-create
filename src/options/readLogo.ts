@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 
-import type { Logo } from '../schemas.ts';
+import type { Logo } from '../Options.ts';
 
 import { readLogoSizing } from './readLogoSizing.ts';
 
