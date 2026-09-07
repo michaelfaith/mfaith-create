@@ -44,9 +44,9 @@ export const blockRenovate = base.createBlock({
               "config:best-practices",
               "replacements:all",
             ],
-            ignoreDeps: Array.from(
-              new Set(["codecov/codecov-action", ...ignoreDeps]),
-            ).sort(),
+            ignoreDeps: ignoreDeps.length
+              ? Array.from(new Set(ignoreDeps)).sort()
+              : undefined,
             labels: ["dependencies"],
             minimumReleaseAge: "7 days",
             patch: { enabled: false },
