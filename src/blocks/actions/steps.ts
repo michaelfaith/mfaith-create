@@ -5,6 +5,7 @@ import { z } from "zod";
 import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.js";
 
 export const zActionStep: z.ZodType<ActionStep> = z.intersection(
+  z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
   z.object({
     env: z.record(z.string(), z.string()).optional(),
     if: z.string().optional(),
@@ -12,21 +13,20 @@ export const zActionStep: z.ZodType<ActionStep> = z.intersection(
       .record(z.string(), z.union([z.boolean(), z.number(), z.string()]))
       .optional(),
   }),
-  z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
 );
 
-export type ActionStep = {
-  env?: Record<string, string> | undefined;
-  if?: string | undefined;
-  with?: Record<string, boolean | number | string> | undefined;
-} & (
+export type ActionStep = (
   | {
       run: string;
     }
   | {
       uses: string;
     }
-);
+) & {
+  if?: string | undefined;
+  env?: Record<string, string> | undefined;
+  with?: Record<string, boolean | number | string> | undefined;
+};
 
 export interface JobOrRunStep {
   env?: Record<string, string>;

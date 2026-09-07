@@ -36,8 +36,8 @@ export function createMultiWorkflowFile({
       jobs.map((job) => [
         createJobName(job.name),
         {
-          if: job.if,
           name: job.name,
+          if: job.if,
           "runs-on": "ubuntu-latest",
           steps: job.steps,
         },

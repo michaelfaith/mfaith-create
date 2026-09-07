@@ -12,45 +12,48 @@ describe(blockCodecov, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Codecov",
-			            "url": "https://github.com/apps/codecov",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "badges": [
-			          {
-			            "alt": "🧪 Coverage",
-			            "href": "https://codecov.io/gh/test-owner/test-repository",
-			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "actionSteps": [
-			          {
-			            "if": "always()",
-			            "uses": "codecov/codecov-action@v7",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+  {
+    "addons": [
+      {
+        "addons": {
+          "apps": [
+            {
+              "name": "Codecov",
+              "url": "https://github.com/apps/codecov",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "badges": [
+            {
+              "alt": "🧪 Coverage",
+              "href": "https://codecov.io/gh/test-owner/test-repository",
+              "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "actionSteps": [
+            {
+              "uses": "codecov/codecov-action@v7",
+              "with": {
+                "fail_ci_if_error": true,
+                "use_oidc": true,
+              },
+            },
+          ],
+        },
+        "block": [Function],
+      },
+    ],
+  }
+`);
   });
 
   test("transition mode without files", () => {
@@ -60,54 +63,57 @@ describe(blockCodecov, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Codecov",
-			            "url": "https://github.com/apps/codecov",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "badges": [
-			          {
-			            "alt": "🧪 Coverage",
-			            "href": "https://codecov.io/gh/test-owner/test-repository",
-			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "actionSteps": [
-			          {
-			            "if": "always()",
-			            "uses": "codecov/codecov-action@v7",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": [
-			          ".github/codecov.{yaml,yml}",
-			          "codecov.{yaml,yml}",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+  {
+    "addons": [
+      {
+        "addons": {
+          "apps": [
+            {
+              "name": "Codecov",
+              "url": "https://github.com/apps/codecov",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "badges": [
+            {
+              "alt": "🧪 Coverage",
+              "href": "https://codecov.io/gh/test-owner/test-repository",
+              "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "actionSteps": [
+            {
+              "uses": "codecov/codecov-action@v7",
+              "with": {
+                "fail_ci_if_error": true,
+                "use_oidc": true,
+              },
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "files": [
+            ".github/codecov.{yaml,yml}",
+            "codecov.{yaml,yml}",
+          ],
+        },
+        "block": [Function],
+      },
+    ],
+  }
+`);
   });
 
   test("with addons", () => {
@@ -121,48 +127,51 @@ describe(blockCodecov, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			      	{
-			      	  "addons": [
-			      	    {
-			      	      "addons": {
-			      	        "apps": [
-			      	          {
-			      	            "name": "Codecov",
-			      	            "url": "https://github.com/apps/codecov",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "badges": [
-			      	          {
-			      	            "alt": "🧪 Coverage",
-			      	            "href": "https://codecov.io/gh/test-owner/test-repository",
-			      	            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "actionSteps": [
-			      	          {
-			      	            "env": {
-			      	              "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
-			      	            },
-			      	            "if": "always()",
-			      	            "uses": "codecov/codecov-action@v7",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	  ],
-			      	}
-			      `);
+  {
+    "addons": [
+      {
+        "addons": {
+          "apps": [
+            {
+              "name": "Codecov",
+              "url": "https://github.com/apps/codecov",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "badges": [
+            {
+              "alt": "🧪 Coverage",
+              "href": "https://codecov.io/gh/test-owner/test-repository",
+              "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+      {
+        "addons": {
+          "actionSteps": [
+            {
+              "env": {
+                "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
+              },
+              "uses": "codecov/codecov-action@v7",
+              "with": {
+                "fail_ci_if_error": true,
+                "use_oidc": true,
+              },
+            },
+          ],
+        },
+        "block": [Function],
+      },
+    ],
+  }
+`);
   });
 
   describe("intake", () => {
