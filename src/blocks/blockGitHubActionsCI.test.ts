@@ -323,12 +323,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
-      - env:
+      - run: pnpm validate
+        env:
           VAR_ENV: 'true'
         if: always()
         with:
           VAR_WITH: 'true'
-        run: pnpm validate
 ",
         "pr-review-requested.yaml": "name: PR Review Requested
 

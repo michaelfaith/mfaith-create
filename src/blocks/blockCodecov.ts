@@ -40,6 +40,19 @@ export const blockCodecov = base.createBlock({
   },
   produce({ addons, options }) {
     const { env } = addons;
+    const actionStep = {
+      uses: resolveUses(
+        "codecov/codecov-action",
+        "v7",
+        options.workflowsVersions,
+      ),
+      ...(env && { env }),
+      with: {
+        fail_ci_if_error: true,
+        use_oidc: true,
+      },
+    };
+
     return {
       addons: [
         blockGitHubApps({
@@ -60,17 +73,10 @@ export const blockCodecov = base.createBlock({
           ],
         }),
         blockVitest({
-          actionSteps: [
-            {
-              ...(env && { env }),
-              if: "always()",
-              uses: resolveUses(
-                "codecov/codecov-action",
-                "v7",
-                options.workflowsVersions,
-              ),
-            },
-          ],
+          actionSteps: [actionStep],
+          permissions: {
+            "id-token": "write",
+          },
         }),
       ],
     };

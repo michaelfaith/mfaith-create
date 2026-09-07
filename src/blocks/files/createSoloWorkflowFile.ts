@@ -1,3 +1,5 @@
+import type { WorkflowPermissions } from "./workflow.types.js";
+
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
@@ -46,17 +48,9 @@ interface WorkflowFileOptions {
   jobName?: string;
   name: string;
   on?: WorkflowFileOn;
-  permissions?: WorkflowFilePermissions;
+  permissions?: WorkflowPermissions;
   "runs-on"?: string;
   steps: WorkflowFileStep[];
-}
-
-interface WorkflowFilePermissions {
-  contents?: string;
-  discussions?: string;
-  "id-token"?: string;
-  issues?: string;
-  "pull-requests"?: string;
 }
 
 interface WorkflowFileStep {

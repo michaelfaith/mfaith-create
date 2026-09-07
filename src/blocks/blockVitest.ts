@@ -18,6 +18,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockTSDown } from "./blockTSDown.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { zWorkflowPermissions } from "./files/workflow.types.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 
 const zCoverage = z.object({
@@ -65,6 +66,7 @@ export const blockVitest = base.createBlock({
     environment: zEnvironment.optional(),
     exclude: zExclude.default([]),
     flags: z.array(z.string()).default([]),
+    permissions: zWorkflowPermissions.optional(),
   },
   intake({ files, options }) {
     return {
@@ -75,7 +77,7 @@ export const blockVitest = base.createBlock({
     };
   },
   produce({ addons }) {
-    const { actionSteps, coverage, environment, exclude } = addons;
+    const { actionSteps, coverage, environment, exclude, permissions } = addons;
     const excludeText = JSON.stringify(
       Array.from(new Set(["node_modules", ...exclude])).sort(),
     );
@@ -187,6 +189,7 @@ describe(greet, () => {
           jobs: [
             {
               name: "Test",
+              ...(permissions ? { permissions } : {}),
               steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
             },
           ],
