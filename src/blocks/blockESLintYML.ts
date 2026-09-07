@@ -27,6 +27,15 @@ export const blockESLintYML = base.createBlock({
                 ],
               },
             },
+            {
+              files: ["pnpm-workspace.yaml"],
+              rules: {
+                "yml/sort-keys": [
+                  "error",
+                  { order: { type: "asc" }, pathPattern: "^.*$" },
+                ],
+              },
+            },
           ],
           imports: [{ source: "eslint-plugin-yml", specifier: "yml" }],
         }),

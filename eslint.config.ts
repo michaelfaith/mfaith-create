@@ -120,4 +120,13 @@ export default defineConfig(
     extends: [packageJson.configs.recommended, packageJson.configs.stylistic],
     files: ["package.json"],
   },
+  {
+    files: ["pnpm-workspace.yaml"],
+    rules: {
+      "yml/sort-keys": [
+        "error",
+        { order: { type: "asc" }, pathPattern: "^.*$" },
+      ],
+    },
+  },
 );
