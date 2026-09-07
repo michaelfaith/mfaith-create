@@ -1,0 +1,2 @@
+overrides:
+  "zod": ^4.0.0 # https://github.com/bingo-js/bingo/issues/420

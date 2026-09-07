@@ -15,7 +15,7 @@ import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 import { CommandPhase } from "./phases.js";
 
 const zEntry = z.array(z.string());
-const zProperties = z.record(z.unknown());
+const zProperties = z.record(z.string(), z.unknown());
 
 export const blockTSDown = base.createBlock({
   about: {
