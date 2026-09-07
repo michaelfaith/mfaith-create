@@ -105,6 +105,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  zod: ^4.0.0
+
 importers:
 
   .:
@@ -120,7 +123,7 @@ importers:
         version: 0.5.6
       bingo-stratum:
         specifier: ^0.5.13
-        version: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76)
+        version: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@4.5.4)
       cached-factory:
         specifier: ^0.3.0
         version: 0.3.0
@@ -203,11 +206,11 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.0.0
+        version: 4.5.4
       zod-package-json:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^2.1.0
+        version: 2.1.0(zod@4.5.4)
       zod-tsconfig:
         specifier: ^0.2.0
         version: 0.2.0
@@ -256,7 +259,7 @@ importers:
         version: 0.5.6
       bingo-stratum-testers:
         specifier: 0.5.10
-        version: 0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.3)
+        version: 0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@4.5.4))(bingo-systems@0.5.5)(bingo@0.9.3)
       bingo-testers:
         specifier: 0.5.8
         version: 0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)
@@ -1919,7 +1922,7 @@ packages:
       bingo: ^0.9.0
       bingo-fs: ^0.5.6
       bingo-systems: ^0.5.5
-      zod: ^3.24.2
+      zod: ^4.0.0
 
   bingo-systems@0.5.5:
     resolution: {integrity: sha512-n8ah6qwk0JojolpoILxDvQWaw9b5pzAujrzDYMNppDNtPYQMqGsqJGvUtSw6i+mKPJ/WWqVbpCskm0f8cZjtrQ==}
@@ -4467,19 +4470,18 @@ packages:
   yuku-parser@0.9.4:
     resolution: {integrity: sha512-VWnoJzdB2g1JjsMEcB2MxSLoDbgISgOiNRsgiR0qrQKiUw2yyzEfYEYkNHSMNhdGkSo7gtmcN+2UOczzGDLAuw==}
 
-  zod-package-json@1.2.0:
-    resolution: {integrity: sha512-tamtgPM3MkP+obfO2dLr/G+nYoYkpJKmuHdYEy6IXRKfLybruoJ5NUj0lM0LxwOpC9PpoGLbll1ecoeyj43Wsg==}
+  zod-package-json@2.1.0:
+    resolution: {integrity: sha512-XLlyeEk+5q4m+GSNrTXAi9QwTbtOCHJOzr1eTCHsF6J5y8zypZRFCvfO1rOZ2CXht+9pY6DNpC7si1tcWESPCw==}
     engines: {node: '>=20'}
+    peerDependencies:
+      zod: ^4.0.0
 
   zod-tsconfig@0.2.0:
     resolution: {integrity: sha512-ug/zndWh/wNiejtCJ2tGyNzi3Nf94ZnpFos/e5CGTIXYIwoXMiXYg3a3SptYVrfXFnLCpuTTfVjYWh6q9djKhA==}
     engines: {node: '>=18.3.0'}
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.5.4:
+    resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5884,14 +5886,14 @@ snapshots:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.3):
+  bingo-stratum-testers@0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@4.5.4))(bingo-systems@0.5.5)(bingo@0.9.3):
     dependencies:
       bingo: 0.9.3
       bingo-fs: 0.5.6
-      bingo-stratum: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76)
+      bingo-stratum: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@4.5.4)
       bingo-systems: 0.5.5
 
-  bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76):
+  bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@4.5.4):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.9.3
@@ -5903,7 +5905,7 @@ snapshots:
       octokit: 5.0.5
       slugify: 1.6.9
       without-undefined-properties: 0.1.2
-      zod: 3.25.76
+      zod: 4.5.4
 
   bingo-systems@0.5.5:
     dependencies:
@@ -5941,7 +5943,7 @@ snapshots:
       read-pkg: 10.1.0
       slugify: 1.6.9
       without-undefined-properties: 0.1.2
-      zod: 3.25.76
+      zod: 4.5.4
 
   boolbase@1.0.0: {}
 
@@ -7001,12 +7003,12 @@ snapshots:
   input-from-file@0.5.5(bingo@0.9.3):
     dependencies:
       bingo: 0.9.3
-      zod: 3.25.76
+      zod: 4.5.4
 
   input-from-script@0.5.5(bingo@0.9.3):
     dependencies:
       bingo: 0.9.3
-      zod: 3.25.76
+      zod: 4.5.4
 
   inquirer@7.3.3:
     dependencies:
@@ -7136,7 +7138,7 @@ snapshots:
       tinyglobby: 0.2.17
       unbash: 4.0.10
       yaml: 2.9.0
-      zod: 4.4.3
+      zod: 4.5.4
 
   ky@1.14.3: {}
 
@@ -8217,7 +8219,7 @@ snapshots:
     dependencies:
       octokit-from-auth: 0.3.2
       throttled-queue: 2.1.4
-      zod: 3.25.76
+      zod: 4.5.4
 
   sh-syntax@0.6.0: {}
 
@@ -8715,16 +8717,14 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.9.4
       '@yuku-parser/binding-win32-x64': 0.9.4
 
-  zod-package-json@1.2.0:
+  zod-package-json@2.1.0(zod@4.5.4):
     dependencies:
-      zod: 3.25.76
+      zod: 4.5.4
 
   zod-tsconfig@0.2.0:
     dependencies:
-      zod: 3.25.76
+      zod: 4.5.4
 
-  zod@3.25.76: {}
-
-  zod@4.4.3: {}
+  zod@4.5.4: {}
 
   zwitch@2.0.4: {}
