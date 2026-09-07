@@ -42,3 +42,7 @@ jobs:
         with:
           config: strict
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          rules: |-
+            {
+              "pr-branch-non-default": false
+            }

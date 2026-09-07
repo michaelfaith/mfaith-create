@@ -80,6 +80,9 @@ export const blockOctoGuide = base.createBlock({
                   with: {
                     config: addons.config ?? "recommended",
                     "github-token": "${{ secrets.GITHUB_TOKEN }}",
+                    rules: `{
+  "pr-branch-non-default": false
+}`,
                   },
                 },
               ],
