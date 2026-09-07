@@ -1,3 +1,5 @@
+import type { WorkflowPermissions } from "./workflow.types.js";
+
 import { WorkflowsVersions } from "../../schemas.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
@@ -12,6 +14,7 @@ export interface MultiWorkflowJobOptions {
   checkoutWith?: Record<string, string>;
   if?: string;
   name: string;
+  permissions?: WorkflowPermissions;
   steps: MultiWorkflowJobStep[];
 }
 
@@ -39,6 +42,7 @@ export function createMultiWorkflowFile({
           name: job.name,
           if: job.if,
           "runs-on": "ubuntu-latest",
+          permissions: job.permissions ?? undefined,
           steps: job.steps,
         },
       ]),

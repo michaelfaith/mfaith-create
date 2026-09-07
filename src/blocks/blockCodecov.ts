@@ -74,6 +74,9 @@ export const blockCodecov = base.createBlock({
         }),
         blockVitest({
           actionSteps: [actionStep],
+          permissions: {
+            "id-token": "write",
+          },
         }),
       ],
     };

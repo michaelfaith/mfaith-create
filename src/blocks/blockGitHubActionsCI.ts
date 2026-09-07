@@ -9,11 +9,13 @@ import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js"
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
+import { zWorkflowPermissions } from "./files/workflow.types.js";
 
 const zJob = z.object({
   checkoutWith: z.record(z.string(), z.string()).optional(),
   if: z.string().optional(),
   name: z.string(),
+  permissions: zWorkflowPermissions.optional(),
   steps: z.array(zActionStep),
 });
 type Job = z.infer<typeof zJob>;

@@ -64,6 +64,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm run test --coverage

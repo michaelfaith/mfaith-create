@@ -48,6 +48,9 @@ describe(blockCodecov, () => {
               },
             },
           ],
+          "permissions": {
+            "id-token": "write",
+          },
         },
         "block": [Function],
       },
@@ -99,6 +102,9 @@ describe(blockCodecov, () => {
               },
             },
           ],
+          "permissions": {
+            "id-token": "write",
+          },
         },
         "block": [Function],
       },
@@ -166,6 +172,9 @@ describe(blockCodecov, () => {
               },
             },
           ],
+          "permissions": {
+            "id-token": "write",
+          },
         },
         "block": [Function],
       },
