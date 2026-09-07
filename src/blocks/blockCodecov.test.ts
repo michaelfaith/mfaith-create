@@ -42,7 +42,7 @@ describe(blockCodecov, () => {
 			        "actionSteps": [
 			          {
 			            "if": "always()",
-			            "uses": "codecov/codecov-action@v3",
+			            "uses": "codecov/codecov-action@v7",
 			          },
 			        ],
 			      },
@@ -90,7 +90,7 @@ describe(blockCodecov, () => {
 			        "actionSteps": [
 			          {
 			            "if": "always()",
-			            "uses": "codecov/codecov-action@v3",
+			            "uses": "codecov/codecov-action@v7",
 			          },
 			        ],
 			      },
@@ -154,7 +154,7 @@ describe(blockCodecov, () => {
 			      	              "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
 			      	            },
 			      	            "if": "always()",
-			      	            "uses": "codecov/codecov-action@v3",
+			      	            "uses": "codecov/codecov-action@v7",
 			      	          },
 			      	        ],
 			      	      },
@@ -254,7 +254,7 @@ describe(blockCodecov, () => {
                       name: "Test",
                       steps: [
                         {
-                          uses: "codecov/codecov-action@v3",
+                          uses: "codecov/codecov-action@v7",
                         },
                       ],
                     },
@@ -285,7 +285,7 @@ describe(blockCodecov, () => {
                       steps: [
                         {
                           env,
-                          uses: "codecov/codecov-action@v3",
+                          uses: "codecov/codecov-action@v7",
                         },
                       ],
                     },

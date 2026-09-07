@@ -66,7 +66,7 @@ export const blockCodecov = base.createBlock({
               if: "always()",
               uses: resolveUses(
                 "codecov/codecov-action",
-                "v3",
+                "v7",
                 options.workflowsVersions,
               ),
             },
