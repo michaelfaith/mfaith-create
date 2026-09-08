@@ -7,7 +7,9 @@
     "coverage",
     "lib",
     "node_modules",
-    "pnpm-lock.yaml"
+    "package.json",
+    "pnpm-lock.yaml",
+    "prettier.config.ts"
   ],
   "words": [
     "Anson",

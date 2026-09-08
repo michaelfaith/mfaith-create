@@ -74,7 +74,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);
@@ -144,7 +144,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","lib/","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","lib/","node_modules","package.json","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
 			  },
 			}
 		`);
@@ -213,7 +213,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
 			  },
 			}
 		`);
@@ -280,7 +280,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			  "scripts": [
 			    {
@@ -364,7 +364,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);

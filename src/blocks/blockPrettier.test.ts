@@ -21,7 +21,7 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "ignorePaths": [
-			          ".all-contributorsrc",
+			          "prettier.config.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -136,7 +136,7 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "ignorePaths": [
-			          ".all-contributorsrc",
+			          "prettier.config.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -289,7 +289,7 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "ignorePaths": [
-			          ".all-contributorsrc",
+			          "prettier.config.ts",
 			        ],
 			      },
 			      "block": [Function],
