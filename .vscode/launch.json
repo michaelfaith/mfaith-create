@@ -14,7 +14,7 @@
     {
       "name": "Debug Program",
       "preLaunchTask": "build",
-      "program": "bin/index.js",
+      "program": "dist/bin/index.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"

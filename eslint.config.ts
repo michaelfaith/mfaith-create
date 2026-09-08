@@ -48,13 +48,17 @@ export default defineConfig(
     files: ["**/*.{js,ts}"],
     languageOptions: {
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ["*.config.*s", "bin/index.js"],
-        },
+        projectService: { allowDefaultProject: ["*.config.*s"] },
       },
     },
     plugins: { perfectionist },
     rules: {
+      "perfectionist/sort-exports": "error",
+      "perfectionist/sort-imports": "error",
+
+      // Using a ts bin file throws this rule off.
+      "n/hashbang": "off",
+
       // These on-by-default rules work well for this repo if configured
       "@typescript-eslint/prefer-nullish-coalescing": [
         "error",
@@ -68,8 +72,6 @@ export default defineConfig(
         "error",
         { allowExperimental: true, ignores: ["import.meta.dirname"] },
       ],
-      "perfectionist/sort-exports": "error",
-      "perfectionist/sort-imports": "error",
 
       // Stylistic concerns that don't interfere with Prettier
       "logical-assignment-operators": [

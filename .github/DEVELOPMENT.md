@@ -32,7 +32,7 @@ pnpm build --watch
 
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
 To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
-VS Code will automatically run the `build` task in the background before running `bin/index.js`.
+VS Code will automatically run the `build` task in the background before running `dist/bin/index.js`.
 
 ## Formatting
 
@@ -61,8 +61,6 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 ```shell
 pnpm run lint --fix
 ```
-
-Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
