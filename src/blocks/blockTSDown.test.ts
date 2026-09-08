@@ -42,7 +42,6 @@ pnpm build --watch
     },
     {
       "addons": {
-        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
         "ignores": [
           "dist",
         ],
@@ -171,7 +170,6 @@ pnpm build --watch
     },
     {
       "addons": {
-        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
         "ignores": [
           "dist",
         ],
@@ -297,7 +295,6 @@ pnpm build --watch
     },
     {
       "addons": {
-        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
         "ignores": [
           "dist",
         ],

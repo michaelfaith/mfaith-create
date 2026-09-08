@@ -95,16 +95,7 @@ export const blockESLint = base.createBlock({
           parserOptions: {
             projectService: {
               allowDefaultProject: Array.from(
-                new Set(
-                  [
-                    "*.config.*s",
-                    ...(typeof options.bin === "object"
-                      ? Object.values(options.bin)
-                      : [options.bin]),
-                  ]
-                    .filter(Boolean)
-                    .sort(),
-                ),
+                new Set(["*.config.*s"].filter(Boolean).sort()),
               ),
             },
           },
@@ -112,10 +103,22 @@ export const blockESLint = base.createBlock({
         plugins: {
           perfectionist: "perfectionist",
         },
-        rules: {
-          "perfectionist/sort-exports": "error",
-          "perfectionist/sort-imports": "error",
-        },
+        rules: [
+          {
+            entries: {
+              "perfectionist/sort-exports": "error",
+              "perfectionist/sort-imports": "error",
+            },
+          },
+          ...(options.bin
+            ? [
+                {
+                  comment: "Using a ts bin file throws this rule off.",
+                  entries: { "n/hashbang": "off" as const },
+                },
+              ]
+            : []),
+        ],
         settings: {
           perfectionist: { partitionByComment: true, type: "natural" },
         },
@@ -330,7 +333,7 @@ function printExtensionRules(rules: ExtensionRules): string {
     ...groupByComment(rules).flatMap((group) => [
       printGroupComment(group.comment),
       ...Object.entries(group.entries).map(
-        ([ruleName, options]) => `"${ruleName}": ${JSON.stringify(options)},`,
+        ([ruleName, options]) => `"${ruleName}":${JSON.stringify(options)},`,
       ),
     ]),
     "}",

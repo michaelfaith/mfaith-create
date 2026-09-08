@@ -240,14 +240,14 @@ describe(blockPackageJson, () => {
     const creation = testBlock(blockPackageJson, {
       options: {
         ...options,
-        bin: "bin/index.js",
+        bin: "dist/bin/index.js",
       },
     });
 
     expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","bin":"bin/index.js","engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","bin":"dist/bin/index.js","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
