@@ -1,7 +1,7 @@
 import { determineLabelChanges } from "set-github-repository-labels";
 
 import { base } from "../base.js";
-import { outcomeLabels } from "./outcomeLabels.js";
+import { repositoryLabels } from "./repositoryLabels.js";
 
 export const blockRepositoryLabels = base.createBlock({
   about: {
@@ -10,7 +10,7 @@ export const blockRepositoryLabels = base.createBlock({
   produce({ options }) {
     const changes = determineLabelChanges(
       options.existingLabels ?? [],
-      outcomeLabels,
+      repositoryLabels,
     );
     const requestData = {
       owner: options.owner,
