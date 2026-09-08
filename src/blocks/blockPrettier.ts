@@ -38,7 +38,7 @@ export const blockPrettier = base.createBlock({
     return {
       addons: [
         blockCSpell({
-          ignorePaths: [".all-contributorsrc"],
+          ignorePaths: ["prettier.config.ts"],
         }),
         blockDevelopmentDocs({
           sections: {

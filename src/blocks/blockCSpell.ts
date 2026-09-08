@@ -89,6 +89,7 @@ export const blockCSpell = base.createBlock({
               "CHANGELOG.md",
               "lib",
               "node_modules",
+              "package.json",
               "pnpm-lock.yaml",
               ...ignorePaths,
             ]),

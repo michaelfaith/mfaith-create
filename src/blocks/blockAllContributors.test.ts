@@ -14,6 +14,14 @@ describe("blockAllContributors", () => {
   "addons": [
     {
       "addons": {
+        "ignorePaths": [
+          ".all-contributorsrc",
+        ],
+      },
+      "block": [Function],
+    },
+    {
+      "addons": {
         "ignores": [
           "/.all-contributorsrc",
         ],
@@ -121,6 +129,14 @@ jobs:
     expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
+    {
+      "addons": {
+        "ignorePaths": [
+          ".all-contributorsrc",
+        ],
+      },
+      "block": [Function],
+    },
     {
       "addons": {
         "ignores": [
@@ -262,6 +278,14 @@ jobs:
     expect(creation).toMatchInlineSnapshot(`
 {
   "addons": [
+    {
+      "addons": {
+        "ignorePaths": [
+          ".all-contributorsrc",
+        ],
+      },
+      "block": [Function],
+    },
     {
       "addons": {
         "ignores": [

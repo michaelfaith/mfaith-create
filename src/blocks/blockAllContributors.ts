@@ -4,6 +4,7 @@ import { base } from "../base.js";
 import { startingOwnerContributions } from "../data/contributions.js";
 import { Contributor } from "../schemas.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
@@ -32,6 +33,9 @@ export const blockAllContributors = base.createBlock({
 
     return {
       addons: [
+        blockCSpell({
+          ignorePaths: [".all-contributorsrc"],
+        }),
         blockPrettier({
           ignores: ["/.all-contributorsrc"],
         }),
