@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.3](https://github.com/michaelfaith/mfaith-create/compare/v0.1.2...v0.1.3) (2026-09-08)
+
+
+### 🚀 Features
+
+* update repo labels to the latest mix ([#131](https://github.com/michaelfaith/mfaith-create/issues/131)) ([19c296c](https://github.com/michaelfaith/mfaith-create/commit/19c296c1ec48f30dde524a05228303f763032e57))
+
+
+### 🩹 Bug Fixes
+
+* add `package.json` and `prettier.config.ts` to cspell's `ignorePaths` ([#129](https://github.com/michaelfaith/mfaith-create/issues/129)) ([367c88a](https://github.com/michaelfaith/mfaith-create/commit/367c88aca1c769c6c57436979862958a9506607f))
+* disable `n/no-unsupported-features/node-builtins` for test files and eslint config ([#127](https://github.com/michaelfaith/mfaith-create/issues/127)) ([6aa3996](https://github.com/michaelfaith/mfaith-create/commit/6aa39962b5f254f25fd8188c95494522fb73b188))
+
 ## [0.1.2](https://github.com/michaelfaith/mfaith-create/compare/v0.1.1...v0.1.2) (2026-09-07)
 
 
