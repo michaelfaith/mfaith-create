@@ -30,6 +30,10 @@ export default defineConfig(
   ),
   { linterOptions: { reportUnusedDisableDirectives: "error" } },
   {
+    files: ["./eslint.config.ts", "./**/*.test.*"],
+    rules: { "n/no-unsupported-features/node-builtins": "off" },
+  },
+  {
     extends: [
       comments.recommended,
       eslint.configs.recommended,

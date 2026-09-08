@@ -15,42 +15,51 @@ describe("blockESLintNode", () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "extensions": [
-			          {
-			            "extends": [
-			              "n.configs["flat/recommended"]",
-			            ],
-			            "files": [
-			              "**/*.{js,ts}",
-			            ],
-			          },
-			          {
-			            "extends": [
-			              "tseslint.configs.disableTypeChecked",
-			            ],
-			            "files": [
-			              "**/*.md/*.ts",
-			            ],
-			            "rules": {
-			              "n/no-missing-import": "off",
-			            },
-			          },
-			        ],
-			        "imports": [
-			          {
-			            "source": "eslint-plugin-n",
-			            "specifier": "n",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+  {
+    "addons": [
+      {
+        "addons": {
+          "extensions": [
+            {
+              "extends": [
+                "n.configs["flat/recommended"]",
+              ],
+              "files": [
+                "**/*.{js,ts}",
+              ],
+            },
+            {
+              "extends": [
+                "tseslint.configs.disableTypeChecked",
+              ],
+              "files": [
+                "**/*.md/*.ts",
+              ],
+              "rules": {
+                "n/no-missing-import": "off",
+              },
+            },
+            {
+              "files": [
+                "./eslint.config.ts",
+                "./**/*.test.*",
+              ],
+              "rules": {
+                "n/no-unsupported-features/node-builtins": "off",
+              },
+            },
+          ],
+          "imports": [
+            {
+              "source": "eslint-plugin-n",
+              "specifier": "n",
+            },
+          ],
+        },
+        "block": [Function],
+      },
+    ],
+  }
+`);
   });
 });
