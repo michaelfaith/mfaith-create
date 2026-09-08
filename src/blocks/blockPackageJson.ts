@@ -109,12 +109,12 @@ function processFiles(files: string[] | undefined) {
     return undefined;
   }
 
-  // First sort so that shorter entries are first (e.g. "lib/")...
+  // First sort so that shorter entries are first (e.g. "dist/")...
   const sortedByLength = files
     .filter(Boolean)
     .sort((a, b) => a.length - b.length);
 
-  // ...then remove entries captured by earlier directories (e.g. "lib/index.js")
+  // ...then remove entries captured by earlier directories (e.g. "dist/index.js")
   return sortedByLength
     .filter(
       (file, i) =>

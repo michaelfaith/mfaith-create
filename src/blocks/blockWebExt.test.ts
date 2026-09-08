@@ -133,7 +133,7 @@ describe("blockWebExt", () => {
 			          },
 			          "scripts": {
 			            "build": "web-ext build --overwrite-dest",
-			            "dev": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
+			            "dev": "esbuild src/content-script.ts --bundle --minify --outfile=dist/content-script.js --sourcemap",
 			            "lint:web-ext": "web-ext lint",
 			          },
 			        },

@@ -13,7 +13,7 @@ export const blockExports = base.createBlock({
     runArgs: z.array(z.string()).default([]),
   },
   produce({ addons }) {
-    const { filePath = "./lib/index.js", runArgs } = addons;
+    const { filePath = "./dist/index.js", runArgs } = addons;
 
     return {
       addons: [

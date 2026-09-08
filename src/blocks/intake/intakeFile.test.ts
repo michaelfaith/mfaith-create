@@ -19,7 +19,7 @@ describe(intakeFile, () => {
       {
         src: {},
       },
-      ["lib"],
+      ["dist"],
     );
 
     expect(actual).toBeUndefined();

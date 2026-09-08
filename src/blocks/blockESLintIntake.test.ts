@@ -59,7 +59,7 @@ describe(blockESLintIntake, () => {
       `
 				export default tseslint.config(
 					{ ignores: [] },
-					{ 
+					{
 						extends: {},
 						files: {},
 						other: {},
@@ -74,7 +74,7 @@ describe(blockESLintIntake, () => {
       `
 				export default tseslint.config(
 					{ ignores: [] },
-					{ 
+					{
 						extends: {},
 						files: {},
 						languageOptions: {},
@@ -97,7 +97,7 @@ describe(blockESLintIntake, () => {
       "rules group after linterOptions and member expression extends",
       `
 export default tseslint.config(
-	{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	eslint.configs.recommended,
 	comments.recommended,
@@ -119,7 +119,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
         rules: [
           {
             entries: {
@@ -140,7 +140,7 @@ export default tseslint.config(
       "non-commented group in rules",
       `
 export default tseslint.config(
-	{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
 		files: ["**/*.{js,ts}"],
@@ -159,7 +159,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
         rules: [
           {
             entries: {
@@ -180,7 +180,7 @@ export default tseslint.config(
       "one custom commented group in rules",
       `
 export default tseslint.config(
-	{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
 		files: ["**/*.{js,ts}"],
@@ -200,7 +200,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
         rules: [
           {
             comment:
@@ -223,7 +223,7 @@ export default tseslint.config(
       "one non-commented group and one commented group in rules",
       `
 export default tseslint.config(
-	{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
 		files: ["**/*.{js,ts}"],
@@ -244,7 +244,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
         rules: [
           {
             entries: {
@@ -271,7 +271,7 @@ export default tseslint.config(
       "one custom commented group in rules before the stylistic comment",
       `
 export default tseslint.config(
-	{ ignores: ["lib"] },
+	{ ignores: ["dist"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
 		files: ["**/*.{js,ts}"],
@@ -294,7 +294,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib"],
+        ignores: ["dist"],
         rules: [
           {
             comment:
@@ -317,7 +317,7 @@ export default tseslint.config(
       "multi-line custom commented group in rules",
       `
 export default tseslint.config(
-	{ ignores: ["lib"] },
+	{ ignores: ["dist"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
 		files: ["**/*.{js,ts}"],
@@ -332,7 +332,7 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["lib"],
+        ignores: ["dist"],
         rules: [
           {
             comment: "First line.\nSecond line.\nThird line.",

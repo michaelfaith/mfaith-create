@@ -113,12 +113,12 @@ Then:
      "exports": {
        ".": {
          "import": {
-           "types": "lib/index.d.ts",
-           "default": "lib/index.js"
+           "types": "dist/index.d.ts",
+           "default": "dist/index.js"
          },
          "require": {
-           "types": "lib/index.d.cts",
-           "default": "lib/index.cjs"
+           "types": "dist/index.d.cts",
+           "default": "dist/index.cjs"
          }
        }
      }

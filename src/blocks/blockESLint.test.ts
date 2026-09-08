@@ -4,7 +4,7 @@ import { describe, expect, it, test, vi } from "vitest";
 import { blockESLint } from "./blockESLint.js";
 import { optionsBase } from "./options.fakes.js";
 
-const mockIntakeData = { ignores: ["lib"] };
+const mockIntakeData = { ignores: ["dist"] };
 
 const mockBlockESLintIntake = vi.fn().mockReturnValue(mockIntakeData);
 
@@ -117,7 +117,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -265,7 +265,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -416,7 +416,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -580,7 +580,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["generated", "lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["generated", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -732,7 +732,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [], files: ["**/*.js"], rules: {
 
@@ -873,7 +873,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ files: ["**/*.js"], rules: {
 
@@ -1028,7 +1028,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -1170,7 +1170,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -1290,7 +1290,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -1410,7 +1410,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -1527,7 +1527,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",
@@ -1644,7 +1644,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores( ["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
 );",

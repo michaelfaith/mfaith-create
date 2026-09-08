@@ -23,7 +23,7 @@ describe(blockGitignore, () => {
   test("with addons", () => {
     const creation = testBlock(blockGitignore, {
       addons: {
-        ignores: ["/lib"],
+        ignores: ["/dist"],
       },
       options: optionsBase,
     });
@@ -31,7 +31,7 @@ describe(blockGitignore, () => {
     expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    ".gitignore": "/lib
+			    ".gitignore": "/dist
 			/node_modules
 			",
 			  },
