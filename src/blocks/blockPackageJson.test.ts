@@ -160,7 +160,7 @@ describe(blockPackageJson, () => {
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
-          files: ["README.md", "LICENSE.md", "lib/", "lib/bin/file.js"],
+          files: ["README.md", "LICENSE.md", "dist/", "dist/bin/file.js"],
         },
       },
       options,
@@ -169,7 +169,7 @@ describe(blockPackageJson, () => {
     expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","files":["LICENSE.md","README.md","lib/"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","files":["LICENSE.md","README.md","dist/"],"engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {

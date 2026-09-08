@@ -2,5 +2,5 @@
 /.husky
 /CHANGELOG.md
 /coverage
-/lib
+/dist
 /pnpm-lock.yaml

@@ -6,11 +6,14 @@ import { getPackageDependencies } from "../data/packageData.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { blockVitest } from "./blockVitest.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 import { CommandPhase } from "./phases.js";
 
@@ -57,13 +60,13 @@ export const blockTSDown = base.createBlock({
           sections: {
             Building: {
               contents: `
-Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 \`\`\`shell
 pnpm build
 \`\`\`
 
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 \`\`\`shell
 pnpm build --watch
@@ -74,6 +77,7 @@ pnpm build --watch
         }),
         blockESLint({
           beforeLint: `Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
+          ignores: ["dist"],
         }),
         blockGitHubActionsCI({
           jobs: [
@@ -86,13 +90,20 @@ pnpm build --watch
             },
           ],
         }),
+        blockGitignore({
+          ignores: ["/dist"],
+        }),
         blockPackageJson({
           properties: {
             devDependencies: getPackageDependencies("tsdown"),
+            files: ["dist/"],
             scripts: {
               build: "tsdown",
             },
           },
+        }),
+        blockPrettier({
+          ignores: ["/dist"],
         }),
         blockReleaseIt({
           builders: [
@@ -102,14 +113,16 @@ pnpm build --watch
             },
           ],
         }),
+        blockVitest({ coverage: { include: ["src"] }, exclude: ["dist"] }),
       ],
       files: {
         "tsdown.config.ts": `import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-          entry: Array.from(new Set(["src/**/*.ts", ...entry])),
+          entry: Array.from(
+            new Set(["src/**/*.ts", "!src/**/*.test.*", ...entry]),
+          ),
           fixedExtension: false,
-          outDir: "lib",
           unbundle: true,
           ...properties,
         })});
@@ -134,6 +147,7 @@ export default defineConfig(${JSON.stringify({
             "@babel/core",
             "@babel/preset-typescript",
             "babel",
+            "tsup",
           ],
         }),
         blockRemoveFiles({

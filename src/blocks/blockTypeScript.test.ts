@@ -85,7 +85,6 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
 			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
@@ -120,9 +119,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "1.2.3",
 			          },
-			          "files": [
-			            "lib/",
-			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -134,9 +130,6 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
-			        "exclude": [
-			          "lib",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -245,7 +238,6 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
 			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
@@ -280,9 +272,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "1.2.3",
 			          },
-			          "files": [
-			            "lib/",
-			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -294,9 +283,6 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
-			        "exclude": [
-			          "lib",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -403,7 +389,6 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
 			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
@@ -438,9 +423,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "1.2.3",
 			          },
-			          "files": [
-			            "lib/",
-			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -452,9 +434,6 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
-			        "exclude": [
-			          "lib",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -570,7 +549,6 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
 			          "tsconfig.tsbuildinfo",
 			        ],
 			      },
@@ -605,9 +583,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "1.2.3",
 			          },
-			          "files": [
-			            "lib/",
-			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -619,9 +594,6 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
-			        "exclude": [
-			          "lib",
-			        ],
 			      },
 			      "block": [Function],
 			    },

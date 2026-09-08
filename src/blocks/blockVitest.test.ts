@@ -205,14 +205,6 @@ describe(greet, () => {
     },
     {
       "addons": {
-        "entry": [
-          "!src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
         "debuggers": [
           {
             "args": [
@@ -451,14 +443,6 @@ describe(greet, () => {
     },
     {
       "addons": {
-        "entry": [
-          "!src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
         "debuggers": [
           {
             "args": [
@@ -543,7 +527,7 @@ export default defineConfig({
           include: ["src/"],
         },
         environment: "happy-dom",
-        exclude: ["lib/"],
+        exclude: ["dist/"],
         flags: ["--typecheck"],
         permissions: {
           "id-token": "write",
@@ -741,14 +725,6 @@ describe(greet, () => {
     },
     {
       "addons": {
-        "entry": [
-          "!src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
         "debuggers": [
           {
             "args": [
@@ -787,7 +763,7 @@ export default defineConfig({
 			reporter: ["html", "lcov"],
 		},
 		environment: "happy-dom",
-		exclude: ["lib/","node_modules"],
+		exclude: ["dist/","node_modules"],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });
@@ -804,7 +780,7 @@ export default defineConfig({
           exclude: ["other"],
           include: ["src/"],
         },
-        exclude: ["lib/", "node_modules", "node_modules"],
+        exclude: ["dist/", "node_modules", "node_modules"],
         flags: ["--typecheck"],
       },
       options: optionsBase,
@@ -996,14 +972,6 @@ export default defineConfig({
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -1041,7 +1009,7 @@ export default defineConfig({
 						include: ["src/"],
 						reporter: ["html", "lcov"],
 					},
-					exclude: ["lib/","node_modules"],
+					exclude: ["dist/","node_modules"],
 					setupFiles: ["console-fail-test/setup"],
 				},
 			});
@@ -1113,7 +1081,7 @@ export default defineConfig({
 			include: ["src", "other"],
 			reporter: ["html", "lcov"],
 		},
-		exclude: ["lib", "node_modules"],
+		exclude: ["dist", "node_modules"],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });
@@ -1128,7 +1096,7 @@ export default defineConfig({
           exclude: ["src/index.ts"],
           include: ["src", "other"],
         },
-        exclude: ["lib", "node_modules"],
+        exclude: ["dist", "node_modules"],
       });
     });
 

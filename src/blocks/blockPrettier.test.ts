@@ -104,7 +104,6 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -247,7 +246,6 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -273,7 +271,7 @@ describe(blockPrettier, () => {
         ignores: ["generated"],
         overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
         plugins: [
-          "./lib/index.js",
+          "./dist/index.js",
           "prettier-plugin-curly",
           "prettier-plugin-packagejson",
           "prettier-plugin-sh",
@@ -378,13 +376,12 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
 			/pnpm-lock.yaml
 			generated
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
+			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
 			",
 			  },
 			  "scripts": [

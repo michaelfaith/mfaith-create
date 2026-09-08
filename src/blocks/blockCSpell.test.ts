@@ -74,7 +74,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);
@@ -83,8 +83,8 @@ describe(blockCSpell, () => {
   test("with addons", () => {
     const creation = testBlock(blockCSpell, {
       addons: {
-        ignorePaths: ["lib/"],
-        words: ["joshuakgoldberg"],
+        ignorePaths: ["dist/"],
+        words: ["michaelfaith"],
       },
       options: optionsBase,
     });
@@ -144,7 +144,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","lib/","node_modules","package.json","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
 			  },
 			}
 		`);
@@ -213,7 +213,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
 			  },
 			}
 		`);
@@ -280,7 +280,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			  "scripts": [
 			    {
@@ -364,7 +364,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","package.json","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);
