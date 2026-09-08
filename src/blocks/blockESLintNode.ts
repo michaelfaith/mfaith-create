@@ -20,6 +20,12 @@ export const blockESLintNode = base.createBlock({
               files: ["**/*.md/*.ts"],
               rules: { "n/no-missing-import": "off" },
             },
+            {
+              files: ["./eslint.config.ts", "./**/*.test.*"],
+              rules: {
+                "n/no-unsupported-features/node-builtins": "off",
+              },
+            },
           ],
           imports: [{ source: "eslint-plugin-n", specifier: "n" }],
         }),
