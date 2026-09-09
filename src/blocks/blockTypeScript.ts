@@ -3,7 +3,6 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { getPrimaryBin } from "./bin/getPrimaryBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -35,7 +34,6 @@ export const blockTypeScript = base.createBlock({
   },
   produce({ addons, options }) {
     const { compilerOptions } = addons;
-    const primaryBin = getPrimaryBin(options.bin, options.repository);
 
     return {
       addons: [
@@ -113,18 +111,6 @@ greet("Hello, world! ${options.emoji}");
         }),
         blockVitest({ coverage: { include: ["src"] } }),
         blockVSCode({
-          debuggers: primaryBin
-            ? [
-                {
-                  name: "Debug Program",
-                  preLaunchTask: "build",
-                  program: primaryBin,
-                  request: "launch",
-                  skipFiles: ["<node_internals>/**"],
-                  type: "node",
-                },
-              ]
-            : [],
           settings: {
             "js/ts.tsdk.path": "node_modules/typescript/lib",
           },

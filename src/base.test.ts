@@ -21,7 +21,6 @@ describe("base", () => {
     expect(options).toEqual({
       access: "public",
       author: "michael faith",
-      bin: "dist/bin/index.js",
       contact: {
         bluesky: "michael.faith",
         email: "michaelfaith@users.noreply.github.com",

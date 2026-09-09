@@ -7,7 +7,6 @@ import { z } from "zod";
 import { readAccess } from "./options/readAccess.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readAuthor } from "./options/readAuthor.js";
-import { readBin } from "./options/readBin.js";
 import { readContact } from "./options/readContact.js";
 import { readContactFromCodeOfConduct } from "./options/readContactFromCodeOfConduct.js";
 import { readDescription } from "./options/readDescription.js";
@@ -50,10 +49,6 @@ export const base = createBase({
       .string()
       .optional()
       .describe("username on npm to publish packages under"),
-    bin: z
-      .union([z.string(), z.record(z.string())])
-      .optional()
-      .describe('value to set in `package.json`\'s `"bin"` property'),
     contact: z
       .union([
         z.string(),
@@ -197,8 +192,6 @@ export const base = createBase({
         ),
     );
 
-    const getBin = lazyValue(async () => await readBin(getPackageData));
-
     const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
     const getDescription = lazyValue(
@@ -333,7 +326,6 @@ export const base = createBase({
     return {
       access: getAccess,
       author: getAuthor,
-      bin: getBin,
       contact: getContact,
       contributors: getAllContributors,
       description: getDescription,

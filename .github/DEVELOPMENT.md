@@ -28,12 +28,6 @@ Add `--watch` to run the builder in a watch mode that continuously cleans and re
 pnpm build --watch
 ```
 
-### Built App Debugging
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
-To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
-VS Code will automatically run the `build` task in the background before running `dist/bin/index.js`.
-
 ## Formatting
 
 [Prettier](https://prettier.io) is used to format code.

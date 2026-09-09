@@ -236,59 +236,6 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with object bin", () => {
-    const creation = testBlock(blockPackageJson, {
-      options: {
-        ...options,
-        bin: "dist/bin/index.js",
-      },
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","bin":"dist/bin/index.js","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
-  });
-
-  test("with string bin", () => {
-    const creation = testBlock(blockPackageJson, {
-      options: {
-        ...options,
-        bin: {
-          absolute: "bin/absolute.js",
-          relative: "./bin/relative.js",
-        },
-      },
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","bin":{"absolute":"bin/absolute.js","relative":"./bin/relative.js"},"engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
-  });
-
   test("with peerDependencies and peerDependenciesMeta", () => {
     const creation = testBlock(blockPackageJson, {
       options: {

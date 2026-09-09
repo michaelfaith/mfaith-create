@@ -53,12 +53,6 @@ export default defineConfig(
     },
     plugins: { perfectionist },
     rules: {
-      "perfectionist/sort-exports": "error",
-      "perfectionist/sort-imports": "error",
-
-      // Using a ts bin file throws this rule off.
-      "n/hashbang": "off",
-
       // These on-by-default rules work well for this repo if configured
       "@typescript-eslint/prefer-nullish-coalescing": [
         "error",
@@ -72,6 +66,8 @@ export default defineConfig(
         "error",
         { allowExperimental: true, ignores: ["import.meta.dirname"] },
       ],
+      "perfectionist/sort-exports": "error",
+      "perfectionist/sort-imports": "error",
 
       // Stylistic concerns that don't interfere with Prettier
       "logical-assignment-operators": [
@@ -82,6 +78,9 @@ export default defineConfig(
       "no-useless-rename": "error",
       "object-shorthand": "error",
       "operator-assignment": "error",
+
+      // Using a ts bin file throws this rule off.
+      "n/hashbang": "off",
     },
     settings: { perfectionist: { partitionByComment: true, type: "natural" } },
   },
