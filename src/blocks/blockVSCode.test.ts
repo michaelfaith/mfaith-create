@@ -20,9 +20,6 @@ describe(blockVSCode, () => {
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
 			        ],
 			        "sections": {
-			          "Building": {
-			            "innerSections": [],
-			          },
 			          "Testing": {
 			            "innerSections": [
 			              {
@@ -71,9 +68,6 @@ describe(blockVSCode, () => {
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
 			        ],
 			        "sections": {
-			          "Building": {
-			            "innerSections": [],
-			          },
 			          "Testing": {
 			            "innerSections": [
 			              {
@@ -136,9 +130,6 @@ describe(blockVSCode, () => {
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
 			        ],
 			        "sections": {
-			          "Building": {
-			            "innerSections": [],
-			          },
 			          "Testing": {
 			            "innerSections": [
 			              {

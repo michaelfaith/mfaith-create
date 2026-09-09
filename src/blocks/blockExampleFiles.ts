@@ -3,12 +3,22 @@ import { z } from "zod";
 import { base } from "../base.js";
 import { blockREADME } from "./blockREADME.js";
 
+interface DirectoryEntry {
+  [i: string]: Entry;
+}
+type Entry = DirectoryEntry | string;
+
+const fileEntrySchema: z.ZodType<DirectoryEntry> = z.record(
+  z.string(),
+  z.union([z.string(), z.lazy(() => fileEntrySchema)]),
+);
+
 export const blockExampleFiles = base.createBlock({
   about: {
     name: "Example Files",
   },
   addons: {
-    files: z.record(z.string()).default({}),
+    files: fileEntrySchema.default({}),
     usage: z.array(z.string()).default([]),
   },
   setup({ addons }) {

@@ -103,22 +103,10 @@ export const blockESLint = base.createBlock({
         plugins: {
           perfectionist: "perfectionist",
         },
-        rules: [
-          {
-            entries: {
-              "perfectionist/sort-exports": "error",
-              "perfectionist/sort-imports": "error",
-            },
-          },
-          ...(options.bin
-            ? [
-                {
-                  comment: "Using a ts bin file throws this rule off.",
-                  entries: { "n/hashbang": "off" as const },
-                },
-              ]
-            : []),
-        ],
+        rules: {
+          "perfectionist/sort-exports": "error",
+          "perfectionist/sort-imports": "error",
+        },
         settings: {
           perfectionist: { partitionByComment: true, type: "natural" },
         },
@@ -172,10 +160,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
           jobs: [
             {
               name: "Lint",
-              steps: [
-                ...(options.bin ? [{ run: "pnpm build" }] : []),
-                { run: "pnpm lint" },
-              ],
+              steps: [{ run: "pnpm lint" }],
             },
           ],
         }),

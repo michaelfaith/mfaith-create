@@ -52,7 +52,7 @@ export const blockPackageJson = base.createBlock({
                     ? { email: options.contact.email }
                     : {}),
               },
-              bin: options.bin,
+              bin: addons.properties.bin,
               dependencies: Object.keys(dependencies).length
                 ? dependencies
                 : undefined,

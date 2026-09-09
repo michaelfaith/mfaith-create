@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm build
-      - run: node ./dist/index.js --version
+      - run: node ./dist/index.js
   dedupe_check:
     name: Dedupe Check
     runs-on: ubuntu-latest
@@ -47,7 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
-      - run: pnpm build
       - run: pnpm lint
   lint_knip:
     name: Lint Knip

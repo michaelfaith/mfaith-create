@@ -5,13 +5,13 @@ import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
+import { blockBin } from "./blocks/blockBin.js";
 import {
   base,
   BaseOptions,
   blockAreTheTypesWrong,
   blockCSpell,
   blockESLint,
-  blockExports,
   blockKnip,
   blockPrettier,
   blockTemplatedWith,
@@ -21,6 +21,14 @@ import {
 vi.mock("./utils/resolveBin.js", () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
+
+const presetIntegration = base.createPreset({
+  about: {
+    description: "Preset used for integration tests",
+    name: "Integration",
+  },
+  blocks: [...presets.everything.blocks, blockBin],
+});
 
 // This test checks the Bingo production using options inferred from disk,
 // along with some explicit addons and blocks specified.
@@ -43,7 +51,7 @@ test("Producing the everything preset matches the files in this repository", asy
     exclude: /node_modules|^\.git$/,
   })) as IntakeDirectory;
 
-  const created = producePreset(presets.everything, {
+  const created = producePreset(presetIntegration, {
     options: (await prepareOptions(base)) as BaseOptions,
     refinements: {
       addons: [
@@ -118,9 +126,6 @@ If you're interested in learning more, see the 'getting started' docs on:
             "remove-dependencies",
             "trash-cli",
           ],
-        }),
-        blockExports({
-          runArgs: ["--version"],
         }),
         // TODO: This is only needed until we have a ReleasePlease block
         blockPrettier({ ignores: ["/CHANGELOG.md"] }),
