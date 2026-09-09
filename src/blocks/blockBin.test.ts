@@ -118,8 +118,8 @@ describe(blockBin, () => {
     const creation = testBlock(blockBin, {
       addons: {
         src: {
-          "test-repo": "dist/bin/index.js",
-          "other-bin": "dist/bin/other.js",
+          "test-repo": "dist/bin/index.mts",
+          "other-bin": "dist/bin/other.cts",
         },
       },
       options: optionsBase,
@@ -152,8 +152,8 @@ describe(blockBin, () => {
             "addons": {
               "properties": {
                 "bin": {
-                  "other-bin": "dist/bin/other.js",
-                  "test-repo": "dist/bin/index.js",
+                  "other-bin": "dist/bin/other.cjs",
+                  "test-repo": "dist/bin/index.mjs",
                 },
               },
             },

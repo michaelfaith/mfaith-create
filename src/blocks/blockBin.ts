@@ -9,13 +9,13 @@ import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 const binSchema = z.union([z.string(), z.record(z.string(), z.string())]);
 
-const tsExtensionRegex = /(.*)\.[cm]?ts$/i;
-const jsExtensionRegex = /(.*)\.[cm]js$/i;
+const tsExtensionRegex = /(.*)\.([cm]?)ts$/i;
+const jsExtensionRegex = /(.*)\.([cm]?)js$/i;
 
 const srcToDist = (value: string) =>
-  value.replace("src", "dist").replace(tsExtensionRegex, "$1.js");
+  value.replace("src", "dist").replace(tsExtensionRegex, "$1.$2js");
 const distToSrc = (value: string) =>
-  value.replace("dist", "src").replace(jsExtensionRegex, "$1.ts");
+  value.replace("dist", "src").replace(jsExtensionRegex, "$1.$2ts");
 
 export const blockBin = base.createBlock({
   about: {
