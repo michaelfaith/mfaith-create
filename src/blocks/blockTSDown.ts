@@ -15,7 +15,6 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
-import { CommandPhase } from "./phases.js";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
@@ -51,7 +50,7 @@ export const blockTSDown = base.createBlock({
       }),
     };
   },
-  produce({ addons, options }) {
+  produce({ addons }) {
     const { entry, properties, runInCI } = addons;
 
     return {
@@ -127,14 +126,6 @@ export default defineConfig(${JSON.stringify({
         })});
 `,
       },
-      scripts: options.bin
-        ? [
-            {
-              commands: ["pnpm build"],
-              phase: CommandPhase.Build,
-            },
-          ]
-        : undefined,
     };
   },
   transition() {

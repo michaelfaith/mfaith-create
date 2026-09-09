@@ -16,119 +16,118 @@ describe(blockTSDown, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "sections": {
-          "Building": {
-            "contents": "
-Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
-
-\`\`\`shell
-pnpm build
-\`\`\`
-
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
-
-\`\`\`shell
-pnpm build --watch
-\`\`\`
-",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
+      {
+        "addons": [
           {
-            "name": "Build",
-            "steps": [
-              {
-                "run": "pnpm build",
+            "addons": {
+              "sections": {
+                "Building": {
+                  "contents": "
+      Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
+
+      \`\`\`shell
+      pnpm build
+      \`\`\`
+
+      Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
+
+      \`\`\`shell
+      pnpm build --watch
+      \`\`\`
+      ",
+                },
               },
-            ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "tsdown": "1.2.3",
-          },
-          "files": [
-            "dist/",
-          ],
-          "scripts": {
-            "build": "tsdown",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "builders": [
           {
-            "order": 0,
-            "run": "pnpm build",
+            "addons": {
+              "ignores": [
+                "dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Build",
+                  "steps": [
+                    {
+                      "run": "pnpm build",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "tsdown": "1.2.3",
+                },
+                "files": [
+                  "dist/",
+                ],
+                "scripts": {
+                  "build": "tsdown",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "coverage": {
+                "include": [
+                  "src",
+                ],
+              },
+              "exclude": [
+                "dist",
+              ],
+            },
+            "block": [Function],
           },
         ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "coverage": {
-          "include": [
-            "src",
-          ],
-        },
-        "exclude": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+        "files": {
+          "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"fixedExtension":false,"unbundle":true});
-",
-  },
-  "scripts": undefined,
-}
-`);
+      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"fixedExtension":false,"unbundle":true});
+      ",
+        },
+      }
+    `);
   });
 
   test("with addons", () => {
@@ -144,122 +143,121 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"fixedEx
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "sections": {
-          "Building": {
-            "contents": "
-Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
-
-\`\`\`shell
-pnpm build
-\`\`\`
-
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
-
-\`\`\`shell
-pnpm build --watch
-\`\`\`
-",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
+      {
+        "addons": [
           {
-            "name": "Build",
-            "steps": [
-              {
-                "run": "pnpm build",
-              },
-              {
-                "run": "dist/other.js",
-              },
-            ],
-          },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "tsdown": "1.2.3",
-          },
-          "files": [
-            "dist/",
-          ],
-          "scripts": {
-            "build": "tsdown",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "builders": [
-          {
-            "order": 0,
-            "run": "pnpm build",
-          },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "coverage": {
-          "include": [
-            "src",
-          ],
-        },
-        "exclude": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+            "addons": {
+              "sections": {
+                "Building": {
+                  "contents": "
+      Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
-export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"fixedExtension":false,"unbundle":true,"dts":false});
-",
-  },
-  "scripts": undefined,
-}
-`);
+      \`\`\`shell
+      pnpm build
+      \`\`\`
+
+      Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
+
+      \`\`\`shell
+      pnpm build --watch
+      \`\`\`
+      ",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Build",
+                  "steps": [
+                    {
+                      "run": "pnpm build",
+                    },
+                    {
+                      "run": "dist/other.js",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "tsdown": "1.2.3",
+                },
+                "files": [
+                  "dist/",
+                ],
+                "scripts": {
+                  "build": "tsdown",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "coverage": {
+                "include": [
+                  "src",
+                ],
+              },
+              "exclude": [
+                "dist",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "tsdown.config.ts": "import { defineConfig } from "tsdown";
+
+      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"fixedExtension":false,"unbundle":true,"dts":false});
+      ",
+        },
+      }
+    `);
   });
 
   test("transition mode", () => {
