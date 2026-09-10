@@ -74,8 +74,8 @@ pnpm tsc --watch
 		}
 	}
 	`,
-            "index.ts": `export { greet } from './greet.js';
-export type { GreetOptions } from './types.js';
+            "index.ts": `export { greet } from "./greet.js";
+export type { GreetOptions } from "./types.js";
 `,
             "types.ts": `export interface GreetOptions {
 		logger?: (message: string) => void;
