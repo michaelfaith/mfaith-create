@@ -67,7 +67,7 @@ describe(blockReleasePlease, () => {
           ".github": {
             "release-please": {
               "release-please-config.main.json": "{"bump-minor-pre-major":true,"bump-patch-for-minor-pre-major":true,"changelog-sections":[{"type":"feat","section":"🚀 Features","hidden":false},{"type":"fix","section":"🩹 Bug Fixes","hidden":false},{"type":"perf","section":"🏁 Performance Improvements","hidden":false},{"type":"build","hidden":true},{"type":"chore","hidden":true},{"type":"ci","hidden":true},{"type":"docs","hidden":true},{"type":"refactor","hidden":true},{"type":"test","hidden":true}],"include-component-in-tag":false,"initial-version":"0.1.0","release-type":"node","packages":{".":{}}}",
-              "release-please-manifest.main.json": "{".":"0.0.0"}",
+              "release-please-manifest.main.json": "{}",
             },
             "workflows": {
               "release.yaml": "name: Release
@@ -256,7 +256,7 @@ describe(blockReleasePlease, () => {
           ".github": {
             "release-please": {
               "release-please-config.main.json": "{"bump-minor-pre-major":true,"bump-patch-for-minor-pre-major":true,"changelog-sections":[{"type":"feat","section":"🚀 Features","hidden":false},{"type":"fix","section":"🩹 Bug Fixes","hidden":false},{"type":"perf","section":"🏁 Performance Improvements","hidden":false},{"type":"build","hidden":true},{"type":"chore","hidden":true},{"type":"ci","hidden":true},{"type":"docs","hidden":true},{"type":"refactor","hidden":true},{"type":"test","hidden":true}],"include-component-in-tag":false,"initial-version":"0.1.0","release-type":"node","packages":{".":{}}}",
-              "release-please-manifest.main.json": "{".":"0.0.0"}",
+              "release-please-manifest.main.json": "{}",
             },
             "workflows": {
               "release.yaml": "name: Release
@@ -389,7 +389,7 @@ describe(blockReleasePlease, () => {
   });
 
   describe("intake", () => {
-    it("should return undefined when neither the release please manifest or package.json exist", () => {
+    it("should return undefined when the release please manifest does not exist", () => {
       const actual = testIntake(blockReleasePlease, {
         files: {},
       });
@@ -411,16 +411,6 @@ describe(blockReleasePlease, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("should return undefined when the package.json exists but does not contain a version", () => {
-      const actual = testIntake(blockReleasePlease, {
-        files: {
-          "package.json": [JSON.stringify({ name: "some-repo" })],
-        },
-      });
-
-      expect(actual).toBeUndefined();
-    });
-
     it("should return a version when the manifest exists and has a version", () => {
       const actual = testIntake(blockReleasePlease, {
         files: {
@@ -431,33 +421,6 @@ describe(blockReleasePlease, () => {
               ],
             },
           },
-        },
-      });
-
-      expect(actual).toEqual({ currentVersion: "13.0.0" });
-    });
-
-    it("should return a version when the package.json exists and has a version", () => {
-      const actual = testIntake(blockReleasePlease, {
-        files: {
-          "package.json": [JSON.stringify({ version: "1.2.3" })],
-        },
-      });
-
-      expect(actual).toEqual({ currentVersion: "1.2.3" });
-    });
-
-    it("should prefer the manifest version when the package.json version differs", () => {
-      const actual = testIntake(blockReleasePlease, {
-        files: {
-          ".github": {
-            "release-please": {
-              "release-please-manifest.main.json": [
-                JSON.stringify({ ".": "13.0.0" }),
-              ],
-            },
-          },
-          "package.json": [JSON.stringify({ version: "1.2.3" })],
         },
       });
 

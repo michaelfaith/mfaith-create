@@ -44,20 +44,10 @@ export const blockReleasePlease = base.createBlock({
       };
     }
 
-    const packageJson = intakeFileAsJson(files, ["package.json"]);
-    const { data: packageJsonVersion } = z
-      .string()
-      .safeParse(packageJson?.version);
-    if (packageJsonVersion) {
-      return {
-        currentVersion: packageJsonVersion,
-      };
-    }
-
     return undefined;
   },
   produce({ addons, options }) {
-    const { builders, currentVersion = "0.0.0" } = addons;
+    const { builders, currentVersion } = addons;
 
     return {
       addons: [
@@ -265,7 +255,7 @@ Cheers! 📦🚀`,
               },
             }),
             "release-please-manifest.main.json": JSON.stringify({
-              ".": currentVersion,
+              ".": currentVersion ?? options.version,
             }),
           },
         },
