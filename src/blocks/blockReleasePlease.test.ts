@@ -67,7 +67,9 @@ describe(blockReleasePlease, () => {
           ".github": {
             "release-please": {
               "release-please-config.main.json": "{"bump-minor-pre-major":true,"bump-patch-for-minor-pre-major":true,"changelog-sections":[{"type":"feat","section":"🚀 Features","hidden":false},{"type":"fix","section":"🩹 Bug Fixes","hidden":false},{"type":"perf","section":"🏁 Performance Improvements","hidden":false},{"type":"build","hidden":true},{"type":"chore","hidden":true},{"type":"ci","hidden":true},{"type":"docs","hidden":true},{"type":"refactor","hidden":true},{"type":"test","hidden":true}],"include-component-in-tag":false,"initial-version":"0.1.0","release-type":"node","packages":{".":{}}}",
-              "release-please-manifest.main.json": "{}",
+              "release-please-manifest.main.json": "{
+        ".": "0.0.0"
+      }",
             },
             "workflows": {
               "release.yaml": "name: Release
@@ -255,7 +257,9 @@ describe(blockReleasePlease, () => {
           ".github": {
             "release-please": {
               "release-please-config.main.json": "{"bump-minor-pre-major":true,"bump-patch-for-minor-pre-major":true,"changelog-sections":[{"type":"feat","section":"🚀 Features","hidden":false},{"type":"fix","section":"🩹 Bug Fixes","hidden":false},{"type":"perf","section":"🏁 Performance Improvements","hidden":false},{"type":"build","hidden":true},{"type":"chore","hidden":true},{"type":"ci","hidden":true},{"type":"docs","hidden":true},{"type":"refactor","hidden":true},{"type":"test","hidden":true}],"include-component-in-tag":false,"initial-version":"0.1.0","release-type":"node","packages":{".":{}}}",
-              "release-please-manifest.main.json": "{}",
+              "release-please-manifest.main.json": "{
+        ".": "0.0.0"
+      }",
             },
             "workflows": {
               "release.yaml": "name: Release
