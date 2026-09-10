@@ -38,7 +38,7 @@ import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson
 import { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.js";
 import { blockPrettierPluginSh } from "./blockPrettierPluginSh.js";
 import { blockREADME } from "./blockREADME.js";
-import { blockReleaseIt } from "./blockReleaseIt.js";
+import { blockReleasePlease } from "./blockReleasePlease.js";
 import { blockRenovate } from "./blockRenovate.js";
 import { blockSecurityDocs } from "./blockSecurityDocs.js";
 import { blockSideEffects } from "./blockSideEffects.js";
@@ -90,7 +90,7 @@ export const blocks = {
   blockPrettierPluginSentencesPerLine,
   blockPrettierPluginSh,
   blockREADME,
-  blockReleaseIt,
+  blockReleasePlease,
   blockRenovate,
   blockSecurityDocs,
   blockSideEffects,
@@ -142,7 +142,7 @@ export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson
 export { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.js";
 export { blockPrettierPluginSh } from "./blockPrettierPluginSh.js";
 export { blockREADME } from "./blockREADME.js";
-export { blockReleaseIt } from "./blockReleaseIt.js";
+export { blockReleasePlease } from "./blockReleasePlease.js";
 export { blockRenovate } from "./blockRenovate.js";
 export { blockRepoTransitions } from "./blockRepoTransitions.js";
 export { blockSecurityDocs } from "./blockSecurityDocs.js";

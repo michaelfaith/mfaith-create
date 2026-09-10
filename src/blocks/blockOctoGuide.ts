@@ -64,29 +64,31 @@ export const blockOctoGuide = base.createBlock({
                   types: ["edited", "opened"],
                 },
               },
-              if: "${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}",
-              permissions: {
-                discussions: "write",
-                issues: "write",
-                "pull-requests": "write",
-              },
-              steps: [
-                {
-                  uses: resolveUses(
-                    "JoshuaKGoldberg/octoguide",
-                    "0.11.1",
-                    options.workflowsVersions,
-                  ),
-                  with: {
-                    config: addons.config ?? "recommended",
-                    "github-token": "${{ secrets.GITHUB_TOKEN }}",
-                    // https://github.com/octoguide/bot/issues/624
-                    rules: `{
+              job: {
+                if: "${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}",
+                permissions: {
+                  discussions: "write",
+                  issues: "write",
+                  "pull-requests": "write",
+                },
+                steps: [
+                  {
+                    uses: resolveUses(
+                      "JoshuaKGoldberg/octoguide",
+                      "0.11.1",
+                      options.workflowsVersions,
+                    ),
+                    with: {
+                      config: addons.config ?? "recommended",
+                      "github-token": "${{ secrets.GITHUB_TOKEN }}",
+                      // https://github.com/octoguide/bot/issues/624
+                      rules: `{
   "pr-branch-non-default": false
 }`,
+                    },
                   },
-                },
-              ],
+                ],
+              },
             }),
           },
         },

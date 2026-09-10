@@ -45,11 +45,11 @@ export const blockAllContributors = base.createBlock({
               alt: `👪 All Contributors: ${contributions}`,
               comments: {
                 after: `
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-\t<!-- prettier-ignore-end -->`,
+  <!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <!-- prettier-ignore-end -->`,
                 before: `<!-- prettier-ignore-start -->
-\t<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-\t`,
+  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+  `,
               },
               href: "#contributors",
               src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
@@ -86,35 +86,37 @@ export const blockAllContributors = base.createBlock({
                   branches: ["main"],
                 },
               },
-              if: "github.event.repository.fork != true",
-              "runs-on": "ubuntu-slim",
-              permissions: {
-                contents: "read",
-                issues: "write",
-                "pull-requests": "write",
+              job: {
+                if: "github.event.repository.fork != true",
+                "runs-on": "ubuntu-slim",
+                permissions: {
+                  contents: "read",
+                  issues: "write",
+                  "pull-requests": "write",
+                },
+                steps: [
+                  {
+                    uses: resolveUses(
+                      "actions/checkout",
+                      "v4",
+                      options.workflowsVersions,
+                    ),
+                    with: { "fetch-depth": 0 },
+                  },
+                  {
+                    uses: "$/.github/actions/setup",
+                    with: { "skip-checkout": true },
+                  },
+                  {
+                    uses: resolveUses(
+                      "JoshuaKGoldberg/all-contributors-auto-action",
+                      "v0.5.0",
+                      options.workflowsVersions,
+                    ),
+                    env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" },
+                  },
+                ],
               },
-              steps: [
-                {
-                  uses: resolveUses(
-                    "actions/checkout",
-                    "v4",
-                    options.workflowsVersions,
-                  ),
-                  with: { "fetch-depth": 0 },
-                },
-                {
-                  uses: "$/.github/actions/setup",
-                  with: { "skip-checkout": true },
-                },
-                {
-                  uses: resolveUses(
-                    "JoshuaKGoldberg/all-contributors-auto-action",
-                    "v0.5.0",
-                    options.workflowsVersions,
-                  ),
-                  env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" },
-                },
-              ],
             }),
           },
         },

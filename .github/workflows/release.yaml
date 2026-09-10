@@ -23,7 +23,6 @@ jobs:
         with:
           client-id: ${{ vars.RELEASEBOT_APP_CLIENT_ID }}
           private-key: ${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}
-
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
@@ -32,7 +31,6 @@ jobs:
           manifest-file: .github/release-please/release-please-manifest.${{ github.ref_name }}.json
           target-branch: ${{ github.ref_name }}
           token: ${{ steps.create_token.outputs.token }}
-
   publish:
     name: Publish Package
     if: ${{ needs.release_please.outputs.releases_created == 'true' }}
@@ -45,10 +43,9 @@ jobs:
       dist_tag: ${{ steps.determine_dist_tag.outputs.dist_tag }}
     steps:
       - uses: $/.github/actions/setup
-
       - name: Determine dist-tag
         id: determine_dist_tag
-        run: |
+        run: |-
           TAG_NAME="${{ needs.release_please.outputs.tag_name }}"
           echo "Release tag: $TAG_NAME"
 
@@ -65,14 +62,12 @@ jobs:
           fi
 
           echo "dist_tag=$DIST_TAG" >> "$GITHUB_OUTPUT"
-
-      - name: Build and Publish
-        run: |
-          pnpm build
-
+      - name: Build
+        run: pnpm build
+      - name: Publish
+        run: |-
           echo "Publishing to npm with dist-tag '${{ steps.determine_dist_tag.outputs.dist_tag }}'"
           pnpm publish --publish-branch ${{ github.ref_name }} --tag ${{ steps.determine_dist_tag.outputs.dist_tag }} --access public
-
   post_release:
     name: Post Release Comments
     needs: publish
@@ -81,14 +76,14 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
       - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
       - uses: apexskier/github-release-commenter@e7813a9625eabd79a875b4bc4046cfcae377ab34 # v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-template: |
+          comment-template: |-
             :tada: This is included in version {release_link} :tada:
 
             The release is available on:

@@ -1,48 +1,28 @@
-import type { WorkflowPermissions } from "./workflow.types.js";
+import type { Workflow } from "./workflow.types.js";
 
-import { WorkflowsVersions } from "../../schemas.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export interface MultiWorkflowFileOptions {
-  jobs: MultiWorkflowJobOptions[];
-  name: string;
-  workflowsVersions: undefined | WorkflowsVersions;
-}
-
-export interface MultiWorkflowJobOptions {
-  checkoutWith?: Record<string, string>;
-  if?: string;
-  name: string;
-  permissions?: WorkflowPermissions;
-  steps: MultiWorkflowJobStep[];
-}
-
-export type MultiWorkflowJobStep = { if?: string } & (
-  | { run: string }
-  | { uses: string; with?: Record<string, boolean | number | string> }
-);
-
 export function createMultiWorkflowFile({
+  concurrency,
   jobs,
   name,
-}: MultiWorkflowFileOptions) {
+  on,
+}: Workflow) {
   return formatWorkflowYaml({
     name,
-    on: {
-      pull_request: null,
-      push: {
-        branches: ["main"],
-      },
-    },
+    on,
+    concurrency,
     jobs: Object.fromEntries(
       jobs.map((job) => [
-        createJobName(job.name),
+        createJobName(job.id ?? job.name),
         {
           name: job.name,
           if: job.if,
-          "runs-on": "ubuntu-latest",
-          permissions: job.permissions ?? undefined,
+          needs: job.needs,
+          "runs-on": job["runs-on"] || "ubuntu-latest",
+          permissions: job.permissions,
+          outputs: job.outputs,
           steps: job.steps,
         },
       ]),

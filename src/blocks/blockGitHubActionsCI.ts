@@ -12,7 +12,6 @@ import { formatYaml } from "./files/formatYaml.js";
 import { zWorkflowPermissions } from "./files/workflow.types.js";
 
 const zJob = z.object({
-  checkoutWith: z.record(z.string(), z.string()).optional(),
   if: z.string().optional(),
   name: z.string(),
   permissions: zWorkflowPermissions.optional(),
@@ -156,9 +155,14 @@ export const blockGitHubActionsCI = base.createBlock({
             "ci.yaml":
               jobsWithEnginesCheck &&
               createMultiWorkflowFile({
-                jobs: jobsWithEnginesCheck,
                 name: "CI",
-                workflowsVersions: options.workflowsVersions,
+                on: {
+                  pull_request: null,
+                  push: {
+                    branches: ["main"],
+                  },
+                },
+                jobs: jobsWithEnginesCheck,
               }),
             "pr-review-requested.yaml": createSoloWorkflowFile({
               name: "PR Review Requested",
@@ -167,25 +171,27 @@ export const blockGitHubActionsCI = base.createBlock({
                   types: ["review_requested"],
                 },
               },
-              permissions: {
-                "pull-requests": "write",
-              },
-              steps: [
-                {
-                  uses: resolveUses(
-                    "actions-ecosystem/action-remove-labels",
-                    "v1",
-                    options.workflowsVersions,
-                  ),
-                  with: {
-                    labels: "status: waiting for author",
+              job: {
+                permissions: {
+                  "pull-requests": "write",
+                },
+                steps: [
+                  {
+                    uses: resolveUses(
+                      "actions-ecosystem/action-remove-labels",
+                      "v1",
+                      options.workflowsVersions,
+                    ),
+                    with: {
+                      labels: "status: waiting for author",
+                    },
                   },
-                },
-                {
-                  if: "failure()",
-                  run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
-                },
-              ],
+                  {
+                    if: "failure()",
+                    run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+                  },
+                ],
+              },
             }),
           },
         },
