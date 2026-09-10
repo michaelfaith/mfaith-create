@@ -4,7 +4,7 @@ import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { JS_TS_FILES } from "./eslint/globs.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 const binSchema = z.union([z.string(), z.record(z.string(), z.string())]);
@@ -61,7 +61,7 @@ export const blockBin = base.createBlock({
         blockESLint({
           extensions: [
             {
-              files: [getScriptFileExtension(options)],
+              files: JS_TS_FILES,
               rules: [
                 {
                   comment: "Using a ts bin file throws this rule off.",

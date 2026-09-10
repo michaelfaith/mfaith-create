@@ -99,51 +99,6 @@ Here we'll outline the steps required to migrate an @mfaith/create app to a GitH
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
-## How can I add dual CommonJS / ECMAScript Modules emit?
-
-First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https://www.typescriptlang.org/docs/handbook/modules/introduction.html) to understand how CommonJS (CJS) and ECMAScript (ESM) came to be.
-
-Then:
-
-1. In `tsdown.config.ts`, change the [tsdown `format` option](https://tsdown.dev/options/output-format) from `["esm"]` to `["cjs", "esm"]`
-2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
-
-   ```json package.json
-   {
-     "exports": {
-       ".": {
-         "import": {
-           "types": "dist/index.d.ts",
-           "default": "dist/index.js"
-         },
-         "require": {
-           "types": "dist/index.d.cts",
-           "default": "dist/index.cjs"
-         }
-       }
-     }
-   }
-   ```
-
-That should be it!
-
-To be safe, consider checking with [arethetypeswrong](https://arethetypeswrong.github.io):
-
-1. Run `pnpm build`
-2. Run `npm pack`
-3. Upload that generated `.tgz` file to [arethetypeswrong.github.io](https://arethetypeswrong.github.io)
-
-### Why doesn't `@mfaith/create` have an option to dual emit CJS and ESM?
-
-Dual CJS/ESM emit is a stopgap solution while the JavaScript ecosystem migrates towards full ESM support in most-to-all popular user packages.
-Most packages newly created with `@mfaith/create` should target just ESM by default.
-
-Some packages published with `@mfaith/create` legitimately need dual CJS/ESM output because they're used by frameworks that don't yet fully support ESM.
-That's reasonable.
-
-Unless you know a package needs to support a CJS consumer, please strongly consider keeping it ESM-only (the `@mfaith/create` default).
-ESM-only packages have a smaller footprint by virtue of including fewer files.
-
 ## What about `eslint-config-prettier`?
 
 [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) is an ESLint plugin that serves only to turn off all rules that are unnecessary or might conflict with formatters such as Prettier.

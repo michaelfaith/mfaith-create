@@ -103,7 +103,7 @@ export default tseslint.config(
 	comments.recommended,
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			"@typescript-eslint/prefer-nullish-coalescing": [
@@ -143,7 +143,7 @@ export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			"@typescript-eslint/prefer-nullish-coalescing": [
@@ -183,7 +183,7 @@ export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			// These on-by-default rules work well for this repo if configured
@@ -226,7 +226,7 @@ export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			"@typescript-eslint/restrict-template-expressions": [
@@ -274,7 +274,7 @@ export default tseslint.config(
 	{ ignores: ["dist"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			// These on-by-default rules work well for this repo if configured
@@ -320,7 +320,7 @@ export default tseslint.config(
 	{ ignores: ["dist"] },
 	{
 		extends: [tseslint.configs.strictTypeChecked],
-		files: ["**/*.{js,ts}"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: { /* ... */ },
 		rules: {
 			// First line.

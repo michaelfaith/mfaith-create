@@ -119,7 +119,7 @@ describe(blockESLint, () => {
       export default defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
       	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -243,7 +243,7 @@ describe(blockESLint, () => {
               "files": [
                 ".eslintrc*",
                 ".eslintignore",
-                "eslint.config.{cjs,mjs}",
+                "eslint.config.{cjs,js,mjs}",
               ],
             },
             "block": [Function],
@@ -267,158 +267,7 @@ describe(blockESLint, () => {
       export default defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
       	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
-      );",
-        },
-        "scripts": [
-          {
-            "commands": [
-              "pnpm lint --fix",
-            ],
-            "phase": 3,
-          },
-        ],
-      }
-    `);
-  });
-
-  test("transition mode with options.type set to commonjs", () => {
-    const creation = testBlock(blockESLint, {
-      mode: "transition",
-      options: {
-        ...optionsBase,
-        type: "commonjs",
-      },
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-      {
-        "addons": [
-          {
-            "addons": {
-              "sections": {
-                "Linting": {
-                  "contents": {
-                    "after": [
-                      "
-      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
-
-      \`\`\`shell
-      pnpm run lint --fix
-      \`\`\`
-      ",
-                    ],
-                    "before": "
-      This package includes several forms of linting to enforce consistent code quality and styling.
-      Each should be shown in VS Code, and can be run manually on the command-line:
-      ",
-                    "items": [
-                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
-                    ],
-                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
-                  },
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "jobs": [
-                {
-                  "name": "Lint",
-                  "steps": [
-                    {
-                      "run": "pnpm lint",
-                    },
-                  ],
-                },
-              ],
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "properties": {
-                "devDependencies": {
-                  "@eslint/js": "1.2.3",
-                  "@types/node": "1.2.3",
-                  "eslint": "1.2.3",
-                  "eslint-plugin-perfectionist": "1.2.3",
-                  "jiti": "1.2.3",
-                  "typescript-eslint": "1.2.3",
-                },
-                "scripts": {
-                  "lint": "eslint . --max-warnings 0",
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "extensions": [
-                "dbaeumer.vscode-eslint",
-              ],
-              "settings": {
-                "eslint.probe": [
-                  "javascript",
-                  "javascriptreact",
-                  "json",
-                  "jsonc",
-                  "markdown",
-                  "typescript",
-                  "typescriptreact",
-                  "yaml",
-                ],
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "dependencies": [
-                "@types/eslint",
-                "@typescript-eslint/eslint-plugin",
-                "@typescript-eslint/parser",
-                "eslint-plugin-deprecation",
-                "eslint-plugin-eslint-comments",
-                "eslint-plugin-no-only-tests",
-                "yaml-eslint-parser",
-              ],
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "files": [
-                ".eslintrc*",
-                ".eslintignore",
-                "eslint.config.{cjs,js}",
-              ],
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "workflows": [
-                "eslint",
-                "lint",
-              ],
-            },
-            "block": [Function],
-          },
-        ],
-        "files": {
-          "eslint.config.mts": "import eslint from "@eslint/js";
-      import perfectionist from "eslint-plugin-perfectionist";
-      import { defineConfig, globalIgnores } from "eslint/config";
-      import tseslint from "typescript-eslint";
-
-      export default defineConfig(
-      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
-      	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -582,7 +431,7 @@ describe(blockESLint, () => {
       export default defineConfig(
       	globalIgnores( ["generated", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
       	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -740,7 +589,7 @@ describe(blockESLint, () => {
       "a":"error","c":"error","d":"error","f":"error",
 
       // Standalone comment
-      "b":"error","e":"error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      "b":"error","e":"error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -887,7 +736,7 @@ describe(blockESLint, () => {
       // Three lines
       // three lines
       // three lines
-      "a":"error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      "a":"error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -1030,7 +879,7 @@ describe(blockESLint, () => {
       export default defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
       	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [
@@ -1172,241 +1021,7 @@ describe(blockESLint, () => {
       export default defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
       	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
-      );",
-        },
-        "scripts": [
-          {
-            "commands": [
-              "pnpm lint --fix",
-            ],
-            "phase": 3,
-          },
-        ],
-      }
-    `);
-  });
-
-  test("with options.type set to commonjs", () => {
-    const creation = testBlock(blockESLint, {
-      options: {
-        ...optionsBase,
-        type: "commonjs",
-      },
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-      {
-        "addons": [
-          {
-            "addons": {
-              "sections": {
-                "Linting": {
-                  "contents": {
-                    "after": [
-                      "
-      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
-
-      \`\`\`shell
-      pnpm run lint --fix
-      \`\`\`
-      ",
-                    ],
-                    "before": "
-      This package includes several forms of linting to enforce consistent code quality and styling.
-      Each should be shown in VS Code, and can be run manually on the command-line:
-      ",
-                    "items": [
-                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
-                    ],
-                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
-                  },
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "jobs": [
-                {
-                  "name": "Lint",
-                  "steps": [
-                    {
-                      "run": "pnpm lint",
-                    },
-                  ],
-                },
-              ],
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "properties": {
-                "devDependencies": {
-                  "@eslint/js": "1.2.3",
-                  "@types/node": "1.2.3",
-                  "eslint": "1.2.3",
-                  "eslint-plugin-perfectionist": "1.2.3",
-                  "jiti": "1.2.3",
-                  "typescript-eslint": "1.2.3",
-                },
-                "scripts": {
-                  "lint": "eslint . --max-warnings 0",
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "extensions": [
-                "dbaeumer.vscode-eslint",
-              ],
-              "settings": {
-                "eslint.probe": [
-                  "javascript",
-                  "javascriptreact",
-                  "json",
-                  "jsonc",
-                  "markdown",
-                  "typescript",
-                  "typescriptreact",
-                  "yaml",
-                ],
-              },
-            },
-            "block": [Function],
-          },
-        ],
-        "files": {
-          "eslint.config.mts": "import eslint from "@eslint/js";
-      import perfectionist from "eslint-plugin-perfectionist";
-      import { defineConfig, globalIgnores } from "eslint/config";
-      import tseslint from "typescript-eslint";
-
-      export default defineConfig(
-      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
-      	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
-      );",
-        },
-        "scripts": [
-          {
-            "commands": [
-              "pnpm lint --fix",
-            ],
-            "phase": 3,
-          },
-        ],
-      }
-    `);
-  });
-
-  test("with options.type set to module", () => {
-    const creation = testBlock(blockESLint, {
-      options: {
-        ...optionsBase,
-        type: "module",
-      },
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-      {
-        "addons": [
-          {
-            "addons": {
-              "sections": {
-                "Linting": {
-                  "contents": {
-                    "after": [
-                      "
-      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
-
-      \`\`\`shell
-      pnpm run lint --fix
-      \`\`\`
-      ",
-                    ],
-                    "before": "
-      This package includes several forms of linting to enforce consistent code quality and styling.
-      Each should be shown in VS Code, and can be run manually on the command-line:
-      ",
-                    "items": [
-                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
-                    ],
-                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
-                  },
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "jobs": [
-                {
-                  "name": "Lint",
-                  "steps": [
-                    {
-                      "run": "pnpm lint",
-                    },
-                  ],
-                },
-              ],
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "properties": {
-                "devDependencies": {
-                  "@eslint/js": "1.2.3",
-                  "@types/node": "1.2.3",
-                  "eslint": "1.2.3",
-                  "eslint-plugin-perfectionist": "1.2.3",
-                  "jiti": "1.2.3",
-                  "typescript-eslint": "1.2.3",
-                },
-                "scripts": {
-                  "lint": "eslint . --max-warnings 0",
-                },
-              },
-            },
-            "block": [Function],
-          },
-          {
-            "addons": {
-              "extensions": [
-                "dbaeumer.vscode-eslint",
-              ],
-              "settings": {
-                "eslint.probe": [
-                  "javascript",
-                  "javascriptreact",
-                  "json",
-                  "jsonc",
-                  "markdown",
-                  "typescript",
-                  "typescriptreact",
-                  "yaml",
-                ],
-              },
-            },
-            "block": [Function],
-          },
-        ],
-        "files": {
-          "eslint.config.ts": "import eslint from "@eslint/js";
-      import perfectionist from "eslint-plugin-perfectionist";
-      import { defineConfig, globalIgnores } from "eslint/config";
-      import tseslint from "typescript-eslint";
-
-      export default defineConfig(
-      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
-      	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {"plugin-a-key": plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
       );",
         },
         "scripts": [

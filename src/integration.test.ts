@@ -6,6 +6,7 @@ import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
 import { blockBin } from "./blocks/blockBin.js";
+import { JS_TS_FILES } from "./blocks/eslint/globs.js";
 import {
   base,
   BaseOptions,
@@ -86,7 +87,7 @@ If you're interested in learning more, see the 'getting started' docs on:
           ],
           extensions: [
             {
-              files: ["**/*.{js,ts}"],
+              files: JS_TS_FILES,
               rules: [
                 {
                   comment:

@@ -7,7 +7,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { JS_TS_FILES } from "./eslint/globs.js";
 import { zConfigEmoji } from "./eslint/schemas.js";
 import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
@@ -30,7 +30,7 @@ export const blockESLintPlugin = base.createBlock({
   },
   produce({ addons, options }) {
     const { configEmoji } = addons;
-    const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
+    const configFileName = ".eslint-doc-generatorrc.js";
     const pluginName = options.repository
       .replace(/^eslint-plugin-/, "")
       .replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
@@ -69,7 +69,7 @@ pnpm build:docs
           extensions: [
             {
               extends: ['eslintPlugin.configs["flat/recommended"]'],
-              files: [getScriptFileExtension(options)],
+              files: JS_TS_FILES,
             },
           ],
           ignores: [configFileName, "docs/rules/*/*.ts"],
