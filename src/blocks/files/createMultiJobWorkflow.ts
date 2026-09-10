@@ -3,7 +3,7 @@ import type { Workflow } from "./workflow.types.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export function createMultiWorkflowFile({
+export function createMultiJobWorkflow({
   concurrency,
   jobs,
   name,

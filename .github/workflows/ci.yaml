@@ -14,6 +14,7 @@ jobs:
       - uses: $/.github/actions/setup
       - run: pnpm build
       - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -21,12 +22,14 @@ jobs:
       - uses: $/.github/actions/setup
       - run: pnpm build
       - run: node ./dist/index.js
+
   dedupe_check:
     name: Dedupe Check
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm dedupe --check
+
   engines_check:
     name: Engines Check
     runs-on: ubuntu-latest
@@ -36,30 +39,35 @@ jobs:
           cache: false
           install-flags: --prod --ignore-scripts
           strict-engines: true
+
   format_check:
     name: Format Check
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm format --list-different
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm lint
+
   lint_knip:
     name: Lint Knip
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm lint:knip
+
   lint_spelling:
     name: Lint Spelling
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm lint:spelling
+
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -72,6 +80,7 @@ jobs:
         with:
           fail_ci_if_error: true
           use_oidc: true
+
   type_check:
     name: Type Check
     runs-on: ubuntu-latest

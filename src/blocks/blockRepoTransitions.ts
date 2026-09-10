@@ -3,7 +3,7 @@ import { packageData } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
 import { formatYaml } from "./files/formatYaml.js";
 
 export const blockRepoTransitions = base.createBlock({
@@ -117,7 +117,7 @@ export const blockRepoTransitions = base.createBlock({
             },
           },
           workflows: {
-            "repo-transition.yaml": createSoloWorkflowFile({
+            "repo-transition.yaml": createSingleJobWorkflow({
               name: "Transition Repo",
               on: {
                 pull_request: {

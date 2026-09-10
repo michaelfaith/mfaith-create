@@ -68,12 +68,10 @@ describe("blockAllContributors", () => {
             "workflows": {
               "contributors.yaml": "name: Contributors
 
-
       on:
         push:
           branches:
             - main
-
 
       jobs:
         contributors:
@@ -218,12 +216,10 @@ describe("blockAllContributors", () => {
             "workflows": {
               "contributors.yaml": "name: Contributors
 
-
       on:
         push:
           branches:
             - main
-
 
       jobs:
         contributors:
@@ -367,12 +363,10 @@ describe("blockAllContributors", () => {
             "workflows": {
               "contributors.yaml": "name: Contributors
 
-
       on:
         push:
           branches:
             - main
-
 
       jobs:
         contributors:

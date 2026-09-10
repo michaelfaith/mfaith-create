@@ -3,7 +3,7 @@ import type { SingleJobWorkflow } from "./workflow.types.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export function createSoloWorkflowFile({
+export function createSingleJobWorkflow({
   concurrency,
   job,
   name,

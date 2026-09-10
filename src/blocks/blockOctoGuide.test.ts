@@ -12,66 +12,64 @@ describe(blockOctoGuide, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-  {
-    "files": {
-      ".github": {
-        "workflows": {
-          "octoguide.yaml": "name: OctoGuide
+      {
+        "files": {
+          ".github": {
+            "workflows": {
+              "octoguide.yaml": "name: OctoGuide
 
+      on:
+        discussion:
+          types:
+            - created
+            - edited
+        discussion_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issue_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issues:
+          types:
+            - edited
+            - opened
+        pull_request_review_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        pull_request_target:
+          types:
+            - edited
+            - opened
 
-  on:
-    discussion:
-      types:
-        - created
-        - edited
-    discussion_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issue_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issues:
-      types:
-        - edited
-        - opened
-    pull_request_review_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    pull_request_target:
-      types:
-        - edited
-        - opened
-
-
-  jobs:
-    octoguide:
-      if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
-      runs-on: ubuntu-latest
-      permissions:
-        discussions: write
-        issues: write
-        pull-requests: write
-      steps:
-        - uses: JoshuaKGoldberg/octoguide@0.11.1
-          with:
-            config: recommended
-            github-token: \${{ secrets.GITHUB_TOKEN }}
-            rules: |-
-              {
-                "pr-branch-non-default": false
-              }
-  ",
+      jobs:
+        octoguide:
+          if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+          runs-on: ubuntu-latest
+          permissions:
+            discussions: write
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: JoshuaKGoldberg/octoguide@0.11.1
+              with:
+                config: recommended
+                github-token: \${{ secrets.GITHUB_TOKEN }}
+                rules: |-
+                  {
+                    "pr-branch-non-default": false
+                  }
+      ",
+            },
+          },
         },
-      },
-    },
-  }
-`);
+      }
+    `);
   });
 
   test("transition mode without files", () => {
@@ -81,78 +79,76 @@ describe(blockOctoGuide, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-  {
-    "addons": [
       {
-        "addons": {
-          "files": [
-            ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
-            ".github/workflows/compliance.{yaml,yml}",
-            ".github/workflows/octoguide.yml",
-          ],
+        "addons": [
+          {
+            "addons": {
+              "files": [
+                ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
+                ".github/workflows/compliance.{yaml,yml}",
+                ".github/workflows/octoguide.yml",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          ".github": {
+            "workflows": {
+              "octoguide.yaml": "name: OctoGuide
+
+      on:
+        discussion:
+          types:
+            - created
+            - edited
+        discussion_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issue_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issues:
+          types:
+            - edited
+            - opened
+        pull_request_review_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        pull_request_target:
+          types:
+            - edited
+            - opened
+
+      jobs:
+        octoguide:
+          if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+          runs-on: ubuntu-latest
+          permissions:
+            discussions: write
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: JoshuaKGoldberg/octoguide@0.11.1
+              with:
+                config: recommended
+                github-token: \${{ secrets.GITHUB_TOKEN }}
+                rules: |-
+                  {
+                    "pr-branch-non-default": false
+                  }
+      ",
+            },
+          },
         },
-        "block": [Function],
-      },
-    ],
-    "files": {
-      ".github": {
-        "workflows": {
-          "octoguide.yaml": "name: OctoGuide
-
-
-  on:
-    discussion:
-      types:
-        - created
-        - edited
-    discussion_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issue_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issues:
-      types:
-        - edited
-        - opened
-    pull_request_review_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    pull_request_target:
-      types:
-        - edited
-        - opened
-
-
-  jobs:
-    octoguide:
-      if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
-      runs-on: ubuntu-latest
-      permissions:
-        discussions: write
-        issues: write
-        pull-requests: write
-      steps:
-        - uses: JoshuaKGoldberg/octoguide@0.11.1
-          with:
-            config: recommended
-            github-token: \${{ secrets.GITHUB_TOKEN }}
-            rules: |-
-              {
-                "pr-branch-non-default": false
-              }
-  ",
-        },
-      },
-    },
-  }
-`);
+      }
+    `);
   });
 
   test("with addons", () => {
@@ -164,66 +160,64 @@ describe(blockOctoGuide, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-  {
-    "files": {
-      ".github": {
-        "workflows": {
-          "octoguide.yaml": "name: OctoGuide
+      {
+        "files": {
+          ".github": {
+            "workflows": {
+              "octoguide.yaml": "name: OctoGuide
 
+      on:
+        discussion:
+          types:
+            - created
+            - edited
+        discussion_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issue_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        issues:
+          types:
+            - edited
+            - opened
+        pull_request_review_comment:
+          types:
+            - created
+            - deleted
+            - edited
+        pull_request_target:
+          types:
+            - edited
+            - opened
 
-  on:
-    discussion:
-      types:
-        - created
-        - edited
-    discussion_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issue_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    issues:
-      types:
-        - edited
-        - opened
-    pull_request_review_comment:
-      types:
-        - created
-        - deleted
-        - edited
-    pull_request_target:
-      types:
-        - edited
-        - opened
-
-
-  jobs:
-    octoguide:
-      if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
-      runs-on: ubuntu-latest
-      permissions:
-        discussions: write
-        issues: write
-        pull-requests: write
-      steps:
-        - uses: JoshuaKGoldberg/octoguide@0.11.1
-          with:
-            config: strict
-            github-token: \${{ secrets.GITHUB_TOKEN }}
-            rules: |-
-              {
-                "pr-branch-non-default": false
-              }
-  ",
+      jobs:
+        octoguide:
+          if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
+          runs-on: ubuntu-latest
+          permissions:
+            discussions: write
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: JoshuaKGoldberg/octoguide@0.11.1
+              with:
+                config: strict
+                github-token: \${{ secrets.GITHUB_TOKEN }}
+                rules: |-
+                  {
+                    "pr-branch-non-default": false
+                  }
+      ",
+            },
+          },
         },
-      },
-    },
-  }
-`);
+      }
+    `);
   });
 
   describe("intake", () => {

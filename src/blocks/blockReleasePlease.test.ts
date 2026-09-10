@@ -72,16 +72,13 @@ describe(blockReleasePlease, () => {
             "workflows": {
               "release.yaml": "name: Release
 
-
       on:
         push:
           branches:
             - main
 
-
       concurrency:
         group: \${{ github.workflow }}
-
 
       jobs:
         release_please:
@@ -106,6 +103,7 @@ describe(blockReleasePlease, () => {
                 manifest-file: .github/release-please/release-please-manifest.\${{ github.ref_name }}.json
                 target-branch: \${{ github.ref_name }}
                 token: \${{ steps.create_token.outputs.token }}
+
         publish:
           name: Publish Package
           if: \${{ needs.release_please.outputs.releases_created == 'true' }}
@@ -141,6 +139,7 @@ describe(blockReleasePlease, () => {
               run: |-
                 echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
                 pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}
+
         post_release:
           name: Post Release Comments
           needs: publish
@@ -261,16 +260,13 @@ describe(blockReleasePlease, () => {
             "workflows": {
               "release.yaml": "name: Release
 
-
       on:
         push:
           branches:
             - main
 
-
       concurrency:
         group: \${{ github.workflow }}
-
 
       jobs:
         release_please:
@@ -295,6 +291,7 @@ describe(blockReleasePlease, () => {
                 manifest-file: .github/release-please/release-please-manifest.\${{ github.ref_name }}.json
                 target-branch: \${{ github.ref_name }}
                 token: \${{ steps.create_token.outputs.token }}
+
         publish:
           name: Publish Package
           if: \${{ needs.release_please.outputs.releases_created == 'true' }}
@@ -336,6 +333,7 @@ describe(blockReleasePlease, () => {
               run: |-
                 echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
                 pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}
+
         post_release:
           name: Post Release Comments
           needs: publish
