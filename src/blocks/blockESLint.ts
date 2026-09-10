@@ -13,7 +13,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { JS_TS_FILES } from "./eslint/globs.js";
 import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
 import {
   Extension,
@@ -49,11 +49,8 @@ export const blockESLint = base.createBlock({
 
     return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
   },
-  produce({ addons, options }) {
+  produce({ addons }) {
     const { explanations, extensions, ignores, imports } = addons;
-
-    const configFileName =
-      options.type === "commonjs" ? "eslint.config.mts" : "eslint.config.ts";
 
     const explanation =
       explanations.length > 0
@@ -90,7 +87,7 @@ export const blockESLint = base.createBlock({
           "tseslint.configs.strictTypeChecked",
           "tseslint.configs.stylisticTypeChecked",
         ],
-        files: [getScriptFileExtension(options)],
+        files: JS_TS_FILES,
         languageOptions: {
           parserOptions: {
             projectService: {
@@ -112,14 +109,6 @@ export const blockESLint = base.createBlock({
         },
       },
       ...extensions,
-      ...(options.type === "commonjs"
-        ? [
-            {
-              files: ["*.mjs"],
-              languageOptions: { sourceType: "module" },
-            },
-          ]
-        : []),
     );
 
     const coreConfigLines = extensionEntries
@@ -220,7 +209,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
         }),
       ],
       files: {
-        [configFileName]: `${explanation}${importLines.join("\n")}
+        "eslint.config.ts": `${explanation}${importLines.join("\n")}
 
 export default defineConfig(
 	globalIgnores( [${ignoreLines.join(", ")}], "Global Ignores" ),
@@ -236,7 +225,7 @@ export default defineConfig(
       ],
     };
   },
-  transition({ options }) {
+  transition() {
     return {
       addons: [
         blockRemoveDependencies({
@@ -251,13 +240,7 @@ export default defineConfig(
           ],
         }),
         blockRemoveFiles({
-          files: [
-            ".eslintrc*",
-            ".eslintignore",
-            options.type === "commonjs"
-              ? "eslint.config.{cjs,js}"
-              : "eslint.config.{cjs,mjs}",
-          ],
+          files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,js,mjs}"],
         }),
         blockRemoveWorkflows({
           workflows: ["eslint", "lint"],

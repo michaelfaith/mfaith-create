@@ -149,10 +149,6 @@ export const base = createBase({
       .optional()
       .describe("GitHub branch ruleset ID for main branch protections"),
     title: z.string().describe("'Title Case' title for the repository"),
-    type: z
-      .union([z.literal("commonjs"), z.literal("module")])
-      .optional()
-      .describe("package.json modules type"),
     version: z
       .string()
       .optional()
@@ -313,8 +309,6 @@ export const base = createBase({
       async () => await readTitle(getReadme, getRepository),
     );
 
-    const getType = lazyValue(async () => (await getPackageData()).type);
-
     const getVersion = lazyValue(async () => (await getPackageData()).version);
 
     const getWords = lazyValue(async () => await readWords(take));
@@ -344,7 +338,6 @@ export const base = createBase({
       repository: getRepository,
       rulesetId: getRulesetId,
       title: getTitle,
-      type: getType,
       version: getVersion,
       words: getWords,
       workflowsVersions: getWorkflowVersions,

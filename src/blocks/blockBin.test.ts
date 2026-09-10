@@ -16,7 +16,8 @@ describe(blockBin, () => {
               "extensions": [
                 {
                   "files": [
-                    "**/*.{js,ts}",
+                    "**/*.js",
+                    "**/*.ts",
                   ],
                   "rules": [
                     {
@@ -73,7 +74,8 @@ describe(blockBin, () => {
               "extensions": [
                 {
                   "files": [
-                    "**/*.{js,ts}",
+                    "**/*.js",
+                    "**/*.ts",
                   ],
                   "rules": [
                     {
@@ -133,7 +135,8 @@ describe(blockBin, () => {
               "extensions": [
                 {
                   "files": [
-                    "**/*.{js,ts}",
+                    "**/*.js",
+                    "**/*.ts",
                   ],
                   "rules": [
                     {

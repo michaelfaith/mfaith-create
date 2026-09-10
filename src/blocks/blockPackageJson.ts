@@ -79,7 +79,7 @@ export const blockPackageJson = base.createBlock({
                 ...options.packageData?.scripts,
                 ...addons.properties.scripts,
               },
-              type: options.type ?? "module",
+              type: "module",
               version: options.version ?? "0.0.0",
             }),
           ),

@@ -1,19 +1,19 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { JS_TS_FILES } from "./eslint/globs.js";
 
 export const blockESLintRegexp = base.createBlock({
   about: {
     name: "ESLint Regexp Plugin",
   },
-  produce({ options }) {
+  produce() {
     return {
       addons: [
         blockESLint({
           extensions: [
             {
               extends: [`regexp.configs["flat/recommended"]`],
-              files: [getScriptFileExtension(options)],
+              files: JS_TS_FILES,
             },
           ],
           imports: [
