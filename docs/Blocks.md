@@ -214,7 +214,7 @@ It will automatically post friendly comments when contributors take actions you 
 
 ### Releases
 
-[**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
+[**Release Please**](https://github.com/googleapis/release-please): Generates changelogs, bumps the package version, creates GitHub release, and publishes to npm based on [conventional commits](https://www.conventionalcommits.org).
 
 ### Renovate
 
