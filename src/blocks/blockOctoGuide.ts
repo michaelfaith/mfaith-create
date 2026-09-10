@@ -4,7 +4,7 @@ import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { intakeFileYamlSteps } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
 
 export const blockOctoGuide = base.createBlock({
   about: {
@@ -42,7 +42,7 @@ export const blockOctoGuide = base.createBlock({
       files: {
         ".github": {
           workflows: {
-            "octoguide.yaml": createSoloWorkflowFile({
+            "octoguide.yaml": createSingleJobWorkflow({
               name: "OctoGuide",
               on: {
                 discussion: {

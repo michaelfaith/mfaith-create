@@ -6,8 +6,8 @@ import { resolveUses } from "./actions/resolveUses.js";
 import { zActionStep } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.js";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
 import { formatYaml } from "./files/formatYaml.js";
 import { zWorkflowPermissions } from "./files/workflow.types.js";
 
@@ -154,7 +154,7 @@ export const blockGitHubActionsCI = base.createBlock({
           workflows: {
             "ci.yaml":
               jobsWithEnginesCheck &&
-              createMultiWorkflowFile({
+              createMultiJobWorkflow({
                 name: "CI",
                 on: {
                   pull_request: null,
@@ -164,7 +164,7 @@ export const blockGitHubActionsCI = base.createBlock({
                 },
                 jobs: jobsWithEnginesCheck,
               }),
-            "pr-review-requested.yaml": createSoloWorkflowFile({
+            "pr-review-requested.yaml": createSingleJobWorkflow({
               name: "PR Review Requested",
               on: {
                 pull_request_target: {

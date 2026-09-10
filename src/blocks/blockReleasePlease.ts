@@ -8,7 +8,7 @@ import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { blockRepositoryVariables } from "./blockRepositoryVariables.js";
-import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
+import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 const isScopedPackage = (packageName: string | undefined): boolean =>
@@ -84,7 +84,7 @@ export const blockReleasePlease = base.createBlock({
       files: {
         ".github": {
           workflows: {
-            "release.yaml": createMultiWorkflowFile({
+            "release.yaml": createMultiJobWorkflow({
               name: "Release",
               on: {
                 push: {

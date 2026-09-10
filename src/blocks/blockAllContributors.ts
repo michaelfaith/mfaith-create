@@ -8,7 +8,7 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockAllContributors = base.createBlock({
@@ -79,7 +79,7 @@ export const blockAllContributors = base.createBlock({
         ),
         ".github": {
           workflows: {
-            "contributors.yaml": createSoloWorkflowFile({
+            "contributors.yaml": createSingleJobWorkflow({
               name: "Contributors",
               on: {
                 push: {
