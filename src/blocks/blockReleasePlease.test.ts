@@ -14,6 +14,14 @@ describe(blockReleasePlease, () => {
         "addons": [
           {
             "addons": {
+              "words": [
+                "RELEASEBOT",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "ignores": [
                 "/CHANGELOG.md",
               ],
@@ -193,6 +201,14 @@ describe(blockReleasePlease, () => {
     expect(creation).toMatchInlineSnapshot(`
       {
         "addons": [
+          {
+            "addons": {
+              "words": [
+                "RELEASEBOT",
+              ],
+            },
+            "block": [Function],
+          },
           {
             "addons": {
               "ignores": [

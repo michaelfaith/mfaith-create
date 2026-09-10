@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
@@ -60,6 +61,7 @@ export const blockReleasePlease = base.createBlock({
 
     return {
       addons: [
+        blockCSpell({ words: ["RELEASEBOT"] }),
         blockPrettier({ ignores: ["/CHANGELOG.md"] }),
         blockREADME({
           badges: [
