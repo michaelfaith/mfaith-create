@@ -3,10 +3,8 @@ import type { KnipConfig } from "knip";
 export default {
   entry: ["src/**/*.test.*"],
   ignoreDependencies: [
-    "@release-it/conventional-changelog",
     "all-contributors-cli",
     "cspell-populate-words",
-    "release-it",
     "remove-dependencies",
     "trash-cli",
   ],

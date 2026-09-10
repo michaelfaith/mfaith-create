@@ -43,27 +43,27 @@ describe(blockREADME, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "README.md": "<h1 align="center">Test Title</h1>
+      {
+        "files": {
+          "README.md": "<h1 align="center">Test Title</h1>
 
-			<p align="center">
-				First sentence.
-				Second sentence.
-			</p>
+      <p align="center">
+        First sentence.
+        Second sentence.
+      </p>
 
-			## Usage
+      ## Usage
 
-			Test usage.
+      Test usage.
 
-			## Development
+      ## Development
 
-			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
+      See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
-			",
-			  },
-			}
-		`);
+      ",
+        },
+      }
+    `);
   });
 
   test("options.documentation", () => {
@@ -342,33 +342,33 @@ describe(blockREADME, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "README.md": "<h1 align="center">Test Title</h1>
+      {
+        "files": {
+          "README.md": "<h1 align="center">Test Title</h1>
 
-			<p align="center">Test description</p>
+      <p align="center">Test description</p>
 
-			<p align="center">
-				<img alt="Badge A" src="https://img.shields.io/badge/my_badge-000000" />
-				<a href="https://create.bingo" target="_blank"><img alt="Badge With Link" src="https://img.shields.io/badge/my_badge-000000" /></a>
-				<img alt="Badge Z" src="https://img.shields.io/badge/my_badge-000000" />
-			</p>
+      <p align="center">
+        <img alt="Badge A" src="https://img.shields.io/badge/my_badge-000000" />
+        <a href="https://create.bingo" target="_blank"><img alt="Badge With Link" src="https://img.shields.io/badge/my_badge-000000" /></a>
+        <img alt="Badge Z" src="https://img.shields.io/badge/my_badge-000000" />
+      </p>
 
-			## Usage
+      ## Usage
 
-			Test usage.
+      Test usage.
 
-			## Development
+      ## Development
 
-			See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
+      See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.github/DEVELOPMENT.md).
 
-			## Other
+      ## Other
 
-			Hello!
+      Hello!
 
-			> Hello, world! ✨",
-			  },
-			}
-		`);
+      > Hello, world! ✨",
+        },
+      }
+    `);
   });
 });

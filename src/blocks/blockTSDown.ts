@@ -9,7 +9,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
-import { blockReleaseIt } from "./blockReleaseIt.js";
+import { blockReleasePlease } from "./blockReleasePlease.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
@@ -103,7 +103,7 @@ pnpm build --watch
         blockPrettier({
           ignores: ["/dist"],
         }),
-        blockReleaseIt({
+        blockReleasePlease({
           builders: [
             {
               order: 0,

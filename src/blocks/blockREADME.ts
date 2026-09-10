@@ -85,7 +85,7 @@ function formatBadge(badge: Badge) {
     ? `${badge.comments.before}${tagged}${badge.comments.after}`
     : tagged;
 
-  return `\t${commented}`;
+  return `  ${commented}`;
 }
 
 function formatBadges(badges: Badge[]) {
@@ -97,7 +97,7 @@ function formatDescription(description: string) {
     return description;
   }
 
-  return "\n\t" + description.replaceAll(". ", ".\n\t") + "\n";
+  return "\n  " + description.replaceAll(". ", ".\n  ") + "\n";
 }
 
 function removeEmojis(text: string) {
