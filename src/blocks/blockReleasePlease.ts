@@ -49,6 +49,8 @@ export const blockReleasePlease = base.createBlock({
   produce({ addons, options }) {
     const { builders, currentVersion } = addons;
 
+    const version = currentVersion ?? options.version ?? "0.0.0";
+
     return {
       addons: [
         blockCSpell({ words: ["RELEASEBOT"] }),
@@ -254,9 +256,13 @@ Cheers! 📦🚀`,
                 ".": {},
               },
             }),
-            "release-please-manifest.main.json": JSON.stringify({
-              ".": currentVersion ?? options.version,
-            }),
+            "release-please-manifest.main.json": JSON.stringify(
+              {
+                ".": version,
+              },
+              null,
+              2,
+            ),
           },
         },
       },
