@@ -60,7 +60,7 @@ pnpm tsc --watch
         }),
         blockExampleFiles({
           files: {
-            "greet.ts": `import { GreetOptions } from "./types.js";
+            "greet.ts": `import type { GreetOptions } from "./types.js";
 
 	export function greet(options: GreetOptions | string) {
 		const {
@@ -74,8 +74,8 @@ pnpm tsc --watch
 		}
 	}
 	`,
-            "index.ts": `export * from "./greet.js";
-export * from "./types.js";
+            "index.ts": `export { greet } from "./greet.js";
+export type { GreetOptions } from "./types.js";
 `,
             "types.ts": `export interface GreetOptions {
 		logger?: (message: string) => void;
