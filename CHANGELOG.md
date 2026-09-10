@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.2.0](https://github.com/michaelfaith/mfaith-create/compare/v0.1.3...v0.2.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove support for `commonjs` packages ([#145](https://github.com/michaelfaith/mfaith-create/issues/145))
+* replace Release It block with Release Please ([#140](https://github.com/michaelfaith/mfaith-create/issues/140))
+* replace `bin` option with full `blockBin` ([#138](https://github.com/michaelfaith/mfaith-create/issues/138))
+
+### 🚀 Features
+
+* remove support for `commonjs` packages ([#145](https://github.com/michaelfaith/mfaith-create/issues/145)) ([da96a4a](https://github.com/michaelfaith/mfaith-create/commit/da96a4a81a9c5853e960be5beca9b64e179f8f2c))
+* replace `bin` option with full `blockBin` ([#138](https://github.com/michaelfaith/mfaith-create/issues/138)) ([c74e35d](https://github.com/michaelfaith/mfaith-create/commit/c74e35d73dfc9a91817600ab3567356895878c10))
+* replace Release It block with Release Please ([#140](https://github.com/michaelfaith/mfaith-create/issues/140)) ([4fb9c46](https://github.com/michaelfaith/mfaith-create/commit/4fb9c465ab0a6875a8166074eeedfb45bc35f031))
+
+
+### 🩹 Bug Fixes
+
+* add empty line between jobs of multi-job workflows ([#143](https://github.com/michaelfaith/mfaith-create/issues/143)) ([5fbe579](https://github.com/michaelfaith/mfaith-create/commit/5fbe579c728007692d526b7b9c390a4110dae04f))
+* convert `bin/index.js` to TypeScript ([#136](https://github.com/michaelfaith/mfaith-create/issues/136)) ([eccf080](https://github.com/michaelfaith/mfaith-create/commit/eccf08068b8d329be04afdd4c532f61dd3bf09da))
+* improve formatting for release please manifest ([#146](https://github.com/michaelfaith/mfaith-create/issues/146)) ([cc05777](https://github.com/michaelfaith/mfaith-create/commit/cc0577714b76e326dd8af89cf0ff72e00476f8b5))
+* use tsdown's default `outDir` ([#134](https://github.com/michaelfaith/mfaith-create/issues/134)) ([354d661](https://github.com/michaelfaith/mfaith-create/commit/354d661af1e18bb5286af22d1d22b13aa42e1f7e))
+
 ## [0.1.3](https://github.com/michaelfaith/mfaith-create/compare/v0.1.2...v0.1.3) (2026-09-08)
 
 
