@@ -45,7 +45,7 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import { GreetOptions } from "./types.js";
+                "greet.ts": "import type { GreetOptions } from "./types.js";
 
       	export function greet(options: GreetOptions | string) {
       		const {
@@ -59,8 +59,8 @@ describe(blockTypeScript, () => {
       		}
       	}
       	",
-                "index.ts": "export * from "./greet.js";
-      export * from "./types.js";
+                "index.ts": "export { greet } from './greet.js';
+      export type { GreetOptions } from './types.js';
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -197,7 +197,7 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import { GreetOptions } from "./types.js";
+                "greet.ts": "import type { GreetOptions } from "./types.js";
 
       	export function greet(options: GreetOptions | string) {
       		const {
@@ -211,8 +211,8 @@ describe(blockTypeScript, () => {
       		}
       	}
       	",
-                "index.ts": "export * from "./greet.js";
-      export * from "./types.js";
+                "index.ts": "export { greet } from './greet.js';
+      export type { GreetOptions } from './types.js';
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -316,153 +316,153 @@ describe(blockTypeScript, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Type Checking": {
-			            "contents": "
-			You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Type Checking": {
+                  "contents": "
+      You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
 
-			However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
+      However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
 
-			\`\`\`shell
-			pnpm tsc
-			\`\`\`
+      \`\`\`shell
+      pnpm tsc
+      \`\`\`
 
-			Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
+      Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
 
-			\`\`\`shell
-			pnpm tsc --watch
-			\`\`\`
-			",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": {
-			          "greet.ts": "import { GreetOptions } from "./types.js";
+      \`\`\`shell
+      pnpm tsc --watch
+      \`\`\`
+      ",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": {
+                "greet.ts": "import type { GreetOptions } from "./types.js";
 
-				export function greet(options: GreetOptions | string) {
-					const {
-						logger = console.log.bind(console),
-						message,
-						times = 1,
-					} = typeof options === "string" ? { message: options } : options;
+      	export function greet(options: GreetOptions | string) {
+      		const {
+      			logger = console.log.bind(console),
+      			message,
+      			times = 1,
+      		} = typeof options === "string" ? { message: options } : options;
 
-					for (let i = 0; i < times; i += 1) {
-						logger(message);
-					}
-				}
-				",
-			          "index.ts": "export * from "./greet.js";
-			export * from "./types.js";
-			",
-			          "types.ts": "export interface GreetOptions {
-					logger?: (message: string) => void;
-					message: string;
-					times?: number;
-				}
-				",
-			        },
-			        "usage": [
-			          "\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
+      		for (let i = 0; i < times; i += 1) {
+      			logger(message);
+      		}
+      	}
+      	",
+                "index.ts": "export { greet } from './greet.js';
+      export type { GreetOptions } from './types.js';
+      ",
+                "types.ts": "export interface GreetOptions {
+      		logger?: (message: string) => void;
+      		message: string;
+      		times?: number;
+      	}
+      	",
+              },
+              "usage": [
+                "\`\`\`shell
+      npm i test-repository
+      \`\`\`
+      \`\`\`ts
+      import { greet } from "test-repository";
 
-			greet("Hello, world! ✨");
-			\`\`\`",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "tsconfig.tsbuildinfo",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Type Check",
-			            "steps": [
-			              {
-			                "run": "pnpm tsc",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "project": [
-			          "src/**/*.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "typescript": "1.2.3",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "coverage": {
-			          "include": [
-			            "src",
-			          ],
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "settings": {
-			          "js/ts.tsdk.path": "node_modules/typescript/lib",
-			        },
-			        "tasks": [
-			          {
-			            "detail": "Build the project",
-			            "label": "build",
-			            "script": "build",
-			            "type": "npm",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "workflows": [
-			          "tsc",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
-			  },
-			}
-		`);
+      greet("Hello, world! ✨");
+      \`\`\`",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "tsconfig.tsbuildinfo",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Type Check",
+                  "steps": [
+                    {
+                      "run": "pnpm tsc",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "project": [
+                "src/**/*.ts",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "typescript": "1.2.3",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "coverage": {
+                "include": [
+                  "src",
+                ],
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "settings": {
+                "js/ts.tsdk.path": "node_modules/typescript/lib",
+              },
+              "tasks": [
+                {
+                  "detail": "Build the project",
+                  "label": "build",
+                  "script": "build",
+                  "type": "npm",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "workflows": [
+                "tsc",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
+        },
+      }
+    `);
   });
 
   describe("intake", () => {
