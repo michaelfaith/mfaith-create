@@ -16,111 +16,134 @@ describe(blockPrettier, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "prettier.config.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Formatting": {
-			            "contents": "
-			[Prettier](https://prettier.io) is used to format code.
-			It should be applied automatically when you save files in VS Code or make a Git commit.
+      {
+        "addons": [
+          {
+            "addons": {
+              "ignorePaths": [
+                "prettier.config.ts",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Formatting": {
+                  "contents": "
+      [Prettier](https://prettier.io) is used to format code.
+      It should be applied automatically when you save files in VS Code or make a Git commit.
 
-			To manually reformat all files, you can run:
+      To manually reformat all files, you can run:
 
-			\`\`\`shell
-			pnpm format --write
-			\`\`\`
-			",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Format Check",
-			            "steps": [
-			              {
-			                "run": "pnpm format --list-different",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "husky": "1.2.3",
-			            "lint-staged": "1.2.3",
-			            "prettier": "1.2.3",
-			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
-			          },
-			          "scripts": {
-			            "format": "prettier .",
-			            "prepare": "husky",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "esbenp.prettier-vscode",
-			        ],
-			        "settings": {
-			          "editor.defaultFormatter": "esbenp.prettier-vscode",
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".husky": {
-			      ".gitignore": "_
-			",
-			      "pre-commit": [
-			        "npx lint-staged
-			",
-			        {
-			          "executable": true,
-			        },
-			      ],
-			    },
-			    ".prettierignore": "/.husky
-			/pnpm-lock.yaml
-			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+      \`\`\`shell
+      pnpm format --write
+      \`\`\`
+      ",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "languageOptions": {
+                    "parserOptions": {
+                      "projectService": {
+                        "allowDefaultProject": [
+                          ".simple-git-hooks.js",
+                        ],
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Format Check",
+                  "steps": [
+                    {
+                      "run": "pnpm format --list-different",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "prettier": "1.2.3",
+                  "pretty-quick": "1.2.3",
+                  "simple-git-hooks": "1.2.3",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "config": {
+                "allowBuilds": {
+                  "simple-git-hooks": true,
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                "esbenp.prettier-vscode",
+              ],
+              "settings": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+              },
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          ".prettierignore": "/.husky
+      /pnpm-lock.yaml
+      ",
+          ".simple-git-hooks.js": "export default {
+        "pre-commit": "pnpm pretty-quick --staged",
+      };",
+          "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {} satisfies Config;
-			",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm format --write",
-			      ],
-			      "phase": 4,
-			    },
-			  ],
-			}
-		`);
+      export default {} satisfies Config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm simple-git-hooks",
+            ],
+            "phase": 2,
+          },
+          {
+            "commands": [
+              "pnpm format --write",
+            ],
+            "phase": 4,
+          },
+        ],
+      }
+    `);
   });
 
   test("transition mode", () => {
@@ -130,139 +153,162 @@ describe(blockPrettier, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "prettier.config.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Formatting": {
-			            "contents": "
-			[Prettier](https://prettier.io) is used to format code.
-			It should be applied automatically when you save files in VS Code or make a Git commit.
+      {
+        "addons": [
+          {
+            "addons": {
+              "ignorePaths": [
+                "prettier.config.ts",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Formatting": {
+                  "contents": "
+      [Prettier](https://prettier.io) is used to format code.
+      It should be applied automatically when you save files in VS Code or make a Git commit.
 
-			To manually reformat all files, you can run:
+      To manually reformat all files, you can run:
 
-			\`\`\`shell
-			pnpm format --write
-			\`\`\`
-			",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Format Check",
-			            "steps": [
-			              {
-			                "run": "pnpm format --list-different",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "husky": "1.2.3",
-			            "lint-staged": "1.2.3",
-			            "prettier": "1.2.3",
-			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
-			          },
-			          "scripts": {
-			            "format": "prettier .",
-			            "prepare": "husky",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "esbenp.prettier-vscode",
-			        ],
-			        "settings": {
-			          "editor.defaultFormatter": "esbenp.prettier-vscode",
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "dependencies": [
-			          "eslint-config-prettier",
-			          "eslint-plugin-prettier",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": [
-			          ".prettierrc",
-			          ".prettierrc.{c*,js,m*,t*}",
-			          "prettier.config*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "workflows": [
-			          "format",
-			          "prettier",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".husky": {
-			      ".gitignore": "_
-			",
-			      "pre-commit": [
-			        "npx lint-staged
-			",
-			        {
-			          "executable": true,
-			        },
-			      ],
-			    },
-			    ".prettierignore": "/.husky
-			/pnpm-lock.yaml
-			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+      \`\`\`shell
+      pnpm format --write
+      \`\`\`
+      ",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "languageOptions": {
+                    "parserOptions": {
+                      "projectService": {
+                        "allowDefaultProject": [
+                          ".simple-git-hooks.js",
+                        ],
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Format Check",
+                  "steps": [
+                    {
+                      "run": "pnpm format --list-different",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "prettier": "1.2.3",
+                  "pretty-quick": "1.2.3",
+                  "simple-git-hooks": "1.2.3",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "config": {
+                "allowBuilds": {
+                  "simple-git-hooks": true,
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                "esbenp.prettier-vscode",
+              ],
+              "settings": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "dependencies": [
+                "eslint-config-prettier",
+                "eslint-plugin-prettier",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": [
+                ".prettierrc",
+                ".prettierrc.{c*,js,m*,t*}",
+                "prettier.config*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "workflows": [
+                "format",
+                "prettier",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          ".prettierignore": "/.husky
+      /pnpm-lock.yaml
+      ",
+          ".simple-git-hooks.js": "export default {
+        "pre-commit": "pnpm pretty-quick --staged",
+      };",
+          "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {} satisfies Config;
-			",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm format --write",
-			      ],
-			      "phase": 4,
-			    },
-			  ],
-			}
-		`);
+      export default {} satisfies Config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm simple-git-hooks",
+            ],
+            "phase": 2,
+          },
+          {
+            "commands": [
+              "pnpm format --write",
+            ],
+            "phase": 4,
+          },
+        ],
+      }
+    `);
   });
 
   test("with addons", () => {
@@ -282,118 +328,141 @@ describe(blockPrettier, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "prettier.config.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Formatting": {
-			            "contents": "
-			[Prettier](https://prettier.io) is used to format code.
-			It should be applied automatically when you save files in VS Code or make a Git commit.
+      {
+        "addons": [
+          {
+            "addons": {
+              "ignorePaths": [
+                "prettier.config.ts",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Formatting": {
+                  "contents": "
+      [Prettier](https://prettier.io) is used to format code.
+      It should be applied automatically when you save files in VS Code or make a Git commit.
 
-			To manually reformat all files, you can run:
+      To manually reformat all files, you can run:
 
-			\`\`\`shell
-			pnpm format --write
-			\`\`\`
-			",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Format Check",
-			            "steps": [
-			              {
-			                "run": "pnpm build || exit 0",
-			              },
-			              {
-			                "run": "pnpm format --list-different",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "husky": "1.2.3",
-			            "lint-staged": "1.2.3",
-			            "prettier": "1.2.3",
-			            "prettier-plugin-curly": "1.2.3",
-			            "prettier-plugin-packagejson": "1.2.3",
-			            "prettier-plugin-sh": "1.2.3",
-			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
-			          },
-			          "scripts": {
-			            "format": "prettier .",
-			            "prepare": "husky",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "esbenp.prettier-vscode",
-			        ],
-			        "settings": {
-			          "editor.defaultFormatter": "esbenp.prettier-vscode",
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".husky": {
-			      ".gitignore": "_
-			",
-			      "pre-commit": [
-			        "npx lint-staged
-			",
-			        {
-			          "executable": true,
-			        },
-			      ],
-			    },
-			    ".prettierignore": "/.husky
-			/pnpm-lock.yaml
-			generated
-			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+      \`\`\`shell
+      pnpm format --write
+      \`\`\`
+      ",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "languageOptions": {
+                    "parserOptions": {
+                      "projectService": {
+                        "allowDefaultProject": [
+                          ".simple-git-hooks.js",
+                        ],
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Format Check",
+                  "steps": [
+                    {
+                      "run": "pnpm build || exit 0",
+                    },
+                    {
+                      "run": "pnpm format --list-different",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "prettier": "1.2.3",
+                  "prettier-plugin-curly": "1.2.3",
+                  "prettier-plugin-packagejson": "1.2.3",
+                  "prettier-plugin-sh": "1.2.3",
+                  "pretty-quick": "1.2.3",
+                  "simple-git-hooks": "1.2.3",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "config": {
+                "allowBuilds": {
+                  "simple-git-hooks": true,
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                "esbenp.prettier-vscode",
+              ],
+              "settings": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+              },
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          ".prettierignore": "/.husky
+      /pnpm-lock.yaml
+      generated
+      ",
+          ".simple-git-hooks.js": "export default {
+        "pre-commit": "pnpm pretty-quick --staged",
+      };",
+          "prettier.config.ts": "import type { Config } from "prettier";
 
-			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
-			",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm build || exit 0",
-			        "pnpm format --write",
-			      ],
-			      "phase": 4,
-			    },
-			  ],
-			}
-		`);
+      export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm simple-git-hooks",
+            ],
+            "phase": 2,
+          },
+          {
+            "commands": [
+              "pnpm build || exit 0",
+              "pnpm format --write",
+            ],
+            "phase": 4,
+          },
+        ],
+      }
+    `);
   });
 });
