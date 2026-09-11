@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockVitest } from "./blockVitest.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockVitest } from "./blockVitest.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 vi.mock("../utils/resolveBin.js", () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
@@ -101,7 +101,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
         "files": {
           "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-import { greet } from "./greet.js";
+import { greet } from "./greet.ts";
 
 const message = "Yay, testing!";
 
@@ -339,7 +339,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
         "files": {
           "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-import { greet } from "./greet.js";
+import { greet } from "./greet.ts";
 
 const message = "Yay, testing!";
 
@@ -618,7 +618,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
         "files": {
           "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-import { greet } from "./greet.js";
+import { greet } from "./greet.ts";
 
 const message = "Yay, testing!";
 
@@ -868,7 +868,7 @@ export default defineConfig({
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-			import { greet } from "./greet.js";
+			import { greet } from "./greet.ts";
 
 			const message = "Yay, testing!";
 

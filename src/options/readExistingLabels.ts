@@ -3,7 +3,7 @@ import type { OutcomeLabel } from "set-github-repository-labels";
 
 import { githubDefaultLabels } from "github-default-labels";
 
-import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
+import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
 
 export async function readExistingLabels(
   take: TakeInput,

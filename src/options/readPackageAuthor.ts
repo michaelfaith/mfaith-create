@@ -1,6 +1,6 @@
 import parse from "parse-author";
 
-import type { PartialPackageData } from "../types.js";
+import type { PartialPackageData } from "../types.ts";
 
 export interface PackageAuthor {
   email?: string | undefined;

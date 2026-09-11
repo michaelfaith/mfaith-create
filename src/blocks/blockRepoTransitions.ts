@@ -1,10 +1,10 @@
-import { base } from "../base.js";
-import { packageData } from "../data/packageData.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
-import { formatYaml } from "./files/formatYaml.js";
+import { base } from "../base.ts";
+import { packageData } from "../data/packageData.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.ts";
+import { formatYaml } from "./files/formatYaml.ts";
 
 export const blockRepoTransitions = base.createBlock({
   about: {

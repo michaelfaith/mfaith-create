@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockTypeScript } from "./blockTypeScript.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockTypeScript } from "./blockTypeScript.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 vi.mock("../data/packageData.js", () => ({
   getPackageDependencies: (...names: string[]) =>
@@ -62,7 +62,7 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.js";
+                "greet.ts": "import type { GreetOptions } from "./types.ts";
 
       	export function greet(options: GreetOptions | string) {
       		const {
@@ -76,8 +76,8 @@ describe(blockTypeScript, () => {
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.js";
-      export type { GreetOptions } from "./types.js";
+                "index.ts": "export { greet } from "./greet.ts";
+      export type { GreetOptions } from "./types.ts";
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -168,7 +168,7 @@ describe(blockTypeScript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
         },
       }
     `);
@@ -231,7 +231,7 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.js";
+                "greet.ts": "import type { GreetOptions } from "./types.ts";
 
       	export function greet(options: GreetOptions | string) {
       		const {
@@ -245,8 +245,8 @@ describe(blockTypeScript, () => {
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.js";
-      export type { GreetOptions } from "./types.js";
+                "index.ts": "export { greet } from "./greet.ts";
+      export type { GreetOptions } from "./types.ts";
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -337,7 +337,7 @@ describe(blockTypeScript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023","types":["node"]},"include":["src"]}",
         },
       }
     `);
@@ -396,7 +396,7 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.js";
+                "greet.ts": "import type { GreetOptions } from "./types.ts";
 
       	export function greet(options: GreetOptions | string) {
       		const {
@@ -410,8 +410,8 @@ describe(blockTypeScript, () => {
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.js";
-      export type { GreetOptions } from "./types.js";
+                "index.ts": "export { greet } from "./greet.ts";
+      export type { GreetOptions } from "./types.ts";
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -510,7 +510,7 @@ describe(blockTypeScript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2023","types":["node"]},"include":["src"]}",
         },
       }
     `);

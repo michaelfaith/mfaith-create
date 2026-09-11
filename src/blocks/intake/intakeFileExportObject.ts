@@ -2,7 +2,7 @@ import type { IntakeDirectory } from "bingo-fs";
 
 import JSON5 from "json5";
 
-import { intakeFile } from "./intakeFile.js";
+import { intakeFile } from "./intakeFile.ts";
 
 export function intakeFileExportObject(
   files: IntakeDirectory,

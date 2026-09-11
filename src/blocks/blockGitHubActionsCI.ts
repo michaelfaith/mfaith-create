@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { intakeActionInput } from "./actions/inputs.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { zActionStep } from "./actions/steps.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.js";
-import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
-import { formatYaml } from "./files/formatYaml.js";
-import { zWorkflowPermissions } from "./files/workflow.types.js";
+import { base } from "../base.ts";
+import { intakeActionInput } from "./actions/inputs.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { zActionStep } from "./actions/steps.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.ts";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.ts";
+import { formatYaml } from "./files/formatYaml.ts";
+import { zWorkflowPermissions } from "./files/workflow.types.ts";
 
 const zJob = z.object({
   if: z.string().optional(),

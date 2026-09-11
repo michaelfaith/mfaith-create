@@ -1,7 +1,7 @@
 import { determineLabelChanges } from "set-github-repository-labels";
 
-import { base } from "../base.js";
-import { repositoryLabels } from "./repositoryLabels.js";
+import { base } from "../base.ts";
+import { repositoryLabels } from "./repositoryLabels.ts";
 
 export const blockRepositoryLabels = base.createBlock({
   about: {

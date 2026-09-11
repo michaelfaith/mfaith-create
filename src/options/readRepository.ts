@@ -1,6 +1,6 @@
 import type { GitUrl } from "git-url-parse";
 
-import type { PartialPackageData } from "../types.js";
+import type { PartialPackageData } from "../types.ts";
 
 const repositoryRegex =
   /^(?:git\+)?https:\/\/github\.com\/[^/]+\/(.+?)(?:\.git)?$/;

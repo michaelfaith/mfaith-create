@@ -1,20 +1,20 @@
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockGitignore } from "./blockGitignore.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { blockReleasePlease } from "./blockReleasePlease.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVitest } from "./blockVitest.js";
-import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockReleasePlease } from "./blockReleasePlease.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVitest } from "./blockVitest.ts";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());

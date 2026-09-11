@@ -1,6 +1,6 @@
-import { base } from "../base.js";
-import { blockESLint } from "./blockESLint.js";
-import { JS_TS_FILES } from "./eslint/globs.js";
+import { base } from "../base.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { JS_TS_FILES } from "./eslint/globs.ts";
 
 export const blockESLintNode = base.createBlock({
   about: {

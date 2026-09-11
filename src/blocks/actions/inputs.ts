@@ -3,7 +3,7 @@ import type { IntakeDirectory } from "bingo-fs";
 import _ from "lodash";
 import { z } from "zod";
 
-import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.js";
+import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.ts";
 
 export const zActionStep = z.intersection(
   z.object({

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readContact } from "./readContact.js";
+import { readContact } from "./readContact.ts";
 
 describe(readContact, () => {
   it("resolves undefined when no sources provide an email", async () => {
