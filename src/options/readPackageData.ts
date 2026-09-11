@@ -1,7 +1,9 @@
-import { TakeInput } from "bingo";
+import type { TakeInput } from "bingo";
+
 import { inputFromFileJSON } from "input-from-file-json";
 
-import { PartialPackageData } from "../types.js";
+import type { PartialPackageData } from "../types.js";
+
 import { swallowError } from "../utils/swallowError.js";
 
 export async function readPackageData(

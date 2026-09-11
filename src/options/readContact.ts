@@ -1,4 +1,4 @@
-import { PackageAuthor } from "./readPackageAuthor.js";
+import type { PackageAuthor } from "./readPackageAuthor.js";
 
 export async function readContact(
   getContactFromCodeOfConduct: () => Promise<

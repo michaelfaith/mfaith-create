@@ -1,4 +1,5 @@
-import { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from "bingo-fs";
+
 import { z } from "zod";
 
 import { base } from "../base.js";

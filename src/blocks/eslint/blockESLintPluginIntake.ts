@@ -1,7 +1,7 @@
 import {
   AST_NODE_TYPES,
   parse as parseAST,
-  TSESTree,
+  type TSESTree,
 } from "@typescript-eslint/typescript-estree";
 import JSON5 from "json5";
 

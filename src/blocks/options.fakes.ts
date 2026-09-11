@@ -1,4 +1,4 @@
-import { BaseOptions } from "../base.js";
+import type { BaseOptions } from "../base.js";
 
 export const optionsBase = {
   access: "public",

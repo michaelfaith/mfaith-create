@@ -1,4 +1,5 @@
-import { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from "bingo-fs";
+
 import JSON5 from "json5";
 
 import { intakeFile } from "./intakeFile.js";

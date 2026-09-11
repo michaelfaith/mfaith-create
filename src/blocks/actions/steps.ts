@@ -1,4 +1,5 @@
-import { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from "bingo-fs";
+
 import _ from "lodash";
 import { z } from "zod";
 

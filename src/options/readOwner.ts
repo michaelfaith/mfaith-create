@@ -1,8 +1,9 @@
-import { TakeInput } from "bingo";
-import { GitUrl } from "git-url-parse";
+import type { TakeInput } from "bingo";
+import type { GitUrl } from "git-url-parse";
+
 import { inputFromScript } from "input-from-script";
 
-import { PackageAuthor } from "./readPackageAuthor.js";
+import type { PackageAuthor } from "./readPackageAuthor.js";
 
 export async function readOwner(
   take: TakeInput,

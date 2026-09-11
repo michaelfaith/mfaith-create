@@ -1,4 +1,5 @@
-import { TakeInput } from "bingo";
+import type { TakeInput } from "bingo";
+
 import { inputFromScript } from "input-from-script";
 
 export async function readEmailFromGit(take: TakeInput) {

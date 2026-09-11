@@ -44,6 +44,23 @@ describe(blockTypeScript, () => {
           },
           {
             "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": {
+                    "@typescript-eslint/consistent-type-exports": "error",
+                    "@typescript-eslint/consistent-type-imports": "error",
+                  },
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "files": {
                 "greet.ts": "import type { GreetOptions } from "./types.js";
 
@@ -196,6 +213,23 @@ describe(blockTypeScript, () => {
           },
           {
             "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": {
+                    "@typescript-eslint/consistent-type-exports": "error",
+                    "@typescript-eslint/consistent-type-imports": "error",
+                  },
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "files": {
                 "greet.ts": "import type { GreetOptions } from "./types.js";
 
@@ -339,6 +373,23 @@ describe(blockTypeScript, () => {
       ",
                 },
               },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": {
+                    "@typescript-eslint/consistent-type-exports": "error",
+                    "@typescript-eslint/consistent-type-imports": "error",
+                  },
+                },
+              ],
             },
             "block": [Function],
           },

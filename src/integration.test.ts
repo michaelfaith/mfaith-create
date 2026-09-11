@@ -1,6 +1,6 @@
 import prettier from "@prettier/sync";
 import { prepareOptions } from "bingo";
-import { intake, IntakeDirectory } from "bingo-fs";
+import { intake, type IntakeDirectory } from "bingo-fs";
 import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
@@ -9,7 +9,7 @@ import { blockBin } from "./blocks/blockBin.js";
 import { JS_TS_FILES } from "./blocks/eslint/globs.js";
 import {
   base,
-  BaseOptions,
+  type BaseOptions,
   blockAreTheTypesWrong,
   blockCSpell,
   blockESLint,

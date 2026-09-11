@@ -16,9 +16,9 @@ import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
 import { JS_TS_FILES } from "./eslint/globs.js";
 import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
 import {
-  Extension,
-  ExtensionRuleGroup,
-  ExtensionRules,
+  type Extension,
+  type ExtensionRuleGroup,
+  type ExtensionRules,
   zExtension,
   zPackageImport,
   type ExtensionPlugins,

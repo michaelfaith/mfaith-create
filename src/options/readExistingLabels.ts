@@ -1,6 +1,7 @@
-import { TakeInput } from "bingo";
+import type { TakeInput } from "bingo";
+import type { OutcomeLabel } from "set-github-repository-labels";
+
 import { githubDefaultLabels } from "github-default-labels";
-import { OutcomeLabel } from "set-github-repository-labels";
 
 import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
 

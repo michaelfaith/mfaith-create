@@ -1,7 +1,8 @@
 import { marked } from "marked";
 
+import type { PartialPackageData } from "../types.js";
+
 import { packageData } from "../data/packageData.js";
-import { PartialPackageData } from "../types.js";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
 import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
 

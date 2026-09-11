@@ -2,8 +2,9 @@ import { prepareOptions } from "bingo";
 import { readFile } from "node:fs/promises";
 import { describe, expect, test, vi } from "vitest";
 
+import type { AllContributorsData } from "./types.js";
+
 import { base } from "./base.js";
-import { AllContributorsData } from "./types.js";
 
 vi.mock("./options/readEmailFromGit.js", () => ({
   readEmailFromGit: () =>

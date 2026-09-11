@@ -1,4 +1,4 @@
-import { BaseOptionsFor, createBase } from "bingo-stratum";
+import { type BaseOptionsFor, createBase } from "bingo-stratum";
 import { inputFromFile } from "input-from-file";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
