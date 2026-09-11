@@ -4,6 +4,7 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
@@ -12,6 +13,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { JS_TS_FILES } from "./eslint/globs.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 export const blockTypeScript = base.createBlock({
@@ -57,6 +59,17 @@ pnpm tsc --watch
 `,
             },
           },
+        }),
+        blockESLint({
+          extensions: [
+            {
+              files: JS_TS_FILES,
+              rules: {
+                "@typescript-eslint/consistent-type-exports": "error",
+                "@typescript-eslint/consistent-type-imports": "error",
+              },
+            },
+          ],
         }),
         blockExampleFiles({
           files: {

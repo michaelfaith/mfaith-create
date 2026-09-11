@@ -1,4 +1,4 @@
-import { IntakeDirectory, IntakeFileEntry } from "bingo-fs";
+import type { IntakeDirectory, IntakeFileEntry } from "bingo-fs";
 
 export function intakeFile(
   files: IntakeDirectory,

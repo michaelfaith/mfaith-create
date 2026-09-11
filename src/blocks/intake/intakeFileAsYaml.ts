@@ -1,4 +1,5 @@
-import { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from "bingo-fs";
+
 import { load } from "js-yaml";
 
 import { intakeFile } from "./intakeFile.js";

@@ -1,4 +1,5 @@
-import { ExecaError, Result } from "execa";
+import type { ExecaError, Result } from "execa";
+
 import npmUser from "npm-user";
 
 import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";

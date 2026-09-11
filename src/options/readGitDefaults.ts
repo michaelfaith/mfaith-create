@@ -1,4 +1,5 @@
-import { TakeInput } from "bingo";
+import type { TakeInput } from "bingo";
+
 import gitUrlParse from "git-url-parse";
 import { inputFromScript } from "input-from-script";
 

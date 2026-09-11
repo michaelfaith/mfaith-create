@@ -1,8 +1,9 @@
 import _ from "lodash";
 
+import type { Contributor } from "../schemas.js";
+
 import { base } from "../base.js";
 import { startingOwnerContributions } from "../data/contributions.js";
-import { Contributor } from "../schemas.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPrettier } from "./blockPrettier.js";

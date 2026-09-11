@@ -68,6 +68,8 @@ export default defineConfig(
       ],
       "perfectionist/sort-exports": "error",
       "perfectionist/sort-imports": "error",
+      "@typescript-eslint/consistent-type-exports": "error",
+      "@typescript-eslint/consistent-type-imports": "error",
 
       // Stylistic concerns that don't interfere with Prettier
       "logical-assignment-operators": [

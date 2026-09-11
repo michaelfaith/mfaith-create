@@ -1,4 +1,5 @@
-import { TakeInput } from "bingo";
+import type { TakeInput } from "bingo";
+
 import { inputFromFile } from "input-from-file";
 
 export async function readGuide(take: TakeInput) {

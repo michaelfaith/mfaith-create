@@ -1,5 +1,6 @@
+import type { PartialPackageData } from "../types.js";
+
 import { defaults } from "../constants.js";
-import { PartialPackageData } from "../types.js";
 import { swallowError } from "../utils/swallowError.js";
 
 const numberRegex = /\d/u;
