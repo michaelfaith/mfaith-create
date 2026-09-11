@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRepositoryVariables } from "./blockRepositoryVariables.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockRepositoryVariables } from "./blockRepositoryVariables.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRepositoryVariables, () => {
   test("without addons", () => {

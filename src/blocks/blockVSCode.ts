@@ -1,8 +1,8 @@
 import sortKeys from "sort-keys";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { base } from "../base.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 
 export const blockVSCode = base.createBlock({
   about: {

@@ -1,6 +1,6 @@
-import type { PartialPackageData } from "../types.js";
+import type { PartialPackageData } from "../types.ts";
 
-import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.js";
+import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
 
 export async function readBin(
   getPackageData: () => Promise<PartialPackageData>,

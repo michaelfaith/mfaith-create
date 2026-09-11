@@ -5,8 +5,8 @@ import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
-import { blockBin } from "./blocks/blockBin.js";
-import { JS_TS_FILES } from "./blocks/eslint/globs.js";
+import { blockBin } from "./blocks/blockBin.ts";
+import { JS_TS_FILES } from "./blocks/eslint/globs.ts";
 import {
   base,
   type BaseOptions,
@@ -17,7 +17,7 @@ import {
   blockPrettier,
   blockTemplatedWith,
   presets,
-} from "./index.js";
+} from "./index.ts";
 
 vi.mock("./utils/resolveBin.js", () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockREADME } from "./blockREADME.js";
+import { base } from "../base.ts";
+import { blockREADME } from "./blockREADME.ts";
 
 interface DirectoryEntry {
   [i: string]: Entry;

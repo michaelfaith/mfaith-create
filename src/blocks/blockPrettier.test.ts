@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test, vi } from "vitest";
 
-import { blockPrettier } from "./blockPrettier.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockPrettier } from "./blockPrettier.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 vi.mock("../data/packageData.js", () => ({
   getPackageDependencies: (...names: string[]) =>

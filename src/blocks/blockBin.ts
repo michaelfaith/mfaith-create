@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { JS_TS_FILES } from "./eslint/globs.js";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+import { base } from "../base.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockExampleFiles } from "./blockExampleFiles.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { JS_TS_FILES } from "./eslint/globs.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
 const binSchema = z.union([z.string(), z.record(z.string(), z.string())]);
 

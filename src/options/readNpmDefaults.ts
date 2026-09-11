@@ -2,7 +2,7 @@ import type { ExecaError, Result } from "execa";
 
 import npmUser from "npm-user";
 
-import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";
+import { swallowErrorAsync } from "../utils/swallowErrorAsync.ts";
 
 // TODO: npmUser does not go through take(input*), making it harder to test.
 // https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1990

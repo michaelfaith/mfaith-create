@@ -1,7 +1,7 @@
 import { CachedFactory } from "cached-factory";
 import semver from "semver";
 
-import type { WorkflowsVersions } from "../../schemas.js";
+import type { WorkflowsVersions } from "../../schemas.ts";
 
 const semverCoercions = new CachedFactory((version: string) => {
   return semver.coerce(version)?.toString() ?? "0.0.0";

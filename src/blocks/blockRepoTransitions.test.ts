@@ -1,11 +1,11 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { packageData } from "../data/packageData.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { blockRepoTransitions } from "./blockRepoTransitions.js";
-import { optionsBase } from "./options.fakes.js";
+import { packageData } from "../data/packageData.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { blockRepoTransitions } from "./blockRepoTransitions.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockRepoTransitions", () => {
   test("production", () => {

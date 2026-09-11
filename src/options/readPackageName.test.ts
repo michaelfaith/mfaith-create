@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readPackageName } from "./readPackageName.js";
+import { readPackageName } from "./readPackageName.ts";
 
 describe(readPackageName, () => {
   it("returns options.packageName when it exists", async () => {

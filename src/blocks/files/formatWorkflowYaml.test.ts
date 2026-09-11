@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
-import { formatYaml } from "./formatYaml.js";
+import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
+import { formatYaml } from "./formatYaml.ts";
 
 describe(formatWorkflowYaml, () => {
   it("should format a workflow without jobs like regular YAML", () => {

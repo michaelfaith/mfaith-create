@@ -2,7 +2,7 @@ import type { Result } from "execa";
 
 import { describe, expect, it, vi } from "vitest";
 
-import { readAuthor } from "./readAuthor.js";
+import { readAuthor } from "./readAuthor.ts";
 
 describe(readAuthor, () => {
   it("returns package author when it exists", async () => {

@@ -1,16 +1,16 @@
 import _ from "lodash";
 
-import type { Contributor } from "../schemas.js";
+import type { Contributor } from "../schemas.ts";
 
-import { base } from "../base.js";
-import { startingOwnerContributions } from "../data/contributions.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { startingOwnerContributions } from "../data/contributions.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockAllContributors = base.createBlock({
   about: {

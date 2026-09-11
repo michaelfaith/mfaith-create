@@ -1,10 +1,10 @@
 import { marked } from "marked";
 
-import type { PartialPackageData } from "../types.js";
+import type { PartialPackageData } from "../types.ts";
 
-import { packageData } from "../data/packageData.js";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
-import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
+import { packageData } from "../data/packageData.ts";
+import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
+import { readDescriptionFromReadme } from "./readDescriptionFromReadme.ts";
 
 export async function readDescription(
   getPackageData: () => Promise<PartialPackageData>,

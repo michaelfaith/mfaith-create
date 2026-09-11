@@ -2,7 +2,7 @@ import type { TakeInput } from "bingo";
 
 import { inputFromFileJSON } from "input-from-file-json";
 
-import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";
+import { swallowErrorAsync } from "../utils/swallowErrorAsync.ts";
 
 export async function readWords(take: TakeInput) {
   const cspell =

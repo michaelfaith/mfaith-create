@@ -3,7 +3,7 @@ import type { GitUrl } from "git-url-parse";
 
 import { inputFromScript } from "input-from-script";
 
-import type { PackageAuthor } from "./readPackageAuthor.js";
+import type { PackageAuthor } from "./readPackageAuthor.ts";
 
 export async function readOwner(
   take: TakeInput,

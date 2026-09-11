@@ -161,10 +161,10 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 ```
 
 ```ts
-// create-repo.config.js
+// create-repo.config.ts
 import { createConfig } from "@mfaith/create";
 
-import { blockLintAreTheTypesWrong } from "./blockLintAreTheTypesWrong.js";
+import { blockLintAreTheTypesWrong } from "./blockLintAreTheTypesWrong.ts";
 
 export default createConfig({
   refinements: {

@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockTSDown } from "./blockTSDown.js";
+import { base } from "../base.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockTSDown } from "./blockTSDown.ts";
 
 export const blockExports = base.createBlock({
   about: {

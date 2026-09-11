@@ -2,7 +2,7 @@ import type { TakeInput } from "bingo";
 
 import { inputFromFile } from "input-from-file";
 
-import { swallowError } from "../utils/swallowError.js";
+import { swallowError } from "../utils/swallowError.ts";
 
 export async function readFunding(take: TakeInput) {
   return swallowError(
