@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1](https://github.com/michaelfaith/mfaith-create/compare/v0.2.0...v0.2.1) (2026-09-11)
+
+
+### 🚀 Features
+
+* add explicit type imports and exports rule ([#150](https://github.com/michaelfaith/mfaith-create/issues/150)) ([7f6a53a](https://github.com/michaelfaith/mfaith-create/commit/7f6a53a1c2d439fddc6df818150ba1ce78011fb1))
+* add support for `.ts` extensions for relative imports ([#157](https://github.com/michaelfaith/mfaith-create/issues/157)) ([846071a](https://github.com/michaelfaith/mfaith-create/commit/846071ae52261326b58ce5b1f44a96a71df1a580))
+
+
+### 🩹 Bug Fixes
+
+* use named exports and explicit types for example files ([#147](https://github.com/michaelfaith/mfaith-create/issues/147)) ([b9a4941](https://github.com/michaelfaith/mfaith-create/commit/b9a4941e5656056e1c727515b3e9c7a77da162c3))
+
 ## [0.2.0](https://github.com/michaelfaith/mfaith-create/compare/v0.1.3...v0.2.0) (2026-09-10)
 
 
