@@ -15,7 +15,6 @@ import {
   blockESLint,
   blockKnip,
   blockPnpmWorkspace,
-  blockPrettier,
   blockTemplatedWith,
   presets,
 } from "./index.ts";
@@ -136,8 +135,6 @@ If you're interested in learning more, see the 'getting started' docs on:
             },
           },
         }),
-        // TODO: This is only needed until we have a ReleasePlease block
-        blockPrettier({ ignores: ["/CHANGELOG.md"] }),
       ],
       blocks: {
         add: [blockAreTheTypesWrong],
