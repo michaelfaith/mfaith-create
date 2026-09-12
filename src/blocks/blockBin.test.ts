@@ -121,7 +121,7 @@ describe(blockBin, () => {
       addons: {
         src: {
           "test-repo": "dist/bin/index.mts",
-          "other-bin": "dist/bin/other.cts",
+          "other-bin": "dist/bin/other.ts",
         },
       },
       options: optionsBase,
@@ -155,8 +155,8 @@ describe(blockBin, () => {
             "addons": {
               "properties": {
                 "bin": {
-                  "other-bin": "dist/bin/other.cmjs",
-                  "test-repo": "dist/bin/index.mmjs",
+                  "other-bin": "dist/bin/other.mjs",
+                  "test-repo": "dist/bin/index.mjs",
                 },
               },
             },
@@ -220,7 +220,7 @@ describe(blockBin, () => {
         },
       });
 
-      expect(actual).toEqual({ src: "src/cli.mts" });
+      expect(actual).toEqual({ src: "src/cli.ts" });
     });
 
     it("returns bin when package.json contains an object bin", () => {
@@ -239,8 +239,8 @@ describe(blockBin, () => {
 
       expect(actual).toEqual({
         src: {
-          "test-repo": "src/cli.mts",
-          "other-bin": "src/other.cts",
+          "test-repo": "src/cli.ts",
+          "other-bin": "src/other.ts",
         },
       });
     });
