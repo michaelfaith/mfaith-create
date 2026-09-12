@@ -4,12 +4,15 @@ import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVSCode } from "./blockVSCode.ts";
+import { JS_TS_FILES } from "./eslint/globs.ts";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
 import { CommandPhase } from "./phases.ts";
 
@@ -35,6 +38,8 @@ export const blockPrettier = base.createBlock({
   produce({ addons }) {
     const { ignores, overrides, plugins, runBefore } = addons;
 
+    const simpleGitHooksConfigFileName = ".simple-git-hooks.js";
+
     return {
       addons: [
         blockCSpell({
@@ -56,6 +61,20 @@ pnpm format --write
             },
           },
         }),
+        blockESLint({
+          extensions: [
+            {
+              files: JS_TS_FILES,
+              languageOptions: {
+                parserOptions: {
+                  projectService: {
+                    allowDefaultProject: [simpleGitHooksConfigFileName],
+                  },
+                },
+              },
+            },
+          ],
+        }),
         blockGitHubActionsCI({
           jobs: [
             {
@@ -71,16 +90,16 @@ pnpm format --write
           properties: {
             devDependencies: getPackageDependencies(
               ...plugins.filter((plugin) => !plugin.startsWith(".")),
-              "husky",
-              "lint-staged",
               "prettier",
+              "pretty-quick",
+              "simple-git-hooks",
             ),
-            "lint-staged": {
-              "*": "prettier --ignore-unknown --write",
-            },
-            scripts: {
-              format: "prettier .",
-              prepare: "husky",
+          },
+        }),
+        blockPnpmWorkspace({
+          config: {
+            allowBuilds: {
+              "simple-git-hooks": true,
             },
           },
         }),
@@ -90,10 +109,9 @@ pnpm format --write
         }),
       ],
       files: {
-        ".husky": {
-          ".gitignore": "_\n",
-          "pre-commit": ["npx lint-staged\n", { executable: true }],
-        },
+        [simpleGitHooksConfigFileName]: `export default {
+  "pre-commit": "pnpm pretty-quick --staged",
+};`,
         ".prettierignore": formatIgnoreFile(
           ["/.husky", "/pnpm-lock.yaml", ...ignores].sort(),
         ),
@@ -106,6 +124,10 @@ export default ${JSON.stringify({
 `,
       },
       scripts: [
+        {
+          commands: ["pnpm simple-git-hooks"],
+          phase: CommandPhase.Build,
+        },
         {
           commands: [...runBefore, "pnpm format --write"],
           phase: CommandPhase.Format,

@@ -1,6 +1,8 @@
+import { deepmerge } from "deepmerge-ts";
+
 import type { Extension, ExtensionRules } from "./schemas.ts";
 
-export function mergeAllExtensions(...extensions: Extension[]) {
+export const mergeAllExtensions = (...extensions: Extension[]): Extension[] => {
   const entries: Record<string, Extension> = {};
 
   for (const extension of extensions) {
@@ -13,36 +15,34 @@ export function mergeAllExtensions(...extensions: Extension[]) {
   }
 
   return Object.values(entries);
-}
+};
 
-function mergeExtensions(
+const mergeExtensions = (
   a: Extension,
   b: Extension,
   files: string[],
-): Extension {
+): Extension => {
   return {
     extends: Array.from(
       new Set([...(a.extends ?? []), ...(b.extends ?? [])]),
     ).sort(),
     files,
-    languageOptions: (a.languageOptions ?? b.languageOptions) && {
-      ...(a.languageOptions ?? {}),
-      ...(b.languageOptions ?? {}),
-    },
-    linterOptions: (a.linterOptions ?? b.linterOptions) && {
-      ...(a.linterOptions ?? {}),
-      ...(b.linterOptions ?? {}),
-    },
-    plugins: (a.plugins ?? b.plugins) && { ...a.plugins, ...b.plugins },
+    languageOptions:
+      (a.languageOptions ?? b.languageOptions) &&
+      deepmerge(a.languageOptions, b.languageOptions),
+    linterOptions:
+      (a.linterOptions ?? b.linterOptions) &&
+      deepmerge(a.linterOptions, b.linterOptions),
+    plugins: (a.plugins ?? b.plugins) && deepmerge(a.plugins, b.plugins),
     rules: mergeExtensionsRules(a.rules, b.rules),
-    settings: (a.settings ?? b.settings) && { ...a.settings, ...b.settings },
+    settings: (a.settings ?? b.settings) && deepmerge(a.settings, b.settings),
   };
-}
+};
 
-function mergeExtensionsRules(
+const mergeExtensionsRules = (
   a: ExtensionRules | undefined,
   b: ExtensionRules | undefined,
-): ExtensionRules | undefined {
+): ExtensionRules | undefined => {
   if (!a || !b) {
     return a ?? b;
   }
@@ -60,4 +60,4 @@ function mergeExtensionsRules(
   }
 
   return { ...a, ...b };
-}
+};

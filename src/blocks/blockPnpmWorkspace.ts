@@ -7,6 +7,8 @@ import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.ts";
 
 const pnpmWorkspaceSchema = z
   .object({
+    allowBuilds: z.record(z.string(), z.boolean()).optional(),
+    overrides: z.record(z.string(), z.string()).optional(),
     trustPolicy: z
       .union([z.literal("off"), z.literal("no-downgrade")])
       .optional(),
