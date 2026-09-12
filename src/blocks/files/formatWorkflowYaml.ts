@@ -1,13 +1,13 @@
-import { formatYaml } from "./formatYaml.ts";
-import { removeUsesQuotes } from "./removeUsesQuotes.ts";
+import { formatYaml } from './formatYaml.ts';
+import { removeUsesQuotes } from './removeUsesQuotes.ts';
 
 export function formatWorkflowYaml(value: unknown) {
   const formatted = removeUsesQuotes(formatYaml(value))
     // https://github.com/nodeca/js-yaml/pull/515
-    .replaceAll(/: "\\n(.+)"/g, ": |\n$1")
-    .replaceAll("\\n", "\n")
-    .replaceAll("\\t", "  ");
-  const jobsHeader = "jobs:\n";
+    .replaceAll(/: "\\n(.+)"/g, ': |\n$1')
+    .replaceAll('\\n', '\n')
+    .replaceAll('\\t', '  ');
+  const jobsHeader = 'jobs:\n';
   const jobsIndex = formatted.indexOf(jobsHeader);
 
   if (jobsIndex === -1) {
@@ -15,7 +15,7 @@ export function formatWorkflowYaml(value: unknown) {
   }
 
   const jobsEnd = jobsIndex + jobsHeader.length;
-  const lines = formatted.slice(jobsEnd).split("\n");
+  const lines = formatted.slice(jobsEnd).split('\n');
   let hasJob = false;
 
   const formattedWithJobSpacing =
@@ -24,7 +24,7 @@ export function formatWorkflowYaml(value: unknown) {
       .flatMap((line) => {
         if (/^ {2}\S/.test(line)) {
           if (hasJob) {
-            return ["", line];
+            return ['', line];
           }
 
           hasJob = true;
@@ -32,7 +32,7 @@ export function formatWorkflowYaml(value: unknown) {
 
         return [line];
       })
-      .join("\n");
+      .join('\n');
 
   return formattedWithJobSpacing;
 }

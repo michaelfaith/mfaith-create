@@ -20,7 +20,7 @@ export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
     return undefined;
   }
 
-  const indexOfNextLine = readme.indexOf("\n", indexOfLastTemplatedBy);
+  const indexOfNextLine = readme.indexOf('\n', indexOfLastTemplatedBy);
 
   return readme.slice(indexOfNextLine).trim() || undefined;
 }

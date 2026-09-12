@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockRepositoryBranchRuleset, () => {
-  test("without addons when mode is undefined", () => {
+  test('without addons when mode is undefined', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
       options: optionsBase,
     });
@@ -13,9 +13,9 @@ describe(blockRepositoryBranchRuleset, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("without addons when mode is setup", () => {
+  test('without addons when mode is setup', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
-      mode: "setup",
+      mode: 'setup',
       options: optionsBase,
     });
 
@@ -79,9 +79,9 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
   });
 
-  test("without addons when mode is transition", () => {
+  test('without addons when mode is transition', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -155,10 +155,10 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
   });
 
-  test("with addons when mode is undefined", () => {
+  test('with addons when mode is undefined', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
       addons: {
-        requiredStatusChecks: ["build", "test"],
+        requiredStatusChecks: ['build', 'test'],
       },
       options: optionsBase,
     });
@@ -166,12 +166,12 @@ describe(blockRepositoryBranchRuleset, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons when mode is setup", () => {
+  test('with addons when mode is setup', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
       addons: {
-        requiredStatusChecks: ["build", "test"],
+        requiredStatusChecks: ['build', 'test'],
       },
-      mode: "setup",
+      mode: 'setup',
       options: optionsBase,
     });
 
@@ -242,98 +242,12 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
   });
 
-  test("with addons when mode is transition", () => {
+  test('with addons when mode is transition', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
       addons: {
-        requiredStatusChecks: ["build", "test"],
+        requiredStatusChecks: ['build', 'test'],
       },
-      mode: "transition",
-      options: optionsBase,
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-			{
-			  "requests": [
-			    {
-			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
-			      "parameters": {
-			        "branch": "main",
-			        "owner": "test-owner",
-			        "repo": "test-repository",
-			      },
-			      "silent": true,
-			      "type": "octokit",
-			    },
-			    {
-			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
-			      "parameters": {
-			        "bypass_actors": [
-			          {
-			            "actor_id": 5,
-			            "actor_type": "RepositoryRole",
-			            "bypass_mode": "always",
-			          },
-			        ],
-			        "conditions": {
-			          "ref_name": {
-			            "exclude": [],
-			            "include": [
-			              "refs/heads/main",
-			            ],
-			          },
-			        },
-			        "enforcement": "active",
-			        "name": "Branch protection for main",
-			        "owner": "test-owner",
-			        "repo": "test-repository",
-			        "rules": [
-			          {
-			            "type": "deletion",
-			          },
-			          {
-			            "parameters": {
-			              "allowed_merge_methods": [
-			                "squash",
-			              ],
-			              "dismiss_stale_reviews_on_push": false,
-			              "require_code_owner_review": false,
-			              "require_last_push_approval": false,
-			              "required_approving_review_count": 0,
-			              "required_review_thread_resolution": false,
-			            },
-			            "type": "pull_request",
-			          },
-			          {
-			            "parameters": {
-			              "required_status_checks": [
-			                {
-			                  "context": "build",
-			                },
-			                {
-			                  "context": "test",
-			                },
-			              ],
-			              "strict_required_status_checks_policy": false,
-			            },
-			            "type": "required_status_checks",
-			          },
-			        ],
-			        "ruleset_id": undefined,
-			        "target": "branch",
-			      },
-			      "type": "octokit",
-			    },
-			  ],
-			}
-		`);
-  });
-
-  test("with addons and no rulesetId option when mode is transition", () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
-      addons: {
-        requiredStatusChecks: ["build", "test"],
-      },
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -414,15 +328,101 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
   });
 
-  test("with addons and a rulesetId option when mode is transition", () => {
+  test('with addons and no rulesetId option when mode is transition', () => {
     const creation = testBlock(blockRepositoryBranchRuleset, {
       addons: {
-        requiredStatusChecks: ["build", "test"],
+        requiredStatusChecks: ['build', 'test'],
       },
-      mode: "transition",
+      mode: 'transition',
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+			      "parameters": {
+			        "branch": "main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "silent": true,
+			      "type": "octokit",
+			    },
+			    {
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [
+			                {
+			                  "context": "build",
+			                },
+			                {
+			                  "context": "test",
+			                },
+			              ],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
+			    },
+			  ],
+			}
+		`);
+  });
+
+  test('with addons and a rulesetId option when mode is transition', () => {
+    const creation = testBlock(blockRepositoryBranchRuleset, {
+      addons: {
+        requiredStatusChecks: ['build', 'test'],
+      },
+      mode: 'transition',
       options: {
         ...optionsBase,
-        rulesetId: "1234",
+        rulesetId: '1234',
       },
     });
 

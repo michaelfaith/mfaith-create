@@ -1,7 +1,7 @@
-import * as fs from "node:fs/promises";
-import { describe, expect, it } from "vitest";
+import * as fs from 'node:fs/promises';
+import { describe, expect, it } from 'vitest';
 
-import { base } from "./index.ts";
+import { base } from './index.ts';
 
 // This test ensures all options are mentioned in either:
 // - docs/CLI.md: for options that can be used on the command line
@@ -16,13 +16,13 @@ import { base } from "./index.ts";
 // ```md
 // | `--example` | `boolean` | same description from base.ts | `false` |
 // ```
-describe("Docs: Options", () => {
-  it("includes mentions of all options from the Base", async () => {
+describe('Docs: Options', () => {
+  it('includes mentions of all options from the Base', async () => {
     const existingOptions = new Set(
       (
         await Promise.all([
-          splitFileIntoOptions("docs/CLI.md"),
-          splitFileIntoOptions("docs/Configuration Files.md"),
+          splitFileIntoOptions('docs/CLI.md'),
+          splitFileIntoOptions('docs/Configuration Files.md'),
         ])
       ).flat(),
     );
@@ -41,5 +41,5 @@ async function splitFileIntoOptions(filePath: string) {
   return text
     .split(/[\r\n]+/)
     .map((line) => /`(?:--)?(\w+)` /.exec(line)?.[1])
-    .filter((line) => typeof line === "string");
+    .filter((line) => typeof line === 'string');
 }

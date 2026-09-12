@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryVariables } from "./blockRepositoryVariables.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockRepositoryVariables, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockRepositoryVariables, {
       options: optionsBase,
     });
@@ -17,17 +17,17 @@ describe(blockRepositoryVariables, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockRepositoryVariables, {
       addons: {
         variables: [
           {
-            description: "Variable description a.",
-            name: "Variable Name A",
+            description: 'Variable description a.',
+            name: 'Variable Name A',
           },
           {
-            description: "Variable description b.",
-            name: "Variable Name B",
+            description: 'Variable description b.',
+            name: 'Variable Name B',
           },
         ],
       },

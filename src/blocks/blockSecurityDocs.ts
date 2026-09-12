@@ -1,14 +1,14 @@
-import { base } from "../base.ts";
+import { base } from '../base.ts';
 
 export const blockSecurityDocs = base.createBlock({
   about: {
-    name: "Security Docs",
+    name: 'Security Docs',
   },
   produce({ options }) {
     return {
       files: {
-        ".github": {
-          "SECURITY.md": `# Security Policy
+        '.github': {
+          'SECURITY.md': `# Security Policy
 
 We take all security vulnerabilities seriously.
 If you have a vulnerability or other security issues to disclose:

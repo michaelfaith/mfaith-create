@@ -1,12 +1,12 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockReleasePlease } from "./blockReleasePlease.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockReleasePlease } from './blockReleasePlease.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockReleasePlease, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockReleasePlease, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -178,21 +178,21 @@ describe(blockReleasePlease, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockReleasePlease, {
       addons: {
         builders: [
           {
             order: 1,
-            run: "one",
+            run: 'one',
           },
           {
             order: 0,
-            run: "zero",
+            run: 'zero',
           },
           {
             order: 2,
-            run: "two",
+            run: 'two',
           },
         ],
       },
@@ -374,24 +374,24 @@ describe(blockReleasePlease, () => {
     `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockReleasePlease, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
     expect(creation.addons).toContainEqual(
       blockRemoveFiles({
         files: [
-          ".github/workflows/post-release.yml",
-          ".github/workflows/release.yml",
+          '.github/workflows/post-release.yml',
+          '.github/workflows/release.yml',
         ],
       }),
     );
   });
 
-  describe("intake", () => {
-    it("should return undefined when the release please manifest does not exist", () => {
+  describe('intake', () => {
+    it('should return undefined when the release please manifest does not exist', () => {
       const actual = testIntake(blockReleasePlease, {
         files: {},
       });
@@ -399,12 +399,12 @@ describe(blockReleasePlease, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("should return undefined when the manifest exists but does not contain a version", () => {
+    it('should return undefined when the manifest exists but does not contain a version', () => {
       const actual = testIntake(blockReleasePlease, {
         files: {
-          ".github": {
-            "release-please": {
-              "release-please-manifest.main.json": [JSON.stringify({})],
+          '.github': {
+            'release-please': {
+              'release-please-manifest.main.json': [JSON.stringify({})],
             },
           },
         },
@@ -413,20 +413,20 @@ describe(blockReleasePlease, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("should return a version when the manifest exists and has a version", () => {
+    it('should return a version when the manifest exists and has a version', () => {
       const actual = testIntake(blockReleasePlease, {
         files: {
-          ".github": {
-            "release-please": {
-              "release-please-manifest.main.json": [
-                JSON.stringify({ ".": "13.0.0" }),
+          '.github': {
+            'release-please': {
+              'release-please-manifest.main.json': [
+                JSON.stringify({ '.': '13.0.0' }),
               ],
             },
           },
         },
       });
 
-      expect(actual).toEqual({ currentVersion: "13.0.0" });
+      expect(actual).toEqual({ currentVersion: '13.0.0' });
     });
   });
 });

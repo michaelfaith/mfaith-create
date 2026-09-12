@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockDevelopmentDocs, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockDevelopmentDocs, {
       options: optionsBase,
     });
@@ -30,9 +30,9 @@ describe(blockDevelopmentDocs, () => {
 		`);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockDevelopmentDocs, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -66,26 +66,26 @@ describe(blockDevelopmentDocs, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockDevelopmentDocs, {
       addons: {
-        hints: ["> Be excellent to each other!"],
+        hints: ['> Be excellent to each other!'],
         sections: {
           First: {
-            contents: "abc def",
+            contents: 'abc def',
           },
           Fourth: {},
           Second: {
             contents: {
-              after: ["second-after"],
-              before: "second-before",
-              items: ["- a", "- b", "- c"],
-              plural: "seconds",
+              after: ['second-after'],
+              before: 'second-before',
+              items: ['- a', '- b', '- c'],
+              plural: 'seconds',
             },
             innerSections: [
               {
-                contents: "second-inner",
-                heading: "Seconds Inside",
+                contents: 'second-inner',
+                heading: 'Seconds Inside',
               },
             ],
           },
@@ -93,8 +93,8 @@ describe(blockDevelopmentDocs, () => {
             contents: {},
             innerSections: [
               {
-                contents: "second-inner",
-                heading: "Seconds Inside",
+                contents: 'second-inner',
+                heading: 'Seconds Inside',
               },
             ],
           },
@@ -145,13 +145,13 @@ describe(blockDevelopmentDocs, () => {
 		`);
   });
 
-  test("with options.documentation", () => {
+  test('with options.documentation', () => {
     const creation = testBlock(blockDevelopmentDocs, {
       options: {
         ...optionsBase,
         documentation: {
           ...optionsBase.documentation,
-          development: "More documentation.",
+          development: 'More documentation.',
         },
       },
     });
@@ -177,13 +177,13 @@ describe(blockDevelopmentDocs, () => {
 		`);
   });
 
-  test("with options.guide", () => {
+  test('with options.guide', () => {
     const creation = testBlock(blockDevelopmentDocs, {
       options: {
         ...optionsBase,
         guide: {
-          href: "https://example.com",
-          title: "My Guide",
+          href: 'https://example.com',
+          title: 'My Guide',
         },
       },
     });

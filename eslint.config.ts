@@ -8,133 +8,133 @@ If you're interested in learning more, see the 'getting started' docs on:
 - typescript-eslint: https://typescript-eslint.io
 */
 
-import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import eslint from "@eslint/js";
-import markdown from "@eslint/markdown";
-import vitest from "@vitest/eslint-plugin";
-import jsdoc from "eslint-plugin-jsdoc";
-import jsonc from "eslint-plugin-jsonc";
-import markdownLinks from "eslint-plugin-markdown-links";
-import n from "eslint-plugin-n";
-import packageJson from "eslint-plugin-package-json";
-import perfectionist from "eslint-plugin-perfectionist";
-import * as regexp from "eslint-plugin-regexp";
-import yml from "eslint-plugin-yml";
-import { defineConfig, globalIgnores } from "eslint/config";
-import tseslint from "typescript-eslint";
+import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
+import eslint from '@eslint/js';
+import markdown from '@eslint/markdown';
+import vitest from '@vitest/eslint-plugin';
+import jsdoc from 'eslint-plugin-jsdoc';
+import jsonc from 'eslint-plugin-jsonc';
+import markdownLinks from 'eslint-plugin-markdown-links';
+import n from 'eslint-plugin-n';
+import packageJson from 'eslint-plugin-package-json';
+import perfectionist from 'eslint-plugin-perfectionist';
+import * as regexp from 'eslint-plugin-regexp';
+import yml from 'eslint-plugin-yml';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   globalIgnores(
-    ["**/*.snap", "coverage", "dist", "node_modules", "pnpm-lock.yaml"],
-    "Global Ignores",
+    ['**/*.snap', 'coverage', 'dist', 'node_modules', 'pnpm-lock.yaml'],
+    'Global Ignores',
   ),
-  { linterOptions: { reportUnusedDisableDirectives: "error" } },
+  { linterOptions: { reportUnusedDisableDirectives: 'error' } },
   {
-    files: ["./eslint.config.ts", "./**/*.test.*"],
-    rules: { "n/no-unsupported-features/node-builtins": "off" },
+    files: ['./eslint.config.ts', './**/*.test.*'],
+    rules: { 'n/no-unsupported-features/node-builtins': 'off' },
   },
   {
     extends: [
       comments.recommended,
       eslint.configs.recommended,
-      jsdoc.configs["flat/contents-typescript-error"],
-      jsdoc.configs["flat/logical-typescript-error"],
-      jsdoc.configs["flat/stylistic-typescript-error"],
-      n.configs["flat/recommended"],
-      regexp.configs["flat/recommended"],
+      jsdoc.configs['flat/contents-typescript-error'],
+      jsdoc.configs['flat/logical-typescript-error'],
+      jsdoc.configs['flat/stylistic-typescript-error'],
+      n.configs['flat/recommended'],
+      regexp.configs['flat/recommended'],
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
     ],
-    files: ["**/*.js", "**/*.ts"],
+    files: ['**/*.js', '**/*.ts'],
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["*.config.*s", ".simple-git-hooks.js"],
+          allowDefaultProject: ['*.config.*s', '.simple-git-hooks.js'],
         },
       },
     },
     plugins: { perfectionist },
     rules: {
       // These on-by-default rules work well for this repo if configured
-      "@typescript-eslint/prefer-nullish-coalescing": [
-        "error",
+      '@typescript-eslint/prefer-nullish-coalescing': [
+        'error',
         { ignorePrimitives: true },
       ],
-      "@typescript-eslint/restrict-template-expressions": [
-        "error",
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
         { allowBoolean: true, allowNullish: true, allowNumber: true },
       ],
-      "n/no-unsupported-features/node-builtins": [
-        "error",
-        { allowExperimental: true, ignores: ["import.meta.dirname"] },
+      'n/no-unsupported-features/node-builtins': [
+        'error',
+        { allowExperimental: true, ignores: ['import.meta.dirname'] },
       ],
-      "perfectionist/sort-exports": "error",
-      "perfectionist/sort-imports": "error",
-      "@typescript-eslint/consistent-type-exports": "error",
-      "@typescript-eslint/consistent-type-imports": "error",
+      'perfectionist/sort-exports': 'error',
+      'perfectionist/sort-imports': 'error',
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'error',
 
       // Stylistic concerns that don't interfere with Prettier
-      "logical-assignment-operators": [
-        "error",
-        "always",
+      'logical-assignment-operators': [
+        'error',
+        'always',
         { enforceForIfStatements: true },
       ],
-      "no-useless-rename": "error",
-      "object-shorthand": "error",
-      "operator-assignment": "error",
+      'no-useless-rename': 'error',
+      'object-shorthand': 'error',
+      'operator-assignment': 'error',
 
       // Using a ts bin file throws this rule off.
-      "n/hashbang": "off",
+      'n/hashbang': 'off',
     },
-    settings: { perfectionist: { partitionByComment: true, type: "natural" } },
+    settings: { perfectionist: { partitionByComment: true, type: 'natural' } },
   },
   {
-    extends: [jsonc.configs["flat/recommended-with-json"]],
-    files: ["**/*.json"],
+    extends: [jsonc.configs['flat/recommended-with-json']],
+    files: ['**/*.json'],
   },
   {
     extends: [markdown.configs.recommended, markdownLinks.configs.recommended],
-    files: ["**/*.md"],
+    files: ['**/*.md'],
     rules: {
       // https://github.com/eslint/markdown/issues/294
-      "markdown/no-missing-label-refs": "off",
+      'markdown/no-missing-label-refs': 'off',
     },
   },
   {
     extends: [tseslint.configs.disableTypeChecked],
-    files: ["**/*.md/*.ts"],
-    rules: { "n/no-missing-import": "off" },
+    files: ['**/*.md/*.ts'],
+    rules: { 'n/no-missing-import': 'off' },
   },
   {
     extends: [vitest.configs.recommended],
-    files: ["**/*.test.*"],
+    files: ['**/*.test.*'],
     rules: {
-      "@typescript-eslint/no-unsafe-assignment": "off",
-      "vitest/prefer-describe-function-title": "error",
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      'vitest/prefer-describe-function-title': 'error',
     },
     settings: { vitest: { typecheck: true } },
   },
   {
-    extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
-    files: ["**/*.{yml,yaml}"],
+    extends: [yml.configs['flat/standard'], yml.configs['flat/prettier']],
+    files: ['**/*.{yml,yaml}'],
     rules: {
-      "yml/file-extension": "error",
-      "yml/sort-sequence-values": [
-        "error",
-        { order: { type: "asc" }, pathPattern: "^.*$" },
+      'yml/file-extension': 'error',
+      'yml/sort-sequence-values': [
+        'error',
+        { order: { type: 'asc' }, pathPattern: '^.*$' },
       ],
     },
   },
   {
     extends: [packageJson.configs.recommended, packageJson.configs.stylistic],
-    files: ["package.json"],
+    files: ['package.json'],
   },
   {
-    files: ["pnpm-workspace.yaml"],
+    files: ['pnpm-workspace.yaml'],
     rules: {
-      "yml/sort-keys": [
-        "error",
-        { order: { type: "asc" }, pathPattern: "^.*$" },
+      'yml/sort-keys': [
+        'error',
+        { order: { type: 'asc' }, pathPattern: '^.*$' },
       ],
     },
   },

@@ -1,16 +1,16 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test, vi } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockTSDown } from "./blockTSDown.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockTSDown } from './blockTSDown.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../data/packageData.js", () => ({
+vi.mock('../data/packageData.js', () => ({
   getPackageDependencies: (...names: string[]) =>
-    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
 describe(blockTSDown, () => {
-  test("without addons or options", () => {
+  test('without addons or options', () => {
     const creation = testBlock(blockTSDown, {
       options: optionsBase,
     });
@@ -121,7 +121,7 @@ describe(blockTSDown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from "tsdown";
+          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
       export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
       ",
@@ -130,14 +130,14 @@ describe(blockTSDown, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockTSDown, {
       addons: {
-        entry: ["src/other.ts"],
+        entry: ['src/other.ts'],
         properties: {
           dts: false,
         },
-        runInCI: ["dist/other.js"],
+        runInCI: ['dist/other.js'],
       },
       options: optionsBase,
     });
@@ -251,7 +251,7 @@ describe(blockTSDown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from "tsdown";
+          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
       export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"unbundle":true,"dts":false});
       ",
@@ -260,9 +260,9 @@ describe(blockTSDown, () => {
     `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockTSDown, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -405,7 +405,7 @@ describe(blockTSDown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from "tsdown";
+          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
       export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
       ",
@@ -414,8 +414,8 @@ describe(blockTSDown, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when ts*.config.ts does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when ts*.config.ts does not exist', () => {
       const actual = testIntake(blockTSDown, {
         files: {},
       });
@@ -423,56 +423,56 @@ describe(blockTSDown, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when tsdown.config.ts does not contain data", () => {
+    it('returns undefined when tsdown.config.ts does not contain data', () => {
       const actual = testIntake(blockTSDown, {
         files: {
-          "tsdown.config.ts": ["..."],
+          'tsdown.config.ts': ['...'],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when tsdown.config.ts does not contain properties", () => {
+    it('returns undefined when tsdown.config.ts does not contain properties', () => {
       const actual = testIntake(blockTSDown, {
         files: {
-          "tsdown.config.ts": [`defineConfig(${JSON.stringify({})})`],
+          'tsdown.config.ts': [`defineConfig(${JSON.stringify({})})`],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns entry when tsdown.config.ts contains entry", () => {
-      const entry = ["src/index.ts", "src/other.ts"];
+    it('returns entry when tsdown.config.ts contains entry', () => {
+      const entry = ['src/index.ts', 'src/other.ts'];
 
       const actual = testIntake(blockTSDown, {
         files: {
-          "tsdown.config.ts": [`defineConfig(${JSON.stringify({ entry })})`],
+          'tsdown.config.ts': [`defineConfig(${JSON.stringify({ entry })})`],
         },
       });
 
       expect(actual).toEqual({ entry });
     });
 
-    it("returns the properties when tsdown.config.ts contains other properties", () => {
-      const properties = { clean: false, dts: false, format: "cjs" };
+    it('returns the properties when tsdown.config.ts contains other properties', () => {
+      const properties = { clean: false, dts: false, format: 'cjs' };
 
       const actual = testIntake(blockTSDown, {
         files: {
-          "tsdown.config.ts": [`defineConfig(${JSON.stringify(properties)})`],
+          'tsdown.config.ts': [`defineConfig(${JSON.stringify(properties)})`],
         },
       });
 
       expect(actual).toEqual({ entry: undefined, properties });
     });
 
-    it("clears tsup default properties when tsup.config.ts contains them", () => {
-      const properties = { bundle: true, clean: true, format: "esm" };
+    it('clears tsup default properties when tsup.config.ts contains them', () => {
+      const properties = { bundle: true, clean: true, format: 'esm' };
 
       const actual = testIntake(blockTSDown, {
         files: {
-          "tsup.config.ts": [`defineConfig(${JSON.stringify(properties)})`],
+          'tsup.config.ts': [`defineConfig(${JSON.stringify(properties)})`],
         },
       });
 

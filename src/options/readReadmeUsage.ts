@@ -1,4 +1,4 @@
-const startUsage = "## Usage";
+const startUsage = '## Usage';
 
 export async function readReadmeUsage(getReadme: () => Promise<string>) {
   const readme = await getReadme();

@@ -1,22 +1,22 @@
-import removeUndefinedObjects from "remove-undefined-objects";
-import { z } from "zod";
+import removeUndefinedObjects from 'remove-undefined-objects';
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
-import { intakeFileExportObject } from "./intake/intakeFileExportObject.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
+import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 
 const zStringArray = z.array(z.string());
 
 export const blockKnip = base.createBlock({
   about: {
-    name: "Knip",
+    name: 'Knip',
   },
   addons: {
     entry: zStringArray.optional(),
@@ -25,8 +25,8 @@ export const blockKnip = base.createBlock({
   },
   intake({ files }) {
     const knipJson =
-      intakeFileExportObject(files, ["knip.config.ts"]) ??
-      intakeFileAsJson(files, ["knip.json"]);
+      intakeFileExportObject(files, ['knip.config.ts']) ??
+      intakeFileAsJson(files, ['knip.json']);
     if (!knipJson) {
       return undefined;
     }
@@ -56,28 +56,28 @@ export const blockKnip = base.createBlock({
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Lint Knip",
-              steps: [{ run: "pnpm lint:knip" }],
+              name: 'Lint Knip',
+              steps: [{ run: 'pnpm lint:knip' }],
             },
           ],
         }),
         blockPackageJson({
           properties: {
-            devDependencies: getPackageDependencies("knip"),
+            devDependencies: getPackageDependencies('knip'),
             scripts: {
-              "lint:knip": "knip",
+              'lint:knip': 'knip',
             },
           },
         }),
         blockRemoveFiles({
-          files: [".ts-prunerc*"],
+          files: ['.ts-prunerc*'],
         }),
         blockVSCode({
-          extensions: ["webpro.vscode-knip"],
+          extensions: ['webpro.vscode-knip'],
         }),
       ],
       files: {
-        "knip.config.ts": `import type { KnipConfig } from "knip";
+        'knip.config.ts': `import type { KnipConfig } from 'knip';
 
 export default ${JSON.stringify({
           entry: entry?.sort(),
@@ -96,10 +96,10 @@ export default ${JSON.stringify({
     return {
       addons: [
         blockRemoveFiles({
-          files: [".knip*", "knip.{c,j,m}*", "knip.json*"],
+          files: ['.knip*', 'knip.{c,j,m}*', 'knip.json*'],
         }),
         blockRemoveWorkflows({
-          workflows: ["knip", "lint-knip"],
+          workflows: ['knip', 'lint-knip'],
         }),
       ],
     };

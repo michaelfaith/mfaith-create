@@ -1,12 +1,12 @@
-import prettier from "@prettier/sync";
-import { prepareOptions } from "bingo";
-import { intake, type IntakeDirectory } from "bingo-fs";
-import { producePreset } from "bingo-stratum";
-import { diffCreatedDirectory } from "bingo-testers";
-import { expect, test, vi } from "vitest";
+import prettier from '@prettier/sync';
+import { prepareOptions } from 'bingo';
+import { intake, type IntakeDirectory } from 'bingo-fs';
+import { producePreset } from 'bingo-stratum';
+import { diffCreatedDirectory } from 'bingo-testers';
+import { expect, test, vi } from 'vitest';
 
-import { blockBin } from "./blocks/blockBin.ts";
-import { JS_TS_FILES } from "./blocks/eslint/globs.ts";
+import { blockBin } from './blocks/blockBin.ts';
+import { JS_TS_FILES } from './blocks/eslint/globs.ts';
 import {
   base,
   type BaseOptions,
@@ -17,16 +17,16 @@ import {
   blockPnpmWorkspace,
   blockTemplatedWith,
   presets,
-} from "./index.ts";
+} from './index.ts';
 
-vi.mock("./utils/resolveBin.js", () => ({
+vi.mock('./utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 
 const presetIntegration = base.createPreset({
   about: {
-    description: "Preset used for integration tests",
-    name: "Integration",
+    description: 'Preset used for integration tests',
+    name: 'Integration',
   },
   blocks: [...presets.everything.blocks, blockBin],
 });
@@ -47,8 +47,8 @@ const presetIntegration = base.createPreset({
 //
 // For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
-test("Producing the everything preset matches the files in this repository", async () => {
-  const actual = (await intake(".", {
+test('Producing the everything preset matches the files in this repository', async () => {
+  const actual = (await intake('.', {
     exclude: /node_modules|^\.git$/,
   })) as IntakeDirectory;
 
@@ -58,21 +58,21 @@ test("Producing the everything preset matches the files in this repository", asy
       addons: [
         blockCSpell({
           words: [
-            "Anson",
-            "TSESTree",
-            "apexskier",
-            "attw",
-            "autorelease",
-            "dbaeumer",
-            "infile",
-            "joshuakgoldberg",
-            "mfaith",
-            "michaelfaith",
-            "mshick",
-            "octoguide",
-            "stefanzweifel",
-            "ts-prunerc",
-            "webpro",
+            'Anson',
+            'TSESTree',
+            'apexskier',
+            'attw',
+            'autorelease',
+            'dbaeumer',
+            'infile',
+            'joshuakgoldberg',
+            'mfaith',
+            'michaelfaith',
+            'mshick',
+            'octoguide',
+            'stefanzweifel',
+            'ts-prunerc',
+            'webpro',
           ],
         }),
         blockESLint({
@@ -91,25 +91,25 @@ If you're interested in learning more, see the 'getting started' docs on:
               rules: [
                 {
                   comment:
-                    "These on-by-default rules work well for this repo if configured",
+                    'These on-by-default rules work well for this repo if configured',
                   entries: {
-                    "@typescript-eslint/prefer-nullish-coalescing": [
-                      "error",
+                    '@typescript-eslint/prefer-nullish-coalescing': [
+                      'error',
                       { ignorePrimitives: true },
                     ],
-                    "@typescript-eslint/restrict-template-expressions": [
-                      "error",
+                    '@typescript-eslint/restrict-template-expressions': [
+                      'error',
                       {
                         allowBoolean: true,
                         allowNullish: true,
                         allowNumber: true,
                       },
                     ],
-                    "n/no-unsupported-features/node-builtins": [
-                      "error",
+                    'n/no-unsupported-features/node-builtins': [
+                      'error',
                       {
                         allowExperimental: true,
-                        ignores: ["import.meta.dirname"],
+                        ignores: ['import.meta.dirname'],
                       },
                     ],
                   },
@@ -120,18 +120,18 @@ If you're interested in learning more, see the 'getting started' docs on:
         }),
         blockKnip({
           ignoreDependencies: [
-            "all-contributors-cli",
-            "cspell-populate-words",
-            "remove-dependencies",
-            "trash-cli",
+            'all-contributors-cli',
+            'cspell-populate-words',
+            'remove-dependencies',
+            'trash-cli',
           ],
         }),
         // https://github.com/bingo-js/bingo/issues/420
         blockPnpmWorkspace({
           config: {
             overrides: {
-              "bingo-stratum@0.5.13>cached-factory": "0.3.0",
-              "bingo@0.9.3>cached-factory": "0.3.0",
+              'bingo-stratum@0.5.13>cached-factory': '0.3.0',
+              'bingo@0.9.3>cached-factory': '0.3.0',
             },
           },
         }),

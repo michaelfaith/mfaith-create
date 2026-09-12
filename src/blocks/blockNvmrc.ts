@@ -1,20 +1,20 @@
-import { base } from "../base.ts";
-import { blockPrettier } from "./blockPrettier.ts";
+import { base } from '../base.ts';
+import { blockPrettier } from './blockPrettier.ts';
 
 export const blockNvmrc = base.createBlock({
   about: {
-    name: "Nvmrc",
+    name: 'Nvmrc',
   },
   produce({ options }) {
     return {
       addons: [
         blockPrettier({
-          overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+          overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),
       ],
       ...(options.node.pinned && {
         files: {
-          ".nvmrc": `${options.node.pinned}\n`,
+          '.nvmrc': `${options.node.pinned}\n`,
         },
       }),
     };

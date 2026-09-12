@@ -8,7 +8,7 @@ on:
 
 jobs:
   are_the_types_wrong:
-    name: Are The Types Wrong?
+    name: Are the Types Wrong?
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup

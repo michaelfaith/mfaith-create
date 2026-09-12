@@ -1,11 +1,11 @@
-import { convert } from "html-to-text";
+import { convert } from 'html-to-text';
 
 export function htmlToTextSafe(raw: string) {
   return convert(raw, {
     selectors: [
       {
         options: { ignoreHref: true },
-        selector: "a",
+        selector: 'a',
       },
     ],
     wordwrap: false,

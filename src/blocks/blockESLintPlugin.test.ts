@@ -1,11 +1,11 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockESLintPlugin } from "./blockESLintPlugin.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockESLintPlugin } from './blockESLintPlugin.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockESLintPlugin, () => {
-  test("without addons, mode, or options", () => {
+  test('without addons, mode, or options', () => {
     const creation = testBlock(blockESLintPlugin, {
       options: optionsBase,
     });
@@ -54,7 +54,7 @@ describe(blockESLintPlugin, () => {
               "extensions": [
                 {
                   "extends": [
-                    "eslintPlugin.configs["flat/recommended"]",
+                    "eslintPlugin.configs['flat/recommended']",
                   ],
                   "files": [
                     "**/*.js",
@@ -162,9 +162,9 @@ describe(blockESLintPlugin, () => {
       	postprocess: async (content, path) =>
       		prettier.format(content, {
       			...(await prettier.resolveConfig(path)),
-      			parser: "markdown",
+      			parser: 'markdown',
       		}),
-      	ruleDocTitleFormat: "name",
+      	ruleDocTitleFormat: 'name',
       };
 
       export default config;
@@ -188,9 +188,9 @@ describe(blockESLintPlugin, () => {
     `);
   });
 
-  test("setup mode", () => {
+  test('setup mode', () => {
     const creation = testBlock(blockESLintPlugin, {
-      mode: "setup",
+      mode: 'setup',
       options: optionsBase,
     });
 
@@ -238,7 +238,7 @@ describe(blockESLintPlugin, () => {
               "extensions": [
                 {
                   "extends": [
-                    "eslintPlugin.configs["flat/recommended"]",
+                    "eslintPlugin.configs['flat/recommended']",
                   ],
                   "files": [
                     "**/*.js",
@@ -346,23 +346,23 @@ describe(blockESLintPlugin, () => {
       	postprocess: async (content, path) =>
       		prettier.format(content, {
       			...(await prettier.resolveConfig(path)),
-      			parser: "markdown",
+      			parser: 'markdown',
       		}),
-      	ruleDocTitleFormat: "name",
+      	ruleDocTitleFormat: 'name',
       };
 
       export default config;
       ",
           "src": {
-            "index.ts": "import Module from "node:module";
+            "index.ts": "import Module from 'node:module';
 
-      import { rules } from "./rules/index.ts";
+      import { rules } from './rules/index.ts';
 
       const require = Module.createRequire(import.meta.url);
 
       const { name, version } =
       	// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
-      	require("../package.json") as typeof import("../package.json");
+      	require('../package.json') as typeof import('../package.json');
 
       export const plugin = {
       	configs: {
@@ -376,10 +376,10 @@ describe(blockESLintPlugin, () => {
 
       const recommended = {
       	plugins: {
-      		"test-repository": plugin,
+      		'test-repository': plugin,
       	},
       	rules: Object.fromEntries(
-      		Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error"]),
+      		Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, 'error']),
       	),
       };
 
@@ -388,10 +388,10 @@ describe(blockESLintPlugin, () => {
       export default plugin;
       ",
             "rules": {
-              "enums.test.ts": "import { rule } from "./enums.ts";
-      import { ruleTester } from "./ruleTester.ts";
+              "enums.test.ts": "import { rule } from './enums.ts';
+      import { ruleTester } from './ruleTester.ts';
 
-      ruleTester.run("enums", rule, {
+      ruleTester.run('enums', rule, {
       	invalid: [
       		{
       			code: \`enum Values {}\`,
@@ -409,14 +409,14 @@ describe(blockESLintPlugin, () => {
       	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
       });
       ",
-              "enums.ts": "import { createRule } from "../utils.ts";
+              "enums.ts": "import { createRule } from '../utils.ts';
 
       export const rule = createRule({
       	create(context) {
       		return {
       			TSEnumDeclaration(node) {
       				context.report({
-      					messageId: "enum",
+      					messageId: 'enum',
       					node,
       				});
       			},
@@ -431,19 +431,19 @@ describe(blockESLintPlugin, () => {
       			enum: "This enum will not be allowed under TypeScript's --erasableSyntaxOnly.",
       		},
       		schema: [],
-      		type: "problem",
+      		type: 'problem',
       	},
-      	name: "enums",
+      	name: 'enums',
       });
       ",
-              "index.ts": "import { rule as enums } from "./enums.ts";
+              "index.ts": "import { rule as enums } from './enums.ts';
 
       export const rules = {
       	enums,
       };
       ",
-              "ruleTester.ts": "import { RuleTester } from "@typescript-eslint/rule-tester";
-      import * as vitest from "vitest";
+              "ruleTester.ts": "import { RuleTester } from '@typescript-eslint/rule-tester';
+      import * as vitest from 'vitest';
 
       RuleTester.afterAll = vitest.afterAll;
       RuleTester.it = vitest.it;
@@ -453,7 +453,7 @@ describe(blockESLintPlugin, () => {
       export const ruleTester = new RuleTester();
       ",
             },
-            "utils.ts": "import { ESLintUtils } from "@typescript-eslint/utils";
+            "utils.ts": "import { ESLintUtils } from '@typescript-eslint/utils';
 
       export const createRule = ESLintUtils.RuleCreator(
       	(name) =>
@@ -480,12 +480,12 @@ describe(blockESLintPlugin, () => {
     `);
   });
 
-  test("addons", () => {
+  test('addons', () => {
     const creation = testBlock(blockESLintPlugin, {
       addons: {
         configEmoji: [
-          ["recommended", "✅"],
-          ["legacy-recommended", "✔️"],
+          ['recommended', '✅'],
+          ['legacy-recommended', '✔️'],
         ],
       },
       options: optionsBase,
@@ -535,7 +535,7 @@ describe(blockESLintPlugin, () => {
               "extensions": [
                 {
                   "extends": [
-                    "eslintPlugin.configs["flat/recommended"]",
+                    "eslintPlugin.configs['flat/recommended']",
                   ],
                   "files": [
                     "**/*.js",
@@ -644,9 +644,9 @@ describe(blockESLintPlugin, () => {
       	postprocess: async (content, path) =>
       		prettier.format(content, {
       			...(await prettier.resolveConfig(path)),
-      			parser: "markdown",
+      			parser: 'markdown',
       		}),
-      	ruleDocTitleFormat: "name",
+      	ruleDocTitleFormat: 'name',
       };
 
       export default config;
@@ -670,8 +670,8 @@ describe(blockESLintPlugin, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns nothing when .eslint-doc-generatorrc.js and .eslint-doc-generatorrc.mjs do not exist", () => {
+  describe('intake', () => {
+    it('returns nothing when .eslint-doc-generatorrc.js and .eslint-doc-generatorrc.mjs do not exist', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {},
         options: optionsBase,
@@ -680,10 +680,10 @@ describe(blockESLintPlugin, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns nothing when .eslint-doc-generatorrc.js does not have a to const config =", () => {
+    it('returns nothing when .eslint-doc-generatorrc.js does not have a to const config =', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {
-          ".eslint-doc-generatorrc.js": [`const other = {};`],
+          '.eslint-doc-generatorrc.js': [`const other = {};`],
         },
         options: optionsBase,
       });
@@ -691,10 +691,10 @@ describe(blockESLintPlugin, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns nothing when .eslint-doc-generatorrc.js passes nothing to config =", () => {
+    it('returns nothing when .eslint-doc-generatorrc.js passes nothing to config =', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {
-          ".eslint-doc-generatorrc.js": [`const config = {};`],
+          '.eslint-doc-generatorrc.js': [`const config = {};`],
         },
         options: optionsBase,
       });
@@ -702,10 +702,10 @@ describe(blockESLintPlugin, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns nothing when .eslint-doc-generatorrc.js passes invalid syntax to config =", () => {
+    it('returns nothing when .eslint-doc-generatorrc.js passes invalid syntax to config =', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {
-          ".eslint-doc-generatorrc.js": [`const config = { ! }`],
+          '.eslint-doc-generatorrc.js': [`const config = { ! }`],
         },
         options: optionsBase,
       });
@@ -713,10 +713,10 @@ describe(blockESLintPlugin, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns nothing when .eslint-doc-generatorrc.js passes unrelated properties to config =", () => {
+    it('returns nothing when .eslint-doc-generatorrc.js passes unrelated properties to config =', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {
-          ".eslint-doc-generatorrc.js": [`const config = { other: true }`],
+          '.eslint-doc-generatorrc.js': [`const config = { other: true }`],
         },
         options: optionsBase,
       });
@@ -724,10 +724,10 @@ describe(blockESLintPlugin, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.js", () => {
+    it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.js', () => {
       const actual = testIntake(blockESLintPlugin, {
         files: {
-          ".eslint-doc-generatorrc.js": [
+          '.eslint-doc-generatorrc.js': [
             `const config = { configEmoji: [["recommended", "✅"]] }`,
           ],
         },
@@ -735,15 +735,15 @@ describe(blockESLintPlugin, () => {
       });
 
       expect(actual).toEqual({
-        configEmoji: [["recommended", "✅"]],
+        configEmoji: [['recommended', '✅']],
       });
     });
   });
 
-  it("returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs", () => {
+  it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs', () => {
     const actual = testIntake(blockESLintPlugin, {
       files: {
-        ".eslint-doc-generatorrc.mjs": [
+        '.eslint-doc-generatorrc.mjs': [
           `const config = { configEmoji: [["recommended", "✅"]] }`,
         ],
       },
@@ -751,14 +751,14 @@ describe(blockESLintPlugin, () => {
     });
 
     expect(actual).toEqual({
-      configEmoji: [["recommended", "✅"]],
+      configEmoji: [['recommended', '✅']],
     });
   });
 
-  it("returns configEmoji when it exists with other data in .eslint-doc-generatorrc.js", () => {
+  it('returns configEmoji when it exists with other data in .eslint-doc-generatorrc.js', () => {
     const actual = testIntake(blockESLintPlugin, {
       files: {
-        ".eslint-doc-generatorrc.js": [
+        '.eslint-doc-generatorrc.js': [
           `const config = { configEmoji: [["recommended", "✅"]], other: true }`,
         ],
       },
@@ -766,14 +766,14 @@ describe(blockESLintPlugin, () => {
     });
 
     expect(actual).toEqual({
-      configEmoji: [["recommended", "✅"]],
+      configEmoji: [['recommended', '✅']],
     });
   });
 
-  it("returns configEmoji when it exists with other, non-JSON5 data in a full .eslint-doc-generatorrc.js", () => {
+  it('returns configEmoji when it exists with other, non-JSON5 data in a full .eslint-doc-generatorrc.js', () => {
     const actual = testIntake(blockESLintPlugin, {
       files: {
-        ".eslint-doc-generatorrc.js": [
+        '.eslint-doc-generatorrc.js': [
           `import prettier from "prettier";
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
@@ -799,8 +799,8 @@ export default config;
 
     expect(actual).toEqual({
       configEmoji: [
-        ["recommended", "✅"],
-        ["legacy-recommended", "✔️"],
+        ['recommended', '✅'],
+        ['legacy-recommended', '✔️'],
       ],
     });
   });

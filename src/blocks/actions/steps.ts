@@ -1,9 +1,9 @@
-import type { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from 'bingo-fs';
 
-import _ from "lodash";
-import { z } from "zod";
+import _ from 'lodash';
+import { z } from 'zod';
 
-import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.ts";
+import { intakeFileAsYaml } from '../intake/intakeFileAsYaml.ts';
 
 export const zActionStep: z.ZodType<ActionStep> = z.intersection(
   z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),

@@ -1,12 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
-import { formatYaml } from "./formatYaml.ts";
+import { formatWorkflowYaml } from './formatWorkflowYaml.ts';
+import { formatYaml } from './formatYaml.ts';
 
 describe(formatWorkflowYaml, () => {
-  it("should format a workflow without jobs like regular YAML", () => {
+  it('should format a workflow without jobs like regular YAML', () => {
     const value = {
-      name: "Reusable workflow",
+      name: 'Reusable workflow',
       on: {
         workflow_call: null,
       },
@@ -15,80 +15,80 @@ describe(formatWorkflowYaml, () => {
     expect(formatWorkflowYaml(value)).toBe(formatYaml(value));
   });
 
-  it("should not add spacing inside a single job", () => {
+  it('should not add spacing inside a single job', () => {
     const result = formatWorkflowYaml({
       jobs: {
         build: {
-          name: "Build",
-          "runs-on": "ubuntu-latest",
-          steps: [{ uses: "actions/checkout@v4" }, { run: "pnpm build" }],
+          name: 'Build',
+          'runs-on': 'ubuntu-latest',
+          steps: [{ uses: 'actions/checkout@v4' }, { run: 'pnpm build' }],
         },
       },
     });
 
     expect(result).toBe(
       [
-        "jobs:",
-        "  build:",
-        "    name: Build",
-        "    runs-on: ubuntu-latest",
-        "    steps:",
-        "      - uses: actions/checkout@v4",
-        "      - run: pnpm build",
-        "",
-      ].join("\n"),
+        'jobs:',
+        '  build:',
+        '    name: Build',
+        '    runs-on: ubuntu-latest',
+        '    steps:',
+        '      - uses: actions/checkout@v4',
+        '      - run: pnpm build',
+        '',
+      ].join('\n'),
     );
   });
 
-  it("should add an empty line between multiple jobs", () => {
+  it('should add an empty line between multiple jobs', () => {
     const result = formatWorkflowYaml({
       jobs: {
         build: {
-          name: "Build",
-          steps: [{ run: "pnpm build" }],
+          name: 'Build',
+          steps: [{ run: 'pnpm build' }],
         },
         test: {
-          name: "Test",
-          needs: "build",
-          steps: [{ run: "pnpm test" }],
+          name: 'Test',
+          needs: 'build',
+          steps: [{ run: 'pnpm test' }],
         },
       },
     });
 
     expect(result).toBe(
       [
-        "jobs:",
-        "  build:",
-        "    name: Build",
-        "    steps:",
-        "      - run: pnpm build",
-        "",
-        "  test:",
-        "    name: Test",
-        "    needs: build",
-        "    steps:",
-        "      - run: pnpm test",
-        "",
-      ].join("\n"),
+        'jobs:',
+        '  build:',
+        '    name: Build',
+        '    steps:',
+        '      - run: pnpm build',
+        '',
+        '  test:',
+        '    name: Test',
+        '    needs: build',
+        '    steps:',
+        '      - run: pnpm test',
+        '',
+      ].join('\n'),
     );
   });
 
-  it("should not add empty lines between fields or steps", () => {
+  it('should not add empty lines between fields or steps', () => {
     const result = formatWorkflowYaml({
       jobs: {
         build: {
           env: {
-            NODE_ENV: "test",
+            NODE_ENV: 'test',
           },
           steps: [
             {
-              env: { CI: "true" },
-              run: "pnpm test",
+              env: { CI: 'true' },
+              run: 'pnpm test',
               with: { coverage: true },
             },
             {
-              if: "always()",
-              run: "pnpm report",
+              if: 'always()',
+              run: 'pnpm report',
             },
           ],
         },
@@ -100,51 +100,51 @@ describe(formatWorkflowYaml, () => {
     expect(result.match(/\n\n/g)).toBeNull();
   });
 
-  it("should preserve non-job workflow sections", () => {
+  it('should preserve non-job workflow sections', () => {
     const result = formatWorkflowYaml({
-      name: "CI",
+      name: 'CI',
       on: {
         pull_request: null,
         push: {
-          branches: ["main"],
+          branches: ['main'],
         },
       },
       concurrency: {
-        group: "${{ github.workflow }}",
+        group: '${{ github.workflow }}',
       },
       jobs: {
         build: {
-          steps: [{ run: "pnpm build" }],
+          steps: [{ run: 'pnpm build' }],
         },
         test: {
-          steps: [{ run: "pnpm test" }],
+          steps: [{ run: 'pnpm test' }],
         },
       },
     });
 
     expect(result).toContain(
       [
-        "name: CI",
-        "",
-        "on:",
-        "  pull_request: ~",
-        "  push:",
-        "    branches:",
-        "      - main",
-        "",
-        "concurrency:",
-        "  group: ${{ github.workflow }}",
-        "",
-        "jobs:",
-        "  build:",
-      ].join("\n"),
+        'name: CI',
+        '',
+        'on:',
+        '  pull_request: ~',
+        '  push:',
+        '    branches:',
+        '      - main',
+        '',
+        'concurrency:',
+        '  group: ${{ github.workflow }}',
+        '',
+        'jobs:',
+        '  build:',
+      ].join('\n'),
     );
     expect(result).toContain(
-      ["      - run: pnpm build", "", "  test:"].join("\n"),
+      ['      - run: pnpm build', '', '  test:'].join('\n'),
     );
   });
 
-  it("should not treat a nested jobs property as the workflow jobs section", () => {
+  it('should not treat a nested jobs property as the workflow jobs section', () => {
     const result = formatWorkflowYaml({
       metadata: {
         jobs: {
@@ -156,14 +156,14 @@ describe(formatWorkflowYaml, () => {
 
     expect(result).toBe(
       [
-        "metadata:",
-        "  jobs:",
-        "    first:",
-        "      enabled: true",
-        "    second:",
-        "      enabled: true",
-        "",
-      ].join("\n"),
+        'metadata:',
+        '  jobs:',
+        '    first:',
+        '      enabled: true',
+        '    second:',
+        '      enabled: true',
+        '',
+      ].join('\n'),
     );
   });
 });

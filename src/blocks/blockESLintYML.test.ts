@@ -1,70 +1,70 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockESLintYML } from "./blockESLintYML.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockESLintYML } from './blockESLintYML.ts';
+import { optionsBase } from './options.fakes.ts';
 
-describe("blockESLintYML", () => {
-  test("production", () => {
+describe('blockESLintYML', () => {
+  test('production', () => {
     const creation = testBlock(blockESLintYML, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-  {
-    "addons": [
       {
-        "addons": {
-          "extensions": [
-            {
-              "extends": [
-                "yml.configs["flat/standard"]",
-                "yml.configs["flat/prettier"]",
-              ],
-              "files": [
-                "**/*.{yml,yaml}",
-              ],
-              "rules": {
-                "yml/file-extension": "error",
-                "yml/sort-sequence-values": [
-                  "error",
-                  {
-                    "order": {
-                      "type": "asc",
-                    },
-                    "pathPattern": "^.*$",
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "yml.configs['flat/standard']",
+                    "yml.configs['flat/prettier']",
+                  ],
+                  "files": [
+                    "**/*.{yml,yaml}",
+                  ],
+                  "rules": {
+                    "yml/file-extension": "error",
+                    "yml/sort-sequence-values": [
+                      "error",
+                      {
+                        "order": {
+                          "type": "asc",
+                        },
+                        "pathPattern": "^.*$",
+                      },
+                    ],
                   },
-                ],
-              },
-            },
-            {
-              "files": [
-                "pnpm-workspace.yaml",
-              ],
-              "rules": {
-                "yml/sort-keys": [
-                  "error",
-                  {
-                    "order": {
-                      "type": "asc",
-                    },
-                    "pathPattern": "^.*$",
+                },
+                {
+                  "files": [
+                    "pnpm-workspace.yaml",
+                  ],
+                  "rules": {
+                    "yml/sort-keys": [
+                      "error",
+                      {
+                        "order": {
+                          "type": "asc",
+                        },
+                        "pathPattern": "^.*$",
+                      },
+                    ],
                   },
-                ],
-              },
+                },
+              ],
+              "imports": [
+                {
+                  "source": "eslint-plugin-yml",
+                  "specifier": "yml",
+                },
+              ],
             },
-          ],
-          "imports": [
-            {
-              "source": "eslint-plugin-yml",
-              "specifier": "yml",
-            },
-          ],
-        },
-        "block": [Function],
-      },
-    ],
-  }
-`);
+            "block": [Function],
+          },
+        ],
+      }
+    `);
   });
 });

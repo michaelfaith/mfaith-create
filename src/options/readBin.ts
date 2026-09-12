@@ -1,13 +1,13 @@
-import type { PartialPackageData } from "../types.ts";
+import type { PartialPackageData } from '../types.ts';
 
-import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
+import { trimPrecedingSlash } from '../utils/trimPrecedingSlash.ts';
 
 export async function readBin(
   getPackageData: () => Promise<PartialPackageData>,
 ) {
   const { bin } = await getPackageData();
 
-  return typeof bin === "object"
+  return typeof bin === 'object'
     ? (Object.fromEntries(
         Object.entries(bin).map(([key, value]) => [
           key,

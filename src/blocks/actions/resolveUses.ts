@@ -1,10 +1,10 @@
-import { CachedFactory } from "cached-factory";
-import semver from "semver";
+import { CachedFactory } from 'cached-factory';
+import semver from 'semver';
 
-import type { WorkflowsVersions } from "../../schemas.ts";
+import type { WorkflowsVersions } from '../../schemas.ts';
 
 const semverCoercions = new CachedFactory((version: string) => {
-  return semver.coerce(version)?.toString() ?? "0.0.0";
+  return semver.coerce(version)?.toString() ?? '0.0.0';
 });
 
 export function resolveUses(

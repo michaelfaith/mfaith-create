@@ -1,15 +1,15 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockREADME } from "./blockREADME.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockREADME } from './blockREADME.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockREADME, () => {
-  test("description with one sentence", () => {
+  test('description with one sentence', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
-        description: "One sentence.",
+        description: 'One sentence.',
       },
     });
 
@@ -34,11 +34,11 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("description with two sentences", () => {
+  test('description with two sentences', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
-        description: "First sentence. Second sentence.",
+        description: 'First sentence. Second sentence.',
       },
     });
 
@@ -66,15 +66,15 @@ describe(blockREADME, () => {
     `);
   });
 
-  test("options.documentation", () => {
+  test('options.documentation', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
         documentation: {
-          development: "Development docs.",
+          development: 'Development docs.',
           readme: {
-            additional: "Additional docs.",
-            usage: "Use it.",
+            additional: 'Additional docs.',
+            usage: 'Use it.',
           },
         },
       },
@@ -102,7 +102,7 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("options.documentation.readme.explainer", () => {
+  test('options.documentation.readme.explainer', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
@@ -110,7 +110,7 @@ describe(blockREADME, () => {
           ...optionsBase.documentation,
           readme: {
             ...optionsBase.documentation.readme,
-            explainer: "And a one.\nAnd a two.",
+            explainer: 'And a one.\nAnd a two.',
           },
         },
       },
@@ -140,7 +140,7 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("options.documentation.readme.footnotes", () => {
+  test('options.documentation.readme.footnotes', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
@@ -148,7 +148,7 @@ describe(blockREADME, () => {
           ...optionsBase.documentation,
           readme: {
             ...optionsBase.documentation.readme,
-            footnotes: "And a one.\nAnd a two.",
+            footnotes: 'And a one.\nAnd a two.',
           },
         },
       },
@@ -177,13 +177,13 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("options.logo without sizing", () => {
+  test('options.logo without sizing', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
         logo: {
-          alt: "My logo",
-          src: "img.jpg",
+          alt: 'My logo',
+          src: 'img.jpg',
         },
       },
     });
@@ -211,14 +211,14 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("options.logo with sizing", () => {
+  test('options.logo with sizing', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
         logo: {
-          alt: "My logo",
+          alt: 'My logo',
           height: 100,
-          src: "img.jpg",
+          src: 'img.jpg',
           width: 128,
         },
       },
@@ -247,7 +247,7 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("options.explainer and options.logo", () => {
+  test('options.explainer and options.logo', () => {
     const creation = testBlock(blockREADME, {
       options: {
         ...optionsBase,
@@ -255,13 +255,13 @@ describe(blockREADME, () => {
           ...optionsBase.documentation,
           readme: {
             ...optionsBase.documentation.readme,
-            explainer: "And a one.\nAnd a two.",
+            explainer: 'And a one.\nAnd a two.',
           },
         },
         logo: {
-          alt: "My logo",
+          alt: 'My logo',
           height: 100,
-          src: "img.jpg",
+          src: 'img.jpg',
           width: 128,
         },
       },
@@ -293,7 +293,7 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockREADME, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -317,25 +317,25 @@ describe(blockREADME, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockREADME, {
       addons: {
         badges: [
           {
-            alt: "Badge Z",
-            src: "https://img.shields.io/badge/my_badge-000000",
+            alt: 'Badge Z',
+            src: 'https://img.shields.io/badge/my_badge-000000',
           },
           {
-            alt: "Badge A",
-            src: "https://img.shields.io/badge/my_badge-000000",
+            alt: 'Badge A',
+            src: 'https://img.shields.io/badge/my_badge-000000',
           },
           {
-            alt: "Badge With Link",
-            href: "https://create.bingo",
-            src: "https://img.shields.io/badge/my_badge-000000",
+            alt: 'Badge With Link',
+            href: 'https://create.bingo',
+            src: 'https://img.shields.io/badge/my_badge-000000',
           },
         ],
-        notices: ["> Hello, world! ✨"],
+        notices: ['> Hello, world! ✨'],
         sections: [`## Other\n\nHello!`],
       },
       options: optionsBase,

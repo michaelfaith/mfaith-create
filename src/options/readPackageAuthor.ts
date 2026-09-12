@@ -1,6 +1,6 @@
-import parse from "parse-author";
+import parse from 'parse-author';
 
-import type { PartialPackageData } from "../types.ts";
+import type { PartialPackageData } from '../types.ts';
 
 export interface PackageAuthor {
   email?: string | undefined;
@@ -14,10 +14,10 @@ export async function readPackageAuthor(
   const packageData = await getPackageDataFull();
 
   switch (typeof packageData.author) {
-    case "object":
+    case 'object':
       return packageData.author;
 
-    case "string":
+    case 'string':
       return parse(packageData.author);
 
     default:

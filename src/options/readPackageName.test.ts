@@ -1,13 +1,13 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { readPackageName } from "./readPackageName.ts";
+import { readPackageName } from './readPackageName.ts';
 
 describe(readPackageName, () => {
-  it("returns options.packageName when it exists", async () => {
-    const packageName = "test-package-name";
+  it('returns options.packageName when it exists', async () => {
+    const packageName = 'test-package-name';
     const getPackageDataFull = vi
       .fn()
-      .mockResolvedValueOnce({ name: "test-name" });
+      .mockResolvedValueOnce({ name: 'test-name' });
     const options = { packageName };
 
     const actual = await readPackageName(getPackageDataFull, options);
@@ -15,8 +15,8 @@ describe(readPackageName, () => {
     expect(actual).toBe(packageName);
   });
 
-  it("returns package data name when only it exists", async () => {
-    const name = "test-name";
+  it('returns package data name when only it exists', async () => {
+    const name = 'test-name';
     const getPackageDataFull = vi.fn().mockResolvedValueOnce({ name });
     const options = {};
 

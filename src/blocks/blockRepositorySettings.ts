@@ -1,9 +1,9 @@
-import { base } from "../base.ts";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
+import { base } from '../base.ts';
+import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 
 export const blockRepositorySettings = base.createBlock({
   about: {
-    name: "Repository Settings",
+    name: 'Repository Settings',
   },
   produce({ options }) {
     const description = htmlToTextSafe(options.description);
@@ -11,7 +11,7 @@ export const blockRepositorySettings = base.createBlock({
     return {
       requests: [
         {
-          endpoint: "PATCH /repos/{owner}/{repo}",
+          endpoint: 'PATCH /repos/{owner}/{repo}',
           parameters: {
             allow_auto_merge: true,
             allow_merge_commit: false,
@@ -25,16 +25,16 @@ export const blockRepositorySettings = base.createBlock({
             repo: options.repository,
             security_and_analysis: {
               secret_scanning: {
-                status: "enabled",
+                status: 'enabled',
               },
               secret_scanning_push_protection: {
-                status: "enabled",
+                status: 'enabled',
               },
             },
-            squash_merge_commit_message: "PR_BODY",
-            squash_merge_commit_title: "PR_TITLE",
+            squash_merge_commit_message: 'PR_BODY',
+            squash_merge_commit_title: 'PR_TITLE',
           },
-          type: "octokit",
+          type: 'octokit',
         },
       ],
     };

@@ -1,14 +1,14 @@
 /* spellchecker:disable */
-import { testBlock } from "bingo-stratum-testers";
-import { githubDefaultLabels } from "github-default-labels";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { githubDefaultLabels } from 'github-default-labels';
+import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryLabels } from "./blockRepositoryLabels.ts";
-import { optionsBase } from "./options.fakes.ts";
-import { repositoryLabels } from "./repositoryLabels.ts";
+import { blockRepositoryLabels } from './blockRepositoryLabels.ts';
+import { optionsBase } from './options.fakes.ts';
+import { repositoryLabels } from './repositoryLabels.ts';
 
-describe("blockRepositoryLabels", () => {
-  test("when options.existingLabels is undefined", () => {
+describe('blockRepositoryLabels', () => {
+  test('when options.existingLabels is undefined', () => {
     const creation = testBlock(blockRepositoryLabels, {
       options: { ...optionsBase, existingLabels: undefined },
     });
@@ -285,7 +285,7 @@ describe("blockRepositoryLabels", () => {
 `);
   });
 
-  test("when options.existingLabels contains default entries", () => {
+  test('when options.existingLabels contains default entries', () => {
     const creation = testBlock(blockRepositoryLabels, {
       options: { ...optionsBase, existingLabels: githubDefaultLabels },
     });
@@ -568,23 +568,23 @@ describe("blockRepositoryLabels", () => {
 `);
   });
 
-  test("when options.existingLabels contains duplicate entries", () => {
+  test('when options.existingLabels contains duplicate entries', () => {
     const creation = testBlock(blockRepositoryLabels, {
       options: {
         ...optionsBase,
         existingLabels: [
           ...repositoryLabels.filter(
-            (label) => !label.name.includes("documentation"),
+            (label) => !label.name.includes('documentation'),
           ),
           {
-            color: "0075ca",
-            description: "Improvements or additions to docs 📝",
-            name: "docs",
+            color: '0075ca',
+            description: 'Improvements or additions to docs 📝',
+            name: 'docs',
           },
           {
-            color: "0075ca",
-            description: "Improvements or additions to docs 📝",
-            name: "area: documentation",
+            color: '0075ca',
+            description: 'Improvements or additions to docs 📝',
+            name: 'area: documentation',
           },
         ],
       },

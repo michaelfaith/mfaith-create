@@ -1,22 +1,22 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { resolveUses } from "./actions/resolveUses.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockPrettier } from "./blockPrettier.ts";
-import { blockREADME } from "./blockREADME.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
-import { blockRepositoryVariables } from "./blockRepositoryVariables.ts";
-import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { base } from '../base.ts';
+import { resolveUses } from './actions/resolveUses.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockPrettier } from './blockPrettier.ts';
+import { blockREADME } from './blockREADME.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRepositorySecrets } from './blockRepositorySecrets.ts';
+import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
+import { createMultiJobWorkflow } from './files/createMultiJobWorkflow.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const isScopedPackage = (packageName: string | undefined): boolean =>
-  !!packageName?.startsWith("@");
+  !!packageName?.startsWith('@');
 
 export const blockReleasePlease = base.createBlock({
   about: {
-    name: "Release Please",
+    name: 'Release Please',
   },
   addons: {
     builders: z
@@ -31,13 +31,13 @@ export const blockReleasePlease = base.createBlock({
   },
   intake({ files }) {
     const releasePleaseManifest = intakeFileAsJson(files, [
-      ".github",
-      "release-please",
-      "release-please-manifest.main.json",
+      '.github',
+      'release-please',
+      'release-please-manifest.main.json',
     ]);
     const { data: manifestVersion } = z
       .string()
-      .safeParse(releasePleaseManifest?.["."]);
+      .safeParse(releasePleaseManifest?.['.']);
     if (manifestVersion) {
       return {
         currentVersion: manifestVersion,
@@ -49,16 +49,16 @@ export const blockReleasePlease = base.createBlock({
   produce({ addons, options }) {
     const { builders, currentVersion } = addons;
 
-    const version = currentVersion ?? options.version ?? "0.0.0";
+    const version = currentVersion ?? options.version ?? '0.0.0';
 
     return {
       addons: [
-        blockCSpell({ words: ["RELEASEBOT"] }),
-        blockPrettier({ ignores: ["/CHANGELOG.md"] }),
+        blockCSpell({ words: ['RELEASEBOT'] }),
+        blockPrettier({ ignores: ['/CHANGELOG.md'] }),
         blockREADME({
           badges: [
             {
-              alt: "📦 npm version",
+              alt: '📦 npm version',
               href: `http://npmjs.com/package/${options.packageName}`,
               src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
             },
@@ -68,8 +68,8 @@ export const blockReleasePlease = base.createBlock({
           secrets: [
             {
               description:
-                "an app Private Key for generating an ephemeral token",
-              name: "RELEASEBOT_APP_PRIVATE_KEY",
+                'an app Private Key for generating an ephemeral token',
+              name: 'RELEASEBOT_APP_PRIVATE_KEY',
             },
           ],
         }),
@@ -77,87 +77,87 @@ export const blockReleasePlease = base.createBlock({
           variables: [
             {
               description:
-                "the client id for an app that generates an ephemeral token",
-              name: "RELEASEBOT_APP_CLIENT_ID",
+                'the client id for an app that generates an ephemeral token',
+              name: 'RELEASEBOT_APP_CLIENT_ID',
             },
           ],
         }),
       ],
       files: {
-        ".github": {
+        '.github': {
           workflows: {
-            "release.yaml": createMultiJobWorkflow({
-              name: "Release",
+            'release.yaml': createMultiJobWorkflow({
+              name: 'Release',
               on: {
                 push: {
-                  branches: ["main"],
+                  branches: ['main'],
                 },
               },
               concurrency: {
-                group: "${{ github.workflow }}",
+                group: '${{ github.workflow }}',
               },
               jobs: [
                 {
-                  id: "release_please",
-                  name: "Manage Release PR",
-                  if: "github.event.repository.fork != true",
+                  id: 'release_please',
+                  name: 'Manage Release PR',
+                  if: 'github.event.repository.fork != true',
                   outputs: {
                     releases_created:
-                      "${{ steps.release.outputs.releases_created }}",
-                    tag_name: "${{ steps.release.outputs.tag_name }}",
+                      '${{ steps.release.outputs.releases_created }}',
+                    tag_name: '${{ steps.release.outputs.tag_name }}',
                   },
                   steps: [
                     {
-                      name: "Create Token",
-                      id: "create_token",
+                      name: 'Create Token',
+                      id: 'create_token',
                       uses: resolveUses(
-                        "actions/create-github-app-token",
-                        "v3.2.0",
+                        'actions/create-github-app-token',
+                        'v3.2.0',
                         options.workflowsVersions,
                       ),
                       with: {
-                        "client-id": "${{ vars.RELEASEBOT_APP_CLIENT_ID }}",
-                        "private-key":
-                          "${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}",
+                        'client-id': '${{ vars.RELEASEBOT_APP_CLIENT_ID }}',
+                        'private-key':
+                          '${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}',
                       },
                     },
                     {
-                      name: "Release Please",
-                      id: "release",
+                      name: 'Release Please',
+                      id: 'release',
                       uses: resolveUses(
-                        "googleapis/release-please-action",
-                        "v5.0.0",
+                        'googleapis/release-please-action',
+                        'v5.0.0',
                         options.workflowsVersions,
                       ),
                       with: {
-                        "config-file":
-                          ".github/release-please/release-please-config.${{ github.ref_name }}.json",
-                        "manifest-file":
-                          ".github/release-please/release-please-manifest.${{ github.ref_name }}.json",
-                        "target-branch": "${{ github.ref_name }}",
-                        token: "${{ steps.create_token.outputs.token }}",
+                        'config-file':
+                          '.github/release-please/release-please-config.${{ github.ref_name }}.json',
+                        'manifest-file':
+                          '.github/release-please/release-please-manifest.${{ github.ref_name }}.json',
+                        'target-branch': '${{ github.ref_name }}',
+                        token: '${{ steps.create_token.outputs.token }}',
                       },
                     },
                   ],
                 },
                 {
-                  id: "publish",
-                  name: "Publish Package",
+                  id: 'publish',
+                  name: 'Publish Package',
                   if: "${{ needs.release_please.outputs.releases_created == 'true' }}",
-                  needs: "release_please",
+                  needs: 'release_please',
                   permissions: {
-                    contents: "read",
-                    "id-token": "write",
+                    contents: 'read',
+                    'id-token': 'write',
                   },
                   outputs: {
                     dist_tag:
-                      "${{ steps.determine_dist_tag.outputs.dist_tag }}",
+                      '${{ steps.determine_dist_tag.outputs.dist_tag }}',
                   },
                   steps: [
-                    { uses: "$/.github/actions/setup" },
+                    { uses: '$/.github/actions/setup' },
                     {
-                      name: "Determine dist-tag",
-                      id: "determine_dist_tag",
+                      name: 'Determine dist-tag',
+                      id: 'determine_dist_tag',
                       run: `TAG_NAME="\${{ needs.release_please.outputs.tag_name }}"
 echo "Release tag: $TAG_NAME"
 
@@ -177,31 +177,31 @@ echo "dist_tag=$DIST_TAG" >> "$GITHUB_OUTPUT"`,
                     },
                     ...builders
                       .sort((a, b) => a.order - b.order)
-                      .map(({ run }) => ({ name: "Build", run })),
+                      .map(({ run }) => ({ name: 'Build', run })),
                     {
-                      name: "Publish",
+                      name: 'Publish',
                       run: `echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
-pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}${isScopedPackage(options.packageName) ? " --access public" : ""}`,
+pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}${isScopedPackage(options.packageName) ? ' --access public' : ''}`,
                     },
                   ],
                 },
                 {
-                  id: "post_release",
-                  name: "Post Release Comments",
-                  needs: "publish",
+                  id: 'post_release',
+                  name: 'Post Release Comments',
+                  needs: 'publish',
                   permissions: {
-                    issues: "write",
-                    "pull-requests": "write",
+                    issues: 'write',
+                    'pull-requests': 'write',
                   },
                   steps: [
                     {
                       uses: resolveUses(
-                        "actions/checkout",
-                        "v7",
+                        'actions/checkout',
+                        'v7',
                         options.workflowsVersions,
                       ),
                       with: {
-                        "fetch-depth": 0,
+                        'fetch-depth': 0,
                       },
                     },
                     {
@@ -209,13 +209,13 @@ pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine
                     },
                     {
                       uses: resolveUses(
-                        "apexskier/github-release-commenter",
-                        "v1",
+                        'apexskier/github-release-commenter',
+                        'v1',
                         options.workflowsVersions,
                       ),
                       with: {
-                        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
-                        "comment-template": `:tada: This is included in version {release_link} :tada:
+                        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+                        'comment-template': `:tada: This is included in version {release_link} :tada:
 
 The release is available on:
 
@@ -230,35 +230,35 @@ Cheers! 📦🚀`,
               ],
             }),
           },
-          "release-please": {
-            "release-please-config.main.json": JSON.stringify({
-              "bump-minor-pre-major": true,
-              "bump-patch-for-minor-pre-major": true,
-              "changelog-sections": [
-                { type: "feat", section: "🚀 Features", hidden: false },
-                { type: "fix", section: "🩹 Bug Fixes", hidden: false },
+          'release-please': {
+            'release-please-config.main.json': JSON.stringify({
+              'bump-minor-pre-major': true,
+              'bump-patch-for-minor-pre-major': true,
+              'changelog-sections': [
+                { type: 'feat', section: '🚀 Features', hidden: false },
+                { type: 'fix', section: '🩹 Bug Fixes', hidden: false },
                 {
-                  type: "perf",
-                  section: "🏁 Performance Improvements",
+                  type: 'perf',
+                  section: '🏁 Performance Improvements',
                   hidden: false,
                 },
-                { type: "build", hidden: true },
-                { type: "chore", hidden: true },
-                { type: "ci", hidden: true },
-                { type: "docs", hidden: true },
-                { type: "refactor", hidden: true },
-                { type: "test", hidden: true },
+                { type: 'build', hidden: true },
+                { type: 'chore', hidden: true },
+                { type: 'ci', hidden: true },
+                { type: 'docs', hidden: true },
+                { type: 'refactor', hidden: true },
+                { type: 'test', hidden: true },
               ],
-              "include-component-in-tag": false,
-              "initial-version": "0.1.0",
-              "release-type": "node",
+              'include-component-in-tag': false,
+              'initial-version': '0.1.0',
+              'release-type': 'node',
               packages: {
-                ".": {},
+                '.': {},
               },
             }),
-            "release-please-manifest.main.json": JSON.stringify(
+            'release-please-manifest.main.json': JSON.stringify(
               {
-                ".": version,
+                '.': version,
               },
               null,
               2,
@@ -270,7 +270,7 @@ Cheers! 📦🚀`,
         [
           `- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
           `   https://www.npmjs.com/package/${options.packageName}/access`,
-        ].join("\n"),
+        ].join('\n'),
       ],
     };
   },
@@ -279,8 +279,8 @@ Cheers! 📦🚀`,
       addons: [
         blockRemoveFiles({
           files: [
-            ".github/workflows/post-release.yml",
-            ".github/workflows/release.yml",
+            '.github/workflows/post-release.yml',
+            '.github/workflows/release.yml',
           ],
         }),
       ],

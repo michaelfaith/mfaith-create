@@ -1,7 +1,7 @@
-import type { SingleJobWorkflow } from "./workflow.types.ts";
+import type { SingleJobWorkflow } from './workflow.types.ts';
 
-import { createJobName } from "./createJobName.ts";
-import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
+import { createJobName } from './createJobName.ts';
+import { formatWorkflowYaml } from './formatWorkflowYaml.ts';
 
 export function createSingleJobWorkflow({
   concurrency,
@@ -17,7 +17,7 @@ export function createSingleJobWorkflow({
       [createJobName(job.name ?? name)]: {
         ...(job.if && { if: job.if }),
         ...(job.name && { name: job.name }),
-        "runs-on": job["runs-on"] || "ubuntu-latest",
+        'runs-on': job['runs-on'] || 'ubuntu-latest',
         permissions: job.permissions,
         steps: job.steps,
       },

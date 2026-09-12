@@ -1,6 +1,6 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
+import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
 
 export async function readRulesetId(
   take: TakeInput,
@@ -8,7 +8,7 @@ export async function readRulesetId(
   getRepository: () => Promise<string | undefined>,
 ): Promise<string | undefined> {
   const rulesets = (await take(inputFromOctokit, {
-    endpoint: "GET /repos/{owner}/{repo}/rulesets",
+    endpoint: 'GET /repos/{owner}/{repo}/rulesets',
     options: {
       owner: await getOwner(),
       repo: await getRepository(),
@@ -16,6 +16,6 @@ export async function readRulesetId(
   })) as undefined | { id: string; name: string }[];
 
   return rulesets?.find(
-    (ruleset) => ruleset.name === "Branch protection for main",
+    (ruleset) => ruleset.name === 'Branch protection for main',
   )?.id;
 }

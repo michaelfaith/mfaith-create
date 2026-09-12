@@ -1,20 +1,20 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockGitHubApps } from "./blockGitHubApps.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { base } from '../base.ts';
+import { blockGitHubApps } from './blockGitHubApps.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const zIgnoreDeps = z.array(z.string()).default([]);
 
 export const blockRenovate = base.createBlock({
   about: {
-    name: "Renovate",
+    name: 'Renovate',
   },
   addons: {
     ignoreDeps: zIgnoreDeps,
   },
   intake({ files }) {
-    const raw = intakeFileAsJson(files, [".github", "renovate.json"]);
+    const raw = intakeFileAsJson(files, ['.github', 'renovate.json']);
 
     return {
       ignoreDeps: zIgnoreDeps.safeParse(raw?.ignoreDeps).data,
@@ -28,28 +28,28 @@ export const blockRenovate = base.createBlock({
         blockGitHubApps({
           apps: [
             {
-              name: "Renovate",
-              url: "https://github.com/apps/renovate",
+              name: 'Renovate',
+              url: 'https://github.com/apps/renovate',
             },
           ],
         }),
       ],
       files: {
-        ".github": {
-          "renovate.json": JSON.stringify({
-            $schema: "https://docs.renovatebot.com/renovate-schema.json",
+        '.github': {
+          'renovate.json': JSON.stringify({
+            $schema: 'https://docs.renovatebot.com/renovate-schema.json',
             automerge: true,
             extends: [
-              ":preserveSemverRanges",
-              "config:best-practices",
-              "replacements:all",
+              ':preserveSemverRanges',
+              'config:best-practices',
+              'replacements:all',
             ],
             ignoreDeps: ignoreDeps.length
               ? Array.from(new Set(ignoreDeps)).sort()
               : undefined,
-            labels: ["dependencies"],
-            minimumReleaseAge: "7 days",
-            postUpdateOptions: ["pnpmDedupe"],
+            labels: ['dependencies'],
+            minimumReleaseAge: '7 days',
+            postUpdateOptions: ['pnpmDedupe'],
           }),
         },
       },

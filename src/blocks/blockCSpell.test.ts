@@ -1,20 +1,20 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test, vi } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockCSpell } from "./blockCSpell.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockCSpell } from './blockCSpell.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock('../utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-vi.mock("../data/packageData.js", () => ({
+vi.mock('../data/packageData.js', () => ({
   getPackageDependencies: (...names: string[]) =>
-    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
 describe(blockCSpell, () => {
-  test("without addons or options", () => {
+  test('without addons or options', () => {
     const creation = testBlock(blockCSpell, {
       options: optionsBase,
     });
@@ -80,11 +80,11 @@ describe(blockCSpell, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockCSpell, {
       addons: {
-        ignorePaths: ["dist/"],
-        words: ["michaelfaith"],
+        ignorePaths: ['dist/'],
+        words: ['michaelfaith'],
       },
       options: optionsBase,
     });
@@ -150,11 +150,11 @@ describe(blockCSpell, () => {
 		`);
   });
 
-  test("with options", () => {
+  test('with options', () => {
     const creation = testBlock(blockCSpell, {
       options: {
         ...optionsBase,
-        words: ["michaelfaith"],
+        words: ['michaelfaith'],
       },
     });
 
@@ -219,9 +219,9 @@ describe(blockCSpell, () => {
 		`);
   });
 
-  test("setup mode", () => {
+  test('setup mode', () => {
     const creation = testBlock(blockCSpell, {
-      mode: "setup",
+      mode: 'setup',
       options: optionsBase,
     });
 
@@ -294,9 +294,9 @@ describe(blockCSpell, () => {
 		`);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockCSpell, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -370,8 +370,8 @@ describe(blockCSpell, () => {
 		`);
   });
 
-  describe("intake", () => {
-    it("returns undefined when cspell.json does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when cspell.json does not exist', () => {
       const actual = testIntake(blockCSpell, {
         files: {},
       });
@@ -379,35 +379,35 @@ describe(blockCSpell, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when cspell.json does not contain truthy data", () => {
+    it('returns undefined when cspell.json does not contain truthy data', () => {
       const actual = testIntake(blockCSpell, {
         files: {
-          "cspell.json": [JSON.stringify(null)],
+          'cspell.json': [JSON.stringify(null)],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when cspell.json contains invalid data", () => {
+    it('returns undefined when cspell.json contains invalid data', () => {
       const actual = testIntake(blockCSpell, {
         files: {
-          "cspell.json": [JSON.stringify({ ignorePaths: true })],
+          'cspell.json': [JSON.stringify({ ignorePaths: true })],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns the data when cspell.json contains ignorePaths and words", () => {
+    it('returns the data when cspell.json contains ignorePaths and words', () => {
       const data = {
-        ignorePaths: ["other"],
-        words: ["abc", "def"],
+        ignorePaths: ['other'],
+        words: ['abc', 'def'],
       };
 
       const actual = testIntake(blockCSpell, {
         files: {
-          "cspell.json": [JSON.stringify(data)],
+          'cspell.json': [JSON.stringify(data)],
         },
       });
 

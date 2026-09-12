@@ -1,9 +1,9 @@
-import { base } from "../base.ts";
-import { blockESLint } from "./blockESLint.ts";
+import { base } from '../base.ts';
+import { blockESLint } from './blockESLint.ts';
 
 export const blockESLintMarkdownLinks = base.createBlock({
   about: {
-    name: "ESLint Markdown Links Plugin",
+    name: 'ESLint Markdown Links Plugin',
   },
   produce() {
     return {
@@ -11,14 +11,14 @@ export const blockESLintMarkdownLinks = base.createBlock({
         blockESLint({
           extensions: [
             {
-              extends: ["markdownLinks.configs.recommended"],
-              files: ["**/*.md"],
+              extends: ['markdownLinks.configs.recommended'],
+              files: ['**/*.md'],
             },
           ],
           imports: [
             {
-              source: "eslint-plugin-markdown-links",
-              specifier: "markdownLinks",
+              source: 'eslint-plugin-markdown-links',
+              specifier: 'markdownLinks',
             },
           ],
         }),

@@ -1,6 +1,6 @@
-import type { UserInfo } from "npm-user";
+import type { UserInfo } from 'npm-user';
 
-import type { PackageAuthor } from "./readPackageAuthor.ts";
+import type { PackageAuthor } from './readPackageAuthor.ts';
 
 export async function readEmailFromNpm(
   getNpmDefaults: () => Promise<undefined | UserInfo>,

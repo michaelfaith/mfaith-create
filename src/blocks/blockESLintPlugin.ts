@@ -1,27 +1,27 @@
-import { base } from "../base.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockREADME } from "./blockREADME.ts";
-import { blockVitest } from "./blockVitest.ts";
-import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
-import { zConfigEmoji } from "./eslint/schemas.ts";
-import { intakeFile } from "./intake/intakeFile.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockREADME } from './blockREADME.ts';
+import { blockVitest } from './blockVitest.ts';
+import { blockESLintPluginIntake } from './eslint/blockESLintPluginIntake.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { zConfigEmoji } from './eslint/schemas.ts';
+import { intakeFile } from './intake/intakeFile.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockESLintPlugin = base.createBlock({
   about: {
-    name: "ESLint Plugin",
+    name: 'ESLint Plugin',
   },
   addons: {
     configEmoji: zConfigEmoji,
   },
   intake({ files }) {
     const docGeneratorConfigRaw = intakeFile(files, [
-      [".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
+      ['.eslint-doc-generatorrc.js', '.eslint-doc-generatorrc.mjs'],
     ]);
 
     return docGeneratorConfigRaw
@@ -30,15 +30,15 @@ export const blockESLintPlugin = base.createBlock({
   },
   produce({ addons, options }) {
     const { configEmoji } = addons;
-    const configFileName = ".eslint-doc-generatorrc.js";
+    const configFileName = '.eslint-doc-generatorrc.js';
     const pluginName = options.repository
-      .replace(/^eslint-plugin-/, "")
+      .replace(/^eslint-plugin-/, '')
       .replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
     return {
       addons: [
         blockCSpell({
-          words: ["eslint-doc-generatorrc"],
+          words: ['eslint-doc-generatorrc'],
         }),
         blockDevelopmentDocs({
           sections: {
@@ -52,7 +52,7 @@ Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to
 pnpm build:docs
 \`\`\`
 		`,
-                  heading: "Building Docs",
+                  heading: 'Building Docs',
                 },
               ],
             },
@@ -68,28 +68,28 @@ pnpm build:docs
         blockESLint({
           extensions: [
             {
-              extends: ['eslintPlugin.configs["flat/recommended"]'],
+              extends: [`eslintPlugin.configs['flat/recommended']`],
               files: JS_TS_FILES,
             },
           ],
-          ignores: [configFileName, "docs/rules/*/*.ts"],
+          ignores: [configFileName, 'docs/rules/*/*.ts'],
           imports: [
             {
               source: {
-                packageName: "eslint-plugin-eslint-plugin",
-                version: "6.4.0",
+                packageName: 'eslint-plugin-eslint-plugin',
+                version: '6.4.0',
               },
-              specifier: "eslintPlugin",
+              specifier: 'eslintPlugin',
             },
           ],
         }),
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Lint Docs",
+              name: 'Lint Docs',
               steps: [
-                { run: "pnpm build || exit 0" },
-                { run: "pnpm lint:docs" },
+                { run: 'pnpm build || exit 0' },
+                { run: 'pnpm lint:docs' },
               ],
             },
           ],
@@ -121,22 +121,22 @@ These are all set to \`"error"\` in the recommended config:
         blockPackageJson({
           properties: {
             dependencies: {
-              "@typescript-eslint/utils": "^8.29.0",
+              '@typescript-eslint/utils': '^8.29.0',
             },
             devDependencies: {
-              "@typescript-eslint/rule-tester": "8.29.1",
-              "eslint-doc-generator": "2.1.0",
-              "eslint-plugin-eslint-plugin": "6.4.0",
+              '@typescript-eslint/rule-tester': '8.29.1',
+              'eslint-doc-generator': '2.1.0',
+              'eslint-plugin-eslint-plugin': '6.4.0',
             },
             scripts: {
-              "build:docs": "pnpm build --no-dts && eslint-doc-generator",
-              "lint:docs": "eslint-doc-generator --check",
+              'build:docs': 'pnpm build --no-dts && eslint-doc-generator',
+              'lint:docs': 'eslint-doc-generator --check',
             },
           },
         }),
         blockVitest({
           coverage: {
-            exclude: ["src/index.ts", "src/rules/index.ts"],
+            exclude: ['src/index.ts', 'src/rules/index.ts'],
           },
         }),
       ],
@@ -145,12 +145,12 @@ These are all set to \`"error"\` in the recommended config:
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
-	${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ""}postprocess: async (content, path) =>
+	${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ''}postprocess: async (content, path) =>
 		prettier.format(content, {
 			...(await prettier.resolveConfig(path)),
-			parser: "markdown",
+			parser: 'markdown',
 		}),
-	ruleDocTitleFormat: "name",
+	ruleDocTitleFormat: 'name',
 };
 
 export default config;
@@ -158,31 +158,31 @@ export default config;
       },
       scripts: [
         {
-          commands: ["pnpm build"],
+          commands: ['pnpm build'],
           phase: CommandPhase.Build,
         },
         {
-          commands: ["pnpm eslint-doc-generator --init-rule-docs"],
+          commands: ['pnpm eslint-doc-generator --init-rule-docs'],
           phase: CommandPhase.Process,
         },
       ],
     };
   },
   setup({ options }) {
-    const pluginName = options.repository.replace("eslint-plugin-", "");
+    const pluginName = options.repository.replace('eslint-plugin-', '');
 
     return {
       files: {
         src: {
-          "index.ts": `import Module from "node:module";
+          'index.ts': `import Module from 'node:module';
 
-import { rules } from "./rules/index.ts";
+import { rules } from './rules/index.ts';
 
 const require = Module.createRequire(import.meta.url);
 
 const { name, version } =
 	// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
-	require("../package.json") as typeof import("../package.json");
+	require('../package.json') as typeof import('../package.json');
 
 export const plugin = {
 	configs: {
@@ -196,10 +196,10 @@ export const plugin = {
 
 const recommended = {
 	plugins: {
-		"${pluginName}": plugin,
+		'${pluginName}': plugin,
 	},
 	rules: Object.fromEntries(
-		Object.keys(rules).map((rule) => [\`${pluginName}/\${rule}\`, "error"]),
+		Object.keys(rules).map((rule) => [\`${pluginName}/\${rule}\`, 'error']),
 	),
 };
 
@@ -208,10 +208,10 @@ export { rules };
 export default plugin;
 `,
           rules: {
-            "enums.test.ts": `import { rule } from "./enums.ts";
-import { ruleTester } from "./ruleTester.ts";
+            'enums.test.ts': `import { rule } from './enums.ts';
+import { ruleTester } from './ruleTester.ts';
 
-ruleTester.run("enums", rule, {
+ruleTester.run('enums', rule, {
 	invalid: [
 		{
 			code: \`enum Values {}\`,
@@ -229,14 +229,14 @@ ruleTester.run("enums", rule, {
 	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 });
 `,
-            "enums.ts": `import { createRule } from "../utils.ts";
+            'enums.ts': `import { createRule } from '../utils.ts';
 
 export const rule = createRule({
 	create(context) {
 		return {
 			TSEnumDeclaration(node) {
 				context.report({
-					messageId: "enum",
+					messageId: 'enum',
 					node,
 				});
 			},
@@ -251,19 +251,19 @@ export const rule = createRule({
 			enum: "This enum will not be allowed under TypeScript's --erasableSyntaxOnly.",
 		},
 		schema: [],
-		type: "problem",
+		type: 'problem',
 	},
-	name: "enums",
+	name: 'enums',
 });
 `,
-            "index.ts": `import { rule as enums } from "./enums.ts";
+            'index.ts': `import { rule as enums } from './enums.ts';
 
 export const rules = {
 	enums,
 };
 `,
-            "ruleTester.ts": `import { RuleTester } from "@typescript-eslint/rule-tester";
-import * as vitest from "vitest";
+            'ruleTester.ts': `import { RuleTester } from '@typescript-eslint/rule-tester';
+import * as vitest from 'vitest';
 
 RuleTester.afterAll = vitest.afterAll;
 RuleTester.it = vitest.it;
@@ -273,7 +273,7 @@ RuleTester.describe = vitest.describe;
 export const ruleTester = new RuleTester();
 `,
           },
-          "utils.ts": `import { ESLintUtils } from "@typescript-eslint/utils";
+          'utils.ts': `import { ESLintUtils } from '@typescript-eslint/utils';
 
 export const createRule = ESLintUtils.RuleCreator(
 	(name) =>

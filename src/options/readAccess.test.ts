@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { readAccess } from "./readAccess.ts";
+import { readAccess } from './readAccess.ts';
 
 describe(readAccess, () => {
   it("resolves with 'public' when package data does not exist", async () => {
@@ -8,7 +8,7 @@ describe(readAccess, () => {
 
     const actual = await readAccess(getDescription);
 
-    expect(actual).toBe("public");
+    expect(actual).toBe('public');
   });
 
   it("resolves with 'public' when package data does not have publishConfig", async () => {
@@ -16,7 +16,7 @@ describe(readAccess, () => {
 
     const actual = await readAccess(getDescription);
 
-    expect(actual).toBe("public");
+    expect(actual).toBe('public');
   });
 
   it("resolves with 'public' when package data has an empty publishConfig", async () => {
@@ -26,11 +26,11 @@ describe(readAccess, () => {
 
     const actual = await readAccess(getDescription);
 
-    expect(actual).toBe("public");
+    expect(actual).toBe('public');
   });
 
-  it("resolves with the access when package data has a publishConfig with access", async () => {
-    const access = "restricted";
+  it('resolves with the access when package data has a publishConfig with access', async () => {
+    const access = 'restricted';
     const getDescription = vi.fn().mockResolvedValue({
       publishConfig: { access },
     });

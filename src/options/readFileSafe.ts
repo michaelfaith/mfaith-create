@@ -1,4 +1,4 @@
-import * as fs from "node:fs/promises";
+import * as fs from 'node:fs/promises';
 
 export async function readFileSafe(filePath: string | URL, fallback: string) {
   try {

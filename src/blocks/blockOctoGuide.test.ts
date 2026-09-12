@@ -1,12 +1,12 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { dump } from "js-yaml";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { dump } from 'js-yaml';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockOctoGuide } from "./blockOctoGuide.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockOctoGuide } from './blockOctoGuide.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockOctoGuide, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockOctoGuide, {
       options: optionsBase,
     });
@@ -72,9 +72,9 @@ describe(blockOctoGuide, () => {
     `);
   });
 
-  test("transition mode without files", () => {
+  test('transition mode without files', () => {
     const creation = testBlock(blockOctoGuide, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -151,10 +151,10 @@ describe(blockOctoGuide, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockOctoGuide, {
       addons: {
-        config: "strict",
+        config: 'strict',
       },
       options: optionsBase,
     });
@@ -220,11 +220,11 @@ describe(blockOctoGuide, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when octoguide.yaml does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when octoguide.yaml does not exist', () => {
       const actual = testIntake(blockOctoGuide, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {},
           },
         },
@@ -233,20 +233,20 @@ describe(blockOctoGuide, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when octoguide.yaml contains an octoguide job with no octoguide step", () => {
+    it('returns undefined when octoguide.yaml contains an octoguide job with no octoguide step', () => {
       const actual = testIntake(blockOctoGuide, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "octoguide.yaml": [
+              'octoguide.yaml': [
                 dump({
                   jobs: {
                     octoguide: {
-                      name: "Octoguide",
+                      name: 'Octoguide',
                       steps: [
                         {
-                          uses: "other/workflow@1",
-                          with: { config: "strict" },
+                          uses: 'other/workflow@1',
+                          with: { config: 'strict' },
                         },
                       ],
                     },
@@ -261,21 +261,21 @@ describe(blockOctoGuide, () => {
       expect(actual).toEqual(undefined);
     });
 
-    it("returns config when octoguide.yaml contains an octoguide job with config in its octoguide step", () => {
-      const config = "strict";
+    it('returns config when octoguide.yaml contains an octoguide job with config in its octoguide step', () => {
+      const config = 'strict';
 
       const actual = testIntake(blockOctoGuide, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "octoguide.yaml": [
+              'octoguide.yaml': [
                 dump({
                   jobs: {
                     octoguide: {
-                      name: "Octoguide",
+                      name: 'Octoguide',
                       steps: [
                         {
-                          uses: "JoshuaKGoldberg/octoguide@1",
+                          uses: 'JoshuaKGoldberg/octoguide@1',
                           with: { config },
                         },
                       ],

@@ -1,10 +1,10 @@
-import { base } from "../base.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
+import { base } from '../base.ts';
+import { blockESLint } from './blockESLint.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
 
 export const blockESLintNode = base.createBlock({
   about: {
-    name: "ESLint Node Plugin",
+    name: 'ESLint Node Plugin',
   },
   produce() {
     return {
@@ -16,18 +16,18 @@ export const blockESLintNode = base.createBlock({
               files: JS_TS_FILES,
             },
             {
-              extends: ["tseslint.configs.disableTypeChecked"],
-              files: ["**/*.md/*.ts"],
-              rules: { "n/no-missing-import": "off" },
+              extends: ['tseslint.configs.disableTypeChecked'],
+              files: ['**/*.md/*.ts'],
+              rules: { 'n/no-missing-import': 'off' },
             },
             {
-              files: ["./eslint.config.ts", "./**/*.test.*"],
+              files: ['./eslint.config.ts', './**/*.test.*'],
               rules: {
-                "n/no-unsupported-features/node-builtins": "off",
+                'n/no-unsupported-features/node-builtins': 'off',
               },
             },
           ],
-          imports: [{ source: "eslint-plugin-n", specifier: "n" }],
+          imports: [{ source: 'eslint-plugin-n', specifier: 'n' }],
         }),
       ],
     };

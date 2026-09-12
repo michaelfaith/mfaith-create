@@ -1,9 +1,9 @@
-const lastTagMatchers = [`">`, "/p>", "/>"];
+const lastTagMatchers = [`">`, '/p>', '/>'];
 
 export async function readReadmeExplainer(getReadme: () => Promise<string>) {
   const readme = await getReadme();
 
-  const indexOfFirstH2 = readme.indexOf("##");
+  const indexOfFirstH2 = readme.indexOf('##');
   const indexOfUsageH2 = /## Usage/.exec(readme)?.index;
   const beforeH2s = readme.slice(0, indexOfUsageH2 ?? indexOfFirstH2);
   const [indexOfLastTag, lastTagMatcher] = lastLastIndexOf(

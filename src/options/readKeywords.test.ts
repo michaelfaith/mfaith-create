@@ -1,21 +1,21 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { readKeywords } from "./readKeywords.ts";
+import { readKeywords } from './readKeywords.ts';
 
 describe(readKeywords, () => {
-  it("resolves with undefined when there are no existing keywords", async () => {
+  it('resolves with undefined when there are no existing keywords', async () => {
     const actual = await readKeywords(() => Promise.resolve({}));
 
     expect(actual).toBeUndefined();
   });
 
-  it("resolves with deduplicated and sorted keywords when there are existing keywords", async () => {
+  it('resolves with deduplicated and sorted keywords when there are existing keywords', async () => {
     const actual = await readKeywords(() =>
       Promise.resolve({
-        keywords: ["b", "a", "c d", "b", "a"],
+        keywords: ['b', 'a', 'c d', 'b', 'a'],
       }),
     );
 
-    expect(actual).toEqual(["a", "b", "c d"]);
+    expect(actual).toEqual(['a', 'b', 'c d']);
   });
 });

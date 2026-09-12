@@ -1,17 +1,17 @@
-import { base } from "../base.ts";
-import { blockAllContributors } from "../blocks/blockAllContributors.ts";
-import { blockCodecov } from "../blocks/blockCodecov.ts";
-import { blockFunding } from "../blocks/blockFunding.ts";
-import { blockOctoGuide } from "../blocks/blockOctoGuide.ts";
-import { blockReleasePlease } from "../blocks/blockReleasePlease.ts";
-import { blockVitest } from "../blocks/blockVitest.ts";
-import { presetMinimal } from "./minimal.ts";
+import { base } from '../base.ts';
+import { blockAllContributors } from '../blocks/blockAllContributors.ts';
+import { blockCodecov } from '../blocks/blockCodecov.ts';
+import { blockFunding } from '../blocks/blockFunding.ts';
+import { blockOctoGuide } from '../blocks/blockOctoGuide.ts';
+import { blockReleasePlease } from '../blocks/blockReleasePlease.ts';
+import { blockVitest } from '../blocks/blockVitest.ts';
+import { presetMinimal } from './minimal.ts';
 
 export const presetCommon = base.createPreset({
   about: {
     description:
-      "Bare starters plus testing and automation for all-contributors and releases.",
-    name: "Common",
+      'Bare starters plus testing and automation for all-contributors and releases.',
+    name: 'Common',
   },
   blocks: [
     ...presetMinimal.blocks,

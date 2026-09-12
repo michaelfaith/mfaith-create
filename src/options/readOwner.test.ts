@@ -1,11 +1,11 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { readOwner } from "./readOwner.ts";
+import { readOwner } from './readOwner.ts';
 
 describe(readOwner, () => {
-  it("returns git defaults organization when it exists", async () => {
+  it('returns git defaults organization when it exists', async () => {
     const take = vi.fn();
-    const organization = "test-organization";
+    const organization = 'test-organization';
     const getGitDefaults = vi.fn().mockResolvedValueOnce({ organization });
     const getPackageAuthor = vi.fn();
 
@@ -16,8 +16,8 @@ describe(readOwner, () => {
     expect(getPackageAuthor).not.toHaveBeenCalled();
   });
 
-  it("returns the gh config value when only it resolves", async () => {
-    const user = "test-user";
+  it('returns the gh config value when only it resolves', async () => {
+    const user = 'test-user';
     const take = vi.fn().mockResolvedValueOnce({ stdout: user });
     const getGitDefaults = vi.fn();
     const getPackageAuthor = vi.fn();
@@ -28,9 +28,9 @@ describe(readOwner, () => {
     expect(getPackageAuthor).not.toHaveBeenCalled();
   });
 
-  it("returns package data author when only it exists", async () => {
+  it('returns package data author when only it exists', async () => {
     const take = vi.fn().mockResolvedValueOnce({});
-    const name = "test-author";
+    const name = 'test-author';
     const getGitDefaults = vi.fn();
     const getPackageAuthor = vi.fn().mockResolvedValueOnce({ name });
 
@@ -39,7 +39,7 @@ describe(readOwner, () => {
     expect(actual).toBe(name);
   });
 
-  it("returns undefined when no values exist", async () => {
+  it('returns undefined when no values exist', async () => {
     const take = vi.fn().mockResolvedValueOnce({});
     const getGitDefaults = vi.fn();
     const getPackageAuthor = vi.fn().mockResolvedValueOnce({});

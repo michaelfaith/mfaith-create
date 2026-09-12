@@ -1,7 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockREADME } from "./blockREADME.ts";
+import { base } from '../base.ts';
+import { blockREADME } from './blockREADME.ts';
 
 interface DirectoryEntry {
   [i: string]: Entry;
@@ -15,7 +15,7 @@ const fileEntrySchema: z.ZodType<DirectoryEntry> = z.record(
 
 export const blockExampleFiles = base.createBlock({
   about: {
-    name: "Example Files",
+    name: 'Example Files',
   },
   addons: {
     files: fileEntrySchema.default({}),

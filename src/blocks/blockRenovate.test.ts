@@ -1,11 +1,11 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockRenovate } from "./blockRenovate.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRenovate } from './blockRenovate.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockRenovate, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockRenovate, {
       options: optionsBase,
     });
@@ -34,10 +34,10 @@ describe(blockRenovate, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockRenovate, {
       addons: {
-        ignoreDeps: ["all-contributors-cli"],
+        ignoreDeps: ['all-contributors-cli'],
       },
       options: optionsBase,
     });
@@ -66,8 +66,8 @@ describe(blockRenovate, () => {
 		`);
   });
 
-  describe("intake", () => {
-    it("returns no ignoreDeps when .github/renovate.json does not exist", () => {
+  describe('intake', () => {
+    it('returns no ignoreDeps when .github/renovate.json does not exist', () => {
       const actual = testIntake(blockRenovate, {
         files: {},
       });
@@ -75,11 +75,11 @@ describe(blockRenovate, () => {
       expect(actual).toEqual({ ignoreDeps: [] });
     });
 
-    it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
+    it('returns no ignoreDeps when .github/renovate.json does not contain truthy data', () => {
       const actual = testIntake(blockRenovate, {
         files: {
-          ".github": {
-            "renovate.json": [JSON.stringify(null)],
+          '.github': {
+            'renovate.json': [JSON.stringify(null)],
           },
         },
       });
@@ -87,11 +87,11 @@ describe(blockRenovate, () => {
       expect(actual).toEqual({ ignoreDeps: [] });
     });
 
-    it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
+    it('returns no ignoreDeps when .github/renovate.json contains only unrelated data', () => {
       const actual = testIntake(blockRenovate, {
         files: {
-          ".github": {
-            "renovate.json": [JSON.stringify({ other: true })],
+          '.github': {
+            'renovate.json': [JSON.stringify({ other: true })],
           },
         },
       });
@@ -99,13 +99,13 @@ describe(blockRenovate, () => {
       expect(actual).toEqual({ ignoreDeps: [] });
     });
 
-    it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
-      const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
+    it('returns ignoreDeps when .github/renovate.json contains ignoreDeps', () => {
+      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
 
       const actual = testIntake(blockRenovate, {
         files: {
-          ".github": {
-            "renovate.json": [JSON.stringify({ ignoreDeps })],
+          '.github': {
+            'renovate.json': [JSON.stringify({ ignoreDeps })],
           },
         },
       });
@@ -113,13 +113,13 @@ describe(blockRenovate, () => {
       expect(actual).toEqual({ ignoreDeps });
     });
 
-    it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
-      const ignoreDeps = ["all-contributors-cli", "codecov/codecov-action"];
+    it('returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data', () => {
+      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
 
       const actual = testIntake(blockRenovate, {
         files: {
-          ".github": {
-            "renovate.json": [
+          '.github': {
+            'renovate.json': [
               JSON.stringify({
                 ignoreDeps,
                 other: true,

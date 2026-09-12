@@ -1,12 +1,12 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, it } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, it } from 'vitest';
 
-import { blockAllContributors } from "./blockAllContributors.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockAllContributors } from './blockAllContributors.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { optionsBase } from './options.fakes.ts';
 
-describe("blockAllContributors", () => {
-  it("defaults contributors to [] when not provided", () => {
+describe('blockAllContributors', () => {
+  it('defaults contributors to [] when not provided', () => {
     const creation = testBlock(blockAllContributors, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -98,7 +98,7 @@ describe("blockAllContributors", () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
             ],
             "phase": 3,
           },
@@ -107,20 +107,20 @@ describe("blockAllContributors", () => {
     `);
   });
 
-  it("runs add including existing owner contributions when they exist", () => {
+  it('runs add including existing owner contributions when they exist', () => {
     const creation = testBlock(blockAllContributors, {
       options: {
         ...optionsBase,
         contributors: [
           {
-            avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
-            contributions: ["bug", "code", "design", "doc", "test", "tool"],
-            login: "michaelfaith",
-            name: "michael faith",
-            profile: "https://michael.faith",
+            avatar_url: 'https://avatars.githubusercontent.com/u/3335181?v=4',
+            contributions: ['bug', 'code', 'design', 'doc', 'test', 'tool'],
+            login: 'michaelfaith',
+            name: 'michael faith',
+            profile: 'https://michael.faith',
           },
         ],
-        owner: "michaelfaith",
+        owner: 'michaelfaith',
       },
     });
 
@@ -246,7 +246,7 @@ describe("blockAllContributors", () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@6.23.1 add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+              "pnpx all-contributors-cli@latest add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
             ],
             "phase": 3,
           },
@@ -255,17 +255,17 @@ describe("blockAllContributors", () => {
     `);
   });
 
-  it("adds full owner contributions when no existing contributor is the owner", () => {
+  it('adds full owner contributions when no existing contributor is the owner', () => {
     const creation = testBlock(blockAllContributors, {
       options: {
         ...optionsBase,
         contributors: [
           {
-            avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
-            contributions: ["bug", "code", "design", "doc", "test", "tool"],
-            login: "other",
-            name: "Other",
-            profile: "http://www.example.com",
+            avatar_url: 'https://avatars.githubusercontent.com/u/3335181?v=4',
+            contributions: ['bug', 'code', 'design', 'doc', 'test', 'tool'],
+            login: 'other',
+            name: 'Other',
+            profile: 'http://www.example.com',
           },
         ],
       },
@@ -393,7 +393,7 @@ describe("blockAllContributors", () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
             ],
             "phase": 3,
           },
@@ -402,14 +402,14 @@ describe("blockAllContributors", () => {
     `);
   });
 
-  it("removes the previous .yml workflow file when in transition mode", () => {
+  it('removes the previous .yml workflow file when in transition mode', () => {
     const creation = testBlock(blockAllContributors, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
     expect(creation.addons).toContainEqual(
-      blockRemoveFiles({ files: [".github/workflows/contributors.yml"] }),
+      blockRemoveFiles({ files: ['.github/workflows/contributors.yml'] }),
     );
   });
 });

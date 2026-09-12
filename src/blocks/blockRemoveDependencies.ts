@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { resolveBin } from "../utils/resolveBin.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { resolveBin } from '../utils/resolveBin.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockRemoveDependencies = base.createBlock({
   about: {
-    name: "Remove Dependencies",
+    name: 'Remove Dependencies',
   },
   addons: {
     dependencies: z.array(z.string()).optional(),
@@ -22,7 +22,7 @@ export const blockRemoveDependencies = base.createBlock({
         ? [
             {
               commands: [
-                `node ${resolveBin("remove-dependencies/bin/index.js")} ${addons.dependencies.join(" ")}`,
+                `node ${resolveBin('remove-dependencies/bin/index.js')} ${addons.dependencies.join(' ')}`,
               ],
               phase: CommandPhase.Process,
             },

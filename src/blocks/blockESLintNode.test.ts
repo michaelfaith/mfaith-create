@@ -1,15 +1,15 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test, vi } from 'vitest';
 
-import { blockESLintNode } from "./blockESLintNode.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockESLintNode } from './blockESLintNode.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock('../utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockESLintNode", () => {
-  test("production", () => {
+describe('blockESLintNode', () => {
+  test('production', () => {
     const creation = testBlock(blockESLintNode, {
       options: optionsBase,
     });

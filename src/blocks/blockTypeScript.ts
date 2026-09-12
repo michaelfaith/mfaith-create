@@ -1,30 +1,30 @@
-import sortKeys from "sort-keys";
-import { CompilerOptionsSchema } from "zod-tsconfig";
+import sortKeys from 'sort-keys';
+import { CompilerOptionsSchema } from 'zod-tsconfig';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockExampleFiles } from "./blockExampleFiles.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockGitignore } from "./blockGitignore.ts";
-import { blockKnip } from "./blockKnip.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVitest } from "./blockVitest.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockExampleFiles } from './blockExampleFiles.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGitignore } from './blockGitignore.ts';
+import { blockKnip } from './blockKnip.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVitest } from './blockVitest.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 export const blockTypeScript = base.createBlock({
   about: {
-    name: "TypeScript",
+    name: 'TypeScript',
   },
   addons: {
     compilerOptions: CompilerOptionsSchema.optional(),
   },
   intake({ files }) {
-    const raw = intakeFileAsJson(files, ["tsconfig.json"]);
+    const raw = intakeFileAsJson(files, ['tsconfig.json']);
     const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
     if (!data) {
       return undefined;
@@ -41,7 +41,7 @@ export const blockTypeScript = base.createBlock({
       addons: [
         blockDevelopmentDocs({
           sections: {
-            "Type Checking": {
+            'Type Checking': {
               contents: `
 You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
 
@@ -65,32 +65,32 @@ pnpm tsc --watch
             {
               files: JS_TS_FILES,
               rules: {
-                "@typescript-eslint/consistent-type-exports": "error",
-                "@typescript-eslint/consistent-type-imports": "error",
+                '@typescript-eslint/consistent-type-exports': 'error',
+                '@typescript-eslint/consistent-type-imports': 'error',
               },
             },
           ],
         }),
         blockExampleFiles({
           files: {
-            "greet.ts": `import type { GreetOptions } from "./types.ts";
+            'greet.ts': `import type { GreetOptions } from './types.ts';
 
 	export function greet(options: GreetOptions | string) {
 		const {
 			logger = console.log.bind(console),
 			message,
 			times = 1,
-		} = typeof options === "string" ? { message: options } : options;
+		} = typeof options === 'string' ? { message: options } : options;
 
 		for (let i = 0; i < times; i += 1) {
 			logger(message);
 		}
 	}
 	`,
-            "index.ts": `export { greet } from "./greet.ts";
-export type { GreetOptions } from "./types.ts";
+            'index.ts': `export { greet } from './greet.ts';
+export type { GreetOptions } from './types.ts';
 `,
-            "types.ts": `export interface GreetOptions {
+            'types.ts': `export interface GreetOptions {
 		logger?: (message: string) => void;
 		message: string;
 		times?: number;
@@ -102,58 +102,58 @@ export type { GreetOptions } from "./types.ts";
 npm i ${options.repository}
 \`\`\`
 \`\`\`ts
-import { greet } from "${options.repository}";
+import { greet } from '${options.repository}';
 
-greet("Hello, world! ${options.emoji}");
+greet('Hello, world! ${options.emoji}');
 \`\`\``,
           ],
         }),
         blockGitignore({
-          ignores: ["tsconfig.tsbuildinfo"],
+          ignores: ['tsconfig.tsbuildinfo'],
         }),
         blockGitHubActionsCI({
-          jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+          jobs: [{ name: 'Type Check', steps: [{ run: 'pnpm tsc' }] }],
         }),
         blockKnip({
-          project: ["src/**/*.ts"],
+          project: ['src/**/*.ts'],
         }),
         blockPackageJson({
           properties: {
-            devDependencies: getPackageDependencies("typescript"),
+            devDependencies: getPackageDependencies('typescript'),
           },
         }),
-        blockVitest({ coverage: { include: ["src"] } }),
+        blockVitest({ coverage: { include: ['src'] } }),
         blockVSCode({
           settings: {
-            "js/ts.tsdk.path": "node_modules/typescript/lib",
+            'js/ts.tsdk.path': 'node_modules/typescript/lib',
           },
           tasks: [
             {
-              detail: "Build the project",
-              label: "build",
-              script: "build",
-              type: "npm",
+              detail: 'Build the project',
+              label: 'build',
+              script: 'build',
+              type: 'npm',
             },
           ],
         }),
       ],
       files: {
-        "tsconfig.json": JSON.stringify({
+        'tsconfig.json': JSON.stringify({
           compilerOptions: sortKeys({
             declaration: true,
             esModuleInterop: true,
-            module: "nodenext",
-            moduleResolution: "nodenext",
+            module: 'nodenext',
+            moduleResolution: 'nodenext',
             noEmit: true,
             resolveJsonModule: true,
             rewriteRelativeImportExtensions: true,
             skipLibCheck: true,
             strict: true,
-            target: "ES2024",
-            types: ["node"],
+            target: 'ES2024',
+            types: ['node'],
             ...compilerOptions,
           }),
-          include: ["src"],
+          include: ['src'],
         }),
       },
     };
@@ -162,7 +162,7 @@ greet("Hello, world! ${options.emoji}");
     return {
       addons: [
         blockRemoveWorkflows({
-          workflows: ["tsc"],
+          workflows: ['tsc'],
         }),
       ],
     };

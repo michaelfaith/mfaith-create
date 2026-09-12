@@ -2,12 +2,12 @@ import {
   AST_NODE_TYPES,
   parse as parseAST,
   type TSESTree,
-} from "@typescript-eslint/typescript-estree";
-import JSON5 from "json5";
+} from '@typescript-eslint/typescript-estree';
+import JSON5 from 'json5';
 
-import { tryCatch } from "../../utils/tryCatch.ts";
-import { stylisticComment } from "../blockESLintMoreStyling.ts";
-import { type ExtensionRuleGroup, zRuleOptions } from "./schemas.ts";
+import { tryCatch } from '../../utils/tryCatch.ts';
+import { stylisticComment } from '../blockESLintMoreStyling.ts';
+import { type ExtensionRuleGroup, zRuleOptions } from './schemas.ts';
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {
   declaration: TSESTree.CallExpression;
@@ -66,7 +66,7 @@ export function blockESLintIntake(sourceText: string) {
     if (
       property.type !== AST_NODE_TYPES.Property ||
       property.key.type !== AST_NODE_TYPES.Literal ||
-      typeof property.key.value !== "string"
+      typeof property.key.value !== 'string'
     ) {
       return undefined;
     }
@@ -94,7 +94,7 @@ export function blockESLintIntake(sourceText: string) {
         property.range[0],
       );
       const comment =
-        precedingText.replaceAll(/\/\/ ?|\t\s*/g, "").trim() || undefined;
+        precedingText.replaceAll(/\/\/ ?|\t\s*/g, '').trim() || undefined;
 
       // blockESLintMoreStyling's comment always gets pushed to the end.
       if (comment === stylisticComment) {
@@ -124,12 +124,12 @@ export function blockESLintIntake(sourceText: string) {
       node.properties.length === 1 &&
       node.properties[0].type === AST_NODE_TYPES.Property &&
       node.properties[0].key.type === AST_NODE_TYPES.Identifier &&
-      node.properties[0].key.name === "ignores" &&
+      node.properties[0].key.name === 'ignores' &&
       node.properties[0].value.type === AST_NODE_TYPES.ArrayExpression &&
       node.properties[0].value.elements.every(
         (element): element is TSESTree.Literal & { value: string } =>
           element?.type === AST_NODE_TYPES.Literal &&
-          typeof element.value === "string",
+          typeof element.value === 'string',
       ) &&
       node.properties[0].value.elements.map((element) => element.value)
     );
@@ -146,7 +146,7 @@ export function blockESLintIntake(sourceText: string) {
               ? property.key.name
               : undefined,
           ),
-          ["extends", "files", "languageOptions", "rules", "settings"],
+          ['extends', 'files', 'languageOptions', 'rules', 'settings'],
         ),
     );
     if (!configObject) {
@@ -173,9 +173,9 @@ export function blockESLintIntake(sourceText: string) {
     return (
       node.type === AST_NODE_TYPES.MemberExpression &&
       node.object.type === AST_NODE_TYPES.Identifier &&
-      node.object.name === "tseslint" &&
+      node.object.name === 'tseslint' &&
       node.property.type === AST_NODE_TYPES.Identifier &&
-      node.property.name === "config"
+      node.property.name === 'config'
     );
   }
 }

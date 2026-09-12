@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { readEmailFromNpm } from "./readEmailFromNpm.ts";
+import { readEmailFromNpm } from './readEmailFromNpm.ts';
 
 describe(readEmailFromNpm, () => {
-  it("resolves the npm defaults email when it exists", async () => {
-    const email = "test-email";
+  it('resolves the npm defaults email when it exists', async () => {
+    const email = 'test-email';
     const getNpmDefaults = vi.fn().mockResolvedValueOnce({ email });
     const getPackageAuthor = vi.fn();
 
@@ -14,8 +14,8 @@ describe(readEmailFromNpm, () => {
     expect(getPackageAuthor).not.toHaveBeenCalled();
   });
 
-  it("resolves the package author email when only it exists", async () => {
-    const email = "test-email";
+  it('resolves the package author email when only it exists', async () => {
+    const email = 'test-email';
     const getNpmDefaults = vi.fn().mockResolvedValueOnce(undefined);
     const getPackageAuthor = vi.fn().mockResolvedValueOnce({ email });
 

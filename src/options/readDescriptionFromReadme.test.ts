@@ -1,17 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { readDescriptionFromReadme } from "./readDescriptionFromReadme.ts";
+import { readDescriptionFromReadme } from './readDescriptionFromReadme.ts';
 
 describe(readDescriptionFromReadme, () => {
-  it("returns undefined when the paragraph starter is not found", async () => {
+  it('returns undefined when the paragraph starter is not found', async () => {
     const description = await readDescriptionFromReadme(() =>
-      Promise.resolve(""),
+      Promise.resolve(''),
     );
 
     expect(description).toBeUndefined();
   });
 
-  it("returns undefined when the paragraph closer is not found", async () => {
+  it('returns undefined when the paragraph closer is not found', async () => {
     const description = await readDescriptionFromReadme(() =>
       Promise.resolve(`<p align="center">`),
     );
@@ -19,14 +19,14 @@ describe(readDescriptionFromReadme, () => {
     expect(description).toBeUndefined();
   });
 
-  it("returns the description when it exists on one line inside the paragraph", async () => {
+  it('returns the description when it exists on one line inside the paragraph', async () => {
     const description = await readDescriptionFromReadme(() =>
       Promise.resolve(`<p align="center">Description.</p>`),
     );
 
-    expect(description).toBe("Description.");
+    expect(description).toBe('Description.');
   });
-  it("returns the description when it exists encoded across multiple lines inside the paragraph", async () => {
+  it('returns the description when it exists encoded across multiple lines inside the paragraph', async () => {
     const description = await readDescriptionFromReadme(() =>
       Promise.resolve(`
 				<p align="center">
@@ -34,6 +34,6 @@ describe(readDescriptionFromReadme, () => {
 				</p>`),
     );
 
-    expect(description).toBe("Description <em>hooray</em>.");
+    expect(description).toBe('Description <em>hooray</em>.');
   });
 });

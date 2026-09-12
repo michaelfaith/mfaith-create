@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getInstallationSuggestions } from "./getInstallationSuggestions.ts";
+import { base } from '../base.ts';
+import { getInstallationSuggestions } from './getInstallationSuggestions.ts';
 
 export const blockRepositoryVariables = base.createBlock({
   about: {
-    name: "Repository Variables",
+    name: 'Repository Variables',
   },
   addons: {
     variables: z
@@ -20,7 +20,7 @@ export const blockRepositoryVariables = base.createBlock({
   produce({ addons, options }) {
     return {
       suggestions: getInstallationSuggestions(
-        "populate the variable",
+        'populate the variable',
         addons.variables.map(
           (variable) => `${variable.name} (${variable.description})`,
         ),

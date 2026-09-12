@@ -1,10 +1,10 @@
-import { base } from "../base.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
+import { base } from '../base.ts';
+import { blockESLint } from './blockESLint.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
 
 export const blockESLintComments = base.createBlock({
   about: {
-    name: "ESLint Comments Plugin",
+    name: 'ESLint Comments Plugin',
   },
   produce() {
     return {
@@ -12,14 +12,14 @@ export const blockESLintComments = base.createBlock({
         blockESLint({
           extensions: [
             {
-              extends: ["comments.recommended"],
+              extends: ['comments.recommended'],
               files: JS_TS_FILES,
             },
           ],
           imports: [
             {
-              source: "@eslint-community/eslint-plugin-eslint-comments/configs",
-              specifier: "comments",
+              source: '@eslint-community/eslint-plugin-eslint-comments/configs',
+              specifier: 'comments',
             },
           ],
         }),

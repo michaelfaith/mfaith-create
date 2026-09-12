@@ -1,8 +1,8 @@
-import type { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from 'bingo-fs';
 
-import JSON5 from "json5";
+import JSON5 from 'json5';
 
-import { intakeFile } from "./intakeFile.ts";
+import { intakeFile } from './intakeFile.ts';
 
 export function intakeFileAsJson(files: IntakeDirectory, filePath: string[]) {
   const file = intakeFile(files, filePath);

@@ -1,5 +1,5 @@
-const paragraphCloser = "</p>";
-const paragraphStarter = `<p align="center">`;
+const paragraphCloser = '</p>';
+const paragraphStarter = '<p align="center">';
 
 export async function readDescriptionFromReadme(
   getReadme: () => Promise<string>,
@@ -18,6 +18,6 @@ export async function readDescriptionFromReadme(
 
   return readme
     .slice(paragraphStart + paragraphStarter.length, paragraphEnd)
-    .replaceAll(/\s+/gu, " ")
+    .replaceAll(/\s+/gu, ' ')
     .trim();
 }

@@ -1,4 +1,4 @@
-import type { IntakeDirectory, IntakeFileEntry } from "bingo-fs";
+import type { IntakeDirectory, IntakeFileEntry } from 'bingo-fs';
 
 export function intakeFile(
   files: IntakeDirectory,
@@ -9,7 +9,7 @@ export function intakeFile(
   }
 
   const nextPathCandidates =
-    typeof filePath[0] === "string" ? [filePath[0]] : filePath[0];
+    typeof filePath[0] === 'string' ? [filePath[0]] : filePath[0];
   const nextFilePath = nextPathCandidates.find(
     (candidate) => candidate in files,
   );
@@ -23,7 +23,7 @@ export function intakeFile(
     return Array.isArray(entry) ? entry : undefined;
   }
 
-  return typeof entry === "object" && !Array.isArray(entry)
+  return typeof entry === 'object' && !Array.isArray(entry)
     ? intakeFile(entry, filePath.slice(1))
     : undefined;
 }

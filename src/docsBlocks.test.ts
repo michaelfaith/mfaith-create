@@ -1,10 +1,10 @@
-import type { Block } from "bingo-stratum";
+import type { Block } from 'bingo-stratum';
 
-import * as fs from "node:fs/promises";
-import * as prettier from "prettier";
-import { describe, expect, test } from "vitest";
+import * as fs from 'node:fs/promises';
+import * as prettier from 'prettier';
+import { describe, expect, test } from 'vitest';
 
-import { blocks, presets } from "./index.ts";
+import { blocks, presets } from './index.ts';
 
 const actualLines = await createActualLines();
 const expectedLines = await createExpectedLines();
@@ -23,9 +23,9 @@ const expectedLines = await createExpectedLines();
 // ```
 //
 // Rows are kept sorted by alphabetical order of name.
-describe("docs/Blocks.md", () => {
+describe('docs/Blocks.md', () => {
   for (const [i, line] of expectedLines.entries()) {
-    const name = line.split(" | ")[0].replace("| ", "").trim();
+    const name = line.split(' | ')[0].replace('| ', '').trim();
     if (!name) {
       continue;
     }
@@ -40,11 +40,11 @@ describe("docs/Blocks.md", () => {
 });
 
 async function createActualLines() {
-  const actualFile = (await fs.readFile("docs/Blocks.md")).toString();
+  const actualFile = (await fs.readFile('docs/Blocks.md')).toString();
 
   actualFile
-    .split("\n")
-    .filter((line) => !line.includes("----"))
+    .split('\n')
+    .filter((line) => !line.includes('----'))
     .map((line) => line.toLowerCase());
 
   return splitTable(actualFile);
@@ -52,8 +52,8 @@ async function createActualLines() {
 
 async function createExpectedLines() {
   const lines = [
-    "| Block | Flags | Minimal | Common | Everything |",
-    "| ----- | ----- | ------- | ------ | ---------- |",
+    '| Block | Flags | Minimal | Common | Everything |',
+    '| ----- | ----- | ------- | ------ | ---------- |',
   ];
 
   for (const block of Object.values(blocks) as Block[]) {
@@ -63,29 +63,29 @@ async function createExpectedLines() {
     lines.push(
       [
         name,
-        `${createFlag("add", name)}, ${createFlag("exclude", name)}`,
-        presets.minimal.blocks.includes(block) ? "✔️" : " ",
-        presets.common.blocks.includes(block) ? "✅" : " ",
-        presets.everything.blocks.includes(block) ? "💯" : " ",
-        "",
-      ].join(" | "),
+        `${createFlag('add', name)}, ${createFlag('exclude', name)}`,
+        presets.minimal.blocks.includes(block) ? '✔️' : ' ',
+        presets.common.blocks.includes(block) ? '✅' : ' ',
+        presets.everything.blocks.includes(block) ? '💯' : ' ',
+        '',
+      ].join(' | '),
     );
   }
 
-  const expectedTable = await prettier.format(lines.join("\n"), {
-    parser: "markdown",
+  const expectedTable = await prettier.format(lines.join('\n'), {
+    parser: 'markdown',
   });
 
   return splitTable(expectedTable);
 }
 
 function createFlag(prefix: string, name: string) {
-  return `\`--${prefix}-${name.replaceAll(/\W+/g, "-").toLowerCase()}\``;
+  return `\`--${prefix}-${name.replaceAll(/\W+/g, '-').toLowerCase()}\``;
 }
 
 function splitTable(table: string) {
   return table
-    .split("\n")
-    .filter((line) => !line.includes("----"))
+    .split('\n')
+    .filter((line) => !line.includes('----'))
     .map((line) => line.toLowerCase());
 }

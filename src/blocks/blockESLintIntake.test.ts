@@ -1,16 +1,16 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { blockESLintIntake } from "./eslint/blockESLintIntake.ts";
+import { blockESLintIntake } from './eslint/blockESLintIntake.ts';
 
 describe(blockESLintIntake, () => {
   it.each([
-    ["an empty string", ""],
-    ["unrelated text", "other;"],
-    ["raw export default", "export default {}"],
-    ["config without arguments", "export default tseslint.config()"],
-    ["config with too few arguments", "export default tseslint.config({})"],
+    ['an empty string', ''],
+    ['unrelated text', 'other;'],
+    ['raw export default', 'export default {}'],
+    ['config without arguments', 'export default tseslint.config()'],
+    ['config with too few arguments', 'export default tseslint.config({})'],
     [
-      "config with a first argument that is not ignores",
+      'config with a first argument that is not ignores',
       `
 				export default tseslint.config(
 					{ rules: {} },
@@ -19,7 +19,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with non-object argument",
+      'config with non-object argument',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -28,7 +28,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with object argument containing unknown properties",
+      'config with object argument containing unknown properties',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -37,7 +37,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with object argument containing unknown computed properties",
+      'config with object argument containing unknown computed properties',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -46,7 +46,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with object argument containing incomplete properties",
+      'config with object argument containing incomplete properties',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -55,7 +55,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with object argument containing misnamed properties",
+      'config with object argument containing misnamed properties',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -70,7 +70,7 @@ describe(blockESLintIntake, () => {
 			`,
     ],
     [
-      "config with object argument containing computed rules",
+      'config with object argument containing computed rules',
       `
 				export default tseslint.config(
 					{ ignores: [] },
@@ -86,7 +86,7 @@ describe(blockESLintIntake, () => {
 				);
 			`,
     ],
-  ])("returns undefined when given %s", (_, sourceText) => {
+  ])('returns undefined when given %s', (_, sourceText) => {
     const actual = blockESLintIntake(sourceText);
 
     expect(actual).toBeUndefined();
@@ -94,7 +94,7 @@ describe(blockESLintIntake, () => {
 
   it.each([
     [
-      "rules group after linterOptions and member expression extends",
+      'rules group after linterOptions and member expression extends',
       `
 export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
@@ -119,16 +119,16 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
+        ignores: ['dist', 'node_modules', 'pnpm-lock.yaml'],
         rules: [
           {
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": [
-                "error",
+              '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
                 { ignorePrimitives: true },
               ],
-              "@typescript-eslint/restrict-template-expressions": [
-                "error",
+              '@typescript-eslint/restrict-template-expressions': [
+                'error',
                 { allowBoolean: true },
               ],
             },
@@ -137,7 +137,7 @@ export default tseslint.config(
       },
     ],
     [
-      "non-commented group in rules",
+      'non-commented group in rules',
       `
 export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
@@ -159,16 +159,16 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
+        ignores: ['dist', 'node_modules', 'pnpm-lock.yaml'],
         rules: [
           {
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": [
-                "error",
+              '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
                 { ignorePrimitives: true },
               ],
-              "@typescript-eslint/restrict-template-expressions": [
-                "error",
+              '@typescript-eslint/restrict-template-expressions': [
+                'error',
                 { allowBoolean: true },
               ],
             },
@@ -177,7 +177,7 @@ export default tseslint.config(
       },
     ],
     [
-      "one custom commented group in rules",
+      'one custom commented group in rules',
       `
 export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
@@ -200,18 +200,18 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
+        ignores: ['dist', 'node_modules', 'pnpm-lock.yaml'],
         rules: [
           {
             comment:
-              "These on-by-default rules work well for this repo if configured",
+              'These on-by-default rules work well for this repo if configured',
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": [
-                "error",
+              '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
                 { ignorePrimitives: true },
               ],
-              "@typescript-eslint/restrict-template-expressions": [
-                "error",
+              '@typescript-eslint/restrict-template-expressions': [
+                'error',
                 { allowBoolean: true },
               ],
             },
@@ -220,7 +220,7 @@ export default tseslint.config(
       },
     ],
     [
-      "one non-commented group and one commented group in rules",
+      'one non-commented group and one commented group in rules',
       `
 export default tseslint.config(
 	{ ignores: ["dist", "node_modules", "pnpm-lock.yaml"] },
@@ -244,22 +244,22 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist", "node_modules", "pnpm-lock.yaml"],
+        ignores: ['dist', 'node_modules', 'pnpm-lock.yaml'],
         rules: [
           {
             entries: {
-              "@typescript-eslint/restrict-template-expressions": [
-                "error",
+              '@typescript-eslint/restrict-template-expressions': [
+                'error',
                 { allowBoolean: true },
               ],
             },
           },
           {
             comment:
-              "These on-by-default rules work well for this repo if configured",
+              'These on-by-default rules work well for this repo if configured',
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": [
-                "error",
+              '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
                 { ignorePrimitives: true },
               ],
             },
@@ -268,7 +268,7 @@ export default tseslint.config(
       },
     ],
     [
-      "one custom commented group in rules before the stylistic comment",
+      'one custom commented group in rules before the stylistic comment',
       `
 export default tseslint.config(
 	{ ignores: ["dist"] },
@@ -294,18 +294,18 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist"],
+        ignores: ['dist'],
         rules: [
           {
             comment:
-              "These on-by-default rules work well for this repo if configured",
+              'These on-by-default rules work well for this repo if configured',
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": [
-                "error",
+              '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
                 { ignorePrimitives: true },
               ],
-              "@typescript-eslint/restrict-template-expressions": [
-                "error",
+              '@typescript-eslint/restrict-template-expressions': [
+                'error',
                 { allowBoolean: true },
               ],
             },
@@ -314,7 +314,7 @@ export default tseslint.config(
       },
     ],
     [
-      "multi-line custom commented group in rules",
+      'multi-line custom commented group in rules',
       `
 export default tseslint.config(
 	{ ignores: ["dist"] },
@@ -332,18 +332,18 @@ export default tseslint.config(
 	}
 );`,
       {
-        ignores: ["dist"],
+        ignores: ['dist'],
         rules: [
           {
-            comment: "First line.\nSecond line.\nThird line.",
+            comment: 'First line.\nSecond line.\nThird line.',
             entries: {
-              "@typescript-eslint/prefer-nullish-coalescing": "error",
+              '@typescript-eslint/prefer-nullish-coalescing': 'error',
             },
           },
         ],
       },
     ],
-  ])("returns data when given %s", (_, sourceText, expected) => {
+  ])('returns data when given %s', (_, sourceText, expected) => {
     const actual = blockESLintIntake(sourceText);
 
     expect(actual).toEqual(expected);

@@ -1,14 +1,14 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFileJSON } from "input-from-file-json";
+import { inputFromFileJSON } from 'input-from-file-json';
 
-import { swallowErrorAsync } from "../utils/swallowErrorAsync.ts";
+import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';
 
 export async function readWords(take: TakeInput) {
   const cspell =
     (await swallowErrorAsync(
       take(inputFromFileJSON, {
-        filePath: "./cspell.json",
+        filePath: './cspell.json',
       }),
     )) || {};
 

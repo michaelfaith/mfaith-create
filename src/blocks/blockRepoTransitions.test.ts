@@ -1,14 +1,14 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { packageData } from "../data/packageData.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
-import { blockRepoTransitions } from "./blockRepoTransitions.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { packageData } from '../data/packageData.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
+import { blockRepoTransitions } from './blockRepoTransitions.ts';
+import { optionsBase } from './options.fakes.ts';
 
-describe("blockRepoTransitions", () => {
-  test("production", () => {
+describe('blockRepoTransitions', () => {
+  test('production', () => {
     const creation = testBlock(blockRepoTransitions, {
       options: optionsBase,
     });
@@ -17,12 +17,12 @@ describe("blockRepoTransitions", () => {
       blockPackageJson({
         properties: {
           devDependencies: {
-            "@mfaith/create": packageData.version,
+            '@mfaith/create': packageData.version,
           },
         },
       }),
       blockRepositoryBranchRuleset({
-        requiredStatusChecks: ["Transition"],
+        requiredStatusChecks: ['Transition'],
       }),
     ]);
     expect(creation.files).toMatchInlineSnapshot(`

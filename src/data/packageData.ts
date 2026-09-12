@@ -1,10 +1,10 @@
-import { createRequire } from "node:module";
+import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
 export const packageData =
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports -- Importing from above src/ would expand the TS build rootDir
-  require("../../package.json") as typeof import("../../package.json");
+  require('../../package.json') as typeof import('../../package.json');
 
 export function getPackageDependencies(
   ...names: string[]
@@ -18,8 +18,8 @@ export function getPackageDependencies(
 
 export function getPackageDependency(name: string): string {
   const version =
-    getPackageInner("devDependencies", name) ??
-    getPackageInner("dependencies", name);
+    getPackageInner('devDependencies', name) ??
+    getPackageInner('dependencies', name);
 
   if (!version) {
     throw new Error(
@@ -31,7 +31,7 @@ export function getPackageDependency(name: string): string {
 }
 
 function getPackageInner(
-  key: "dependencies" | "devDependencies",
+  key: 'dependencies' | 'devDependencies',
   name: string,
 ): string | undefined {
   const inner = packageData[key];

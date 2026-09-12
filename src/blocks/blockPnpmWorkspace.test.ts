@@ -1,12 +1,12 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { dump } from "js-yaml";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { dump } from 'js-yaml';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockPnpmWorkspace, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockPnpmWorkspace, {
       options: optionsBase,
     });
@@ -21,9 +21,9 @@ describe(blockPnpmWorkspace, () => {
     `);
   });
 
-  test("transition mode without files", () => {
+  test('transition mode without files', () => {
     const creation = testBlock(blockPnpmWorkspace, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -37,12 +37,12 @@ describe(blockPnpmWorkspace, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockPnpmWorkspace, {
       addons: {
         config: {
           minimumReleaseAge: 1440,
-          trustPolicy: "off",
+          trustPolicy: 'off',
         },
       },
       options: optionsBase,
@@ -60,8 +60,8 @@ describe(blockPnpmWorkspace, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when pnpm-workspace.yaml does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when pnpm-workspace.yaml does not exist', () => {
       const actual = testIntake(blockPnpmWorkspace, {
         files: {},
       });
@@ -69,25 +69,25 @@ describe(blockPnpmWorkspace, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns and empty object when pnpm-workspace.yaml is empty", () => {
+    it('returns and empty object when pnpm-workspace.yaml is empty', () => {
       const actual = testIntake(blockPnpmWorkspace, {
         files: {
-          "pnpm-workspace.yaml": [""],
+          'pnpm-workspace.yaml': [''],
         },
       });
 
       expect(actual).toEqual(undefined);
     });
 
-    it("returns config when pnpm-workspace.yaml values", () => {
+    it('returns config when pnpm-workspace.yaml values', () => {
       const config = {
         minimumReleaseAge: 1440,
-        minimumReleaseAgeExclude: ["react", "webpack"],
+        minimumReleaseAgeExclude: ['react', 'webpack'],
       };
 
       const actual = testIntake(blockPnpmWorkspace, {
         files: {
-          "pnpm-workspace.yaml": [dump(config)],
+          'pnpm-workspace.yaml': [dump(config)],
         },
       });
 

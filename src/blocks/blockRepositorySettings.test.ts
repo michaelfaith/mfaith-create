@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockRepositorySettings } from "./blockRepositorySettings.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRepositorySettings } from './blockRepositorySettings.ts';
+import { optionsBase } from './options.fakes.ts';
 
-describe("blockRepositorySettings", () => {
-  test("with a short description", () => {
+describe('blockRepositorySettings', () => {
+  test('with a short description', () => {
     const creation = testBlock(blockRepositorySettings, {
       options: optionsBase,
     });
@@ -44,7 +44,7 @@ describe("blockRepositorySettings", () => {
 		`);
   });
 
-  test("with a long HTML description", () => {
+  test('with a long HTML description', () => {
     const creation = testBlock(blockRepositorySettings, {
       options: {
         ...optionsBase,

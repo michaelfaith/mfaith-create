@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockCodeOfConduct } from "./blockCodeOfConduct.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockCodeOfConduct } from './blockCodeOfConduct.ts';
+import { optionsBase } from './options.fakes.ts';
 
-describe("blockCodeOfConduct", () => {
-  test("without mode", () => {
+describe('blockCodeOfConduct', () => {
+  test('without mode', () => {
     const creation = testBlock(blockCodeOfConduct, {
       options: optionsBase,
     });
@@ -155,9 +155,9 @@ describe("blockCodeOfConduct", () => {
 		`);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockCodeOfConduct, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 

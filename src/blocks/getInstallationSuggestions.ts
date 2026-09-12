@@ -7,10 +7,10 @@ export function getInstallationSuggestions(
     ? [
         [
           `- ${description}`,
-          entries.length === 1 ? "" : "s",
+          entries.length === 1 ? '' : 's',
           ` on ${url}:\n`,
-          entries.map((entry) => `   - ${entry}`).join("\n"),
-        ].join(""),
+          entries.map((entry) => `   - ${entry}`).join('\n'),
+        ].join(''),
       ]
     : undefined;
 }

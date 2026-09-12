@@ -1,6 +1,6 @@
-import * as fs from "node:fs/promises";
+import * as fs from 'node:fs/promises';
 
-import { readLogoSizing } from "./readLogoSizing.ts";
+import { readLogoSizing } from './readLogoSizing.ts';
 
 export async function readLogo(getReadme: () => Promise<string>) {
   const tag = /\n<img.+src=.+>/.exec(await getReadme())?.[0];
@@ -11,7 +11,7 @@ export async function readLogo(getReadme: () => Promise<string>) {
 
   const alt =
     /alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/)[0] ??
-    "Project logo";
+    'Project logo';
 
   if (/All Contributors: \d+/.test(alt)) {
     return undefined;
@@ -20,9 +20,9 @@ export async function readLogo(getReadme: () => Promise<string>) {
   const src = /src\s*=(.+)['"/]>/
     .exec(tag)?.[1]
     ?.split(/\s*\w+=/)[0]
-    .replaceAll(/^['"]|['"]$/g, "");
+    .replaceAll(/^['"]|['"]$/g, '');
 
-  if (!src || src.includes("//img.shields.io")) {
+  if (!src || src.includes('//img.shields.io')) {
     return undefined;
   }
 

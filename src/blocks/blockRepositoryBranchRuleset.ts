@@ -1,12 +1,12 @@
-import type { CreatedOctokitRequest } from "bingo-requests";
+import type { CreatedOctokitRequest } from 'bingo-requests';
 
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base, type BaseOptions } from "../base.ts";
+import { base, type BaseOptions } from '../base.ts';
 
 export const blockRepositoryBranchRuleset = base.createBlock({
   about: {
-    name: "Repository Branch Ruleset",
+    name: 'Repository Branch Ruleset',
   },
   addons: {
     requiredStatusChecks: z.array(z.string()).optional(),
@@ -15,12 +15,12 @@ export const blockRepositoryBranchRuleset = base.createBlock({
     return {
       requests: [
         {
-          endpoint: "POST /repos/{owner}/{repo}/rulesets",
+          endpoint: 'POST /repos/{owner}/{repo}/rulesets',
           parameters: createRulesetParameters(
             addons.requiredStatusChecks,
             options,
           ),
-          type: "octokit",
+          type: 'octokit',
         },
       ],
     };
@@ -29,32 +29,32 @@ export const blockRepositoryBranchRuleset = base.createBlock({
     return {
       requests: [
         {
-          endpoint: "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+          endpoint: 'DELETE /repos/{owner}/{repo}/branches/{branch}/protection',
           parameters: {
-            branch: "main",
+            branch: 'main',
             owner: options.owner,
             repo: options.repository,
           },
           silent: true,
-          type: "octokit",
+          type: 'octokit',
         },
         options.rulesetId
           ? {
-              endpoint: "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",
+              endpoint: 'PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}',
               parameters: createRulesetParameters(
                 addons.requiredStatusChecks,
                 options,
                 options.rulesetId,
               ),
-              type: "octokit",
+              type: 'octokit',
             }
           : {
-              endpoint: "POST /repos/{owner}/{repo}/rulesets",
+              endpoint: 'POST /repos/{owner}/{repo}/rulesets',
               parameters: createRulesetParameters(
                 addons.requiredStatusChecks,
                 options,
               ),
-              type: "octokit",
+              type: 'octokit',
             },
       ],
     };
@@ -77,32 +77,32 @@ function createRulesetParameters(
         // This *seems* to be the Repository Admin role always?
         // https://github.com/github/rest-api-description/issues/4406
         actor_id: 5,
-        actor_type: "RepositoryRole",
-        bypass_mode: "always",
+        actor_type: 'RepositoryRole',
+        bypass_mode: 'always',
       },
     ],
     conditions: {
       ref_name: {
         exclude: [],
-        include: ["refs/heads/main"],
+        include: ['refs/heads/main'],
       },
     },
-    enforcement: "active",
-    name: "Branch protection for main",
+    enforcement: 'active',
+    name: 'Branch protection for main',
     owner: options.owner,
     repo: options.repository,
     rules: [
-      { type: "deletion" },
+      { type: 'deletion' },
       {
         parameters: {
-          allowed_merge_methods: ["squash"],
+          allowed_merge_methods: ['squash'],
           dismiss_stale_reviews_on_push: false,
           require_code_owner_review: false,
           require_last_push_approval: false,
           required_approving_review_count: 0,
           required_review_thread_resolution: false,
         },
-        type: "pull_request",
+        type: 'pull_request',
       },
       {
         parameters: {
@@ -112,10 +112,10 @@ function createRulesetParameters(
             })) ?? [],
           strict_required_status_checks_policy: false,
         },
-        type: "required_status_checks",
+        type: 'required_status_checks',
       },
     ],
     ruleset_id: rulesetId === undefined ? rulesetId : Number(rulesetId),
-    target: "branch",
-  } satisfies CreatedOctokitRequest["parameters"];
+    target: 'branch',
+  } satisfies CreatedOctokitRequest['parameters'];
 }
