@@ -22,6 +22,8 @@ const zProperties = z.record(z.unknown());
 export const blockTSDown = base.createBlock({
   about: {
     name: "TSDown",
+    description:
+      "Set up the project to build with tsdown, including config, scripts, ci job, and more.",
   },
   addons: {
     entry: zEntry.default([]),
@@ -120,7 +122,6 @@ export default defineConfig(${JSON.stringify({
           entry: Array.from(
             new Set(["src/**/*.ts", "!src/**/*.test.*", ...entry]),
           ),
-          fixedExtension: false,
           unbundle: true,
           ...properties,
         })});

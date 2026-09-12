@@ -35,7 +35,7 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "dist/bin/index.js",
+                "bin": "dist/bin/index.mjs",
               },
             },
             "block": [Function],
@@ -93,7 +93,7 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "dist/cli.js",
+                "bin": "dist/cli.mjs",
               },
             },
             "block": [Function],
@@ -155,8 +155,8 @@ describe(blockBin, () => {
             "addons": {
               "properties": {
                 "bin": {
-                  "other-bin": "dist/bin/other.cjs",
-                  "test-repo": "dist/bin/index.mjs",
+                  "other-bin": "dist/bin/other.cmjs",
+                  "test-repo": "dist/bin/index.mmjs",
                 },
               },
             },

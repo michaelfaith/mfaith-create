@@ -123,7 +123,7 @@ describe(blockTSDown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"fixedExtension":false,"unbundle":true});
+      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
       ",
         },
       }
@@ -253,7 +253,7 @@ describe(blockTSDown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"fixedExtension":false,"unbundle":true,"dts":false});
+      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"unbundle":true,"dts":false});
       ",
         },
       }
@@ -267,151 +267,151 @@ describe(blockTSDown, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "sections": {
-          "Building": {
-            "contents": "
-Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
-
-\`\`\`shell
-pnpm build
-\`\`\`
-
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
-
-\`\`\`shell
-pnpm build --watch
-\`\`\`
-",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
+      {
+        "addons": [
           {
-            "name": "Build",
-            "steps": [
-              {
-                "run": "pnpm build",
+            "addons": {
+              "sections": {
+                "Building": {
+                  "contents": "
+      Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
+
+      \`\`\`shell
+      pnpm build
+      \`\`\`
+
+      Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
+
+      \`\`\`shell
+      pnpm build --watch
+      \`\`\`
+      ",
+                },
               },
-            ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "tsdown": "1.2.3",
-          },
-          "files": [
-            "dist/",
-          ],
-          "scripts": {
-            "build": "tsdown",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "builders": [
           {
-            "order": 0,
-            "run": "pnpm build",
+            "addons": {
+              "ignores": [
+                "dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Build",
+                  "steps": [
+                    {
+                      "run": "pnpm build",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "tsdown": "1.2.3",
+                },
+                "files": [
+                  "dist/",
+                ],
+                "scripts": {
+                  "build": "tsdown",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "coverage": {
+                "include": [
+                  "src",
+                ],
+              },
+              "exclude": [
+                "dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "dependencies": [
+                "@babel/cli",
+                "@babel/core",
+                "@babel/preset-typescript",
+                "babel",
+                "tsup",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": [
+                ".babelrc*",
+                "babel.config.*",
+                "dist",
+                "lib",
+                "tsup.config.*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "workflows": [
+                "build",
+                "tsup",
+              ],
+            },
+            "block": [Function],
           },
         ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "coverage": {
-          "include": [
-            "src",
-          ],
-        },
-        "exclude": [
-          "dist",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "dependencies": [
-          "@babel/cli",
-          "@babel/core",
-          "@babel/preset-typescript",
-          "babel",
-          "tsup",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "files": [
-          ".babelrc*",
-          "babel.config.*",
-          "dist",
-          "lib",
-          "tsup.config.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "workflows": [
-          "build",
-          "tsup",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+        "files": {
+          "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"fixedExtension":false,"unbundle":true});
-",
-  },
-}
-`);
+      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
+      ",
+        },
+      }
+    `);
   });
 
   describe("intake", () => {

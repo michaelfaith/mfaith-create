@@ -14,28 +14,28 @@ describe(readBin, () => {
   it("resolves with a trimmed string when the package data has a string bin", async () => {
     const getPackageData = () =>
       Promise.resolve({
-        bin: "./index.js",
+        bin: "./index.mjs",
       });
 
     const actual = await readBin(getPackageData);
 
-    expect(actual).toBe("index.js");
+    expect(actual).toBe("index.mjs");
   });
 
   it("resolves with an object of trimmed bins when the package data has a string bin", async () => {
     const getPackageData = () =>
       Promise.resolve({
         bin: {
-          absolute: "index.js",
-          relative: "./index.js",
+          absolute: "index.mjs",
+          relative: "./index.mjs",
         },
       });
 
     const actual = await readBin(getPackageData);
 
     expect(actual).toEqual({
-      absolute: "index.js",
-      relative: "index.js",
+      absolute: "index.mjs",
+      relative: "index.mjs",
     });
   });
 });

@@ -13,7 +13,7 @@ const tsExtensionRegex = /(.*)\.([cm]?)ts$/i;
 const jsExtensionRegex = /(.*)\.([cm]?)js$/i;
 
 const srcToDist = (value: string) =>
-  value.replace("src", "dist").replace(tsExtensionRegex, "$1.$2js");
+  value.replace("src", "dist").replace(tsExtensionRegex, "$1.$2mjs");
 const distToSrc = (value: string) =>
   value.replace("dist", "src").replace(jsExtensionRegex, "$1.$2ts");
 

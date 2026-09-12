@@ -7,10 +7,10 @@ const repository = "test-repository";
 describe(getPrimaryBin, () => {
   test.each([
     [undefined, undefined],
-    ["bin/index.js", "bin/index.js"],
-    [{ [repository]: "bin/index.js" }, "bin/index.js"],
+    ["bin/index.mjs", "bin/index.mjs"],
+    [{ [repository]: "bin/index.mjs" }, "bin/index.mjs"],
     [{}, undefined],
-    [{ other: "bin/index.js" }, undefined],
+    [{ other: "bin/index.mjs" }, undefined],
   ])("%j", (bin, expected) => {
     expect(getPrimaryBin(bin, repository)).toBe(expected);
   });

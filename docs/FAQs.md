@@ -38,15 +38,15 @@ Here we'll outline the steps required to migrate an @mfaith/create app to a GitH
            - uses: $/.github/actions/setup
            - run: pnpm build
 
-           - name: Compare dist/index.js
+           - name: Compare dist/index.mjs
              run: |
-               if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
+               if [ "$(git diff --ignore-space-at-eol --text dist/index.mjs | wc -l)" -gt "0" ]; then
                  echo "Detected uncommitted changes after build."
                  echo "You may need to run 'pnpm run build' locally and commit the changes."
                  echo ""
                  echo "See diff below:"
                  echo ""
-                 git diff --ignore-space-at-eol --text dist/index.js
+                 git diff --ignore-space-at-eol --text dist/index.mjs
                  echo ""
                  # say this again in case the diff is long
                  echo "You may need to run 'pnpm run build' locally and commit the changes."
