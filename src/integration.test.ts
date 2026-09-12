@@ -14,6 +14,7 @@ import {
   blockCSpell,
   blockESLint,
   blockKnip,
+  blockPnpmWorkspace,
   blockPrettier,
   blockTemplatedWith,
   presets,
@@ -125,6 +126,15 @@ If you're interested in learning more, see the 'getting started' docs on:
             "remove-dependencies",
             "trash-cli",
           ],
+        }),
+        // https://github.com/bingo-js/bingo/issues/420
+        blockPnpmWorkspace({
+          config: {
+            overrides: {
+              "bingo-stratum@0.5.13>cached-factory": "0.3.0",
+              "bingo@0.9.3>cached-factory": "0.3.0",
+            },
+          },
         }),
         // TODO: This is only needed until we have a ReleasePlease block
         blockPrettier({ ignores: ["/CHANGELOG.md"] }),
