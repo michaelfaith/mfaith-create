@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2](https://github.com/michaelfaith/mfaith-create/compare/v0.2.1...v0.2.2) (2026-09-12)
+
+
+### 🚀 Features
+
+* add new block for creating a `pnpm-workspace.yaml` file ([#161](https://github.com/michaelfaith/mfaith-create/issues/161)) ([fecf3da](https://github.com/michaelfaith/mfaith-create/commit/fecf3daca2dfb9d845fdec0a2b28a474ec58193d))
+* change build output to use `mjs` extension ([#168](https://github.com/michaelfaith/mfaith-create/issues/168)) ([f64a73a](https://github.com/michaelfaith/mfaith-create/commit/f64a73a3aefcb20012e2e9b51eb1bd80c2e3db65))
+* switch to `pretty-quick` for pre-commit formatting ([#165](https://github.com/michaelfaith/mfaith-create/issues/165)) ([d047af5](https://github.com/michaelfaith/mfaith-create/commit/d047af5136fc9b0f09c744b03ef9e9f87d4504bd))
+
 ## [0.2.1](https://github.com/michaelfaith/mfaith-create/compare/v0.2.0...v0.2.1) (2026-09-11)
 
 
