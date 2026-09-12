@@ -2,8 +2,6 @@ import type { DumpOptions } from "js-yaml";
 
 import { CORE_SCHEMA, dump, nullCoreTag, visit } from "js-yaml";
 
-import { removeUsesQuotes } from "./removeUsesQuotes.ts";
-
 const options: DumpOptions = {
   lineWidth: -1,
   schema: CORE_SCHEMA.withTags({
@@ -24,5 +22,5 @@ const options: DumpOptions = {
 };
 
 export function formatYaml(value: unknown) {
-  return removeUsesQuotes(dump(value, options)).replaceAll(/\n(\S)/g, "\n\n$1");
+  return dump(value, options).replaceAll(/\n(\S)/g, "\n\n$1");
 }

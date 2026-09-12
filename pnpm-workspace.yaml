@@ -1,0 +1,5 @@
+overrides:
+  bingo@0.9.3>cached-factory: 0.3.0
+  bingo-stratum@0.5.13>cached-factory: 0.3.0
+
+trustPolicy: no-downgrade

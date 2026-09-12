@@ -162,6 +162,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  bingo@0.9.3>cached-factory: 0.3.0
+  bingo-stratum@0.5.13>cached-factory: 0.3.0
+
 importers:
 
   .:
@@ -1874,10 +1878,6 @@ packages:
 
   cacheable@2.5.0:
     resolution: {integrity: sha512-60cyAOytib/OzBw1JNSoSV/boK1AtHryDIjvVBk7XbN4ugfkM3+Sry7fEjNgPMGgOjuaZPAp8ruZ0Cxafwyq9g==}
-
-  cached-factory@0.1.0:
-    resolution: {integrity: sha512-IGOSWu+NuED5UzCRmBeqQPZ8z7SkgrD/nN67W2iY1Qv83CVhevyMexkGclJ86saXisIqxoOnbeiTWvsCHRqJBw==}
-    engines: {node: '>=18'}
 
   cached-factory@0.3.0:
     resolution: {integrity: sha512-8PWf78SYJg9kGpUNlqOlg2iE4nu/iW7FidBVdvEZPy0GJRUyN91X7q0VzX/oyJE6bGrgr/bR0VhcGF87vgeQaw==}
@@ -5380,7 +5380,7 @@ snapshots:
       bingo: 0.9.3
       bingo-fs: 0.5.6
       bingo-systems: 0.5.5
-      cached-factory: 0.1.0
+      cached-factory: 0.3.0
       chalk: 5.6.2
       hash-object: 5.1.0
       octokit: 5.0.5
@@ -5412,7 +5412,7 @@ snapshots:
       bingo-fs: 0.5.6
       bingo-requests: 0.5.6
       bingo-systems: 0.5.5
-      cached-factory: 0.1.0
+      cached-factory: 0.3.0
       call-id: 0.1.0
       chalk: 5.6.2
       get-github-auth-token: 0.1.2
@@ -5447,8 +5447,6 @@ snapshots:
       hookified: 1.15.1
       keyv: 5.6.0
       qified: 0.10.1
-
-  cached-factory@0.1.0: {}
 
   cached-factory@0.3.0: {}
 

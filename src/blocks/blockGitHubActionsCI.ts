@@ -8,7 +8,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { createMultiJobWorkflow } from "./files/createMultiJobWorkflow.ts";
 import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.ts";
-import { formatYaml } from "./files/formatYaml.ts";
+import { formatWorkflowYaml } from "./files/formatWorkflowYaml.ts";
 import { zWorkflowPermissions } from "./files/workflow.types.ts";
 
 const zJob = z.object({
@@ -76,7 +76,7 @@ export const blockGitHubActionsCI = base.createBlock({
         ".github": {
           actions: {
             setup: {
-              "action.yaml": formatYaml({
+              "action.yaml": formatWorkflowYaml({
                 name: "Setup",
                 description: "Sets up the repo for a typical CI job",
                 inputs: {
