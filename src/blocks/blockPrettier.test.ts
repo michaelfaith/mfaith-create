@@ -317,7 +317,7 @@ describe(blockPrettier, () => {
         ignores: ["generated"],
         overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
         plugins: [
-          "./dist/index.js",
+          "./dist/index.mjs",
           "prettier-plugin-curly",
           "prettier-plugin-packagejson",
           "prettier-plugin-sh",
@@ -444,7 +444,7 @@ describe(blockPrettier, () => {
       };",
           "prettier.config.ts": "import type { Config } from "prettier";
 
-      export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
+      export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
       ",
         },
         "scripts": [

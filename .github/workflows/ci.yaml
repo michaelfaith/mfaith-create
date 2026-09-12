@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm build
-      - run: node ./dist/index.js
+      - run: node ./dist/index.mjs
 
   dedupe_check:
     name: Dedupe Check

@@ -14,9 +14,9 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.mjs"
   },
-  "bin": "dist/bin/index.js",
+  "bin": "dist/bin/index.mjs",
   "files": [
     "dist/"
   ],

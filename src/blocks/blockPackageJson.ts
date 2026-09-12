@@ -114,7 +114,7 @@ function processFiles(files: string[] | undefined) {
     .filter(Boolean)
     .sort((a, b) => a.length - b.length);
 
-  // ...then remove entries captured by earlier directories (e.g. "dist/index.js")
+  // ...then remove entries captured by earlier directories (e.g. "dist/index.mjs")
   return sortedByLength
     .filter(
       (file, i) =>
