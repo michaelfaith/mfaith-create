@@ -149,7 +149,7 @@ greet("Hello, world! ${options.emoji}");
             rewriteRelativeImportExtensions: true,
             skipLibCheck: true,
             strict: true,
-            target: "ES2023",
+            target: "ES2024",
             types: ["node"],
             ...compilerOptions,
           }),

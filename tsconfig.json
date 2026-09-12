@@ -9,7 +9,7 @@
     "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2023",
+    "target": "ES2024",
     "types": ["node"]
   },
   "include": ["src"]
