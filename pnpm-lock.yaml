@@ -379,10 +379,10 @@ importers:
         specifier: 0.19.0
         version: 0.19.0(prettier@3.9.6)
       pretty-quick:
-        specifier: ^4.2.2
+        specifier: 4.2.2
         version: 4.2.2(prettier@3.9.6)
       simple-git-hooks:
-        specifier: ^2.14.0
+        specifier: 2.14.0
         version: 2.14.0
       tsdown:
         specifier: 0.23.0
