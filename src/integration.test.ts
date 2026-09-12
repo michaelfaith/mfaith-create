@@ -131,8 +131,8 @@ If you're interested in learning more, see the 'getting started' docs on:
         blockPnpmWorkspace({
           config: {
             overrides: {
-              "bingo@0.9.3>cached-factory": "0.3.0",
               "bingo-stratum@0.5.13>cached-factory": "0.3.0",
+              "bingo@0.9.3>cached-factory": "0.3.0",
             },
           },
         }),
