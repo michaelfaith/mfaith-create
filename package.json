@@ -75,7 +75,7 @@
     "@prettier/sync": "0.6.1",
     "@types/html-to-text": "9.0.4",
     "@types/lodash": "4.17.25",
-    "@types/node": "26.5.0",
+    "@types/node": "26.5.1",
     "@types/parse-author": "2.0.3",
     "@types/semver": "7.8.0",
     "@vitest/coverage-v8": "5.0.0",
