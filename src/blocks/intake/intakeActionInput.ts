@@ -1,25 +1,10 @@
 import type { IntakeDirectory } from 'bingo-fs';
 
 import _ from 'lodash';
-import { z } from 'zod';
 
-import { intakeFileAsYaml } from '../intake/intakeFileAsYaml.ts';
+import type { ActionInput } from '../workflows/schema.ts';
 
-export const zActionStep = z.intersection(
-  z.object({
-    env: z.record(z.string(), z.string()).optional(),
-    if: z.string().optional(),
-    with: z.record(z.string(), z.string()).optional(),
-  }),
-  z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
-);
-
-export interface ActionInput {
-  default?: boolean | number | string;
-  description?: string;
-  required?: boolean;
-  type?: 'boolean' | 'number' | 'string';
-}
+import { intakeFileAsYaml } from './intakeFileAsYaml.ts';
 
 export function intakeActionInput(
   files: IntakeDirectory,

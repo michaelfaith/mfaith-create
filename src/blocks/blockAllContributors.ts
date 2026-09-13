@@ -4,13 +4,13 @@ import type { Contributor } from '../schemas.ts';
 
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
-import { resolveUses } from './actions/resolveUses.ts';
 import { blockCSpell } from './blockCSpell.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { createSingleJobWorkflow } from './files/createSingleJobWorkflow.ts';
 import { CommandPhase } from './phases.ts';
+import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
 
 export const blockAllContributors = base.createBlock({
   about: {

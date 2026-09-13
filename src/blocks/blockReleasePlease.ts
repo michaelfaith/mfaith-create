@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { resolveUses } from './actions/resolveUses.ts';
 import { blockCSpell } from './blockCSpell.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositorySecrets } from './blockRepositorySecrets.ts';
 import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
-import { createMultiJobWorkflow } from './files/createMultiJobWorkflow.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
+import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
 
 const isScopedPackage = (packageName: string | undefined): boolean =>
   !!packageName?.startsWith('@');

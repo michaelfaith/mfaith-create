@@ -4,7 +4,6 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import { zActionStep } from './actions/steps.ts';
 import { blockCSpell } from './blockCSpell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockESLint } from './blockESLint.ts';
@@ -18,8 +17,8 @@ import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVSCode } from './blockVSCode.ts';
-import { zWorkflowPermissions } from './files/workflow.types.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { StepSchema, WorkflowPermissionsSchema } from './workflows/schema.ts';
 
 const zCoverage = z.object({
   exclude: z.array(z.string()).optional(),
@@ -61,12 +60,12 @@ export const blockVitest = base.createBlock({
     name: 'Vitest',
   },
   addons: {
-    actionSteps: z.array(zActionStep).default([]),
+    actionSteps: z.array(StepSchema).default([]),
     coverage: zCoverage.default({}),
     environment: zEnvironment.optional(),
     exclude: zExclude.default([]),
     flags: z.array(z.string()).default([]),
-    permissions: zWorkflowPermissions.optional(),
+    permissions: WorkflowPermissionsSchema.optional(),
   },
   intake({ files, options }) {
     return {
