@@ -16,6 +16,7 @@ import {
   blockKnip,
   blockPnpmWorkspace,
   blockTemplatedWith,
+  blockTypeScript,
   presets,
 } from './index.ts';
 
@@ -133,6 +134,12 @@ If you're interested in learning more, see the 'getting started' docs on:
               'bingo-stratum@0.5.13>cached-factory': '0.3.0',
               'bingo@0.9.3>cached-factory': '0.3.0',
             },
+          },
+        }),
+        // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
+        blockTypeScript({
+          compilerOptions: {
+            lib: ['ES2025'],
           },
         }),
       ],

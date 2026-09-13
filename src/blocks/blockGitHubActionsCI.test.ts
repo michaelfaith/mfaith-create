@@ -214,6 +214,38 @@ describe(blockGitHubActionsCI, () => {
       addons: {
         jobs: [
           {
+            name: 'Engines Check',
+            steps: [
+              {
+                uses: '$/.github/actions/setup',
+                with: {
+                  cache: false,
+                  'install-flags': '--prod --ignore-scripts',
+                  'strict-engines': true,
+                },
+              },
+            ],
+          },
+          {
+            id: 'test_node',
+            name: 'Test (Node.js ${{ matrix.node-version }})',
+            strategy: {
+              'fail-fast': false,
+              matrix: {
+                'node-version': ['24.15.0', 24, '26.0.0', 26],
+              },
+            },
+            steps: [
+              {
+                uses: '$/.github/actions/setup',
+                with: {
+                  'node-version': '${{ matrix.node-version }}',
+                },
+              },
+              { run: 'pnpm test' },
+            ],
+          },
+          {
             name: 'Validate',
             steps: [
               {
@@ -237,6 +269,11 @@ describe(blockGitHubActionsCI, () => {
             "addons": {
               "requiredStatusChecks": [
                 "Engines Check",
+                "Engines Check",
+                "Test (Node.js 24.15.0)",
+                "Test (Node.js 24)",
+                "Test (Node.js 26.0.0)",
+                "Test (Node.js 26)",
                 "Validate",
               ],
             },
@@ -312,6 +349,23 @@ describe(blockGitHubActionsCI, () => {
                 cache: false
                 install-flags: --prod --ignore-scripts
                 strict-engines: true
+
+        test_node:
+          name: Test (Node.js \${{ matrix.node-version }})
+          runs-on: ubuntu-latest
+          strategy:
+            fail-fast: false
+            matrix:
+              node-version:
+                - 24.15.0
+                - 24
+                - 26.0.0
+                - 26
+          steps:
+            - uses: $/.github/actions/setup
+              with:
+                node-version: \${{ matrix.node-version }}
+            - run: pnpm test
 
         validate:
           name: Validate

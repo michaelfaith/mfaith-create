@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
+    "lib": ["ES2025"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmit": true,
