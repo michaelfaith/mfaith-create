@@ -1,13 +1,13 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFile } from "input-from-file";
+import { inputFromFile } from 'input-from-file';
 
-import { swallowError } from "../utils/swallowError.ts";
+import { swallowError } from '../utils/swallowError.ts';
 
 export async function readFunding(take: TakeInput) {
   return swallowError(
-    await take(inputFromFile, { filePath: ".github/FUNDING.yaml" }),
+    await take(inputFromFile, { filePath: '.github/FUNDING.yaml' }),
   )
-    ?.split(":")[1]
+    ?.split(':')[1]
     ?.trim();
 }

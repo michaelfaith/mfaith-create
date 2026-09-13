@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { swallowError } from "./swallowError.ts";
+import { swallowError } from './swallowError.ts';
 
 describe(swallowError, () => {
   it("returns the value when it's not an error", () => {
@@ -11,8 +11,8 @@ describe(swallowError, () => {
     expect(actual).toBe(value);
   });
 
-  it("returns undefined when the value is an error", () => {
-    const error = new Error("oops");
+  it('returns undefined when the value is an error', () => {
+    const error = new Error('oops');
 
     const actual = swallowError(error);
 

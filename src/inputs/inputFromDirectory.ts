@@ -1,5 +1,5 @@
-import { createInput } from "bingo";
-import { z } from "zod";
+import { createInput } from 'bingo';
+import { z } from 'zod';
 
 export const inputFromDirectory = createInput({
   args: {

@@ -1,16 +1,16 @@
-import sortKeys from "sort-keys";
-import { z } from "zod";
+import sortKeys from 'sort-keys';
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { formatYaml } from "./files/formatYaml.ts";
-import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.ts";
+import { base } from '../base.ts';
+import { formatYaml } from './files/formatYaml.ts';
+import { intakeFileAsYaml } from './intake/intakeFileAsYaml.ts';
 
 const pnpmWorkspaceSchema = z
   .object({
     allowBuilds: z.record(z.string(), z.boolean()).optional(),
     overrides: z.record(z.string(), z.string()).optional(),
     trustPolicy: z
-      .union([z.literal("off"), z.literal("no-downgrade")])
+      .union([z.literal('off'), z.literal('no-downgrade')])
       .optional(),
   })
   .passthrough();
@@ -18,15 +18,15 @@ type PnpmWorkspace = z.infer<typeof pnpmWorkspaceSchema>;
 
 export const blockPnpmWorkspace = base.createBlock({
   about: {
-    name: "pnpm Workspace",
-    description: "Creates a Workspace configuration file for pnpm.",
+    name: 'pnpm Workspace',
+    description: 'Creates a Workspace configuration file for pnpm.',
   },
   addons: {
     config: pnpmWorkspaceSchema.optional(),
   },
   intake({ files }) {
     const existingWorkspace = intakeFileAsYaml(files, [
-      "pnpm-workspace.yaml",
+      'pnpm-workspace.yaml',
     ]) as PnpmWorkspace | undefined;
     if (!existingWorkspace) {
       return undefined;
@@ -40,9 +40,9 @@ export const blockPnpmWorkspace = base.createBlock({
     const { config } = addons;
     return {
       files: {
-        "pnpm-workspace.yaml": formatYaml(
+        'pnpm-workspace.yaml': formatYaml(
           sortKeys({
-            trustPolicy: "no-downgrade",
+            trustPolicy: 'no-downgrade',
             ...config,
           }),
         ),

@@ -1,34 +1,34 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockPrettier } from "./blockPrettier.ts";
+import { base } from '../base.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPrettier } from './blockPrettier.ts';
 
 export const blockNcc = base.createBlock({
   about: {
-    name: "ncc",
+    name: 'ncc',
   },
   addons: {
     entry: z.string().optional(),
   },
   intake({ options }) {
     return {
-      entry: options.packageData?.scripts?.["build:release"]?.match(
+      entry: options.packageData?.scripts?.['build:release']?.match(
         /ncc build (.+) -o dist/,
       )?.[1],
     };
   },
   produce({ addons }) {
-    const { entry = "src/index.ts" } = addons;
+    const { entry = 'src/index.ts' } = addons;
 
     return {
       addons: [
         blockCSpell({
-          ignorePaths: ["dist"],
+          ignorePaths: ['dist'],
         }),
         blockDevelopmentDocs({
           sections: {
@@ -55,40 +55,40 @@ Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/
 pnpm build:release
 \`\`\`
 		`,
-                  heading: "Building for Release",
+                  heading: 'Building for Release',
                 },
               ],
             },
           },
         }),
         blockESLint({
-          ignores: ["dist"],
+          ignores: ['dist'],
         }),
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Build",
-              steps: [{ run: "pnpm build" }],
+              name: 'Build',
+              steps: [{ run: 'pnpm build' }],
             },
             {
-              name: "Build (Release)",
-              steps: [{ run: "pnpm build:release" }],
+              name: 'Build (Release)',
+              steps: [{ run: 'pnpm build:release' }],
             },
           ],
         }),
         blockPackageJson({
           properties: {
             devDependencies: {
-              "@vercel/ncc": "^0.38.3",
+              '@vercel/ncc': '^0.38.3',
             },
             scripts: {
-              build: "tsc",
-              "build:release": `ncc build ${entry} -o dist`,
+              build: 'tsc',
+              'build:release': `ncc build ${entry} -o dist`,
             },
           },
         }),
         blockPrettier({
-          ignores: ["/dist"],
+          ignores: ['/dist'],
         }),
       ],
     };

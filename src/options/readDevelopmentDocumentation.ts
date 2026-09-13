@@ -1,22 +1,22 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFile } from "input-from-file";
+import { inputFromFile } from 'input-from-file';
 
-import { swallowError } from "../utils/swallowError.ts";
+import { swallowError } from '../utils/swallowError.ts';
 
 const knownHeadings = new Set([
-  "building",
-  "development",
-  "formatting",
-  "linting",
-  "testing",
-  "type checking",
+  'building',
+  'development',
+  'formatting',
+  'linting',
+  'testing',
+  'type checking',
 ]);
 
 export async function readDevelopmentDocumentation(take: TakeInput) {
   const existing = swallowError(
     await take(inputFromFile, {
-      filePath: ".github/DEVELOPMENT.md",
+      filePath: '.github/DEVELOPMENT.md',
     }),
   );
   if (!existing) {
@@ -26,13 +26,13 @@ export async function readDevelopmentDocumentation(take: TakeInput) {
   return existing
     .split(/\n\n(?=##\s)/)
     .filter((section) => !knownHeadings.has(parseHeading(section)))
-    .join("\n\n");
+    .join('\n\n');
 }
 
 function parseHeading(section: string) {
   return section
-    .split("\n")[0]
-    .replace(/^#+\s+/, "")
+    .split('\n')[0]
+    .replace(/^#+\s+/, '')
     .trim()
     .toLowerCase();
 }

@@ -35,13 +35,13 @@ For example, changing `node` versions to values different from what would be inf
 
 ```ts
 // create-repo.config.js
-import { createConfig } from "@mfaith/create";
+import { createConfig } from '@mfaith/create';
 
 export default createConfig({
   options: {
     node: {
-      minimum: ">=20.19.0",
-      pinned: "22.14.0",
+      minimum: '>=20.19.0',
+      pinned: '22.14.0',
     },
   },
 });
@@ -65,13 +65,13 @@ For example, this configuration file adds the word `"michaelfaith"` to the CSpel
 
 ```ts
 // create-repo.config.js
-import { blockCSpell, createConfig } from "@mfaith/create";
+import { blockCSpell, createConfig } from '@mfaith/create';
 
 export default createConfig({
   refinements: {
     addons: [
       blockCSpell({
-        words: ["michaelfaith"],
+        words: ['michaelfaith'],
       }),
     ],
   },
@@ -92,7 +92,7 @@ For example, this configuration file adds in `@mfaith/create`'s provided "arethe
 
 ```ts
 // create-repo.config.js
-import { blockAreTheTypesWrong, createConfig } from "@mfaith/create";
+import { blockAreTheTypesWrong, createConfig } from '@mfaith/create';
 
 export default createConfig({
   refinements: {
@@ -113,7 +113,7 @@ For example, this configuration file omits the default _"This package was templa
 
 ```ts
 // create-repo.config.js
-import { blockTemplatedBy, createConfig } from "@mfaith/create";
+import { blockTemplatedBy, createConfig } from '@mfaith/create';
 
 export default createConfig({
   refinements: {
@@ -135,11 +135,11 @@ For example, to add an [`@arethetypeswrong/cli`](https://www.npmjs.com/package/@
 
 ```ts
 // blockLintAreTheTypesWrong.js
-import { base, blockPackageJson } from "@mfaith/create";
+import { base, blockPackageJson } from '@mfaith/create';
 
 export const blockLintAreTheTypesWrong = base.createBlock({
   about: {
-    name: "Lint Are The Types Wrong",
+    name: 'Lint Are The Types Wrong',
   },
   produce() {
     return {
@@ -147,10 +147,10 @@ export const blockLintAreTheTypesWrong = base.createBlock({
         blockPackageJson({
           properties: {
             devDependencies: {
-              "@arethetypeswrong/cli": "0.17.3",
+              '@arethetypeswrong/cli': '0.17.3',
             },
             scripts: {
-              "lint:arethetypeswrong": "attw --pack .",
+              'lint:arethetypeswrong': 'attw --pack .',
             },
           },
         }),
@@ -162,9 +162,9 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 
 ```ts
 // create-repo.config.ts
-import { createConfig } from "@mfaith/create";
+import { createConfig } from '@mfaith/create';
 
-import { blockLintAreTheTypesWrong } from "./blockLintAreTheTypesWrong.ts";
+import { blockLintAreTheTypesWrong } from './blockLintAreTheTypesWrong.ts';
 
 export default createConfig({
   refinements: {

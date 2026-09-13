@@ -1,11 +1,11 @@
-import { determineLabelChanges } from "set-github-repository-labels";
+import { determineLabelChanges } from 'set-github-repository-labels';
 
-import { base } from "../base.ts";
-import { repositoryLabels } from "./repositoryLabels.ts";
+import { base } from '../base.ts';
+import { repositoryLabels } from './repositoryLabels.ts';
 
 export const blockRepositoryLabels = base.createBlock({
   about: {
-    name: "Repository Labels",
+    name: 'Repository Labels',
   },
   produce({ options }) {
     const changes = determineLabelChanges(
@@ -20,19 +20,19 @@ export const blockRepositoryLabels = base.createBlock({
     return {
       requests: changes.map((change) => {
         switch (change.type) {
-          case "delete":
+          case 'delete':
             return {
-              endpoint: "DELETE /repos/{owner}/{repo}/labels/{name}",
+              endpoint: 'DELETE /repos/{owner}/{repo}/labels/{name}',
               id: `delete label '${change.name}'`,
               parameters: {
                 ...requestData,
                 name: change.name,
               },
-              type: "octokit",
+              type: 'octokit',
             };
-          case "patch":
+          case 'patch':
             return {
-              endpoint: "PATCH /repos/{owner}/{repo}/labels/{name}",
+              endpoint: 'PATCH /repos/{owner}/{repo}/labels/{name}',
               id: `patch label '${change.originalName}'`,
               parameters: {
                 ...requestData,
@@ -41,11 +41,11 @@ export const blockRepositoryLabels = base.createBlock({
                 name: change.originalName,
                 new_name: change.newName,
               },
-              type: "octokit",
+              type: 'octokit',
             };
-          case "post":
+          case 'post':
             return {
-              endpoint: "POST /repos/{owner}/{repo}/labels",
+              endpoint: 'POST /repos/{owner}/{repo}/labels',
               id: `post label '${change.name}'`,
               parameters: {
                 ...requestData,
@@ -53,7 +53,7 @@ export const blockRepositoryLabels = base.createBlock({
                 description: change.description,
                 name: change.name,
               },
-              type: "octokit",
+              type: 'octokit',
             };
         }
       }),

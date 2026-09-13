@@ -1,5 +1,5 @@
 const graphemeSegmenter = new Intl.Segmenter(undefined, {
-  granularity: "grapheme",
+  granularity: 'grapheme',
 });
 
 const pictographicPattern = /\p{Extended_Pictographic}|\p{Regional_Indicator}/u;
@@ -12,11 +12,11 @@ export async function readEmoji(
 
   return (
     Array.from(
-      graphemeSegmenter.segment(description ?? ""),
+      graphemeSegmenter.segment(description ?? ''),
       ({ segment }) => segment,
     ).findLast(
       (grapheme) =>
         pictographicPattern.test(grapheme) || keyCapPattern.test(grapheme),
-    ) ?? "✨"
+    ) ?? '✨'
   );
 }

@@ -1,16 +1,16 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test, vi } from 'vitest';
 
-import { blockPrettier } from "./blockPrettier.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockPrettier } from './blockPrettier.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../data/packageData.js", () => ({
+vi.mock('../data/packageData.js', () => ({
   getPackageDependencies: (...names: string[]) =>
-    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
 describe(blockPrettier, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockPrettier, {
       options: optionsBase,
     });
@@ -121,11 +121,11 @@ describe(blockPrettier, () => {
       /pnpm-lock.yaml
       ",
           ".simple-git-hooks.js": "export default {
-        "pre-commit": "pnpm pretty-quick --staged",
+        'pre-commit': 'pnpm pretty-quick --staged',
       };",
-          "prettier.config.ts": "import type { Config } from "prettier";
+          "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {} satisfies Config;
+      export default {"singleQuote":true} satisfies Config;
       ",
         },
         "scripts": [
@@ -146,9 +146,9 @@ describe(blockPrettier, () => {
     `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockPrettier, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -286,11 +286,11 @@ describe(blockPrettier, () => {
       /pnpm-lock.yaml
       ",
           ".simple-git-hooks.js": "export default {
-        "pre-commit": "pnpm pretty-quick --staged",
+        'pre-commit': 'pnpm pretty-quick --staged',
       };",
-          "prettier.config.ts": "import type { Config } from "prettier";
+          "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {} satisfies Config;
+      export default {"singleQuote":true} satisfies Config;
       ",
         },
         "scripts": [
@@ -311,18 +311,18 @@ describe(blockPrettier, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockPrettier, {
       addons: {
-        ignores: ["generated"],
-        overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+        ignores: ['generated'],
+        overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         plugins: [
-          "./dist/index.mjs",
-          "prettier-plugin-curly",
-          "prettier-plugin-packagejson",
-          "prettier-plugin-sh",
+          './dist/index.mjs',
+          'prettier-plugin-curly',
+          'prettier-plugin-packagejson',
+          'prettier-plugin-sh',
         ],
-        runBefore: ["pnpm build || exit 0"],
+        runBefore: ['pnpm build || exit 0'],
       },
       options: optionsBase,
     });
@@ -440,11 +440,11 @@ describe(blockPrettier, () => {
       generated
       ",
           ".simple-git-hooks.js": "export default {
-        "pre-commit": "pnpm pretty-quick --staged",
+        'pre-commit': 'pnpm pretty-quick --staged',
       };",
-          "prettier.config.ts": "import type { Config } from "prettier";
+          "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"]} satisfies Config;
+      export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"singleQuote":true} satisfies Config;
       ",
         },
         "scripts": [

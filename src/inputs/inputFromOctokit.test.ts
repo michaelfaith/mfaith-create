@@ -1,15 +1,15 @@
-import { createMockFetchers, testInput } from "bingo-testers";
-import { describe, expect, it, vi } from "vitest";
+import { createMockFetchers, testInput } from 'bingo-testers';
+import { describe, expect, it, vi } from 'vitest';
 
-import { inputFromOctokit } from "./inputFromOctokit.ts";
+import { inputFromOctokit } from './inputFromOctokit.ts';
 
 describe(inputFromOctokit, () => {
-  it("returns data when the request resolves", async () => {
+  it('returns data when the request resolves', async () => {
     const data = JSON.stringify({ found: true });
 
     const actual = await testInput(inputFromOctokit, {
       args: {
-        endpoint: "GET /repos/{owner}/{repo}/rulesets",
+        endpoint: 'GET /repos/{owner}/{repo}/rulesets',
         options: {},
       },
       fetchers: createMockFetchers(
@@ -20,17 +20,17 @@ describe(inputFromOctokit, () => {
     expect(actual).toEqual(data);
   });
 
-  it("returns undefined when the request rejects", async () => {
+  it('returns undefined when the request rejects', async () => {
     const actual = await testInput(inputFromOctokit, {
       args: {
-        endpoint: "GET /repos/{owner}/{repo}/rulesets",
+        endpoint: 'GET /repos/{owner}/{repo}/rulesets',
         options: {},
       },
       fetchers: createMockFetchers(
         vi.fn().mockResolvedValueOnce(
-          new Response("", {
+          new Response('', {
             status: 404,
-            statusText: "Not found.",
+            statusText: 'Not found.',
           }),
         ),
       ),
@@ -39,10 +39,10 @@ describe(inputFromOctokit, () => {
     expect(actual).toBe(undefined);
   });
 
-  it("returns undefined when there is no octokit fetcher", async () => {
+  it('returns undefined when there is no octokit fetcher', async () => {
     const actual = await testInput(inputFromOctokit, {
       args: {
-        endpoint: "GET /repos/{owner}/{repo}/rulesets",
+        endpoint: 'GET /repos/{owner}/{repo}/rulesets',
         options: {},
       },
       fetchers: {

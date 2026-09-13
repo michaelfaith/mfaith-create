@@ -1,54 +1,54 @@
-import { type BaseOptionsFor, createBase } from "bingo-stratum";
-import { inputFromFile } from "input-from-file";
-import { inputFromScript } from "input-from-script";
-import lazyValue from "lazy-value";
-import { z } from "zod";
+import { type BaseOptionsFor, createBase } from 'bingo-stratum';
+import { inputFromFile } from 'input-from-file';
+import { inputFromScript } from 'input-from-script';
+import lazyValue from 'lazy-value';
+import { z } from 'zod';
 
-import { readAccess } from "./options/readAccess.ts";
-import { readAllContributors } from "./options/readAllContributors.ts";
-import { readAuthor } from "./options/readAuthor.ts";
-import { readContact } from "./options/readContact.ts";
-import { readContactFromCodeOfConduct } from "./options/readContactFromCodeOfConduct.ts";
-import { readDescription } from "./options/readDescription.ts";
-import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.ts";
-import { readDocumentation } from "./options/readDocumentation.ts";
-import { readEmailFromGit } from "./options/readEmailFromGit.ts";
-import { readEmailFromNpm } from "./options/readEmailFromNpm.ts";
-import { readEmoji } from "./options/readEmoji.ts";
-import { readExistingLabels } from "./options/readExistingLabels.ts";
-import { readFileSafe } from "./options/readFileSafe.ts";
-import { readFunding } from "./options/readFunding.ts";
-import { readGitDefaults } from "./options/readGitDefaults.ts";
-import { readGuide } from "./options/readGuide.ts";
-import { readKeywords } from "./options/readKeywords.ts";
-import { readLogo } from "./options/readLogo.ts";
-import { readNode } from "./options/readNode.ts";
-import { readNpmDefaults } from "./options/readNpmDefaults.ts";
-import { readOwner } from "./options/readOwner.ts";
-import { readPackageAuthor } from "./options/readPackageAuthor.ts";
-import { readPackageData } from "./options/readPackageData.ts";
-import { readPackageName } from "./options/readPackageName.ts";
-import { readPnpm } from "./options/readPnpm.ts";
-import { readReadmeAdditional } from "./options/readReadmeAdditional.ts";
-import { readReadmeExplainer } from "./options/readReadmeExplainer.ts";
-import { readReadmeFootnotes } from "./options/readReadmeFootnotes.ts";
-import { readReadmeUsage } from "./options/readReadmeUsage.ts";
-import { readRepository } from "./options/readRepository.ts";
-import { readRulesetId } from "./options/readRulesetId.ts";
-import { readTitle } from "./options/readTitle.ts";
-import { readWords } from "./options/readWords.ts";
-import { readWorkflowsVersions } from "./options/readWorkflowsVersions.ts";
-import { zContributor, zDocumentation, zWorkflowsVersions } from "./schemas.ts";
+import { readAccess } from './options/readAccess.ts';
+import { readAllContributors } from './options/readAllContributors.ts';
+import { readAuthor } from './options/readAuthor.ts';
+import { readContact } from './options/readContact.ts';
+import { readContactFromCodeOfConduct } from './options/readContactFromCodeOfConduct.ts';
+import { readDescription } from './options/readDescription.ts';
+import { readDevelopmentDocumentation } from './options/readDevelopmentDocumentation.ts';
+import { readDocumentation } from './options/readDocumentation.ts';
+import { readEmailFromGit } from './options/readEmailFromGit.ts';
+import { readEmailFromNpm } from './options/readEmailFromNpm.ts';
+import { readEmoji } from './options/readEmoji.ts';
+import { readExistingLabels } from './options/readExistingLabels.ts';
+import { readFileSafe } from './options/readFileSafe.ts';
+import { readFunding } from './options/readFunding.ts';
+import { readGitDefaults } from './options/readGitDefaults.ts';
+import { readGuide } from './options/readGuide.ts';
+import { readKeywords } from './options/readKeywords.ts';
+import { readLogo } from './options/readLogo.ts';
+import { readNode } from './options/readNode.ts';
+import { readNpmDefaults } from './options/readNpmDefaults.ts';
+import { readOwner } from './options/readOwner.ts';
+import { readPackageAuthor } from './options/readPackageAuthor.ts';
+import { readPackageData } from './options/readPackageData.ts';
+import { readPackageName } from './options/readPackageName.ts';
+import { readPnpm } from './options/readPnpm.ts';
+import { readReadmeAdditional } from './options/readReadmeAdditional.ts';
+import { readReadmeExplainer } from './options/readReadmeExplainer.ts';
+import { readReadmeFootnotes } from './options/readReadmeFootnotes.ts';
+import { readReadmeUsage } from './options/readReadmeUsage.ts';
+import { readRepository } from './options/readRepository.ts';
+import { readRulesetId } from './options/readRulesetId.ts';
+import { readTitle } from './options/readTitle.ts';
+import { readWords } from './options/readWords.ts';
+import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
+import { zContributor, zDocumentation, zWorkflowsVersions } from './schemas.ts';
 
 export const base = createBase({
   options: {
     access: z
-      .union([z.literal("public"), z.literal("restricted")])
-      .describe("which `npm publish --access` to release npm packages with"),
+      .union([z.literal('public'), z.literal('restricted')])
+      .describe('which `npm publish --access` to release npm packages with'),
     author: z
       .string()
       .optional()
-      .describe("username on npm to publish packages under"),
+      .describe('username on npm to publish packages under'),
     contact: z
       .union([
         z.string(),
@@ -58,26 +58,26 @@ export const base = createBase({
           url: z.string().optional(),
         }),
       ])
-      .transform((email) => (typeof email === "string" ? { email } : email))
+      .transform((email) => (typeof email === 'string' ? { email } : email))
       .describe(
-        "contact information to be listed as the point of contact in docs and packages",
+        'contact information to be listed as the point of contact in docs and packages',
       ),
     contributors: z
       .array(zContributor)
       .optional()
-      .describe("AllContributors contributors to store in .all-contributorsrc"),
+      .describe('AllContributors contributors to store in .all-contributorsrc'),
     description: z
       .string()
-      .default("A very lovely package. Hooray!")
+      .default('A very lovely package. Hooray!')
       .describe("'Sentence case.' description of the repository"),
-    directory: z.string().describe("Directory to create the repository in"),
+    directory: z.string().describe('Directory to create the repository in'),
     documentation: zDocumentation.describe(
-      "additional docs to add to .md files",
+      'additional docs to add to .md files',
     ),
     emoji: z
       .string()
       .optional()
-      .describe("decorative emoji to use in descriptions and docs"),
+      .describe('decorative emoji to use in descriptions and docs'),
     existingLabels: z
       .array(
         z.object({
@@ -87,11 +87,11 @@ export const base = createBase({
         }),
       )
       .optional()
-      .describe("existing labels from the GitHub repository"),
+      .describe('existing labels from the GitHub repository'),
     funding: z
       .string()
       .optional()
-      .describe("GitHub organization or username to mention in `funding.yaml`"),
+      .describe('GitHub organization or username to mention in `funding.yaml`'),
     guide: z
       .object({
         href: z.string(),
@@ -99,12 +99,12 @@ export const base = createBase({
       })
       .optional()
       .describe(
-        "link to a contribution guide to place at the top of development docs",
+        'link to a contribution guide to place at the top of development docs',
       ),
     keywords: z
       .array(z.string())
       .optional()
-      .describe("any number of keywords to include in `package.json`"),
+      .describe('any number of keywords to include in `package.json`'),
     logo: z
       .object({
         alt: z.string(),
@@ -114,15 +114,15 @@ export const base = createBase({
       })
       .optional()
       .describe(
-        "local image file and alt text to display near the top of the README.md",
+        'local image file and alt text to display near the top of the README.md',
       ),
     node: z
       .object({
         minimum: z.string(),
         pinned: z.string().optional(),
       })
-      .describe("Node.js engine version(s) to pin and require a minimum of"),
-    owner: z.string().describe("organization or user owning the repository"),
+      .describe('Node.js engine version(s) to pin and require a minimum of'),
+    owner: z.string().describe('organization or user owning the repository'),
     packageData: z
       .object({
         dependencies: z.record(z.string(), z.string()).optional(),
@@ -132,11 +132,11 @@ export const base = createBase({
         scripts: z.record(z.string(), z.string().optional()).optional(),
       })
       .optional()
-      .describe("additional properties to include in `package.json`"),
+      .describe('additional properties to include in `package.json`'),
     packageName: z
       .string()
       .optional()
-      .describe("name of the package to publish to npm"),
+      .describe('name of the package to publish to npm'),
     pnpm: z
       .string()
       .optional()
@@ -147,19 +147,19 @@ export const base = createBase({
     rulesetId: z
       .string()
       .optional()
-      .describe("GitHub branch ruleset ID for main branch protections"),
+      .describe('GitHub branch ruleset ID for main branch protections'),
     title: z.string().describe("'Title Case' title for the repository"),
     version: z
       .string()
       .optional()
-      .describe("package version to publish as and store in `package.json`"),
+      .describe('package version to publish as and store in `package.json`'),
     words: z
       .array(z.string())
       .optional()
-      .describe("additional words to add to the CSpell dictionary"),
+      .describe('additional words to add to the CSpell dictionary'),
     workflowsVersions: zWorkflowsVersions
       .optional()
-      .describe("existing versions of GitHub Actions workflows used"),
+      .describe('existing versions of GitHub Actions workflows used'),
   },
   prepare({ options, take }) {
     const getAccess = lazyValue(async () => await readAccess(getPackageData));
@@ -234,7 +234,7 @@ export const base = createBase({
 
     const getGitUser = lazyValue(
       async () =>
-        await take(inputFromScript, { command: "git config user.name" }),
+        await take(inputFromScript, { command: 'git config user.name' }),
     );
 
     const getGuide = lazyValue(async () => await readGuide(take));
@@ -253,13 +253,13 @@ export const base = createBase({
 
     const getNpmWhoami = lazyValue(
       async () =>
-        await take(inputFromScript, { command: "npm whoami --offline" }),
+        await take(inputFromScript, { command: 'npm whoami --offline' }),
     );
 
     const getNvmrc = lazyValue(
       async () =>
         await take(inputFromFile, {
-          filePath: ".nvmrc",
+          filePath: '.nvmrc',
         }),
     );
 
@@ -278,7 +278,7 @@ export const base = createBase({
     const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
 
     const getReadme = lazyValue(
-      async () => await readFileSafe("README.md", ""),
+      async () => await readFileSafe('README.md', ''),
     );
 
     const getReadmeAdditional = lazyValue(

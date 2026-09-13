@@ -1,10 +1,10 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFile } from "input-from-file";
+import { inputFromFile } from 'input-from-file';
 
 export async function readGuide(take: TakeInput) {
   const development = await take(inputFromFile, {
-    filePath: ".github/DEVELOPMENT.md",
+    filePath: '.github/DEVELOPMENT.md',
   });
 
   if (development instanceof Error) {

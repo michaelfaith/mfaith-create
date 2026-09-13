@@ -1,20 +1,20 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-import type { Contributor } from "../schemas.ts";
+import type { Contributor } from '../schemas.ts';
 
-import { base } from "../base.ts";
-import { startingOwnerContributions } from "../data/contributions.ts";
-import { resolveUses } from "./actions/resolveUses.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockPrettier } from "./blockPrettier.ts";
-import { blockREADME } from "./blockREADME.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { createSingleJobWorkflow } from "./files/createSingleJobWorkflow.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { startingOwnerContributions } from '../data/contributions.ts';
+import { resolveUses } from './actions/resolveUses.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockPrettier } from './blockPrettier.ts';
+import { blockREADME } from './blockREADME.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { createSingleJobWorkflow } from './files/createSingleJobWorkflow.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockAllContributors = base.createBlock({
   about: {
-    name: "AllContributors",
+    name: 'AllContributors',
   },
   produce({ options }) {
     const contributions = options.contributors?.length;
@@ -35,10 +35,10 @@ export const blockAllContributors = base.createBlock({
     return {
       addons: [
         blockCSpell({
-          ignorePaths: [".all-contributorsrc"],
+          ignorePaths: ['.all-contributorsrc'],
         }),
         blockPrettier({
-          ignores: ["/.all-contributorsrc"],
+          ignores: ['/.all-contributorsrc'],
         }),
         blockREADME({
           badges: [
@@ -52,7 +52,7 @@ export const blockAllContributors = base.createBlock({
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
   `,
               },
-              href: "#contributors",
+              href: '#contributors',
               src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
             },
           ],
@@ -62,59 +62,59 @@ export const blockAllContributors = base.createBlock({
         }),
       ],
       files: {
-        ".all-contributorsrc": JSON.stringify(
+        '.all-contributorsrc': JSON.stringify(
           {
             badgeTemplate:
               '	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
-            commitType: "docs",
+            commitType: 'docs',
             contributors: options.contributors ?? [],
             contributorsPerLine: 7,
             contributorsSortAlphabetically: true,
-            files: ["README.md"],
+            files: ['README.md'],
             projectName: options.packageName,
             projectOwner: options.owner,
-            repoType: "github",
+            repoType: 'github',
           },
           null,
           2,
         ),
-        ".github": {
+        '.github': {
           workflows: {
-            "contributors.yaml": createSingleJobWorkflow({
-              name: "Contributors",
+            'contributors.yaml': createSingleJobWorkflow({
+              name: 'Contributors',
               on: {
                 push: {
-                  branches: ["main"],
+                  branches: ['main'],
                 },
               },
               job: {
-                if: "github.event.repository.fork != true",
-                "runs-on": "ubuntu-slim",
+                if: 'github.event.repository.fork != true',
+                'runs-on': 'ubuntu-slim',
                 permissions: {
-                  contents: "read",
-                  issues: "write",
-                  "pull-requests": "write",
+                  contents: 'read',
+                  issues: 'write',
+                  'pull-requests': 'write',
                 },
                 steps: [
                   {
                     uses: resolveUses(
-                      "actions/checkout",
-                      "v4",
+                      'actions/checkout',
+                      'v4',
                       options.workflowsVersions,
                     ),
-                    with: { "fetch-depth": 0 },
+                    with: { 'fetch-depth': 0 },
                   },
                   {
-                    uses: "$/.github/actions/setup",
-                    with: { "skip-checkout": true },
+                    uses: '$/.github/actions/setup',
+                    with: { 'skip-checkout': true },
                   },
                   {
                     uses: resolveUses(
-                      "JoshuaKGoldberg/all-contributors-auto-action",
-                      "v0.5.0",
+                      'JoshuaKGoldberg/all-contributors-auto-action',
+                      'v0.5.0',
                       options.workflowsVersions,
                     ),
-                    env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" },
+                    env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
                   },
                 ],
               },
@@ -125,7 +125,7 @@ export const blockAllContributors = base.createBlock({
       scripts: [
         {
           commands: [
-            `pnpx all-contributors-cli@6.23.1 add ${options.owner} ${ownerContributions.join(",")}`,
+            `pnpx all-contributors-cli@latest add ${options.owner} ${ownerContributions.join(',')}`,
           ],
           phase: CommandPhase.Process,
         },
@@ -136,7 +136,7 @@ export const blockAllContributors = base.createBlock({
     return {
       addons: [
         blockRemoveFiles({
-          files: [".github/workflows/contributors.yml"],
+          files: ['.github/workflows/contributors.yml'],
         }),
       ],
     };
@@ -155,7 +155,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `    <tr>`,
     // This intentionally uses the same sort as all-contributors-cli:
     // https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
-    ..._.sortBy(contributors, "name").flatMap((contributor, i) => {
+    ..._.sortBy(contributors, 'name').flatMap((contributor, i) => {
       const row = printContributorCell(contributor);
 
       return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
@@ -168,42 +168,42 @@ function printAllContributorsTable(contributors: Contributor[]) {
     ``,
     `<!-- ALL-CONTRIBUTORS-LIST:END -->`,
     `<!-- spellchecker: enable -->`,
-  ].join("\n");
+  ].join('\n');
 }
 
 function printContributorCell(contributor: Contributor) {
   return [
-    `      <td align="center" valign="top" width="14.28%">`,
+    '      <td align="center" valign="top" width="14.28%">',
     `<a href="${contributor.profile}">`,
     `<img src="${contributor.avatar_url}?s=100" width="100px;" alt="${contributor.name}"/>`,
-    `<br />`,
+    '<br />',
     `<sub><b>${contributor.name}</b></sub></a><br />`,
     contributor.contributions
       .map((contribution) => {
         switch (contribution) {
-          case "bug":
+          case 'bug':
             return `<a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3A${contributor.login}" title="Bug reports">🐛</a>`;
-          case "code":
+          case 'code':
             return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Code">💻</a>`;
-          case "design":
+          case 'design':
             return `<a href="#design-${contributor.login}" title="Design">🎨</a>`;
-          case "doc":
+          case 'doc':
             return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Documentation">📖</a>`;
-          case "ideas":
+          case 'ideas':
             return `<a href="#ideas-${contributor.login}" title="Ideas, Planning, & Feedback">🤔</a>`;
-          case "infra":
+          case 'infra':
             return `<a href="#infra-${contributor.login}" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>`;
-          case "maintenance":
+          case 'maintenance':
             return `<a href="#maintenance-${contributor.login}" title="Maintenance">🚧</a>`;
-          case "review":
+          case 'review':
             return `<a href="https://github.com/michaelfaith/mfaith-create/pulls?q=is%3Apr+reviewed-by%3A${contributor.login}" title="Reviewed Pull Requests">👀</a>`;
-          case "test":
+          case 'test':
             return `<a href="https://github.com/michaelfaith/mfaith-create/commits?author=${contributor.login}" title="Tests">⚠️</a>`;
-          case "tool":
+          case 'tool':
             return `<a href="#tool-${contributor.login}" title="Tools">🔧</a>`;
         }
       })
-      .join(" "),
-    `</td>`,
-  ].join("");
+      .join(' '),
+    '</td>',
+  ].join('');
 }

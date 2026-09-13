@@ -1,16 +1,16 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test, vi } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockTypeScript } from "./blockTypeScript.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockTypeScript } from './blockTypeScript.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../data/packageData.js", () => ({
+vi.mock('../data/packageData.js', () => ({
   getPackageDependencies: (...names: string[]) =>
-    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
 describe(blockTypeScript, () => {
-  test("without addons or options", () => {
+  test('without addons or options', () => {
     const creation = testBlock(blockTypeScript, {
       options: optionsBase,
     });
@@ -62,22 +62,22 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.ts";
+                "greet.ts": "import type { GreetOptions } from './types.ts';
 
       	export function greet(options: GreetOptions | string) {
       		const {
       			logger = console.log.bind(console),
       			message,
       			times = 1,
-      		} = typeof options === "string" ? { message: options } : options;
+      		} = typeof options === 'string' ? { message: options } : options;
 
       		for (let i = 0; i < times; i += 1) {
       			logger(message);
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.ts";
-      export type { GreetOptions } from "./types.ts";
+                "index.ts": "export { greet } from './greet.ts';
+      export type { GreetOptions } from './types.ts';
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -91,9 +91,9 @@ describe(blockTypeScript, () => {
       npm i test-repository
       \`\`\`
       \`\`\`ts
-      import { greet } from "test-repository";
+      import { greet } from 'test-repository';
 
-      greet("Hello, world! ✨");
+      greet('Hello, world! ✨');
       \`\`\`",
               ],
             },
@@ -174,7 +174,7 @@ describe(blockTypeScript, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockTypeScript, {
       addons: {
         compilerOptions: {
@@ -231,22 +231,22 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.ts";
+                "greet.ts": "import type { GreetOptions } from './types.ts';
 
       	export function greet(options: GreetOptions | string) {
       		const {
       			logger = console.log.bind(console),
       			message,
       			times = 1,
-      		} = typeof options === "string" ? { message: options } : options;
+      		} = typeof options === 'string' ? { message: options } : options;
 
       		for (let i = 0; i < times; i += 1) {
       			logger(message);
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.ts";
-      export type { GreetOptions } from "./types.ts";
+                "index.ts": "export { greet } from './greet.ts';
+      export type { GreetOptions } from './types.ts';
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -260,9 +260,9 @@ describe(blockTypeScript, () => {
       npm i test-repository
       \`\`\`
       \`\`\`ts
-      import { greet } from "test-repository";
+      import { greet } from 'test-repository';
 
-      greet("Hello, world! ✨");
+      greet('Hello, world! ✨');
       \`\`\`",
               ],
             },
@@ -343,9 +343,9 @@ describe(blockTypeScript, () => {
     `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockTypeScript, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -396,22 +396,22 @@ describe(blockTypeScript, () => {
           {
             "addons": {
               "files": {
-                "greet.ts": "import type { GreetOptions } from "./types.ts";
+                "greet.ts": "import type { GreetOptions } from './types.ts';
 
       	export function greet(options: GreetOptions | string) {
       		const {
       			logger = console.log.bind(console),
       			message,
       			times = 1,
-      		} = typeof options === "string" ? { message: options } : options;
+      		} = typeof options === 'string' ? { message: options } : options;
 
       		for (let i = 0; i < times; i += 1) {
       			logger(message);
       		}
       	}
       	",
-                "index.ts": "export { greet } from "./greet.ts";
-      export type { GreetOptions } from "./types.ts";
+                "index.ts": "export { greet } from './greet.ts';
+      export type { GreetOptions } from './types.ts';
       ",
                 "types.ts": "export interface GreetOptions {
       		logger?: (message: string) => void;
@@ -425,9 +425,9 @@ describe(blockTypeScript, () => {
       npm i test-repository
       \`\`\`
       \`\`\`ts
-      import { greet } from "test-repository";
+      import { greet } from 'test-repository';
 
-      greet("Hello, world! ✨");
+      greet('Hello, world! ✨');
       \`\`\`",
               ],
             },
@@ -516,8 +516,8 @@ describe(blockTypeScript, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when tsconfig.json does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when tsconfig.json does not exist', () => {
       const actual = testIntake(blockTypeScript, {
         files: {},
       });
@@ -525,44 +525,44 @@ describe(blockTypeScript, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when tsconfig.json does not contain truthy data", () => {
+    it('returns undefined when tsconfig.json does not contain truthy data', () => {
       const actual = testIntake(blockTypeScript, {
         files: {
-          "tsconfig.json": [JSON.stringify(null)],
+          'tsconfig.json': [JSON.stringify(null)],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when tsconfig.json does not contain compilerOptions", () => {
+    it('returns undefined when tsconfig.json does not contain compilerOptions', () => {
       const actual = testIntake(blockTypeScript, {
         files: {
-          "tsconfig.json": [JSON.stringify({ other: true })],
+          'tsconfig.json': [JSON.stringify({ other: true })],
         },
       });
 
       expect(actual).toBeUndefined();
     });
 
-    it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
-      const compilerOptions = { module: "ESNext" };
+    it('returns compilerOptions when tsconfig.json contains compilerOptions', () => {
+      const compilerOptions = { module: 'ESNext' };
 
       const actual = testIntake(blockTypeScript, {
         files: {
-          "tsconfig.json": [JSON.stringify({ compilerOptions })],
+          'tsconfig.json': [JSON.stringify({ compilerOptions })],
         },
       });
 
       expect(actual).toEqual({ compilerOptions });
     });
 
-    it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
-      const compilerOptions = { module: "ESNext" };
+    it('returns compilerOptions when tsconfig.json contains compilerOptions and other data', () => {
+      const compilerOptions = { module: 'ESNext' };
 
       const actual = testIntake(blockTypeScript, {
         files: {
-          "tsconfig.json": [
+          'tsconfig.json': [
             JSON.stringify({
               compilerOptions,
               other: true,

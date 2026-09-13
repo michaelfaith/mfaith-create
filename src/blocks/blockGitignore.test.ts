@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockGitignore } from "./blockGitignore.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockGitignore } from './blockGitignore.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitignore, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockGitignore, {
       options: optionsBase,
     });
@@ -20,10 +20,10 @@ describe(blockGitignore, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockGitignore, {
       addons: {
-        ignores: ["/dist"],
+        ignores: ['/dist'],
       },
       options: optionsBase,
     });

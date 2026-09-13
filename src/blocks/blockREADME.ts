@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
+import { base } from '../base.ts';
 
 function printAttributes(attributes: Record<string, number | string>) {
   return Object.entries(attributes)
     .map(([key, value]) => `${key}="${value}"`)
     .sort()
-    .join(" ");
+    .join(' ');
 }
 
 const zBadge = z.object({
@@ -25,7 +25,7 @@ type Badge = z.infer<typeof zBadge>;
 
 export const blockREADME = base.createBlock({
   about: {
-    name: "README.md",
+    name: 'README.md',
   },
   addons: {
     badges: z.array(zBadge).default([]),
@@ -42,22 +42,22 @@ export const blockREADME = base.createBlock({
 
     const logo =
       options.logo &&
-      `\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
+      `\n<img ${printAttributes({ align: 'right', ...options.logo })}>\n`;
 
     const suffixes = [
       ...notices,
       options.documentation.readme.footnotes,
-    ].filter((suffix) => typeof suffix === "string");
+    ].filter((suffix) => typeof suffix === 'string');
 
     return {
       files: {
-        "README.md": `<h1 align="center">${options.title}</h1>
+        'README.md': `<h1 align="center">${options.title}</h1>
 
 <p align="center">${formatDescription(options.description)}</p>
-${(badges.length ? ['\n<p align="center">', formatBadges(badges), "</p>\n"] : []).join("\n")}${[logo, explainer].filter(Boolean).join("")}
+${(badges.length ? ['\n<p align="center">', formatBadges(badges), '</p>\n'] : []).join('\n')}${[logo, explainer].filter(Boolean).join('')}
 ## Usage
 
-${options.documentation.readme.usage ?? defaultUsage.join("\n\n")}
+${options.documentation.readme.usage ?? defaultUsage.join('\n\n')}
 
 ## Development
 
@@ -65,8 +65,8 @@ See [\`CONTRIBUTING\`](./.github/CONTRIBUTING.md), then [\`DEVELOPMENT\`](./.git
 ${[...sections, options.documentation.readme.additional]
   .filter(Boolean)
   .map((section) => `\n${section}`)
-  .join("")}
-${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join("\n\n")}` : ""}`,
+  .join('')}
+${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join('\n\n')}` : ''}`,
       },
     };
   },
@@ -89,17 +89,17 @@ function formatBadge(badge: Badge) {
 }
 
 function formatBadges(badges: Badge[]) {
-  return [...badges].sort(badgeSorter).map(formatBadge).join("\n");
+  return [...badges].sort(badgeSorter).map(formatBadge).join('\n');
 }
 
 function formatDescription(description: string) {
-  if (!description.includes(". ")) {
+  if (!description.includes('. ')) {
     return description;
   }
 
-  return "\n  " + description.replaceAll(". ", ".\n  ") + "\n";
+  return '\n  ' + description.replaceAll('. ', '.\n  ') + '\n';
 }
 
 function removeEmojis(text: string) {
-  return text.replaceAll(/\p{Emoji}/gu, "").trim();
+  return text.replaceAll(/\p{Emoji}/gu, '').trim();
 }

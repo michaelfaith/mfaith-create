@@ -1,1029 +1,1029 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test, vi } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockVitest } from "./blockVitest.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockVitest } from './blockVitest.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock('../utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-vi.mock("../data/packageData.js", () => ({
+vi.mock('../data/packageData.js', () => ({
   getPackageDependencies: (...names: string[]) =>
-    Object.fromEntries(names.map((name) => [name, "1.2.3"])),
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
 describe(blockVitest, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockVitest, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "ignorePaths": [
-          "coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "sections": {
-          "Testing": {
-            "contents": "
-[Vitest](https://vitest.dev) is used for tests.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run test
-\`\`\`
-
-Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-\`\`\`shell
-pnpm run test --coverage
-\`\`\`
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-		",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "extensions": [
+      {
+        "addons": [
           {
-            "extends": [
-              "vitest.configs.recommended",
-            ],
-            "files": [
-              "**/*.test.*",
-            ],
-            "rules": [
-              {
-                "entries": {
-                  "@typescript-eslint/no-unsafe-assignment": "off",
-                  "vitest/prefer-describe-function-title": "error",
+            "addons": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
                 },
               },
-            ],
-            "settings": {
-              "vitest": {
-                "typecheck": true,
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
               },
             },
+            "block": [Function],
           },
-        ],
-        "ignores": [
-          "coverage",
-          "**/*.snap",
-        ],
-        "imports": [
           {
-            "source": "@vitest/eslint-plugin",
-            "specifier": "vitest",
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "files": {
-          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
-
-import { greet } from "./greet.ts";
-
-const message = "Yay, testing!";
-
-describe(greet, () => {
-	it("logs to the console once when message is provided as a string", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet(message);
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs to the console once when message is provided as an object", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet({ message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs once when times is not provided in an object", () => {
-		const logger = vi.fn();
-
-		greet({ logger, message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs a specified number of times when times is provided", () => {
-		const logger = vi.fn();
-		const times = 7;
-
-		greet({ logger, message, times });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(7);
-	});
-});
-",
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
           {
-            "name": "Test",
-            "steps": [
-              {
-                "run": "pnpm run test --coverage",
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Test",
+                  "steps": [
+                    {
+                      "run": "pnpm run test --coverage",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest",
+                },
               },
-            ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "entry": [
-          "src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "@vitest/coverage-v8": "1.2.3",
-            "@vitest/eslint-plugin": "1.2.3",
-            "console-fail-test": "1.2.3",
-            "vitest": "1.2.3",
-          },
-          "scripts": {
-            "test": "vitest",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "debuggers": [
           {
-            "args": [
-              "run",
-              "\${relativeFile}",
-            ],
-            "autoAttachChildProcesses": true,
-            "console": "integratedTerminal",
-            "name": "Debug Current Test File",
-            "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-            "request": "launch",
-            "skipFiles": [
-              "<node_internals>/**",
-              "**/node_modules/**",
-            ],
-            "smartStep": true,
-            "type": "node",
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+            "block": [Function],
           },
         ],
-        "extensions": [
-          "vitest.explorer",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "vitest.config.ts": "import { defineConfig } from "vitest/config";
+        "files": {
+          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
 
-export default defineConfig({
-	test: {
-		clearMocks: true,
-		coverage: {
-			include: undefined,
-			reporter: ["html", "lcov"],
-		},
-		exclude: ["node_modules"],
-		setupFiles: ["console-fail-test/setup"],
-	},
-});
-	",
-  },
-}
-`);
+      export default defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			include: undefined,
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+      	",
+        },
+      }
+    `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockVitest, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "ignorePaths": [
-          "coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "sections": {
-          "Testing": {
-            "contents": "
-[Vitest](https://vitest.dev) is used for tests.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run test
-\`\`\`
-
-Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-\`\`\`shell
-pnpm run test --coverage
-\`\`\`
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-		",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "extensions": [
+      {
+        "addons": [
           {
-            "extends": [
-              "vitest.configs.recommended",
-            ],
-            "files": [
-              "**/*.test.*",
-            ],
-            "rules": [
-              {
-                "entries": {
-                  "@typescript-eslint/no-unsafe-assignment": "off",
-                  "vitest/prefer-describe-function-title": "error",
+            "addons": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
                 },
               },
-            ],
-            "settings": {
-              "vitest": {
-                "typecheck": true,
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
               },
             },
+            "block": [Function],
           },
-        ],
-        "ignores": [
-          "coverage",
-          "**/*.snap",
-        ],
-        "imports": [
           {
-            "source": "@vitest/eslint-plugin",
-            "specifier": "vitest",
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "files": {
-          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
-
-import { greet } from "./greet.ts";
-
-const message = "Yay, testing!";
-
-describe(greet, () => {
-	it("logs to the console once when message is provided as a string", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet(message);
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs to the console once when message is provided as an object", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet({ message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs once when times is not provided in an object", () => {
-		const logger = vi.fn();
-
-		greet({ logger, message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs a specified number of times when times is provided", () => {
-		const logger = vi.fn();
-		const times = 7;
-
-		greet({ logger, message, times });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(7);
-	});
-});
-",
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
           {
-            "name": "Test",
-            "steps": [
-              {
-                "run": "pnpm run test --coverage",
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Test",
+                  "steps": [
+                    {
+                      "run": "pnpm run test --coverage",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest",
+                },
               },
-            ],
+            },
+            "block": [Function],
           },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "entry": [
-          "src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "@vitest/coverage-v8": "1.2.3",
-            "@vitest/eslint-plugin": "1.2.3",
-            "console-fail-test": "1.2.3",
-            "vitest": "1.2.3",
-          },
-          "scripts": {
-            "test": "vitest",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "debuggers": [
           {
-            "args": [
-              "run",
-              "\${relativeFile}",
-            ],
-            "autoAttachChildProcesses": true,
-            "console": "integratedTerminal",
-            "name": "Debug Current Test File",
-            "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-            "request": "launch",
-            "skipFiles": [
-              "<node_internals>/**",
-              "**/node_modules/**",
-            ],
-            "smartStep": true,
-            "type": "node",
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "dependencies": [
+                "@vitest/coverage-istanbul",
+                "eslint-plugin-jest",
+                "eslint-plugin-mocha",
+                "eslint-plugin-vitest",
+                "jest mocha",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": [
+                ".mocha*",
+                "jest.config.*",
+                "vitest.config.{c,j,m}*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "workflows": [
+                "test",
+              ],
+            },
+            "block": [Function],
           },
         ],
-        "extensions": [
-          "vitest.explorer",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "dependencies": [
-          "@vitest/coverage-istanbul",
-          "eslint-plugin-jest",
-          "eslint-plugin-mocha",
-          "eslint-plugin-vitest",
-          "jest mocha",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "files": [
-          ".mocha*",
-          "jest.config.*",
-          "vitest.config.{c,j,m}*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "workflows": [
-          "test",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "vitest.config.ts": "import { defineConfig } from "vitest/config";
+        "files": {
+          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
 
-export default defineConfig({
-	test: {
-		clearMocks: true,
-		coverage: {
-			include: undefined,
-			reporter: ["html", "lcov"],
-		},
-		exclude: ["node_modules"],
-		setupFiles: ["console-fail-test/setup"],
-	},
-});
-	",
-  },
-}
-`);
+      export default defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			include: undefined,
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+      	",
+        },
+      }
+    `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockVitest, {
       addons: {
         coverage: {
-          exclude: ["other"],
-          include: ["src/"],
+          exclude: ['other'],
+          include: ['src/'],
         },
-        environment: "happy-dom",
-        exclude: ["dist/"],
-        flags: ["--typecheck"],
+        environment: 'happy-dom',
+        exclude: ['dist/'],
+        flags: ['--typecheck'],
         permissions: {
-          "id-token": "write",
+          'id-token': 'write',
         },
       },
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-{
-  "addons": [
-    {
-      "addons": {
-        "ignorePaths": [
-          "coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "sections": {
-          "Testing": {
-            "contents": "
-[Vitest](https://vitest.dev) is used for tests.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run test
-\`\`\`
-
-Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-\`\`\`shell
-pnpm run test --coverage
-\`\`\`
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-		",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "extensions": [
+      {
+        "addons": [
           {
-            "extends": [
-              "vitest.configs.recommended",
-            ],
-            "files": [
-              "**/*.test.*",
-            ],
-            "rules": [
-              {
-                "entries": {
-                  "@typescript-eslint/no-unsafe-assignment": "off",
-                  "vitest/prefer-describe-function-title": "error",
+            "addons": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
                 },
               },
-            ],
-            "settings": {
-              "vitest": {
-                "typecheck": true,
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
               },
             },
+            "block": [Function],
           },
-        ],
-        "ignores": [
-          "coverage",
-          "**/*.snap",
-        ],
-        "imports": [
           {
-            "source": "@vitest/eslint-plugin",
-            "specifier": "vitest",
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Test",
+                  "permissions": {
+                    "id-token": "write",
+                  },
+                  "steps": [
+                    {
+                      "run": "pnpm run test --coverage",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest --typecheck",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+            "block": [Function],
           },
         ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
         "files": {
-          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
+          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
 
-import { greet } from "./greet.ts";
-
-const message = "Yay, testing!";
-
-describe(greet, () => {
-	it("logs to the console once when message is provided as a string", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet(message);
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs to the console once when message is provided as an object", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
-
-		greet({ message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs once when times is not provided in an object", () => {
-		const logger = vi.fn();
-
-		greet({ logger, message });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(1);
-	});
-
-	it("logs a specified number of times when times is provided", () => {
-		const logger = vi.fn();
-		const times = 7;
-
-		greet({ logger, message, times });
-
-		expect(logger).toHaveBeenCalledWith(message);
-		expect(logger).toHaveBeenCalledTimes(7);
-	});
-});
-",
+      export default defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			exclude: ["other"],
+      			include: ["src/"],
+      			reporter: ['html', 'lcov'],
+      		},
+      		environment: 'happy-dom',
+      		exclude: ["dist/","node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+      	",
         },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "jobs": [
-          {
-            "name": "Test",
-            "permissions": {
-              "id-token": "write",
-            },
-            "steps": [
-              {
-                "run": "pnpm run test --coverage",
-              },
-            ],
-          },
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "entry": [
-          "src/**/*.test.*",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "properties": {
-          "devDependencies": {
-            "@vitest/coverage-v8": "1.2.3",
-            "@vitest/eslint-plugin": "1.2.3",
-            "console-fail-test": "1.2.3",
-            "vitest": "1.2.3",
-          },
-          "scripts": {
-            "test": "vitest --typecheck",
-          },
-        },
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "ignores": [
-          "/coverage",
-        ],
-      },
-      "block": [Function],
-    },
-    {
-      "addons": {
-        "debuggers": [
-          {
-            "args": [
-              "run",
-              "\${relativeFile}",
-            ],
-            "autoAttachChildProcesses": true,
-            "console": "integratedTerminal",
-            "name": "Debug Current Test File",
-            "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-            "request": "launch",
-            "skipFiles": [
-              "<node_internals>/**",
-              "**/node_modules/**",
-            ],
-            "smartStep": true,
-            "type": "node",
-          },
-        ],
-        "extensions": [
-          "vitest.explorer",
-        ],
-      },
-      "block": [Function],
-    },
-  ],
-  "files": {
-    "vitest.config.ts": "import { defineConfig } from "vitest/config";
-
-export default defineConfig({
-	test: {
-		clearMocks: true,
-		coverage: {
-			exclude: ["other"],
-			include: ["src/"],
-			reporter: ["html", "lcov"],
-		},
-		environment: "happy-dom",
-		exclude: ["dist/","node_modules"],
-		setupFiles: ["console-fail-test/setup"],
-	},
-});
-	",
-  },
-}
-`);
+      }
+    `);
   });
 
-  test("with duplicate excludes addons", () => {
+  test('with duplicate excludes addons', () => {
     const creation = testBlock(blockVitest, {
       addons: {
         coverage: {
-          exclude: ["other"],
-          include: ["src/"],
+          exclude: ['other'],
+          include: ['src/'],
         },
-        exclude: ["dist/", "node_modules", "node_modules"],
-        flags: ["--typecheck"],
+        exclude: ['dist/', 'node_modules', 'node_modules'],
+        flags: ['--typecheck'],
       },
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "coverage",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Testing": {
-			            "contents": "
-			[Vitest](https://vitest.dev) is used for tests.
-			You can run it locally on the command-line:
+      {
+        "addons": [
+          {
+            "addons": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
 
-			\`\`\`shell
-			pnpm run test
-			\`\`\`
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
 
-			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
 
-			\`\`\`shell
-			pnpm run test --coverage
-			\`\`\`
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
 
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
 
 
-					",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          {
-			            "extends": [
-			              "vitest.configs.recommended",
-			            ],
-			            "files": [
-			              "**/*.test.*",
-			            ],
-			            "rules": [
-			              {
-			                "entries": {
-			                  "@typescript-eslint/no-unsafe-assignment": "off",
-			                  "vitest/prefer-describe-function-title": "error",
-			                },
-			              },
-			            ],
-			            "settings": {
-			              "vitest": {
-			                "typecheck": true,
-			              },
-			            },
-			          },
-			        ],
-			        "ignores": [
-			          "coverage",
-			          "**/*.snap",
-			        ],
-			        "imports": [
-			          {
-			            "source": "@vitest/eslint-plugin",
-			            "specifier": "vitest",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": {
-			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
+      		",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
 
-			import { greet } from "./greet.ts";
+      import { greet } from './greet.ts';
 
-			const message = "Yay, testing!";
+      const message = 'Yay, testing!';
 
-			describe(greet, () => {
-				it("logs to the console once when message is provided as a string", () => {
-					const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 
-					greet(message);
+      		greet(message);
 
-					expect(logger).toHaveBeenCalledWith(message);
-					expect(logger).toHaveBeenCalledTimes(1);
-				});
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
 
-				it("logs to the console once when message is provided as an object", () => {
-					const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 
-					greet({ message });
+      		greet({ message });
 
-					expect(logger).toHaveBeenCalledWith(message);
-					expect(logger).toHaveBeenCalledTimes(1);
-				});
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
 
-				it("logs once when times is not provided in an object", () => {
-					const logger = vi.fn();
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
 
-					greet({ logger, message });
+      		greet({ logger, message });
 
-					expect(logger).toHaveBeenCalledWith(message);
-					expect(logger).toHaveBeenCalledTimes(1);
-				});
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
 
-				it("logs a specified number of times when times is provided", () => {
-					const logger = vi.fn();
-					const times = 7;
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
 
-					greet({ logger, message, times });
+      		greet({ logger, message, times });
 
-					expect(logger).toHaveBeenCalledWith(message);
-					expect(logger).toHaveBeenCalledTimes(7);
-				});
-			});
-			",
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/coverage",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Test",
-			            "steps": [
-			              {
-			                "run": "pnpm run test --coverage",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "src/**/*.test.*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "@vitest/coverage-v8": "1.2.3",
-			            "@vitest/eslint-plugin": "1.2.3",
-			            "console-fail-test": "1.2.3",
-			            "vitest": "1.2.3",
-			          },
-			          "scripts": {
-			            "test": "vitest --typecheck",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/coverage",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "debuggers": [
-			          {
-			            "args": [
-			              "run",
-			              "\${relativeFile}",
-			            ],
-			            "autoAttachChildProcesses": true,
-			            "console": "integratedTerminal",
-			            "name": "Debug Current Test File",
-			            "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-			            "request": "launch",
-			            "skipFiles": [
-			              "<node_internals>/**",
-			              "**/node_modules/**",
-			            ],
-			            "smartStep": true,
-			            "type": "node",
-			          },
-			        ],
-			        "extensions": [
-			          "vitest.explorer",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "vitest.config.ts": "import { defineConfig } from "vitest/config";
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Test",
+                  "steps": [
+                    {
+                      "run": "pnpm run test --coverage",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest --typecheck",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
 
-			export default defineConfig({
-				test: {
-					clearMocks: true,
-					coverage: {
-						exclude: ["other"],
-						include: ["src/"],
-						reporter: ["html", "lcov"],
-					},
-					exclude: ["dist/","node_modules"],
-					setupFiles: ["console-fail-test/setup"],
-				},
-			});
-				",
-			  },
-			}
-		`);
+      export default defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			exclude: ["other"],
+      			include: ["src/"],
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["dist/","node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+      	",
+        },
+      }
+    `);
   });
 
-  describe("intake", () => {
-    it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
+  describe('intake', () => {
+    it('returns nothing when vitest.config.ts does not pass a test to defineConfig', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [`defineConfig({ other: true })`],
+          'vitest.config.ts': [`defineConfig({ other: true })`],
         },
         options: optionsBase,
       });
@@ -1031,10 +1031,10 @@ export default defineConfig({
       expect(actual).toEqual({});
     });
 
-    it("returns nothing when vitest.config.ts passes unknown test data to defineConfig", () => {
+    it('returns nothing when vitest.config.ts passes unknown test data to defineConfig', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [`defineConfig({ test: true })`],
+          'vitest.config.ts': [`defineConfig({ test: true })`],
         },
         options: optionsBase,
       });
@@ -1042,10 +1042,10 @@ export default defineConfig({
       expect(actual).toEqual({});
     });
 
-    it("returns nothing when vitest.config.ts passes invalid test syntax to defineConfig", () => {
+    it('returns nothing when vitest.config.ts passes invalid test syntax to defineConfig', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [`defineConfig({ test: { ! } })`],
+          'vitest.config.ts': [`defineConfig({ test: { ! } })`],
         },
         options: optionsBase,
       });
@@ -1053,10 +1053,10 @@ export default defineConfig({
       expect(actual).toEqual({});
     });
 
-    it("returns nothing when vitest.config.ts passes invalid test data to defineConfig", () => {
+    it('returns nothing when vitest.config.ts passes invalid test data to defineConfig', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [
+          'vitest.config.ts': [
             `defineConfig({ test: { coverage: 'invalid' } })`,
           ],
         },
@@ -1066,10 +1066,10 @@ export default defineConfig({
       expect(actual).toEqual({});
     });
 
-    it("returns coverage and exclude when they exist in vitest.config.ts", () => {
+    it('returns coverage and exclude when they exist in vitest.config.ts', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [
+          'vitest.config.ts': [
             `import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -1093,17 +1093,17 @@ export default defineConfig({
 
       expect(actual).toEqual({
         coverage: {
-          exclude: ["src/index.ts"],
-          include: ["src", "other"],
+          exclude: ['src/index.ts'],
+          include: ['src', 'other'],
         },
-        exclude: ["dist", "node_modules"],
+        exclude: ['dist', 'node_modules'],
       });
     });
 
-    it("returns environment when it exists in vitest.config.ts", () => {
+    it('returns environment when it exists in vitest.config.ts', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          "vitest.config.ts": [
+          'vitest.config.ts': [
             `import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -1118,25 +1118,25 @@ export default defineConfig({
       });
 
       expect(actual).toEqual({
-        environment: "happy-dom",
+        environment: 'happy-dom',
       });
     });
 
-    it("returns flags when it exists in package.json", () => {
+    it('returns flags when it exists in package.json', () => {
       const actual = testIntake(blockVitest, {
         files: {},
         options: {
           ...optionsBase,
           packageData: {
             scripts: {
-              test: "vitest --typecheck",
+              test: 'vitest --typecheck',
             },
           },
         },
       });
 
       expect(actual).toEqual({
-        flags: ["--typecheck"],
+        flags: ['--typecheck'],
       });
     });
   });

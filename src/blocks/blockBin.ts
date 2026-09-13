@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockExampleFiles } from "./blockExampleFiles.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { base } from '../base.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockExampleFiles } from './blockExampleFiles.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const binSchema = z.union([z.string(), z.record(z.string(), z.string())]);
 
@@ -13,26 +13,26 @@ const tsExtensionRegex = /(.*)\.[cm]?ts$/i;
 const jsExtensionRegex = /(.*)\.[cm]?js$/i;
 
 const srcToDist = (value: string) =>
-  value.replace("src", "dist").replace(tsExtensionRegex, "$1.mjs");
+  value.replace('src', 'dist').replace(tsExtensionRegex, '$1.mjs');
 const distToSrc = (value: string) =>
-  value.replace("dist", "src").replace(jsExtensionRegex, "$1.ts");
+  value.replace('dist', 'src').replace(jsExtensionRegex, '$1.ts');
 
 export const blockBin = base.createBlock({
   about: {
-    name: "Bin",
+    name: 'Bin',
   },
   addons: {
     src: binSchema.optional(),
   },
   intake({ files }) {
-    const raw = intakeFileAsJson(files, ["package.json"]);
+    const raw = intakeFileAsJson(files, ['package.json']);
     const { data } = binSchema.safeParse(raw?.bin);
     if (!data) {
       return undefined;
     }
 
     let src: string | Record<string, string>;
-    if (typeof data === "string") {
+    if (typeof data === 'string') {
       src = distToSrc(data);
     } else {
       src = Object.fromEntries(
@@ -45,10 +45,10 @@ export const blockBin = base.createBlock({
     };
   },
   produce({ addons, options }) {
-    const { src = "src/bin/index.ts" } = addons;
+    const { src = 'src/bin/index.ts' } = addons;
 
     let bin: string | Record<string, string>;
-    if (typeof src === "string") {
+    if (typeof src === 'string') {
       bin = srcToDist(src);
     } else {
       bin = Object.fromEntries(
@@ -64,8 +64,8 @@ export const blockBin = base.createBlock({
               files: JS_TS_FILES,
               rules: [
                 {
-                  comment: "Using a ts bin file throws this rule off.",
-                  entries: { "n/hashbang": "off" as const },
+                  comment: 'Using a ts bin file throws this rule off.',
+                  entries: { 'n/hashbang': 'off' as const },
                 },
               ],
             },
@@ -79,10 +79,10 @@ export const blockBin = base.createBlock({
         blockExampleFiles({
           files: {
             bin: {
-              "index.ts": `#!/usr/bin/env node
-import { greet } from "../index.ts";
+              'index.ts': `#!/usr/bin/env node
+import { greet } from '../index.ts';
 
-greet("Hello, world! ${options.emoji}");`,
+greet('Hello, world! ${options.emoji}');`,
             },
           },
         }),

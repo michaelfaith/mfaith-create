@@ -1,12 +1,12 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { dump } from "js-yaml";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { dump } from 'js-yaml';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockCodecov } from "./blockCodecov.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockCodecov } from './blockCodecov.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockCodecov, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockCodecov, {
       options: optionsBase,
     });
@@ -59,9 +59,9 @@ describe(blockCodecov, () => {
 `);
   });
 
-  test("transition mode without files", () => {
+  test('transition mode without files', () => {
     const creation = testBlock(blockCodecov, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -122,11 +122,11 @@ describe(blockCodecov, () => {
 `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockCodecov, {
       addons: {
         env: {
-          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+          CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}',
         },
       },
       options: optionsBase,
@@ -183,11 +183,11 @@ describe(blockCodecov, () => {
 `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when ci.yaml does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when ci.yaml does not exist', () => {
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {},
           },
         },
@@ -196,12 +196,12 @@ describe(blockCodecov, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when ci.yaml contains invalid YAML", () => {
+    it('returns undefined when ci.yaml contains invalid YAML', () => {
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "ci.yaml": ["invalid YAML!"],
+              'ci.yaml': ['invalid YAML!'],
             },
           },
         },
@@ -210,16 +210,16 @@ describe(blockCodecov, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when ci.yaml does not contain a test job", () => {
+    it('returns undefined when ci.yaml does not contain a test job', () => {
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "ci.yaml": [
+              'ci.yaml': [
                 dump({
                   jobs: {
                     other: {
-                      name: "Other",
+                      name: 'Other',
                       steps: [],
                     },
                   },
@@ -233,19 +233,19 @@ describe(blockCodecov, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when ci.yaml contains a test job with only non-string uses", () => {
+    it('returns undefined when ci.yaml contains a test job with only non-string uses', () => {
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "ci.yaml": [
+              'ci.yaml': [
                 dump({
                   jobs: {
                     test: {
-                      name: "Test",
+                      name: 'Test',
                       steps: [
                         {
-                          uses: { not: "a string" },
+                          uses: { not: 'a string' },
                         },
                       ],
                     },
@@ -260,19 +260,19 @@ describe(blockCodecov, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined env when ci.yaml contains a test job with no env in its codecov step", () => {
+    it('returns undefined env when ci.yaml contains a test job with no env in its codecov step', () => {
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "ci.yaml": [
+              'ci.yaml': [
                 dump({
                   jobs: {
                     test: {
-                      name: "Test",
+                      name: 'Test',
                       steps: [
                         {
-                          uses: "codecov/codecov-action@v7",
+                          uses: 'codecov/codecov-action@v7',
                         },
                       ],
                     },
@@ -287,23 +287,23 @@ describe(blockCodecov, () => {
       expect(actual).toEqual({ env: undefined });
     });
 
-    it("returns env when ci.yaml contains a test job with env in its codecov step", () => {
+    it('returns env when ci.yaml contains a test job with env in its codecov step', () => {
       const env = {
-        CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+        CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}',
       };
       const actual = testIntake(blockCodecov, {
         files: {
-          ".github": {
+          '.github': {
             workflows: {
-              "ci.yaml": [
+              'ci.yaml': [
                 dump({
                   jobs: {
                     test: {
-                      name: "Test",
+                      name: 'Test',
                       steps: [
                         {
                           env,
-                          uses: "codecov/codecov-action@v7",
+                          uses: 'codecov/codecov-action@v7',
                         },
                       ],
                     },

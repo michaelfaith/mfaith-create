@@ -1,15 +1,15 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test, vi } from 'vitest';
 
-import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock('../utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
 describe(blockRemoveDependencies, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockRemoveDependencies, {
       options: optionsBase,
     });
@@ -17,10 +17,10 @@ describe(blockRemoveDependencies, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockRemoveDependencies, {
       addons: {
-        dependencies: ["a", "b", "c"],
+        dependencies: ['a', 'b', 'c'],
       },
       options: optionsBase,
     });
@@ -28,21 +28,21 @@ describe(blockRemoveDependencies, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with mode", () => {
+  test('with mode', () => {
     const creation = testBlock(blockRemoveDependencies, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons and mode", () => {
+  test('with addons and mode', () => {
     const creation = testBlock(blockRemoveDependencies, {
       addons: {
-        dependencies: ["a", "b", "c"],
+        dependencies: ['a', 'b', 'c'],
       },
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 

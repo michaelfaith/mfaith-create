@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockRemoveWorkflows, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockRemoveWorkflows, {
       options: optionsBase,
     });
@@ -13,10 +13,10 @@ describe(blockRemoveWorkflows, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockRemoveWorkflows, {
       addons: {
-        workflows: ["a", "b", "c"],
+        workflows: ['a', 'b', 'c'],
       },
       options: optionsBase,
     });
@@ -24,9 +24,9 @@ describe(blockRemoveWorkflows, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with mode", () => {
+  test('with mode', () => {
     const creation = testBlock(blockRemoveWorkflows, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -44,12 +44,12 @@ describe(blockRemoveWorkflows, () => {
 		`);
   });
 
-  test("with addons and mode", () => {
+  test('with addons and mode', () => {
     const creation = testBlock(blockRemoveWorkflows, {
       addons: {
-        workflows: ["a", "b", "c"],
+        workflows: ['a', 'b', 'c'],
       },
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 

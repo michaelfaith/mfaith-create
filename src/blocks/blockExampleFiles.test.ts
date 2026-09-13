@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockExampleFiles } from "./blockExampleFiles.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockExampleFiles } from './blockExampleFiles.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockExampleFiles, () => {
-  test("without addons.files", () => {
+  test('without addons.files', () => {
     const creation = testBlock(blockExampleFiles, {
       addons: {},
       options: optionsBase,
@@ -14,11 +14,11 @@ describe(blockExampleFiles, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons.files and without mode", () => {
+  test('with addons.files and without mode', () => {
     const creation = testBlock(blockExampleFiles, {
       addons: {
         files: {
-          "index.ts": "console.log('Hello, world!');",
+          'index.ts': "console.log('Hello, world!');",
         },
       },
       options: optionsBase,
@@ -27,14 +27,14 @@ describe(blockExampleFiles, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test("with addons.files and mode: setup", () => {
+  test('with addons.files and mode: setup', () => {
     const creation = testBlock(blockExampleFiles, {
       addons: {
         files: {
-          "index.ts": "console.log('Hello, world!');",
+          'index.ts': "console.log('Hello, world!');",
         },
       },
-      mode: "setup",
+      mode: 'setup',
       options: optionsBase,
     });
 

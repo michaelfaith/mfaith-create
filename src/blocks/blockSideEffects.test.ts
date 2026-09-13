@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, it } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, it } from 'vitest';
 
-import { blockSideEffects } from "./blockSideEffects.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockSideEffects } from './blockSideEffects.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockSideEffects, () => {
-  it("without addons", () => {
+  it('without addons', () => {
     const creation = testBlock(blockSideEffects, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -24,7 +24,7 @@ describe(blockSideEffects, () => {
 		`);
   });
 
-  it("with addons (boolean)", () => {
+  it('with addons (boolean)', () => {
     const creation = testBlock(blockSideEffects, {
       addons: {
         sideEffects: true,
@@ -48,10 +48,10 @@ describe(blockSideEffects, () => {
 		`);
   });
 
-  it("with addons (Array)", () => {
+  it('with addons (Array)', () => {
     const creation = testBlock(blockSideEffects, {
       addons: {
-        sideEffects: ["./main.js"],
+        sideEffects: ['./main.js'],
       },
       options: optionsBase,
     });

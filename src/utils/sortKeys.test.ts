@@ -1,9 +1,9 @@
-import { describe, expect, expectTypeOf, it } from "vitest";
+import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { sortKeys } from "./sortKeys.ts";
+import { sortKeys } from './sortKeys.ts';
 
 describe(sortKeys, () => {
-  it("returns an empty object for an empty object", () => {
+  it('returns an empty object for an empty object', () => {
     const input = {};
 
     const actual = sortKeys(input);
@@ -12,7 +12,7 @@ describe(sortKeys, () => {
     expect(actual).not.toBe(input);
   });
 
-  it("sorts keys using localeCompare order", () => {
+  it('sorts keys using localeCompare order', () => {
     const input = {
       zebra: 1,
       apple: 2,
@@ -21,7 +21,7 @@ describe(sortKeys, () => {
 
     const actual = sortKeys(input);
 
-    expect(Object.keys(actual)).toEqual(["apple", "middle", "zebra"]);
+    expect(Object.keys(actual)).toEqual(['apple', 'middle', 'zebra']);
     expect(actual).toEqual({
       apple: 2,
       middle: 3,
@@ -29,11 +29,11 @@ describe(sortKeys, () => {
     });
   });
 
-  it("leaves already sorted keys unchanged", () => {
+  it('leaves already sorted keys unchanged', () => {
     const input = {
-      alpha: "a",
-      beta: "b",
-      gamma: "g",
+      alpha: 'a',
+      beta: 'b',
+      gamma: 'g',
     };
 
     const actual = sortKeys(input);
@@ -41,7 +41,7 @@ describe(sortKeys, () => {
     expect(actual).toEqual(input);
   });
 
-  it("does not mutate the input object", () => {
+  it('does not mutate the input object', () => {
     const input = {
       z: 1,
       a: 2,
@@ -54,9 +54,9 @@ describe(sortKeys, () => {
     expect(input).toEqual({ z: 1, a: 2 });
   });
 
-  it("preserves values, including undefined and object references", () => {
+  it('preserves values, including undefined and object references', () => {
     const nested = { value: 1 };
-    const callback = () => "result";
+    const callback = () => 'result';
     const input = {
       callback,
       nested,
@@ -70,9 +70,9 @@ describe(sortKeys, () => {
     expect(actual.nested).toBe(nested);
   });
 
-  it("preserves input type", () => {
+  it('preserves input type', () => {
     const nested = { value: 1 };
-    const callback = () => "result";
+    const callback = () => 'result';
     const input = {
       callback,
       nested,

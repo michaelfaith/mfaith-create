@@ -1,17 +1,17 @@
-import JSON5 from "json5";
-import { getObjectStringsDeep } from "object-strings-deep";
-import { z } from "zod";
+import JSON5 from 'json5';
+import { getObjectStringsDeep } from 'object-strings-deep';
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { resolveBin } from "../utils/resolveBin.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { intakeFile } from "./intake/intakeFile.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { resolveBin } from '../utils/resolveBin.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { intakeFile } from './intake/intakeFile.ts';
+import { CommandPhase } from './phases.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
 
@@ -24,11 +24,11 @@ const zAddons = z.object(addons);
 
 export const blockCSpell = base.createBlock({
   about: {
-    name: "CSpell",
+    name: 'CSpell',
   },
   addons,
   intake({ files }) {
-    const cspellJson = intakeFile(files, ["cspell.json"]);
+    const cspellJson = intakeFile(files, ['cspell.json']);
     if (!cspellJson) {
       return undefined;
     }
@@ -61,36 +61,36 @@ export const blockCSpell = base.createBlock({
           },
         }),
         blockVSCode({
-          extensions: ["streetsidesoftware.code-spell-checker"],
+          extensions: ['streetsidesoftware.code-spell-checker'],
         }),
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Lint Spelling",
-              steps: [{ run: "pnpm lint:spelling" }],
+              name: 'Lint Spelling',
+              steps: [{ run: 'pnpm lint:spelling' }],
             },
           ],
         }),
         blockPackageJson({
           properties: {
-            devDependencies: getPackageDependencies("cspell"),
+            devDependencies: getPackageDependencies('cspell'),
             scripts: {
-              "lint:spelling": `cspell ${filesGlob}`,
+              'lint:spelling': `cspell ${filesGlob}`,
             },
           },
         }),
       ],
       files: {
-        "cspell.json": JSON.stringify({
-          dictionaries: ["npm", "node", "typescript"],
+        'cspell.json': JSON.stringify({
+          dictionaries: ['npm', 'node', 'typescript'],
           ignorePaths: Array.from(
             new Set([
-              ".github",
-              "CHANGELOG.md",
-              "dist",
-              "node_modules",
-              "package.json",
-              "pnpm-lock.yaml",
+              '.github',
+              'CHANGELOG.md',
+              'dist',
+              'node_modules',
+              'package.json',
+              'pnpm-lock.yaml',
               ...ignorePaths,
             ]),
           ).sort(),
@@ -101,14 +101,14 @@ export const blockCSpell = base.createBlock({
   },
   setup({ options }) {
     const wordArgs = getObjectStringsDeep(options)
-      .map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
-      .join(" ");
+      .map((word) => `--words "${word.replaceAll(`"`, ' ')}"`)
+      .join(' ');
 
     return {
       scripts: [
         {
           commands: [
-            `node ${resolveBin("cspell-populate-words/bin/index.mjs")} ${wordArgs}`,
+            `node ${resolveBin('cspell-populate-words/bin/index.mjs')} ${wordArgs}`,
           ],
           phase: CommandPhase.Process,
         },
@@ -119,7 +119,7 @@ export const blockCSpell = base.createBlock({
     return {
       addons: [
         blockRemoveWorkflows({
-          workflows: ["lint-spelling", "spelling"],
+          workflows: ['lint-spelling', 'spelling'],
         }),
       ],
     };

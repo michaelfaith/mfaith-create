@@ -1,7 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { base } from '../base.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
 const zInnerSection = z.object({
   contents: z.string(),
@@ -39,7 +39,7 @@ function printSection(heading: string, section: Section) {
   }
 
   const contents =
-    typeof section.contents === "string"
+    typeof section.contents === 'string'
       ? { before: section.contents }
       : section.contents;
 
@@ -48,7 +48,7 @@ function printSection(heading: string, section: Section) {
     ``,
     ...(contents.before ? [contents.before] : []),
     ...(contents.items?.sort((a, b) =>
-      a.replaceAll("`", "").localeCompare(b.replaceAll("`", "")),
+      a.replaceAll('`', '').localeCompare(b.replaceAll('`', '')),
     ) ?? []),
     ...(contents.items?.length && contents.plural ? [``, contents.plural] : []),
     ...(contents.after ?? []),
@@ -58,7 +58,7 @@ function printSection(heading: string, section: Section) {
 
 export const blockDevelopmentDocs = base.createBlock({
   about: {
-    name: "Development Docs",
+    name: 'Development Docs',
   },
   addons: {
     hints: z.array(z.string()).default([]),
@@ -94,15 +94,15 @@ export const blockDevelopmentDocs = base.createBlock({
 
     return {
       files: {
-        ".github": {
-          "DEVELOPMENT.md": lines.join("\n"),
+        '.github': {
+          'DEVELOPMENT.md': lines.join('\n'),
         },
       },
     };
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ["DEVELOPMENT.md"] })],
+      addons: [blockRemoveFiles({ files: ['DEVELOPMENT.md'] })],
     };
   },
 });

@@ -1,11 +1,11 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockNcc } from "./blockNcc.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockNcc } from './blockNcc.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockNcc, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockNcc, {
       options: optionsBase,
     });
@@ -113,10 +113,10 @@ describe(blockNcc, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockNcc, {
       addons: {
-        entry: "src/action/index.ts",
+        entry: 'src/action/index.ts',
       },
       options: optionsBase,
     });
@@ -224,8 +224,8 @@ describe(blockNcc, () => {
 		`);
   });
 
-  describe("intake", () => {
-    it("returns an undefined entry when options.packageData does not exist", () => {
+  describe('intake', () => {
+    it('returns an undefined entry when options.packageData does not exist', () => {
       const actual = testIntake(blockNcc, {
         files: {},
         options: {
@@ -237,7 +237,7 @@ describe(blockNcc, () => {
       expect(actual).toEqual({ entry: undefined });
     });
 
-    it("returns an undefined entry when options.packageData does not contain scripts", () => {
+    it('returns an undefined entry when options.packageData does not contain scripts', () => {
       const actual = testIntake(blockNcc, {
         files: {},
         options: {
@@ -249,7 +249,7 @@ describe(blockNcc, () => {
       expect(actual).toEqual({ entry: undefined });
     });
 
-    it("returns an undefined entry when options.packageData does not contain a build:release script", () => {
+    it('returns an undefined entry when options.packageData does not contain a build:release script', () => {
       const actual = testIntake(blockNcc, {
         files: {},
         options: {
@@ -263,14 +263,14 @@ describe(blockNcc, () => {
       expect(actual).toEqual({ entry: undefined });
     });
 
-    it("returns an undefined entry when options.packageData contains an unrelated build:release script", () => {
+    it('returns an undefined entry when options.packageData contains an unrelated build:release script', () => {
       const actual = testIntake(blockNcc, {
         files: {},
         options: {
           ...optionsBase,
           packageData: {
             scripts: {
-              "build:release": "tsdown",
+              'build:release': 'tsdown',
             },
           },
         },
@@ -279,20 +279,20 @@ describe(blockNcc, () => {
       expect(actual).toEqual({ entry: undefined });
     });
 
-    it("returns a parsed entry when options.packageData contains a matching build:release script", () => {
+    it('returns a parsed entry when options.packageData contains a matching build:release script', () => {
       const actual = testIntake(blockNcc, {
         files: {},
         options: {
           ...optionsBase,
           packageData: {
             scripts: {
-              "build:release": "ncc build src/action/index.ts -o dist",
+              'build:release': 'ncc build src/action/index.ts -o dist',
             },
           },
         },
       });
 
-      expect(actual).toEqual({ entry: "src/action/index.ts" });
+      expect(actual).toEqual({ entry: 'src/action/index.ts' });
     });
   });
 });

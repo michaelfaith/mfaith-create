@@ -1,19 +1,19 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { getInstallationSuggestions } from "./getInstallationSuggestions.ts";
+import { getInstallationSuggestions } from './getInstallationSuggestions.ts';
 
-const description = "do the action";
-const url = "https://example.com";
+const description = 'do the action';
+const url = 'https://example.com';
 
 describe(getInstallationSuggestions, () => {
-  it("returns undefined when there are no entries", () => {
+  it('returns undefined when there are no entries', () => {
     const actual = getInstallationSuggestions(description, [], url);
 
     expect(actual).toBeUndefined();
   });
 
-  it("returns a non-plural list when there is one entry", () => {
-    const actual = getInstallationSuggestions(description, ["entry"], url);
+  it('returns a non-plural list when there is one entry', () => {
+    const actual = getInstallationSuggestions(description, ['entry'], url);
 
     expect(actual).toMatchInlineSnapshot(`
 			[
@@ -23,10 +23,10 @@ describe(getInstallationSuggestions, () => {
 		`);
   });
 
-  it("returns a plural list when there are multiple entries", () => {
+  it('returns a plural list when there are multiple entries', () => {
     const actual = getInstallationSuggestions(
       description,
-      ["entry a", "entry b"],
+      ['entry a', 'entry b'],
       url,
     );
 

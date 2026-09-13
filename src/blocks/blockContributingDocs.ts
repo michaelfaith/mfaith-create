@@ -1,15 +1,15 @@
-import { base } from "../base.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { base } from '../base.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
 export const blockContributingDocs = base.createBlock({
   about: {
-    name: "Contributing Docs",
+    name: 'Contributing Docs',
   },
   produce({ options }) {
     return {
       files: {
-        ".github": {
-          "CONTRIBUTING.md": `# Contributing
+        '.github': {
+          'CONTRIBUTING.md': `# Contributing
 
 Thanks for your interest in contributing to \`${options.packageName}\`! ${options.emoji}
 
@@ -103,7 +103,7 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ["CONTRIBUTING.md"] })],
+      addons: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
     };
   },
 });

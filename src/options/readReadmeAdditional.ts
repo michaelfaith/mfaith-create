@@ -1,4 +1,4 @@
-import { indicatorsTemplatedBy } from "./readReadmeFootnotes.ts";
+import { indicatorsTemplatedBy } from './readReadmeFootnotes.ts';
 
 const indicatorAfterAllContributors = /<!--\s*ALL-CONTRIBUTORS-LIST:END\s*-->/;
 const indicatorAfterAllContributorsSpellCheck =

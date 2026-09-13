@@ -1,11 +1,11 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFile } from "input-from-file";
+import { inputFromFile } from 'input-from-file';
 
-import type { WorkflowsVersions } from "../schemas.ts";
+import type { WorkflowsVersions } from '../schemas.ts';
 
-import { inputFromDirectory } from "../inputs/inputFromDirectory.ts";
-import { swallowErrorAsync } from "../utils/swallowErrorAsync.ts";
+import { inputFromDirectory } from '../inputs/inputFromDirectory.ts';
+import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';
 
 export async function readWorkflowsVersions(
   take: TakeInput,
@@ -18,7 +18,7 @@ export async function readWorkflowsVersions(
 
   async function collectCompositeUses() {
     const compositeNames = await take(inputFromDirectory, {
-      directoryPath: ".github/actions",
+      directoryPath: '.github/actions',
     });
 
     await Promise.all(
@@ -38,7 +38,7 @@ export async function readWorkflowsVersions(
 
   async function collectWorkflowUses() {
     const workflowFileNames = await take(inputFromDirectory, {
-      directoryPath: ".github/workflows",
+      directoryPath: '.github/workflows',
     });
 
     await Promise.all(

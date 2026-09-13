@@ -1,16 +1,16 @@
-import { base } from "../base.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { formatYaml } from "./files/formatYaml.ts";
+import { base } from '../base.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { formatYaml } from './files/formatYaml.ts';
 
 export const blockFunding = base.createBlock({
   about: {
-    name: "Funding",
+    name: 'Funding',
   },
   produce({ options }) {
     return {
       files: {
-        ".github": {
-          "FUNDING.yaml":
+        '.github': {
+          'FUNDING.yaml':
             options.funding && formatYaml({ github: options.funding }),
         },
       },
@@ -20,7 +20,7 @@ export const blockFunding = base.createBlock({
     return {
       addons: [
         blockRemoveFiles({
-          files: [".github/FUNDING.yml"],
+          files: ['.github/FUNDING.yml'],
         }),
       ],
     };

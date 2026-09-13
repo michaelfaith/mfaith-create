@@ -1,14 +1,14 @@
-import { githubDefaultLabels } from "github-default-labels";
-import { describe, expect, it, vi } from "vitest";
+import { githubDefaultLabels } from 'github-default-labels';
+import { describe, expect, it, vi } from 'vitest';
 
-import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
-import { readExistingLabels } from "./readExistingLabels.ts";
+import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
+import { readExistingLabels } from './readExistingLabels.ts';
 
-const owner = "TestOwner";
-const repository = "test-repository";
+const owner = 'TestOwner';
+const repository = 'test-repository';
 
 describe(readExistingLabels, () => {
-  it("returns default labels when owner is undefined", async () => {
+  it('returns default labels when owner is undefined', async () => {
     const take = vi.fn();
 
     const actual = await readExistingLabels(
@@ -21,7 +21,7 @@ describe(readExistingLabels, () => {
     expect(take).not.toHaveBeenCalled();
   });
 
-  it("returns default labels when repository is undefined", async () => {
+  it('returns default labels when repository is undefined', async () => {
     const take = vi.fn();
 
     const actual = await readExistingLabels(
@@ -34,7 +34,7 @@ describe(readExistingLabels, () => {
     expect(take).not.toHaveBeenCalled();
   });
 
-  it("returns default labels when owner and repository are defined but the GET call fails", async () => {
+  it('returns default labels when owner and repository are defined but the GET call fails', async () => {
     const take = vi.fn().mockResolvedValueOnce(undefined);
 
     const actual = await readExistingLabels(
@@ -45,7 +45,7 @@ describe(readExistingLabels, () => {
 
     expect(actual).toBe(githubDefaultLabels);
     expect(take).toHaveBeenCalledWith(inputFromOctokit, {
-      endpoint: "GET /repos/{owner}/{repo}/labels",
+      endpoint: 'GET /repos/{owner}/{repo}/labels',
       options: {
         owner,
         repo: repository,
@@ -55,7 +55,7 @@ describe(readExistingLabels, () => {
 
   it("returns the repository's labels when owner and repository are defined and the GET call succeeds", async () => {
     const labels = [
-      { color: "ffffff", description: "Welcome!", name: "good first issue" },
+      { color: 'ffffff', description: 'Welcome!', name: 'good first issue' },
     ];
     const take = vi.fn().mockResolvedValueOnce(labels);
 
@@ -67,7 +67,7 @@ describe(readExistingLabels, () => {
 
     expect(actual).toEqual(labels);
     expect(take).toHaveBeenCalledWith(inputFromOctokit, {
-      endpoint: "GET /repos/{owner}/{repo}/labels",
+      endpoint: 'GET /repos/{owner}/{repo}/labels',
       options: {
         owner,
         repo: repository,

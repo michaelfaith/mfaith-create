@@ -1,15 +1,15 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFileJSON } from "input-from-file-json";
+import { inputFromFileJSON } from 'input-from-file-json';
 
-import type { AllContributorsData } from "../types.ts";
+import type { AllContributorsData } from '../types.ts';
 
-import { startingOwnerContributions } from "../data/contributions.ts";
-import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
+import { startingOwnerContributions } from '../data/contributions.ts';
+import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
 
 export async function readAllContributors(take: TakeInput) {
   const contributions = (await take(inputFromFileJSON, {
-    filePath: ".all-contributorsrc",
+    filePath: '.all-contributorsrc',
   })) as AllContributorsData | Error;
 
   if (!(contributions instanceof Error)) {
@@ -17,7 +17,7 @@ export async function readAllContributors(take: TakeInput) {
   }
 
   const user = (await take(inputFromOctokit, {
-    endpoint: "GET /user",
+    endpoint: 'GET /user',
   })) as
     | undefined
     | { avatar_url: string; blog: string; login: string; name: string };

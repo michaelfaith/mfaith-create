@@ -1,10 +1,10 @@
-import { base } from "../base.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockREADME } from "./blockREADME.ts";
+import { base } from '../base.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockREADME } from './blockREADME.ts';
 
 export const blockMITLicense = base.createBlock({
   about: {
-    name: "MIT License",
+    name: 'MIT License',
   },
   produce({ options }) {
     return {
@@ -12,20 +12,20 @@ export const blockMITLicense = base.createBlock({
         blockREADME({
           badges: [
             {
-              alt: "📝 License: MIT",
+              alt: '📝 License: MIT',
               href: `https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md`,
-              src: "https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg",
+              src: 'https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg',
             },
           ],
         }),
         blockPackageJson({
           properties: {
-            license: "MIT",
+            license: 'MIT',
           },
         }),
       ],
       files: {
-        "LICENSE.md": `# MIT License
+        'LICENSE.md': `# MIT License
 
 Copyright © ${new Date().getFullYear()} ${options.author}
 

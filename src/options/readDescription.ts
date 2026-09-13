@@ -1,10 +1,10 @@
-import { marked } from "marked";
+import { marked } from 'marked';
 
-import type { PartialPackageData } from "../types.ts";
+import type { PartialPackageData } from '../types.ts';
 
-import { packageData } from "../data/packageData.ts";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
-import { readDescriptionFromReadme } from "./readDescriptionFromReadme.ts";
+import { packageData } from '../data/packageData.ts';
+import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import { readDescriptionFromReadme } from './readDescriptionFromReadme.ts';
 
 export async function readDescription(
   getPackageData: () => Promise<PartialPackageData>,
@@ -27,7 +27,7 @@ export async function readDescription(
   // If the package.json is @mfaith/create's but the repository isn't,
   // we're almost certainly in transition mode after cloning the template.
   if (
-    (await getRepository()) !== "mfaith-create" &&
+    (await getRepository()) !== 'mfaith-create' &&
     fromPackageJson === packageData.description
   ) {
     return undefined;

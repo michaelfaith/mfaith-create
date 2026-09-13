@@ -1,6 +1,6 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFile } from "input-from-file";
+import { inputFromFile } from 'input-from-file';
 
 const blueskyRegex =
   /for enforcement on \[Bluesky\]\(https:\/\/bsky\.app\/profile\/(.+)\)\.[\r\n]+All/;
@@ -11,12 +11,12 @@ export async function readContactFromCodeOfConduct(
   take: TakeInput,
 ): Promise<undefined | { bluesky?: string; email?: string; url?: string }> {
   const codeOfConduct = await take(inputFromFile, {
-    filePath: ".github/CODE_OF_CONDUCT.md",
+    filePath: '.github/CODE_OF_CONDUCT.md',
   });
 
   if (
-    typeof codeOfConduct !== "string" ||
-    !codeOfConduct.includes("# Code of Conduct")
+    typeof codeOfConduct !== 'string' ||
+    !codeOfConduct.includes('# Code of Conduct')
   ) {
     return undefined;
   }

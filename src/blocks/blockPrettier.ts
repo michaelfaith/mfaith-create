@@ -1,24 +1,24 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
-import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
+import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { formatIgnoreFile } from './files/formatIgnoreFile.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockPrettier = base.createBlock({
   about: {
-    name: "Prettier",
+    name: 'Prettier',
   },
   addons: {
     ignores: z.array(z.string()).default([]),
@@ -38,12 +38,12 @@ export const blockPrettier = base.createBlock({
   produce({ addons }) {
     const { ignores, overrides, plugins, runBefore } = addons;
 
-    const simpleGitHooksConfigFileName = ".simple-git-hooks.js";
+    const simpleGitHooksConfigFileName = '.simple-git-hooks.js';
 
     return {
       addons: [
         blockCSpell({
-          ignorePaths: ["prettier.config.ts"],
+          ignorePaths: ['prettier.config.ts'],
         }),
         blockDevelopmentDocs({
           sections: {
@@ -78,10 +78,10 @@ pnpm format --write
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Format Check",
+              name: 'Format Check',
               steps: [
                 ...runBefore.map((run) => ({ run })),
-                { run: "pnpm format --list-different" },
+                { run: 'pnpm format --list-different' },
               ],
             },
           ],
@@ -89,47 +89,48 @@ pnpm format --write
         blockPackageJson({
           properties: {
             devDependencies: getPackageDependencies(
-              ...plugins.filter((plugin) => !plugin.startsWith(".")),
-              "prettier",
-              "pretty-quick",
-              "simple-git-hooks",
+              ...plugins.filter((plugin) => !plugin.startsWith('.')),
+              'prettier',
+              'pretty-quick',
+              'simple-git-hooks',
             ),
           },
         }),
         blockPnpmWorkspace({
           config: {
             allowBuilds: {
-              "simple-git-hooks": true,
+              'simple-git-hooks': true,
             },
           },
         }),
         blockVSCode({
-          extensions: ["esbenp.prettier-vscode"],
-          settings: { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+          extensions: ['esbenp.prettier-vscode'],
+          settings: { 'editor.defaultFormatter': 'esbenp.prettier-vscode' },
         }),
       ],
       files: {
         [simpleGitHooksConfigFileName]: `export default {
-  "pre-commit": "pnpm pretty-quick --staged",
+  'pre-commit': 'pnpm pretty-quick --staged',
 };`,
-        ".prettierignore": formatIgnoreFile(
-          ["/.husky", "/pnpm-lock.yaml", ...ignores].sort(),
+        '.prettierignore': formatIgnoreFile(
+          ['/.husky', '/pnpm-lock.yaml', ...ignores].sort(),
         ),
-        "prettier.config.ts": `import type { Config } from "prettier";
+        'prettier.config.ts': `import type { Config } from 'prettier';
 
 export default ${JSON.stringify({
           ...(overrides.length && { overrides: overrides.sort() }),
           ...(plugins.length && { plugins: plugins.sort() }),
+          singleQuote: true,
         })} satisfies Config;
 `,
       },
       scripts: [
         {
-          commands: ["pnpm simple-git-hooks"],
+          commands: ['pnpm simple-git-hooks'],
           phase: CommandPhase.Build,
         },
         {
-          commands: [...runBefore, "pnpm format --write"],
+          commands: [...runBefore, 'pnpm format --write'],
           phase: CommandPhase.Format,
         },
       ],
@@ -139,17 +140,17 @@ export default ${JSON.stringify({
     return {
       addons: [
         blockRemoveDependencies({
-          dependencies: ["eslint-config-prettier", "eslint-plugin-prettier"],
+          dependencies: ['eslint-config-prettier', 'eslint-plugin-prettier'],
         }),
         blockRemoveFiles({
           files: [
-            ".prettierrc",
-            ".prettierrc.{c*,js,m*,t*}",
-            "prettier.config*",
+            '.prettierrc',
+            '.prettierrc.{c*,js,m*,t*}',
+            'prettier.config*',
           ],
         }),
         blockRemoveWorkflows({
-          workflows: ["format", "prettier"],
+          workflows: ['format', 'prettier'],
         }),
       ],
     };

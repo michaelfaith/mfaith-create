@@ -1,17 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { readReadmeFootnotes } from "./readReadmeFootnotes.ts";
+import { readReadmeFootnotes } from './readReadmeFootnotes.ts';
 
 describe(readReadmeFootnotes, () => {
-  it("resolves undefined when there is no existing readme content", async () => {
-    const getReadme = () => Promise.resolve("");
+  it('resolves undefined when there is no existing readme content', async () => {
+    const getReadme = () => Promise.resolve('');
 
     const result = await readReadmeFootnotes(getReadme);
 
     expect(result).toBeUndefined();
   });
 
-  it("resolves undefined when there is no templated by notice", async () => {
+  it('resolves undefined when there is no templated by notice', async () => {
     const getReadme = () => Promise.resolve(`# My Package`);
 
     const result = await readReadmeFootnotes(getReadme);
@@ -19,7 +19,7 @@ describe(readReadmeFootnotes, () => {
     expect(result).toBeUndefined();
   });
 
-  it("resolves undefined when there is no content after a quote templated by notice", async () => {
+  it('resolves undefined when there is no content after a quote templated by notice', async () => {
     const getReadme = () =>
       Promise.resolve(`# My Package
 
@@ -32,7 +32,7 @@ describe(readReadmeFootnotes, () => {
     expect(result).toBeUndefined();
   });
 
-  it("resolves the content when there plain text content after a quote templated by notice", async () => {
+  it('resolves the content when there plain text content after a quote templated by notice', async () => {
     const getReadme = () =>
       Promise.resolve(`# My Package
 
@@ -43,10 +43,10 @@ After.
 
     const result = await readReadmeFootnotes(getReadme);
 
-    expect(result).toBe("After.");
+    expect(result).toBe('After.');
   });
 
-  it("resolves the content when there are footnotes after a quote templated by notice", async () => {
+  it('resolves the content when there are footnotes after a quote templated by notice', async () => {
     const getReadme = () =>
       Promise.resolve(`# My Package
 
@@ -57,10 +57,10 @@ After.
 
     const result = await readReadmeFootnotes(getReadme);
 
-    expect(result).toBe("[^1]: After.");
+    expect(result).toBe('[^1]: After.');
   });
 
-  it("resolves the content when there are footnotes after a comment and quote templated by notice", async () => {
+  it('resolves the content when there are footnotes after a comment and quote templated by notice', async () => {
     const getReadme = () =>
       Promise.resolve(`# My Package
 
@@ -73,6 +73,6 @@ After.
 
     const result = await readReadmeFootnotes(getReadme);
 
-    expect(result).toBe("[^1]: After.");
+    expect(result).toBe('[^1]: After.');
   });
 });

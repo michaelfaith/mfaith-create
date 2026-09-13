@@ -1,25 +1,25 @@
-import type { BaseOptions } from "../base.ts";
+import type { BaseOptions } from '../base.ts';
 
 export const optionsBase = {
-  access: "public",
+  access: 'public',
   contact: {
-    email: "github@email.com",
-    url: "http://contact.url",
+    email: 'github@email.com',
+    url: 'http://contact.url',
   },
-  description: "Test description",
-  directory: ".",
+  description: 'Test description',
+  directory: '.',
   documentation: {
     readme: {
-      usage: "Test usage.",
+      usage: 'Test usage.',
     },
   },
-  emoji: "✨",
+  emoji: '✨',
   node: {
-    minimum: "20.12.0",
+    minimum: '20.12.0',
   },
-  owner: "test-owner",
-  packageName: "test-package-name",
-  preset: "minimal",
-  repository: "test-repository",
-  title: "Test Title",
+  owner: 'test-owner',
+  packageName: 'test-package-name',
+  preset: 'minimal',
+  repository: 'test-repository',
+  title: 'Test Title',
 } satisfies BaseOptions;

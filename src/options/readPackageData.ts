@@ -1,10 +1,10 @@
-import type { TakeInput } from "bingo";
+import type { TakeInput } from 'bingo';
 
-import { inputFromFileJSON } from "input-from-file-json";
+import { inputFromFileJSON } from 'input-from-file-json';
 
-import type { PartialPackageData } from "../types.ts";
+import type { PartialPackageData } from '../types.ts';
 
-import { swallowError } from "../utils/swallowError.ts";
+import { swallowError } from '../utils/swallowError.ts';
 
 export async function readPackageData(
   take: TakeInput,
@@ -12,7 +12,7 @@ export async function readPackageData(
   return (
     swallowError(
       await take(inputFromFileJSON, {
-        filePath: "./package.json",
+        filePath: './package.json',
       }),
     ) || {}
   );

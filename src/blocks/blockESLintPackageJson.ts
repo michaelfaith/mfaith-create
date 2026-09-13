@@ -1,13 +1,13 @@
-import { base } from "../base.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { base } from '../base.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 
 export const blockESLintPackageJson = base.createBlock({
   about: {
-    name: "ESLint package.json Plugin",
+    name: 'ESLint package.json Plugin',
   },
   produce() {
     return {
@@ -16,23 +16,23 @@ export const blockESLintPackageJson = base.createBlock({
           extensions: [
             {
               extends: [
-                "packageJson.configs.recommended",
-                "packageJson.configs.stylistic",
+                'packageJson.configs.recommended',
+                'packageJson.configs.stylistic',
               ],
-              files: ["package.json"],
+              files: ['package.json'],
             },
           ],
           imports: [
             {
-              source: "eslint-plugin-package-json",
-              specifier: "packageJson",
+              source: 'eslint-plugin-package-json',
+              specifier: 'packageJson',
             },
           ],
         }),
         blockPackageJson({
           properties: {
             scripts: {
-              "lint:package-json": undefined,
+              'lint:package-json': undefined,
             },
           },
         }),
@@ -43,16 +43,16 @@ export const blockESLintPackageJson = base.createBlock({
     return {
       addons: [
         blockRemoveFiles({
-          files: [".npmpackagejsonlintrc*"],
+          files: ['.npmpackagejsonlintrc*'],
         }),
         blockRemoveDependencies({
           dependencies: [
-            "npm-package-json-lint",
-            "npm-package-json-lint-config-default",
+            'npm-package-json-lint',
+            'npm-package-json-lint-config-default',
           ],
         }),
         blockRemoveWorkflows({
-          workflows: ["lint-package-json"],
+          workflows: ['lint-package-json'],
         }),
       ],
     };

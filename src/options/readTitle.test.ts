@@ -1,10 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { readTitle } from "./readTitle.ts";
+import { readTitle } from './readTitle.ts';
 
 describe(readTitle, () => {
-  describe("title", () => {
-    it("defaults to undefined when it cannot be found", async () => {
+  describe('title', () => {
+    it('defaults to undefined when it cannot be found', async () => {
       const title = await readTitle(
         () => Promise.resolve(`nothing`),
         () => Promise.resolve(undefined),
@@ -19,7 +19,7 @@ describe(readTitle, () => {
         () => Promise.resolve(undefined),
       );
 
-      expect(title).toBe("My Awesome Package");
+      expect(title).toBe('My Awesome Package');
     });
 
     it('reads title as HTML from "README.md" when it exists', async () => {
@@ -28,30 +28,30 @@ describe(readTitle, () => {
         () => Promise.resolve(undefined),
       );
 
-      expect(title).toBe("My Awesome Package");
+      expect(title).toBe('My Awesome Package');
     });
 
     it("converts 'typescript' to 'TypeScript' when parsed from the repository name", async () => {
       const title = await readTitle(
-        () => Promise.resolve(""),
-        () => Promise.resolve("my-typescript-app"),
+        () => Promise.resolve(''),
+        () => Promise.resolve('my-typescript-app'),
       );
 
-      expect(title).toBe("My TypeScript App");
+      expect(title).toBe('My TypeScript App');
     });
 
     it("converts 'eslint' to 'ESLint' when parsed from the repository name", async () => {
       const title = await readTitle(
-        () => Promise.resolve(""),
-        () => Promise.resolve("my-eslint-plugin"),
+        () => Promise.resolve(''),
+        () => Promise.resolve('my-eslint-plugin'),
       );
 
-      expect(title).toBe("My ESLint Plugin");
+      expect(title).toBe('My ESLint Plugin');
     });
 
-    it("returns undefined when title does not exist", async () => {
+    it('returns undefined when title does not exist', async () => {
       const title = await readTitle(
-        () => Promise.resolve(`Other text.`),
+        () => Promise.resolve('Other text.'),
         () => Promise.resolve(undefined),
       );
 

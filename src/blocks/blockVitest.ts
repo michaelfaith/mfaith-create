@@ -1,25 +1,25 @@
-import type { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from 'bingo-fs';
 
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { zActionStep } from "./actions/steps.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockESLint } from "./blockESLint.ts";
-import { blockExampleFiles } from "./blockExampleFiles.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockGitignore } from "./blockGitignore.ts";
-import { blockKnip } from "./blockKnip.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockPrettier } from "./blockPrettier.ts";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { zWorkflowPermissions } from "./files/workflow.types.ts";
-import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { zActionStep } from './actions/steps.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockESLint } from './blockESLint.ts';
+import { blockExampleFiles } from './blockExampleFiles.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGitignore } from './blockGitignore.ts';
+import { blockKnip } from './blockKnip.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPrettier } from './blockPrettier.ts';
+import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { zWorkflowPermissions } from './files/workflow.types.ts';
+import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 
 const zCoverage = z.object({
   exclude: z.array(z.string()).optional(),
@@ -39,8 +39,8 @@ const zTest = z
   .partial();
 
 function intakeFromConfig(files: IntakeDirectory) {
-  const rawData = intakeFileDefineConfig(files, ["vitest.config.ts"]);
-  if (typeof rawData?.test !== "object") {
+  const rawData = intakeFileDefineConfig(files, ['vitest.config.ts']);
+  if (typeof rawData?.test !== 'object') {
     return undefined;
   }
 
@@ -58,7 +58,7 @@ function intakeFromConfig(files: IntakeDirectory) {
 
 export const blockVitest = base.createBlock({
   about: {
-    name: "Vitest",
+    name: 'Vitest',
   },
   addons: {
     actionSteps: z.array(zActionStep).default([]),
@@ -73,19 +73,19 @@ export const blockVitest = base.createBlock({
       ...intakeFromConfig(files),
       flags: options.packageData?.scripts?.test
         ?.match(/^vitest (.+)/)?.[1]
-        .split(" "),
+        .split(' '),
     };
   },
   produce({ addons }) {
     const { actionSteps, coverage, environment, exclude, permissions } = addons;
     const excludeText = JSON.stringify(
-      Array.from(new Set(["node_modules", ...exclude])).sort(),
+      Array.from(new Set(['node_modules', ...exclude])).sort(),
     );
 
     return {
       addons: [
         blockCSpell({
-          ignorePaths: ["coverage"],
+          ignorePaths: ['coverage'],
         }),
         blockDevelopmentDocs({
           sections: {
@@ -115,13 +115,13 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
         blockESLint({
           extensions: [
             {
-              extends: ["vitest.configs.recommended"],
-              files: ["**/*.test.*"],
+              extends: ['vitest.configs.recommended'],
+              files: ['**/*.test.*'],
               rules: [
                 {
                   entries: {
-                    "@typescript-eslint/no-unsafe-assignment": "off",
-                    "vitest/prefer-describe-function-title": "error",
+                    '@typescript-eslint/no-unsafe-assignment': 'off',
+                    'vitest/prefer-describe-function-title': 'error',
                   },
                 },
               ],
@@ -130,20 +130,20 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
               },
             },
           ],
-          ignores: ["coverage", "**/*.snap"],
-          imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
+          ignores: ['coverage', '**/*.snap'],
+          imports: [{ source: '@vitest/eslint-plugin', specifier: 'vitest' }],
         }),
         blockExampleFiles({
           files: {
-            "greet.test.ts": `import { describe, expect, it, vi } from "vitest";
+            'greet.test.ts': `import { describe, expect, it, vi } from 'vitest';
 
-import { greet } from "./greet.ts";
+import { greet } from './greet.ts';
 
-const message = "Yay, testing!";
+const message = 'Yay, testing!';
 
 describe(greet, () => {
-	it("logs to the console once when message is provided as a string", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+	it('logs to the console once when message is provided as a string', () => {
+		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 
 		greet(message);
 
@@ -151,8 +151,8 @@ describe(greet, () => {
 		expect(logger).toHaveBeenCalledTimes(1);
 	});
 
-	it("logs to the console once when message is provided as an object", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+	it('logs to the console once when message is provided as an object', () => {
+		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 
 		greet({ message });
 
@@ -160,7 +160,7 @@ describe(greet, () => {
 		expect(logger).toHaveBeenCalledTimes(1);
 	});
 
-	it("logs once when times is not provided in an object", () => {
+	it('logs once when times is not provided in an object', () => {
 		const logger = vi.fn();
 
 		greet({ logger, message });
@@ -169,7 +169,7 @@ describe(greet, () => {
 		expect(logger).toHaveBeenCalledTimes(1);
 	});
 
-	it("logs a specified number of times when times is provided", () => {
+	it('logs a specified number of times when times is provided', () => {
 		const logger = vi.fn();
 		const times = 7;
 
@@ -183,55 +183,55 @@ describe(greet, () => {
           },
         }),
         blockGitignore({
-          ignores: ["/coverage"],
+          ignores: ['/coverage'],
         }),
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Test",
+              name: 'Test',
               ...(permissions ? { permissions } : {}),
-              steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
+              steps: [{ run: 'pnpm run test --coverage' }, ...actionSteps],
             },
           ],
         }),
         blockKnip({
-          entry: ["src/**/*.test.*"],
+          entry: ['src/**/*.test.*'],
         }),
         blockPackageJson({
           properties: {
             devDependencies: getPackageDependencies(
-              "@vitest/coverage-v8",
-              "@vitest/eslint-plugin",
-              "console-fail-test",
-              "vitest",
+              '@vitest/coverage-v8',
+              '@vitest/eslint-plugin',
+              'console-fail-test',
+              'vitest',
             ),
             scripts: {
-              test: `vitest ${addons.flags.join(" ")}`.trim(),
+              test: `vitest ${addons.flags.join(' ')}`.trim(),
             },
           },
         }),
         blockPrettier({
-          ignores: ["/coverage"],
+          ignores: ['/coverage'],
         }),
         blockVSCode({
           debuggers: [
             {
-              args: ["run", "${relativeFile}"],
+              args: ['run', '${relativeFile}'],
               autoAttachChildProcesses: true,
-              console: "integratedTerminal",
-              name: "Debug Current Test File",
-              program: "${workspaceRoot}/node_modules/vitest/vitest.mjs",
-              request: "launch",
-              skipFiles: ["<node_internals>/**", "**/node_modules/**"],
+              console: 'integratedTerminal',
+              name: 'Debug Current Test File',
+              program: '${workspaceRoot}/node_modules/vitest/vitest.mjs',
+              request: 'launch',
+              skipFiles: ['<node_internals>/**', '**/node_modules/**'],
               smartStep: true,
-              type: "node",
+              type: 'node',
             },
           ],
-          extensions: ["vitest.explorer"],
+          extensions: ['vitest.explorer'],
         }),
       ],
       files: {
-        "vitest.config.ts": `import { defineConfig } from "vitest/config";
+        'vitest.config.ts': `import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	test: {
@@ -241,17 +241,17 @@ export default defineConfig({
         coverage.exclude?.length
           ? `exclude: ${JSON.stringify(coverage.exclude)},
 			`
-          : ""
+          : ''
       }include: ${JSON.stringify(coverage.include)},
-			reporter: ["html", "lcov"],
+			reporter: ['html', 'lcov'],
 		},${
       environment
         ? `
-		environment: "${environment}",`
-        : ""
+		environment: '${environment}',`
+        : ''
     }
 		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
-		setupFiles: ["console-fail-test/setup"],
+		setupFiles: ['console-fail-test/setup'],
 	},
 });
 	`,
@@ -263,18 +263,18 @@ export default defineConfig({
       addons: [
         blockRemoveDependencies({
           dependencies: [
-            "@vitest/coverage-istanbul",
-            "eslint-plugin-jest",
-            "eslint-plugin-mocha",
-            "eslint-plugin-vitest",
-            "jest mocha",
+            '@vitest/coverage-istanbul',
+            'eslint-plugin-jest',
+            'eslint-plugin-mocha',
+            'eslint-plugin-vitest',
+            'jest mocha',
           ],
         }),
         blockRemoveFiles({
-          files: [".mocha*", "jest.config.*", "vitest.config.{c,j,m}*"],
+          files: ['.mocha*', 'jest.config.*', 'vitest.config.{c,j,m}*'],
         }),
         blockRemoveWorkflows({
-          workflows: ["test"],
+          workflows: ['test'],
         }),
       ],
     };

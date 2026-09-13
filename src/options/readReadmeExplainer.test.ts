@@ -1,15 +1,15 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { readReadmeExplainer } from "./readReadmeExplainer.ts";
+import { readReadmeExplainer } from './readReadmeExplainer.ts';
 
 describe(readReadmeExplainer, () => {
-  it("resolves with undefined when an h2 cannot be found", async () => {
+  it('resolves with undefined when an h2 cannot be found', async () => {
     const actual = await readReadmeExplainer(() => Promise.resolve(`nothing.`));
 
     expect(actual).toBeUndefined();
   });
 
-  it("resolves with undefined before h2 when a Usage h2 exists and there are no preceding tags", async () => {
+  it('resolves with undefined before h2 when a Usage h2 exists and there are no preceding tags', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`# Title
 
@@ -19,7 +19,7 @@ describe(readReadmeExplainer, () => {
     expect(actual).toBeUndefined();
   });
 
-  it("resolves with undefined before h2 when a non-Usage h2 exists and there are no preceding tags", async () => {
+  it('resolves with undefined before h2 when a non-Usage h2 exists and there are no preceding tags', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`# Title
 
@@ -29,7 +29,7 @@ describe(readReadmeExplainer, () => {
     expect(actual).toBeUndefined();
   });
 
-  it("parses a line after badges", async () => {
+  it('parses a line after badges', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 </p>
@@ -41,10 +41,10 @@ This is my project.
 ...`),
     );
 
-    expect(actual).toEqual("This is my project.");
+    expect(actual).toEqual('This is my project.');
   });
 
-  it("parses multiple lines after badges", async () => {
+  it('parses multiple lines after badges', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 </p>
@@ -57,10 +57,10 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual("This is my project.\nIt is good.");
+    expect(actual).toEqual('This is my project.\nIt is good.');
   });
 
-  it("parses multiple lines after full badges and a logo", async () => {
+  it('parses multiple lines after full badges and a logo', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 <p align="center">
@@ -84,10 +84,10 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual("This is my project.\nIt is good.");
+    expect(actual).toEqual('This is my project.\nIt is good.');
   });
 
-  it("parses a non-Usage h2 after full badges", async () => {
+  it('parses a non-Usage h2 after full badges', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 <p align="center">
@@ -111,10 +111,10 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.');
   });
 
-  it("parses a non-Usage h2 with a block quote after full badges", async () => {
+  it('parses a non-Usage h2 with a block quote after full badges', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 	<a href="http://npmjs.com/package/@mfaith/create"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
@@ -133,11 +133,11 @@ It is good.
     );
 
     expect(actual).toEqual(
-      "## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
     );
   });
 
-  it("parses a non-Usage h2 after full badges and a logo", async () => {
+  it('parses a non-Usage h2 after full badges and a logo', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 	<a href="http://npmjs.com/package/@mfaith/create"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
@@ -155,10 +155,10 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.');
   });
 
-  it("parses a non-Usage h2 with a block quote after full badges and a logo", async () => {
+  it('parses a non-Usage h2 with a block quote after full badges and a logo', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 	<a href="http://npmjs.com/package/@mfaith/create"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
@@ -179,11 +179,11 @@ It is good.
     );
 
     expect(actual).toEqual(
-      "## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
     );
   });
 
-  it("returns existing content before a non-Usage h2 when the Usage h2 does not exist", async () => {
+  it('returns existing content before a non-Usage h2 when the Usage h2 does not exist', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 	<a href="http://npmjs.com/package/@mfaith/create"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
@@ -204,11 +204,11 @@ It is good.
     );
 
     expect(actual).toEqual(
-      "## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
     );
   });
 
-  it("returns existing content until the end of the file when no subsequent h2 exists", async () => {
+  it('returns existing content until the end of the file when no subsequent h2 exists', async () => {
     const actual = await readReadmeExplainer(() =>
       Promise.resolve(`
 	<a href="http://npmjs.com/package/@mfaith/create"><img alt="📦 npm version" src="https://img.shields.io/npm/v/@mfaith/create?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
@@ -226,7 +226,7 @@ It is good.
     );
 
     expect(actual).toEqual(
-      "## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
     );
   });
 });

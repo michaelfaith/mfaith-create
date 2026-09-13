@@ -1,13 +1,13 @@
-import removeUndefinedObjects from "remove-undefined-objects";
-import semver from "semver";
-import sortPackageJson from "sort-package-json";
-import { z } from "zod";
-import { PackageJson } from "zod-package-json";
+import removeUndefinedObjects from 'remove-undefined-objects';
+import semver from 'semver';
+import sortPackageJson from 'sort-package-json';
+import { z } from 'zod';
+import { PackageJson } from 'zod-package-json';
 
-import { base } from "../base.ts";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { CommandPhase } from './phases.ts';
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
   scripts: z
@@ -17,7 +17,7 @@ const PackageJsonWithNullableScripts = PackageJson.partial().extend({
 
 export const blockPackageJson = base.createBlock({
   about: {
-    name: "Package JSON",
+    name: 'Package JSON',
   },
   addons: {
     cleanupCommands: z.array(z.string()).default([]),
@@ -39,7 +39,7 @@ export const blockPackageJson = base.createBlock({
 
     return {
       files: {
-        "package.json": sortPackageJson(
+        'package.json': sortPackageJson(
           JSON.stringify(
             removeUndefinedObjects({
               ...options.packageData,
@@ -72,15 +72,15 @@ export const blockPackageJson = base.createBlock({
               keywords: options.keywords,
               name: options.packageName,
               repository: {
-                type: "git",
+                type: 'git',
                 url: `git+https://github.com/${options.owner}/${options.repository}.git`,
               },
               scripts: {
                 ...options.packageData?.scripts,
                 ...addons.properties.scripts,
               },
-              type: "module",
-              version: options.version ?? "0.0.0",
+              type: 'module',
+              version: options.version ?? '0.0.0',
             }),
           ),
         ),
@@ -88,7 +88,7 @@ export const blockPackageJson = base.createBlock({
       scripts: [
         {
           commands: [
-            `pnpm install ${offline ? "--offline " : ""}--no-frozen-lockfile`,
+            `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
             ...addons.cleanupCommands,
           ],
           phase: CommandPhase.Install,
@@ -98,7 +98,7 @@ export const blockPackageJson = base.createBlock({
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ["package-lock.json yarn.lock"] })],
+      addons: [blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] })],
     };
   },
 });
@@ -120,13 +120,13 @@ function processFiles(files: string[] | undefined) {
       (file, i) =>
         !sortedByLength
           .slice(0, i)
-          .some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+          .some((earlier) => earlier.endsWith('/') && file.startsWith(earlier)),
     )
     .sort();
 }
 
 function removeRangePrefix(version: string) {
-  const raw = version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];
+  const raw = version.replaceAll(/[\^~><=]/gu, '').split(' ')[0];
 
   return semver.coerce(raw) ?? raw;
 }

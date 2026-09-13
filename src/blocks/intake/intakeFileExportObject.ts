@@ -1,8 +1,8 @@
-import type { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from 'bingo-fs';
 
-import JSON5 from "json5";
+import JSON5 from 'json5';
 
-import { intakeFile } from "./intakeFile.ts";
+import { intakeFile } from './intakeFile.ts';
 
 export function intakeFileExportObject(
   files: IntakeDirectory,
@@ -13,14 +13,14 @@ export function intakeFileExportObject(
     return undefined;
   }
 
-  const normalized = file[0].replaceAll(/[\n\r]/g, "");
+  const normalized = file[0].replaceAll(/[\n\r]/g, '');
   const matched = /export\s+default\s*\{(.+)\}/u.exec(normalized);
   if (!matched) {
     return undefined;
   }
 
   const rawData = tryParseJSON5(`{${matched[1]}}`);
-  if (!rawData || typeof rawData !== "object") {
+  if (!rawData || typeof rawData !== 'object') {
     return undefined;
   }
 

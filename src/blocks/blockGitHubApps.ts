@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getInstallationSuggestions } from "./getInstallationSuggestions.ts";
+import { base } from '../base.ts';
+import { getInstallationSuggestions } from './getInstallationSuggestions.ts';
 
 export const blockGitHubApps = base.createBlock({
   about: {
-    name: "GitHub Apps",
+    name: 'GitHub Apps',
   },
   addons: {
     apps: z
@@ -20,7 +20,7 @@ export const blockGitHubApps = base.createBlock({
   produce({ addons, options }) {
     return {
       suggestions: getInstallationSuggestions(
-        "enable the GitHub app",
+        'enable the GitHub app',
         addons.apps.map((app) => `${app.name} (${app.url})`),
         `https://github.com/${options.owner}/${options.repository}/settings/installations`,
       ),

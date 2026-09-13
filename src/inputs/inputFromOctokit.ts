@@ -1,5 +1,5 @@
-import { createInput } from "bingo";
-import { z } from "zod";
+import { createInput } from 'bingo';
+import { z } from 'zod';
 
 export const inputFromOctokit = createInput({
   args: {
@@ -16,7 +16,7 @@ export const inputFromOctokit = createInput({
     try {
       const response = await fetchers.octokit.request(args.endpoint, {
         headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
+          'X-GitHub-Api-Version': '2022-11-28',
         },
         request: { retries: 0 },
         ...args.options,

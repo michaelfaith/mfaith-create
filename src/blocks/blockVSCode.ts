@@ -1,12 +1,12 @@
-import sortKeys from "sort-keys";
-import { z } from "zod";
+import sortKeys from 'sort-keys';
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { base } from '../base.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 
 export const blockVSCode = base.createBlock({
   about: {
-    name: "VS Code",
+    name: 'VS Code',
   },
   addons: {
     debuggers: z
@@ -46,7 +46,7 @@ export const blockVSCode = base.createBlock({
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 `,
-                  heading: "Debugging Tests",
+                  heading: 'Debugging Tests',
                 },
               ],
             },
@@ -54,31 +54,31 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
         }),
       ],
       files: {
-        ".vscode": {
-          "extensions.json": extensions?.length
+        '.vscode': {
+          'extensions.json': extensions?.length
             ? JSON.stringify({
                 recommendations: [...extensions].sort(),
               })
             : undefined,
-          "launch.json": debuggers?.length
+          'launch.json': debuggers?.length
             ? JSON.stringify({
                 configurations: [...debuggers].sort((a, b) =>
                   a.name.localeCompare(b.name),
                 ),
-                version: "0.2.0",
+                version: '0.2.0',
               })
             : undefined,
-          "settings.json": JSON.stringify(
+          'settings.json': JSON.stringify(
             sortKeys({
-              "editor.formatOnSave": true,
-              "editor.rulers": [80],
+              'editor.formatOnSave': true,
+              'editor.rulers': [80],
               ...settings,
             }),
           ),
-          "tasks.json": tasks?.length
+          'tasks.json': tasks?.length
             ? JSON.stringify({
                 tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
-                version: "2.0.0",
+                version: '2.0.0',
               })
             : undefined,
         },

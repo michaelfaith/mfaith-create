@@ -1,20 +1,20 @@
-import { base } from "../base.ts";
-import { blockCSpell } from "./blockCSpell.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockGitignore } from "./blockGitignore.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockPrettier } from "./blockPrettier.ts";
+import { base } from '../base.ts';
+import { blockCSpell } from './blockCSpell.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGitignore } from './blockGitignore.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPrettier } from './blockPrettier.ts';
 
 export const blockWebExt = base.createBlock({
   about: {
-    name: "Web-ext",
+    name: 'Web-ext',
   },
   produce() {
     return {
       addons: [
         blockCSpell({
-          ignorePaths: ["assets"],
+          ignorePaths: ['assets'],
         }),
         blockDevelopmentDocs({
           sections: {
@@ -39,7 +39,7 @@ Follow Google Chrome's _[Load an unpacked extension](https://developer.chrome.co
 
 > ♻️ Remember to reload the extension in \`chrome://extensions\` whenever you make changes locally!
 `,
-                  heading: "Local Development with Chrome",
+                  heading: 'Local Development with Chrome',
                 },
                 {
                   contents: `
@@ -53,7 +53,7 @@ You'll then need to authorize the extension to run on <https://github.com>:
 
 > ♻️ Remember to reload the extension in \`about:debugging#/runtime/this-firefox\` whenever you make changes locally!
 `,
-                  heading: "Local Development with Firefox",
+                  heading: 'Local Development with Firefox',
                 },
                 {
                   contents: `
@@ -68,7 +68,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 - [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
 - [Firefox Add-ons Developer Hub](https://addons.mozilla.org/en-US/developers/addon/submit/distribution)
 `,
-                  heading: "Production Builds",
+                  heading: 'Production Builds',
                 },
               ],
             },
@@ -84,33 +84,33 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Build",
-              steps: [{ run: "pnpm build" }],
+              name: 'Build',
+              steps: [{ run: 'pnpm build' }],
             },
             {
-              name: "Lint Web-ext",
-              steps: [{ run: "pnpm dev" }, { run: "pnpm lint:web-ext" }],
+              name: 'Lint Web-ext',
+              steps: [{ run: 'pnpm dev' }, { run: 'pnpm lint:web-ext' }],
             },
           ],
         }),
         blockGitignore({
-          ignores: ["*.zip", "web-ext-artifacts"],
+          ignores: ['*.zip', 'web-ext-artifacts'],
         }),
         blockPackageJson({
           properties: {
             devDependencies: {
-              esbuild: "^0.25.0",
-              "web-ext": "^8.3.0",
+              esbuild: '^0.25.0',
+              'web-ext': '^8.3.0',
             },
             scripts: {
-              build: "web-ext build --overwrite-dest",
-              dev: "esbuild src/content-script.ts --bundle --minify --outfile=dist/content-script.js --sourcemap",
-              "lint:web-ext": "web-ext lint",
+              build: 'web-ext build --overwrite-dest',
+              dev: 'esbuild src/content-script.ts --bundle --minify --outfile=dist/content-script.js --sourcemap',
+              'lint:web-ext': 'web-ext lint',
             },
           },
         }),
         blockPrettier({
-          ignores: ["assets/"],
+          ignores: ['assets/'],
         }),
       ],
     };

@@ -1,4 +1,4 @@
-import { titleCase } from "title-case";
+import { titleCase } from 'title-case';
 
 export async function readTitle(
   getReadme: () => Promise<string>,
@@ -16,8 +16,8 @@ export async function readTitle(
   return (
     repositoryValue &&
     titleCase(repositoryValue)
-      .replaceAll("Eslint", "ESLint")
-      .replaceAll("Typescript", "TypeScript")
-      .replaceAll("-", " ")
+      .replaceAll('Eslint', 'ESLint')
+      .replaceAll('Typescript', 'TypeScript')
+      .replaceAll('-', ' ')
   );
 }

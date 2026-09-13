@@ -1,15 +1,15 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test, vi } from 'vitest';
 
-import { blockTemplatedWith } from "./blockTemplatedWith.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockTemplatedWith } from './blockTemplatedWith.ts';
+import { optionsBase } from './options.fakes.ts';
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock('../utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockTemplatedWith", () => {
-  test("production with unknown owner", () => {
+describe('blockTemplatedWith', () => {
+  test('production with unknown owner', () => {
     const creation = testBlock(blockTemplatedWith, {
       options: optionsBase,
     });
@@ -33,11 +33,11 @@ describe("blockTemplatedWith", () => {
 		`);
   });
 
-  test("production with JoshuaKGoldberg as owner", () => {
+  test('production with JoshuaKGoldberg as owner', () => {
     const creation = testBlock(blockTemplatedWith, {
       options: {
         ...optionsBase,
-        owner: "michaelfaith",
+        owner: 'michaelfaith',
       },
     });
 

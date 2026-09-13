@@ -1,9 +1,9 @@
-import { testBlock } from "bingo-stratum-testers";
-import { it } from "vitest";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockPackageJson } from './blockPackageJson.ts';
+import { optionsBase } from './options.fakes.ts';
 
 const options = {
   ...optionsBase,
@@ -11,7 +11,7 @@ const options = {
 };
 
 describe(blockPackageJson, () => {
-  test("without addons or mode", () => {
+  test('without addons or mode', () => {
     const creation = testBlock(blockPackageJson, { options });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -31,46 +31,47 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockPackageJson, {
-      mode: "transition",
+      mode: 'transition',
       options,
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "files": [
-			          "package-lock.json yarn.lock",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "files": [
+                "package-lock.json",
+                "yarn.lock",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockPackageJson, {
       addons: {
-        cleanupCommands: ["pnpm dedupe"],
+        cleanupCommands: ['pnpm dedupe'],
         properties: {
           dependencies: {
-            "is-odd": "1.2.3",
+            'is-odd': '1.2.3',
           },
           other: true,
         },
@@ -96,16 +97,16 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with addons adding devDependencies", () => {
+  test('with addons adding devDependencies', () => {
     const creation = testBlock(blockPackageJson, {
       addons: {
-        cleanupCommands: ["pnpm dedupe"],
+        cleanupCommands: ['pnpm dedupe'],
         properties: {
           dependencies: {
-            "is-odd": "1.2.3",
+            'is-odd': '1.2.3',
           },
           devDependencies: {
-            "is-even": "4.5.6",
+            'is-even': '4.5.6',
           },
           other: true,
         },
@@ -131,11 +132,11 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with addons adding overlapping files", () => {
+  test('with addons adding overlapping files', () => {
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
-          files: ["README.md", "LICENSE.md", "dist/", "dist/bin/file.js"],
+          files: ['README.md', 'LICENSE.md', 'dist/', 'dist/bin/file.js'],
         },
       },
       options,
@@ -158,11 +159,11 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with keywords", () => {
+  test('with keywords', () => {
     const creation = testBlock(blockPackageJson, {
       options: {
         ...options,
-        keywords: ["abc", "def ghi"],
+        keywords: ['abc', 'def ghi'],
       },
     });
 
@@ -183,14 +184,14 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with node and pnpm versions", () => {
+  test('with node and pnpm versions', () => {
     const creation = testBlock(blockPackageJson, {
       options: {
         ...options,
         node: {
-          minimum: "22.0.0",
+          minimum: '22.0.0',
         },
-        pnpm: "10.4.0",
+        pnpm: '10.4.0',
       },
     });
 
@@ -211,17 +212,17 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("with peerDependencies and peerDependenciesMeta", () => {
+  test('with peerDependencies and peerDependenciesMeta', () => {
     const creation = testBlock(blockPackageJson, {
       options: {
         ...options,
         packageData: {
           peerDependencies: {
-            "@types/estree": ">=1",
-            eslint: ">=8",
+            '@types/estree': '>=1',
+            eslint: '>=8',
           },
           peerDependenciesMeta: {
-            "@types/estree": {
+            '@types/estree': {
               optional: true,
             },
           },
@@ -246,7 +247,7 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  test("offline mode", () => {
+  test('offline mode', () => {
     const creation = testBlock(blockPackageJson, {
       offline: true,
       options,
@@ -269,13 +270,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("preserves an existing dependency when the addon has an invalid version", () => {
-    const dependency = "test-dependency";
+  it('preserves an existing dependency when the addon has an invalid version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "0.9.0",
+            [dependency]: '0.9.0',
           },
         },
       },
@@ -283,7 +284,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -291,7 +292,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.0.0",
@@ -300,12 +301,12 @@ describe(blockPackageJson, () => {
   });
 
   it("uses an addon's version when there is no existing equivalent", () => {
-    const dependency = "test-dependency";
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "1.1.0",
+            [dependency]: '1.1.0',
           },
         },
       },
@@ -319,7 +320,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.1.0",
@@ -328,12 +329,12 @@ describe(blockPackageJson, () => {
   });
 
   it("uses the addon's version when the existing equivalent is invalid semver", () => {
-    const dependency = "test-dependency";
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -341,7 +342,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "next",
+            [dependency]: 'next',
           },
         },
       },
@@ -349,7 +350,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.0.0",
@@ -357,13 +358,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("preserves an existing dependency when the addon has an older version minimum", () => {
-    const dependency = "test-dependency";
+  it('preserves an existing dependency when the addon has an older version minimum', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "^0.9.0",
+            [dependency]: '^0.9.0',
           },
         },
       },
@@ -371,7 +372,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "^1.0.0",
+            [dependency]: '^1.0.0',
           },
         },
       },
@@ -379,7 +380,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "^1.0.0",
@@ -387,13 +388,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("preserves an existing dependency when the addon has an older version range", () => {
-    const dependency = "test-dependency";
+  it('preserves an existing dependency when the addon has an older version range', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "^0.9.0",
+            [dependency]: '^0.9.0',
           },
         },
       },
@@ -401,7 +402,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "^1.0.0 || ^2.0.0",
+            [dependency]: '^1.0.0 || ^2.0.0',
           },
         },
       },
@@ -409,7 +410,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "^1.0.0 || ^2.0.0",
@@ -417,13 +418,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("merges an existing dependency when the addon has the same version", () => {
-    const dependency = "test-dependency";
+  it('merges an existing dependency when the addon has the same version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -431,7 +432,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -439,7 +440,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.0.0",
@@ -447,13 +448,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("replaces an existing dependency when the addon has a newer version", () => {
-    const dependency = "test-dependency";
+  it('replaces an existing dependency when the addon has a newer version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "1.1.0",
+            [dependency]: '1.1.0',
           },
         },
       },
@@ -461,7 +462,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -469,7 +470,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.1.0",
@@ -477,13 +478,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("replaces an existing dependency when the addon has a newer version than the first range element", () => {
-    const dependency = "test-dependency";
+  it('replaces an existing dependency when the addon has a newer version than the first range element', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           dependencies: {
-            [dependency]: "^1.1.0",
+            [dependency]: '^1.1.0',
           },
         },
       },
@@ -491,7 +492,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           dependencies: {
-            [dependency]: "^1.0.0 || ^2.0.0",
+            [dependency]: '^1.0.0 || ^2.0.0',
           },
         },
       },
@@ -499,7 +500,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).dependencies,
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "^1.1.0",
@@ -507,13 +508,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("preserves an existing devDependency when the addon has an older pinned version", () => {
-    const dependency = "test-dependency";
+  it('preserves an existing devDependency when the addon has an older pinned version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           devDependencies: {
-            [dependency]: "0.9.0",
+            [dependency]: '0.9.0',
           },
         },
       },
@@ -521,7 +522,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           devDependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -529,7 +530,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).devDependencies,
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.0.0",
@@ -537,13 +538,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("merges an existing devDependency when the addon has the same version", () => {
-    const dependency = "test-dependency";
+  it('merges an existing devDependency when the addon has the same version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           devDependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -551,7 +552,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           devDependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -559,7 +560,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).devDependencies,
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.0.0",
@@ -567,13 +568,13 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("replaces an existing devDependency when the addon has a newer version", () => {
-    const dependency = "test-dependency";
+  it('replaces an existing devDependency when the addon has a newer version', () => {
+    const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
       addons: {
         properties: {
           devDependencies: {
-            [dependency]: "1.1.0",
+            [dependency]: '1.1.0',
           },
         },
       },
@@ -581,7 +582,7 @@ describe(blockPackageJson, () => {
         ...optionsBase,
         packageData: {
           devDependencies: {
-            [dependency]: "1.0.0",
+            [dependency]: '1.0.0',
           },
         },
       },
@@ -589,7 +590,7 @@ describe(blockPackageJson, () => {
 
     expect(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
-      JSON.parse(creation.files!["package.json"] as string).devDependencies,
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
     ).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.1.0",

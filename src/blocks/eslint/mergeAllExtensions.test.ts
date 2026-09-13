@@ -1,13 +1,13 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from 'vitest';
 
-import { mergeAllExtensions } from "./mergeAllExtensions.ts";
+import { mergeAllExtensions } from './mergeAllExtensions.ts';
 
 describe(mergeAllExtensions, () => {
-  test("when the first provides everything", () => {
+  test('when the first provides everything', () => {
     const actual = mergeAllExtensions(
       {
-        extends: ["a.configs.recommended"],
-        files: ["**/*.a"],
+        extends: ['a.configs.recommended'],
+        files: ['**/*.a'],
         languageOptions: {
           languageOption: true,
         },
@@ -15,19 +15,19 @@ describe(mergeAllExtensions, () => {
           linterOption: true,
         },
         plugins: {
-          "plugin-a-key": "plugin-a-value",
+          'plugin-a-key': 'plugin-a-value',
         },
         rules: {
-          "a/b": "error",
+          'a/b': 'error',
         },
         settings: {
           react: {
-            version: "detect",
+            version: 'detect',
           },
         },
       },
       {
-        files: ["**/*.a"],
+        files: ['**/*.a'],
       },
     );
 
@@ -62,14 +62,14 @@ describe(mergeAllExtensions, () => {
 		`);
   });
 
-  test("when the second provides everything", () => {
+  test('when the second provides everything', () => {
     const actual = mergeAllExtensions(
       {
-        files: ["**/*.a"],
+        files: ['**/*.a'],
       },
       {
-        extends: ["a.configs.recommended"],
-        files: ["**/*.a"],
+        extends: ['a.configs.recommended'],
+        files: ['**/*.a'],
         languageOptions: {
           languageOption: true,
         },
@@ -77,14 +77,14 @@ describe(mergeAllExtensions, () => {
           linterOption: true,
         },
         plugins: {
-          "plugin-a-key": "plugin-a-value",
+          'plugin-a-key': 'plugin-a-value',
         },
         rules: {
-          "a/b": "error",
+          'a/b': 'error',
         },
         settings: {
           react: {
-            version: "detect",
+            version: 'detect',
           },
         },
       },
@@ -121,15 +121,15 @@ describe(mergeAllExtensions, () => {
 		`);
   });
 
-  test("where neither rules group has a comment", () => {
+  test('where neither rules group has a comment', () => {
     const actual = mergeAllExtensions(
       {
-        files: ["**/*.js"],
-        rules: { a: "error" },
+        files: ['**/*.js'],
+        rules: { a: 'error' },
       },
       {
-        files: ["**/*.js"],
-        rules: { b: "error" },
+        files: ['**/*.js'],
+        rules: { b: 'error' },
       },
     );
 
@@ -153,20 +153,20 @@ describe(mergeAllExtensions, () => {
 		`);
   });
 
-  test("where only the first rules group has a comment", () => {
+  test('where only the first rules group has a comment', () => {
     const actual = mergeAllExtensions(
       {
-        files: ["**/*.js"],
+        files: ['**/*.js'],
         rules: [
           {
-            comment: "One standalone comment",
-            entries: { a: "error" },
+            comment: 'One standalone comment',
+            entries: { a: 'error' },
           },
         ],
       },
       {
-        files: ["**/*.js"],
-        rules: { b: "error" },
+        files: ['**/*.js'],
+        rules: { b: 'error' },
       },
     );
 
@@ -199,18 +199,18 @@ describe(mergeAllExtensions, () => {
 		`);
   });
 
-  test("where only the second rules group has a comment", () => {
+  test('where only the second rules group has a comment', () => {
     const actual = mergeAllExtensions(
       {
-        files: ["**/*.js"],
-        rules: { b: "error" },
+        files: ['**/*.js'],
+        rules: { b: 'error' },
       },
       {
-        files: ["**/*.js"],
+        files: ['**/*.js'],
         rules: [
           {
-            comment: "One standalone comment",
-            entries: { a: "error" },
+            comment: 'One standalone comment',
+            entries: { a: 'error' },
           },
         ],
       },
@@ -245,21 +245,21 @@ describe(mergeAllExtensions, () => {
 		`);
   });
 
-  test("with identical comments in the same extension", () => {
+  test('with identical comments in the same extension', () => {
     const actual = mergeAllExtensions({
-      files: ["**/*.js"],
+      files: ['**/*.js'],
       rules: [
         {
-          comment: "Duplicated comment",
-          entries: { a: "error" },
+          comment: 'Duplicated comment',
+          entries: { a: 'error' },
         },
         {
-          comment: "Standalone comment",
-          entries: { b: "error" },
+          comment: 'Standalone comment',
+          entries: { b: 'error' },
         },
         {
-          comment: "Duplicated comment",
-          entries: { c: "error" },
+          comment: 'Duplicated comment',
+          entries: { c: 'error' },
         },
       ],
     });

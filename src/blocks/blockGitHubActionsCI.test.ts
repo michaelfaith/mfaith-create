@@ -1,12 +1,12 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { dump } from "js-yaml";
-import { describe, expect, it, test } from "vitest";
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { dump } from 'js-yaml';
+import { describe, expect, it, test } from 'vitest';
 
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitHubActionsCI, () => {
-  test("production", () => {
+  test('production', () => {
     const creation = testBlock(blockGitHubActionsCI, {
       options: optionsBase,
     });
@@ -101,9 +101,9 @@ describe(blockGitHubActionsCI, () => {
     `);
   });
 
-  test("transition mode", () => {
+  test('transition mode', () => {
     const creation = testBlock(blockGitHubActionsCI, {
-      mode: "transition",
+      mode: 'transition',
       options: optionsBase,
     });
 
@@ -209,18 +209,18 @@ describe(blockGitHubActionsCI, () => {
     `);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockGitHubActionsCI, {
       addons: {
         jobs: [
           {
-            name: "Validate",
+            name: 'Validate',
             steps: [
               {
-                env: { VAR_ENV: "true" },
-                if: "always()",
-                run: "pnpm validate",
-                with: { VAR_WITH: "true" },
+                env: { VAR_ENV: 'true' },
+                if: 'always()',
+                run: 'pnpm validate',
+                with: { VAR_WITH: 'true' },
               },
             ],
           },
@@ -353,8 +353,8 @@ describe(blockGitHubActionsCI, () => {
     `);
   });
 
-  describe("intake", () => {
-    it("returns undefined when action.yaml does not exist", () => {
+  describe('intake', () => {
+    it('returns undefined when action.yaml does not exist', () => {
       const actual = testIntake(blockGitHubActionsCI, {
         files: {},
       });
@@ -362,13 +362,13 @@ describe(blockGitHubActionsCI, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when action.yaml contains invalid YAML", () => {
+    it('returns undefined when action.yaml contains invalid YAML', () => {
       const actual = testIntake(blockGitHubActionsCI, {
         files: {
-          ".github": {
+          '.github': {
             actions: {
               setup: {
-                "action.yaml": ["invalid YAML!"],
+                'action.yaml': ['invalid YAML!'],
               },
             },
           },
@@ -378,13 +378,13 @@ describe(blockGitHubActionsCI, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined when action.yaml has no inputs", () => {
+    it('returns undefined when action.yaml has no inputs', () => {
       const actual = testIntake(blockGitHubActionsCI, {
         files: {
-          ".github": {
+          '.github': {
             actions: {
               setup: {
-                "action.yaml": [
+                'action.yaml': [
                   dump({
                     runs: {
                       steps: [],
@@ -400,17 +400,17 @@ describe(blockGitHubActionsCI, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns undefined env when action.yaml contains a test action with no node-version in its inputs", () => {
+    it('returns undefined env when action.yaml contains a test action with no node-version in its inputs', () => {
       const actual = testIntake(blockGitHubActionsCI, {
         files: {
-          ".github": {
+          '.github': {
             actions: {
               setup: {
-                "action.yaml": [
+                'action.yaml': [
                   dump({
                     inputs: {
-                      "some-other-prop": {
-                        description: "Node.js version to use",
+                      'some-other-prop': {
+                        description: 'Node.js version to use',
                         default: 24,
                         required: false,
                       },
@@ -426,19 +426,19 @@ describe(blockGitHubActionsCI, () => {
       expect(actual).toBeUndefined();
     });
 
-    it("returns nodeVersion when action.yaml contains a test action with node-version in its inputs", () => {
-      const nodeVersion = "24";
+    it('returns nodeVersion when action.yaml contains a test action with node-version in its inputs', () => {
+      const nodeVersion = '24';
 
       const actual = testIntake(blockGitHubActionsCI, {
         files: {
-          ".github": {
+          '.github': {
             actions: {
               setup: {
-                "action.yaml": [
+                'action.yaml': [
                   dump({
                     inputs: {
-                      "node-version": {
-                        description: "Node.js version to use",
+                      'node-version': {
+                        description: 'Node.js version to use',
                         default: nodeVersion,
                         required: false,
                       },

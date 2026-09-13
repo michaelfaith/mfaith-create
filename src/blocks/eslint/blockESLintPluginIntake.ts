@@ -2,11 +2,11 @@ import {
   AST_NODE_TYPES,
   parse as parseAST,
   type TSESTree,
-} from "@typescript-eslint/typescript-estree";
-import JSON5 from "json5";
+} from '@typescript-eslint/typescript-estree';
+import JSON5 from 'json5';
 
-import { tryCatch } from "../../utils/tryCatch.ts";
-import { zConfigEmoji } from "./schemas.ts";
+import { tryCatch } from '../../utils/tryCatch.ts';
+import { zConfigEmoji } from './schemas.ts';
 
 export function blockESLintPluginIntake(sourceText: string) {
   const ast = tryCatch(() =>
@@ -41,7 +41,7 @@ export function blockESLintPluginIntake(sourceText: string) {
       if (
         node.type === AST_NODE_TYPES.VariableDeclaration &&
         node.declarations[0].id.type === AST_NODE_TYPES.Identifier &&
-        node.declarations[0].id.name === "config" &&
+        node.declarations[0].id.name === 'config' &&
         node.declarations[0].init?.type === AST_NODE_TYPES.ObjectExpression
       ) {
         return node.declarations[0].init;
@@ -54,7 +54,7 @@ export function blockESLintPluginIntake(sourceText: string) {
       if (
         node.type === AST_NODE_TYPES.Property &&
         node.key.type === AST_NODE_TYPES.Identifier &&
-        node.key.name === "configEmoji" &&
+        node.key.name === 'configEmoji' &&
         node.value.type === AST_NODE_TYPES.ArrayExpression
       ) {
         return node.value;

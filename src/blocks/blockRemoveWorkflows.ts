@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { base } from '../base.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
 export const blockRemoveWorkflows = base.createBlock({
   about: {
-    name: "Remove Workflows",
+    name: 'Remove Workflows',
   },
   addons: {
     workflows: z.array(z.string()).optional(),

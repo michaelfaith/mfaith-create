@@ -1,12 +1,12 @@
-import type { Result } from "execa";
+import type { Result } from 'execa';
 
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from 'vitest';
 
-import { readAuthor } from "./readAuthor.ts";
+import { readAuthor } from './readAuthor.ts';
 
 describe(readAuthor, () => {
-  it("returns package author when it exists", async () => {
-    const name = "test-author";
+  it('returns package author when it exists', async () => {
+    const name = 'test-author';
     const getNpmDefaults = vi.fn();
 
     const actual = await readAuthor(
@@ -20,8 +20,8 @@ describe(readAuthor, () => {
     expect(getNpmDefaults).not.toHaveBeenCalled();
   });
 
-  it("returns npm defaults name when only it exists", async () => {
-    const name = "test-name";
+  it('returns npm defaults name when only it exists', async () => {
+    const name = 'test-name';
 
     const actual = await readAuthor(
       () => Promise.resolve({}),
@@ -33,8 +33,8 @@ describe(readAuthor, () => {
     expect(actual).toBe(name);
   });
 
-  it("returns owner when only it exists", async () => {
-    const owner = "test-owner";
+  it('returns owner when only it exists', async () => {
+    const owner = 'test-owner';
 
     const actual = await readAuthor(
       () => Promise.resolve({}),
@@ -46,8 +46,8 @@ describe(readAuthor, () => {
     expect(actual).toBe(owner);
   });
 
-  it("returns gitUser when only it exists", async () => {
-    const gitUser = "test-owner";
+  it('returns gitUser when only it exists', async () => {
+    const gitUser = 'test-owner';
 
     const actual = await readAuthor(
       () => Promise.resolve({}),
@@ -59,7 +59,7 @@ describe(readAuthor, () => {
     expect(actual).toBe(gitUser);
   });
 
-  it("returns undefined when no sources provide a value", async () => {
+  it('returns undefined when no sources provide a value', async () => {
     const actual = await readAuthor(
       () => Promise.resolve({}),
       () => Promise.resolve(undefined),

@@ -1,15 +1,15 @@
-import { base } from "../base.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { base } from '../base.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
 export const blockCodeOfConduct = base.createBlock({
   about: {
-    name: "Code of Conduct",
+    name: 'Code of Conduct',
   },
   produce({ options }) {
     return {
       files: {
-        ".github": {
-          "CODE_OF_CONDUCT.md": `# Code of Conduct
+        '.github': {
+          'CODE_OF_CONDUCT.md': `# Code of Conduct
 
 ## Our Pledge
 
@@ -150,7 +150,7 @@ Translations are available at
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
+      addons: [blockRemoveFiles({ files: ['CODE_OF_CONDUCT.md'] })],
     };
   },
 });

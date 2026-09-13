@@ -1,6 +1,6 @@
-import { deepmerge } from "deepmerge-ts";
+import { deepmerge } from 'deepmerge-ts';
 
-import type { Extension, ExtensionRules } from "./schemas.ts";
+import type { Extension, ExtensionRules } from './schemas.ts';
 
 export const mergeAllExtensions = (...extensions: Extension[]): Extension[] => {
   const entries: Record<string, Extension> = {};

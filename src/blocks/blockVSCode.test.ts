@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockVSCode } from "./blockVSCode.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockVSCode } from './blockVSCode.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockVSCode, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockVSCode, {
       options: optionsBase,
     });
@@ -48,7 +48,7 @@ describe(blockVSCode, () => {
 		`);
   });
 
-  test("with empty addons", () => {
+  test('with empty addons', () => {
     const creation = testBlock(blockVSCode, {
       addons: {
         debuggers: [],
@@ -96,24 +96,24 @@ describe(blockVSCode, () => {
 		`);
   });
 
-  test("with full addons", () => {
+  test('with full addons', () => {
     const creation = testBlock(blockVSCode, {
       addons: {
         debuggers: [
           {
-            name: "fake-debugger",
+            name: 'fake-debugger',
             other: true,
           },
         ],
         settings: {
-          "editor.formatOnSave": true,
+          'editor.formatOnSave': true,
         },
         tasks: [
           {
-            detail: "Build the project",
-            label: "build",
-            script: "build",
-            type: "npm",
+            detail: 'Build the project',
+            label: 'build',
+            script: 'build',
+            type: 'npm',
           },
         ],
       },

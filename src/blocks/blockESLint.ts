@@ -1,20 +1,20 @@
 // @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
-import { parse as parsePackageName } from "parse-package-name";
-import sortKeys from "sort-keys";
-import { z } from "zod";
+import { parse as parsePackageName } from 'parse-package-name';
+import sortKeys from 'sort-keys';
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { getPackageDependencies } from "../data/packageData.ts";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
-import { blockVSCode } from "./blockVSCode.ts";
-import { blockESLintIntake } from "./eslint/blockESLintIntake.ts";
-import { JS_TS_FILES } from "./eslint/globs.ts";
-import { mergeAllExtensions } from "./eslint/mergeAllExtensions.ts";
+import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
+import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockVSCode } from './blockVSCode.ts';
+import { blockESLintIntake } from './eslint/blockESLintIntake.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
 import {
   type Extension,
   type ExtensionRuleGroup,
@@ -22,13 +22,13 @@ import {
   zExtension,
   zPackageImport,
   type ExtensionPlugins,
-} from "./eslint/schemas.ts";
-import { intakeFile } from "./intake/intakeFile.ts";
-import { CommandPhase } from "./phases.ts";
+} from './eslint/schemas.ts';
+import { intakeFile } from './intake/intakeFile.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockESLint = base.createBlock({
   about: {
-    name: "ESLint",
+    name: 'ESLint',
   },
   addons: {
     beforeLint: z.string().optional(),
@@ -40,10 +40,10 @@ export const blockESLint = base.createBlock({
   intake({ files }) {
     const eslintConfigRaw = intakeFile(files, [
       [
-        "eslint.config.ts",
-        "eslint.config.mts",
-        "eslint.config.js",
-        "eslint.config.mjs",
+        'eslint.config.ts',
+        'eslint.config.mts',
+        'eslint.config.js',
+        'eslint.config.mjs',
       ],
     ]);
 
@@ -56,25 +56,25 @@ export const blockESLint = base.createBlock({
       explanations.length > 0
         ? `${explanations
             .map((explanation) => `/*\n${explanation}\n*/\n`)
-            .join("")}\n`
-        : "";
+            .join('')}\n`
+        : '';
 
     const importLines = [
-      'import eslint from "@eslint/js";',
-      'import { defineConfig, globalIgnores } from "eslint/config";',
-      'import perfectionist from "eslint-plugin-perfectionist";',
-      'import tseslint from "typescript-eslint";',
+      "import eslint from '@eslint/js';",
+      "import { defineConfig, globalIgnores } from 'eslint/config';",
+      "import perfectionist from 'eslint-plugin-perfectionist';",
+      "import tseslint from 'typescript-eslint';",
       ...imports.map(
         (packageImport) =>
-          `import ${packageImport.specifier} from "${typeof packageImport.source === "string" ? packageImport.source : packageImport.source.packageName}"`,
+          `import ${packageImport.specifier} from '${typeof packageImport.source === 'string' ? packageImport.source : packageImport.source.packageName}';`,
       ),
     ].sort((a, b) =>
-      a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
+      a.replace(/.+from/, '').localeCompare(b.replace(/.+from/, '')),
     );
 
     const ignoreLines = Array.from(
       new Set(
-        ["node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
+        ['node_modules', 'pnpm-lock.yaml', ...ignores].map((ignore) =>
           JSON.stringify(ignore),
         ),
       ),
@@ -83,29 +83,29 @@ export const blockESLint = base.createBlock({
     const extensionEntries = mergeAllExtensions(
       {
         extends: [
-          "eslint.configs.recommended",
-          "tseslint.configs.strictTypeChecked",
-          "tseslint.configs.stylisticTypeChecked",
+          'eslint.configs.recommended',
+          'tseslint.configs.strictTypeChecked',
+          'tseslint.configs.stylisticTypeChecked',
         ],
         files: JS_TS_FILES,
         languageOptions: {
           parserOptions: {
             projectService: {
               allowDefaultProject: Array.from(
-                new Set(["*.config.*s"].filter(Boolean).sort()),
+                new Set(['*.config.*s'].filter(Boolean).sort()),
               ),
             },
           },
         },
         plugins: {
-          perfectionist: "perfectionist",
+          perfectionist: 'perfectionist',
         },
         rules: {
-          "perfectionist/sort-exports": "error",
-          "perfectionist/sort-imports": "error",
+          'perfectionist/sort-exports': 'error',
+          'perfectionist/sort-imports': 'error',
         },
         settings: {
-          perfectionist: { partitionByComment: true, type: "natural" },
+          perfectionist: { partitionByComment: true, type: 'natural' },
         },
       },
       ...extensions,
@@ -148,8 +148,8 @@ Each should be shown in VS Code, and can be run manually on the command-line:
         blockGitHubActionsCI({
           jobs: [
             {
-              name: "Lint",
-              steps: [{ run: "pnpm lint" }],
+              name: 'Lint',
+              steps: [{ run: 'pnpm lint' }],
             },
           ],
         }),
@@ -157,14 +157,14 @@ Each should be shown in VS Code, and can be run manually on the command-line:
           properties: {
             devDependencies: {
               ...getPackageDependencies(
-                "@eslint/js",
-                "@types/node",
-                "eslint",
-                "eslint-plugin-perfectionist",
-                "jiti",
-                "typescript-eslint",
+                '@eslint/js',
+                '@types/node',
+                'eslint',
+                'eslint-plugin-perfectionist',
+                'jiti',
+                'typescript-eslint',
                 ...imports
-                  .filter((imported) => typeof imported.source === "string")
+                  .filter((imported) => typeof imported.source === 'string')
                   .flatMap(({ source, types }) => {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
                     const { name } = parsePackageName(source) as {
@@ -179,7 +179,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
                     (
                       imported,
                     ): imported is typeof imported & { source: object } =>
-                      typeof imported.source === "object",
+                      typeof imported.source === 'object',
                   )
                   .map((imported) => [
                     imported.source.packageName,
@@ -188,38 +188,38 @@ Each should be shown in VS Code, and can be run manually on the command-line:
               ),
             },
             scripts: {
-              lint: "eslint . --max-warnings 0",
+              lint: 'eslint . --max-warnings 0',
             },
           },
         }),
         blockVSCode({
-          extensions: ["dbaeumer.vscode-eslint"],
+          extensions: ['dbaeumer.vscode-eslint'],
           settings: {
-            "eslint.probe": [
-              "javascript",
-              "javascriptreact",
-              "json",
-              "jsonc",
-              "markdown",
-              "typescript",
-              "typescriptreact",
-              "yaml",
+            'eslint.probe': [
+              'javascript',
+              'javascriptreact',
+              'json',
+              'jsonc',
+              'markdown',
+              'typescript',
+              'typescriptreact',
+              'yaml',
             ],
           },
         }),
       ],
       files: {
-        "eslint.config.ts": `${explanation}${importLines.join("\n")}
+        'eslint.config.ts': `${explanation}${importLines.join('\n')}
 
 export default defineConfig(
-	globalIgnores( [${ignoreLines.join(", ")}], "Global Ignores" ),
-	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	${coreConfigLines.join(",")}
+	globalIgnores( [${ignoreLines.join(', ')}], 'Global Ignores' ),
+	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+	${coreConfigLines.join(',')}
 );`,
       },
       scripts: [
         {
-          commands: ["pnpm lint --fix"],
+          commands: ['pnpm lint --fix'],
           phase: CommandPhase.Process,
         },
       ],
@@ -230,20 +230,20 @@ export default defineConfig(
       addons: [
         blockRemoveDependencies({
           dependencies: [
-            "@types/eslint",
-            "@typescript-eslint/eslint-plugin",
-            "@typescript-eslint/parser",
-            "eslint-plugin-deprecation",
-            "eslint-plugin-eslint-comments",
-            "eslint-plugin-no-only-tests",
-            "yaml-eslint-parser",
+            '@types/eslint',
+            '@typescript-eslint/eslint-plugin',
+            '@typescript-eslint/parser',
+            'eslint-plugin-deprecation',
+            'eslint-plugin-eslint-comments',
+            'eslint-plugin-no-only-tests',
+            'yaml-eslint-parser',
           ],
         }),
         blockRemoveFiles({
-          files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,js,mjs}"],
+          files: ['.eslintrc*', '.eslintignore', 'eslint.config.{cjs,js,mjs}'],
         }),
         blockRemoveWorkflows({
-          workflows: ["eslint", "lint"],
+          workflows: ['eslint', 'lint'],
         }),
       ],
     };
@@ -274,21 +274,21 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 
 function printExtension(extension: Extension): string {
   return [
-    "{",
-    extension.extends && `extends: [${extension.extends.join(", ")}],`,
-    `files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
+    '{',
+    extension.extends && `extends: [${extension.extends.join(', ')}],`,
+    `files: [${extension.files.map((glob) => JSON.stringify(glob)).join(', ')}],`,
     extension.languageOptions &&
-      `languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
+      `languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', 'import.meta.dirname')},`,
     extension.linterOptions &&
       `linterOptions: ${JSON.stringify(extension.linterOptions)}`,
     extension.plugins && `plugins: ${printPlugins(extension.plugins)},`,
     extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
     extension.settings &&
       `settings: ${JSON.stringify(sortKeys(extension.settings))},`,
-    "}",
+    '}',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 }
 
 function printExtensionRules(rules: ExtensionRules): string {
@@ -297,35 +297,35 @@ function printExtensionRules(rules: ExtensionRules): string {
   }
 
   return [
-    "{",
+    '{',
     ...groupByComment(rules).flatMap((group) => [
       printGroupComment(group.comment),
       ...Object.entries(group.entries).map(
-        ([ruleName, options]) => `"${ruleName}":${JSON.stringify(options)},`,
+        ([ruleName, options]) => `'${ruleName}': ${JSON.stringify(options)},`,
       ),
     ]),
-    "}",
-  ].join("");
+    '}',
+  ].join('');
 }
 
 function printGroupComment(comment: string | undefined): string {
-  return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
+  return comment ? `\n\n// ${comment.replaceAll('\n', '\n// ')}\n` : '';
 }
 
 function printPlugins(plugins: ExtensionPlugins): string {
-  const lines = ["{"];
+  const lines = ['{'];
   for (const [pluginName, pluginSpecifier] of Object.entries(plugins)) {
     if (pluginName === pluginSpecifier) {
       lines.push(`${pluginName},`);
     } else if (doesKeyNeedQuotes(pluginName)) {
-      lines.push(`"${pluginName}": ${pluginSpecifier},`);
+      lines.push(`'${pluginName}': ${pluginSpecifier},`);
     } else {
       lines.push(`${pluginName}: ${pluginSpecifier},`);
     }
   }
 
-  lines.push("}");
-  return lines.join("");
+  lines.push('}');
+  return lines.join('');
 }
 
 const noQuotesRequiredRegex = /^[A-Z_$][\w$]*$/i;
@@ -333,5 +333,5 @@ const noQuotesRequiredRegex = /^[A-Z_$][\w$]*$/i;
 const doesKeyNeedQuotes = (key: string) => !noQuotesRequiredRegex.test(key);
 
 function processForSort(files: string[]) {
-  return files.join("").replaceAll("{", "");
+  return files.join('').replaceAll('{', '');
 }

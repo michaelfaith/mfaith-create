@@ -1,11 +1,11 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
-import { blockGitHubApps } from "./blockGitHubApps.ts";
-import { optionsBase } from "./options.fakes.ts";
+import { blockGitHubApps } from './blockGitHubApps.ts';
+import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitHubApps, () => {
-  test("without addons", () => {
+  test('without addons', () => {
     const creation = testBlock(blockGitHubApps, {
       options: optionsBase,
     });
@@ -17,17 +17,17 @@ describe(blockGitHubApps, () => {
 		`);
   });
 
-  test("with addons", () => {
+  test('with addons', () => {
     const creation = testBlock(blockGitHubApps, {
       addons: {
         apps: [
           {
-            name: "Secret A.",
-            url: "https://example.com?a",
+            name: 'Secret A.',
+            url: 'https://example.com?a',
           },
           {
-            name: "Secret B.",
-            url: "https://example.com?b",
+            name: 'Secret B.',
+            url: 'https://example.com?b',
           },
         ],
       },

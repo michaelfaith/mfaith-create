@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
+import { base } from '../base.ts';
+import { formatIgnoreFile } from './files/formatIgnoreFile.ts';
 
 export const blockGitignore = base.createBlock({
   about: {
-    name: "Gitignore",
+    name: 'Gitignore',
   },
   addons: {
     ignores: z.array(z.string()).default([]),
@@ -15,7 +15,7 @@ export const blockGitignore = base.createBlock({
 
     return {
       files: {
-        ".gitignore": formatIgnoreFile(["/node_modules", ...ignores].sort()),
+        '.gitignore': formatIgnoreFile(['/node_modules', ...ignores].sort()),
       },
     };
   },

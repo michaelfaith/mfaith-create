@@ -1,7 +1,7 @@
-import type { Workflow } from "./workflow.types.ts";
+import type { Workflow } from './workflow.types.ts';
 
-import { createJobName } from "./createJobName.ts";
-import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
+import { createJobName } from './createJobName.ts';
+import { formatWorkflowYaml } from './formatWorkflowYaml.ts';
 
 export function createMultiJobWorkflow({
   concurrency,
@@ -20,7 +20,7 @@ export function createMultiJobWorkflow({
           name: job.name,
           if: job.if,
           needs: job.needs,
-          "runs-on": job["runs-on"] || "ubuntu-latest",
+          'runs-on': job['runs-on'] || 'ubuntu-latest',
           permissions: job.permissions,
           outputs: job.outputs,
           steps: job.steps,

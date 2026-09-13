@@ -1,16 +1,16 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { resolveUses } from "./actions/resolveUses.ts";
-import { intakeFileYamlSteps } from "./actions/steps.ts";
-import { blockGitHubApps } from "./blockGitHubApps.ts";
-import { blockREADME } from "./blockREADME.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
-import { blockVitest } from "./blockVitest.ts";
+import { base } from '../base.ts';
+import { resolveUses } from './actions/resolveUses.ts';
+import { intakeFileYamlSteps } from './actions/steps.ts';
+import { blockGitHubApps } from './blockGitHubApps.ts';
+import { blockREADME } from './blockREADME.ts';
+import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockVitest } from './blockVitest.ts';
 
 export const blockCodecov = base.createBlock({
   about: {
-    name: "Codecov",
+    name: 'Codecov',
   },
   addons: {
     env: z.record(z.string(), z.string()).optional(),
@@ -18,8 +18,8 @@ export const blockCodecov = base.createBlock({
   intake({ files }) {
     const steps = intakeFileYamlSteps(
       files,
-      [".github", "workflows", "ci.yaml"],
-      ["jobs", "test", "steps"],
+      ['.github', 'workflows', 'ci.yaml'],
+      ['jobs', 'test', 'steps'],
     );
     if (!steps) {
       return undefined;
@@ -27,8 +27,8 @@ export const blockCodecov = base.createBlock({
 
     const step = steps.find(
       (step) =>
-        typeof step.uses === "string" &&
-        step.uses.startsWith("codecov/codecov-action"),
+        typeof step.uses === 'string' &&
+        step.uses.startsWith('codecov/codecov-action'),
     );
     if (!step) {
       return undefined;
@@ -42,8 +42,8 @@ export const blockCodecov = base.createBlock({
     const { env } = addons;
     const actionStep = {
       uses: resolveUses(
-        "codecov/codecov-action",
-        "v7",
+        'codecov/codecov-action',
+        'v7',
         options.workflowsVersions,
       ),
       ...(env && { env }),
@@ -58,15 +58,15 @@ export const blockCodecov = base.createBlock({
         blockGitHubApps({
           apps: [
             {
-              name: "Codecov",
-              url: "https://github.com/apps/codecov",
+              name: 'Codecov',
+              url: 'https://github.com/apps/codecov',
             },
           ],
         }),
         blockREADME({
           badges: [
             {
-              alt: "🧪 Coverage",
+              alt: '🧪 Coverage',
               href: `https://codecov.io/gh/${options.owner}/${options.repository}`,
               src: `https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage`,
             },
@@ -75,7 +75,7 @@ export const blockCodecov = base.createBlock({
         blockVitest({
           actionSteps: [actionStep],
           permissions: {
-            "id-token": "write",
+            'id-token': 'write',
           },
         }),
       ],
@@ -85,7 +85,7 @@ export const blockCodecov = base.createBlock({
     return {
       addons: [
         blockRemoveFiles({
-          files: [".github/codecov.{yaml,yml}", "codecov.{yaml,yml}"],
+          files: ['.github/codecov.{yaml,yml}', 'codecov.{yaml,yml}'],
         }),
       ],
     };

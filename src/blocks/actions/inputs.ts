@@ -1,9 +1,9 @@
-import type { IntakeDirectory } from "bingo-fs";
+import type { IntakeDirectory } from 'bingo-fs';
 
-import _ from "lodash";
-import { z } from "zod";
+import _ from 'lodash';
+import { z } from 'zod';
 
-import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.ts";
+import { intakeFileAsYaml } from '../intake/intakeFileAsYaml.ts';
 
 export const zActionStep = z.intersection(
   z.object({
@@ -18,7 +18,7 @@ export interface ActionInput {
   default?: boolean | number | string;
   description?: string;
   required?: boolean;
-  type?: "boolean" | "number" | "string";
+  type?: 'boolean' | 'number' | 'string';
 }
 
 export function intakeActionInput(
@@ -31,10 +31,10 @@ export function intakeActionInput(
     return undefined;
   }
 
-  const ymlPath = ["inputs", inputName];
+  const ymlPath = ['inputs', inputName];
 
   const inputValue = _.get(actionYml, ymlPath) as ActionInput | undefined;
-  if (!inputValue || typeof inputValue !== "object") {
+  if (!inputValue || typeof inputValue !== 'object') {
     return undefined;
   }
 

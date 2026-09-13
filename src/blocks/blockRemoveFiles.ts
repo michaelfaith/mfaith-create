@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { base } from "../base.ts";
-import { resolveBin } from "../utils/resolveBin.ts";
-import { CommandPhase } from "./phases.ts";
+import { base } from '../base.ts';
+import { resolveBin } from '../utils/resolveBin.ts';
+import { CommandPhase } from './phases.ts';
 
 export const blockRemoveFiles = base.createBlock({
   about: {
-    name: "Remove Files",
+    name: 'Remove Files',
   },
   addons: {
     files: z.array(z.string()).optional(),
@@ -22,7 +22,7 @@ export const blockRemoveFiles = base.createBlock({
         ? [
             {
               commands: [
-                `node ${resolveBin("trash-cli/cli.js")} ${addons.files.join(" ")}`,
+                `node ${resolveBin('trash-cli/cli.js')} ${addons.files.join(' ')}`,
               ],
               phase: CommandPhase.Migrations,
               silent: true,
