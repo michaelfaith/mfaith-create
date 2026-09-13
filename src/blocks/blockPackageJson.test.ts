@@ -38,30 +38,31 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "files": [
-			          "package-lock.json yarn.lock",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "files": [
+                "package-lock.json",
+                "yarn.lock",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('with addons', () => {
