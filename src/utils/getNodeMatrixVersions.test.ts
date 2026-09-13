@@ -39,6 +39,24 @@ describe(getNodeMatrixVersions, () => {
     ]);
   });
 
+  it('keeps an existing lower version when a later clause is higher', () => {
+    expect(getNodeMatrixVersions('^20.5.0 || ^20.11.1')).toEqual([
+      '20.5.0',
+      20,
+    ]);
+  });
+
+  it('uses the highest lower bound in a comparator set', () => {
+    expect(getNodeMatrixVersions('>=18.17.0 >=18.12.0 <19')).toEqual([
+      '18.17.0',
+      18,
+    ]);
+  });
+
+  it('does not treat a partial-major upper bound as a finite major boundary', () => {
+    expect(getNodeMatrixVersions('>=18.12.0 <21.5.0')).toEqual(['18.12.0', 18]);
+  });
+
   it('sorts majors numerically regardless of clause order', () => {
     expect(getNodeMatrixVersions('^22.0.0 || ^18.17.0 || ^20.0.0')).toEqual([
       '18.17.0',
