@@ -43,6 +43,7 @@ async function createActualLines() {
   const actualFile = (await fs.readFile('docs/Blocks.md')).toString();
 
   actualFile
+    .replaceAll('\r\n', '\n')
     .split('\n')
     .filter((line) => !line.includes('----'))
     .map((line) => line.toLowerCase());
