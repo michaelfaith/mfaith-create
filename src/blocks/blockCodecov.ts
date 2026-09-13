@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { resolveUses } from './actions/resolveUses.ts';
-import { intakeFileYamlSteps } from './actions/steps.ts';
 import { blockGitHubApps } from './blockGitHubApps.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockVitest } from './blockVitest.ts';
+import { intakeActionOrWorkflowSteps } from './intake/intakeActionOrWorkflowSteps.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
 
 export const blockCodecov = base.createBlock({
   about: {
@@ -16,7 +16,7 @@ export const blockCodecov = base.createBlock({
     env: z.record(z.string(), z.string()).optional(),
   },
   intake({ files }) {
-    const steps = intakeFileYamlSteps(
+    const steps = intakeActionOrWorkflowSteps(
       files,
       ['.github', 'workflows', 'ci.yaml'],
       ['jobs', 'test', 'steps'],

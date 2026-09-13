@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import type { Step } from './step.types.ts';
+
 interface WorkflowConcurrency {
   'cancel-in-progress'?: boolean;
   group: string;
@@ -56,16 +58,6 @@ export interface WorkflowOn {
   workflow_dispatch?: null | string;
 }
 
-export type WorkflowStep = {
-  env?: Record<string, string>;
-  id?: string;
-  if?: string;
-  name?: string;
-} & (
-  | { run: string }
-  | { uses: string; with?: Record<string, boolean | number | string> }
-);
-
 export interface WorkflowJob {
   id?: string;
   if?: string;
@@ -74,7 +66,7 @@ export interface WorkflowJob {
   outputs?: Record<string, string>;
   permissions?: WorkflowPermissions;
   'runs-on'?: string;
-  steps: WorkflowStep[];
+  steps: Step[];
 }
 
 interface BaseWorkflow {

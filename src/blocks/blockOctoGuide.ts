@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { resolveUses } from './actions/resolveUses.ts';
-import { intakeFileYamlSteps } from './actions/steps.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { createSingleJobWorkflow } from './files/createSingleJobWorkflow.ts';
+import { intakeActionOrWorkflowSteps } from './intake/intakeActionOrWorkflowSteps.ts';
+import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
 
 export const blockOctoGuide = base.createBlock({
   about: {
@@ -14,7 +14,7 @@ export const blockOctoGuide = base.createBlock({
     config: z.union([z.literal('recommended'), z.literal('strict')]).optional(),
   },
   intake({ files }) {
-    const steps = intakeFileYamlSteps(
+    const steps = intakeActionOrWorkflowSteps(
       files,
       ['.github', 'workflows', 'octoguide.yaml'],
       ['jobs', 'octoguide', 'steps'],

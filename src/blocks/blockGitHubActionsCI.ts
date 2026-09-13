@@ -1,21 +1,21 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { intakeActionInput } from './actions/inputs.ts';
-import { resolveUses } from './actions/resolveUses.ts';
-import { zActionStep } from './actions/steps.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
-import { createMultiJobWorkflow } from './files/createMultiJobWorkflow.ts';
-import { createSingleJobWorkflow } from './files/createSingleJobWorkflow.ts';
 import { formatWorkflowYaml } from './files/formatWorkflowYaml.ts';
-import { zWorkflowPermissions } from './files/workflow.types.ts';
+import { intakeActionInput } from './intake/intakeActionInput.ts';
+import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
+import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
+import { StepSchema } from './workflows/step.types.ts';
+import { zWorkflowPermissions } from './workflows/workflow.types.ts';
 
 const zJob = z.object({
   if: z.string().optional(),
   name: z.string(),
   permissions: zWorkflowPermissions.optional(),
-  steps: z.array(zActionStep),
+  steps: z.array(StepSchema),
 });
 type Job = z.infer<typeof zJob>;
 

@@ -1,7 +1,7 @@
 import type { SingleJobWorkflow } from './workflow.types.ts';
 
+import { formatWorkflowYaml } from '../files/formatWorkflowYaml.ts';
 import { createJobName } from './createJobName.ts';
-import { formatWorkflowYaml } from './formatWorkflowYaml.ts';
 
 export function createSingleJobWorkflow({
   concurrency,
