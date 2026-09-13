@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.3](https://github.com/michaelfaith/mfaith-create/compare/v0.2.2...v0.2.3) (2026-09-13)
+
+
+### 🚀 Features
+
+* update Prettier block to use `singleQuotes` ([#172](https://github.com/michaelfaith/mfaith-create/issues/172)) ([3054729](https://github.com/michaelfaith/mfaith-create/commit/3054729e5634e32fd4eea0fcc5485ca4c8f0cc9b))
+
+
+### 🩹 Bug Fixes
+
+* update tsconfig `target` to `es2024` ([#170](https://github.com/michaelfaith/mfaith-create/issues/170)) ([fbfe7a0](https://github.com/michaelfaith/mfaith-create/commit/fbfe7a04433149eb06a5059b6d8232f6042f3c10))
+
 ## [0.2.2](https://github.com/michaelfaith/mfaith-create/compare/v0.2.1...v0.2.2) (2026-09-12)
 
 
