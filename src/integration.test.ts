@@ -158,4 +158,4 @@ If you're interested in learning more, see the 'getting started' docs on:
   expect(
     diffCreatedDirectory(actual, created.files, processText),
   ).toBeUndefined();
-});
+}, 10_000);

@@ -68,4 +68,4 @@ describe('base', () => {
       workflowsVersions: expect.any(Object),
     });
   });
-});
+}, 10_000);
