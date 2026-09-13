@@ -18,8 +18,7 @@ import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVSCode } from './blockVSCode.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
-import { StepSchema } from './workflows/step.types.ts';
-import { zWorkflowPermissions } from './workflows/workflow.types.ts';
+import { StepSchema, WorkflowPermissionsSchema } from './workflows/schema.ts';
 
 const zCoverage = z.object({
   exclude: z.array(z.string()).optional(),
@@ -66,7 +65,7 @@ export const blockVitest = base.createBlock({
     environment: zEnvironment.optional(),
     exclude: zExclude.default([]),
     flags: z.array(z.string()).default([]),
-    permissions: zWorkflowPermissions.optional(),
+    permissions: WorkflowPermissionsSchema.optional(),
   },
   intake({ files, options }) {
     return {

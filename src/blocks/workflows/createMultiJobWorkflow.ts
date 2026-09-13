@@ -1,4 +1,4 @@
-import type { Workflow } from './workflow.types.ts';
+import type { Workflow } from './schema.ts';
 
 import { formatWorkflowYaml } from '../files/formatWorkflowYaml.ts';
 import { createJobName } from '../workflows/createJobName.ts';

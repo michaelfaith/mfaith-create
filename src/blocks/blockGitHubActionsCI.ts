@@ -8,13 +8,12 @@ import { intakeActionInput } from './intake/intakeActionInput.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
-import { StepSchema } from './workflows/step.types.ts';
-import { zWorkflowPermissions } from './workflows/workflow.types.ts';
+import { StepSchema, WorkflowPermissionsSchema } from './workflows/schema.ts';
 
 const zJob = z.object({
   if: z.string().optional(),
   name: z.string(),
-  permissions: zWorkflowPermissions.optional(),
+  permissions: WorkflowPermissionsSchema.optional(),
   steps: z.array(StepSchema),
 });
 type Job = z.infer<typeof zJob>;
