@@ -80,7 +80,6 @@ function createFlag(prefix: string, name: string) {
 
 function splitTable(table: string) {
   return table
-    .replaceAll('\r\n', '\n')
     .split('\n')
     .filter((line) => !line.includes('----'))
     .map((line) => line.toLowerCase());
