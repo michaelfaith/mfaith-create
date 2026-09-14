@@ -20,7 +20,7 @@ const addons = {
   words: z.array(z.string()).default([]),
 };
 
-const zAddons = z.object(addons);
+const addonsSchema = z.object(addons);
 
 export const blockCSpell = base.createBlock({
   about: {
@@ -33,7 +33,9 @@ export const blockCSpell = base.createBlock({
       return undefined;
     }
 
-    const { data } = zAddons.safeParse(JSON5.parse<unknown>(cspellJson[0]));
+    const { data } = addonsSchema.safeParse(
+      JSON5.parse<unknown>(cspellJson[0]),
+    );
     if (!data) {
       return undefined;
     }

@@ -6,7 +6,7 @@ import {
 import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
-import { zConfigEmoji } from './schemas.ts';
+import { configEmojiSchema } from './schemas.ts';
 
 export function blockESLintPluginIntake(sourceText: string) {
   const ast = tryCatch(() =>
@@ -30,7 +30,7 @@ export function blockESLintPluginIntake(sourceText: string) {
     return undefined;
   }
 
-  const { data } = zConfigEmoji.safeParse(
+  const { data } = configEmojiSchema.safeParse(
     JSON5.parse(sourceText.slice(...configEmoji.range)),
   );
 

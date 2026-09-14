@@ -21,20 +21,20 @@ import { blockVSCode } from './blockVSCode.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 import { stepSchema, workflowPermissionsSchema } from './workflows/schema.ts';
 
-const zCoverage = z.object({
+const coverageSchema = z.object({
   exclude: z.array(z.string()).optional(),
   include: z.array(z.string()).optional(),
 });
 
-const zEnvironment = z.string();
+const environmentSchema = z.string();
 
-const zExclude = z.array(z.string());
+const excludeSchema = z.array(z.string());
 
-const zTest = z
+const testSchema = z
   .object({
-    coverage: zCoverage,
-    environment: zEnvironment,
-    exclude: zExclude,
+    coverage: coverageSchema,
+    environment: environmentSchema,
+    exclude: excludeSchema,
   })
   .partial();
 
@@ -44,7 +44,7 @@ function intakeFromConfig(files: IntakeDirectory) {
     return undefined;
   }
 
-  const parsedData = zTest.safeParse(rawData.test).data;
+  const parsedData = testSchema.safeParse(rawData.test).data;
   if (!parsedData) {
     return undefined;
   }
@@ -62,9 +62,9 @@ export const blockVitest = base.createBlock({
   },
   addons: {
     actionSteps: z.array(stepSchema).default([]),
-    coverage: zCoverage.default({}),
-    environment: zEnvironment.optional(),
-    exclude: zExclude.default([]),
+    coverage: coverageSchema.default({}),
+    environment: environmentSchema.optional(),
+    exclude: excludeSchema.default([]),
     flags: z.array(z.string()).default([]),
     permissions: workflowPermissionsSchema.optional(),
   },

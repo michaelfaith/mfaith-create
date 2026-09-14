@@ -9,7 +9,7 @@ function printAttributes(attributes: Record<string, number | string>) {
     .join(' ');
 }
 
-const zBadge = z.object({
+const badgeSchema = z.object({
   alt: z.string(),
   comments: z
     .object({
@@ -21,14 +21,14 @@ const zBadge = z.object({
   src: z.string(),
 });
 
-type Badge = z.infer<typeof zBadge>;
+type Badge = z.infer<typeof badgeSchema>;
 
 export const blockREADME = base.createBlock({
   about: {
     name: 'README.md',
   },
   addons: {
-    badges: z.array(zBadge).default([]),
+    badges: z.array(badgeSchema).default([]),
     defaultUsage: z.array(z.string()).default([]),
     notices: z.array(z.string()).default([]),
     sections: z.array(z.string()).default([]),

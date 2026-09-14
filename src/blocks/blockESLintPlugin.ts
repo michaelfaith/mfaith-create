@@ -8,7 +8,7 @@ import { blockREADME } from './blockREADME.ts';
 import { blockVitest } from './blockVitest.ts';
 import { blockESLintPluginIntake } from './eslint/blockESLintPluginIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
-import { zConfigEmoji } from './eslint/schemas.ts';
+import { configEmojiSchema } from './eslint/schemas.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { CommandPhase } from './phases.ts';
 
@@ -17,7 +17,7 @@ export const blockESLintPlugin = base.createBlock({
     name: 'ESLint Plugin',
   },
   addons: {
-    configEmoji: zConfigEmoji,
+    configEmoji: configEmojiSchema.optional(),
   },
   intake({ files }) {
     const docGeneratorConfigRaw = intakeFile(files, [

@@ -4,20 +4,20 @@ import { base } from '../base.ts';
 import { blockGitHubApps } from './blockGitHubApps.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
-const zIgnoreDeps = z.array(z.string()).default([]);
+const ignoreDepsSchema = z.array(z.string()).default([]);
 
 export const blockRenovate = base.createBlock({
   about: {
     name: 'Renovate',
   },
   addons: {
-    ignoreDeps: zIgnoreDeps,
+    ignoreDeps: ignoreDepsSchema,
   },
   intake({ files }) {
     const raw = intakeFileAsJson(files, ['.github', 'renovate.json']);
 
     return {
-      ignoreDeps: zIgnoreDeps.safeParse(raw?.ignoreDeps).data,
+      ignoreDeps: ignoreDepsSchema.safeParse(raw?.ignoreDeps).data,
     };
   },
   produce({ addons }) {

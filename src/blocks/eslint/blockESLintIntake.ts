@@ -7,7 +7,7 @@ import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
 import { stylisticComment } from '../blockESLintMoreStyling.ts';
-import { type ExtensionRuleGroup, zRuleOptions } from './schemas.ts';
+import { type ExtensionRuleGroup, ruleOptionsSchema } from './schemas.ts';
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {
   declaration: TSESTree.CallExpression;
@@ -73,7 +73,7 @@ export function blockESLintIntake(sourceText: string) {
 
     const name = property.key.value;
 
-    const { data } = zRuleOptions.safeParse(
+    const { data } = ruleOptionsSchema.safeParse(
       JSON5.parse(sourceText.slice(...property.value.range)),
     );
 
