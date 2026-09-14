@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.3](https://github.com/michaelfaith/mfaith-create/compare/v0.2.2...v0.2.3) (2026-09-14)
+
+
+### 🚀 Features
+
+* add node version matrix to Engines Check ([#186](https://github.com/michaelfaith/mfaith-create/issues/186)) ([4f1ee01](https://github.com/michaelfaith/mfaith-create/commit/4f1ee01913f8879ee38629a2eaa5431a296a5097))
+* change test step in ci to use node and os matrix ([#179](https://github.com/michaelfaith/mfaith-create/issues/179)) ([eb8acae](https://github.com/michaelfaith/mfaith-create/commit/eb8acae385d974d8362aeb56289df2927de7f6ba))
+* update Prettier block to use `singleQuotes` ([#172](https://github.com/michaelfaith/mfaith-create/issues/172)) ([3054729](https://github.com/michaelfaith/mfaith-create/commit/3054729e5634e32fd4eea0fcc5485ca4c8f0cc9b))
+
+
+### 🩹 Bug Fixes
+
+* only run `--coverage` when on the ubuntu runner ([#184](https://github.com/michaelfaith/mfaith-create/issues/184)) ([1ef04ae](https://github.com/michaelfaith/mfaith-create/commit/1ef04aedf1fc08adaab10e29e0ae68de3df8aec9))
+* update tsconfig `target` to `es2024` ([#170](https://github.com/michaelfaith/mfaith-create/issues/170)) ([fbfe7a0](https://github.com/michaelfaith/mfaith-create/commit/fbfe7a04433149eb06a5059b6d8232f6042f3c10))
+
 ## [0.2.2](https://github.com/michaelfaith/mfaith-create/compare/v0.2.1...v0.2.2) (2026-09-12)
 
 
