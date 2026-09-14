@@ -189,7 +189,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -463,7 +463,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -781,7 +781,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -1064,7 +1064,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {

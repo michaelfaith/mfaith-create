@@ -221,7 +221,12 @@ describe(greet, () => {
                   os: ['macos-latest', 'ubuntu-latest', 'windows-latest'],
                 },
               },
-              steps: [{ run: 'pnpm test --coverage' }, ...actionSteps],
+              steps: [
+                {
+                  run: "pnpm test ${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                },
+                ...actionSteps,
+              ],
             },
           ],
         }),

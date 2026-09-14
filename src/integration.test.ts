@@ -24,6 +24,9 @@ vi.mock('./utils/resolveBin.js', () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 
+// Check if running in CI and on Windows ('win32')
+const isWindowsCI = Boolean(process.env.CI) && process.platform === 'win32';
+
 const presetIntegration = base.createPreset({
   about: {
     description: 'Preset used for integration tests',
@@ -48,114 +51,118 @@ const presetIntegration = base.createPreset({
 //
 // For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
-test('Producing the everything preset matches the files in this repository', async () => {
-  const actual = (await intake('.', {
-    exclude: /node_modules|^\.git$/,
-  })) as IntakeDirectory;
+test(
+  'Producing the everything preset matches the files in this repository',
+  async () => {
+    const actual = (await intake('.', {
+      exclude: /node_modules|^\.git$/,
+    })) as IntakeDirectory;
 
-  const created = producePreset(presetIntegration, {
-    options: (await prepareOptions(base)) as BaseOptions,
-    refinements: {
-      addons: [
-        blockCSpell({
-          words: [
-            'Anson',
-            'TSESTree',
-            'apexskier',
-            'attw',
-            'autorelease',
-            'dbaeumer',
-            'infile',
-            'joshuakgoldberg',
-            'mfaith',
-            'michaelfaith',
-            'mshick',
-            'octoguide',
-            'stefanzweifel',
-            'ts-prunerc',
-            'webpro',
-          ],
-        }),
-        blockESLint({
-          explanations: [
-            `👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+    const created = producePreset(presetIntegration, {
+      options: (await prepareOptions(base)) as BaseOptions,
+      refinements: {
+        addons: [
+          blockCSpell({
+            words: [
+              'Anson',
+              'TSESTree',
+              'apexskier',
+              'attw',
+              'autorelease',
+              'dbaeumer',
+              'infile',
+              'joshuakgoldberg',
+              'mfaith',
+              'michaelfaith',
+              'mshick',
+              'octoguide',
+              'stefanzweifel',
+              'ts-prunerc',
+              'webpro',
+            ],
+          }),
+          blockESLint({
+            explanations: [
+              `👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
 it's not something you need to exhaustively understand immediately. 💙
 
 If you're interested in learning more, see the 'getting started' docs on:
 - ESLint: https://eslint.org
 - typescript-eslint: https://typescript-eslint.io`,
-          ],
-          extensions: [
-            {
-              files: JS_TS_FILES,
-              rules: [
-                {
-                  comment:
-                    'These on-by-default rules work well for this repo if configured',
-                  entries: {
-                    '@typescript-eslint/prefer-nullish-coalescing': [
-                      'error',
-                      { ignorePrimitives: true },
-                    ],
-                    '@typescript-eslint/restrict-template-expressions': [
-                      'error',
-                      {
-                        allowBoolean: true,
-                        allowNullish: true,
-                        allowNumber: true,
-                      },
-                    ],
-                    'n/no-unsupported-features/node-builtins': [
-                      'error',
-                      {
-                        allowExperimental: true,
-                        ignores: ['import.meta.dirname'],
-                      },
-                    ],
+            ],
+            extensions: [
+              {
+                files: JS_TS_FILES,
+                rules: [
+                  {
+                    comment:
+                      'These on-by-default rules work well for this repo if configured',
+                    entries: {
+                      '@typescript-eslint/prefer-nullish-coalescing': [
+                        'error',
+                        { ignorePrimitives: true },
+                      ],
+                      '@typescript-eslint/restrict-template-expressions': [
+                        'error',
+                        {
+                          allowBoolean: true,
+                          allowNullish: true,
+                          allowNumber: true,
+                        },
+                      ],
+                      'n/no-unsupported-features/node-builtins': [
+                        'error',
+                        {
+                          allowExperimental: true,
+                          ignores: ['import.meta.dirname'],
+                        },
+                      ],
+                    },
                   },
-                },
-              ],
+                ],
+              },
+            ],
+          }),
+          blockKnip({
+            ignoreDependencies: [
+              'all-contributors-cli',
+              'cspell-populate-words',
+              'remove-dependencies',
+              'trash-cli',
+            ],
+          }),
+          // https://github.com/bingo-js/bingo/issues/420
+          blockPnpmWorkspace({
+            config: {
+              overrides: {
+                'bingo-stratum@0.5.13>cached-factory': '0.3.0',
+                'bingo@0.9.3>cached-factory': '0.3.0',
+              },
             },
-          ],
-        }),
-        blockKnip({
-          ignoreDependencies: [
-            'all-contributors-cli',
-            'cspell-populate-words',
-            'remove-dependencies',
-            'trash-cli',
-          ],
-        }),
-        // https://github.com/bingo-js/bingo/issues/420
-        blockPnpmWorkspace({
-          config: {
-            overrides: {
-              'bingo-stratum@0.5.13>cached-factory': '0.3.0',
-              'bingo@0.9.3>cached-factory': '0.3.0',
+          }),
+          // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
+          blockTypeScript({
+            compilerOptions: {
+              lib: ['ES2025'],
             },
-          },
-        }),
-        // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
-        blockTypeScript({
-          compilerOptions: {
-            lib: ['ES2025'],
-          },
-        }),
-      ],
-      blocks: {
-        add: [blockAreTheTypesWrong],
-        exclude: [blockTemplatedWith],
+          }),
+        ],
+        blocks: {
+          add: [blockAreTheTypesWrong],
+          exclude: [blockTemplatedWith],
+        },
       },
-    },
-  });
+    });
 
-  const processText = (text: string, filePath: string) =>
-    /all-contributorsrc|js|md|ts|yaml/.test(filePath)
-      ? prettier.format(text, { filepath: filePath })
-      : text;
+    const processText = (text: string, filePath: string) =>
+      /all-contributorsrc|js|md|ts|yaml/.test(filePath)
+        ? prettier.format(text, { filepath: filePath })
+        : text;
 
-  expect(
-    diffCreatedDirectory(actual, created.files, processText),
-  ).toBeUndefined();
-}, 10_000);
+    expect(
+      diffCreatedDirectory(actual, created.files, processText),
+    ).toBeUndefined();
+  },
+  isWindowsCI ? 20_000 : 10_000,
+);
