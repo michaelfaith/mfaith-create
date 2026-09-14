@@ -31,13 +31,22 @@ jobs:
       - run: pnpm dedupe --check
 
   engines_check:
-    name: Engines Check
+    name: Engines Check (Node.js ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 24.15.0
+          - 24
+          - 26.0.0
+          - 26
     steps:
       - uses: $/.github/actions/setup
         with:
           cache: false
           install-flags: --prod --ignore-scripts
+          node-version: ${{ matrix.node-version }}
           strict-engines: true
 
   format_check:

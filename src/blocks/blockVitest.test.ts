@@ -177,8 +177,10 @@ describe(blockVitest, () => {
                     "fail-fast": false,
                     "matrix": {
                       "node-version": [
-                        "20.12.0",
-                        20,
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
                       ],
                     },
                   },
@@ -451,8 +453,10 @@ describe(blockVitest, () => {
                     "fail-fast": false,
                     "matrix": {
                       "node-version": [
-                        "20.12.0",
-                        20,
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
                       ],
                     },
                   },
@@ -766,8 +770,10 @@ describe(blockVitest, () => {
                     "fail-fast": false,
                     "matrix": {
                       "node-version": [
-                        "20.12.0",
-                        20,
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
                       ],
                     },
                   },
@@ -1052,8 +1058,10 @@ describe(blockVitest, () => {
                     "fail-fast": false,
                     "matrix": {
                       "node-version": [
-                        "20.12.0",
-                        20,
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
                       ],
                     },
                   },

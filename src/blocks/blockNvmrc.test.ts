@@ -6,8 +6,10 @@ import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe('blockNvmrc', () => {
-  it('only includes blockPackageJson addons when options.node does not exist', () => {
-    const creation = testBlock(blockNvmrc, { options: optionsBase });
+  it('only includes blockPackageJson addons when options.node.pinned does not exist', () => {
+    const creation = testBlock(blockNvmrc, {
+      options: { ...optionsBase, node: { minimum: '>=24' } },
+    });
 
     expect(creation).toEqual({
       addons: [

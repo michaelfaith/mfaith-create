@@ -15,20 +15,20 @@ describe(blockPackageJson, () => {
     const creation = testBlock(blockPackageJson, { options });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('transition mode', () => {
@@ -51,7 +51,7 @@ describe(blockPackageJson, () => {
           },
         ],
         "files": {
-          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
         },
         "scripts": [
           {
@@ -80,21 +80,21 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"engines":{"node":">=20.12.0"},"other":true}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			        "pnpm dedupe",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"engines":{"node":"^24.15.0 || >=26.0.0"},"other":true}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+              "pnpm dedupe",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('with addons adding devDependencies', () => {
@@ -115,21 +115,21 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"engines":{"node":">=20.12.0"},"other":true}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			        "pnpm dedupe",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"engines":{"node":"^24.15.0 || >=26.0.0"},"other":true}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+              "pnpm dedupe",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('with addons adding overlapping files', () => {
@@ -143,20 +143,20 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","files":["LICENSE.md","README.md","dist/"],"engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","files":["LICENSE.md","README.md","dist/"],"engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('with keywords', () => {
@@ -168,20 +168,20 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","keywords":["abc","def ghi"],"repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","keywords":["abc","def ghi"],"repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('with node and pnpm versions', () => {
@@ -231,20 +231,20 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","peerDependencies":{"@types/estree":">=1","eslint":">=8"},"peerDependenciesMeta":{"@types/estree":{"optional":true}},"engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","peerDependencies":{"@types/estree":">=1","eslint":">=8"},"peerDependenciesMeta":{"@types/estree":{"optional":true}},"engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   test('offline mode', () => {
@@ -254,20 +254,20 @@ describe(blockPackageJson, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":">=20.12.0"}}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpm install --offline --no-frozen-lockfile",
-			      ],
-			      "phase": 1,
-			    },
-			  ],
-			}
-		`);
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --offline --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
   });
 
   it('preserves an existing dependency when the addon has an invalid version', () => {

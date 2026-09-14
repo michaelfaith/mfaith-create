@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getAllPossibleJobNames } from '../utils/getAllPossibleJobNames.ts';
+import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
 import { formatWorkflowYaml } from './files/formatWorkflowYaml.ts';
@@ -42,20 +43,31 @@ export const blockGitHubActionsCI = base.createBlock({
     return { nodeVersion: String(nodeVersionInput.default) };
   },
   produce({ addons, options }) {
-    const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
-      addons;
+    const { jobs, nodeVersion = options.node.pinned } = addons;
+    const { node } = options;
+
+    const enginesVersionMatrix = getNodeMatrixVersions(node.minimum);
+
     const jobsWithEnginesCheck =
       jobs &&
       [
         ...jobs.map(addSetupToSteps),
         {
-          name: 'Engines Check',
+          id: 'engines_check',
+          name: 'Engines Check (Node.js ${{ matrix.node-version }})',
+          strategy: {
+            'fail-fast': false,
+            matrix: {
+              'node-version': enginesVersionMatrix,
+            },
+          },
           steps: [
             {
               uses: '$/.github/actions/setup',
               with: {
                 cache: false,
                 'install-flags': '--prod --ignore-scripts',
+                'node-version': '${{ matrix.node-version }}',
                 'strict-engines': true,
               },
             },
