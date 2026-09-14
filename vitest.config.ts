@@ -9,7 +9,7 @@ export default defineConfig({
     },
     exclude: ['dist', 'node_modules'],
     maxWorkers:
-      Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
+      Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
     setupFiles: ['console-fail-test/setup'],
   },
 });
