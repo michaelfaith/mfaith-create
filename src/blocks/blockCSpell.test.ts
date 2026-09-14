@@ -226,72 +226,72 @@ describe(blockCSpell, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Lint Spelling",
-			            "steps": [
-			              {
-			                "run": "pnpm lint:spelling",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "cspell": "1.2.3",
-			          },
-			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
-			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "contact" --words "email" --words "github@email.com" --words "url" --words "http://contact.url" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "emoji" --words "✨" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "packageName" --words "test-package-name" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
-			      ],
-			      "phase": 3,
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "items": [
+                      "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+                    ],
+                  },
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "extensions": [
+                "streetsidesoftware.code-spell-checker",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint Spelling",
+                  "steps": [
+                    {
+                      "run": "pnpm lint:spelling",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "cspell": "1.2.3",
+                },
+                "scripts": {
+                  "lint:spelling": "cspell "**" ".github/**/*"",
+                },
+              },
+            },
+            "block": [Function],
+          },
+        ],
+        "files": {
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "contact" --words "email" --words "github@email.com" --words "url" --words "http://contact.url" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "emoji" --words "✨" --words "node" --words "minimum" --words "^24.15.0 || >=26.0.0" --words "pinned" --words "24.19.0" --words "owner" --words "test-owner" --words "packageName" --words "test-package-name" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
   });
 
   test('transition mode', () => {
