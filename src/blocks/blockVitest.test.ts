@@ -160,12 +160,48 @@ describe(blockVitest, () => {
             "addons": {
               "jobs": [
                 {
-                  "name": "Test",
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
                   "steps": [
                     {
-                      "run": "pnpm run test --coverage",
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
                     },
                   ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "20.12.0",
+                        20,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test --coverage",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
                 },
               ],
             },
@@ -398,12 +434,48 @@ describe(blockVitest, () => {
             "addons": {
               "jobs": [
                 {
-                  "name": "Test",
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
                   "steps": [
                     {
-                      "run": "pnpm run test --coverage",
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
                     },
                   ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "20.12.0",
+                        20,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test --coverage",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
                 },
               ],
             },
@@ -677,15 +749,51 @@ describe(blockVitest, () => {
             "addons": {
               "jobs": [
                 {
-                  "name": "Test",
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
+                  "steps": [
+                    {
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "20.12.0",
+                        20,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
                   "permissions": {
                     "id-token": "write",
                   },
+                  "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm run test --coverage",
+                      "run": "pnpm test --coverage",
                     },
                   ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
                 },
               ],
             },
@@ -927,12 +1035,48 @@ describe(blockVitest, () => {
             "addons": {
               "jobs": [
                 {
-                  "name": "Test",
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
                   "steps": [
                     {
-                      "run": "pnpm run test --coverage",
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
                     },
                   ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "20.12.0",
+                        20,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test --coverage",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
                 },
               ],
             },

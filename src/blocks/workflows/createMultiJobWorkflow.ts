@@ -23,6 +23,7 @@ export function createMultiJobWorkflow({
           'runs-on': job['runs-on'] || 'ubuntu-latest',
           permissions: job.permissions,
           outputs: job.outputs,
+          strategy: job.strategy,
           steps: job.steps,
         },
       ]),

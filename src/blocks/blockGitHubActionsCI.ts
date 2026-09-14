@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import { getAllPossibleJobNames } from '../utils/getAllPossibleJobNames.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
 import { formatWorkflowYaml } from './files/formatWorkflowYaml.ts';
@@ -8,19 +9,16 @@ import { intakeActionInput } from './intake/intakeActionInput.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
-import { StepSchema, WorkflowPermissionsSchema } from './workflows/schema.ts';
+import { workflowJobSchema, type WorkflowJob } from './workflows/schema.ts';
 
-const zJob = z.object({
-  if: z.string().optional(),
-  name: z.string(),
-  permissions: WorkflowPermissionsSchema.optional(),
-  steps: z.array(StepSchema),
-});
-type Job = z.infer<typeof zJob>;
+const setupActionPath = '$/.github/actions/setup';
 
-const addSetupToSteps = (job: Job): Job => ({
+const addSetupToSteps = (job: WorkflowJob): WorkflowJob => ({
   ...job,
-  steps: [{ uses: '$/.github/actions/setup' }, ...job.steps],
+  // Only add the step if the job didn't already have a step that uses the action.
+  steps: job.steps.some((step) => step.uses === setupActionPath)
+    ? job.steps
+    : [{ uses: setupActionPath }, ...job.steps],
 });
 
 export const blockGitHubActionsCI = base.createBlock({
@@ -28,7 +26,7 @@ export const blockGitHubActionsCI = base.createBlock({
     name: 'GitHub Actions CI',
   },
   addons: {
-    jobs: z.array(zJob).optional(),
+    jobs: z.array(workflowJobSchema).optional(),
     nodeVersion: z.union([z.number(), z.string()]).optional(),
   },
   intake({ files }) {
@@ -63,12 +61,16 @@ export const blockGitHubActionsCI = base.createBlock({
             },
           ],
         },
-      ].toSorted((a, b) => a.name.localeCompare(b.name));
+      ].toSorted((a, b) =>
+        a.id && b.id ? a.id.localeCompare(b.id) : a.name.localeCompare(b.name),
+      );
 
     return {
       addons: [
         blockRepositoryBranchRuleset({
-          requiredStatusChecks: jobsWithEnginesCheck?.map((job) => job.name),
+          requiredStatusChecks: jobsWithEnginesCheck?.flatMap((job) =>
+            getAllPossibleJobNames(job),
+          ),
         }),
       ],
       files: {

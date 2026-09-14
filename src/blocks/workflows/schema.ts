@@ -7,24 +7,6 @@ export interface ActionInput {
   type?: 'boolean' | 'number' | 'string';
 }
 
-export const StepSchema: z.ZodType<Step> = z.intersection(
-  z.union([
-    z.object({ run: z.string() }),
-    z.object({
-      uses: z.string(),
-    }),
-  ]),
-  z.object({
-    env: z.record(z.string(), z.string()).optional(),
-    id: z.string().optional(),
-    if: z.string().optional(),
-    name: z.string().optional(),
-    with: z
-      .record(z.string(), z.union([z.boolean(), z.number(), z.string()]))
-      .optional(),
-  }),
-);
-
 export type Step = {
   env?: Record<string, string> | undefined;
   id?: string | undefined;
@@ -42,6 +24,24 @@ export type Step = {
     }
 );
 
+export const stepSchema: z.ZodType<Step> = z.intersection(
+  z.union([
+    z.object({ run: z.string() }),
+    z.object({
+      uses: z.string(),
+    }),
+  ]),
+  z.object({
+    env: z.record(z.string(), z.string()).optional(),
+    id: z.string().optional(),
+    if: z.string().optional(),
+    name: z.string().optional(),
+    with: z
+      .record(z.string(), z.union([z.boolean(), z.number(), z.string()]))
+      .optional(),
+  }),
+);
+
 interface WorkflowConcurrency {
   'cancel-in-progress'?: boolean;
   group: string;
@@ -55,7 +55,7 @@ export interface WorkflowPermissions {
   'pull-requests'?: string;
 }
 
-export const WorkflowPermissionsSchema: z.ZodType<WorkflowPermissions> =
+export const workflowPermissionsSchema: z.ZodType<WorkflowPermissions> =
   z.object({
     contents: z.string().optional(),
     discussions: z.string().optional(),
@@ -99,6 +99,18 @@ export interface WorkflowOn {
   workflow_dispatch?: null | string;
 }
 
+interface WorkflowJobStrategy {
+  'fail-fast'?: boolean;
+  matrix?: Record<string, (number | string)[]>;
+}
+
+const workflowJobStrategySchema: z.ZodType<WorkflowJobStrategy> = z.object({
+  'fail-fast': z.boolean().optional(),
+  matrix: z
+    .record(z.string(), z.array(z.union([z.number(), z.string()])))
+    .optional(),
+});
+
 export interface WorkflowJob {
   id?: string;
   if?: string;
@@ -107,8 +119,21 @@ export interface WorkflowJob {
   outputs?: Record<string, string>;
   permissions?: WorkflowPermissions;
   'runs-on'?: string;
+  strategy?: WorkflowJobStrategy;
   steps: Step[];
 }
+
+export const workflowJobSchema: z.ZodType<WorkflowJob> = z.object({
+  id: z.string().optional(),
+  if: z.string().optional(),
+  name: z.string(),
+  needs: z.string().optional(),
+  outputs: z.record(z.string(), z.string()).optional(),
+  permissions: workflowPermissionsSchema.optional(),
+  'runs-on': z.string().optional(),
+  strategy: workflowJobStrategySchema.optional(),
+  steps: z.array(stepSchema),
+});
 
 interface BaseWorkflow {
   concurrency?: WorkflowConcurrency;

@@ -1,0 +1,2 @@
+# Enforce LF endings globally across all text files on any OS
+* text eol=lf

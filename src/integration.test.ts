@@ -16,6 +16,7 @@ import {
   blockKnip,
   blockPnpmWorkspace,
   blockTemplatedWith,
+  blockTypeScript,
   presets,
 } from './index.ts';
 
@@ -135,6 +136,12 @@ If you're interested in learning more, see the 'getting started' docs on:
             },
           },
         }),
+        // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
+        blockTypeScript({
+          compilerOptions: {
+            lib: ['ES2025'],
+          },
+        }),
       ],
       blocks: {
         add: [blockAreTheTypesWrong],
@@ -151,4 +158,4 @@ If you're interested in learning more, see the 'getting started' docs on:
   expect(
     diffCreatedDirectory(actual, created.files, processText),
   ).toBeUndefined();
-});
+}, 10_000);

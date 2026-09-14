@@ -42,11 +42,6 @@ describe('docs/Blocks.md', () => {
 async function createActualLines() {
   const actualFile = (await fs.readFile('docs/Blocks.md')).toString();
 
-  actualFile
-    .split('\n')
-    .filter((line) => !line.includes('----'))
-    .map((line) => line.toLowerCase());
-
   return splitTable(actualFile);
 }
 

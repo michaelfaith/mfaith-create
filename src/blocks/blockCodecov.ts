@@ -1,52 +1,22 @@
-import { z } from 'zod';
-
 import { base } from '../base.ts';
 import { blockGitHubApps } from './blockGitHubApps.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockVitest } from './blockVitest.ts';
-import { intakeActionOrWorkflowSteps } from './intake/intakeActionOrWorkflowSteps.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
 export const blockCodecov = base.createBlock({
   about: {
     name: 'Codecov',
   },
-  addons: {
-    env: z.record(z.string(), z.string()).optional(),
-  },
-  intake({ files }) {
-    const steps = intakeActionOrWorkflowSteps(
-      files,
-      ['.github', 'workflows', 'ci.yaml'],
-      ['jobs', 'test', 'steps'],
-    );
-    if (!steps) {
-      return undefined;
-    }
-
-    const step = steps.find(
-      (step) =>
-        typeof step.uses === 'string' &&
-        step.uses.startsWith('codecov/codecov-action'),
-    );
-    if (!step) {
-      return undefined;
-    }
-
-    return {
-      env: step.env,
-    };
-  },
-  produce({ addons, options }) {
-    const { env } = addons;
+  produce({ options }) {
     const actionStep = {
       uses: resolveUses(
         'codecov/codecov-action',
         'v7',
         options.workflowsVersions,
       ),
-      ...(env && { env }),
+      if: `success() && (matrix.os == 'ubuntu-latest')`,
       with: {
         fail_ci_if_error: true,
         use_oidc: true,

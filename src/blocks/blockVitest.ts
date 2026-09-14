@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import { blockCSpell } from './blockCSpell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockESLint } from './blockESLint.ts';
@@ -18,7 +19,7 @@ import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVSCode } from './blockVSCode.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
-import { StepSchema, WorkflowPermissionsSchema } from './workflows/schema.ts';
+import { stepSchema, workflowPermissionsSchema } from './workflows/schema.ts';
 
 const zCoverage = z.object({
   exclude: z.array(z.string()).optional(),
@@ -60,12 +61,12 @@ export const blockVitest = base.createBlock({
     name: 'Vitest',
   },
   addons: {
-    actionSteps: z.array(StepSchema).default([]),
+    actionSteps: z.array(stepSchema).default([]),
     coverage: zCoverage.default({}),
     environment: zEnvironment.optional(),
     exclude: zExclude.default([]),
     flags: z.array(z.string()).default([]),
-    permissions: WorkflowPermissionsSchema.optional(),
+    permissions: workflowPermissionsSchema.optional(),
   },
   intake({ files, options }) {
     return {
@@ -75,11 +76,15 @@ export const blockVitest = base.createBlock({
         .split(' '),
     };
   },
-  produce({ addons }) {
+  produce({ addons, options }) {
     const { actionSteps, coverage, environment, exclude, permissions } = addons;
+    const { node } = options;
+
     const excludeText = JSON.stringify(
       Array.from(new Set(['node_modules', ...exclude])).sort(),
     );
+
+    const nodeVersions = getNodeMatrixVersions(node.minimum);
 
     return {
       addons: [
@@ -187,9 +192,36 @@ describe(greet, () => {
         blockGitHubActionsCI({
           jobs: [
             {
-              name: 'Test',
+              id: 'test_node',
+              name: 'Test (Node.js ${{ matrix.node-version }})',
+              strategy: {
+                'fail-fast': false,
+                matrix: {
+                  'node-version': nodeVersions,
+                },
+              },
+              steps: [
+                {
+                  uses: '$/.github/actions/setup',
+                  with: {
+                    'node-version': '${{ matrix.node-version }}',
+                  },
+                },
+                { run: 'pnpm test' },
+              ],
+            },
+            {
+              id: 'test_os',
+              name: 'Test (${{ matrix.os }})',
+              'runs-on': '${{ matrix.os }}',
               ...(permissions ? { permissions } : {}),
-              steps: [{ run: 'pnpm run test --coverage' }, ...actionSteps],
+              strategy: {
+                'fail-fast': false,
+                matrix: {
+                  os: ['macos-latest', 'ubuntu-latest', 'windows-latest'],
+                },
+              },
+              steps: [{ run: 'pnpm test --coverage' }, ...actionSteps],
             },
           ],
         }),
