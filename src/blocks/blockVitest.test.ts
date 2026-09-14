@@ -189,7 +189,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -278,7 +278,6 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["node_modules"],
-          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -464,7 +463,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -583,7 +582,6 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["node_modules"],
-          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -783,7 +781,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -874,7 +872,6 @@ describe(blockVitest, () => {
       		},
       		environment: 'happy-dom',
       		exclude: ["dist/","node_modules"],
-          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -1067,7 +1064,7 @@ describe(blockVitest, () => {
                   "runs-on": "\${{ matrix.os }}",
                   "steps": [
                     {
-                      "run": "pnpm test --coverage",
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
                     },
                   ],
                   "strategy": {
@@ -1157,7 +1154,6 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["dist/","node_modules"],
-          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });

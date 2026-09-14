@@ -8,8 +8,6 @@ export default defineConfig({
       reporter: ['html', 'lcov'],
     },
     exclude: ['dist', 'node_modules'],
-    maxWorkers:
-      Boolean(process.env.CI) && process.platform === 'win32' ? 1 : undefined,
     setupFiles: ['console-fail-test/setup'],
   },
 });
