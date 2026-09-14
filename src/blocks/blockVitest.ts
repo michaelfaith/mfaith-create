@@ -282,6 +282,7 @@ export default defineConfig({
         : ''
     }
 		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
+    maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
 		setupFiles: ['console-fail-test/setup'],
 	},
 });

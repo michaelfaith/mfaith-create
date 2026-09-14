@@ -278,6 +278,7 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["node_modules"],
+          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -582,6 +583,7 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["node_modules"],
+          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -872,6 +874,7 @@ describe(blockVitest, () => {
       		},
       		environment: 'happy-dom',
       		exclude: ["dist/","node_modules"],
+          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
@@ -1154,6 +1157,7 @@ describe(blockVitest, () => {
       			reporter: ['html', 'lcov'],
       		},
       		exclude: ["dist/","node_modules"],
+          maxWorkers: Boolean(process.env.CI) && process.platform === 'win32' ? 2 : undefined,
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
