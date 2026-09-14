@@ -40,7 +40,7 @@ describe(blockGitHubActionsCI, () => {
           type: string
         node-version:
           description: Node.js version to use
-          default: '20'
+          default: undefined
           required: false
         skip-checkout:
           description: Skip the checkout step if the repo is already checked out
@@ -148,7 +148,7 @@ describe(blockGitHubActionsCI, () => {
           type: string
         node-version:
           description: Node.js version to use
-          default: '20'
+          default: undefined
           required: false
         skip-checkout:
           description: Skip the checkout step if the repo is already checked out
@@ -269,7 +269,8 @@ describe(blockGitHubActionsCI, () => {
             "addons": {
               "requiredStatusChecks": [
                 "Engines Check",
-                "Engines Check",
+                "Engines Check (Node.js 20.12.0)",
+                "Engines Check (Node.js 20)",
                 "Test (Node.js 24.15.0)",
                 "Test (Node.js 24)",
                 "Test (Node.js 26.0.0)",
@@ -341,13 +342,20 @@ describe(blockGitHubActionsCI, () => {
 
       jobs:
         engines_check:
-          name: Engines Check
+          name: Engines Check (Node.js \${{ matrix.node-version }})
           runs-on: ubuntu-latest
+          strategy:
+            fail-fast: false
+            matrix:
+              node-version:
+                - 20.12.0
+                - 20
           steps:
             - uses: $/.github/actions/setup
               with:
                 cache: false
                 install-flags: --prod --ignore-scripts
+                node-version: \${{ matrix.node-version }}
                 strict-engines: true
 
         test_node:
