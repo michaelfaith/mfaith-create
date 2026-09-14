@@ -12,16 +12,16 @@ import { blockVSCode } from './blockVSCode.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 
-const zStringArray = z.array(z.string());
+const stringArraySchema = z.array(z.string());
 
 export const blockKnip = base.createBlock({
   about: {
     name: 'Knip',
   },
   addons: {
-    entry: zStringArray.optional(),
-    ignoreDependencies: zStringArray.optional(),
-    project: zStringArray.optional(),
+    entry: stringArraySchema.optional(),
+    ignoreDependencies: stringArraySchema.optional(),
+    project: stringArraySchema.optional(),
   },
   intake({ files }) {
     const knipJson =
@@ -32,10 +32,11 @@ export const blockKnip = base.createBlock({
     }
 
     return removeUndefinedObjects({
-      entry: zStringArray.safeParse(knipJson.entry).data,
-      ignoreDependencies: zStringArray.safeParse(knipJson.ignoreDependencies)
-        .data,
-      project: zStringArray.safeParse(knipJson.project).data,
+      entry: stringArraySchema.safeParse(knipJson.entry).data,
+      ignoreDependencies: stringArraySchema.safeParse(
+        knipJson.ignoreDependencies,
+      ).data,
+      project: stringArraySchema.safeParse(knipJson.project).data,
     });
   },
   produce({ addons }) {

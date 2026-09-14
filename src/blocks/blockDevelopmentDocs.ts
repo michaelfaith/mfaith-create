@@ -3,18 +3,18 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
-const zInnerSection = z.object({
+const innerSectionSchema = z.object({
   contents: z.string(),
   heading: z.string(),
 });
 
-type InnerSection = z.infer<typeof zInnerSection>;
+type InnerSection = z.infer<typeof innerSectionSchema>;
 
 function printInnerSection(innerSection: InnerSection) {
   return [`### ${innerSection.heading}`, ``, innerSection.contents];
 }
 
-const zSection = z.object({
+const sectionSchema = z.object({
   contents: z
     .union([
       z.string(),
@@ -26,10 +26,10 @@ const zSection = z.object({
       }),
     ])
     .optional(),
-  innerSections: z.array(zInnerSection).optional(),
+  innerSections: z.array(innerSectionSchema).optional(),
 });
 
-type Section = z.infer<typeof zSection>;
+type Section = z.infer<typeof sectionSchema>;
 
 function printSection(heading: string, section: Section) {
   const innerSections = section.innerSections?.flatMap(printInnerSection) ?? [];
@@ -62,7 +62,7 @@ export const blockDevelopmentDocs = base.createBlock({
   },
   addons: {
     hints: z.array(z.string()).default([]),
-    sections: z.record(z.string(), zSection).default({}),
+    sections: z.record(z.string(), sectionSchema).default({}),
   },
   produce({ addons, options }) {
     const lines = [

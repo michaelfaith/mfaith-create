@@ -19,8 +19,8 @@ import {
   type Extension,
   type ExtensionRuleGroup,
   type ExtensionRules,
-  zExtension,
-  zPackageImport,
+  extensionSchema,
+  packageImportSchema,
   type ExtensionPlugins,
 } from './eslint/schemas.ts';
 import { intakeFile } from './intake/intakeFile.ts';
@@ -33,9 +33,9 @@ export const blockESLint = base.createBlock({
   addons: {
     beforeLint: z.string().optional(),
     explanations: z.array(z.string()).default([]),
-    extensions: z.array(zExtension).default([]),
+    extensions: z.array(extensionSchema).default([]),
     ignores: z.array(z.string()).default([]),
-    imports: z.array(zPackageImport).default([]),
+    imports: z.array(packageImportSchema).default([]),
   },
   intake({ files }) {
     const eslintConfigRaw = intakeFile(files, [

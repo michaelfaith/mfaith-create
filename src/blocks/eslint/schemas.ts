@@ -1,10 +1,12 @@
 import { z } from 'zod';
 
-export const zConfigEmoji = z
-  .array(z.tuple([z.string(), z.string()]))
-  .optional();
+export const configEmojiSchema: z.ZodType<ConfigEmoji> = z.array(
+  z.tuple([z.string(), z.string()]),
+);
 
-export const zRuleOptions = z.union([
+type ConfigEmoji = [string, string][];
+
+export const ruleOptionsSchema: z.ZodType<RuleOptions> = z.union([
   z.literal('error'),
   z.literal('off'),
   z.literal('warn'),
@@ -16,47 +18,71 @@ export const zRuleOptions = z.union([
   ]),
 ]);
 
-export type RuleOptions = z.infer<typeof zRuleOptions>;
+export type RuleOptions =
+  | 'error'
+  | 'off'
+  | 'warn'
+  | ['error' | 'warn', unknown]
+  | ['error' | 'warn', unknown, unknown];
 
-export const zExtensionRuleGroup = z.object({
-  comment: z.string().optional(),
-  entries: z.record(z.string(), zRuleOptions),
-});
+export const extensionRuleGroupSchema: z.ZodType<ExtensionRuleGroup> = z.object(
+  {
+    comment: z.string().optional(),
+    entries: z.record(z.string(), ruleOptionsSchema),
+  },
+);
 
-export type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
+export interface ExtensionRuleGroup {
+  entries: Record<string, RuleOptions>;
+  comment?: string | undefined;
+}
 
-export const zExtensionPlugins: z.ZodType<ExtensionPlugins> = z.record(
+export const extensionPluginsSchema: z.ZodType<ExtensionPlugins> = z.record(
   z.string(),
   z.string(),
 );
 
 export type ExtensionPlugins = Record<string, string>;
 
-export const zRulesArray = z.array(zExtensionRuleGroup);
+export const rulesArraySchema = z.array(extensionRuleGroupSchema);
 
-export type RulesArray = z.infer<typeof zRulesArray>;
+export type RulesArray = ExtensionRuleGroup[];
 
-export const zRulesRecord = z.record(z.string(), zRuleOptions);
+export const rulesRecordSchema: z.ZodType<RulesRecord> = z.record(
+  z.string(),
+  ruleOptionsSchema,
+);
 
-export type RulesRecord = z.infer<typeof zRulesRecord>;
+export type RulesRecord = Record<string, RuleOptions>;
 
-export const zExtensionRules = z.union([zRulesArray, zRulesRecord]);
+export const extensionRulesSchema: z.ZodType<ExtensionRules> = z.union([
+  rulesArraySchema,
+  rulesRecordSchema,
+]);
 
-export type ExtensionRules = z.infer<typeof zExtensionRules>;
+export type ExtensionRules = ExtensionRuleGroup[] | RulesRecord;
 
-export const zExtension = z.object({
+export const extensionSchema: z.ZodType<Extension> = z.object({
   extends: z.array(z.string()).optional(),
   files: z.array(z.string()),
   languageOptions: z.unknown().optional(),
   linterOptions: z.unknown().optional(),
-  plugins: zExtensionPlugins.optional(),
-  rules: zExtensionRules.optional(),
+  plugins: extensionPluginsSchema.optional(),
+  rules: extensionRulesSchema.optional(),
   settings: z.record(z.string(), z.unknown()).optional(),
 });
 
-export type Extension = z.infer<typeof zExtension>;
+export interface Extension {
+  files: string[];
+  extends?: string[] | undefined;
+  languageOptions?: unknown;
+  linterOptions?: unknown;
+  plugins?: ExtensionPlugins | undefined;
+  rules?: ExtensionRules | undefined;
+  settings?: Record<string, unknown> | undefined;
+}
 
-export const zPackageImport = z.object({
+export const packageImportSchema: z.ZodType<PackageImport> = z.object({
   source: z.union([
     z.string(),
     z.object({ packageName: z.string(), version: z.string() }),
@@ -64,3 +90,14 @@ export const zPackageImport = z.object({
   specifier: z.string(),
   types: z.boolean().optional(),
 });
+
+export interface PackageImport {
+  source:
+    | string
+    | {
+        packageName: string;
+        version: string;
+      };
+  specifier: string;
+  types?: boolean | undefined;
+}

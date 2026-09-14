@@ -38,7 +38,11 @@ import { readRulesetId } from './options/readRulesetId.ts';
 import { readTitle } from './options/readTitle.ts';
 import { readWords } from './options/readWords.ts';
 import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
-import { zContributor, zDocumentation, zWorkflowsVersions } from './schemas.ts';
+import {
+  contributorSchema,
+  documentationSchema,
+  workflowsVersionsSchema,
+} from './schemas.ts';
 
 export const base = createBase({
   options: {
@@ -63,7 +67,7 @@ export const base = createBase({
         'contact information to be listed as the point of contact in docs and packages',
       ),
     contributors: z
-      .array(zContributor)
+      .array(contributorSchema)
       .optional()
       .describe('AllContributors contributors to store in .all-contributorsrc'),
     description: z
@@ -71,7 +75,7 @@ export const base = createBase({
       .default('A very lovely package. Hooray!')
       .describe("'Sentence case.' description of the repository"),
     directory: z.string().describe('Directory to create the repository in'),
-    documentation: zDocumentation.describe(
+    documentation: documentationSchema.describe(
       'additional docs to add to .md files',
     ),
     emoji: z
@@ -157,7 +161,7 @@ export const base = createBase({
       .array(z.string())
       .optional()
       .describe('additional words to add to the CSpell dictionary'),
-    workflowsVersions: zWorkflowsVersions
+    workflowsVersions: workflowsVersionsSchema
       .optional()
       .describe('existing versions of GitHub Actions workflows used'),
   },

@@ -16,8 +16,8 @@ import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVitest } from './blockVitest.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 
-const zEntry = z.array(z.string());
-const zProperties = z.record(z.unknown());
+const entrySchema = z.array(z.string());
+const propertiesSchema = z.record(z.unknown());
 
 export const blockTSDown = base.createBlock({
   about: {
@@ -26,8 +26,8 @@ export const blockTSDown = base.createBlock({
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
   addons: {
-    entry: zEntry.default([]),
-    properties: zProperties.default({}),
+    entry: entrySchema.default([]),
+    properties: propertiesSchema.default({}),
     runInCI: z.array(z.string()).default([]),
   },
   intake({ files }) {
@@ -41,9 +41,9 @@ export const blockTSDown = base.createBlock({
     const { entry: rawEntry, ...rest } = rawData;
 
     return {
-      entry: zEntry.safeParse(rawEntry).data,
+      entry: entrySchema.safeParse(rawEntry).data,
       properties: removeUndefinedObjects({
-        ...zProperties.safeParse(rest).data,
+        ...propertiesSchema.safeParse(rest).data,
 
         // In case of a tsup.config.ts migrated to tsdown.config.ts
         bundle: undefined,
