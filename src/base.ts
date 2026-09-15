@@ -41,6 +41,7 @@ import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
 import {
   contributorSchema,
   documentationSchema,
+  nodeVersionsSchema,
   workflowsVersionsSchema,
 } from './schemas.ts';
 
@@ -120,12 +121,9 @@ export const base = createBase({
       .describe(
         'local image file and alt text to display near the top of the README.md',
       ),
-    node: z
-      .object({
-        minimum: z.string(),
-        pinned: z.string().optional(),
-      })
-      .describe('Node.js engine version(s) to pin and require a minimum of'),
+    node: nodeVersionsSchema.describe(
+      'Node.js engine version(s) to pin and support',
+    ),
     owner: z.string().describe('organization or user owning the repository'),
     packageData: z
       .object({

@@ -16,6 +16,15 @@ export interface Contributor {
   profile: string;
 }
 
+export const nodeVersionsSchema: z.ZodType<NodeVersions> = z.object({
+  supported: z.string(),
+  pinned: z.string().optional(),
+});
+export interface NodeVersions {
+  supported: string;
+  pinned?: string | undefined;
+}
+
 const readmeSchema: z.ZodType<Readme> = z.object({
   additional: z.string().optional(),
   explainer: z.string().optional(),

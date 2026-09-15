@@ -15,7 +15,7 @@ export const optionsBase = {
   },
   emoji: '✨',
   node: {
-    minimum: '^24.15.0 || >=26.0.0',
+    supported: '^24.15.0 || >=26.0.0',
     pinned: '24.19.0',
   },
   owner: 'test-owner',

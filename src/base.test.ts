@@ -58,8 +58,8 @@ describe(
           title: 'Contributing to a create-typescript-app Repository',
         },
         node: {
-          minimum: expect.any(String),
           pinned: expect.any(String),
+          supported: expect.any(String),
         },
         owner: 'michaelfaith',
         packageData: expect.any(Object),
