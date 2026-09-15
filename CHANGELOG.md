@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.3.0](https://github.com/michaelfaith/mfaith-create/compare/v0.2.3...v0.3.0) (2026-09-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* use named exports ([#195](https://github.com/michaelfaith/mfaith-create/issues/195))
+* change the name of the `node.minimum` option to `node.supported` ([#193](https://github.com/michaelfaith/mfaith-create/issues/193))
+* start bundling entry points ([#187](https://github.com/michaelfaith/mfaith-create/issues/187))
+
+### 🚀 Features
+
+* add new addon to `blockRepositoryLabels` to provide additional labels ([#189](https://github.com/michaelfaith/mfaith-create/issues/189)) ([458c478](https://github.com/michaelfaith/mfaith-create/commit/458c478dc285f14d38e8e5c46137a0e3a8896226))
+* start bundling entry points ([#187](https://github.com/michaelfaith/mfaith-create/issues/187)) ([0295d7a](https://github.com/michaelfaith/mfaith-create/commit/0295d7abc6d59e2ad7be112d0134d9e2686a7224))
+
+
+### 🩹 Bug Fixes
+
+* change the name of the `node.minimum` option to `node.supported` ([#193](https://github.com/michaelfaith/mfaith-create/issues/193)) ([763c8a5](https://github.com/michaelfaith/mfaith-create/commit/763c8a57a90cef78df263be03f5c321b1c5ebd94))
+* use named exports ([#195](https://github.com/michaelfaith/mfaith-create/issues/195)) ([b0d85c4](https://github.com/michaelfaith/mfaith-create/commit/b0d85c47a8b14cec8bd627a0ca29c52d52335b92))
+
 ## [0.2.3](https://github.com/michaelfaith/mfaith-create/compare/v0.2.2...v0.2.3) (2026-09-14)
 
 
