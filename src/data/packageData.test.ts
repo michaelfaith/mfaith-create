@@ -2,15 +2,15 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { getPackageDependencies } from './packageData.ts';
 
-vi.mock('node:module', () => ({
-  createRequire: () => () => ({
+vi.mock('../../package.json', () => ({
+  default: {
     dependencies: {
       'package-dep': '0.0.2',
     },
     devDependencies: {
       'package-dev-dep': '0.0.1',
     },
-  }),
+  },
 }));
 
 describe(getPackageDependencies, () => {

@@ -1,10 +1,6 @@
-import { createRequire } from 'node:module';
+import packageData from '../../package.json' with { type: 'json' };
 
-const require = createRequire(import.meta.url);
-
-export const packageData =
-  // eslint-disable-next-line @typescript-eslint/consistent-type-imports -- Importing from above src/ would expand the TS build rootDir
-  require('../../package.json') as typeof import('../../package.json');
+export { packageData };
 
 export function getPackageDependencies(
   ...names: string[]
