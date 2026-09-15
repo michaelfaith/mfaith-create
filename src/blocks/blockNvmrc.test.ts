@@ -8,7 +8,7 @@ import { optionsBase } from './options.fakes.ts';
 describe('blockNvmrc', () => {
   it('only includes blockPackageJson addons when options.node.pinned does not exist', () => {
     const creation = testBlock(blockNvmrc, {
-      options: { ...optionsBase, node: { minimum: '>=24' } },
+      options: { ...optionsBase, node: { supported: '>=24' } },
     });
 
     expect(creation).toEqual({
@@ -24,7 +24,7 @@ describe('blockNvmrc', () => {
     const creation = testBlock(blockNvmrc, {
       options: {
         ...optionsBase,
-        node: { minimum: '>=20.19.0', pinned: '24.3.0' },
+        node: { pinned: '24.3.0', supported: '>=20.19.0' },
       },
     });
 

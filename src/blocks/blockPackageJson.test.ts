@@ -189,7 +189,7 @@ describe(blockPackageJson, () => {
       options: {
         ...options,
         node: {
-          minimum: '22.0.0',
+          supported: '22.0.0',
         },
         pnpm: '10.4.0',
       },

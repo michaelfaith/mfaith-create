@@ -46,7 +46,7 @@ export const blockGitHubActionsCI = base.createBlock({
     const { jobs, nodeVersion = options.node.pinned } = addons;
     const { node } = options;
 
-    const enginesVersionMatrix = getNodeMatrixVersions(node.minimum);
+    const enginesVersionMatrix = getNodeMatrixVersions(node.supported);
 
     const jobsWithEnginesCheck =
       jobs &&

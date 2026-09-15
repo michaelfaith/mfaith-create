@@ -4,19 +4,19 @@ import { defaults } from '../constants.ts';
 import { readNode } from './readNode.ts';
 
 describe(readNode, () => {
-  describe('minimum', () => {
+  describe('supported', () => {
     const getNvmrc = vi.fn();
 
-    it('defaults to the default minimum when engines.node does not exist', async () => {
-      const { minimum } = await readNode(getNvmrc, () =>
+    it('defaults to the default supported when engines.node does not exist', async () => {
+      const { supported } = await readNode(getNvmrc, () =>
         Promise.resolve({ engines: {} }),
       );
 
-      expect(minimum).toBe(defaults.node.minimum);
+      expect(supported).toBe(defaults.node.supported);
     });
 
-    it('defaults to the default minimum when engines.node does not contain a valid value', async () => {
-      const { minimum } = await readNode(getNvmrc, () =>
+    it('defaults to the default supported when engines.node does not contain a valid value', async () => {
+      const { supported } = await readNode(getNvmrc, () =>
         Promise.resolve({
           engines: {
             node: 'invalid',
@@ -24,19 +24,19 @@ describe(readNode, () => {
         }),
       );
 
-      expect(minimum).toBe(defaults.node.minimum);
+      expect(supported).toBe(defaults.node.supported);
     });
 
     it('uses the engines value when engines.node contains a valid value', async () => {
       const node = '^22.13.0 || ^24.11.0 || >=26.0.0';
 
-      const { minimum } = await readNode(getNvmrc, () =>
+      const { supported } = await readNode(getNvmrc, () =>
         Promise.resolve({
           engines: { node },
         }),
       );
 
-      expect(minimum).toBe(node);
+      expect(supported).toBe(node);
     });
   });
 

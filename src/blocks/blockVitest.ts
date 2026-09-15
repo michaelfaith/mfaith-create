@@ -84,7 +84,7 @@ export const blockVitest = base.createBlock({
       Array.from(new Set(['node_modules', ...exclude])).sort(),
     );
 
-    const nodeVersions = getNodeMatrixVersions(node.minimum);
+    const nodeVersions = getNodeMatrixVersions(node.supported);
 
     return {
       addons: [
