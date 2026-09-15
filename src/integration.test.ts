@@ -17,7 +17,7 @@ import {
   blockPnpmWorkspace,
   blockTemplatedWith,
   blockTypeScript,
-  presets,
+  presetEverything,
 } from './index.ts';
 
 vi.mock('./utils/resolveBin.js', () => ({
@@ -32,7 +32,7 @@ const presetIntegration = base.createPreset({
     description: 'Preset used for integration tests',
     name: 'Integration',
   },
-  blocks: [...presets.everything.blocks, blockBin],
+  blocks: [...presetEverything.blocks, blockBin],
 });
 
 // This test checks the Bingo production using options inferred from disk,
