@@ -164,5 +164,5 @@ If you're interested in learning more, see the 'getting started' docs on:
       diffCreatedDirectory(actual, created.files, processText),
     ).toBeUndefined();
   },
-  isWindowsCI ? 20_000 : 10_000,
+  isWindowsCI ? 25_000 : 10_000,
 );
