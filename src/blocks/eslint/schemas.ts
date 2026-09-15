@@ -25,41 +25,32 @@ export type RuleOptions =
   | ['error' | 'warn', unknown]
   | ['error' | 'warn', unknown, unknown];
 
-export const extensionRuleGroupSchema: z.ZodType<ExtensionRuleGroup> = z.object(
-  {
-    comment: z.string().optional(),
-    entries: z.record(z.string(), ruleOptionsSchema),
-  },
-);
+const extensionRuleGroupSchema: z.ZodType<ExtensionRuleGroup> = z.object({
+  comment: z.string().optional(),
+  entries: z.record(z.string(), ruleOptionsSchema),
+});
 
 export interface ExtensionRuleGroup {
   entries: Record<string, RuleOptions>;
   comment?: string | undefined;
 }
 
-export const extensionPluginsSchema: z.ZodType<ExtensionPlugins> = z.record(
+const extensionPluginsSchema: z.ZodType<ExtensionPlugins> = z.record(
   z.string(),
   z.string(),
 );
-
 export type ExtensionPlugins = Record<string, string>;
 
-export const rulesArraySchema = z.array(extensionRuleGroupSchema);
-
-export type RulesArray = ExtensionRuleGroup[];
-
-export const rulesRecordSchema: z.ZodType<RulesRecord> = z.record(
+const rulesRecordSchema: z.ZodType<RulesRecord> = z.record(
   z.string(),
   ruleOptionsSchema,
 );
-
 export type RulesRecord = Record<string, RuleOptions>;
 
-export const extensionRulesSchema: z.ZodType<ExtensionRules> = z.union([
-  rulesArraySchema,
+const extensionRulesSchema: z.ZodType<ExtensionRules> = z.union([
+  z.array(extensionRuleGroupSchema),
   rulesRecordSchema,
 ]);
-
 export type ExtensionRules = ExtensionRuleGroup[] | RulesRecord;
 
 export const extensionSchema: z.ZodType<Extension> = z.object({
