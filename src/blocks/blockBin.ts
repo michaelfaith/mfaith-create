@@ -4,6 +4,7 @@ import { base } from '../base.ts';
 import { blockESLint } from './blockESLint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
+import { blockTsdown } from './blockTsdown.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
@@ -85,6 +86,9 @@ import { greet } from '../index.ts';
 greet('Hello, world! ${options.emoji}');`,
             },
           },
+        }),
+        blockTsdown({
+          entry: typeof src === 'string' ? [src] : Object.values(src),
         }),
       ],
     };

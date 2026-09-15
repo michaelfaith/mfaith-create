@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockTSDown } from './blockTSDown.ts';
+import { blockTsdown } from './blockTsdown.ts';
 
 export const blockExports = base.createBlock({
   about: {
@@ -24,7 +24,7 @@ export const blockExports = base.createBlock({
             },
           },
         }),
-        blockTSDown({
+        blockTsdown({
           runInCI: [
             `node ${filePath}${runArgs.map((arg) => ` ${arg}`).join('')}`,
           ],

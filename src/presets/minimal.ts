@@ -25,7 +25,7 @@ import { blockRepositorySettings } from '../blocks/blockRepositorySettings.ts';
 import { blockSecurityDocs } from '../blocks/blockSecurityDocs.ts';
 import { blockSideEffects } from '../blocks/blockSideEffects.ts';
 import { blockTemplatedWith } from '../blocks/blockTemplatedWith.ts';
-import { blockTSDown } from '../blocks/blockTSDown.ts';
+import { blockTsdown } from '../blocks/blockTsdown.ts';
 import { blockTypeScript } from '../blocks/blockTypeScript.ts';
 
 export const presetMinimal = base.createPreset({
@@ -61,7 +61,7 @@ export const presetMinimal = base.createPreset({
     blockSecurityDocs,
     blockSideEffects,
     blockTemplatedWith,
-    blockTSDown,
+    blockTsdown,
     blockTypeScript,
   ],
 });

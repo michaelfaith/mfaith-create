@@ -19,9 +19,9 @@ import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 const entrySchema = z.array(z.string());
 const propertiesSchema = z.record(z.unknown());
 
-export const blockTSDown = base.createBlock({
+export const blockTsdown = base.createBlock({
   about: {
-    name: 'TSDown',
+    name: 'tsdown',
     description:
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
@@ -31,9 +31,7 @@ export const blockTSDown = base.createBlock({
     runInCI: z.array(z.string()).default([]),
   },
   intake({ files }) {
-    const rawData =
-      intakeFileDefineConfig(files, ['tsdown.config.ts']) ??
-      intakeFileDefineConfig(files, ['tsup.config.ts']);
+    const rawData = intakeFileDefineConfig(files, ['tsdown.config.ts']);
     if (!rawData) {
       return undefined;
     }
@@ -44,16 +42,14 @@ export const blockTSDown = base.createBlock({
       entry: entrySchema.safeParse(rawEntry).data,
       properties: removeUndefinedObjects({
         ...propertiesSchema.safeParse(rest).data,
-
-        // In case of a tsup.config.ts migrated to tsdown.config.ts
-        bundle: undefined,
-        clean: rest.clean === false ? false : undefined,
         format: rest.format === 'esm' ? undefined : rest.format,
       }),
     };
   },
   produce({ addons }) {
     const { entry, properties, runInCI } = addons;
+
+    const entries = new Set(['src/index.ts', ...entry]);
 
     return {
       addons: [
@@ -119,10 +115,8 @@ pnpm build --watch
         'tsdown.config.ts': `import { defineConfig } from 'tsdown';
 
 export default defineConfig(${JSON.stringify({
-          entry: Array.from(
-            new Set(['src/**/*.ts', '!src/**/*.test.*', ...entry]),
-          ),
-          unbundle: true,
+          // If `src/index.ts` is the only entry, then omit it.
+          entry: entries.size > 1 ? Array.from(entries) : undefined,
           ...properties,
         })});
 `,

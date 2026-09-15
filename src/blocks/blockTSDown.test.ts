@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockTSDown } from './blockTSDown.ts';
+import { blockTsdown } from './blockTsdown.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../data/packageData.js', () => ({
@@ -9,9 +9,9 @@ vi.mock('../data/packageData.js', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockTSDown, () => {
+describe(blockTsdown, () => {
   test('without addons or options', () => {
-    const creation = testBlock(blockTSDown, {
+    const creation = testBlock(blockTsdown, {
       options: optionsBase,
     });
 
@@ -123,7 +123,7 @@ describe(blockTSDown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
-      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
+      export default defineConfig({});
       ",
         },
       }
@@ -131,7 +131,7 @@ describe(blockTSDown, () => {
   });
 
   test('with addons', () => {
-    const creation = testBlock(blockTSDown, {
+    const creation = testBlock(blockTsdown, {
       addons: {
         entry: ['src/other.ts'],
         properties: {
@@ -253,7 +253,7 @@ describe(blockTSDown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
-      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"unbundle":true,"dts":false});
+      export default defineConfig({"entry":["src/index.ts","src/other.ts"],"dts":false});
       ",
         },
       }
@@ -261,7 +261,7 @@ describe(blockTSDown, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockTSDown, {
+    const creation = testBlock(blockTsdown, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -407,7 +407,7 @@ describe(blockTSDown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig } from 'tsdown';
 
-      export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
+      export default defineConfig({});
       ",
         },
       }
@@ -415,8 +415,8 @@ describe(blockTSDown, () => {
   });
 
   describe('intake', () => {
-    it('returns undefined when ts*.config.ts does not exist', () => {
-      const actual = testIntake(blockTSDown, {
+    it('returns undefined when tsdown.config.ts does not exist', () => {
+      const actual = testIntake(blockTsdown, {
         files: {},
       });
 
@@ -424,7 +424,7 @@ describe(blockTSDown, () => {
     });
 
     it('returns undefined when tsdown.config.ts does not contain data', () => {
-      const actual = testIntake(blockTSDown, {
+      const actual = testIntake(blockTsdown, {
         files: {
           'tsdown.config.ts': ['...'],
         },
@@ -434,7 +434,7 @@ describe(blockTSDown, () => {
     });
 
     it('returns undefined when tsdown.config.ts does not contain properties', () => {
-      const actual = testIntake(blockTSDown, {
+      const actual = testIntake(blockTsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify({})})`],
         },
@@ -446,7 +446,7 @@ describe(blockTSDown, () => {
     it('returns entry when tsdown.config.ts contains entry', () => {
       const entry = ['src/index.ts', 'src/other.ts'];
 
-      const actual = testIntake(blockTSDown, {
+      const actual = testIntake(blockTsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify({ entry })})`],
         },
@@ -458,28 +458,13 @@ describe(blockTSDown, () => {
     it('returns the properties when tsdown.config.ts contains other properties', () => {
       const properties = { clean: false, dts: false, format: 'cjs' };
 
-      const actual = testIntake(blockTSDown, {
+      const actual = testIntake(blockTsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify(properties)})`],
         },
       });
 
       expect(actual).toEqual({ entry: undefined, properties });
-    });
-
-    it('clears tsup default properties when tsup.config.ts contains them', () => {
-      const properties = { bundle: true, clean: true, format: 'esm' };
-
-      const actual = testIntake(blockTSDown, {
-        files: {
-          'tsup.config.ts': [`defineConfig(${JSON.stringify(properties)})`],
-        },
-      });
-
-      expect(actual).toEqual({
-        entry: undefined,
-        properties: undefined,
-      });
     });
   });
 });
