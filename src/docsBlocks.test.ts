@@ -4,7 +4,8 @@ import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import { describe, expect, test } from 'vitest';
 
-import { blocks, presets } from './index.ts';
+import * as blocks from './blocks/index.ts';
+import { presetCommon, presetEverything, presetMinimal } from './index.ts';
 
 const actualLines = await createActualLines();
 const expectedLines = await createExpectedLines();
@@ -59,9 +60,9 @@ async function createExpectedLines() {
       [
         name,
         `${createFlag('add', name)}, ${createFlag('exclude', name)}`,
-        presets.minimal.blocks.includes(block) ? '✔️' : ' ',
-        presets.common.blocks.includes(block) ? '✅' : ' ',
-        presets.everything.blocks.includes(block) ? '💯' : ' ',
+        presetMinimal.blocks.includes(block) ? '✔️' : ' ',
+        presetCommon.blocks.includes(block) ? '✅' : ' ',
+        presetEverything.blocks.includes(block) ? '💯' : ' ',
         '',
       ].join(' | '),
     );
