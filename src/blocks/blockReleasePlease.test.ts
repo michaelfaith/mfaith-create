@@ -42,6 +42,23 @@ describe(blockReleasePlease, () => {
           },
           {
             "addons": {
+              "additionalLabels": [
+                {
+                  "color": "#bfd4f2",
+                  "description": "Label used for release PRs that have not yet merged.",
+                  "name": "autorelease: pending",
+                },
+                {
+                  "color": "#c2e0c6",
+                  "description": "Label used for release PRs that have already merged, and the release has been made.",
+                  "name": "autorelease: tagged",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "secrets": [
                 {
                   "description": "an app Private Key for generating an ephemeral token",
@@ -225,6 +242,23 @@ describe(blockReleasePlease, () => {
                   "alt": "📦 npm version",
                   "href": "http://npmjs.com/package/test-package-name",
                   "src": "https://img.shields.io/npm/v/test-package-name?color=21bb42&label=%F0%9F%93%A6%20npm",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "additionalLabels": [
+                {
+                  "color": "#bfd4f2",
+                  "description": "Label used for release PRs that have not yet merged.",
+                  "name": "autorelease: pending",
+                },
+                {
+                  "color": "#c2e0c6",
+                  "description": "Label used for release PRs that have already merged, and the release has been made.",
+                  "name": "autorelease: tagged",
                 },
               ],
             },

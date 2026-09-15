@@ -5,6 +5,7 @@ import { blockCSpell } from './blockCSpell.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRepositoryLabels } from './blockRepositoryLabels.ts';
 import { blockRepositorySecrets } from './blockRepositorySecrets.ts';
 import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
@@ -61,6 +62,22 @@ export const blockReleasePlease = base.createBlock({
               alt: '📦 npm version',
               href: `http://npmjs.com/package/${options.packageName}`,
               src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+            },
+          ],
+        }),
+        blockRepositoryLabels({
+          additionalLabels: [
+            {
+              color: '#bfd4f2',
+              name: 'autorelease: pending',
+              description:
+                'Label used for release PRs that have not yet merged.',
+            },
+            {
+              color: '#c2e0c6',
+              name: 'autorelease: tagged',
+              description:
+                'Label used for release PRs that have already merged, and the release has been made.',
             },
           ],
         }),

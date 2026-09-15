@@ -1,4 +1,5 @@
-import { determineLabelChanges } from 'set-github-repository-labels';
+import { determineLabelChanges, zLabel } from 'set-github-repository-labels';
+import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { repositoryLabels } from './repositoryLabels.ts';
@@ -6,11 +7,23 @@ import { repositoryLabels } from './repositoryLabels.ts';
 export const blockRepositoryLabels = base.createBlock({
   about: {
     name: 'Repository Labels',
+    description: 'Add a list of labels to the GitHub repository.',
   },
-  produce({ options }) {
+  addons: {
+    additionalLabels: z.array(zLabel).optional(),
+  },
+  produce({ addons, options }) {
+    const { additionalLabels } = addons;
+
+    const requiredLabels = new Set(
+      additionalLabels
+        ? [...repositoryLabels, ...additionalLabels]
+        : repositoryLabels,
+    );
+
     const changes = determineLabelChanges(
       options.existingLabels ?? [],
-      repositoryLabels,
+      Array.from(requiredLabels),
     );
     const requestData = {
       owner: options.owner,
