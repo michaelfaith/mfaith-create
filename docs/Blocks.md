@@ -55,7 +55,7 @@ This table summarizes each block and which base levels they're included in:
 | Security Docs                      | `--add-security-docs`, `--exclude-security-docs`                                           | ✔️      | ✅     | 💯         |
 | Side Effects                       | `--add-side-effects`, `--exclude-side-effects`                                             | ✔️      | ✅     | 💯         |
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
-| TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
+| tsdown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
 | Vitest                             | `--add-vitest`, `--exclude-vitest`                                                         |         | ✅     | 💯         |
 | VS Code                            | `--add-vs-code`, `--exclude-vs-code`                                                       |         |        | 💯         |

@@ -44,7 +44,7 @@ import { blockRenovate } from './blockRenovate.ts';
 import { blockSecurityDocs } from './blockSecurityDocs.ts';
 import { blockSideEffects } from './blockSideEffects.ts';
 import { blockTemplatedWith } from './blockTemplatedWith.ts';
-import { blockTSDown } from './blockTSDown.ts';
+import { blockTsdown } from './blockTsdown.ts';
 import { blockTypeScript } from './blockTypeScript.ts';
 import { blockVitest } from './blockVitest.ts';
 import { blockVSCode } from './blockVSCode.ts';
@@ -97,7 +97,7 @@ export const blocks = {
   blockSecurityDocs,
   blockSideEffects,
   blockTemplatedWith,
-  blockTSDown,
+  blockTsdown,
   blockTypeScript,
   blockVitest,
   blockVSCode,
@@ -151,7 +151,7 @@ export {
   blockSecurityDocs,
   blockSideEffects,
   blockTemplatedWith,
-  blockTSDown,
+  blockTsdown,
   blockTypeScript,
   blockVitest,
   blockVSCode,

@@ -53,6 +53,14 @@ describe(blockBin, () => {
             },
             "block": [Function],
           },
+          {
+            "addons": {
+              "entry": [
+                "src/bin/index.ts",
+              ],
+            },
+            "block": [Function],
+          },
         ],
       }
     `);
@@ -108,6 +116,14 @@ describe(blockBin, () => {
       greet('Hello, world! ✨');",
                 },
               },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "dist/cli.ts",
+              ],
             },
             "block": [Function],
           },
@@ -172,6 +188,15 @@ describe(blockBin, () => {
       greet('Hello, world! ✨');",
                 },
               },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "entry": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
             },
             "block": [Function],
           },

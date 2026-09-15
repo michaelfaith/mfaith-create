@@ -16,13 +16,12 @@ export interface Contributor {
   profile: string;
 }
 
-export const readmeSchema: z.ZodType<Readme> = z.object({
+const readmeSchema: z.ZodType<Readme> = z.object({
   additional: z.string().optional(),
   explainer: z.string().optional(),
   footnotes: z.string().optional(),
   usage: z.string().optional(),
 });
-
 export interface Readme {
   additional?: string | undefined;
   explainer?: string | undefined;
@@ -34,7 +33,6 @@ export const documentationSchema: z.ZodType<Documentation> = z.object({
   development: z.string().optional(),
   readme: readmeSchema,
 });
-
 export interface Documentation {
   readme: Readme;
   development?: string | undefined;
@@ -44,7 +42,6 @@ const workflowVersionSchema: z.ZodType<WorkflowVersion> = z.object({
   hash: z.string().optional(),
   pinned: z.boolean().optional(),
 });
-
 export interface WorkflowVersion {
   hash?: string | undefined;
   pinned?: boolean | undefined;
@@ -54,12 +51,10 @@ const workflowVersionsSchema: z.ZodType<WorkflowVersions> = z.record(
   z.string(),
   workflowVersionSchema,
 );
-
 export type WorkflowVersions = Record<string, WorkflowVersion>;
 
 export const workflowsVersionsSchema: z.ZodType<WorkflowsVersions> = z.record(
   z.string(),
   workflowVersionsSchema,
 );
-
 export type WorkflowsVersions = Record<string, WorkflowVersions>;
