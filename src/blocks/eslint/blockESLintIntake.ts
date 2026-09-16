@@ -7,13 +7,22 @@ import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
 import { stylisticComment } from '../blockESLintMoreStyling.ts';
-import { type ExtensionRuleGroup, ruleOptionsSchema } from './schemas.ts';
+import {
+  type ExtensionRuleGroup,
+  type RuleOptions,
+  ruleOptionsSchema,
+} from './schemas.ts';
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {
   declaration: TSESTree.CallExpression;
 };
 
-export function blockESLintIntake(sourceText: string) {
+export function blockESLintIntake(sourceText: string):
+  | {
+      ignores: string[];
+      rules: ExtensionRuleGroup[];
+    }
+  | undefined {
   const ast = tryCatch(() =>
     parseAST(sourceText, {
       comment: true,
@@ -48,7 +57,7 @@ export function blockESLintIntake(sourceText: string) {
 
   return { ignores, rules };
 
-  function areArraysEqual<T>(a: T[], b: T[]) {
+  function areArraysEqual<T>(a: T[], b: T[]): boolean {
     if (a.length !== b.length) {
       return false;
     }
@@ -62,7 +71,12 @@ export function blockESLintIntake(sourceText: string) {
     return true;
   }
 
-  function collectRuleFromProperty(property: TSESTree.ObjectLiteralElement) {
+  function collectRuleFromProperty(property: TSESTree.ObjectLiteralElement):
+    | {
+        entry: RuleOptions;
+        name: string;
+      }
+    | undefined {
     if (
       property.type !== AST_NODE_TYPES.Property ||
       property.key.type !== AST_NODE_TYPES.Literal ||
@@ -83,7 +97,7 @@ export function blockESLintIntake(sourceText: string) {
   function collectRulesObjectGroups(
     sourceText: string,
     rulesObject: TSESTree.ObjectExpression,
-  ) {
+  ): ExtensionRuleGroup[] | undefined {
     let previousNode: TSESTree.Node | undefined;
     let currentGroup: ExtensionRuleGroup | undefined;
     const groups: ExtensionRuleGroup[] = [];
@@ -118,7 +132,7 @@ export function blockESLintIntake(sourceText: string) {
     return groups;
   }
 
-  function getConfigIgnores(node: TSESTree.Node) {
+  function getConfigIgnores(node: TSESTree.Node): false | string[] {
     return (
       node.type === AST_NODE_TYPES.ObjectExpression &&
       node.properties.length === 1 &&
@@ -135,7 +149,9 @@ export function blockESLintIntake(sourceText: string) {
     );
   }
 
-  function getConfigRulesObject(nodes: TSESTree.Node[]) {
+  function getConfigRulesObject(
+    nodes: TSESTree.Node[],
+  ): false | TSESTree.ObjectExpression | undefined {
     const configObject = nodes.find(
       (node): node is TSESTree.ObjectExpression =>
         node.type === AST_NODE_TYPES.ObjectExpression &&
@@ -169,7 +185,7 @@ export function blockESLintIntake(sourceText: string) {
     );
   }
 
-  function nodeIsConfigFunction(node: TSESTree.Node) {
+  function nodeIsConfigFunction(node: TSESTree.Node): boolean {
     return (
       node.type === AST_NODE_TYPES.MemberExpression &&
       node.object.type === AST_NODE_TYPES.Identifier &&

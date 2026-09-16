@@ -1,6 +1,8 @@
 const lastTagMatchers = [`">`, '/p>', '/>'];
 
-export async function readReadmeExplainer(getReadme: () => Promise<string>) {
+export async function readReadmeExplainer(
+  getReadme: () => Promise<string>,
+): Promise<string | undefined> {
   const readme = await getReadme();
 
   const indexOfFirstH2 = readme.indexOf('##');

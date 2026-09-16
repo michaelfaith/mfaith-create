@@ -9,7 +9,7 @@ export async function readOwner(
   take: TakeInput,
   getGitDefaults: () => Promise<GitUrl | undefined>,
   getPackageAuthor: () => Promise<PackageAuthor>,
-) {
+): Promise<string | undefined> {
   return (
     (await getGitDefaults())?.organization ??
     (

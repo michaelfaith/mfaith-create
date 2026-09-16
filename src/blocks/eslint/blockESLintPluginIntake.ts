@@ -6,9 +6,13 @@ import {
 import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
-import { configEmojiSchema } from './schemas.ts';
+import { configEmojiSchema, type ConfigEmoji } from './schemas.ts';
 
-export function blockESLintPluginIntake(sourceText: string) {
+export function blockESLintPluginIntake(sourceText: string):
+  | {
+      configEmoji: ConfigEmoji;
+    }
+  | undefined {
   const ast = tryCatch(() =>
     parseAST(sourceText, {
       comment: true,

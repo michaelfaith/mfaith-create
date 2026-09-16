@@ -8,7 +8,7 @@ export function createMultiJobWorkflow({
   jobs,
   name,
   on,
-}: Workflow) {
+}: Workflow): string {
   return formatWorkflowYaml({
     name,
     on,

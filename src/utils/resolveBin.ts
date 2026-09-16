@@ -2,6 +2,6 @@ import { fileURLToPath } from 'node:url';
 
 // TODO: try to see if we can avoid this altogether...
 // https://github.com/michaelfaith/mfaith-create/issues/80
-export function resolveBin(bin: string) {
+export function resolveBin(bin: string): string {
   return fileURLToPath(import.meta.resolve(bin));
 }

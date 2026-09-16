@@ -1,6 +1,8 @@
 const startUsage = '## Usage';
 
-export async function readReadmeUsage(getReadme: () => Promise<string>) {
+export async function readReadmeUsage(
+  getReadme: () => Promise<string>,
+): Promise<string | undefined> {
   const readme = await getReadme();
 
   const indexOfUsage = readme.indexOf(startUsage);

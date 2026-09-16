@@ -1,6 +1,6 @@
 import { convert } from 'html-to-text';
 
-export function htmlToTextSafe(raw: string) {
+export function htmlToTextSafe(raw: string): string {
   return convert(raw, {
     selectors: [
       {

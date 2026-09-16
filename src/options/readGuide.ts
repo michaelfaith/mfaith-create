@@ -2,7 +2,11 @@ import type { TakeInput } from 'bingo';
 
 import { inputFromFile } from 'input-from-file';
 
-export async function readGuide(take: TakeInput) {
+import type { GuideLink } from '../schemas.ts';
+
+export async function readGuide(
+  take: TakeInput,
+): Promise<GuideLink | undefined> {
   const development = await take(inputFromFile, {
     filePath: '.github/DEVELOPMENT.md',
   });

@@ -4,7 +4,10 @@ import JSON5 from 'json5';
 
 import { intakeFile } from './intakeFile.ts';
 
-export function intakeFileAsJson(files: IntakeDirectory, filePath: string[]) {
+export function intakeFileAsJson(
+  files: IntakeDirectory,
+  filePath: string[],
+): Record<string, unknown> | undefined {
   const file = intakeFile(files, filePath);
 
   try {

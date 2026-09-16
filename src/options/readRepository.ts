@@ -23,7 +23,7 @@ export async function readRepository(
   getGitDefaults: () => Promise<GitUrl | undefined>,
   getPackageData: () => Promise<PartialPackageData>,
   options: { directory?: string; repository?: string },
-) {
+): Promise<string | undefined> {
   return (
     options.repository ??
     (await getGitDefaults())?.name ??

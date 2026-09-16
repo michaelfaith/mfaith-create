@@ -1,4 +1,4 @@
-export function tryCatch<T>(task: () => T | undefined) {
+export function tryCatch<T>(task: () => T | undefined): T | undefined {
   try {
     return task();
   } catch {

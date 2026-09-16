@@ -10,7 +10,7 @@ export async function readDescription(
   getPackageData: () => Promise<PartialPackageData>,
   getReadme: () => Promise<string>,
   getRepository: () => Promise<string | undefined>,
-) {
+): Promise<string | undefined> {
   // If we there is no package.json yet, this is probably setup mode.
   const { description: fromPackageJson } = await getPackageData();
   if (!fromPackageJson) {

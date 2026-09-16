@@ -4,7 +4,9 @@ const indicatorAfterAllContributors = /<!--\s*ALL-CONTRIBUTORS-LIST:END\s*-->/;
 const indicatorAfterAllContributorsSpellCheck =
   /<!--\s*spellchecker:\s*enable\s*-->/;
 
-export async function readReadmeAdditional(getReadme: () => Promise<string>) {
+export async function readReadmeAdditional(
+  getReadme: () => Promise<string>,
+): Promise<string | undefined> {
   const readme = await getReadme();
   if (!readme) {
     return undefined;

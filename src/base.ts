@@ -41,6 +41,9 @@ import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
 import {
   contributorSchema,
   documentationSchema,
+  guideLinkSchema,
+  labelSchema,
+  logoSchema,
   nodeVersionsSchema,
   workflowsVersionsSchema,
 } from './schemas.ts';
@@ -84,24 +87,14 @@ export const base = createBase({
       .optional()
       .describe('decorative emoji to use in descriptions and docs'),
     existingLabels: z
-      .array(
-        z.object({
-          color: z.string(),
-          description: z.string(),
-          name: z.string(),
-        }),
-      )
+      .array(labelSchema)
       .optional()
       .describe('existing labels from the GitHub repository'),
     funding: z
       .string()
       .optional()
       .describe('GitHub organization or username to mention in `funding.yaml`'),
-    guide: z
-      .object({
-        href: z.string(),
-        title: z.string(),
-      })
+    guide: guideLinkSchema
       .optional()
       .describe(
         'link to a contribution guide to place at the top of development docs',
@@ -110,13 +103,7 @@ export const base = createBase({
       .array(z.string())
       .optional()
       .describe('any number of keywords to include in `package.json`'),
-    logo: z
-      .object({
-        alt: z.string(),
-        height: z.number().optional(),
-        src: z.string(),
-        width: z.number().optional(),
-      })
+    logo: logoSchema
       .optional()
       .describe(
         'local image file and alt text to display near the top of the README.md',
