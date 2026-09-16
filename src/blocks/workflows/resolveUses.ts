@@ -11,7 +11,7 @@ export function resolveUses(
   action: string,
   version: string,
   workflowsVersions?: WorkflowsVersions,
-) {
+): string {
   if (!workflowsVersions || !(action in workflowsVersions)) {
     return `${action}@${version}`;
   }

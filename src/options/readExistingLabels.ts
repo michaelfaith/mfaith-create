@@ -1,7 +1,8 @@
 import type { TakeInput } from 'bingo';
-import type { OutcomeLabel } from 'set-github-repository-labels';
 
 import { githubDefaultLabels } from 'github-default-labels';
+
+import type { Label } from '../schemas.ts';
 
 import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
 
@@ -9,7 +10,7 @@ export async function readExistingLabels(
   take: TakeInput,
   getOwner: () => Promise<string | undefined>,
   getRepository: () => Promise<string | undefined>,
-) {
+): Promise<Label[]> {
   const [owner, repository] = await Promise.all([getOwner(), getRepository()]);
 
   // When transitioning an existing repo, it should already have labels
@@ -22,7 +23,7 @@ export async function readExistingLabels(
         owner,
         repo: repository,
       },
-    })) as OutcomeLabel[] | undefined);
+    })) as Label[] | undefined);
 
   if (existingLabelsActual) {
     // The labels API includes more properties than we use

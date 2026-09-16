@@ -53,6 +53,7 @@ describe(blockTypeScript, () => {
                   "rules": {
                     "@typescript-eslint/consistent-type-exports": "error",
                     "@typescript-eslint/consistent-type-imports": "error",
+                    "@typescript-eslint/explicit-module-boundary-types": "error",
                   },
                 },
               ],
@@ -64,7 +65,7 @@ describe(blockTypeScript, () => {
               "files": {
                 "greet.ts": "import type { GreetOptions } from './types.ts';
 
-      	export function greet(options: GreetOptions | string) {
+      	export function greet(options: GreetOptions | string): void {
       		const {
       			logger = console.log.bind(console),
       			message,
@@ -222,6 +223,7 @@ describe(blockTypeScript, () => {
                   "rules": {
                     "@typescript-eslint/consistent-type-exports": "error",
                     "@typescript-eslint/consistent-type-imports": "error",
+                    "@typescript-eslint/explicit-module-boundary-types": "error",
                   },
                 },
               ],
@@ -233,7 +235,7 @@ describe(blockTypeScript, () => {
               "files": {
                 "greet.ts": "import type { GreetOptions } from './types.ts';
 
-      	export function greet(options: GreetOptions | string) {
+      	export function greet(options: GreetOptions | string): void {
       		const {
       			logger = console.log.bind(console),
       			message,
@@ -387,6 +389,7 @@ describe(blockTypeScript, () => {
                   "rules": {
                     "@typescript-eslint/consistent-type-exports": "error",
                     "@typescript-eslint/consistent-type-imports": "error",
+                    "@typescript-eslint/explicit-module-boundary-types": "error",
                   },
                 },
               ],
@@ -398,7 +401,7 @@ describe(blockTypeScript, () => {
               "files": {
                 "greet.ts": "import type { GreetOptions } from './types.ts';
 
-      	export function greet(options: GreetOptions | string) {
+      	export function greet(options: GreetOptions | string): void {
       		const {
       			logger = console.log.bind(console),
       			message,

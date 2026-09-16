@@ -3,8 +3,7 @@ import { z } from 'zod';
 export const configEmojiSchema: z.ZodType<ConfigEmoji> = z.array(
   z.tuple([z.string(), z.string()]),
 );
-
-type ConfigEmoji = [string, string][];
+export type ConfigEmoji = [string, string][];
 
 export const ruleOptionsSchema: z.ZodType<RuleOptions> = z.union([
   z.literal('error'),

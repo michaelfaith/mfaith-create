@@ -21,6 +21,6 @@ const options: DumpOptions = {
   },
 };
 
-export function formatYaml(value: unknown) {
+export function formatYaml(value: unknown): string {
   return dump(value, options).replaceAll(/\n(\S)/g, '\n\n$1');
 }

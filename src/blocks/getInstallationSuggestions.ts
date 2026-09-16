@@ -2,7 +2,7 @@ export function getInstallationSuggestions(
   description: string,
   entries: string[],
   url: string,
-) {
+): string[] | undefined {
   return entries.length
     ? [
         [

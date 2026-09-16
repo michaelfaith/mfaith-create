@@ -3,7 +3,7 @@ const paragraphStarter = '<p align="center">';
 
 export async function readDescriptionFromReadme(
   getReadme: () => Promise<string>,
-) {
+): Promise<string | undefined> {
   const readme = await getReadme();
 
   const paragraphStart = readme.indexOf(paragraphStarter);

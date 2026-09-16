@@ -8,7 +8,7 @@ export function createSingleJobWorkflow({
   job,
   name,
   on,
-}: SingleJobWorkflow) {
+}: SingleJobWorkflow): string {
   return formatWorkflowYaml({
     name,
     on,

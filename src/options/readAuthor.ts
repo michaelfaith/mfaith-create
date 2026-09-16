@@ -7,7 +7,7 @@ export async function readAuthor(
   getNpmDefaults: () => Promise<undefined | { name?: string }>,
   getGitUser: () => Promise<ExecaError | Result | undefined>,
   owner: string | undefined,
-) {
+): Promise<string | undefined> {
   return (
     (await getPackageAuthor()).name ??
     (await getNpmDefaults())?.name ??

@@ -1,7 +1,7 @@
 import { formatYaml } from './formatYaml.ts';
 import { removeUsesQuotes } from './removeUsesQuotes.ts';
 
-export function formatWorkflowYaml(value: unknown) {
+export function formatWorkflowYaml(value: unknown): string {
   const formatted = removeUsesQuotes(formatYaml(value))
     // https://github.com/nodeca/js-yaml/pull/515
     .replaceAll(/: "\\n(.+)"/g, ': |\n$1')

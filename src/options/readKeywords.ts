@@ -2,7 +2,7 @@ import type { PartialPackageData } from '../types.ts';
 
 export async function readKeywords(
   getPackageData: () => Promise<PartialPackageData>,
-) {
+): Promise<string[] | undefined> {
   const { keywords } = await getPackageData();
 
   return (

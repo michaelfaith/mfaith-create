@@ -3,7 +3,9 @@ export const indicatorsTemplatedBy = [
   /<!-- You can remove this notice/,
 ];
 
-export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
+export async function readReadmeFootnotes(
+  getReadme: () => Promise<string>,
+): Promise<string | undefined> {
   const readme = await getReadme();
   if (!readme) {
     return undefined;

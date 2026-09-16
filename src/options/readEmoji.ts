@@ -7,7 +7,7 @@ const keyCapPattern = /\p{Emoji}\uFE0F?\u20E3/u;
 
 export async function readEmoji(
   getDescription: () => Promise<string | undefined>,
-) {
+): Promise<string> {
   const description = await getDescription();
 
   return (

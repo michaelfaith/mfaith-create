@@ -4,7 +4,7 @@ import { trimPrecedingSlash } from '../utils/trimPrecedingSlash.ts';
 
 export async function readBin(
   getPackageData: () => Promise<PartialPackageData>,
-) {
+): Promise<string | Record<string, string> | undefined> {
   const { bin } = await getPackageData();
 
   return typeof bin === 'object'

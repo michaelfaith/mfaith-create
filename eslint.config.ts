@@ -55,7 +55,7 @@ export default defineConfig(
     },
     plugins: { perfectionist },
     rules: {
-      // These on-by-default rules work well for this repo if configured
+      // These on-by-default rules work well for this repo
       '@typescript-eslint/prefer-nullish-coalescing': [
         'error',
         { ignorePrimitives: true },
@@ -64,14 +64,11 @@ export default defineConfig(
         'error',
         { allowBoolean: true, allowNullish: true, allowNumber: true },
       ],
-      'n/no-unsupported-features/node-builtins': [
-        'error',
-        { allowExperimental: true, ignores: ['import.meta.dirname'] },
-      ],
       'perfectionist/sort-exports': 'error',
       'perfectionist/sort-imports': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
 
       // Stylistic concerns that don't interfere with Prettier
       'logical-assignment-operators': [

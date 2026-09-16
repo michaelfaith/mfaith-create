@@ -97,7 +97,7 @@ If you're interested in learning more, see the 'getting started' docs on:
                 rules: [
                   {
                     comment:
-                      'These on-by-default rules work well for this repo if configured',
+                      'These on-by-default rules work well for this repo',
                     entries: {
                       '@typescript-eslint/prefer-nullish-coalescing': [
                         'error',
@@ -109,13 +109,6 @@ If you're interested in learning more, see the 'getting started' docs on:
                           allowBoolean: true,
                           allowNullish: true,
                           allowNumber: true,
-                        },
-                      ],
-                      'n/no-unsupported-features/node-builtins': [
-                        'error',
-                        {
-                          allowExperimental: true,
-                          ignores: ['import.meta.dirname'],
                         },
                       ],
                     },

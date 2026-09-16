@@ -16,6 +16,15 @@ export interface Contributor {
   profile: string;
 }
 
+export const guideLinkSchema: z.ZodType<GuideLink> = z.object({
+  href: z.string(),
+  title: z.string(),
+});
+export interface GuideLink {
+  href: string;
+  title: string;
+}
+
 export const nodeVersionsSchema: z.ZodType<NodeVersions> = z.object({
   supported: z.string(),
   pinned: z.string().optional(),
@@ -23,6 +32,30 @@ export const nodeVersionsSchema: z.ZodType<NodeVersions> = z.object({
 export interface NodeVersions {
   supported: string;
   pinned?: string | undefined;
+}
+
+export const labelSchema: z.ZodType<Label> = z.object({
+  color: z.string(),
+  description: z.string().optional(),
+  name: z.string(),
+});
+export interface Label {
+  color: string;
+  description?: string | undefined;
+  name: string;
+}
+
+export const logoSchema: z.ZodType<Logo> = z.object({
+  alt: z.string(),
+  height: z.number().optional(),
+  src: z.string(),
+  width: z.number().optional(),
+});
+export interface Logo {
+  alt: string;
+  height?: number | undefined;
+  src: string;
+  width?: number | undefined;
 }
 
 const readmeSchema: z.ZodType<Readme> = z.object({
