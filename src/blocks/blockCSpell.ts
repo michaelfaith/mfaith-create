@@ -109,9 +109,7 @@ export const blockCSpell = base.createBlock({
     return {
       scripts: [
         {
-          commands: [
-            `node ${resolveBin('cspell-populate-words/bin/index.mjs')} ${wordArgs}`,
-          ],
+          commands: [`node ${resolveBin('cspell-populate-words')} ${wordArgs}`],
           phase: CommandPhase.Process,
         },
       ],

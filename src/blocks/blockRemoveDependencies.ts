@@ -22,7 +22,7 @@ export const blockRemoveDependencies = base.createBlock({
         ? [
             {
               commands: [
-                `node ${resolveBin('remove-dependencies/bin/index.js')} ${addons.dependencies.join(' ')}`,
+                `node ${resolveBin('remove-dependencies')} ${addons.dependencies.join(' ')}`,
               ],
               phase: CommandPhase.Process,
             },

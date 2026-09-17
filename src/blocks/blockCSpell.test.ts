@@ -4,8 +4,8 @@ import { describe, expect, it, test, vi } from 'vitest';
 import { blockCSpell } from './blockCSpell.ts';
 import { optionsBase } from './options.fakes.ts';
 
-vi.mock('../utils/resolveBin.js', () => ({
-  resolveBin: (bin: string) => `path/to/${bin}`,
+vi.mock('../utils/resolveBin.ts', () => ({
+  resolveBin: (bin: string) => `path/to/${bin}/bin/index.mjs`,
 }));
 
 vi.mock('../data/packageData.js', () => ({
