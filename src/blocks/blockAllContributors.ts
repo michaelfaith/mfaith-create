@@ -9,8 +9,6 @@ import { blockPrettier } from './blockPrettier.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
-import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
-import { resolveUses } from './workflows/resolveUses.ts';
 
 export const blockAllContributors = base.createBlock({
   about: {
@@ -78,49 +76,6 @@ export const blockAllContributors = base.createBlock({
           null,
           2,
         ),
-        '.github': {
-          workflows: {
-            'contributors.yaml': createSingleJobWorkflow({
-              name: 'Contributors',
-              on: {
-                push: {
-                  branches: ['main'],
-                },
-              },
-              job: {
-                if: 'github.event.repository.fork != true',
-                'runs-on': 'ubuntu-slim',
-                permissions: {
-                  contents: 'read',
-                  issues: 'write',
-                  'pull-requests': 'write',
-                },
-                steps: [
-                  {
-                    uses: resolveUses(
-                      'actions/checkout',
-                      'v4',
-                      options.workflowsVersions,
-                    ),
-                    with: { 'fetch-depth': 0 },
-                  },
-                  {
-                    uses: '$/.github/actions/setup',
-                    with: { 'skip-checkout': true },
-                  },
-                  {
-                    uses: resolveUses(
-                      'JoshuaKGoldberg/all-contributors-auto-action',
-                      'v0.5.0',
-                      options.workflowsVersions,
-                    ),
-                    env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
-                  },
-                ],
-              },
-            }),
-          },
-        },
       },
       scripts: [
         {
