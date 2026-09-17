@@ -64,36 +64,6 @@ describe('blockAllContributors', () => {
         "projectOwner": "test-owner",
         "repoType": "github"
       }",
-          ".github": {
-            "workflows": {
-              "contributors.yaml": "name: Contributors
-
-      on:
-        push:
-          branches:
-            - main
-
-      jobs:
-        contributors:
-          if: github.event.repository.fork != true
-          runs-on: ubuntu-slim
-          permissions:
-            contents: read
-            issues: write
-            pull-requests: write
-          steps:
-            - uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
-            - uses: $/.github/actions/setup
-              with:
-                skip-checkout: true
-            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
-              env:
-                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-      ",
-            },
-          },
         },
         "scripts": [
           {
@@ -212,36 +182,6 @@ describe('blockAllContributors', () => {
         "projectOwner": "michaelfaith",
         "repoType": "github"
       }",
-          ".github": {
-            "workflows": {
-              "contributors.yaml": "name: Contributors
-
-      on:
-        push:
-          branches:
-            - main
-
-      jobs:
-        contributors:
-          if: github.event.repository.fork != true
-          runs-on: ubuntu-slim
-          permissions:
-            contents: read
-            issues: write
-            pull-requests: write
-          steps:
-            - uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
-            - uses: $/.github/actions/setup
-              with:
-                skip-checkout: true
-            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
-              env:
-                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-      ",
-            },
-          },
         },
         "scripts": [
           {
@@ -359,36 +299,6 @@ describe('blockAllContributors', () => {
         "projectOwner": "test-owner",
         "repoType": "github"
       }",
-          ".github": {
-            "workflows": {
-              "contributors.yaml": "name: Contributors
-
-      on:
-        push:
-          branches:
-            - main
-
-      jobs:
-        contributors:
-          if: github.event.repository.fork != true
-          runs-on: ubuntu-slim
-          permissions:
-            contents: read
-            issues: write
-            pull-requests: write
-          steps:
-            - uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
-            - uses: $/.github/actions/setup
-              with:
-                skip-checkout: true
-            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
-              env:
-                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-      ",
-            },
-          },
         },
         "scripts": [
           {
