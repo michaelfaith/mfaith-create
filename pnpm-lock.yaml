@@ -194,6 +194,9 @@ importers:
       execa:
         specifier: ^10.0.1
         version: 10.0.1
+      find-up-simple:
+        specifier: ^1.0.1
+        version: 1.0.1
       git-url-parse:
         specifier: ^16.1.0
         version: 16.1.0

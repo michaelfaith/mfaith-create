@@ -22,7 +22,7 @@ export const blockRemoveFiles = base.createBlock({
         ? [
             {
               commands: [
-                `node ${resolveBin('trash-cli/cli.js')} ${addons.files.join(' ')}`,
+                `node ${resolveBin('trash-cli', 'trash')} ${addons.files.join(' ')}`,
               ],
               phase: CommandPhase.Migrations,
               silent: true,

@@ -4,8 +4,8 @@ import { describe, expect, test, vi } from 'vitest';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { optionsBase } from './options.fakes.ts';
 
-vi.mock('../utils/resolveBin.js', () => ({
-  resolveBin: (bin: string) => `path/to/${bin}`,
+vi.mock('../utils/resolveBin.ts', () => ({
+  resolveBin: (packageName: string) => `path/to/${packageName}/bin/index.mjs`,
 }));
 
 describe(blockRemoveDependencies, () => {
@@ -47,16 +47,16 @@ describe(blockRemoveDependencies, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "scripts": [
-			    {
-			      "commands": [
-			        "node path/to/remove-dependencies/bin/index.js a b c",
-			      ],
-			      "phase": 3,
-			    },
-			  ],
-			}
-		`);
+      {
+        "scripts": [
+          {
+            "commands": [
+              "node path/to/remove-dependencies/bin/index.mjs a b c",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
   });
 });

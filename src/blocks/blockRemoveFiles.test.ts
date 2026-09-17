@@ -4,8 +4,8 @@ import { describe, expect, test, vi } from 'vitest';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
-vi.mock('../utils/resolveBin.js', () => ({
-  resolveBin: (bin: string) => `path/to/${bin}`,
+vi.mock('../utils/resolveBin.ts', () => ({
+  resolveBin: (packageName: string) => `path/to/${packageName}/bin/index.mjs`,
 }));
 
 describe(blockRemoveFiles, () => {
@@ -47,17 +47,17 @@ describe(blockRemoveFiles, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "scripts": [
-			    {
-			      "commands": [
-			        "node path/to/trash-cli/cli.js a b c",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
-			}
-		`);
+      {
+        "scripts": [
+          {
+            "commands": [
+              "node path/to/trash-cli/bin/index.mjs a b c",
+            ],
+            "phase": 0,
+            "silent": true,
+          },
+        ],
+      }
+    `);
   });
 });
