@@ -45,9 +45,8 @@ jobs:
       - uses: $/.github/actions/setup
         with:
           cache: false
-          install-flags: --prod --ignore-scripts
+          install-flags: --prod --engine-strict --ignore-scripts
           node-version: ${{ matrix.node-version }}
-          strict-engines: true
 
   format_check:
     name: Format Check
