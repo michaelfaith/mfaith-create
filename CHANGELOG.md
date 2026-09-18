@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.1](https://github.com/michaelfaith/mfaith-create/compare/v0.3.0...v0.3.1) (2026-09-18)
+
+
+### 🚀 Features
+
+* require explicit module boundary types ([#197](https://github.com/michaelfaith/mfaith-create/issues/197)) ([ce404e9](https://github.com/michaelfaith/mfaith-create/commit/ce404e9d7bf68eb9a539bb1ddfbf24f1128348a0))
+
+
+### 🩹 Bug Fixes
+
+* remove `contributors` workflow ([#204](https://github.com/michaelfaith/mfaith-create/issues/204)) ([9a86da9](https://github.com/michaelfaith/mfaith-create/commit/9a86da94f4565ea0f3dc49349e34de6813f23226))
+* simplify engines check job ([#205](https://github.com/michaelfaith/mfaith-create/issues/205)) ([c975554](https://github.com/michaelfaith/mfaith-create/commit/c9755547bc0dff59b85859d1f5a4fc0dbebe4129))
+
 ## [0.3.0](https://github.com/michaelfaith/mfaith-create/compare/v0.2.3...v0.3.0) (2026-09-15)
 
 
