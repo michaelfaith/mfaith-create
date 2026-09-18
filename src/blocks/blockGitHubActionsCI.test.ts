@@ -46,26 +46,18 @@ describe(blockGitHubActionsCI, () => {
           description: Skip the checkout step if the repo is already checked out
           default: false
           required: false
-        strict-engines:
-          description: Enable \`engineStrict\` on \`pnpm install\`
-          default: false
-          required: false
 
       runs:
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
           - uses: pnpm/setup@v2
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             with:
               cache: \${{ inputs.cache }}
               install: \${{ inputs.install-flags == '' }}
               runtime: node@\${{ inputs.node-version }}
           - run: pnpm install \${{ inputs.install-flags }}
             if: \${{ inputs.install-flags != '' }}
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             shell: bash
         using: composite
       ",
@@ -154,26 +146,18 @@ describe(blockGitHubActionsCI, () => {
           description: Skip the checkout step if the repo is already checked out
           default: false
           required: false
-        strict-engines:
-          description: Enable \`engineStrict\` on \`pnpm install\`
-          default: false
-          required: false
 
       runs:
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
           - uses: pnpm/setup@v2
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             with:
               cache: \${{ inputs.cache }}
               install: \${{ inputs.install-flags == '' }}
               runtime: node@\${{ inputs.node-version }}
           - run: pnpm install \${{ inputs.install-flags }}
             if: \${{ inputs.install-flags != '' }}
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             shell: bash
         using: composite
       ",
@@ -308,26 +292,18 @@ describe(blockGitHubActionsCI, () => {
           description: Skip the checkout step if the repo is already checked out
           default: false
           required: false
-        strict-engines:
-          description: Enable \`engineStrict\` on \`pnpm install\`
-          default: false
-          required: false
 
       runs:
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
           - uses: pnpm/setup@v2
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             with:
               cache: \${{ inputs.cache }}
               install: \${{ inputs.install-flags == '' }}
               runtime: node@\${{ inputs.node-version }}
           - run: pnpm install \${{ inputs.install-flags }}
             if: \${{ inputs.install-flags != '' }}
-            env:
-              pnpm_config_engine_strict: \${{ inputs.strict-engines && 'true' || '' }}
             shell: bash
         using: composite
       ",
@@ -358,9 +334,8 @@ describe(blockGitHubActionsCI, () => {
             - uses: $/.github/actions/setup
               with:
                 cache: false
-                install-flags: --prod --ignore-scripts
+                install-flags: --prod --engine-strict --ignore-scripts
                 node-version: \${{ matrix.node-version }}
-                strict-engines: true
 
         test_node:
           name: Test (Node.js \${{ matrix.node-version }})
