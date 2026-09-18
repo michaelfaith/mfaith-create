@@ -21,6 +21,7 @@ export const blockExports = base.createBlock({
           properties: {
             exports: {
               '.': filePath.startsWith('.') ? filePath : `./${filePath}`,
+              './package.json': './package.json',
             },
           },
         }),

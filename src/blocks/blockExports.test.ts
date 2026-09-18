@@ -9,29 +9,30 @@ describe(blockExports, () => {
     const creation = testBlock(blockExports, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "properties": {
-			          "exports": {
-			            ".": "./dist/index.mjs",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "runInCI": [
-			          "node ./dist/index.mjs",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "exports": {
+                  ".": "./dist/index.mjs",
+                  "./package.json": "./package.json",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "runInCI": [
+                "node ./dist/index.mjs",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+      }
+    `);
   });
 
   it('with addons', () => {
@@ -44,28 +45,29 @@ describe(blockExports, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "properties": {
-			          "exports": {
-			            ".": "./other.js",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "runInCI": [
-			          "node other.js --version",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "exports": {
+                  ".": "./other.js",
+                  "./package.json": "./package.json",
+                },
+              },
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "runInCI": [
+                "node other.js --version",
+              ],
+            },
+            "block": [Function],
+          },
+        ],
+      }
+    `);
   });
 });
