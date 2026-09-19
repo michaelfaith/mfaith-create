@@ -21,6 +21,16 @@ describe(blockPrPreviewRelease, () => {
             },
             "block": [Function],
           },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "pkg-pr-new": "0.0.88",
+                },
+              },
+            },
+            "block": [Function],
+          },
         ],
         "files": {
           ".github": {
@@ -81,6 +91,16 @@ describe(blockPrPreviewRelease, () => {
                   "url": "https://github.com/apps/pkg-pr-new",
                 },
               ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "pkg-pr-new": "0.0.88",
+                },
+              },
             },
             "block": [Function],
           },

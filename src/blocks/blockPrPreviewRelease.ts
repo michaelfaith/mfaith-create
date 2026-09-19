@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
 import { blockGitHubApps } from './blockGitHubApps.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 
 export const blockPrPreviewRelease = base.createBlock({
@@ -32,6 +34,11 @@ export const blockPrPreviewRelease = base.createBlock({
               url: 'https://github.com/apps/pkg-pr-new',
             },
           ],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: getPackageDependencies('pkg-pr-new'),
+          },
         }),
       ],
       files: {
