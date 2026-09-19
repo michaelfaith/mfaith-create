@@ -14,9 +14,9 @@ export function createSingleJobWorkflow({
     on,
     concurrency,
     jobs: {
-      [createJobName(job.name ?? name)]: {
-        ...(job.if && { if: job.if }),
+      [job.id ?? createJobName(job.name ?? name)]: {
         ...(job.name && { name: job.name }),
+        ...(job.if && { if: job.if }),
         'runs-on': job['runs-on'] || 'ubuntu-latest',
         permissions: job.permissions,
         steps: job.steps,

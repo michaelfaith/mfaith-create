@@ -108,6 +108,17 @@ describe(blockTsdown, () => {
           },
           {
             "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "coverage": {
                 "include": [
                   "src",
@@ -240,6 +251,17 @@ describe(blockTsdown, () => {
           },
           {
             "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "coverage": {
                 "include": [
                   "src",
@@ -346,6 +368,17 @@ describe(blockTsdown, () => {
             "addons": {
               "ignores": [
                 "/dist",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
               ],
             },
             "block": [Function],
