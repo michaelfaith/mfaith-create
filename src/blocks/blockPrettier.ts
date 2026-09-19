@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import { sortKeys } from '../utils/sortKeys.ts';
 import { blockCSpell } from './blockCSpell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockESLint } from './blockESLint.ts';
@@ -21,6 +22,7 @@ export const blockPrettier = base.createBlock({
     name: 'Prettier',
   },
   addons: {
+    additionalConfig: z.record(z.string(), z.unknown()).optional(),
     ignores: z.array(z.string()).default([]),
     overrides: z
       .array(
@@ -36,7 +38,13 @@ export const blockPrettier = base.createBlock({
     runBefore: z.array(z.string()).default([]),
   },
   produce({ addons }) {
-    const { ignores, overrides, plugins, runBefore } = addons;
+    const {
+      additionalConfig = {},
+      ignores,
+      overrides,
+      plugins,
+      runBefore,
+    } = addons;
 
     const simpleGitHooksConfigFileName = '.simple-git-hooks.js';
 
@@ -117,11 +125,14 @@ pnpm format --write
         ),
         'prettier.config.ts': `import type { Config } from 'prettier';
 
-export default ${JSON.stringify({
-          ...(overrides.length && { overrides: overrides.sort() }),
-          ...(plugins.length && { plugins: plugins.sort() }),
-          singleQuote: true,
-        })} satisfies Config;
+export default ${JSON.stringify(
+          sortKeys({
+            ...(overrides.length && { overrides: overrides.sort() }),
+            ...(plugins.length && { plugins: plugins.sort() }),
+            singleQuote: true,
+            ...additionalConfig,
+          }),
+        )} satisfies Config;
 `,
       },
       scripts: [
