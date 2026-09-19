@@ -20,10 +20,10 @@ import packageJson from 'eslint-plugin-package-json';
 import perfectionist from 'eslint-plugin-perfectionist';
 import * as regexp from 'eslint-plugin-regexp';
 import yml from 'eslint-plugin-yml';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
-export default defineConfig(
+const config: ConfigObject[] = defineConfig(
   globalIgnores(
     ['**/*.snap', 'coverage', 'dist', 'node_modules', 'pnpm-lock.yaml'],
     'Global Ignores',
@@ -136,3 +136,5 @@ export default defineConfig(
     },
   },
 );
+
+export default config;

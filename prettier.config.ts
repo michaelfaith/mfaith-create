@@ -1,6 +1,6 @@
 import type { Config } from 'prettier';
 
-export default {
+const config: Config = {
   overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
   plugins: [
     'prettier-plugin-curly',
@@ -10,4 +10,6 @@ export default {
     'prettier-plugin-sh',
   ],
   singleQuote: true,
-} satisfies Config;
+};
+
+export default config;

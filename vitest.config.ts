@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-export default defineConfig({
+const config: ViteUserConfig = defineConfig({
   test: {
     clearMocks: true,
     coverage: {
@@ -11,3 +11,5 @@ export default defineConfig({
     setupFiles: ['console-fail-test/setup'],
   },
 });
+
+export default config;

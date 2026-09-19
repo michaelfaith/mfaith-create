@@ -125,7 +125,9 @@ describe(blockPrettier, () => {
       };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {"singleQuote":true} satisfies Config;
+      const config: Config = {"singleQuote":true};
+
+      export default config;
       ",
         },
         "scripts": [
@@ -289,7 +291,9 @@ describe(blockPrettier, () => {
       };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {"importOrder":["<BUILTIN_MODULES>","","<THIRD_PARTY_MODULES>","","^[.]"],"importOrderTypeScriptVersion":"6.0.0","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"singleQuote":true} satisfies Config;
+      const config: Config = {"importOrder":["<BUILTIN_MODULES>","","<THIRD_PARTY_MODULES>","","^[.]"],"importOrderTypeScriptVersion":"6.0.0","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"singleQuote":true};
+
+      export default config;
       ",
         },
         "scripts": [
@@ -455,7 +459,9 @@ describe(blockPrettier, () => {
       };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
-      export default {"singleQuote":true} satisfies Config;
+      const config: Config = {"singleQuote":true};
+
+      export default config;
       ",
         },
         "scripts": [

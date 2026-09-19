@@ -80,7 +80,7 @@ export const blockKnip = base.createBlock({
       files: {
         'knip.config.ts': `import type { KnipConfig } from 'knip';
 
-export default ${JSON.stringify({
+const config: KnipConfig = ${JSON.stringify({
           entry: entry?.sort(),
           ignoreDependencies,
           ignoreExportsUsedInFile: {
@@ -89,7 +89,10 @@ export default ${JSON.stringify({
           },
           project: project?.sort(),
           treatConfigHintsAsErrors: true,
-        })} satisfies KnipConfig;`,
+        })};
+
+export default config;
+`,
       },
     };
   },
