@@ -245,9 +245,6 @@ importers:
       parse-package-name:
         specifier: ^1.0.0
         version: 1.0.0
-      pkg-pr-new:
-        specifier: 0.0.88
-        version: 0.0.88
       remove-dependencies:
         specifier: ^0.1.1
         version: 0.1.1
@@ -366,6 +363,9 @@ importers:
       knip:
         specifier: 6.36.0
         version: 6.36.0
+      pkg-pr-new:
+        specifier: 0.0.88
+        version: 0.0.88
       prettier:
         specifier: 3.9.7
         version: 3.9.7
