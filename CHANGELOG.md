@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.2](https://github.com/michaelfaith/mfaith-create/compare/v0.3.1...v0.3.2) (2026-09-19)
+
+
+### 🚀 Features
+
+* add `additionalConfig` addon to the prettier block ([#213](https://github.com/michaelfaith/mfaith-create/issues/213)) ([b68e5d4](https://github.com/michaelfaith/mfaith-create/commit/b68e5d4f5f850812b60934265e10f5c6050adf03))
+* add `package.json` to `exports` ([#211](https://github.com/michaelfaith/mfaith-create/issues/211)) ([0994b43](https://github.com/michaelfaith/mfaith-create/commit/0994b43f14c9aacca0e131c09103be93eee65d7f))
+
+
+### 🩹 Bug Fixes
+
+* don't use `satisfies` in configs ([#217](https://github.com/michaelfaith/mfaith-create/issues/217)) ([5084319](https://github.com/michaelfaith/mfaith-create/commit/5084319d380ef9ae0f517408fa661316eacfc4cc))
+
 ## [0.3.1](https://github.com/michaelfaith/mfaith-create/compare/v0.3.0...v0.3.1) (2026-09-18)
 
 
