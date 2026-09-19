@@ -121,9 +121,11 @@ describe(blockTsdown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
+          "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      export default defineConfig({});
+      const config: UserConfig = defineConfig({});
+
+      export default config;
       ",
         },
       }
@@ -251,9 +253,11 @@ describe(blockTsdown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
+          "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      export default defineConfig({"entry":["src/index.ts","src/other.ts"],"dts":false});
+      const config: UserConfig = defineConfig({"entry":["src/index.ts","src/other.ts"],"dts":false});
+
+      export default config;
       ",
         },
       }
@@ -405,9 +409,11 @@ describe(blockTsdown, () => {
           },
         ],
         "files": {
-          "tsdown.config.ts": "import { defineConfig } from 'tsdown';
+          "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      export default defineConfig({});
+      const config: UserConfig = defineConfig({});
+
+      export default config;
       ",
         },
       }

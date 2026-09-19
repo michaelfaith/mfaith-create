@@ -125,14 +125,16 @@ pnpm format --write
         ),
         'prettier.config.ts': `import type { Config } from 'prettier';
 
-export default ${JSON.stringify(
+const config: Config = ${JSON.stringify(
           sortKeys({
             ...(overrides.length && { overrides: overrides.sort() }),
             ...(plugins.length && { plugins: plugins.sort() }),
             singleQuote: true,
             ...additionalConfig,
           }),
-        )} satisfies Config;
+        )};
+
+export default config;
 `,
       },
       scripts: [

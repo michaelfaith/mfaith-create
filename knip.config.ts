@@ -1,6 +1,6 @@
 import type { KnipConfig } from 'knip';
 
-export default {
+const config: KnipConfig = {
   entry: ['src/**/*.test.*'],
   ignoreDependencies: [
     'all-contributors-cli',
@@ -11,4 +11,6 @@ export default {
   ignoreExportsUsedInFile: { interface: true, type: true },
   project: ['src/**/*.ts'],
   treatConfigHintsAsErrors: true,
-} satisfies KnipConfig;
+};
+
+export default config;

@@ -84,7 +84,10 @@ describe(blockKnip, () => {
         "files": {
           "knip.config.ts": "import type { KnipConfig } from 'knip';
 
-      export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+      const config: KnipConfig = {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true};
+
+      export default config;
+      ",
         },
       }
     `);
@@ -165,7 +168,10 @@ describe(blockKnip, () => {
         "files": {
           "knip.config.ts": "import type { KnipConfig } from 'knip';
 
-      export default {"entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+      const config: KnipConfig = {"entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true};
+
+      export default config;
+      ",
         },
       }
     `);
@@ -251,7 +257,10 @@ describe(blockKnip, () => {
         "files": {
           "knip.config.ts": "import type { KnipConfig } from 'knip';
 
-      export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+      const config: KnipConfig = {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true};
+
+      export default config;
+      ",
         },
       }
     `);
@@ -283,6 +292,24 @@ describe(blockKnip, () => {
         files: {
           'knip.config.ts': [
             `export default { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };`,
+          ],
+        },
+      });
+
+      expect(actual).toEqual({ ignoreDependencies });
+    });
+
+    it('returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies with config variable', () => {
+      const ignoreDependencies = ['a', 'b', 'c'];
+
+      const actual = testIntake(blockKnip, {
+        files: {
+          'knip.config.ts': [
+            `import type { KnipConfig } from 'knip';
+
+const config: KnipConfig = { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };
+
+export default config;`,
           ],
         },
       });

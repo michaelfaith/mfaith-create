@@ -270,9 +270,9 @@ describe(blockVitest, () => {
           },
         ],
         "files": {
-          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-      export default defineConfig({
+      const config: ViteUserConfig = defineConfig({
       	test: {
       		clearMocks: true,
       		coverage: {
@@ -283,7 +283,9 @@ describe(blockVitest, () => {
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
-      	",
+
+      export default config;
+      ",
         },
       }
     `);
@@ -576,9 +578,9 @@ describe(blockVitest, () => {
           },
         ],
         "files": {
-          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-      export default defineConfig({
+      const config: ViteUserConfig = defineConfig({
       	test: {
       		clearMocks: true,
       		coverage: {
@@ -589,7 +591,9 @@ describe(blockVitest, () => {
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
-      	",
+
+      export default config;
+      ",
         },
       }
     `);
@@ -866,9 +870,9 @@ describe(blockVitest, () => {
           },
         ],
         "files": {
-          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-      export default defineConfig({
+      const config: ViteUserConfig = defineConfig({
       	test: {
       		clearMocks: true,
       		coverage: {
@@ -881,7 +885,9 @@ describe(blockVitest, () => {
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
-      	",
+
+      export default config;
+      ",
         },
       }
     `);
@@ -1151,9 +1157,9 @@ describe(blockVitest, () => {
           },
         ],
         "files": {
-          "vitest.config.ts": "import { defineConfig } from 'vitest/config';
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-      export default defineConfig({
+      const config: ViteUserConfig = defineConfig({
       	test: {
       		clearMocks: true,
       		coverage: {
@@ -1165,7 +1171,9 @@ describe(blockVitest, () => {
       		setupFiles: ['console-fail-test/setup'],
       	},
       });
-      	",
+
+      export default config;
+      ",
         },
       }
     `);

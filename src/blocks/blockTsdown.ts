@@ -112,13 +112,15 @@ pnpm build --watch
         blockVitest({ coverage: { include: ['src'] }, exclude: ['dist'] }),
       ],
       files: {
-        'tsdown.config.ts': `import { defineConfig } from 'tsdown';
+        'tsdown.config.ts': `import { defineConfig, type UserConfig } from 'tsdown';
 
-export default defineConfig(${JSON.stringify({
+const config: UserConfig = defineConfig(${JSON.stringify({
           // If `src/index.ts` is the only entry, then omit it.
           entry: entries.size > 1 ? Array.from(entries) : undefined,
           ...properties,
         })});
+
+export default config;
 `,
       },
     };
