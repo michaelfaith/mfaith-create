@@ -102,6 +102,9 @@ pnpm format --write
               'pretty-quick',
               'simple-git-hooks',
             ),
+            scripts: {
+              prepare: 'simple-git-hooks',
+            },
           },
         }),
         blockPnpmWorkspace({
@@ -138,10 +141,6 @@ export default config;
 `,
       },
       scripts: [
-        {
-          commands: ['pnpm simple-git-hooks'],
-          phase: CommandPhase.Build,
-        },
         {
           commands: [...runBefore, 'pnpm format --write'],
           phase: CommandPhase.Format,
