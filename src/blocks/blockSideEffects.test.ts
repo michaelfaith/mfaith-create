@@ -9,19 +9,19 @@ describe(blockSideEffects, () => {
     const creation = testBlock(blockSideEffects, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "properties": {
-			          "sideEffects": false,
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "sideEffects": false,
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+      }
+    `);
   });
 
   it('with addons (boolean)', () => {
@@ -33,19 +33,19 @@ describe(blockSideEffects, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "properties": {
-			          "sideEffects": true,
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "sideEffects": true,
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+      }
+    `);
   });
 
   it('with addons (Array)', () => {
@@ -57,20 +57,20 @@ describe(blockSideEffects, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "properties": {
-			          "sideEffects": [
-			            "./main.js",
-			          ],
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "sideEffects": [
+                  "./main.js",
+                ],
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+      }
+    `);
   });
 });

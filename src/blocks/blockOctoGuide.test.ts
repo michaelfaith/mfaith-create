@@ -89,7 +89,7 @@ describe(blockOctoGuide, () => {
                 ".github/workflows/octoguide.yml",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
         ],
         "files": {

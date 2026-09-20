@@ -11,43 +11,43 @@ describe('blockESLintPackageJson', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "extensions": [
-			          {
-			            "extends": [
-			              "packageJson.configs.recommended",
-			              "packageJson.configs.stylistic",
-			            ],
-			            "files": [
-			              "package.json",
-			            ],
-			          },
-			        ],
-			        "imports": [
-			          {
-			            "source": "eslint-plugin-package-json",
-			            "specifier": "packageJson",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "scripts": {
-			            "lint:package-json": undefined,
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "packageJson.configs.recommended",
+                    "packageJson.configs.stylistic",
+                  ],
+                  "files": [
+                    "package.json",
+                  ],
+                },
+              ],
+              "imports": [
+                {
+                  "source": "eslint-plugin-package-json",
+                  "specifier": "packageJson",
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "scripts": {
+                  "lint:package-json": undefined,
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+      }
+    `);
   });
 
   test('transition mode', () => {
@@ -57,67 +57,67 @@ describe('blockESLintPackageJson', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "extensions": [
-			          {
-			            "extends": [
-			              "packageJson.configs.recommended",
-			              "packageJson.configs.stylistic",
-			            ],
-			            "files": [
-			              "package.json",
-			            ],
-			          },
-			        ],
-			        "imports": [
-			          {
-			            "source": "eslint-plugin-package-json",
-			            "specifier": "packageJson",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "scripts": {
-			            "lint:package-json": undefined,
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "files": [
-			          ".npmpackagejsonlintrc*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "dependencies": [
-			          "npm-package-json-lint",
-			          "npm-package-json-lint-config-default",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "workflows": [
-			          "lint-package-json",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "packageJson.configs.recommended",
+                    "packageJson.configs.stylistic",
+                  ],
+                  "files": [
+                    "package.json",
+                  ],
+                },
+              ],
+              "imports": [
+                {
+                  "source": "eslint-plugin-package-json",
+                  "specifier": "packageJson",
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "scripts": {
+                  "lint:package-json": undefined,
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "files": [
+                ".npmpackagejsonlintrc*",
+              ],
+            },
+            "block": "[Block Remove Files]",
+          },
+          {
+            "addons": {
+              "dependencies": [
+                "npm-package-json-lint",
+                "npm-package-json-lint-config-default",
+              ],
+            },
+            "block": "[Block Remove Dependencies]",
+          },
+          {
+            "addons": {
+              "workflows": [
+                "lint-package-json",
+              ],
+            },
+            "block": "[Block Remove Workflows]",
+          },
+        ],
+      }
+    `);
   });
 });

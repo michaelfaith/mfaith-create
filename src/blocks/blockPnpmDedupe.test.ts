@@ -11,34 +11,34 @@ describe('blockPnpmDedupe', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Dedupe Check",
-			            "steps": [
-			              {
-			                "run": "pnpm dedupe --check",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "cleanupCommands": [
-			          "pnpm dedupe",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Dedupe Check",
+                  "steps": [
+                    {
+                      "run": "pnpm dedupe --check",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "cleanupCommands": [
+                "pnpm dedupe",
+              ],
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+      }
+    `);
   });
 
   test('transition mode', () => {
@@ -48,41 +48,41 @@ describe('blockPnpmDedupe', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Dedupe Check",
-			            "steps": [
-			              {
-			                "run": "pnpm dedupe --check",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "cleanupCommands": [
-			          "pnpm dedupe",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "workflows": [
-			          "lint-packages",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Dedupe Check",
+                  "steps": [
+                    {
+                      "run": "pnpm dedupe --check",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "cleanupCommands": [
+                "pnpm dedupe",
+              ],
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "workflows": [
+                "lint-packages",
+              ],
+            },
+            "block": "[Block Remove Workflows]",
+          },
+        ],
+      }
+    `);
   });
 });

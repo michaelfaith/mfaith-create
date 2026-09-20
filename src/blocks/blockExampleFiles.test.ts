@@ -39,21 +39,21 @@ describe(blockExampleFiles, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "defaultUsage": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "src": {
-			      "index.ts": "console.log('Hello, world!');",
-			    },
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "defaultUsage": undefined,
+            },
+            "block": "[Block README.md]",
+          },
+        ],
+        "files": {
+          "src": {
+            "index.ts": "console.log('Hello, world!');",
+          },
+        },
+      }
+    `);
   });
 });

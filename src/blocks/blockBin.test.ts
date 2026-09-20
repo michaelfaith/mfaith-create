@@ -30,7 +30,7 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -38,7 +38,7 @@ describe(blockBin, () => {
                 "bin": "dist/bin/index.mjs",
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -51,7 +51,7 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Example Files]",
           },
           {
             "addons": {
@@ -59,7 +59,7 @@ describe(blockBin, () => {
                 "src/bin/index.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block tsdown]",
           },
         ],
       }
@@ -96,7 +96,7 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -104,7 +104,7 @@ describe(blockBin, () => {
                 "bin": "dist/cli.mjs",
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -117,7 +117,7 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Example Files]",
           },
           {
             "addons": {
@@ -125,7 +125,7 @@ describe(blockBin, () => {
                 "dist/cli.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block tsdown]",
           },
         ],
       }
@@ -165,7 +165,7 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -176,7 +176,7 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -189,7 +189,7 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Example Files]",
           },
           {
             "addons": {
@@ -198,7 +198,7 @@ describe(blockBin, () => {
                 "dist/bin/other.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block tsdown]",
           },
         ],
       }

@@ -18,7 +18,7 @@ import { blockVitest } from './blockVitest.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 
 const entrySchema = z.array(z.string());
-const propertiesSchema = z.record(z.unknown());
+const propertiesSchema = z.record(z.string(), z.unknown());
 
 export const blockTsdown = base.createBlock({
   about: {

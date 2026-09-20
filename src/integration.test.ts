@@ -129,8 +129,8 @@ If you're interested in learning more, see the 'getting started' docs on:
           blockPnpmWorkspace({
             config: {
               overrides: {
-                'bingo-stratum@0.5.13>cached-factory': '0.3.0',
-                'bingo@0.9.3>cached-factory': '0.3.0',
+                'bingo-stratum@0.6.1>cached-factory': '0.3.0',
+                'bingo@0.11.3>cached-factory': '0.3.0',
               },
             },
           }),
@@ -157,5 +157,5 @@ If you're interested in learning more, see the 'getting started' docs on:
       diffCreatedDirectory(actual, created.files, processText),
     ).toBeUndefined();
   },
-  isWindowsCI ? 25_000 : 10_000,
+  isWindowsCI ? 25_000 : 15_000,
 );

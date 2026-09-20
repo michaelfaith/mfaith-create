@@ -18,7 +18,7 @@ describe('blockAllContributors', () => {
                 ".all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -29,7 +29,7 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -37,7 +37,7 @@ describe('blockAllContributors', () => {
                 "/.all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -58,7 +58,7 @@ describe('blockAllContributors', () => {
               ],
               "sections": undefined,
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
         ],
         "files": {
@@ -114,7 +114,7 @@ describe('blockAllContributors', () => {
                 ".all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -125,7 +125,7 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -133,7 +133,7 @@ describe('blockAllContributors', () => {
                 "/.all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -172,7 +172,7 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: enable -->",
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
         ],
         "files": {
@@ -242,7 +242,7 @@ describe('blockAllContributors', () => {
                 ".all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -253,7 +253,7 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -261,7 +261,7 @@ describe('blockAllContributors', () => {
                 "/.all-contributorsrc",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -300,7 +300,7 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: enable -->",
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
         ],
         "files": {

@@ -47,7 +47,7 @@ describe(blockPackageJson, () => {
                 "yarn.lock",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
         ],
         "files": {

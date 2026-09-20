@@ -24,7 +24,7 @@ describe(blockPrettier, () => {
                 "prettier.config.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -43,7 +43,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -65,7 +65,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -80,7 +80,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -95,7 +95,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -105,7 +105,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block pnpm Workspace]",
           },
           {
             "addons": {
@@ -116,7 +116,7 @@ describe(blockPrettier, () => {
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -180,7 +180,7 @@ describe(blockPrettier, () => {
                 "prettier.config.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -199,7 +199,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -221,7 +221,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -239,7 +239,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -257,7 +257,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -267,7 +267,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block pnpm Workspace]",
           },
           {
             "addons": {
@@ -278,7 +278,7 @@ describe(blockPrettier, () => {
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -324,7 +324,7 @@ describe(blockPrettier, () => {
                 "prettier.config.ts",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -343,7 +343,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -365,7 +365,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -380,7 +380,7 @@ describe(blockPrettier, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -395,7 +395,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -405,7 +405,7 @@ describe(blockPrettier, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block pnpm Workspace]",
           },
           {
             "addons": {
@@ -416,7 +416,7 @@ describe(blockPrettier, () => {
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
           {
             "addons": {
@@ -425,7 +425,7 @@ describe(blockPrettier, () => {
                 "eslint-plugin-prettier",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Dependencies]",
           },
           {
             "addons": {
@@ -435,7 +435,7 @@ describe(blockPrettier, () => {
                 "prettier.config*",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -444,7 +444,7 @@ describe(blockPrettier, () => {
                 "prettier",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {

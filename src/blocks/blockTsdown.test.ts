@@ -38,7 +38,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -46,7 +46,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -61,7 +61,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -69,7 +69,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Gitignore]",
           },
           {
             "addons": {
@@ -85,7 +85,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -93,7 +93,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -104,7 +104,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block PR Preview Release]",
           },
           {
             "addons": {
@@ -115,7 +115,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Release Please]",
           },
           {
             "addons": {
@@ -128,7 +128,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -178,7 +178,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -186,7 +186,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -204,7 +204,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -212,7 +212,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Gitignore]",
           },
           {
             "addons": {
@@ -228,7 +228,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -236,7 +236,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -247,7 +247,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block PR Preview Release]",
           },
           {
             "addons": {
@@ -258,7 +258,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Release Please]",
           },
           {
             "addons": {
@@ -271,7 +271,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -315,7 +315,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -323,7 +323,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
           {
             "addons": {
@@ -338,7 +338,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -346,7 +346,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Gitignore]",
           },
           {
             "addons": {
@@ -362,7 +362,7 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -370,7 +370,7 @@ describe(blockTsdown, () => {
                 "/dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -381,7 +381,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block PR Preview Release]",
           },
           {
             "addons": {
@@ -392,7 +392,7 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Release Please]",
           },
           {
             "addons": {
@@ -405,7 +405,7 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": [Function],
+            "block": "[Block Vitest]",
           },
           {
             "addons": {
@@ -417,7 +417,7 @@ describe(blockTsdown, () => {
                 "tsup",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Dependencies]",
           },
           {
             "addons": {
@@ -429,7 +429,7 @@ describe(blockTsdown, () => {
                 "tsup.config.*",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -438,7 +438,7 @@ describe(blockTsdown, () => {
                 "tsup",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {

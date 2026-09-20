@@ -54,7 +54,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -69,7 +69,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -87,7 +87,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -107,7 +107,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -172,7 +172,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -187,7 +187,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -205,7 +205,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -225,7 +225,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
           {
             "addons": {
@@ -239,7 +239,7 @@ describe(blockESLint, () => {
                 "yaml-eslint-parser",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Dependencies]",
           },
           {
             "addons": {
@@ -249,7 +249,7 @@ describe(blockESLint, () => {
                 "eslint.config.{cjs,js,mjs}",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -258,7 +258,7 @@ describe(blockESLint, () => {
                 "lint",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {
@@ -359,7 +359,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -374,7 +374,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -395,7 +395,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -415,7 +415,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -527,7 +527,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -542,7 +542,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -560,7 +560,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -580,7 +580,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -671,7 +671,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -686,7 +686,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -704,7 +704,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -724,7 +724,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -829,7 +829,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -844,7 +844,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -862,7 +862,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -882,7 +882,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -974,7 +974,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -989,7 +989,7 @@ describe(blockESLint, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -1007,7 +1007,7 @@ describe(blockESLint, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -1027,7 +1027,7 @@ describe(blockESLint, () => {
                 ],
               },
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
