@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.3](https://github.com/michaelfaith/mfaith-create/compare/v0.3.2...v0.3.3) (2026-09-20)
+
+
+### 🚀 Features
+
+* add PR Preview Release block for publishing preview packages ([#224](https://github.com/michaelfaith/mfaith-create/issues/224)) ([d6516c2](https://github.com/michaelfaith/mfaith-create/commit/d6516c282b57c839fc28216fb7a53c05a9b52acf))
+
+
+### 🩹 Bug Fixes
+
+* add prepare script for `simple-git-hooks` to prettier block ([#228](https://github.com/michaelfaith/mfaith-create/issues/228)) ([16052ef](https://github.com/michaelfaith/mfaith-create/commit/16052ef9ca1e68cc286f04255ec659480da55124))
+* suggest installing the all contributors app ([#231](https://github.com/michaelfaith/mfaith-create/issues/231)) ([cd0bad6](https://github.com/michaelfaith/mfaith-create/commit/cd0bad68f9b7797489c4c3c753868710372a1622))
+* use package name for pr template comment ([#229](https://github.com/michaelfaith/mfaith-create/issues/229)) ([b4bc489](https://github.com/michaelfaith/mfaith-create/commit/b4bc489b1d023b51cdc8c1811ad4bf03517cdc10))
+
 ## [0.3.2](https://github.com/michaelfaith/mfaith-create/compare/v0.3.1...v0.3.2) (2026-09-19)
 
 
