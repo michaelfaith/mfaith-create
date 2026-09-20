@@ -90,6 +90,9 @@ describe(blockPrettier, () => {
                   "pretty-quick": "1.2.3",
                   "simple-git-hooks": "1.2.3",
                 },
+                "scripts": {
+                  "prepare": "simple-git-hooks",
+                },
               },
             },
             "block": [Function],
@@ -131,12 +134,6 @@ describe(blockPrettier, () => {
       ",
         },
         "scripts": [
-          {
-            "commands": [
-              "pnpm simple-git-hooks",
-            ],
-            "phase": 2,
-          },
           {
             "commands": [
               "pnpm format --write",
@@ -255,6 +252,9 @@ describe(blockPrettier, () => {
                   "pretty-quick": "1.2.3",
                   "simple-git-hooks": "1.2.3",
                 },
+                "scripts": {
+                  "prepare": "simple-git-hooks",
+                },
               },
             },
             "block": [Function],
@@ -297,12 +297,6 @@ describe(blockPrettier, () => {
       ",
         },
         "scripts": [
-          {
-            "commands": [
-              "pnpm simple-git-hooks",
-            ],
-            "phase": 2,
-          },
           {
             "commands": [
               "pnpm build || exit 0",
@@ -396,6 +390,9 @@ describe(blockPrettier, () => {
                   "pretty-quick": "1.2.3",
                   "simple-git-hooks": "1.2.3",
                 },
+                "scripts": {
+                  "prepare": "simple-git-hooks",
+                },
               },
             },
             "block": [Function],
@@ -465,12 +462,6 @@ describe(blockPrettier, () => {
       ",
         },
         "scripts": [
-          {
-            "commands": [
-              "pnpm simple-git-hooks",
-            ],
-            "phase": 2,
-          },
           {
             "commands": [
               "pnpm format --write",

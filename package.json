@@ -27,6 +27,7 @@
     "lint": "eslint . --max-warnings 0",
     "lint:knip": "knip",
     "lint:spelling": "cspell \"**\" \".github/**/*\"",
+    "prepare": "simple-git-hooks",
     "test": "vitest"
   },
   "dependencies": {
