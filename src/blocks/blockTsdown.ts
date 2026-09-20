@@ -9,6 +9,7 @@ import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
+import { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
 import { blockReleasePlease } from './blockReleasePlease.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
@@ -100,6 +101,14 @@ pnpm build --watch
         }),
         blockPrettier({
           ignores: ['/dist'],
+        }),
+        blockPrPreviewRelease({
+          builders: [
+            {
+              order: 0,
+              run: 'pnpm build',
+            },
+          ],
         }),
         blockReleasePlease({
           builders: [

@@ -49,6 +49,7 @@ This table summarizes each block and which base levels they're included in:
 | Prettier Plugin Padding Lines      | `--add-prettier-plugin-padding-lines`, `--exclude-prettier-plugin-padding-lines`           |         |        | 💯         |
 | Prettier Plugin Sentences Per Line | `--add-prettier-plugin-sentences-per-line`, `--exclude-prettier-plugin-sentences-per-line` |         |        | 💯         |
 | Prettier Plugin Sh                 | `--add-prettier-plugin-sh`, `--exclude-prettier-plugin-sh`                                 |         |        | 💯         |
+| PR Preview Release                 | `--add-pr-preview-release`, `--exclude-pr-preview-release`                                 |         | ✅     | 💯         |
 | README.md                          | `--add-readme-md`, `--exclude-readme-md`                                                   | ✔️      | ✅     | 💯         |
 | Release Please                     | `--add-release-please`, `--exclude-release-please`                                         |         | ✅     | 💯         |
 | Renovate                           | `--add-renovate`, `--exclude-renovate`                                                     |         |        | 💯         |

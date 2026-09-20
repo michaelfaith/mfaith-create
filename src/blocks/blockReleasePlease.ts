@@ -18,6 +18,8 @@ const isScopedPackage = (packageName: string | undefined): boolean =>
 export const blockReleasePlease = base.createBlock({
   about: {
     name: 'Release Please',
+    description:
+      'Creates a release workflow and all of the necessary configuration for using Release Please for versioning, publishing, tagging, and creating GH releases.',
   },
   addons: {
     builders: z
