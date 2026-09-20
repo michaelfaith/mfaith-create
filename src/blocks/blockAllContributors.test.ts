@@ -22,6 +22,17 @@ describe('blockAllContributors', () => {
           },
           {
             "addons": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
               "ignores": [
                 "/.all-contributorsrc",
               ],
@@ -101,6 +112,17 @@ describe('blockAllContributors', () => {
             "addons": {
               "ignorePaths": [
                 ".all-contributorsrc",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
               ],
             },
             "block": [Function],
@@ -218,6 +240,17 @@ describe('blockAllContributors', () => {
             "addons": {
               "ignorePaths": [
                 ".all-contributorsrc",
+              ],
+            },
+            "block": [Function],
+          },
+          {
+            "addons": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
               ],
             },
             "block": [Function],
