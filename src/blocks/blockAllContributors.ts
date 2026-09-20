@@ -5,6 +5,7 @@ import type { Contributor } from '../schemas.ts';
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
 import { blockCSpell } from './blockCSpell.ts';
+import { blockGitHubApps } from './blockGitHubApps.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockREADME } from './blockREADME.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
@@ -34,6 +35,14 @@ export const blockAllContributors = base.createBlock({
       addons: [
         blockCSpell({
           ignorePaths: ['.all-contributorsrc'],
+        }),
+        blockGitHubApps({
+          apps: [
+            {
+              name: 'All Contributors',
+              url: 'https://github.com/apps/allcontributors',
+            },
+          ],
         }),
         blockPrettier({
           ignores: ['/.all-contributorsrc'],
