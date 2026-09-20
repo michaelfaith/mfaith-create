@@ -1,6 +1,6 @@
 # Configuration Files
 
-`@mfaith/create` supports a `create-repo.config.js` configuration file per [Bingo > Configuration](https://www.create.bingo/configuration).
+`@mfaith/create` supports a `mfaith-create.config.ts` configuration file per [Bingo > Configuration](https://www.create.bingo/configuration).
 Bingo configuration files are generally used for describing complex options that can't be inferred from existing repositories.
 `@mfaith/create` is built on the [Stratum engine](https:://create.bingo/engines/stratum/about), so its configuration files adhere to [Bingo > Stratum > Details > Configurations](https://www.create.bingo/engines/stratum/details/configurations):
 
@@ -34,7 +34,7 @@ These options are generally only programmatically used internally, but can still
 For example, changing `node` versions to values different from what would be inferred:
 
 ```ts
-// create-repo.config.js
+// mfaith-create.config.ts
 import { createConfig } from '@mfaith/create';
 
 export default createConfig({
@@ -64,7 +64,7 @@ Any additional [Addons](https://www.create.bingo/engines/stratum/concepts/blocks
 For example, this configuration file adds the word `"michaelfaith"` to the CSpell Block's Addons:
 
 ```ts
-// create-repo.config.js
+// mfaith-create.config.ts
 import { blockCSpell, createConfig } from '@mfaith/create';
 
 export default createConfig({
@@ -91,7 +91,7 @@ Any Blocks to add to what the Preset provides.
 For example, this configuration file adds in `@mfaith/create`'s provided "arethetypeswrong" Block:
 
 ```ts
-// create-repo.config.js
+// mfaith-create.config.ts
 import { blockAreTheTypesWrong, createConfig } from '@mfaith/create';
 
 export default createConfig({
@@ -112,7 +112,7 @@ Any Blocks to exclude from what the Preset provides.
 For example, this configuration file omits the default _"This package was templated with..."_ notice that comes with `@mfaith/create`:
 
 ```ts
-// create-repo.config.js
+// mfaith-create.config.ts
 import { blockTemplatedBy, createConfig } from '@mfaith/create';
 
 export default createConfig({
@@ -161,7 +161,7 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 ```
 
 ```ts
-// create-repo.config.ts
+// mfaith-create.config.ts
 import { createConfig } from '@mfaith/create';
 
 import { blockLintAreTheTypesWrong } from './blockLintAreTheTypesWrong.ts';
