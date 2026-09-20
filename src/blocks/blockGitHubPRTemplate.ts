@@ -2,13 +2,14 @@ import { base } from '../base.ts';
 
 export const blockGitHubPRTemplate = base.createBlock({
   about: {
-    name: 'GitHub Issue Templates',
+    name: 'GitHub PR Template',
+    description: 'Creates a GitHub PR Template for the repo.',
   },
   produce({ options }) {
     return {
       files: {
         '.github': {
-          'PULL_REQUEST_TEMPLATE.md': `<!-- 👋 Hi, thanks for sending a PR to ${options.repository}! ${options.emoji}
+          'PULL_REQUEST_TEMPLATE.md': `<!-- 👋 Hi, thanks for contributing to ${options.packageName || options.repository}! ${options.emoji}
 Please fill out all fields below and make sure each item is true and [x] checked.
 Otherwise we may not be able to review your PR. -->
 
