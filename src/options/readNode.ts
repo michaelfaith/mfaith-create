@@ -1,4 +1,4 @@
-import type { NodeVersions } from '../schemas.ts';
+import type { NodeVersions } from '../Options.ts';
 import type { PartialPackageData } from '../types.ts';
 
 import { defaults } from '../constants.ts';

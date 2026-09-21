@@ -1,9 +1,9 @@
-import { type BaseOptionsFor, createBase } from 'bingo-stratum';
+import { type Base, type BaseOptionsFor, createBase } from 'bingo-stratum';
 import { inputFromFile } from 'input-from-file';
 import { inputFromScript } from 'input-from-script';
 import lazyValue from 'lazy-value';
-import { z } from 'zod';
 
+import { optionsShape, type OptionsShape } from './Options.ts';
 import { readAccess } from './options/readAccess.ts';
 import { readAllContributors } from './options/readAllContributors.ts';
 import { readAuthor } from './options/readAuthor.ts';
@@ -38,118 +38,9 @@ import { readRulesetId } from './options/readRulesetId.ts';
 import { readTitle } from './options/readTitle.ts';
 import { readWords } from './options/readWords.ts';
 import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
-import {
-  contributorSchema,
-  documentationSchema,
-  guideLinkSchema,
-  labelSchema,
-  logoSchema,
-  nodeVersionsSchema,
-  workflowsVersionsSchema,
-} from './schemas.ts';
 
-export const base = createBase({
-  options: {
-    access: z
-      .union([z.literal('public'), z.literal('restricted')])
-      .describe('which `npm publish --access` to release npm packages with'),
-    author: z
-      .string()
-      .optional()
-      .describe('username on npm to publish packages under'),
-    contact: z
-      .union([
-        z.string(),
-        z.object({
-          bluesky: z.string().optional(),
-          email: z.string().optional(),
-          url: z.string().optional(),
-        }),
-      ])
-      .transform((email) => (typeof email === 'string' ? { email } : email))
-      .describe(
-        'contact information to be listed as the point of contact in docs and packages',
-      ),
-    contributors: z
-      .array(contributorSchema)
-      .optional()
-      .describe('AllContributors contributors to store in .all-contributorsrc'),
-    description: z
-      .string()
-      .default('A very lovely package. Hooray!')
-      .describe("'Sentence case.' description of the repository"),
-    directory: z.string().describe('Directory to create the repository in'),
-    documentation: documentationSchema.describe(
-      'additional docs to add to .md files',
-    ),
-    emoji: z
-      .string()
-      .optional()
-      .describe('decorative emoji to use in descriptions and docs'),
-    existingLabels: z
-      .array(labelSchema)
-      .optional()
-      .describe('existing labels from the GitHub repository'),
-    funding: z
-      .string()
-      .optional()
-      .describe('GitHub organization or username to mention in `funding.yaml`'),
-    guide: guideLinkSchema
-      .optional()
-      .describe(
-        'link to a contribution guide to place at the top of development docs',
-      ),
-    keywords: z
-      .array(z.string())
-      .optional()
-      .describe('any number of keywords to include in `package.json`'),
-    logo: logoSchema
-      .optional()
-      .describe(
-        'local image file and alt text to display near the top of the README.md',
-      ),
-    node: nodeVersionsSchema.describe(
-      'Node.js engine version(s) to pin and support',
-    ),
-    owner: z.string().describe('organization or user owning the repository'),
-    packageData: z
-      .object({
-        dependencies: z.record(z.string(), z.string()).optional(),
-        devDependencies: z.record(z.string(), z.string()).optional(),
-        peerDependencies: z.record(z.string(), z.string()).optional(),
-        peerDependenciesMeta: z.record(z.string(), z.unknown()).optional(),
-        scripts: z.record(z.string(), z.string().optional()).optional(),
-      })
-      .optional()
-      .describe('additional properties to include in `package.json`'),
-    packageName: z
-      .string()
-      .optional()
-      .describe('name of the package to publish to npm'),
-    pnpm: z
-      .string()
-      .optional()
-      .describe("pnpm version for package.json's packageManager field"),
-    repository: z
-      .string()
-      .describe("'kebab-case' or 'PascalCase' title of the repository"),
-    rulesetId: z
-      .string()
-      .optional()
-      .describe('GitHub branch ruleset ID for main branch protections'),
-    title: z.string().describe("'Title Case' title for the repository"),
-    version: z
-      .string()
-      .optional()
-      .describe('package version to publish as and store in `package.json`'),
-    words: z
-      .array(z.string())
-      .optional()
-      .describe('additional words to add to the CSpell dictionary'),
-    workflowsVersions: workflowsVersionsSchema
-      .optional()
-      .describe('existing versions of GitHub Actions workflows used'),
-  },
+export const base: Base<OptionsShape> = createBase({
+  options: optionsShape,
   prepare({ options, take }) {
     const getAccess = lazyValue(async () => await readAccess(getPackageData));
 
@@ -334,4 +225,6 @@ export const base = createBase({
   },
 });
 
-export type BaseOptions = BaseOptionsFor<typeof base> & { preset?: string };
+export type BaseOptions = BaseOptionsFor<Base<OptionsShape>> & {
+  preset?: string;
+};

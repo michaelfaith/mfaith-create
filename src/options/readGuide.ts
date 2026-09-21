@@ -2,7 +2,7 @@ import type { TakeInput } from 'bingo';
 
 import { inputFromFile } from 'input-from-file';
 
-import type { GuideLink } from '../schemas.ts';
+import type { GuideLink } from '../Options.ts';
 
 export async function readGuide(
   take: TakeInput,
