@@ -1,6 +1,6 @@
 import { base } from './base.ts';
 import { blockAreTheTypesWrong } from './blocks/blockAreTheTypesWrong.ts';
-import { blockESLintPlugin } from './blocks/blockESLintPlugin.ts';
+import { blockEslintPlugin } from './blocks/blockEslintPlugin.ts';
 import { blockNcc } from './blocks/blockNcc.ts';
 import { blockRemoveDependencies } from './blocks/blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blocks/blockRemoveFiles.ts';
@@ -21,7 +21,7 @@ export const template = base.createStratumTemplate({
   blocks: [
     blockAreTheTypesWrong,
     blockRepoTransitions,
-    blockESLintPlugin,
+    blockEslintPlugin,
     blockNcc,
     blockRemoveDependencies,
     blockRemoveFiles,

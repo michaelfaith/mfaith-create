@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import { blockGitHubApps } from './blockGitHubApps.ts';
+import { blockGithubApps } from './blockGithubApps.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 
@@ -27,7 +27,7 @@ export const blockPrPreviewRelease = base.createBlock({
 
     return {
       addons: [
-        blockGitHubApps({
+        blockGithubApps({
           apps: [
             {
               name: 'pkg-pr-new',

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { blockESLint } from './blockESLint.ts';
+import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockTsdown } from './blockTsdown.ts';
@@ -59,7 +59,7 @@ export const blockBin = base.createBlock({
 
     return {
       addons: [
-        blockESLint({
+        blockEslint({
           extensions: [
             {
               files: JS_TS_FILES,

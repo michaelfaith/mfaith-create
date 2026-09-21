@@ -4,11 +4,11 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVSCode } from './blockVSCode.ts';
+import { blockVscode } from './blockVscode.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 
@@ -54,7 +54,7 @@ export const blockKnip = base.createBlock({
             },
           },
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Lint Knip',
@@ -73,7 +73,7 @@ export const blockKnip = base.createBlock({
         blockRemoveFiles({
           files: ['.ts-prunerc*'],
         }),
-        blockVSCode({
+        blockVscode({
           extensions: ['webpro.vscode-knip'],
         }),
       ],

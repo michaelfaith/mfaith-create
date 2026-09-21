@@ -67,12 +67,12 @@ For example, this configuration file adds the word `"michaelfaith"` to the CSpel
 
 ```ts
 // mfaith-create.config.ts
-import { blockCSpell, type Config, createConfig } from '@mfaith/create';
+import { blockCspell, type Config, createConfig } from '@mfaith/create';
 
 const config: Config = createConfig({
   refinements: {
     addons: [
-      blockCSpell({
+      blockCspell({
         words: ['michaelfaith'],
       }),
     ],

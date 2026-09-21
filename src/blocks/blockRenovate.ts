@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { blockGitHubApps } from './blockGitHubApps.ts';
+import { blockGithubApps } from './blockGithubApps.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const ignoreDepsSchema = z.array(z.string()).default([]);
@@ -25,7 +25,7 @@ export const blockRenovate = base.createBlock({
 
     return {
       addons: [
-        blockGitHubApps({
+        blockGithubApps({
           apps: [
             {
               name: 'Renovate',

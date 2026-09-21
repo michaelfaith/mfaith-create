@@ -4,8 +4,8 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockESLint } from './blockESLint.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockEslint } from './blockEslint.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
@@ -73,10 +73,10 @@ pnpm build --watch
             },
           },
         }),
-        blockESLint({
+        blockEslint({
           ignores: ['dist'],
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Build',

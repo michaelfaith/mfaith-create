@@ -1,5 +1,5 @@
 import { base } from '../base.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 
@@ -10,7 +10,7 @@ export const blockPnpmDedupe = base.createBlock({
   produce() {
     return {
       addons: [
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Dedupe Check',

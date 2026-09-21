@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
-import { blockGitHubApps } from './blockGitHubApps.ts';
-import { blockREADME } from './blockREADME.ts';
+import { blockGithubApps } from './blockGithubApps.ts';
+import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockVitest } from './blockVitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
@@ -25,7 +25,7 @@ export const blockCodecov = base.createBlock({
 
     return {
       addons: [
-        blockGitHubApps({
+        blockGithubApps({
           apps: [
             {
               name: 'Codecov',
@@ -33,7 +33,7 @@ export const blockCodecov = base.createBlock({
             },
           ],
         }),
-        blockREADME({
+        blockReadme({
           badges: [
             {
               alt: '🧪 Coverage',

@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from 'vitest';
 import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
 
-vi.mock('../data/packageData.js', () => ({
+vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));

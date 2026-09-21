@@ -14,7 +14,7 @@ vi.mock('input-from-file-json', () => ({
 
 const mockInputFromOctokit = vi.fn();
 
-vi.mock('../inputs/inputFromOctokit.js', () => ({
+vi.mock('../inputs/inputFromOctokit.ts', () => ({
   get inputFromOctokit() {
     return mockInputFromOctokit;
   },

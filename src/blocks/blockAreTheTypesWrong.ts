@@ -1,5 +1,5 @@
 import { base } from '../base.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 
 export const blockAreTheTypesWrong = base.createBlock({
   about: {
@@ -8,7 +8,7 @@ export const blockAreTheTypesWrong = base.createBlock({
   produce() {
     return {
       addons: [
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Are the Types Wrong?',
