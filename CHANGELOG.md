@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.4.0](https://github.com/michaelfaith/mfaith-create/compare/v0.3.3...v0.4.0) (2026-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* use proper casing for block names ([#242](https://github.com/michaelfaith/mfaith-create/issues/242))
+
+### 🚀 Features
+
+* export Config type  ([#238](https://github.com/michaelfaith/mfaith-create/issues/238)) ([2574eaa](https://github.com/michaelfaith/mfaith-create/commit/2574eaad6b2aea88e68a8cf4006f78fed1743221))
+
+
+### 🩹 Bug Fixes
+
+* use proper casing for block names ([#242](https://github.com/michaelfaith/mfaith-create/issues/242)) ([8188e6b](https://github.com/michaelfaith/mfaith-create/commit/8188e6b01d9b450887db1cedde540e7b99468741))
+
 ## [0.3.3](https://github.com/michaelfaith/mfaith-create/compare/v0.3.2...v0.3.3) (2026-09-20)
 
 
