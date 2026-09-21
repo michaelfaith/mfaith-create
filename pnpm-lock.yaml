@@ -1779,10 +1779,6 @@ packages:
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
 
-  bingo-fs@0.5.6:
-    resolution: {integrity: sha512-af4FUCgSQ9cKv9p9umRAjZNHHcipJhMbhSJ7YNNrRv8as4OQNG+XnpUp4gja8JVJ8CWpdTL8FlF2XkO9Y6WN3Q==}
-    engines: {node: '>=18'}
-
   bingo-fs@0.5.7:
     resolution: {integrity: sha512-unn80/qC5BZlppL1HLrveT+RGXYFDXW/shM/CgDFHGIKuIvVJlnq66XKhY7B2H/vceLsow4r15Jhd/6gfuR56g==}
     engines: {node: '>=18'}
@@ -5260,8 +5256,6 @@ snapshots:
 
   before-after-hook@4.0.0: {}
 
-  bingo-fs@0.5.6: {}
-
   bingo-fs@0.5.7: {}
 
   bingo-requests@0.5.6:
@@ -5290,7 +5284,7 @@ snapshots:
 
   bingo-systems@0.6.0:
     dependencies:
-      bingo-fs: 0.5.6
+      bingo-fs: 0.5.7
       execa: 9.6.1
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
