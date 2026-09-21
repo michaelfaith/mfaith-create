@@ -58,7 +58,7 @@ export {
   blockVSCode,
   blockWebExt,
 } from './blocks/index.ts';
-export type { Config, UserConfig } from './Config.ts';
+export type { Config } from './Config.ts';
 export {
   presetCommon,
   presetEverything,
