@@ -1,3 +1,5 @@
+import type { InferredObject } from 'bingo';
+
 import { z } from 'zod';
 
 const accessSchema: z.ZodType<Access> = z.union([
@@ -165,7 +167,7 @@ const workflowsVersionsSchema: z.ZodType<WorkflowsVersions> = z.record(
 );
 export type WorkflowsVersions = Record<string, WorkflowVersions>;
 
-export const optionsShape = {
+export const optionsShape: OptionsShape = {
   access: accessSchema.describe(
     'which `npm publish --access` to release npm packages with',
   ),
@@ -240,34 +242,75 @@ export const optionsShape = {
     .optional()
     .describe('existing versions of GitHub Actions workflows used'),
 };
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+export type OptionsShape = {
+  access: z.ZodType<Access>;
+  author: z.ZodOptional<z.ZodType<string>>;
+  contact: z.ZodPipe<
+    z.ZodType<Contact>,
+    z.ZodTransform<
+      {
+        bluesky?: string | undefined;
+        email?: string | undefined;
+        url?: string | undefined;
+      },
+      Contact
+    >
+  >;
+  contributors: z.ZodOptional<z.ZodType<Contributors>>;
+  description: z.ZodDefault<z.ZodType<string>>;
+  directory: z.ZodType<string>;
+  documentation: z.ZodType<Documentation>;
+  emoji: z.ZodOptional<z.ZodString>;
+  existingLabels: z.ZodOptional<z.ZodType<ExistingLabels>>;
+  funding: z.ZodOptional<z.ZodString>;
+  guide: z.ZodOptional<z.ZodType<GuideLink>>;
+  keywords: z.ZodOptional<z.ZodType<Keywords>>;
+  logo: z.ZodOptional<z.ZodType<Logo>>;
+  node: z.ZodType<NodeVersions>;
+  owner: z.ZodType<string>;
+  packageData: z.ZodOptional<z.ZodType<PackageData>>;
+  packageName: z.ZodOptional<z.ZodType<string>>;
+  pnpm: z.ZodOptional<z.ZodType<string>>;
+  repository: z.ZodType<string>;
+  rulesetId: z.ZodOptional<z.ZodType<string>>;
+  title: z.ZodType<string>;
+  version: z.ZodOptional<z.ZodType<string>>;
+  words: z.ZodOptional<z.ZodType<Words>>;
+  workflowsVersions: z.ZodOptional<z.ZodType<WorkflowsVersions>>;
+};
 
-export interface Options {
-  access: Access;
-  contact: {
-    bluesky?: string | undefined;
-    email?: string | undefined;
-    url?: string | undefined;
-  };
-  description: string;
-  directory: string;
-  documentation: Documentation;
-  node: NodeVersions;
-  owner: string;
-  repository: string;
-  title: string;
-  author?: string | undefined;
-  contributors?: Contributors | undefined;
-  emoji?: string | undefined;
-  existingLabels?: ExistingLabels | undefined;
-  funding?: string | undefined;
-  guide?: GuideLink | undefined;
-  keywords?: Keywords | undefined;
-  logo?: Logo | undefined;
-  packageData?: PackageData | undefined;
-  packageName?: string | undefined;
-  pnpm?: string | undefined;
-  rulesetId?: string | undefined;
-  version?: string | undefined;
-  words?: Words | undefined;
-  workflowsVersions?: WorkflowsVersions | undefined;
-}
+// May not be able to use the `InferredObject` type with `isolatedDeclarations`...?
+// We'll see.
+export type Options = InferredObject<OptionsShape>;
+
+// export interface Options {
+//   access: Access;
+//   contact: {
+//     bluesky?: string | undefined;
+//     email?: string | undefined;
+//     url?: string | undefined;
+//   };
+//   description: string;
+//   directory: string;
+//   documentation: Documentation;
+//   node: NodeVersions;
+//   owner: string;
+//   repository: string;
+//   title: string;
+//   author?: string | undefined;
+//   contributors?: Contributors | undefined;
+//   emoji?: string | undefined;
+//   existingLabels?: ExistingLabels | undefined;
+//   funding?: string | undefined;
+//   guide?: GuideLink | undefined;
+//   keywords?: Keywords | undefined;
+//   logo?: Logo | undefined;
+//   packageData?: PackageData | undefined;
+//   packageName?: string | undefined;
+//   pnpm?: string | undefined;
+//   rulesetId?: string | undefined;
+//   version?: string | undefined;
+//   words?: Words | undefined;
+//   workflowsVersions?: WorkflowsVersions | undefined;
+// }

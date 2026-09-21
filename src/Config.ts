@@ -1,13 +1,9 @@
 import type { TemplateConfig } from 'bingo';
 import type { StratumRefinements } from 'bingo-stratum';
 
-import type { Options } from './Options.ts';
-import type { template } from './template.ts';
+import type { Options, OptionsShape } from './Options.ts';
 
-export type Config = TemplateConfig<
-  typeof template.options,
-  StratumRefinements<Options>
->;
+export type Config = TemplateConfig<OptionsShape, StratumRefinements<Options>>;
 
 export interface UserConfig {
   options?: Partial<Options> | undefined;

@@ -1,9 +1,9 @@
-import { type BaseOptionsFor, createBase } from 'bingo-stratum';
+import { type Base, type BaseOptionsFor, createBase } from 'bingo-stratum';
 import { inputFromFile } from 'input-from-file';
 import { inputFromScript } from 'input-from-script';
 import lazyValue from 'lazy-value';
 
-import { optionsShape } from './Options.ts';
+import { optionsShape, type OptionsShape } from './Options.ts';
 import { readAccess } from './options/readAccess.ts';
 import { readAllContributors } from './options/readAllContributors.ts';
 import { readAuthor } from './options/readAuthor.ts';
@@ -39,7 +39,7 @@ import { readTitle } from './options/readTitle.ts';
 import { readWords } from './options/readWords.ts';
 import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
 
-export const base = createBase({
+export const base: Base<OptionsShape> = createBase({
   options: optionsShape,
   prepare({ options, take }) {
     const getAccess = lazyValue(async () => await readAccess(getPackageData));
@@ -225,4 +225,6 @@ export const base = createBase({
   },
 });
 
-export type BaseOptions = BaseOptionsFor<typeof base> & { preset?: string };
+export type BaseOptions = BaseOptionsFor<Base<OptionsShape>> & {
+  preset?: string;
+};
