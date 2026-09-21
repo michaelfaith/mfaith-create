@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { blockREADME } from './blockREADME.ts';
+import { blockReadme } from './blockReadme.ts';
 
 interface DirectoryEntry {
   [i: string]: Entry;
@@ -26,7 +26,7 @@ export const blockExampleFiles = base.createBlock({
 
     return {
       addons: [
-        blockREADME({
+        blockReadme({
           defaultUsage: usage,
         }),
       ],

@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { blockCSpell } from './blockCSpell.ts';
+import { blockCspell } from './blockCspell.ts';
 import { blockPrettier } from './blockPrettier.ts';
-import { blockREADME } from './blockREADME.ts';
+import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositoryLabels } from './blockRepositoryLabels.ts';
 import { blockRepositorySecrets } from './blockRepositorySecrets.ts';
@@ -56,9 +56,9 @@ export const blockReleasePlease = base.createBlock({
 
     return {
       addons: [
-        blockCSpell({ words: ['RELEASEBOT'] }),
+        blockCspell({ words: ['RELEASEBOT'] }),
         blockPrettier({ ignores: ['/CHANGELOG.md'] }),
-        blockREADME({
+        blockReadme({
           badges: [
             {
               alt: '📦 npm version',

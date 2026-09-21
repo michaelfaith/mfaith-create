@@ -3,16 +3,16 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
-import { blockCSpell } from './blockCSpell.ts';
+import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockESLint } from './blockESLint.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockEslint } from './blockEslint.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVSCode } from './blockVSCode.ts';
+import { blockVscode } from './blockVscode.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { formatIgnoreFile } from './files/formatIgnoreFile.ts';
 import { CommandPhase } from './phases.ts';
@@ -50,7 +50,7 @@ export const blockPrettier = base.createBlock({
 
     return {
       addons: [
-        blockCSpell({
+        blockCspell({
           ignorePaths: ['prettier.config.ts'],
         }),
         blockDevelopmentDocs({
@@ -69,7 +69,7 @@ pnpm format --write
             },
           },
         }),
-        blockESLint({
+        blockEslint({
           extensions: [
             {
               files: JS_TS_FILES,
@@ -83,7 +83,7 @@ pnpm format --write
             },
           ],
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Format Check',
@@ -114,7 +114,7 @@ pnpm format --write
             },
           },
         }),
-        blockVSCode({
+        blockVscode({
           extensions: ['esbenp.prettier-vscode'],
           settings: { 'editor.defaultFormatter': 'esbenp.prettier-vscode' },
         }),

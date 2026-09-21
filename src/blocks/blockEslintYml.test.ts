@@ -1,0 +1,70 @@
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
+
+import { blockEslintYml } from './blockEslintYml.ts';
+import { optionsBase } from './options.fakes.ts';
+
+describe('blockESLintYML', () => {
+  test('production', () => {
+    const creation = testBlock(blockEslintYml, {
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "extends": [
+                    "yml.configs['flat/standard']",
+                    "yml.configs['flat/prettier']",
+                  ],
+                  "files": [
+                    "**/*.{yml,yaml}",
+                  ],
+                  "rules": {
+                    "yml/file-extension": "error",
+                    "yml/sort-sequence-values": [
+                      "error",
+                      {
+                        "order": {
+                          "type": "asc",
+                        },
+                        "pathPattern": "^.*$",
+                      },
+                    ],
+                  },
+                },
+                {
+                  "files": [
+                    "pnpm-workspace.yaml",
+                  ],
+                  "rules": {
+                    "yml/sort-keys": [
+                      "error",
+                      {
+                        "order": {
+                          "type": "asc",
+                        },
+                        "pathPattern": "^.*$",
+                      },
+                    ],
+                  },
+                },
+              ],
+              "imports": [
+                {
+                  "source": "eslint-plugin-yml",
+                  "specifier": "yml",
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+        ],
+      }
+    `);
+  });
+});

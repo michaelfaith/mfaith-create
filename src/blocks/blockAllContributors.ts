@@ -4,10 +4,10 @@ import type { Contributor } from '../Options.ts';
 
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
-import { blockCSpell } from './blockCSpell.ts';
-import { blockGitHubApps } from './blockGitHubApps.ts';
+import { blockCspell } from './blockCspell.ts';
+import { blockGithubApps } from './blockGithubApps.ts';
 import { blockPrettier } from './blockPrettier.ts';
-import { blockREADME } from './blockREADME.ts';
+import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
@@ -33,10 +33,10 @@ export const blockAllContributors = base.createBlock({
 
     return {
       addons: [
-        blockCSpell({
+        blockCspell({
           ignorePaths: ['.all-contributorsrc'],
         }),
-        blockGitHubApps({
+        blockGithubApps({
           apps: [
             {
               name: 'All Contributors',
@@ -47,7 +47,7 @@ export const blockAllContributors = base.createBlock({
         blockPrettier({
           ignores: ['/.all-contributorsrc'],
         }),
-        blockREADME({
+        blockReadme({
           badges: [
             {
               alt: `👪 All Contributors: ${contributions}`,

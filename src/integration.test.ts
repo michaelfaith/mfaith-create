@@ -11,16 +11,16 @@ import {
   base,
   type BaseOptions,
   blockAreTheTypesWrong,
-  blockCSpell,
-  blockESLint,
+  blockCspell,
+  blockEslint,
   blockKnip,
   blockPnpmWorkspace,
   blockTemplatedWith,
-  blockTypeScript,
+  blockTypescript,
   presetEverything,
 } from './index.ts';
 
-vi.mock('./utils/resolveBin.js', () => ({
+vi.mock('./utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 
@@ -49,7 +49,7 @@ const presetIntegration = base.createPreset({
 // TODO: Eventually the create engine will be able to infer them:
 //   https://github.com/JoshuaKGoldberg/bingo/issues/128
 //
-// For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
+// For example, if you change blockTypescript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
 test(
   'Producing the everything preset matches the files in this repository',
@@ -62,7 +62,7 @@ test(
       options: (await prepareOptions(base)) as BaseOptions,
       refinements: {
         addons: [
-          blockCSpell({
+          blockCspell({
             words: [
               'Anson',
               'TSESTree',
@@ -81,7 +81,7 @@ test(
               'webpro',
             ],
           }),
-          blockESLint({
+          blockEslint({
             explanations: [
               `👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
@@ -135,7 +135,7 @@ If you're interested in learning more, see the 'getting started' docs on:
             },
           }),
           // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
-          blockTypeScript({
+          blockTypescript({
             compilerOptions: {
               lib: ['ES2025'],
             },

@@ -1,0 +1,1095 @@
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
+
+import { blockEslint } from './blockEslint.ts';
+import { optionsBase } from './options.fakes.ts';
+
+const mockIntakeData = { ignores: ['dist'] };
+
+const mockBlockEslintIntake = vi.fn().mockReturnValue(mockIntakeData);
+
+vi.mock('./eslint/blockEslintIntake.ts', () => ({
+  get blockEslintIntake() {
+    return mockBlockEslintIntake;
+  },
+}));
+
+vi.mock('../data/packageData.ts', () => ({
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+}));
+
+describe(blockEslint, () => {
+  test('without addons or mode', () => {
+    const creation = testBlock(blockEslint, {
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('transition mode', () => {
+    const creation = testBlock(blockEslint, {
+      mode: 'transition',
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+          {
+            "addons": {
+              "dependencies": [
+                "@types/eslint",
+                "@typescript-eslint/eslint-plugin",
+                "@typescript-eslint/parser",
+                "eslint-plugin-deprecation",
+                "eslint-plugin-eslint-comments",
+                "eslint-plugin-no-only-tests",
+                "yaml-eslint-parser",
+              ],
+            },
+            "block": "[Block Remove Dependencies]",
+          },
+          {
+            "addons": {
+              "files": [
+                ".eslintrc*",
+                ".eslintignore",
+                "eslint.config.{cjs,js,mjs}",
+              ],
+            },
+            "block": "[Block Remove Files]",
+          },
+          {
+            "addons": {
+              "workflows": [
+                "eslint",
+                "lint",
+              ],
+            },
+            "block": "[Block Remove Workflows]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with addons', () => {
+    const creation = testBlock(blockEslint, {
+      addons: {
+        beforeLint: 'Before lint.',
+        explanations: ['This is a great config!', 'You should use it!'],
+        extensions: [
+          {
+            extends: ['a.configs.recommended'],
+            files: ['**/*.a'],
+            rules: {
+              'a/b': 'error',
+              'a/c': ['error', { d: 'e' }],
+            },
+          },
+          {
+            extends: ['b.configs.recommended'],
+            files: ['**/*.b'],
+            rules: {
+              'b/c': 'error',
+              'b/d': ['error', { e: 'f' }],
+            },
+            settings: {
+              react: {
+                version: 'detect',
+              },
+            },
+          },
+        ],
+        ignores: ['generated'],
+        imports: [
+          { source: '@eslint/markdown', specifier: 'a' },
+          { source: 'eslint-plugin-regexp', specifier: 'b' },
+          {
+            source: { packageName: 'eslint-plugin-unknown', version: '1.2.3' },
+            specifier: 'c',
+          },
+        ],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                      "Before lint.",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@eslint/markdown": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "eslint-plugin-regexp": "1.2.3",
+                  "eslint-plugin-unknown": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "/*
+      This is a great config!
+      */
+      /*
+      You should use it!
+      */
+
+      import eslint from '@eslint/js';
+      import a from '@eslint/markdown';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import b from 'eslint-plugin-regexp';
+      import c from 'eslint-plugin-unknown';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["generated", "node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with identical addon rules comments across two extensions', () => {
+    const creation = testBlock(blockEslint, {
+      addons: {
+        extensions: [
+          {
+            files: ['**/*.js'],
+            rules: [
+              {
+                comment: 'Duplicated comment',
+                entries: { a: 'error' },
+              },
+              {
+                comment: 'Standalone comment',
+                entries: { b: 'error' },
+              },
+              {
+                comment: 'Duplicated comment',
+                entries: { c: 'error' },
+              },
+            ],
+          },
+          {
+            files: ['**/*.js'],
+            rules: [
+              {
+                comment: 'Duplicated comment',
+                entries: { d: 'error' },
+              },
+              {
+                comment: 'Standalone comment',
+                entries: { e: 'error' },
+              },
+              {
+                comment: 'Duplicated comment',
+                entries: { f: 'error' },
+              },
+            ],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [], files: ["**/*.js"], rules: {
+
+      // Duplicated comment
+      'a': "error",'c': "error",'d': "error",'f': "error",
+
+      // Standalone comment
+      'b': "error",'e': "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with multiline addon rules comments', () => {
+    const creation = testBlock(blockEslint, {
+      addons: {
+        extensions: [
+          {
+            files: ['**/*.js'],
+            rules: [
+              {
+                comment: 'One line',
+                entries: { a: 'error' },
+              },
+              {
+                comment: 'Two lines\ntwo lines',
+                entries: { a: 'error' },
+              },
+              {
+                comment: 'Three lines\nthree lines\nthree lines',
+                entries: { a: 'error' },
+              },
+            ],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ files: ["**/*.js"], rules: {
+
+      // One line
+      'a': "error",
+
+      // Two lines
+      // two lines
+      'a': "error",
+
+      // Three lines
+      // three lines
+      // three lines
+      'a': "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with addon extensions merging where the first provides everything', () => {
+    const creation = testBlock(blockEslint, {
+      addons: {
+        extensions: [
+          {
+            extends: ['a.configs.recommended'],
+            files: ['**/*.a'],
+            languageOptions: {
+              languageOption: true,
+            },
+            linterOptions: {
+              linterOption: true,
+            },
+            plugins: {
+              'plugin-a-key': 'plugin-a-value',
+              import: 'importPlugin',
+            },
+            rules: {
+              'a/b': 'error',
+            },
+            settings: {
+              react: {
+                version: 'detect',
+              },
+            },
+          },
+          {
+            files: ['**/*.a'],
+          },
+        ],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {'plugin-a-key': plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with addon extensions merging where the second provides everything', () => {
+    const creation = testBlock(blockEslint, {
+      addons: {
+        extensions: [
+          {
+            files: ['**/*.a'],
+          },
+          {
+            extends: ['a.configs.recommended'],
+            files: ['**/*.a'],
+            languageOptions: {
+              languageOption: true,
+            },
+            linterOptions: {
+              linterOption: true,
+            },
+            plugins: {
+              'plugin-a-key': 'plugin-a-value',
+            },
+            rules: {
+              'a/b': 'error',
+            },
+            settings: {
+              react: {
+                version: 'detect',
+              },
+            },
+          },
+        ],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "after": [
+                      "
+      For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+      \`\`\`shell
+      pnpm run lint --fix
+      \`\`\`
+      ",
+                    ],
+                    "before": "
+      This package includes several forms of linting to enforce consistent code quality and styling.
+      Each should be shown in VS Code, and can be run manually on the command-line:
+      ",
+                    "items": [
+                      "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript",
+                    ],
+                    "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint",
+                  "steps": [
+                    {
+                      "run": "pnpm lint",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "@eslint/js": "1.2.3",
+                  "@types/node": "1.2.3",
+                  "eslint": "1.2.3",
+                  "eslint-plugin-perfectionist": "1.2.3",
+                  "jiti": "1.2.3",
+                  "typescript-eslint": "1.2.3",
+                },
+                "scripts": {
+                  "lint": "eslint . --max-warnings 0",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "dbaeumer.vscode-eslint",
+              ],
+              "settings": {
+                "eslint.probe": [
+                  "javascript",
+                  "javascriptreact",
+                  "json",
+                  "jsonc",
+                  "markdown",
+                  "typescript",
+                  "typescriptreact",
+                  "yaml",
+                ],
+              },
+            },
+            "block": "[Block VS Code]",
+          },
+        ],
+        "files": {
+          "eslint.config.ts": "import eslint from '@eslint/js';
+      import perfectionist from 'eslint-plugin-perfectionist';
+      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import tseslint from 'typescript-eslint';
+
+      const config: ConfigObject[] = defineConfig(
+      	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
+      	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
+      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {'plugin-a-key': plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      );
+
+      export default config;
+      ",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm lint --fix",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  describe('intake', () => {
+    it('returns undefined when there is no eslint.config file', () => {
+      const actual = testIntake(blockEslint, {
+        files: {},
+      });
+
+      expect(actual).toBeUndefined();
+    });
+
+    it('returns data when there is an eslint.config.ts file', () => {
+      const sourceText = 'export default ...';
+
+      const actual = testIntake(blockEslint, {
+        files: {
+          'eslint.config.ts': [sourceText],
+        },
+      });
+
+      expect(mockBlockEslintIntake).toHaveBeenCalledWith(sourceText);
+      expect(actual).toBe(mockIntakeData);
+    });
+
+    it('returns data when there is an eslint.config.mts file', () => {
+      const sourceText = 'export default ...';
+
+      const actual = testIntake(blockEslint, {
+        files: {
+          'eslint.config.mts': [sourceText],
+        },
+      });
+
+      expect(mockBlockEslintIntake).toHaveBeenCalledWith(sourceText);
+      expect(actual).toBe(mockIntakeData);
+    });
+  });
+});

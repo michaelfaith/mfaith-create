@@ -2,19 +2,19 @@ import { base } from '../base.ts';
 import { blockCodeOfConduct } from '../blocks/blockCodeOfConduct.ts';
 import { blockContributingDocs } from '../blocks/blockContributingDocs.ts';
 import { blockDevelopmentDocs } from '../blocks/blockDevelopmentDocs.ts';
-import { blockESLint } from '../blocks/blockESLint.ts';
+import { blockEslint } from '../blocks/blockEslint.ts';
 import { blockExampleFiles } from '../blocks/blockExampleFiles.ts';
 import { blockExports } from '../blocks/blockExports.ts';
-import { blockGitHubActionsCI } from '../blocks/blockGitHubActionsCI.ts';
-import { blockGitHubApps } from '../blocks/blockGitHubApps.ts';
-import { blockGitHubIssueTemplates } from '../blocks/blockGitHubIssueTemplates.ts';
-import { blockGitHubPRTemplate } from '../blocks/blockGitHubPRTemplate.ts';
+import { blockGithubActionsCi } from '../blocks/blockGithubActionsCi.ts';
+import { blockGithubApps } from '../blocks/blockGithubApps.ts';
+import { blockGithubIssueTemplates } from '../blocks/blockGithubIssueTemplates.ts';
+import { blockGithubPrTemplate } from '../blocks/blockGithubPrTemplate.ts';
 import { blockGitignore } from '../blocks/blockGitignore.ts';
-import { blockMITLicense } from '../blocks/blockMITLicense.ts';
+import { blockMitLicense } from '../blocks/blockMitLicense.ts';
 import { blockPackageJson } from '../blocks/blockPackageJson.ts';
 import { blockPnpmWorkspace } from '../blocks/blockPnpmWorkspace.ts';
 import { blockPrettier } from '../blocks/blockPrettier.ts';
-import { blockREADME } from '../blocks/blockREADME.ts';
+import { blockReadme } from '../blocks/blockReadme.ts';
 import { blockRemoveDependencies } from '../blocks/blockRemoveDependencies.ts';
 import { blockRemoveFiles } from '../blocks/blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from '../blocks/blockRemoveWorkflows.ts';
@@ -26,7 +26,7 @@ import { blockSecurityDocs } from '../blocks/blockSecurityDocs.ts';
 import { blockSideEffects } from '../blocks/blockSideEffects.ts';
 import { blockTemplatedWith } from '../blocks/blockTemplatedWith.ts';
 import { blockTsdown } from '../blocks/blockTsdown.ts';
-import { blockTypeScript } from '../blocks/blockTypeScript.ts';
+import { blockTypescript } from '../blocks/blockTypescript.ts';
 
 export const presetMinimal = base.createPreset({
   about: {
@@ -38,19 +38,19 @@ export const presetMinimal = base.createPreset({
     blockContributingDocs,
     blockCodeOfConduct,
     blockDevelopmentDocs,
-    blockESLint,
+    blockEslint,
     blockExports,
     blockExampleFiles,
-    blockGitHubActionsCI,
-    blockGitHubApps,
-    blockGitHubIssueTemplates,
-    blockGitHubPRTemplate,
+    blockGithubActionsCi,
+    blockGithubApps,
+    blockGithubIssueTemplates,
+    blockGithubPrTemplate,
     blockGitignore,
-    blockMITLicense,
+    blockMitLicense,
     blockPackageJson,
     blockPnpmWorkspace,
     blockPrettier,
-    blockREADME,
+    blockReadme,
     blockRemoveDependencies,
     blockRemoveFiles,
     blockRemoveWorkflows,
@@ -62,6 +62,6 @@ export const presetMinimal = base.createPreset({
     blockSideEffects,
     blockTemplatedWith,
     blockTsdown,
-    blockTypeScript,
+    blockTypescript,
   ],
 });

@@ -5,11 +5,11 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
-import { blockCSpell } from './blockCSpell.ts';
+import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockESLint } from './blockESLint.ts';
+import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockKnip } from './blockKnip.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
@@ -17,7 +17,7 @@ import { blockPrettier } from './blockPrettier.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVSCode } from './blockVSCode.ts';
+import { blockVscode } from './blockVscode.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 import { stepSchema, workflowPermissionsSchema } from './workflows/schema.ts';
 
@@ -88,7 +88,7 @@ export const blockVitest = base.createBlock({
 
     return {
       addons: [
-        blockCSpell({
+        blockCspell({
           ignorePaths: ['coverage'],
         }),
         blockDevelopmentDocs({
@@ -116,7 +116,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
             },
           },
         }),
-        blockESLint({
+        blockEslint({
           extensions: [
             {
               extends: ['vitest.configs.recommended'],
@@ -189,7 +189,7 @@ describe(greet, () => {
         blockGitignore({
           ignores: ['/coverage'],
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               id: 'test_node',
@@ -249,7 +249,7 @@ describe(greet, () => {
         blockPrettier({
           ignores: ['/coverage'],
         }),
-        blockVSCode({
+        blockVscode({
           debuggers: [
             {
               args: ['run', '${relativeFile}'],

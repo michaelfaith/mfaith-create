@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import { blockAllContributors } from '../blocks/blockAllContributors.ts';
 import { blockCodecov } from '../blocks/blockCodecov.ts';
 import { blockFunding } from '../blocks/blockFunding.ts';
-import { blockOctoGuide } from '../blocks/blockOctoGuide.ts';
+import { blockOctoguide } from '../blocks/blockOctoguide.ts';
 import { blockPrPreviewRelease } from '../blocks/blockPrPreviewRelease.ts';
 import { blockReleasePlease } from '../blocks/blockReleasePlease.ts';
 import { blockVitest } from '../blocks/blockVitest.ts';
@@ -19,7 +19,7 @@ export const presetCommon = base.createPreset({
     blockAllContributors,
     blockCodecov,
     blockFunding,
-    blockOctoGuide,
+    blockOctoguide,
     blockPrPreviewRelease,
     blockReleasePlease,
     blockVitest,

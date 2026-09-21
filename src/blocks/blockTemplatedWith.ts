@@ -1,5 +1,5 @@
 import { base } from '../base.ts';
-import { blockREADME } from './blockREADME.ts';
+import { blockReadme } from './blockReadme.ts';
 
 export const blockTemplatedWith = base.createBlock({
   about: {
@@ -8,7 +8,7 @@ export const blockTemplatedWith = base.createBlock({
   produce({ options }) {
     return {
       addons: [
-        blockREADME({
+        blockReadme({
           notices: [
             options.owner !== 'michaelfaith' &&
               `

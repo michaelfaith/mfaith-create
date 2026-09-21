@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
-import { blockCSpell } from './blockCSpell.ts';
+import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
@@ -13,7 +13,7 @@ export const blockWebExt = base.createBlock({
   produce() {
     return {
       addons: [
-        blockCSpell({
+        blockCspell({
           ignorePaths: ['assets'],
         }),
         blockDevelopmentDocs({
@@ -81,7 +81,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
             },
           },
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Build',

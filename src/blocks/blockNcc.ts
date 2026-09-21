@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { blockCSpell } from './blockCSpell.ts';
+import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockESLint } from './blockESLint.ts';
-import { blockGitHubActionsCI } from './blockGitHubActionsCI.ts';
+import { blockEslint } from './blockEslint.ts';
+import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
 
@@ -27,7 +27,7 @@ export const blockNcc = base.createBlock({
 
     return {
       addons: [
-        blockCSpell({
+        blockCspell({
           ignorePaths: ['dist'],
         }),
         blockDevelopmentDocs({
@@ -61,10 +61,10 @@ pnpm build:release
             },
           },
         }),
-        blockESLint({
+        blockEslint({
           ignores: ['dist'],
         }),
-        blockGitHubActionsCI({
+        blockGithubActionsCi({
           jobs: [
             {
               name: 'Build',
