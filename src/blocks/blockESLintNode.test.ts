@@ -57,7 +57,7 @@ describe('blockESLintNode', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block ESLint]",
           },
         ],
       }

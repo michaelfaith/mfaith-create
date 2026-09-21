@@ -11,27 +11,27 @@ describe(blockRenovate, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Renovate",
-			            "url": "https://github.com/apps/renovate",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
-			    },
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "apps": [
+                {
+                  "name": "Renovate",
+                  "url": "https://github.com/apps/renovate",
+                },
+              ],
+            },
+            "block": "[Block GitHub Apps]",
+          },
+        ],
+        "files": {
+          ".github": {
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+          },
+        },
+      }
+    `);
   });
 
   test('with addons', () => {
@@ -43,27 +43,27 @@ describe(blockRenovate, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Renovate",
-			            "url": "https://github.com/apps/renovate",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
-			    },
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "apps": [
+                {
+                  "name": "Renovate",
+                  "url": "https://github.com/apps/renovate",
+                },
+              ],
+            },
+            "block": "[Block GitHub Apps]",
+          },
+        ],
+        "files": {
+          ".github": {
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+          },
+        },
+      }
+    `);
   });
 
   describe('intake', () => {

@@ -34,7 +34,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -49,7 +49,7 @@ describe(blockKnip, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -62,7 +62,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -70,7 +70,7 @@ describe(blockKnip, () => {
                 ".ts-prunerc*",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -78,7 +78,7 @@ describe(blockKnip, () => {
                 "webpro.vscode-knip",
               ],
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -118,7 +118,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -133,7 +133,7 @@ describe(blockKnip, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -146,7 +146,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -154,7 +154,7 @@ describe(blockKnip, () => {
                 ".ts-prunerc*",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -162,7 +162,7 @@ describe(blockKnip, () => {
                 "webpro.vscode-knip",
               ],
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -198,7 +198,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -213,7 +213,7 @@ describe(blockKnip, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -226,7 +226,7 @@ describe(blockKnip, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
           {
             "addons": {
@@ -234,7 +234,7 @@ describe(blockKnip, () => {
                 ".ts-prunerc*",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
           {
             "addons": {
@@ -242,7 +242,7 @@ describe(blockKnip, () => {
                 "webpro.vscode-knip",
               ],
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
           {
             "addons": {
@@ -251,7 +251,7 @@ describe(blockKnip, () => {
                 "lint-knip",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {

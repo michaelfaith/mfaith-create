@@ -37,33 +37,33 @@ describe(blockDevelopmentDocs, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "files": [
-			          "DEVELOPMENT.md",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "DEVELOPMENT.md": "# Development
+      {
+        "addons": [
+          {
+            "addons": {
+              "files": [
+                "DEVELOPMENT.md",
+              ],
+            },
+            "block": "[Block Remove Files]",
+          },
+        ],
+        "files": {
+          ".github": {
+            "DEVELOPMENT.md": "# Development
 
-			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
+      After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
-			\`\`\`shell
-			git clone https://github.com/(your-name-here)/test-repository
-			cd test-repository
-			pnpm install
-			\`\`\`
-			",
-			    },
-			  },
-			}
-		`);
+      \`\`\`shell
+      git clone https://github.com/(your-name-here)/test-repository
+      cd test-repository
+      pnpm install
+      \`\`\`
+      ",
+          },
+        },
+      }
+    `);
   });
 
   test('with addons', () => {

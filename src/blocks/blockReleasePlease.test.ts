@@ -18,7 +18,7 @@ describe(blockReleasePlease, () => {
                 "RELEASEBOT",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -26,7 +26,7 @@ describe(blockReleasePlease, () => {
                 "/CHANGELOG.md",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -38,7 +38,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
           {
             "addons": {
@@ -55,7 +55,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Labels]",
           },
           {
             "addons": {
@@ -66,7 +66,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Secrets]",
           },
           {
             "addons": {
@@ -77,7 +77,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Variables]",
           },
         ],
         "files": {
@@ -225,7 +225,7 @@ describe(blockReleasePlease, () => {
                 "RELEASEBOT",
               ],
             },
-            "block": [Function],
+            "block": "[Block CSpell]",
           },
           {
             "addons": {
@@ -233,7 +233,7 @@ describe(blockReleasePlease, () => {
                 "/CHANGELOG.md",
               ],
             },
-            "block": [Function],
+            "block": "[Block Prettier]",
           },
           {
             "addons": {
@@ -245,7 +245,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
           {
             "addons": {
@@ -262,7 +262,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Labels]",
           },
           {
             "addons": {
@@ -273,7 +273,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Secrets]",
           },
           {
             "addons": {
@@ -284,7 +284,7 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block Repository Variables]",
           },
         ],
         "files": {

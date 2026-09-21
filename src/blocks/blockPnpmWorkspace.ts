@@ -5,15 +5,13 @@ import { base } from '../base.ts';
 import { formatYaml } from './files/formatYaml.ts';
 import { intakeFileAsYaml } from './intake/intakeFileAsYaml.ts';
 
-const pnpmWorkspaceSchema = z
-  .object({
-    allowBuilds: z.record(z.string(), z.boolean()).optional(),
-    overrides: z.record(z.string(), z.string()).optional(),
-    trustPolicy: z
-      .union([z.literal('off'), z.literal('no-downgrade')])
-      .optional(),
-  })
-  .passthrough();
+const pnpmWorkspaceSchema = z.looseObject({
+  allowBuilds: z.record(z.string(), z.boolean()).optional(),
+  overrides: z.record(z.string(), z.string()).optional(),
+  trustPolicy: z
+    .union([z.literal('off'), z.literal('no-downgrade')])
+    .optional(),
+});
 type PnpmWorkspace = z.infer<typeof pnpmWorkspaceSchema>;
 
 export const blockPnpmWorkspace = base.createBlock({

@@ -20,64 +20,64 @@ describe(blockCSpell, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Lint Spelling",
-			            "steps": [
-			              {
-			                "run": "pnpm lint:spelling",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "cspell": "1.2.3",
-			          },
-			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "items": [
+                      "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+                    ],
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "streetsidesoftware.code-spell-checker",
+              ],
+            },
+            "block": "[Block VS Code]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint Spelling",
+                  "steps": [
+                    {
+                      "run": "pnpm lint:spelling",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "cspell": "1.2.3",
+                },
+                "scripts": {
+                  "lint:spelling": "cspell "**" ".github/**/*"",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+        "files": {
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+        },
+      }
+    `);
   });
 
   test('with addons', () => {
@@ -90,64 +90,64 @@ describe(blockCSpell, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Lint Spelling",
-			            "steps": [
-			              {
-			                "run": "pnpm lint:spelling",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "cspell": "1.2.3",
-			          },
-			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "items": [
+                      "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+                    ],
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "streetsidesoftware.code-spell-checker",
+              ],
+            },
+            "block": "[Block VS Code]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint Spelling",
+                  "steps": [
+                    {
+                      "run": "pnpm lint:spelling",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "cspell": "1.2.3",
+                },
+                "scripts": {
+                  "lint:spelling": "cspell "**" ".github/**/*"",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+        "files": {
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+        },
+      }
+    `);
   });
 
   test('with options', () => {
@@ -159,64 +159,64 @@ describe(blockCSpell, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Lint Spelling",
-			            "steps": [
-			              {
-			                "run": "pnpm lint:spelling",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "cspell": "1.2.3",
-			          },
-			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "items": [
+                      "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+                    ],
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "streetsidesoftware.code-spell-checker",
+              ],
+            },
+            "block": "[Block VS Code]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint Spelling",
+                  "steps": [
+                    {
+                      "run": "pnpm lint:spelling",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "cspell": "1.2.3",
+                },
+                "scripts": {
+                  "lint:spelling": "cspell "**" ".github/**/*"",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+        ],
+        "files": {
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+        },
+      }
+    `);
   });
 
   test('setup mode', () => {
@@ -240,7 +240,7 @@ describe(blockCSpell, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Development Docs]",
           },
           {
             "addons": {
@@ -248,7 +248,7 @@ describe(blockCSpell, () => {
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": [Function],
+            "block": "[Block VS Code]",
           },
           {
             "addons": {
@@ -263,7 +263,7 @@ describe(blockCSpell, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Actions CI]",
           },
           {
             "addons": {
@@ -276,7 +276,7 @@ describe(blockCSpell, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -301,73 +301,73 @@ describe(blockCSpell, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "jobs": [
-			          {
-			            "name": "Lint Spelling",
-			            "steps": [
-			              {
-			                "run": "pnpm lint:spelling",
-			              },
-			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "devDependencies": {
-			            "cspell": "1.2.3",
-			          },
-			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "workflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
-			  },
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "sections": {
+                "Linting": {
+                  "contents": {
+                    "items": [
+                      "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+                    ],
+                  },
+                },
+              },
+            },
+            "block": "[Block Development Docs]",
+          },
+          {
+            "addons": {
+              "extensions": [
+                "streetsidesoftware.code-spell-checker",
+              ],
+            },
+            "block": "[Block VS Code]",
+          },
+          {
+            "addons": {
+              "jobs": [
+                {
+                  "name": "Lint Spelling",
+                  "steps": [
+                    {
+                      "run": "pnpm lint:spelling",
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "devDependencies": {
+                  "cspell": "1.2.3",
+                },
+                "scripts": {
+                  "lint:spelling": "cspell "**" ".github/**/*"",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "workflows": [
+                "lint-spelling",
+                "spelling",
+              ],
+            },
+            "block": "[Block Remove Workflows]",
+          },
+        ],
+        "files": {
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+        },
+      }
+    `);
   });
 
   describe('intake', () => {

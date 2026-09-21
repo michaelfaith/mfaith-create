@@ -19,7 +19,7 @@ describe(blockPrPreviewRelease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -29,7 +29,7 @@ describe(blockPrPreviewRelease, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -92,7 +92,7 @@ describe(blockPrPreviewRelease, () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -102,7 +102,7 @@ describe(blockPrPreviewRelease, () => {
                 },
               },
             },
-            "block": [Function],
+            "block": "[Block Package JSON]",
           },
         ],
         "files": {

@@ -31,17 +31,17 @@ describe(blockRemoveWorkflows, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "files": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "files": undefined,
+            },
+            "block": "[Block Remove Files]",
+          },
+        ],
+      }
+    `);
   });
 
   test('with addons and mode', () => {
@@ -54,20 +54,20 @@ describe(blockRemoveWorkflows, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "files": [
-			          ".github/workflows/a.{yaml,yml}",
-			          ".github/workflows/b.{yaml,yml}",
-			          ".github/workflows/c.{yaml,yml}",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "files": [
+                ".github/workflows/a.{yaml,yml}",
+                ".github/workflows/b.{yaml,yml}",
+                ".github/workflows/c.{yaml,yml}",
+              ],
+            },
+            "block": "[Block Remove Files]",
+          },
+        ],
+      }
+    `);
   });
 });

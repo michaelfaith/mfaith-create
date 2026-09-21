@@ -15,22 +15,22 @@ describe('blockTemplatedWith', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "notices": [
-			          "
-			<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
-			          "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
-			",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "notices": [
+                "
+      <!-- You can remove this notice if you don't want it 🙂 no worries! -->",
+                "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
+      ",
+              ],
+            },
+            "block": "[Block README.md]",
+          },
+        ],
+      }
+    `);
   });
 
   test('production with JoshuaKGoldberg as owner', () => {
@@ -42,19 +42,19 @@ describe('blockTemplatedWith', () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "notices": [
-			          "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
-			",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
+      {
+        "addons": [
+          {
+            "addons": {
+              "notices": [
+                "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
+      ",
+              ],
+            },
+            "block": "[Block README.md]",
+          },
+        ],
+      }
+    `);
   });
 });

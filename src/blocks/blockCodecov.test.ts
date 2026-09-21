@@ -22,7 +22,7 @@ describe('blockCodecov', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -34,7 +34,7 @@ describe('blockCodecov', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
           {
             "addons": {
@@ -52,7 +52,7 @@ describe('blockCodecov', () => {
                 "id-token": "write",
               },
             },
-            "block": [Function],
+            "block": "[Block Vitest]",
           },
         ],
       }
@@ -77,7 +77,7 @@ describe('blockCodecov', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block GitHub Apps]",
           },
           {
             "addons": {
@@ -89,7 +89,7 @@ describe('blockCodecov', () => {
                 },
               ],
             },
-            "block": [Function],
+            "block": "[Block README.md]",
           },
           {
             "addons": {
@@ -107,7 +107,7 @@ describe('blockCodecov', () => {
                 "id-token": "write",
               },
             },
-            "block": [Function],
+            "block": "[Block Vitest]",
           },
           {
             "addons": {
@@ -116,7 +116,7 @@ describe('blockCodecov', () => {
                 "codecov.{yaml,yml}",
               ],
             },
-            "block": [Function],
+            "block": "[Block Remove Files]",
           },
         ],
       }
