@@ -14,6 +14,7 @@ import { blockMitLicense } from '../blocks/blockMitLicense.ts';
 import { blockPackageJson } from '../blocks/blockPackageJson.ts';
 import { blockPnpmWorkspace } from '../blocks/blockPnpmWorkspace.ts';
 import { blockPrettier } from '../blocks/blockPrettier.ts';
+import { blockPublishConfig } from '../blocks/blockPublishConfig.ts';
 import { blockReadme } from '../blocks/blockReadme.ts';
 import { blockRemoveDependencies } from '../blocks/blockRemoveDependencies.ts';
 import { blockRemoveFiles } from '../blocks/blockRemoveFiles.ts';
@@ -39,8 +40,8 @@ export const presetMinimal = base.createPreset({
     blockCodeOfConduct,
     blockDevelopmentDocs,
     blockEslint,
-    blockExports,
     blockExampleFiles,
+    blockExports,
     blockGithubActionsCi,
     blockGithubApps,
     blockGithubIssueTemplates,
@@ -50,6 +51,7 @@ export const presetMinimal = base.createPreset({
     blockPackageJson,
     blockPnpmWorkspace,
     blockPrettier,
+    blockPublishConfig,
     blockReadme,
     blockRemoveDependencies,
     blockRemoveFiles,
