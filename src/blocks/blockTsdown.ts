@@ -20,6 +20,17 @@ import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 const entrySchema = z.array(z.string());
 const propertiesSchema = z.record(z.string(), z.unknown());
 
+const relativePathRegex = /^\.\/(.*)$/;
+
+const hasDevExports = (obj: unknown): obj is { devExports: boolean } => {
+  return (
+    !!obj &&
+    typeof obj === 'object' &&
+    !Array.isArray(obj) &&
+    'devExports' in obj
+  );
+};
+
 export const blockTsdown = base.createBlock({
   about: {
     name: 'tsdown',
@@ -27,6 +38,7 @@ export const blockTsdown = base.createBlock({
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
   addons: {
+    devExports: z.boolean().default(false),
     entry: entrySchema.default([]),
     properties: propertiesSchema.default({}),
     runInCI: z.array(z.string()).default([]),
@@ -37,9 +49,10 @@ export const blockTsdown = base.createBlock({
       return undefined;
     }
 
-    const { entry: rawEntry, ...rest } = rawData;
+    const { entry: rawEntry, exports, ...rest } = rawData;
 
     return {
+      devExports: hasDevExports(exports) ? exports.devExports : undefined,
       entry: entrySchema.safeParse(rawEntry).data,
       properties: removeUndefinedObjects({
         ...propertiesSchema.safeParse(rest).data,
@@ -50,7 +63,13 @@ export const blockTsdown = base.createBlock({
   produce({ addons }) {
     const { entry, properties, runInCI } = addons;
 
-    const entries = new Set(['src/index.ts', ...entry]);
+    const primaryEntry = 'src/index.ts';
+    const distFilePath = './dist/index.mjs';
+
+    const entries = new Set([
+      primaryEntry,
+      ...entry.map((filePath) => filePath.replace(relativePathRegex, '$1')),
+    ]);
 
     return {
       addons: [
@@ -82,6 +101,7 @@ pnpm build --watch
               name: 'Build',
               steps: [
                 { run: 'pnpm build' },
+                { run: `node ${distFilePath}` },
                 ...runInCI.map((run) => ({ run })),
               ],
             },

@@ -57,6 +57,9 @@ describe(blockTsdown, () => {
                     {
                       "run": "pnpm build",
                     },
+                    {
+                      "run": "node ./dist/index.mjs",
+                    },
                   ],
                 },
               ],
@@ -146,7 +149,8 @@ describe(blockTsdown, () => {
   test('with addons', () => {
     const creation = testBlock(blockTsdown, {
       addons: {
-        entry: ['src/other.ts'],
+        devExports: true,
+        entry: ['src/other.ts', './src/other.ts'],
         properties: {
           dts: false,
         },
@@ -196,6 +200,9 @@ describe(blockTsdown, () => {
                   "steps": [
                     {
                       "run": "pnpm build",
+                    },
+                    {
+                      "run": "node ./dist/index.mjs",
                     },
                     {
                       "run": "dist/other.js",
@@ -333,6 +340,9 @@ describe(blockTsdown, () => {
                   "steps": [
                     {
                       "run": "pnpm build",
+                    },
+                    {
+                      "run": "node ./dist/index.mjs",
                     },
                   ],
                 },
@@ -494,6 +504,42 @@ describe(blockTsdown, () => {
       expect(actual).toEqual({ entry });
     });
 
+    it('returns devExports when tsdown.config.ts contains exports.devExports: true', () => {
+      const actual = testIntake(blockTsdown, {
+        files: {
+          'tsdown.config.ts': [
+            `defineConfig(${JSON.stringify({ exports: { devExports: true } })})`,
+          ],
+        },
+      });
+
+      expect(actual).toEqual({ devExports: true });
+    });
+
+    it('returns devExports when tsdown.config.ts contains exports.devExports: false', () => {
+      const actual = testIntake(blockTsdown, {
+        files: {
+          'tsdown.config.ts': [
+            `defineConfig(${JSON.stringify({ exports: { devExports: false } })})`,
+          ],
+        },
+      });
+
+      expect(actual).toEqual({ devExports: false });
+    });
+
+    it('returns no devExports when tsdown.config.ts contains exports without devExports', () => {
+      const actual = testIntake(blockTsdown, {
+        files: {
+          'tsdown.config.ts': [
+            `defineConfig(${JSON.stringify({ exports: true })})`,
+          ],
+        },
+      });
+
+      expect(actual).toEqual({});
+    });
+
     it('returns the properties when tsdown.config.ts contains other properties', () => {
       const properties = { clean: false, dts: false, format: 'cjs' };
 
@@ -503,7 +549,10 @@ describe(blockTsdown, () => {
         },
       });
 
-      expect(actual).toEqual({ entry: undefined, properties });
+      expect(actual).toEqual({
+        entry: undefined,
+        properties,
+      });
     });
   });
 });
