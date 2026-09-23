@@ -10,7 +10,7 @@ import { intakeActionInput } from './intake/intakeActionInput.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
-import { workflowJobSchema, type WorkflowJob } from './workflows/schema.ts';
+import { type WorkflowJob, workflowJobSchema } from './workflows/schema.ts';
 
 const setupActionPath = '$/.github/actions/setup';
 
