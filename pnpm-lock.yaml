@@ -322,8 +322,8 @@ importers:
         specifier: 0.5.12
         version: 0.5.12(bingo-fs@0.5.7)(bingo-stratum@0.6.1(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.0)(zod@4.6.5))(bingo-systems@0.6.0)(bingo@0.12.0)
       bingo-testers:
-        specifier: 0.5.11
-        version: 0.5.11(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.0)
+        specifier: 0.6.0
+        version: 0.6.0(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.0)
       console-fail-test:
         specifier: 0.9.0
         version: 0.9.0
@@ -1569,8 +1569,14 @@ packages:
       vite:
         optional: true
 
+  '@vitest/pretty-format@4.1.11':
+    resolution: {integrity: sha512-yiZzPbGTS9Sr/JpFl8zHrcIkAofNbFV6k21vIgQN/cY/oxZeXhJv5sc/MBJ5jFKWmWs+oJHw0UXLZjmf931+Vw==}
+
   '@vitest/spy@5.0.1':
     resolution: {integrity: sha512-rbto/mF/SGERxEgYOek7Xm6B9b+y+mVoo+f4b2LymYO8zM1b7uB5nHuhVMTP2hxdzgxvGiZYGxGIaMvL5y180Q==}
+
+  '@vitest/utils@4.1.11':
+    resolution: {integrity: sha512-zTCVGpyFsGWBhllOyKlTw/vnr6D9qxsfSDyfbyZmTyjHw5N/VuvzHpHoQjm2ZJzn4RJgx5w4r7V0er69CmLgPQ==}
 
   '@yuku-codegen/binding-android-arm64@0.10.2':
     resolution: {integrity: sha512-Oc2KInVkPfUjEB4PeV6X0NvIoyYTzDe/WmqFrTwBqKs6YKnz4A7XwWQvJTb7M0rLz9a6WgpUUiiS5QKaCi4O/g==}
@@ -1806,11 +1812,11 @@ packages:
     resolution: {integrity: sha512-RIHq/TUw8p6+eqpPMfy+5Xj51kSUk2yQf9ZbTa8XnZUrg4hhON+MrbxBRuKnvHuogSGSzUuJPCQUd1pCeWh5jg==}
     engines: {node: '>=22'}
 
-  bingo-testers@0.5.11:
-    resolution: {integrity: sha512-3f1/6siWK5p9JvrwYqUGXkrW/kLNJznsih+NEOXmhYyTBrJlPelYOVkn7ALguYoDrMd7ZVNRk1NKtH0xzykhMQ==}
+  bingo-testers@0.6.0:
+    resolution: {integrity: sha512-AVW7xF4UPk73KUg/JuT80j/hhJNNwfcmWEn98YVyqyg3T1OhnC+JxMNPmgcleO1+U4se0nN5XGVwDQ+cJEwaew==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.11.2
+      bingo: ^0.12.0
       bingo-fs: ^0.5.7
       bingo-systems: ^0.6.0
 
@@ -1952,6 +1958,9 @@ packages:
   content-type@3.1.1:
     resolution: {integrity: sha512-GW4qUsfFo59d0HbUibDlWv5wPz+vAAcaTWbKIuKCf0JkC7wWkSyf8f13IpXn5JkeMlB2P8iTSSIjwXljorg2vA==}
     engines: {node: '>=22'}
+
+  convert-source-map@2.0.0:
+    resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -2106,10 +2115,6 @@ packages:
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-
-  diff@8.0.4:
-    resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
-    engines: {node: '>=0.3.1'}
 
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
@@ -5112,7 +5117,17 @@ snapshots:
     optionalDependencies:
       vite: 8.3.0(@types/node@26.6.2)(jiti@2.7.0)(yaml@2.9.1)
 
+  '@vitest/pretty-format@4.1.11':
+    dependencies:
+      tinyrainbow: 3.1.1
+
   '@vitest/spy@5.0.1': {}
+
+  '@vitest/utils@4.1.11':
+    dependencies:
+      '@vitest/pretty-format': 4.1.11
+      convert-source-map: 2.0.0
+      tinyrainbow: 3.1.1
 
   '@yuku-codegen/binding-android-arm64@0.10.2':
     optional: true
@@ -5289,14 +5304,15 @@ snapshots:
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.5.11(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.0):
+  bingo-testers@0.6.0(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.0):
     dependencies:
+      '@vitest/utils': 4.1.11
       all-properties-lazy: 0.1.0
       bingo: 0.12.0
       bingo-fs: 0.5.7
       bingo-systems: 0.6.0
-      diff: 8.0.4
       octokit: 5.0.5
+      tinyrainbow: 3.1.1
       without-undefined-properties: 0.1.2
 
   bingo@0.12.0:
@@ -5437,6 +5453,8 @@ snapshots:
   console-fail-test@0.9.0: {}
 
   content-type@3.1.1: {}
+
+  convert-source-map@2.0.0: {}
 
   cross-spawn@7.0.6:
     dependencies:
@@ -5673,8 +5691,6 @@ snapshots:
   didyoumean@1.2.2: {}
 
   diff-sequences@29.6.3: {}
-
-  diff@8.0.4: {}
 
   dom-serializer@2.0.0:
     dependencies:
