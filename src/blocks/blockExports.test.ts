@@ -35,11 +35,11 @@ describe(blockExports, () => {
     `);
   });
 
-  it('with addons', () => {
+  it('with addons (no leading ./', () => {
     const creation = testBlock(blockExports, {
       addons: {
         filePath: 'other.js',
-        runArgs: ['--version'],
+        srcFilePath: 'other.ts',
       },
       options: optionsBase,
     });
@@ -51,7 +51,7 @@ describe(blockExports, () => {
             "addons": {
               "properties": {
                 "exports": {
-                  ".": "./other.js",
+                  ".": "./other.ts",
                   "./package.json": "./package.json",
                 },
               },
@@ -60,8 +60,17 @@ describe(blockExports, () => {
           },
           {
             "addons": {
+              "exports": {
+                ".": "./other.js",
+                "./package.json": "./package.json",
+              },
+            },
+            "block": "[Block Publish Config]",
+          },
+          {
+            "addons": {
               "runInCI": [
-                "node other.js --version",
+                "node other.js",
               ],
             },
             "block": "[Block tsdown]",
@@ -70,4 +79,49 @@ describe(blockExports, () => {
       }
     `);
   });
+});
+
+it('with addons (with leading ./', () => {
+  const creation = testBlock(blockExports, {
+    addons: {
+      filePath: './other.js',
+      srcFilePath: './other.ts',
+    },
+    options: optionsBase,
+  });
+
+  expect(creation).toMatchInlineSnapshot(`
+    {
+      "addons": [
+        {
+          "addons": {
+            "properties": {
+              "exports": {
+                ".": "./other.ts",
+                "./package.json": "./package.json",
+              },
+            },
+          },
+          "block": "[Block Package JSON]",
+        },
+        {
+          "addons": {
+            "exports": {
+              ".": "./other.js",
+              "./package.json": "./package.json",
+            },
+          },
+          "block": "[Block Publish Config]",
+        },
+        {
+          "addons": {
+            "runInCI": [
+              "node ./other.js",
+            ],
+          },
+          "block": "[Block tsdown]",
+        },
+      ],
+    }
+  `);
 });
