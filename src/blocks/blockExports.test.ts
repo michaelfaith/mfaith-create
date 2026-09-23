@@ -22,14 +22,6 @@ describe(blockExports, () => {
             },
             "block": "[Block Package JSON]",
           },
-          {
-            "addons": {
-              "runInCI": [
-                "node ./dist/index.mjs",
-              ],
-            },
-            "block": "[Block tsdown]",
-          },
         ],
       }
     `);
@@ -66,14 +58,6 @@ describe(blockExports, () => {
               },
             },
             "block": "[Block Publish Config]",
-          },
-          {
-            "addons": {
-              "runInCI": [
-                "node other.js",
-              ],
-            },
-            "block": "[Block tsdown]",
           },
         ],
       }
@@ -112,14 +96,6 @@ it('with addons (with leading ./', () => {
             },
           },
           "block": "[Block Publish Config]",
-        },
-        {
-          "addons": {
-            "runInCI": [
-              "node ./other.js",
-            ],
-          },
-          "block": "[Block tsdown]",
         },
       ],
     }

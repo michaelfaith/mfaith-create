@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
-import { blockTsdown } from './blockTsdown.ts';
 
 export const blockExports = base.createBlock({
   about: {
@@ -44,9 +43,6 @@ export const blockExports = base.createBlock({
               }),
             ]
           : []),
-        blockTsdown({
-          runInCI: [`node ${filePath}`],
-        }),
       ],
     };
   },
