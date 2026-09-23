@@ -1,10 +1,8 @@
 import type { TakeInput } from 'bingo';
-
 import { githubDefaultLabels } from 'github-default-labels';
 
-import type { Label } from '../Options.ts';
-
 import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
+import type { Label } from '../Options.ts';
 
 export async function readExistingLabels(
   take: TakeInput,

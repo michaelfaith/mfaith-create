@@ -1,6 +1,5 @@
-import type { z } from 'zod';
-
 import { describe, expectTypeOf, it } from 'vitest';
+import type { z } from 'zod';
 
 import type { Options, optionsShape } from './Options.ts';
 

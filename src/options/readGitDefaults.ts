@@ -1,5 +1,4 @@
 import type { TakeInput } from 'bingo';
-
 import gitUrlParse, { type GitUrl } from 'git-url-parse';
 import { inputFromScript } from 'input-from-script';
 

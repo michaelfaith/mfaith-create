@@ -1,5 +1,4 @@
 import type { TakeInput } from 'bingo';
-
 import { inputFromFileJSON } from 'input-from-file-json';
 
 import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';

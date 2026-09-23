@@ -1,7 +1,8 @@
-import { findUpSync } from 'find-up-simple';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { findUpSync } from 'find-up-simple';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clearCache, resolveBin } from './resolveBin.ts';

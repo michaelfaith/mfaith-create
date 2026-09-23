@@ -1,5 +1,4 @@
 import type { CreatedOctokitRequest } from 'bingo-requests';
-
 import { z } from 'zod';
 
 import { base, type BaseOptions } from '../base.ts';

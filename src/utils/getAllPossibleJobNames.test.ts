@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
 import type { WorkflowJob } from '../blocks/workflows/schema.ts';
-
 import { getAllPossibleJobNames } from './getAllPossibleJobNames.ts';
 
 const createJob = (

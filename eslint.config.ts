@@ -65,7 +65,19 @@ const config: ConfigObject[] = defineConfig(
         { allowBoolean: true, allowNullish: true, allowNumber: true },
       ],
       'perfectionist/sort-exports': 'error',
-      'perfectionist/sort-imports': 'error',
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            ['internal', 'subpath'],
+            ['parent', 'sibling', 'index'],
+            'style',
+            'unknown',
+          ],
+        },
+      ],
       'perfectionist/sort-named-exports': 'error',
       'perfectionist/sort-named-imports': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',

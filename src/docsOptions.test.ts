@@ -1,4 +1,5 @@
 import * as fs from 'node:fs/promises';
+
 import { describe, expect, it } from 'vitest';
 
 import { base } from './index.ts';

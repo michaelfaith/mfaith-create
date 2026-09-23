@@ -1,8 +1,7 @@
 import { marked } from 'marked';
 
-import type { PartialPackageData } from '../types.ts';
-
 import { packageData } from '../data/packageData.ts';
+import type { PartialPackageData } from '../types.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 import { readDescriptionFromReadme } from './readDescriptionFromReadme.ts';
 
