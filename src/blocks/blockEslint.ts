@@ -17,11 +17,11 @@ import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
 import {
   type Extension,
+  type ExtensionPlugins,
   type ExtensionRuleGroup,
   type ExtensionRules,
   extensionSchema,
   packageImportSchema,
-  type ExtensionPlugins,
 } from './eslint/schemas.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { CommandPhase } from './phases.ts';
@@ -61,7 +61,7 @@ export const blockEslint = base.createBlock({
 
     const importLines = [
       "import eslint from '@eslint/js';",
-      "import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';",
+      "import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';",
       "import perfectionist from 'eslint-plugin-perfectionist';",
       "import tseslint from 'typescript-eslint';",
       ...imports.map(
@@ -103,6 +103,8 @@ export const blockEslint = base.createBlock({
         rules: {
           'perfectionist/sort-exports': 'error',
           'perfectionist/sort-imports': 'error',
+          'perfectionist/sort-named-exports': 'error',
+          'perfectionist/sort-named-imports': 'error',
         },
         settings: {
           perfectionist: { partitionByComment: true, type: 'natural' },

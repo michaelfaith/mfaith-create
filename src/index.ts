@@ -4,7 +4,7 @@ export { template };
 
 export const { createConfig } = template;
 
-export { type BaseOptions, base } from './base.ts';
+export { base, type BaseOptions } from './base.ts';
 export {
   blockAllContributors,
   blockAreTheTypesWrong,

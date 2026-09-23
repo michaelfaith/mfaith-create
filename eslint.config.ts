@@ -20,7 +20,7 @@ import packageJson from 'eslint-plugin-package-json';
 import perfectionist from 'eslint-plugin-perfectionist';
 import * as regexp from 'eslint-plugin-regexp';
 import yml from 'eslint-plugin-yml';
-import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 const config: ConfigObject[] = defineConfig(
@@ -66,6 +66,8 @@ const config: ConfigObject[] = defineConfig(
       ],
       'perfectionist/sort-exports': 'error',
       'perfectionist/sort-imports': 'error',
+      'perfectionist/sort-named-exports': 'error',
+      'perfectionist/sort-named-imports': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-module-boundary-types': 'error',

@@ -6,7 +6,7 @@ import {
 import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
-import { configEmojiSchema, type ConfigEmoji } from './schemas.ts';
+import { type ConfigEmoji, configEmojiSchema } from './schemas.ts';
 
 export function blockEslintPluginIntake(sourceText: string):
   | {
