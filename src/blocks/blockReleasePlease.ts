@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockPrettier } from './blockPrettier.ts';
+import { blockPublishConfig } from './blockPublishConfig.ts';
 import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRepositoryLabels } from './blockRepositoryLabels.ts';
@@ -58,6 +59,9 @@ export const blockReleasePlease = base.createBlock({
       addons: [
         blockCspell({ words: ['RELEASEBOT'] }),
         blockPrettier({ ignores: ['/CHANGELOG.md'] }),
+        ...(isScopedPackage(options.packageName)
+          ? [blockPublishConfig({ access: 'public' })]
+          : []),
         blockReadme({
           badges: [
             {
@@ -200,7 +204,7 @@ echo "dist_tag=$DIST_TAG" >> "$GITHUB_OUTPUT"`,
                     {
                       name: 'Publish',
                       run: `echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
-pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}${isScopedPackage(options.packageName) ? ' --access public' : ''}`,
+pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}`,
                     },
                   ],
                 },

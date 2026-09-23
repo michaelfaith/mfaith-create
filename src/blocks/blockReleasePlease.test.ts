@@ -195,6 +195,203 @@ describe(blockReleasePlease, () => {
     `);
   });
 
+  test('without addons (scoped package name)', () => {
+    const creation = testBlock(blockReleasePlease, {
+      options: { ...optionsBase, packageName: '@test/create' },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "words": [
+                "RELEASEBOT",
+              ],
+            },
+            "block": "[Block CSpell]",
+          },
+          {
+            "addons": {
+              "ignores": [
+                "/CHANGELOG.md",
+              ],
+            },
+            "block": "[Block Prettier]",
+          },
+          {
+            "addons": {
+              "access": "public",
+            },
+            "block": "[Block Publish Config]",
+          },
+          {
+            "addons": {
+              "badges": [
+                {
+                  "alt": "📦 npm version",
+                  "href": "http://npmjs.com/package/@test/create",
+                  "src": "https://img.shields.io/npm/v/@test/create?color=21bb42&label=%F0%9F%93%A6%20npm",
+                },
+              ],
+            },
+            "block": "[Block README.md]",
+          },
+          {
+            "addons": {
+              "additionalLabels": [
+                {
+                  "color": "#bfd4f2",
+                  "description": "Label used for release PRs that have not yet merged.",
+                  "name": "autorelease: pending",
+                },
+                {
+                  "color": "#c2e0c6",
+                  "description": "Label used for release PRs that have already merged, and the release has been made.",
+                  "name": "autorelease: tagged",
+                },
+              ],
+            },
+            "block": "[Block Repository Labels]",
+          },
+          {
+            "addons": {
+              "secrets": [
+                {
+                  "description": "an app Private Key for generating an ephemeral token",
+                  "name": "RELEASEBOT_APP_PRIVATE_KEY",
+                },
+              ],
+            },
+            "block": "[Block Repository Secrets]",
+          },
+          {
+            "addons": {
+              "variables": [
+                {
+                  "description": "the client id for an app that generates an ephemeral token",
+                  "name": "RELEASEBOT_APP_CLIENT_ID",
+                },
+              ],
+            },
+            "block": "[Block Repository Variables]",
+          },
+        ],
+        "files": {
+          ".github": {
+            "release-please": {
+              "release-please-config.main.json": "{"bump-minor-pre-major":true,"bump-patch-for-minor-pre-major":true,"changelog-sections":[{"type":"feat","section":"🚀 Features","hidden":false},{"type":"fix","section":"🩹 Bug Fixes","hidden":false},{"type":"perf","section":"🏁 Performance Improvements","hidden":false},{"type":"build","hidden":true},{"type":"chore","hidden":true},{"type":"ci","hidden":true},{"type":"docs","hidden":true},{"type":"refactor","hidden":true},{"type":"test","hidden":true}],"include-component-in-tag":false,"initial-version":"0.1.0","release-type":"node","packages":{".":{}}}",
+              "release-please-manifest.main.json": "{
+        ".": "0.0.0"
+      }",
+            },
+            "workflows": {
+              "release.yaml": "name: Release
+
+      on:
+        push:
+          branches:
+            - main
+
+      concurrency:
+        group: \${{ github.workflow }}
+
+      jobs:
+        release_please:
+          name: Manage Release PR
+          if: github.event.repository.fork != true
+          runs-on: ubuntu-latest
+          outputs:
+            releases_created: \${{ steps.release.outputs.releases_created }}
+            tag_name: \${{ steps.release.outputs.tag_name }}
+          steps:
+            - name: Create Token
+              id: create_token
+              uses: actions/create-github-app-token@v3.2.0
+              with:
+                client-id: \${{ vars.RELEASEBOT_APP_CLIENT_ID }}
+                private-key: \${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}
+            - name: Release Please
+              id: release
+              uses: googleapis/release-please-action@v5.0.0
+              with:
+                config-file: .github/release-please/release-please-config.\${{ github.ref_name }}.json
+                manifest-file: .github/release-please/release-please-manifest.\${{ github.ref_name }}.json
+                target-branch: \${{ github.ref_name }}
+                token: \${{ steps.create_token.outputs.token }}
+
+        publish:
+          name: Publish Package
+          if: \${{ needs.release_please.outputs.releases_created == 'true' }}
+          needs: release_please
+          runs-on: ubuntu-latest
+          permissions:
+            contents: read
+            id-token: write
+          outputs:
+            dist_tag: \${{ steps.determine_dist_tag.outputs.dist_tag }}
+          steps:
+            - uses: $/.github/actions/setup
+            - name: Determine dist-tag
+              id: determine_dist_tag
+              run: |-
+                TAG_NAME="\${{ needs.release_please.outputs.tag_name }}"
+                echo "Release tag: $TAG_NAME"
+
+                if [[ "$TAG_NAME" == *"-alpha."* ]]; then
+                  DIST_TAG=alpha
+                elif [[ "$TAG_NAME" == *"-beta."* ]]; then
+                  DIST_TAG=beta
+                elif [[ "$TAG_NAME" == *"-rc."* ]]; then
+                  DIST_TAG=rc
+                elif [[ "$TAG_NAME" == *"-"* ]]; then
+                  DIST_TAG=next
+                else
+                  DIST_TAG=latest
+                fi
+
+                echo "dist_tag=$DIST_TAG" >> "$GITHUB_OUTPUT"
+            - name: Publish
+              run: |-
+                echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
+                pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}
+
+        post_release:
+          name: Post Release Comments
+          needs: publish
+          runs-on: ubuntu-latest
+          permissions:
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: actions/checkout@v7
+              with:
+                fetch-depth: 0
+            - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
+            - uses: apexskier/github-release-commenter@v1
+              with:
+                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+                comment-template: |-
+                  :tada: This is included in version {release_link} :tada:
+
+                  The release is available on:
+
+                  * [GitHub releases](https://github.com/michaelfaith/mfaith-create/releases/tag/{release_tag})
+                  * [npm package (@\${{ needs.publish.outputs.dist_tag }} dist-tag)](https://www.npmjs.com/package/@mfaith/create/v/\${{ env.npm_version }})
+
+                  Cheers! 📦🚀
+      ",
+            },
+          },
+        },
+        "suggestions": [
+          "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+         https://www.npmjs.com/package/@test/create/access",
+        ],
+      }
+    `);
+  });
+
   test('with addons', () => {
     const creation = testBlock(blockReleasePlease, {
       addons: {
