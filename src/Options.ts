@@ -1,5 +1,4 @@
 import type { InferredObject } from 'bingo';
-
 import { z } from 'zod';
 
 const accessSchema: z.ZodType<Access> = z.union([

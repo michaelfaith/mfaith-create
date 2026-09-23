@@ -102,7 +102,19 @@ export const blockEslint = base.createBlock({
         },
         rules: {
           'perfectionist/sort-exports': 'error',
-          'perfectionist/sort-imports': 'error',
+          'perfectionist/sort-imports': [
+            'error',
+            {
+              groups: [
+                'builtin',
+                'external',
+                ['internal', 'subpath'],
+                ['parent', 'sibling', 'index'],
+                'style',
+                'unknown',
+              ],
+            },
+          ],
           'perfectionist/sort-named-exports': 'error',
           'perfectionist/sort-named-imports': 'error',
         },

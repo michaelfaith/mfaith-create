@@ -1,14 +1,12 @@
 import type { TakeInput } from 'bingo';
-
 import { inputFromFileJSON } from 'input-from-file-json';
 
+import { startingOwnerContributions } from '../data/contributions.ts';
+import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
 import type {
   AllContributorContributor,
   AllContributorsData,
 } from '../types.ts';
-
-import { startingOwnerContributions } from '../data/contributions.ts';
-import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
 
 export async function readAllContributors(
   take: TakeInput,

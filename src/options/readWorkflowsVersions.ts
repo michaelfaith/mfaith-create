@@ -1,10 +1,8 @@
 import type { TakeInput } from 'bingo';
-
 import { inputFromFile } from 'input-from-file';
 
-import type { WorkflowsVersions } from '../Options.ts';
-
 import { inputFromDirectory } from '../inputs/inputFromDirectory.ts';
+import type { WorkflowsVersions } from '../Options.ts';
 import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';
 
 export async function readWorkflowsVersions(

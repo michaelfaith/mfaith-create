@@ -1,9 +1,7 @@
 import type { IntakeDirectory } from 'bingo-fs';
-
 import _ from 'lodash';
 
 import type { ActionInput } from '../workflows/schema.ts';
-
 import { intakeFileAsYaml } from './intakeFileAsYaml.ts';
 
 export function intakeActionInput(

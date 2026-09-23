@@ -1,5 +1,4 @@
 import type { Result } from 'execa';
-
 import { describe, expect, it, vi } from 'vitest';
 
 import { readAuthor } from './readAuthor.ts';

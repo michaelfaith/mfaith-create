@@ -1,5 +1,4 @@
 import type { TakeInput } from 'bingo';
-
 import { inputFromFile } from 'input-from-file';
 
 const blueskyRegex =

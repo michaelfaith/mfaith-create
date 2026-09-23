@@ -1,5 +1,4 @@
 import type { ExecaError, Result } from 'execa';
-
 import npmUser, { type UserInfo } from 'npm-user';
 
 import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';

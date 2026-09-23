@@ -1,7 +1,8 @@
-import { findUpSync } from 'find-up-simple';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { findUpSync } from 'find-up-simple';
 
 interface PackageJson {
   bin?: string | Record<string, string>;

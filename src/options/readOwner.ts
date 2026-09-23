@@ -1,6 +1,5 @@
 import type { TakeInput } from 'bingo';
 import type { GitUrl } from 'git-url-parse';
-
 import { inputFromScript } from 'input-from-script';
 
 import type { PackageAuthor } from './readPackageAuthor.ts';

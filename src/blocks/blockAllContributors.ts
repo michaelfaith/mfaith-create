@@ -1,9 +1,8 @@
 import _ from 'lodash';
 
-import type { Contributor } from '../Options.ts';
-
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
+import type { Contributor } from '../Options.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
 import { blockPrettier } from './blockPrettier.ts';

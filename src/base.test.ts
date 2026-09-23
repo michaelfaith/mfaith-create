@@ -1,10 +1,10 @@
-import { prepareOptions } from 'bingo';
 import { readFile } from 'node:fs/promises';
+
+import { prepareOptions } from 'bingo';
 import { describe, expect, test, vi } from 'vitest';
 
-import type { AllContributorsData } from './types.ts';
-
 import { base } from './base.ts';
+import type { AllContributorsData } from './types.ts';
 
 vi.mock('./options/readEmailFromGit.js', () => ({
   readEmailFromGit: () =>

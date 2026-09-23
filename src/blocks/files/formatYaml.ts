@@ -1,5 +1,4 @@
 import type { DumpOptions } from 'js-yaml';
-
 import { CORE_SCHEMA, dump, nullCoreTag, visit } from 'js-yaml';
 
 const options: DumpOptions = {
