@@ -22,14 +22,6 @@ describe(blockExports, () => {
             },
             "block": "[Block Package JSON]",
           },
-          {
-            "addons": {
-              "runInCI": [
-                "node ./dist/index.mjs",
-              ],
-            },
-            "block": "[Block tsdown]",
-          },
         ],
       }
     `);
@@ -39,7 +31,7 @@ describe(blockExports, () => {
     const creation = testBlock(blockExports, {
       addons: {
         filePath: 'other.js',
-        runArgs: ['--version'],
+        srcFilePath: 'other.ts',
       },
       options: optionsBase,
     });
@@ -51,7 +43,7 @@ describe(blockExports, () => {
             "addons": {
               "properties": {
                 "exports": {
-                  ".": "./other.js",
+                  ".": "./other.ts",
                   "./package.json": "./package.json",
                 },
               },
@@ -60,11 +52,12 @@ describe(blockExports, () => {
           },
           {
             "addons": {
-              "runInCI": [
-                "node other.js --version",
-              ],
+              "exports": {
+                ".": "./other.js",
+                "./package.json": "./package.json",
+              },
             },
-            "block": "[Block tsdown]",
+            "block": "[Block Publish Config]",
           },
         ],
       }
