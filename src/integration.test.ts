@@ -13,6 +13,7 @@ import {
   blockAreTheTypesWrong,
   blockCspell,
   blockEslint,
+  blockExports,
   blockKnip,
   blockPnpmWorkspace,
   blockTemplatedWith,
@@ -117,6 +118,7 @@ If you're interested in learning more, see the 'getting started' docs on:
               },
             ],
           }),
+          blockExports({ srcFilePath: './src/index.ts' }),
           blockKnip({
             ignoreDependencies: [
               'all-contributors-cli',

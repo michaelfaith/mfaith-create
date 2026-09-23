@@ -14,7 +14,7 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/index.mjs",
+    ".": "./src/index.ts",
     "./package.json": "./package.json"
   },
   "bin": "dist/bin/index.mjs",
@@ -116,6 +116,10 @@
     "node": "^24.15.0 || >=26.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./package.json": "./package.json"
+    }
   }
 }
