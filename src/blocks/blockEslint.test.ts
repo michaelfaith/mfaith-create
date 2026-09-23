@@ -113,7 +113,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -264,7 +264,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -431,7 +431,7 @@ describe(blockEslint, () => {
       import perfectionist from 'eslint-plugin-perfectionist';
       import b from 'eslint-plugin-regexp';
       import c from 'eslint-plugin-unknown';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -586,7 +586,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -730,7 +730,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -888,7 +888,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(
@@ -1033,7 +1033,7 @@ describe(blockEslint, () => {
         "files": {
           "eslint.config.ts": "import eslint from '@eslint/js';
       import perfectionist from 'eslint-plugin-perfectionist';
-      import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';
+      import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';
       import tseslint from 'typescript-eslint';
 
       const config: ConfigObject[] = defineConfig(

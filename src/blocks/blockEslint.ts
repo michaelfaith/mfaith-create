@@ -61,7 +61,7 @@ export const blockEslint = base.createBlock({
 
     const importLines = [
       "import eslint from '@eslint/js';",
-      "import { defineConfig, globalIgnores, type ConfigObject } from 'eslint/config';",
+      "import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';",
       "import perfectionist from 'eslint-plugin-perfectionist';",
       "import tseslint from 'typescript-eslint';",
       ...imports.map(
