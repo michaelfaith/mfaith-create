@@ -23,7 +23,10 @@ describe('blockAreTheTypesWrong', () => {
                       "run": "pnpm build",
                     },
                     {
-                      "run": "npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only",
+                      "run": "pnpm pack --out test-repository.tgz",
+                    },
+                    {
+                      "run": "pnpx @arethetypeswrong/cli test-repository.tgz --profile esm-only",
                     },
                   ],
                 },

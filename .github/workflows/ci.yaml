@@ -13,7 +13,8 @@ jobs:
     steps:
       - uses: $/.github/actions/setup
       - run: pnpm build
-      - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
+      - run: pnpm pack --out mfaith-create.tgz
+      - run: pnpx @arethetypeswrong/cli mfaith-create.tgz --profile esm-only
 
   build:
     name: Build
