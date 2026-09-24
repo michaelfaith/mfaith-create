@@ -126,30 +126,30 @@ describe(blockExports, () => {
     });
 
     expect(creation).toMatchInlineSnapshot(`
-    {
-      "addons": [
-        {
-          "addons": {
-            "properties": {
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "exports": {
+                  ".": "./other.ts",
+                  "./package.json": "./package.json",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
               "exports": {
-                ".": "./other.ts",
+                ".": "./other.js",
                 "./package.json": "./package.json",
               },
             },
+            "block": "[Block Publish Config]",
           },
-          "block": "[Block Package JSON]",
-        },
-        {
-          "addons": {
-            "exports": {
-              ".": "./other.js",
-              "./package.json": "./package.json",
-            },
-          },
-          "block": "[Block Publish Config]",
-        },
-      ],
-    }
-  `);
+        ],
+      }
+    `);
   });
 });

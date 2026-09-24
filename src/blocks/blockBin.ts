@@ -17,14 +17,37 @@ const srcToDist = (value: string) =>
 const distToSrc = (value: string) =>
   value.replace('dist', 'src').replace(jsExtensionRegex, '$1.ts');
 
-const makeBinPathsRelative = (bin: Bin): Bin => {
-  if (typeof bin === 'string') {
-    return makeRelativePath(bin);
-  } else {
-    return Object.fromEntries(
-      Object.entries(bin).map(([key, value]) => [key, makeRelativePath(value)]),
+const convertToCommand = (packageName: string): string => {
+  const parts = packageName.split('/');
+  return parts.length > 1 ? parts[1] : parts[0];
+};
+
+const createExplicitBin = (
+  binPath: string,
+  packageName: string,
+): Record<string, string> => {
+  const binCommand = convertToCommand(packageName);
+  return { [binCommand]: binPath };
+};
+
+const prepareBin = (
+  input: Bin,
+  packageName: string,
+  transformPath = (binPath: string) => binPath,
+): Record<string, string> => {
+  if (typeof input === 'string') {
+    return createExplicitBin(
+      makeRelativePath(transformPath(input)),
+      packageName,
     );
   }
+
+  return Object.fromEntries(
+    Object.entries(input).map(([key, value]) => [
+      key,
+      makeRelativePath(transformPath(value)),
+    ]),
+  );
 };
 
 export const blockBin = base.createBlock({
@@ -58,16 +81,11 @@ export const blockBin = base.createBlock({
   },
   produce({ addons, options }) {
     const { src = './src/bin/index.ts' } = addons;
-    const { devExports, emoji } = options;
+    const { devExports, emoji, packageName, repository } = options;
 
-    let bin: string | Record<string, string>;
-    if (typeof src === 'string') {
-      bin = srcToDist(src);
-    } else {
-      bin = Object.fromEntries(
-        Object.entries(src).map(([key, value]) => [key, srcToDist(value)]),
-      );
-    }
+    const srcBin = prepareBin(src, packageName ?? repository);
+    const bin = prepareBin(src, packageName ?? repository, srcToDist);
+    const binEntries = typeof src === 'string' ? [src] : Object.values(src);
 
     return {
       addons: [
@@ -86,9 +104,7 @@ export const blockBin = base.createBlock({
         }),
         blockPackageJson({
           properties: {
-            bin: devExports
-              ? makeBinPathsRelative(src)
-              : makeBinPathsRelative(bin),
+            bin: devExports ? srcBin : bin,
           },
         }),
         blockExampleFiles({
@@ -101,11 +117,10 @@ greet('Hello, world! ${emoji}');`,
             },
           },
         }),
-        ...(devExports
-          ? [blockPublishConfig({ bin: makeBinPathsRelative(bin) })]
-          : []),
+        ...(devExports ? [blockPublishConfig({ bin })] : []),
         blockTsdown({
-          entry: typeof src === 'string' ? [src] : Object.values(src),
+          entry: binEntries,
+          excludeFromExports: binEntries,
         }),
       ],
     };
