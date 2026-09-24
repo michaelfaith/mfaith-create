@@ -5,7 +5,8 @@ export const blockAreTheTypesWrong = base.createBlock({
   about: {
     name: 'Are the Types Wrong',
   },
-  produce() {
+  produce({ options }) {
+    const packName = `${options.repository}.tgz`;
     return {
       addons: [
         blockGithubActionsCi({
@@ -14,8 +15,9 @@ export const blockAreTheTypesWrong = base.createBlock({
               name: 'Are the Types Wrong?',
               steps: [
                 { run: 'pnpm build' },
+                { run: `pnpm pack --out ${packName}` },
                 {
-                  run: 'npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only',
+                  run: `pnpx @arethetypeswrong/cli ${packName} --profile esm-only`,
                 },
               ],
             },
