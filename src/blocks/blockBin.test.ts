@@ -35,7 +35,9 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "./dist/bin/index.mjs",
+                "bin": {
+                  "test-package-name": "./dist/bin/index.mjs",
+                },
               },
             },
             "block": "[Block Package JSON]",
@@ -56,6 +58,9 @@ describe(blockBin, () => {
           {
             "addons": {
               "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
                 "./src/bin/index.ts",
               ],
             },
@@ -98,7 +103,9 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "./src/bin/index.ts",
+                "bin": {
+                  "test-package-name": "./src/bin/index.ts",
+                },
               },
             },
             "block": "[Block Package JSON]",
@@ -118,13 +125,86 @@ describe(blockBin, () => {
           },
           {
             "addons": {
-              "bin": "./dist/bin/index.mjs",
+              "bin": {
+                "test-package-name": "./dist/bin/index.mjs",
+              },
             },
             "block": "[Block Publish Config]",
           },
           {
             "addons": {
               "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
+                "./src/bin/index.ts",
+              ],
+            },
+            "block": "[Block tsdown]",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('without addons (scoped package name)', () => {
+    const creation = testBlock(blockBin, {
+      options: { ...optionsBase, packageName: '@test/create-app' },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "bin": {
+                  "create-app": "./dist/bin/index.mjs",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+            "block": "[Block Example Files]",
+          },
+          {
+            "addons": {
+              "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
                 "./src/bin/index.ts",
               ],
             },
@@ -170,7 +250,9 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "./dist/cli.mjs",
+                "bin": {
+                  "test-package-name": "./dist/cli.mjs",
+                },
               },
             },
             "block": "[Block Package JSON]",
@@ -191,6 +273,9 @@ describe(blockBin, () => {
           {
             "addons": {
               "entry": [
+                "dist/cli.ts",
+              ],
+              "excludeFromExports": [
                 "dist/cli.ts",
               ],
             },
@@ -263,6 +348,96 @@ describe(blockBin, () => {
           {
             "addons": {
               "entry": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+              "excludeFromExports": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+            },
+            "block": "[Block tsdown]",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('with object src (options.devExports: true)', () => {
+    const creation = testBlock(blockBin, {
+      addons: {
+        src: {
+          'test-repo': 'dist/bin/index.mts',
+          'other-bin': 'dist/bin/other.ts',
+        },
+      },
+      options: { ...optionsBase, devExports: true },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "bin": {
+                  "other-bin": "./dist/bin/other.ts",
+                  "test-repo": "./dist/bin/index.mts",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+            "block": "[Block Example Files]",
+          },
+          {
+            "addons": {
+              "bin": {
+                "other-bin": "./dist/bin/other.mjs",
+                "test-repo": "./dist/bin/index.mjs",
+              },
+            },
+            "block": "[Block Publish Config]",
+          },
+          {
+            "addons": {
+              "entry": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+              "excludeFromExports": [
                 "dist/bin/index.mts",
                 "dist/bin/other.ts",
               ],
