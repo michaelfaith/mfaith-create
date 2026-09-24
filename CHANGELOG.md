@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.0](https://github.com/michaelfaith/mfaith-create/compare/v0.4.0...v0.5.0) (2026-09-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* move responsibility for adding the ci build command from `blockExports` to `blockTsdown` ([#260](https://github.com/michaelfaith/mfaith-create/issues/260))
+
+### 🚀 Features
+
+* add `publishConfig` block ([#255](https://github.com/michaelfaith/mfaith-create/issues/255)) ([5d886b0](https://github.com/michaelfaith/mfaith-create/commit/5d886b031b947a67fe852013c281cc08c176fc0b))
+* add ability for the `exports` block to define `publishConfig.exports` ([#259](https://github.com/michaelfaith/mfaith-create/issues/259)) ([bd69cca](https://github.com/michaelfaith/mfaith-create/commit/bd69ccaabdb67738c5f5d432ebca0b7a09992e20))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo to ^0.12.0 ([#261](https://github.com/michaelfaith/mfaith-create/issues/261)) ([5206cca](https://github.com/michaelfaith/mfaith-create/commit/5206cca8e46e0507b54929595245c4609695586d))
+* enable `sort-named-exports` and `sort-named-imports` ([#251](https://github.com/michaelfaith/mfaith-create/issues/251)) ([dc230c1](https://github.com/michaelfaith/mfaith-create/commit/dc230c1ead45dd44f4ee985bf878192a87bf4931))
+* improve import sort order ([#254](https://github.com/michaelfaith/mfaith-create/issues/254)) ([ee32ff4](https://github.com/michaelfaith/mfaith-create/commit/ee32ff48c0d5a8748f4687fa896875d99a043136))
+* move `public` `access` from `publish` command to `publishConfig` ([#262](https://github.com/michaelfaith/mfaith-create/issues/262)) ([1282875](https://github.com/michaelfaith/mfaith-create/commit/12828751a5e93051e94a5a1ffe930d25a3a29bb2))
+* move responsibility for adding the ci build command from `blockExports` to `blockTsdown` ([#260](https://github.com/michaelfaith/mfaith-create/issues/260)) ([eb5cfe1](https://github.com/michaelfaith/mfaith-create/commit/eb5cfe13cefb2b57d67d61fe8f281f3caf86991c))
+
 ## [0.4.0](https://github.com/michaelfaith/mfaith-create/compare/v0.3.3...v0.4.0) (2026-09-21)
 
 
