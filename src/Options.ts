@@ -44,6 +44,7 @@ const contributorsSchema: z.ZodType<Contributors> = z.array(contributorSchema);
 export type Contributors = Contributor[];
 
 const descriptionSchema: z.ZodType<string> = z.string();
+const devExportsSchema: z.ZodType<boolean> = z.boolean();
 const directorySchema: z.ZodType<string> = z.string();
 
 const readmeSchema: z.ZodType<Readme> = z.object({
@@ -184,6 +185,11 @@ export const optionsShape: OptionsShape = {
   description: descriptionSchema
     .default('A very lovely package. Hooray!')
     .describe("'Sentence case.' description of the repository"),
+  devExports: devExportsSchema
+    .default(false)
+    .describe(
+      'whether or not to generate dev exports and use `publishConfig` for exports and bin entries',
+    ),
   directory: directorySchema.describe('Directory to create the repository in'),
   documentation: documentationSchema.describe(
     'additional docs to add to .md files',
@@ -258,6 +264,7 @@ export type OptionsShape = {
   >;
   contributors: z.ZodOptional<z.ZodType<Contributors>>;
   description: z.ZodDefault<z.ZodType<string>>;
+  devExports: z.ZodDefault<z.ZodType<boolean>>;
   directory: z.ZodType<string>;
   documentation: z.ZodType<Documentation>;
   emoji: z.ZodOptional<z.ZodString>;
@@ -291,6 +298,7 @@ export type Options = InferredObject<OptionsShape>;
 //     url?: string | undefined;
 //   };
 //   description: string;
+//   devExports: boolean;
 //   directory: string;
 //   documentation: Documentation;
 //   node: NodeVersions;

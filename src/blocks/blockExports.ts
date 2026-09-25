@@ -9,13 +9,13 @@ export const blockExports = base.createBlock({
     name: 'Exports',
   },
   addons: {
-    filePath: z.string().optional(),
-    srcFilePath: z.string().optional(),
+    filePath: z.string().default('./dist/index.mjs'),
+    srcFilePath: z.string().default('./src/index.ts'),
   },
-  produce({ addons }) {
-    const { filePath = './dist/index.mjs', srcFilePath } = addons;
+  produce({ addons, options }) {
+    const { filePath, srcFilePath } = addons;
+    const { devExports } = options;
 
-    const devExports = !!srcFilePath;
     const exportFilePath = devExports ? srcFilePath : filePath;
     const publishConfigExportFilePath = devExports ? filePath : undefined;
 

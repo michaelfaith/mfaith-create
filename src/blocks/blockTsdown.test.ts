@@ -149,7 +149,6 @@ describe(blockTsdown, () => {
   test('with addons', () => {
     const creation = testBlock(blockTsdown, {
       addons: {
-        devExports: true,
         entry: ['src/other.ts', './src/other.ts'],
         properties: {
           dts: false,
@@ -502,42 +501,6 @@ describe(blockTsdown, () => {
       });
 
       expect(actual).toEqual({ entry });
-    });
-
-    it('returns devExports when tsdown.config.ts contains exports.devExports: true', () => {
-      const actual = testIntake(blockTsdown, {
-        files: {
-          'tsdown.config.ts': [
-            `defineConfig(${JSON.stringify({ exports: { devExports: true } })})`,
-          ],
-        },
-      });
-
-      expect(actual).toEqual({ devExports: true });
-    });
-
-    it('returns devExports when tsdown.config.ts contains exports.devExports: false', () => {
-      const actual = testIntake(blockTsdown, {
-        files: {
-          'tsdown.config.ts': [
-            `defineConfig(${JSON.stringify({ exports: { devExports: false } })})`,
-          ],
-        },
-      });
-
-      expect(actual).toEqual({ devExports: false });
-    });
-
-    it('returns no devExports when tsdown.config.ts contains exports without devExports', () => {
-      const actual = testIntake(blockTsdown, {
-        files: {
-          'tsdown.config.ts': [
-            `defineConfig(${JSON.stringify({ exports: true })})`,
-          ],
-        },
-      });
-
-      expect(actual).toEqual({});
     });
 
     it('returns the properties when tsdown.config.ts contains other properties', () => {

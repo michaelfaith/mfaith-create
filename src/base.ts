@@ -11,6 +11,7 @@ import { readContact } from './options/readContact.ts';
 import { readContactFromCodeOfConduct } from './options/readContactFromCodeOfConduct.ts';
 import { readDescription } from './options/readDescription.ts';
 import { readDevelopmentDocumentation } from './options/readDevelopmentDocumentation.ts';
+import { readDevExports } from './options/readDevExports.ts';
 import { readDocumentation } from './options/readDocumentation.ts';
 import { readEmailFromGit } from './options/readEmailFromGit.ts';
 import { readEmailFromNpm } from './options/readEmailFromNpm.ts';
@@ -36,6 +37,7 @@ import { readReadmeUsage } from './options/readReadmeUsage.ts';
 import { readRepository } from './options/readRepository.ts';
 import { readRulesetId } from './options/readRulesetId.ts';
 import { readTitle } from './options/readTitle.ts';
+import { readTsdownConfig } from './options/readTsdownConfig.ts';
 import { readWords } from './options/readWords.ts';
 import { readWorkflowsVersions } from './options/readWorkflowsVersions.ts';
 
@@ -77,6 +79,10 @@ export const base: Base<OptionsShape> = createBase({
 
     const getDevelopmentDocumentation = lazyValue(
       async () => await readDevelopmentDocumentation(take),
+    );
+
+    const getDevExports = lazyValue(
+      async () => await readDevExports(getTsdownConfig, getPackageData),
     );
 
     const getDocumentation = lazyValue(
@@ -189,6 +195,8 @@ export const base: Base<OptionsShape> = createBase({
       async () => await readTitle(getReadme, getRepository),
     );
 
+    const getTsdownConfig = lazyValue(async () => await readTsdownConfig(take));
+
     const getVersion = lazyValue(async () => (await getPackageData()).version);
 
     const getWords = lazyValue(async () => await readWords(take));
@@ -203,6 +211,7 @@ export const base: Base<OptionsShape> = createBase({
       contact: getContact,
       contributors: getAllContributors,
       description: getDescription,
+      devExports: getDevExports,
       documentation: getDocumentation,
       emoji: getEmoji,
       existingLabels: getExistingLabels,
