@@ -137,7 +137,7 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({});
+      const config: UserConfig = defineConfig({"exports":true});
 
       export default config;
       ",
@@ -149,7 +149,8 @@ describe(blockTsdown, () => {
   test('with addons', () => {
     const creation = testBlock(blockTsdown, {
       addons: {
-        entry: ['src/other.ts', './src/other.ts'],
+        entry: ['src/other.ts', './src/other.ts', './src/bin/index.ts'],
+        excludeFromExports: ['./src/bin/index.ts'],
         properties: {
           dts: false,
         },
@@ -283,7 +284,7 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({"entry":["src/index.ts","src/other.ts"],"dts":false});
+      const config: UserConfig = defineConfig({"entry":["src/index.ts","src/other.ts","src/bin/index.ts"],"exports":{"exclude":["bin/index"]},"dts":false});
 
       export default config;
       ",
@@ -453,7 +454,7 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({});
+      const config: UserConfig = defineConfig({"exports":true});
 
       export default config;
       ",
