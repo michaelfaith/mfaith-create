@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.1](https://github.com/michaelfaith/mfaith-create/compare/v0.5.0...v0.5.1) (2026-09-25)
+
+
+### 🚀 Features
+
+* add `devExports` option ([#271](https://github.com/michaelfaith/mfaith-create/issues/271)) ([587109d](https://github.com/michaelfaith/mfaith-create/commit/587109d72ae8044a2a54dae064e139089b1836ef))
+
+
+### 🩹 Bug Fixes
+
+* use `pnpm pack` for the Are the Type Wrong ci step ([#264](https://github.com/michaelfaith/mfaith-create/issues/264)) ([501fd7a](https://github.com/michaelfaith/mfaith-create/commit/501fd7abfc53d5ae8a3b18796d2d84bd13c8f7c5))
+
 ## [0.5.0](https://github.com/michaelfaith/mfaith-create/compare/v0.4.0...v0.5.0) (2026-09-23)
 
 
