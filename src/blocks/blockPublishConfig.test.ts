@@ -15,6 +15,7 @@ describe(blockPublishConfig, () => {
     const creation = testBlock(blockPublishConfig, {
       addons: {
         access: 'public',
+        bin: './dist/bin/index.mjs',
         exports: {
           '.': './dist/index.mjs',
           './package.json': './package.json',
@@ -31,6 +32,7 @@ describe(blockPublishConfig, () => {
               "properties": {
                 "publishConfig": {
                   "access": "public",
+                  "bin": "./dist/bin/index.mjs",
                   "exports": {
                     ".": "./dist/index.mjs",
                     "./package.json": "./package.json",
