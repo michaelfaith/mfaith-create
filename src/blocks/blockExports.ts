@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
 
@@ -24,9 +25,7 @@ export const blockExports = base.createBlock({
         blockPackageJson({
           properties: {
             exports: {
-              '.': exportFilePath.startsWith('.')
-                ? exportFilePath
-                : `./${exportFilePath}`,
+              '.': makeRelativePath(exportFilePath),
               './package.json': './package.json',
             },
           },
@@ -35,9 +34,7 @@ export const blockExports = base.createBlock({
           ? [
               blockPublishConfig({
                 exports: {
-                  '.': publishConfigExportFilePath.startsWith('.')
-                    ? publishConfigExportFilePath
-                    : `./${publishConfigExportFilePath}`,
+                  '.': makeRelativePath(publishConfigExportFilePath),
                   './package.json': './package.json',
                 },
               }),

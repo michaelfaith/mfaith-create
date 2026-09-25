@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
+import { binSchema } from './packageJson/schemas.ts';
 
 export const blockPublishConfig = base.createBlock({
   about: {
@@ -10,12 +11,13 @@ export const blockPublishConfig = base.createBlock({
   },
   addons: {
     access: z.union([z.literal('public'), z.literal('restricted')]).optional(),
+    bin: binSchema.optional(),
     exports: z.record(z.string(), z.unknown()).optional(),
   },
   produce({ addons }) {
-    const { access, exports } = addons;
+    const { access, bin, exports } = addons;
 
-    if (!access && !exports) {
+    if (!access && !exports && !bin) {
       return {};
     }
 
@@ -25,6 +27,7 @@ export const blockPublishConfig = base.createBlock({
           properties: {
             publishConfig: {
               access,
+              bin,
               exports,
             },
           },

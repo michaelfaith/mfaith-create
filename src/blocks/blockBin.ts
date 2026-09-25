@@ -1,14 +1,13 @@
-import { z } from 'zod';
-
 import { base } from '../base.ts';
+import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPublishConfig } from './blockPublishConfig.ts';
 import { blockTsdown } from './blockTsdown.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
-
-const binSchema = z.union([z.string(), z.record(z.string(), z.string())]);
+import { type Bin, binSchema } from './packageJson/schemas.ts';
 
 const tsExtensionRegex = /(.*)\.[cm]?ts$/i;
 const jsExtensionRegex = /(.*)\.[cm]?js$/i;
@@ -17,6 +16,16 @@ const srcToDist = (value: string) =>
   value.replace('src', 'dist').replace(tsExtensionRegex, '$1.mjs');
 const distToSrc = (value: string) =>
   value.replace('dist', 'src').replace(jsExtensionRegex, '$1.ts');
+
+const makeBinPathsRelative = (bin: Bin): Bin => {
+  if (typeof bin === 'string') {
+    return makeRelativePath(bin);
+  } else {
+    return Object.fromEntries(
+      Object.entries(bin).map(([key, value]) => [key, makeRelativePath(value)]),
+    );
+  }
+};
 
 export const blockBin = base.createBlock({
   about: {
@@ -48,7 +57,8 @@ export const blockBin = base.createBlock({
     };
   },
   produce({ addons, options }) {
-    const { src = 'src/bin/index.ts' } = addons;
+    const { src = './src/bin/index.ts' } = addons;
+    const { devExports, emoji } = options;
 
     let bin: string | Record<string, string>;
     if (typeof src === 'string') {
@@ -76,7 +86,9 @@ export const blockBin = base.createBlock({
         }),
         blockPackageJson({
           properties: {
-            bin,
+            bin: devExports
+              ? makeBinPathsRelative(src)
+              : makeBinPathsRelative(bin),
           },
         }),
         blockExampleFiles({
@@ -85,10 +97,13 @@ export const blockBin = base.createBlock({
               'index.ts': `#!/usr/bin/env node
 import { greet } from '../index.ts';
 
-greet('Hello, world! ${options.emoji}');`,
+greet('Hello, world! ${emoji}');`,
             },
           },
         }),
+        ...(devExports
+          ? [blockPublishConfig({ bin: makeBinPathsRelative(bin) })]
+          : []),
         blockTsdown({
           entry: typeof src === 'string' ? [src] : Object.values(src),
         }),

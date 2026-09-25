@@ -35,7 +35,7 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "dist/bin/index.mjs",
+                "bin": "./dist/bin/index.mjs",
               },
             },
             "block": "[Block Package JSON]",
@@ -56,7 +56,76 @@ describe(blockBin, () => {
           {
             "addons": {
               "entry": [
-                "src/bin/index.ts",
+                "./src/bin/index.ts",
+              ],
+            },
+            "block": "[Block tsdown]",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('without addons (options.devExports: true)', () => {
+    const creation = testBlock(blockBin, {
+      options: { ...optionsBase, devExports: true },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+            "block": "[Block ESLint]",
+          },
+          {
+            "addons": {
+              "properties": {
+                "bin": "./src/bin/index.ts",
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+            "block": "[Block Example Files]",
+          },
+          {
+            "addons": {
+              "bin": "./dist/bin/index.mjs",
+            },
+            "block": "[Block Publish Config]",
+          },
+          {
+            "addons": {
+              "entry": [
+                "./src/bin/index.ts",
               ],
             },
             "block": "[Block tsdown]",
@@ -101,7 +170,7 @@ describe(blockBin, () => {
           {
             "addons": {
               "properties": {
-                "bin": "dist/cli.mjs",
+                "bin": "./dist/cli.mjs",
               },
             },
             "block": "[Block Package JSON]",
@@ -171,8 +240,8 @@ describe(blockBin, () => {
             "addons": {
               "properties": {
                 "bin": {
-                  "other-bin": "dist/bin/other.mjs",
-                  "test-repo": "dist/bin/index.mjs",
+                  "other-bin": "./dist/bin/other.mjs",
+                  "test-repo": "./dist/bin/index.mjs",
                 },
               },
             },
