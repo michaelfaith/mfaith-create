@@ -18,6 +18,7 @@ export interface PartialPackageData {
   devDependencies?: Record<string, string>;
   email?: string;
   engines?: { node?: string };
+  exports?: string | Record<string, unknown>;
   keywords?: string[];
   name?: string;
   packageManager?: string;
@@ -30,4 +31,15 @@ export interface PartialPackageData {
 
 interface PartialPublishConfig {
   access?: 'public' | 'restricted';
+  exports?: string | Record<string, unknown>;
+}
+
+type TsdownExports =
+  | boolean
+  | {
+      devExports?: boolean;
+    };
+
+export interface PartialTsdownConfig {
+  exports?: TsdownExports;
 }

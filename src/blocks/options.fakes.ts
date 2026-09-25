@@ -7,6 +7,7 @@ export const optionsBase = {
     url: 'http://contact.url',
   },
   description: 'Test description',
+  devExports: false,
   directory: '.',
   documentation: {
     readme: {

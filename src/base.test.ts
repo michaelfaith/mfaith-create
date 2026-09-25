@@ -39,6 +39,7 @@ describe(
         ).contributors,
         description:
           'A quickstart-friendly repo template with comprehensive, opinionated tooling.',
+        devExports: true,
         documentation: {
           development: expect.any(String),
           readme: {

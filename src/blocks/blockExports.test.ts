@@ -27,7 +27,40 @@ describe(blockExports, () => {
     `);
   });
 
-  it('with addons (no leading ./', () => {
+  it('without addons (devExports: true)', () => {
+    const creation = testBlock(blockExports, {
+      options: { ...optionsBase, devExports: true },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
+          {
+            "addons": {
+              "properties": {
+                "exports": {
+                  ".": "./src/index.ts",
+                  "./package.json": "./package.json",
+                },
+              },
+            },
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "exports": {
+                ".": "./dist/index.mjs",
+                "./package.json": "./package.json",
+              },
+            },
+            "block": "[Block Publish Config]",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('with addons (no leading ./)', () => {
     const creation = testBlock(blockExports, {
       addons: {
         filePath: 'other.js',
@@ -43,38 +76,56 @@ describe(blockExports, () => {
             "addons": {
               "properties": {
                 "exports": {
-                  ".": "./other.ts",
+                  ".": "./other.js",
                   "./package.json": "./package.json",
                 },
               },
             },
             "block": "[Block Package JSON]",
           },
+        ],
+      }
+    `);
+  });
+
+  it('with addons (with leading ./)', () => {
+    const creation = testBlock(blockExports, {
+      addons: {
+        filePath: './other.js',
+        srcFilePath: './other.ts',
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "addons": [
           {
             "addons": {
-              "exports": {
-                ".": "./other.js",
-                "./package.json": "./package.json",
+              "properties": {
+                "exports": {
+                  ".": "./other.js",
+                  "./package.json": "./package.json",
+                },
               },
             },
-            "block": "[Block Publish Config]",
+            "block": "[Block Package JSON]",
           },
         ],
       }
     `);
   });
-});
 
-it('with addons (with leading ./', () => {
-  const creation = testBlock(blockExports, {
-    addons: {
-      filePath: './other.js',
-      srcFilePath: './other.ts',
-    },
-    options: optionsBase,
-  });
+  it('with addons (devExports: true)', () => {
+    const creation = testBlock(blockExports, {
+      addons: {
+        filePath: './other.js',
+        srcFilePath: './other.ts',
+      },
+      options: { ...optionsBase, devExports: true },
+    });
 
-  expect(creation).toMatchInlineSnapshot(`
+    expect(creation).toMatchInlineSnapshot(`
     {
       "addons": [
         {
@@ -100,4 +151,5 @@ it('with addons (with leading ./', () => {
       ],
     }
   `);
+  });
 });

@@ -1,6 +1,6 @@
 import type { IntakeDirectory } from 'bingo-fs';
-import JSON5 from 'json5';
 
+import { tryParseJson5 } from '../../utils/tryParseJson5.ts';
 import { intakeFile } from './intakeFile.ts';
 
 export function intakeFileDefineConfig(
@@ -18,19 +18,10 @@ export function intakeFileDefineConfig(
     return undefined;
   }
 
-  const rawData = tryParseJSON5(`{${matched[1]}}`);
+  const rawData = tryParseJson5(`{${matched[1]}}`);
   if (!rawData || typeof rawData !== 'object') {
     return undefined;
   }
 
   return rawData;
-}
-
-function tryParseJSON5(text: string) {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    return JSON5.parse(text) as Record<string, unknown> | undefined;
-  } catch {
-    return undefined;
-  }
 }

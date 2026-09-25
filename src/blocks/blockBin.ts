@@ -21,6 +21,8 @@ const distToSrc = (value: string) =>
 export const blockBin = base.createBlock({
   about: {
     name: 'Bin',
+    description:
+      'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
   },
   addons: {
     src: binSchema.optional(),

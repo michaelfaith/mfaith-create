@@ -22,15 +22,6 @@ const propertiesSchema = z.record(z.string(), z.unknown());
 
 const relativePathRegex = /^\.\/(.*)$/;
 
-const hasDevExports = (obj: unknown): obj is { devExports: boolean } => {
-  return (
-    !!obj &&
-    typeof obj === 'object' &&
-    !Array.isArray(obj) &&
-    'devExports' in obj
-  );
-};
-
 export const blockTsdown = base.createBlock({
   about: {
     name: 'tsdown',
@@ -38,7 +29,6 @@ export const blockTsdown = base.createBlock({
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
   addons: {
-    devExports: z.boolean().default(false),
     entry: entrySchema.default([]),
     properties: propertiesSchema.default({}),
     runInCI: z.array(z.string()).default([]),
@@ -49,10 +39,9 @@ export const blockTsdown = base.createBlock({
       return undefined;
     }
 
-    const { entry: rawEntry, exports, ...rest } = rawData;
+    const { entry: rawEntry, ...rest } = rawData;
 
     return {
-      devExports: hasDevExports(exports) ? exports.devExports : undefined,
       entry: entrySchema.safeParse(rawEntry).data,
       properties: removeUndefinedObjects({
         ...propertiesSchema.safeParse(rest).data,
