@@ -36,4 +36,26 @@ export default config;
 
     expect(actual).toEqual({ exports: { devExports: true } });
   });
+
+  it('returns {} when tsdown.config.ts does not match the anticipated structure', async () => {
+    const take = vi.fn().mockResolvedValueOnce(`export default {};`);
+
+    const actual = await readTsdownConfig(take);
+
+    expect(actual).toEqual({});
+  });
+
+  it('returns {} when tsdown.config.ts has a syntax error', async () => {
+    const tsdownConfig = `import { defineConfig, type UserConfig } from 'tsdown';
+
+const config: UserConfig = defineConfig({[]});
+
+export default config;
+`;
+    const take = vi.fn().mockResolvedValueOnce(tsdownConfig);
+
+    const actual = await readTsdownConfig(take);
+
+    expect(actual).toEqual({});
+  });
 });
