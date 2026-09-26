@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/michaelfaith/mfaith-create/compare/v0.5.1...v0.5.2) (2026-09-26)
+
+
+### 🚀 Features
+
+* add support for `bin` dev exports ([#272](https://github.com/michaelfaith/mfaith-create/issues/272)) ([606c7db](https://github.com/michaelfaith/mfaith-create/commit/606c7db5453dca1543a63db38981462c80137595))
+
 ## [0.5.1](https://github.com/michaelfaith/mfaith-create/compare/v0.5.0...v0.5.1) (2026-09-25)
 
 
