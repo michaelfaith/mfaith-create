@@ -103,6 +103,7 @@ pnpm format --write
               'simple-git-hooks',
             ),
             scripts: {
+              format: 'prettier .',
               prepare: 'simple-git-hooks',
             },
           },
