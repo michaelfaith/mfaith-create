@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.2](https://github.com/michaelfaith/mfaith-create/compare/v0.5.1...v0.5.2) (2026-09-27)
+
+
+### 🚀 Features
+
+* add support for `bin` dev exports ([#272](https://github.com/michaelfaith/mfaith-create/issues/272)) ([606c7db](https://github.com/michaelfaith/mfaith-create/commit/606c7db5453dca1543a63db38981462c80137595))
+
+
+### 🩹 Bug Fixes
+
+* default `packageName` to repository name, if not specified ([#287](https://github.com/michaelfaith/mfaith-create/issues/287)) ([1cd12f2](https://github.com/michaelfaith/mfaith-create/commit/1cd12f2716fb98c8164785b36d3074ec1df87421))
+* **Prettier:** add missing `format` script ([#288](https://github.com/michaelfaith/mfaith-create/issues/288)) ([47a85d7](https://github.com/michaelfaith/mfaith-create/commit/47a85d75159a91432443a3b31def438ed4794454))
+
 ## [0.5.1](https://github.com/michaelfaith/mfaith-create/compare/v0.5.0...v0.5.1) (2026-09-25)
 
 
