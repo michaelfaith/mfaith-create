@@ -17,7 +17,9 @@
     ".": "./src/index.ts",
     "./package.json": "./package.json"
   },
-  "bin": "./src/bin/index.ts",
+  "bin": {
+    "create": "./src/bin/index.ts"
+  },
   "files": [
     "dist/"
   ],
@@ -117,7 +119,9 @@
   },
   "publishConfig": {
     "access": "public",
-    "bin": "./dist/bin/index.mjs",
+    "bin": {
+      "create": "./dist/bin/index.mjs"
+    },
     "exports": {
       ".": "./dist/index.mjs",
       "./package.json": "./package.json"

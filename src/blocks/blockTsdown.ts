@@ -1,3 +1,5 @@
+import { extname } from 'node:path';
+
 import removeUndefinedObjects from 'remove-undefined-objects';
 import { z } from 'zod';
 
@@ -21,6 +23,11 @@ const entrySchema = z.array(z.string());
 const propertiesSchema = z.record(z.string(), z.unknown());
 
 const relativePathRegex = /^\.\/(.*)$/;
+const srcPathRegex = /^\.\/src\/(.+)$/;
+
+const makeExclusion = (input: string): string => {
+  return input.replace(srcPathRegex, '$1').replace(extname(input), '');
+};
 
 export const blockTsdown = base.createBlock({
   about: {
@@ -30,6 +37,7 @@ export const blockTsdown = base.createBlock({
   },
   addons: {
     entry: entrySchema.default([]),
+    excludeFromExports: entrySchema.optional(),
     properties: propertiesSchema.default({}),
     runInCI: z.array(z.string()).default([]),
   },
@@ -49,8 +57,9 @@ export const blockTsdown = base.createBlock({
       }),
     };
   },
-  produce({ addons }) {
-    const { entry, properties, runInCI } = addons;
+  produce({ addons, options }) {
+    const { entry, excludeFromExports, properties, runInCI } = addons;
+    const { devExports } = options;
 
     const primaryEntry = 'src/index.ts';
     const distFilePath = './dist/index.mjs';
@@ -59,6 +68,25 @@ export const blockTsdown = base.createBlock({
       primaryEntry,
       ...entry.map((filePath) => filePath.replace(relativePathRegex, '$1')),
     ]);
+    const exclude =
+      excludeFromExports &&
+      Array.from(
+        new Set(
+          excludeFromExports.map((exclusion) => makeExclusion(exclusion)),
+        ),
+      );
+
+    let exports;
+    if (devExports) {
+      exports = {
+        devExports,
+        exclude,
+      };
+    } else if (exclude) {
+      exports = { exclude };
+    } else {
+      exports = true;
+    }
 
     return {
       addons: [
@@ -135,6 +163,7 @@ pnpm build --watch
 const config: UserConfig = defineConfig(${JSON.stringify({
           // If `src/index.ts` is the only entry, then omit it.
           entry: entries.size > 1 ? Array.from(entries) : undefined,
+          exports,
           ...properties,
         })});
 
