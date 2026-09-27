@@ -24,6 +24,14 @@ vi.mock('./utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 
+vi.mock('./options/readGitDefaults.ts', async () => {
+  const { default: gitUrlParse } = await import('git-url-parse');
+  return {
+    readGitDefaults: () =>
+      gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
+  };
+});
+
 // Check if running in CI and on Windows ('win32')
 const isWindowsCI = Boolean(process.env.CI) && process.platform === 'win32';
 

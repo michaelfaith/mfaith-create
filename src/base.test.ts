@@ -11,6 +11,14 @@ vi.mock('./options/readEmailFromGit.js', () => ({
     Promise.resolve('michaelfaith@users.noreply.github.com'),
 }));
 
+vi.mock('./options/readGitDefaults.ts', async () => {
+  const { default: gitUrlParse } = await import('git-url-parse');
+  return {
+    readGitDefaults: () =>
+      gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
+  };
+});
+
 // Check if running in CI and on Windows ('win32')
 const isWindowsCI = Boolean(process.env.CI) && process.platform === 'win32';
 
