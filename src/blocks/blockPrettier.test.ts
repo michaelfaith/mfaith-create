@@ -91,6 +91,7 @@ describe(blockPrettier, () => {
                   "simple-git-hooks": "1.2.3",
                 },
                 "scripts": {
+                  "format": "prettier .",
                   "prepare": "simple-git-hooks",
                 },
               },
@@ -253,6 +254,7 @@ describe(blockPrettier, () => {
                   "simple-git-hooks": "1.2.3",
                 },
                 "scripts": {
+                  "format": "prettier .",
                   "prepare": "simple-git-hooks",
                 },
               },
@@ -391,6 +393,7 @@ describe(blockPrettier, () => {
                   "simple-git-hooks": "1.2.3",
                 },
                 "scripts": {
+                  "format": "prettier .",
                   "prepare": "simple-git-hooks",
                 },
               },
