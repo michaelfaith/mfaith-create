@@ -158,7 +158,7 @@ export const base: Base<OptionsShape> = createBase({
     );
 
     const getPackageName = lazyValue(
-      async () => await readPackageName(getPackageData, options),
+      async () => await readPackageName(getPackageData, getRepository, options),
     );
 
     const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
