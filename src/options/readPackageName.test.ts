@@ -37,10 +37,10 @@ describe(readPackageName, () => {
   });
 
   it('returns repository name when neither options.packageName or packageData.name exist', async () => {
-    const name = 'test-name';
-    const getPackageDataMock = vi.fn().mockResolvedValueOnce({ name });
+    const name = 'test-repo-name';
+    const getPackageDataMock = vi.fn().mockResolvedValue({});
     const options = {};
-    const getRepositoryMock = vi.fn();
+    const getRepositoryMock = vi.fn().mockResolvedValueOnce(name);
 
     const actual = await readPackageName(
       getPackageDataMock,
