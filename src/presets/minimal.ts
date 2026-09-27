@@ -1,3 +1,5 @@
+import type { Preset } from 'bingo-stratum';
+
 import { base } from '../base.ts';
 import { blockCodeOfConduct } from '../blocks/blockCodeOfConduct.ts';
 import { blockContributingDocs } from '../blocks/blockContributingDocs.ts';
@@ -28,8 +30,9 @@ import { blockSideEffects } from '../blocks/blockSideEffects.ts';
 import { blockTemplatedWith } from '../blocks/blockTemplatedWith.ts';
 import { blockTsdown } from '../blocks/blockTsdown.ts';
 import { blockTypescript } from '../blocks/blockTypescript.ts';
+import type { OptionsShape } from '../Options.ts';
 
-export const presetMinimal = base.createPreset({
+export const presetMinimal: Preset<OptionsShape> = base.createPreset({
   about: {
     description:
       'Just bare starter tooling: building, formatting, linting, and type checking.',

@@ -1,3 +1,5 @@
+import type { Preset } from 'bingo-stratum';
+
 import { base } from '../base.ts';
 import { blockCspell } from '../blocks/blockCspell.ts';
 import { blockEslintComments } from '../blocks/blockEslintComments.ts';
@@ -21,9 +23,10 @@ import { blockPrettierPluginSentencesPerLine } from '../blocks/blockPrettierPlug
 import { blockPrettierPluginSh } from '../blocks/blockPrettierPluginSh.ts';
 import { blockRenovate } from '../blocks/blockRenovate.ts';
 import { blockVscode } from '../blocks/blockVscode.ts';
+import type { OptionsShape } from '../Options.ts';
 import { presetCommon } from './common.ts';
 
-export const presetEverything = base.createPreset({
+export const presetEverything: Preset<OptionsShape> = base.createPreset({
   about: {
     description:
       'The most comprehensive tooling imaginable: sorting, spellchecking, and more!',
