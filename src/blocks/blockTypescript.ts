@@ -143,6 +143,7 @@ greet('Hello, world! ${options.emoji}');
           compilerOptions: sortKeys({
             declaration: true,
             esModuleInterop: true,
+            isolatedModules: true,
             module: 'nodenext',
             moduleResolution: 'nodenext',
             noEmit: true,
