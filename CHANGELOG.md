@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.3](https://github.com/michaelfaith/mfaith-create/compare/v0.5.2...v0.5.3) (2026-09-28)
+
+
+### 🚀 Features
+
+* enable `exports` in the `tsdown` config ([#267](https://github.com/michaelfaith/mfaith-create/issues/267)) ([9ff5d48](https://github.com/michaelfaith/mfaith-create/commit/9ff5d48c35a34aad6e2111e33c32a23b00594b19))
+* **TypeScript:** enable `isolatedModules` ([#292](https://github.com/michaelfaith/mfaith-create/issues/292)) ([176dae3](https://github.com/michaelfaith/mfaith-create/commit/176dae3ba1ca3f4440bf97c86249203c577a6675))
+
+
+### 🩹 Bug Fixes
+
+* update bingo packages ([#282](https://github.com/michaelfaith/mfaith-create/issues/282)) ([4994c70](https://github.com/michaelfaith/mfaith-create/commit/4994c708ead97355bf3c61efe85f7f61073785b7))
+
 ## [0.5.2](https://github.com/michaelfaith/mfaith-create/compare/v0.5.1...v0.5.2) (2026-09-27)
 
 
