@@ -232,6 +232,9 @@ describe(blockKnip, () => {
             "addons": {
               "files": [
                 ".ts-prunerc*",
+                ".knip*",
+                "knip.{c,j,m}*",
+                "knip.json*",
               ],
             },
             "block": "[Block Remove Files]",
