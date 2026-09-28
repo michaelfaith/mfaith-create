@@ -1,4 +1,4 @@
-export const startingOwnerContributions = [
+export const startingOwnerContributions: string[] = [
   'code',
   'content',
   'doc',

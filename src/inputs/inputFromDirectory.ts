@@ -1,7 +1,14 @@
-import { createInput } from 'bingo';
+import { type AnyShape, createInput, type InputWithArgs } from 'bingo';
 import { z } from 'zod';
 
-export const inputFromDirectory = createInput({
+export interface InputFromDirectoryArgs extends AnyShape {
+  directoryPath: z.ZodString;
+}
+
+export const inputFromDirectory: InputWithArgs<
+  Promise<string[]>,
+  InputFromDirectoryArgs
+> = createInput({
   args: {
     directoryPath: z.string(),
   },

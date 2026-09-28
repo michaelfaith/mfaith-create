@@ -18,7 +18,7 @@ export const clearCache = (): void => {
 
 export const resolveBin = (
   packageName: string,
-  binName = packageName,
+  binName: string = packageName,
 ): string => {
   const cacheKey = [packageName, binName].join(cacheKeyDelimiter);
   const cachedValue = cache.get(cacheKey);

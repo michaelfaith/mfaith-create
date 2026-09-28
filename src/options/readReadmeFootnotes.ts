@@ -1,4 +1,4 @@
-export const indicatorsTemplatedBy = [
+export const indicatorsTemplatedBy: RegExp[] = [
   /> .* This package (?:is|was) (?:based|build|templated) (?:on|with)/,
   /<!-- You can remove this notice/,
 ];
