@@ -137,8 +137,7 @@ If you're interested in learning more, see the 'getting started' docs on:
           blockPnpmWorkspace({
             config: {
               overrides: {
-                'bingo-stratum@0.6.1>cached-factory': '0.3.0',
-                'bingo@0.11.3>cached-factory': '0.3.0',
+                'vitest@5.0.2>why-is-node-running': '3.2.1',
               },
             },
           }),
