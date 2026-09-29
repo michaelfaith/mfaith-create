@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: $/.github/actions/setup
-      - run: pnpm format --list-different
+      - run: pnpm run format --list-different
 
   lint:
     name: Lint

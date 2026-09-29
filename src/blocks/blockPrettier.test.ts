@@ -74,7 +74,7 @@ describe(blockPrettier, () => {
                   "name": "Format Check",
                   "steps": [
                     {
-                      "run": "pnpm format --list-different",
+                      "run": "pnpm run format --list-different",
                     },
                   ],
                 },
@@ -137,7 +137,7 @@ describe(blockPrettier, () => {
         "scripts": [
           {
             "commands": [
-              "pnpm format --write",
+              "pnpm run format --write",
             ],
             "phase": 4,
           },
@@ -234,7 +234,7 @@ describe(blockPrettier, () => {
                       "run": "pnpm build || exit 0",
                     },
                     {
-                      "run": "pnpm format --list-different",
+                      "run": "pnpm run format --list-different",
                     },
                   ],
                 },
@@ -302,7 +302,7 @@ describe(blockPrettier, () => {
           {
             "commands": [
               "pnpm build || exit 0",
-              "pnpm format --write",
+              "pnpm run format --write",
             ],
             "phase": 4,
           },
@@ -376,7 +376,7 @@ describe(blockPrettier, () => {
                   "name": "Format Check",
                   "steps": [
                     {
-                      "run": "pnpm format --list-different",
+                      "run": "pnpm run format --list-different",
                     },
                   ],
                 },
@@ -467,7 +467,7 @@ describe(blockPrettier, () => {
         "scripts": [
           {
             "commands": [
-              "pnpm format --write",
+              "pnpm run format --write",
             ],
             "phase": 4,
           },
