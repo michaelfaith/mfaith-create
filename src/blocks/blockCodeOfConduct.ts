@@ -1,15 +1,19 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
-export const blockCodeOfConduct = base.createBlock({
-  about: {
-    name: 'Code of Conduct',
-  },
-  produce({ options }) {
-    return {
-      files: {
-        '.github': {
-          'CODE_OF_CONDUCT.md': `# Code of Conduct
+export const blockCodeOfConduct: BlockWithoutAddons<Options> = base.createBlock(
+  {
+    about: {
+      name: 'Code of Conduct',
+    },
+    produce({ options }) {
+      return {
+        files: {
+          '.github': {
+            'CODE_OF_CONDUCT.md': `# Code of Conduct
 
 ## Our Pledge
 
@@ -144,16 +148,17 @@ Translations are available at
 [faq]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 `,
+          },
         },
-      },
-    };
+      };
+    },
+    transition() {
+      return {
+        addons: [blockRemoveFiles({ files: ['CODE_OF_CONDUCT.md'] })],
+      };
+    },
   },
-  transition() {
-    return {
-      addons: [blockRemoveFiles({ files: ['CODE_OF_CONDUCT.md'] })],
-    };
-  },
-});
+);
 
 function formatContact(contact: {
   bluesky?: string;

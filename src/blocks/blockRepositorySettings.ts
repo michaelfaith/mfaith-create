@@ -1,42 +1,46 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 
-export const blockRepositorySettings = base.createBlock({
-  about: {
-    name: 'Repository Settings',
-  },
-  produce({ options }) {
-    const description = htmlToTextSafe(options.description);
+export const blockRepositorySettings: BlockWithoutAddons<Options> =
+  base.createBlock({
+    about: {
+      name: 'Repository Settings',
+    },
+    produce({ options }) {
+      const description = htmlToTextSafe(options.description);
 
-    return {
-      requests: [
-        {
-          endpoint: 'PATCH /repos/{owner}/{repo}',
-          parameters: {
-            allow_auto_merge: true,
-            allow_merge_commit: false,
-            allow_rebase_merge: false,
-            allow_squash_merge: true,
-            delete_branch_on_merge: true,
-            description,
-            has_projects: false,
-            has_wiki: false,
-            owner: options.owner,
-            repo: options.repository,
-            security_and_analysis: {
-              secret_scanning: {
-                status: 'enabled',
+      return {
+        requests: [
+          {
+            endpoint: 'PATCH /repos/{owner}/{repo}',
+            parameters: {
+              allow_auto_merge: true,
+              allow_merge_commit: false,
+              allow_rebase_merge: false,
+              allow_squash_merge: true,
+              delete_branch_on_merge: true,
+              description,
+              has_projects: false,
+              has_wiki: false,
+              owner: options.owner,
+              repo: options.repository,
+              security_and_analysis: {
+                secret_scanning: {
+                  status: 'enabled',
+                },
+                secret_scanning_push_protection: {
+                  status: 'enabled',
+                },
               },
-              secret_scanning_push_protection: {
-                status: 'enabled',
-              },
+              squash_merge_commit_message: 'PR_BODY',
+              squash_merge_commit_title: 'PR_TITLE',
             },
-            squash_merge_commit_message: 'PR_BODY',
-            squash_merge_commit_title: 'PR_TITLE',
+            type: 'octokit',
           },
-          type: 'octokit',
-        },
-      ],
-    };
-  },
-});
+        ],
+      };
+    },
+  });

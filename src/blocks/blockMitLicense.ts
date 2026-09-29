@@ -1,8 +1,11 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockReadme } from './blockReadme.ts';
 
-export const blockMitLicense = base.createBlock({
+export const blockMitLicense: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'MIT License',
   },

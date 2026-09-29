@@ -1,15 +1,19 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
-export const blockContributingDocs = base.createBlock({
-  about: {
-    name: 'Contributing Docs',
-  },
-  produce({ options }) {
-    return {
-      files: {
-        '.github': {
-          'CONTRIBUTING.md': `# Contributing
+export const blockContributingDocs: BlockWithoutAddons<Options> =
+  base.createBlock({
+    about: {
+      name: 'Contributing Docs',
+    },
+    produce({ options }) {
+      return {
+        files: {
+          '.github': {
+            'CONTRIBUTING.md': `# Contributing
 
 Thanks for your interest in contributing to \`${options.packageName}\`! ${options.emoji}
 
@@ -97,13 +101,13 @@ Once all feedback is addressed and the PR is approved, we'll ensure the branch i
 Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/en/emoji-key/ "Allcontributors emoji key"), you should be soon.
 Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!
 `,
+          },
         },
-      },
-    };
-  },
-  transition() {
-    return {
-      addons: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
-    };
-  },
-});
+      };
+    },
+    transition() {
+      return {
+        addons: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
+      };
+    },
+  });

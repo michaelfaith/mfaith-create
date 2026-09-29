@@ -1,7 +1,10 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockEslint } from './blockEslint.ts';
 
-export const blockEslintYml = base.createBlock({
+export const blockEslintYml: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'ESLint YML Plugin',
   },
