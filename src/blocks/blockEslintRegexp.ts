@@ -4,7 +4,7 @@ import { JS_TS_FILES } from './eslint/globs.ts';
 
 export const blockEslintRegexp = base.createBlock({
   about: {
-    name: 'ESLint Regexp Plugin',
+    name: 'ESLint RegExp Plugin',
   },
   produce() {
     return {
