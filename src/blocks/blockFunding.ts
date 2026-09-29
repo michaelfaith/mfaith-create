@@ -1,8 +1,11 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { formatYaml } from './files/formatYaml.ts';
 
-export const blockFunding = base.createBlock({
+export const blockFunding: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'Funding',
   },

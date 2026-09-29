@@ -1,11 +1,14 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
 import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockVitest } from './blockVitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockCodecov = base.createBlock({
+export const blockCodecov: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'Codecov',
   },

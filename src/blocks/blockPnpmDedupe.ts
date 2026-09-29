@@ -1,9 +1,12 @@
+import type { BlockWithoutAddons } from 'bingo-stratum';
+
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 
-export const blockPnpmDedupe = base.createBlock({
+export const blockPnpmDedupe: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'pnpm Dedupe',
   },

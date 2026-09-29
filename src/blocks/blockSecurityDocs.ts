@@ -1,6 +1,9 @@
-import { base } from '../base.ts';
+import type { BlockWithoutAddons } from 'bingo-stratum';
 
-export const blockSecurityDocs = base.createBlock({
+import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
+
+export const blockSecurityDocs: BlockWithoutAddons<Options> = base.createBlock({
   about: {
     name: 'Security Docs',
   },
