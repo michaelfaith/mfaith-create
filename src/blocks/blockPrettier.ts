@@ -89,7 +89,7 @@ pnpm format --write
               name: 'Format Check',
               steps: [
                 ...runBefore.map((run) => ({ run })),
-                { run: 'pnpm format --list-different' },
+                { run: 'pnpm run format --list-different' },
               ],
             },
           ],
@@ -143,7 +143,7 @@ export default config;
       },
       scripts: [
         {
-          commands: [...runBefore, 'pnpm format --write'],
+          commands: [...runBefore, 'pnpm run format --write'],
           phase: CommandPhase.Format,
         },
       ],
