@@ -56,6 +56,7 @@ export {
   blockPrettierPluginPackageJson,
   blockPrettierPluginSentencesPerLine,
   blockPrettierPluginSh,
+  blockPrPreviewRelease,
   blockReadme,
   blockReleasePlease,
   blockRenovate,

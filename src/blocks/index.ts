@@ -38,6 +38,7 @@ export { blockPrettierPluginCurly } from './blockPrettierPluginCurly.ts';
 export { blockPrettierPluginPackageJson } from './blockPrettierPluginPackageJson.ts';
 export { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
 export { blockPrettierPluginSh } from './blockPrettierPluginSh.ts';
+export { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
 export { blockReadme } from './blockReadme.ts';
 export { blockReleasePlease } from './blockReleasePlease.ts';
 export { blockRenovate } from './blockRenovate.ts';
