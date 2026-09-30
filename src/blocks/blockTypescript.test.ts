@@ -169,7 +169,7 @@ describe(blockTypescript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2024","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedDeclarations":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2024","types":["node"]},"include":["src"]}",
         },
       }
     `);
@@ -339,7 +339,7 @@ describe(blockTypescript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2024","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedDeclarations":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2024","types":["node"]},"include":["src"]}",
         },
       }
     `);
@@ -513,7 +513,7 @@ describe(blockTypescript, () => {
           },
         ],
         "files": {
-          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2024","types":["node"]},"include":["src"]}",
+          "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"isolatedDeclarations":true,"isolatedModules":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2024","types":["node"]},"include":["src"]}",
         },
       }
     `);
