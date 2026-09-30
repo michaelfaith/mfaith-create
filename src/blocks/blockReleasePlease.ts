@@ -1,6 +1,8 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
@@ -12,25 +14,27 @@ import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
+import { type Builder, builderSchema } from './workflows/schema.ts';
 
 const isScopedPackage = (packageName: string | undefined): boolean =>
   !!packageName?.startsWith('@');
 
-export const blockReleasePlease = base.createBlock({
+export interface BlockReleasePleaseProps {
+  builders?: Builder[] | undefined;
+  currentVersion?: string | undefined;
+}
+
+export const blockReleasePlease: BlockWithAddons<
+  BlockReleasePleaseProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Release Please',
     description:
       'Creates a release workflow and all of the necessary configuration for using Release Please for versioning, publishing, tagging, and creating GH releases.',
   },
   addons: {
-    builders: z
-      .array(
-        z.object({
-          order: z.number(),
-          run: z.string(),
-        }),
-      )
-      .default([]),
+    builders: z.array(builderSchema).default([]),
     currentVersion: z.string().optional(),
   },
   intake({ files }) {

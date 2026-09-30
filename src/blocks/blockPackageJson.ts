@@ -1,3 +1,4 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import removeUndefinedObjects from 'remove-undefined-objects';
 import semver from 'semver';
 import sortPackageJson from 'sort-package-json';
@@ -5,103 +6,120 @@ import { z } from 'zod';
 import { PackageJson } from 'zod-package-json';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
-const PackageJsonWithNullableScripts = PackageJson.partial().extend({
+const packageJsonWithNullableScriptsSchema = PackageJson.partial().extend({
   scripts: z
     .record(z.string(), z.union([z.string(), z.undefined()]))
     .optional(),
 });
+export interface PackageJsonWithNullableScripts extends Partial<
+  Omit<PackageJson, 'scripts'>
+> {
+  scripts?: Record<string, string | undefined>;
+}
 
-export const blockPackageJson = base.createBlock({
-  about: {
-    name: 'Package JSON',
-  },
-  addons: {
-    cleanupCommands: z.array(z.string()).default([]),
-    properties: PackageJsonWithNullableScripts.default({}),
-  },
-  produce({ addons, offline, options }) {
-    const dependencies = useLargerVersions(options.packageData?.dependencies, {
-      ...options.packageData?.dependencies,
-      ...addons.properties.dependencies,
-    });
-    const devDependencies = useLargerVersions(
-      options.packageData?.devDependencies,
-      {
-        ...options.packageData?.devDependencies,
-        ...addons.properties.devDependencies,
-      },
-    );
-    const description = htmlToTextSafe(options.description);
+export interface BlockPackageJsonProps {
+  cleanupCommands?: string[];
+  properties?: PackageJsonWithNullableScripts;
+}
 
-    return {
-      files: {
-        'package.json': sortPackageJson(
-          JSON.stringify(
-            removeUndefinedObjects({
-              ...options.packageData,
-              ...addons.properties,
-              author: {
-                name: options.author,
-                ...(options.contact.url
-                  ? { url: options.contact.url }
-                  : options.contact.email
-                    ? { email: options.contact.email }
-                    : {}),
-              },
-              bin: addons.properties.bin,
-              dependencies: Object.keys(dependencies).length
-                ? dependencies
-                : undefined,
-              description,
-              devDependencies: Object.keys(devDependencies).length
-                ? devDependencies
-                : undefined,
-              engines: {
-                node: /^\d/u.test(options.node.supported)
-                  ? `>=${options.node.supported}`
-                  : options.node.supported,
-              },
-              ...(options.pnpm && {
-                packageManager: `pnpm@${options.pnpm}`,
-              }),
-              files: processFiles(addons.properties.files),
-              keywords: options.keywords,
-              name: options.packageName,
-              repository: {
-                type: 'git',
-                url: `git+https://github.com/${options.owner}/${options.repository}.git`,
-              },
-              scripts: {
-                ...options.packageData?.scripts,
-                ...addons.properties.scripts,
-              },
-              type: 'module',
-              version: options.version ?? '0.0.0',
-            }),
-          ),
-        ),
-      },
-      scripts: [
+export const blockPackageJson: BlockWithAddons<BlockPackageJsonProps, Options> =
+  base.createBlock({
+    about: {
+      name: 'Package JSON',
+    },
+    addons: {
+      cleanupCommands: z.array(z.string()).default([]),
+      properties: packageJsonWithNullableScriptsSchema.default({}),
+    },
+    produce({ addons, offline, options }) {
+      const dependencies = useLargerVersions(
+        options.packageData?.dependencies,
         {
-          commands: [
-            `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
-            ...addons.cleanupCommands,
-          ],
-          phase: CommandPhase.Install,
+          ...options.packageData?.dependencies,
+          ...addons.properties.dependencies,
         },
-      ],
-    };
-  },
-  transition() {
-    return {
-      addons: [blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] })],
-    };
-  },
-});
+      );
+      const devDependencies = useLargerVersions(
+        options.packageData?.devDependencies,
+        {
+          ...options.packageData?.devDependencies,
+          ...addons.properties.devDependencies,
+        },
+      );
+      const description = htmlToTextSafe(options.description);
+
+      return {
+        files: {
+          'package.json': sortPackageJson(
+            JSON.stringify(
+              removeUndefinedObjects({
+                ...options.packageData,
+                ...addons.properties,
+                author: {
+                  name: options.author,
+                  ...(options.contact.url
+                    ? { url: options.contact.url }
+                    : options.contact.email
+                      ? { email: options.contact.email }
+                      : {}),
+                },
+                bin: addons.properties.bin,
+                dependencies: Object.keys(dependencies).length
+                  ? dependencies
+                  : undefined,
+                description,
+                devDependencies: Object.keys(devDependencies).length
+                  ? devDependencies
+                  : undefined,
+                engines: {
+                  node: /^\d/u.test(options.node.supported)
+                    ? `>=${options.node.supported}`
+                    : options.node.supported,
+                },
+                ...(options.pnpm && {
+                  packageManager: `pnpm@${options.pnpm}`,
+                }),
+                files: processFiles(addons.properties.files),
+                keywords: options.keywords,
+                name: options.packageName,
+                repository: {
+                  type: 'git',
+                  url: `git+https://github.com/${options.owner}/${options.repository}.git`,
+                },
+                scripts: {
+                  ...options.packageData?.scripts,
+                  ...addons.properties.scripts,
+                },
+                type: 'module',
+                version: options.version ?? '0.0.0',
+              }),
+            ),
+          ),
+        },
+        scripts: [
+          {
+            commands: [
+              `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
+              ...addons.cleanupCommands,
+            ],
+            phase: CommandPhase.Install,
+          },
+        ],
+      };
+    },
+    transition() {
+      return {
+        addons: [
+          blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] }),
+        ],
+      };
+    },
+  });
 
 function processFiles(files: string[] | undefined) {
   // If no files have been specified, we can skip the property altogether

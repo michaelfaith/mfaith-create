@@ -1,26 +1,29 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import type { Options } from '../Options.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
+import { type Builder, builderSchema } from './workflows/schema.ts';
 
-export const blockPrPreviewRelease = base.createBlock({
+export interface BlockPrPreviewReleaseProps {
+  builders?: Builder[];
+}
+
+export const blockPrPreviewRelease: BlockWithAddons<
+  BlockPrPreviewReleaseProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'PR Preview Release',
     description:
       'Creates a workflow using pkg-pr-new to publish preview versions of packages at PR-time.',
   },
   addons: {
-    builders: z
-      .array(
-        z.object({
-          order: z.number(),
-          run: z.string(),
-        }),
-      )
-      .default([]),
+    builders: z.array(builderSchema).default([]),
   },
   produce({ addons }) {
     const { builders } = addons;

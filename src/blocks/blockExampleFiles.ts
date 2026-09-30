@@ -1,19 +1,29 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockReadme } from './blockReadme.ts';
 
-interface DirectoryEntry {
+export interface DirectoryEntry {
   [i: string]: Entry;
 }
-type Entry = DirectoryEntry | string;
+export type Entry = DirectoryEntry | string;
 
 const fileEntrySchema: z.ZodType<DirectoryEntry> = z.record(
   z.string(),
   z.union([z.string(), z.lazy(() => fileEntrySchema)]),
 );
 
-export const blockExampleFiles = base.createBlock({
+export interface BlockExampleFilesProps {
+  files?: DirectoryEntry;
+  usage?: string[];
+}
+
+export const blockExampleFiles: BlockWithAddons<
+  BlockExampleFilesProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Example Files',
   },

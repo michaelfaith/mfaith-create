@@ -24,6 +24,15 @@ export type Step = {
     }
 );
 
+export const builderSchema: z.ZodType<Builder> = z.object({
+  order: z.number(),
+  run: z.string(),
+});
+export interface Builder {
+  order: number;
+  run: string;
+}
+
 export const stepSchema: z.ZodType<Step> = z.intersection(
   z.union([
     z.object({ run: z.string() }),

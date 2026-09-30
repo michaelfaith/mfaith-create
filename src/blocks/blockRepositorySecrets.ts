@@ -1,21 +1,32 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { getInstallationSuggestions } from './getInstallationSuggestions.ts';
 
-export const blockRepositorySecrets = base.createBlock({
+const secretSchema: z.ZodType<Secret> = z.object({
+  description: z.string(),
+  name: z.string(),
+});
+export interface Secret {
+  description: string;
+  name: string;
+}
+
+export interface BlockRepositorySecretsProps {
+  secrets?: Secret[];
+}
+
+export const blockRepositorySecrets: BlockWithAddons<
+  BlockRepositorySecretsProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Repository Secrets',
   },
   addons: {
-    secrets: z
-      .array(
-        z.object({
-          description: z.string(),
-          name: z.string(),
-        }),
-      )
-      .default([]),
+    secrets: z.array(secretSchema).default([]),
   },
   produce({ addons, options }) {
     return {

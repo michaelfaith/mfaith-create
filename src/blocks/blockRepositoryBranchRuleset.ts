@@ -1,9 +1,18 @@
 import type { CreatedOctokitRequest } from 'bingo-requests';
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base, type BaseOptions } from '../base.ts';
+import type { Options } from '../Options.ts';
 
-export const blockRepositoryBranchRuleset = base.createBlock({
+export interface BlockRepositoryBranchRulesetProps {
+  requiredStatusChecks?: string[] | undefined;
+}
+
+export const blockRepositoryBranchRuleset: BlockWithAddons<
+  BlockRepositoryBranchRulesetProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Repository Branch Ruleset',
   },

@@ -1,7 +1,9 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import sortKeys from 'sort-keys';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { formatYaml } from './files/formatYaml.ts';
 import { intakeFileAsYaml } from './intake/intakeFileAsYaml.ts';
 
@@ -12,9 +14,21 @@ const pnpmWorkspaceSchema = z.looseObject({
     .union([z.literal('off'), z.literal('no-downgrade')])
     .optional(),
 });
-type PnpmWorkspace = z.infer<typeof pnpmWorkspaceSchema>;
+export interface PnpmWorkspace {
+  [x: string]: unknown;
+  allowBuilds?: Record<string, boolean> | undefined;
+  overrides?: Record<string, string> | undefined;
+  trustPolicy?: 'off' | 'no-downgrade' | undefined;
+}
 
-export const blockPnpmWorkspace = base.createBlock({
+export interface BlockPnpmWorkspaceProps {
+  config?: PnpmWorkspace;
+}
+
+export const blockPnpmWorkspace: BlockWithAddons<
+  BlockPnpmWorkspaceProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'pnpm Workspace',
     description: 'Creates a Workspace configuration file for pnpm.',

@@ -1,10 +1,19 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { resolveBin } from '../utils/resolveBin.ts';
 import { CommandPhase } from './phases.ts';
 
-export const blockRemoveDependencies = base.createBlock({
+export interface BlockRemoveDependenciesProps {
+  dependencies?: string[] | undefined;
+}
+
+export const blockRemoveDependencies: BlockWithAddons<
+  BlockRemoveDependenciesProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Remove Dependencies',
   },
