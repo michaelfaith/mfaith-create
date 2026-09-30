@@ -1,6 +1,10 @@
 import type { BaseOptions } from '../base.ts';
 
-export const optionsBase = {
+export interface TestOptions extends BaseOptions {
+  preset: string;
+}
+
+export const optionsBase: TestOptions = {
   access: 'public',
   contact: {
     email: 'github@email.com',
@@ -24,4 +28,4 @@ export const optionsBase = {
   preset: 'minimal',
   repository: 'test-repository',
   title: 'Test Title',
-} satisfies BaseOptions;
+};
