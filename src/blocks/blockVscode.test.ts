@@ -101,14 +101,31 @@ describe(blockVscode, () => {
       addons: {
         debuggers: [
           {
-            name: 'fake-debugger',
+            name: 'other-debugger',
             other: true,
           },
+          {
+            name: 'fake-debugger',
+            other: false,
+          },
+        ],
+        extensions: [
+          'dbaeumer.vscode-eslint',
+          'streetsidesoftware.code-spell-checker',
+          'esbenp.prettier-vscode',
+          'webpro.vscode-knip',
+          'vitest.explorer',
         ],
         settings: {
           'editor.formatOnSave': true,
         },
         tasks: [
+          {
+            detail: 'Test the project',
+            label: 'test',
+            script: 'test',
+            type: 'npm',
+          },
           {
             detail: 'Build the project',
             label: 'build',
@@ -148,10 +165,10 @@ describe(blockVscode, () => {
         ],
         "files": {
           ".vscode": {
-            "extensions.json": undefined,
-            "launch.json": "{"configurations":[{"name":"fake-debugger","other":true}],"version":"0.2.0"}",
+            "extensions.json": "{"recommendations":["dbaeumer.vscode-eslint","esbenp.prettier-vscode","streetsidesoftware.code-spell-checker","vitest.explorer","webpro.vscode-knip"]}",
+            "launch.json": "{"configurations":[{"name":"fake-debugger","other":false},{"name":"other-debugger","other":true}],"version":"0.2.0"}",
             "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
-            "tasks.json": "{"tasks":[{"detail":"Build the project","label":"build","script":"build","type":"npm"}],"version":"2.0.0"}",
+            "tasks.json": "{"tasks":[{"detail":"Build the project","label":"build","script":"build","type":"npm"},{"detail":"Test the project","label":"test","script":"test","type":"npm"}],"version":"2.0.0"}",
           },
         },
       }
