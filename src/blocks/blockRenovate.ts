@@ -1,8 +1,7 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
@@ -12,7 +11,7 @@ export interface BlockRenovateProps {
   ignoreDeps?: string[];
 }
 
-export const blockRenovate: BlockWithAddons<BlockRenovateProps, Options> =
+export const blockRenovate: BlockWithProps<BlockRenovateProps> =
   base.createBlock({
     about: {
       name: 'Renovate',

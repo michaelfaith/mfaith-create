@@ -1,4 +1,4 @@
-import type { BlockWithAddons } from 'bingo-stratum';
+import type { BlockWithProps } from './Block.ts';
 // @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
 import { parse as parsePackageName } from 'parse-package-name';
 import sortKeys from 'sort-keys';
@@ -6,7 +6,6 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import type { Options } from '../Options.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
@@ -37,207 +36,204 @@ export interface BlockEslintProps {
   imports?: PackageImport[];
 }
 
-export const blockEslint: BlockWithAddons<BlockEslintProps, Options> =
-  base.createBlock({
-    about: {
-      name: 'ESLint',
-    },
-    addons: {
-      beforeLint: z.string().optional(),
-      explanations: z.array(z.string()).default([]),
-      extensions: z.array(extensionSchema).default([]),
-      ignores: z.array(z.string()).default([]),
-      imports: z.array(packageImportSchema).default([]),
-    },
-    intake({ files }) {
-      const eslintConfigRaw = intakeFile(files, [
-        [
-          'eslint.config.ts',
-          'eslint.config.mts',
-          'eslint.config.js',
-          'eslint.config.mjs',
+export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
+  about: {
+    name: 'ESLint',
+  },
+  addons: {
+    beforeLint: z.string().optional(),
+    explanations: z.array(z.string()).default([]),
+    extensions: z.array(extensionSchema).default([]),
+    ignores: z.array(z.string()).default([]),
+    imports: z.array(packageImportSchema).default([]),
+  },
+  intake({ files }) {
+    const eslintConfigRaw = intakeFile(files, [
+      [
+        'eslint.config.ts',
+        'eslint.config.mts',
+        'eslint.config.js',
+        'eslint.config.mjs',
+      ],
+    ]);
+
+    return eslintConfigRaw ? blockEslintIntake(eslintConfigRaw[0]) : undefined;
+  },
+  produce({ addons }) {
+    const { explanations, extensions, ignores, imports } = addons;
+
+    const explanation =
+      explanations.length > 0
+        ? `${explanations
+            .map((explanation) => `/*\n${explanation}\n*/\n`)
+            .join('')}\n`
+        : '';
+
+    const importLines = [
+      "import eslint from '@eslint/js';",
+      "import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';",
+      "import perfectionist from 'eslint-plugin-perfectionist';",
+      "import tseslint from 'typescript-eslint';",
+      ...imports.map(
+        (packageImport) =>
+          `import ${packageImport.specifier} from '${typeof packageImport.source === 'string' ? packageImport.source : packageImport.source.packageName}';`,
+      ),
+    ].sort((a, b) =>
+      a.replace(/.+from/, '').localeCompare(b.replace(/.+from/, '')),
+    );
+
+    const ignoreLines = Array.from(
+      new Set(
+        ['node_modules', 'pnpm-lock.yaml', ...ignores].map((ignore) =>
+          JSON.stringify(ignore),
+        ),
+      ),
+    ).sort();
+
+    const extensionEntries = mergeAllExtensions(
+      {
+        extends: [
+          'eslint.configs.recommended',
+          'tseslint.configs.strictTypeChecked',
+          'tseslint.configs.stylisticTypeChecked',
         ],
-      ]);
-
-      return eslintConfigRaw
-        ? blockEslintIntake(eslintConfigRaw[0])
-        : undefined;
-    },
-    produce({ addons }) {
-      const { explanations, extensions, ignores, imports } = addons;
-
-      const explanation =
-        explanations.length > 0
-          ? `${explanations
-              .map((explanation) => `/*\n${explanation}\n*/\n`)
-              .join('')}\n`
-          : '';
-
-      const importLines = [
-        "import eslint from '@eslint/js';",
-        "import { type ConfigObject, defineConfig, globalIgnores } from 'eslint/config';",
-        "import perfectionist from 'eslint-plugin-perfectionist';",
-        "import tseslint from 'typescript-eslint';",
-        ...imports.map(
-          (packageImport) =>
-            `import ${packageImport.specifier} from '${typeof packageImport.source === 'string' ? packageImport.source : packageImport.source.packageName}';`,
-        ),
-      ].sort((a, b) =>
-        a.replace(/.+from/, '').localeCompare(b.replace(/.+from/, '')),
-      );
-
-      const ignoreLines = Array.from(
-        new Set(
-          ['node_modules', 'pnpm-lock.yaml', ...ignores].map((ignore) =>
-            JSON.stringify(ignore),
-          ),
-        ),
-      ).sort();
-
-      const extensionEntries = mergeAllExtensions(
-        {
-          extends: [
-            'eslint.configs.recommended',
-            'tseslint.configs.strictTypeChecked',
-            'tseslint.configs.stylisticTypeChecked',
-          ],
-          files: JS_TS_FILES,
-          languageOptions: {
-            parserOptions: {
-              projectService: {
-                allowDefaultProject: Array.from(
-                  new Set(['*.config.*s'].filter(Boolean).sort()),
-                ),
-              },
+        files: JS_TS_FILES,
+        languageOptions: {
+          parserOptions: {
+            projectService: {
+              allowDefaultProject: Array.from(
+                new Set(['*.config.*s'].filter(Boolean).sort()),
+              ),
             },
           },
-          plugins: {
-            perfectionist: 'perfectionist',
-          },
-          rules: {
-            'perfectionist/sort-exports': 'error',
-            'perfectionist/sort-imports': [
-              'error',
-              {
-                groups: [
-                  'builtin',
-                  'external',
-                  ['internal', 'subpath'],
-                  ['parent', 'sibling', 'index'],
-                  'style',
-                  'unknown',
-                ],
-              },
-            ],
-            'perfectionist/sort-named-exports': 'error',
-            'perfectionist/sort-named-imports': 'error',
-          },
-          settings: {
-            perfectionist: { partitionByComment: true, type: 'natural' },
-          },
         },
-        ...extensions,
-      );
+        plugins: {
+          perfectionist: 'perfectionist',
+        },
+        rules: {
+          'perfectionist/sort-exports': 'error',
+          'perfectionist/sort-imports': [
+            'error',
+            {
+              groups: [
+                'builtin',
+                'external',
+                ['internal', 'subpath'],
+                ['parent', 'sibling', 'index'],
+                'style',
+                'unknown',
+              ],
+            },
+          ],
+          'perfectionist/sort-named-exports': 'error',
+          'perfectionist/sort-named-imports': 'error',
+        },
+        settings: {
+          perfectionist: { partitionByComment: true, type: 'natural' },
+        },
+      },
+      ...extensions,
+    );
 
-      const coreConfigLines = extensionEntries
-        .sort((a, b) =>
-          processForSort(a.files).localeCompare(processForSort(b.files)),
-        )
-        .map(printExtension);
+    const coreConfigLines = extensionEntries
+      .sort((a, b) =>
+        processForSort(a.files).localeCompare(processForSort(b.files)),
+      )
+      .map(printExtension);
 
-      return {
-        addons: [
-          blockDevelopmentDocs({
-            sections: {
-              Linting: {
-                contents: {
-                  after: [
-                    `
+    return {
+      addons: [
+        blockDevelopmentDocs({
+          sections: {
+            Linting: {
+              contents: {
+                after: [
+                  `
 For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 
 \`\`\`shell
 pnpm run lint --fix
 \`\`\`
 `,
-                    ...(addons.beforeLint ? [addons.beforeLint] : []),
-                  ],
-                  before: `
+                  ...(addons.beforeLint ? [addons.beforeLint] : []),
+                ],
+                before: `
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 `,
-                  items: [
-                    `- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript`,
-                  ],
-                  plural: `Read the individual documentation for each linter to understand how it can be configured and used best.`,
-                },
+                items: [
+                  `- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints source files, including JavaScript, Markdown, and TypeScript`,
+                ],
+                plural: `Read the individual documentation for each linter to understand how it can be configured and used best.`,
               },
             },
-          }),
-          blockGithubActionsCi({
-            jobs: [
-              {
-                name: 'Lint',
-                steps: [{ run: 'pnpm lint' }],
-              },
+          },
+        }),
+        blockGithubActionsCi({
+          jobs: [
+            {
+              name: 'Lint',
+              steps: [{ run: 'pnpm lint' }],
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: {
+              ...getPackageDependencies(
+                '@eslint/js',
+                '@types/node',
+                'eslint',
+                'eslint-plugin-perfectionist',
+                'jiti',
+                'typescript-eslint',
+                ...imports
+                  .filter((imported) => typeof imported.source === 'string')
+                  .flatMap(({ source, types }) => {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
+                    const { name } = parsePackageName(source) as {
+                      name: string;
+                    };
+                    return types ? [name, `@types/${name}`] : [name];
+                  }),
+              ),
+              ...Object.fromEntries(
+                imports
+                  .filter(
+                    (
+                      imported,
+                    ): imported is typeof imported & { source: object } =>
+                      typeof imported.source === 'object',
+                  )
+                  .map((imported) => [
+                    imported.source.packageName,
+                    imported.source.version,
+                  ]),
+              ),
+            },
+            scripts: {
+              lint: 'eslint . --max-warnings 0',
+            },
+          },
+        }),
+        blockVscode({
+          extensions: ['dbaeumer.vscode-eslint'],
+          settings: {
+            'eslint.probe': [
+              'javascript',
+              'javascriptreact',
+              'json',
+              'jsonc',
+              'markdown',
+              'typescript',
+              'typescriptreact',
+              'yaml',
             ],
-          }),
-          blockPackageJson({
-            properties: {
-              devDependencies: {
-                ...getPackageDependencies(
-                  '@eslint/js',
-                  '@types/node',
-                  'eslint',
-                  'eslint-plugin-perfectionist',
-                  'jiti',
-                  'typescript-eslint',
-                  ...imports
-                    .filter((imported) => typeof imported.source === 'string')
-                    .flatMap(({ source, types }) => {
-                      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
-                      const { name } = parsePackageName(source) as {
-                        name: string;
-                      };
-                      return types ? [name, `@types/${name}`] : [name];
-                    }),
-                ),
-                ...Object.fromEntries(
-                  imports
-                    .filter(
-                      (
-                        imported,
-                      ): imported is typeof imported & { source: object } =>
-                        typeof imported.source === 'object',
-                    )
-                    .map((imported) => [
-                      imported.source.packageName,
-                      imported.source.version,
-                    ]),
-                ),
-              },
-              scripts: {
-                lint: 'eslint . --max-warnings 0',
-              },
-            },
-          }),
-          blockVscode({
-            extensions: ['dbaeumer.vscode-eslint'],
-            settings: {
-              'eslint.probe': [
-                'javascript',
-                'javascriptreact',
-                'json',
-                'jsonc',
-                'markdown',
-                'typescript',
-                'typescriptreact',
-                'yaml',
-              ],
-            },
-          }),
-        ],
-        files: {
-          'eslint.config.ts': `${explanation}${importLines.join('\n')}
+          },
+        }),
+      ],
+      files: {
+        'eslint.config.ts': `${explanation}${importLines.join('\n')}
 
 const config: ConfigObject[] = defineConfig(
 	globalIgnores( [${ignoreLines.join(', ')}], 'Global Ignores' ),
@@ -247,43 +243,39 @@ const config: ConfigObject[] = defineConfig(
 
 export default config;
 `,
+      },
+      scripts: [
+        {
+          commands: ['pnpm lint --fix'],
+          phase: CommandPhase.Process,
         },
-        scripts: [
-          {
-            commands: ['pnpm lint --fix'],
-            phase: CommandPhase.Process,
-          },
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveDependencies({
-            dependencies: [
-              '@types/eslint',
-              '@typescript-eslint/eslint-plugin',
-              '@typescript-eslint/parser',
-              'eslint-plugin-deprecation',
-              'eslint-plugin-eslint-comments',
-              'eslint-plugin-no-only-tests',
-              'yaml-eslint-parser',
-            ],
-          }),
-          blockRemoveFiles({
-            files: [
-              '.eslintrc*',
-              '.eslintignore',
-              'eslint.config.{cjs,js,mjs}',
-            ],
-          }),
-          blockRemoveWorkflows({
-            workflows: ['eslint', 'lint'],
-          }),
-        ],
-      };
-    },
-  });
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveDependencies({
+          dependencies: [
+            '@types/eslint',
+            '@typescript-eslint/eslint-plugin',
+            '@typescript-eslint/parser',
+            'eslint-plugin-deprecation',
+            'eslint-plugin-eslint-comments',
+            'eslint-plugin-no-only-tests',
+            'yaml-eslint-parser',
+          ],
+        }),
+        blockRemoveFiles({
+          files: ['.eslintrc*', '.eslintignore', 'eslint.config.{cjs,js,mjs}'],
+        }),
+        blockRemoveWorkflows({
+          workflows: ['eslint', 'lint'],
+        }),
+      ],
+    };
+  },
+});
 
 function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
   const byComment = new Map<string | undefined, ExtensionRuleGroup>();

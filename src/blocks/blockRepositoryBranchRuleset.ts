@@ -1,78 +1,76 @@
 import type { CreatedOctokitRequest } from 'bingo-requests';
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base, type BaseOptions } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 
 export interface BlockRepositoryBranchRulesetProps {
   requiredStatusChecks?: string[] | undefined;
 }
 
-export const blockRepositoryBranchRuleset: BlockWithAddons<
-  BlockRepositoryBranchRulesetProps,
-  Options
-> = base.createBlock({
-  about: {
-    name: 'Repository Branch Ruleset',
-  },
-  addons: {
-    requiredStatusChecks: z.array(z.string()).optional(),
-  },
-  setup({ addons, options }) {
-    return {
-      requests: [
-        {
-          endpoint: 'POST /repos/{owner}/{repo}/rulesets',
-          parameters: createRulesetParameters(
-            addons.requiredStatusChecks,
-            options,
-          ),
-          type: 'octokit',
-        },
-      ],
-    };
-  },
-  transition({ addons, options }) {
-    return {
-      requests: [
-        {
-          endpoint: 'DELETE /repos/{owner}/{repo}/branches/{branch}/protection',
-          parameters: {
-            branch: 'main',
-            owner: options.owner,
-            repo: options.repository,
+export const blockRepositoryBranchRuleset: BlockWithProps<BlockRepositoryBranchRulesetProps> =
+  base.createBlock({
+    about: {
+      name: 'Repository Branch Ruleset',
+    },
+    addons: {
+      requiredStatusChecks: z.array(z.string()).optional(),
+    },
+    setup({ addons, options }) {
+      return {
+        requests: [
+          {
+            endpoint: 'POST /repos/{owner}/{repo}/rulesets',
+            parameters: createRulesetParameters(
+              addons.requiredStatusChecks,
+              options,
+            ),
+            type: 'octokit',
           },
-          silent: true,
-          type: 'octokit',
-        },
-        options.rulesetId
-          ? {
-              endpoint: 'PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}',
-              parameters: createRulesetParameters(
-                addons.requiredStatusChecks,
-                options,
-                options.rulesetId,
-              ),
-              type: 'octokit',
-            }
-          : {
-              endpoint: 'POST /repos/{owner}/{repo}/rulesets',
-              parameters: createRulesetParameters(
-                addons.requiredStatusChecks,
-                options,
-              ),
-              type: 'octokit',
+        ],
+      };
+    },
+    transition({ addons, options }) {
+      return {
+        requests: [
+          {
+            endpoint:
+              'DELETE /repos/{owner}/{repo}/branches/{branch}/protection',
+            parameters: {
+              branch: 'main',
+              owner: options.owner,
+              repo: options.repository,
             },
-      ],
-    };
-  },
-  // TODO: Make produce() optional, so this empty-ish produce() can be removed
-  // https://github.com/JoshuaKGoldberg/bingo/issues/295
-  produce() {
-    return {};
-  },
-});
+            silent: true,
+            type: 'octokit',
+          },
+          options.rulesetId
+            ? {
+                endpoint: 'PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}',
+                parameters: createRulesetParameters(
+                  addons.requiredStatusChecks,
+                  options,
+                  options.rulesetId,
+                ),
+                type: 'octokit',
+              }
+            : {
+                endpoint: 'POST /repos/{owner}/{repo}/rulesets',
+                parameters: createRulesetParameters(
+                  addons.requiredStatusChecks,
+                  options,
+                ),
+                type: 'octokit',
+              },
+        ],
+      };
+    },
+    // TODO: Make produce() optional, so this empty-ish produce() can be removed
+    // https://github.com/JoshuaKGoldberg/bingo/issues/295
+    produce() {
+      return {};
+    },
+  });
 
 function createRulesetParameters(
   contexts: string[] | undefined,

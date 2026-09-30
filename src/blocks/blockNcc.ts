@@ -1,8 +1,7 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
@@ -14,33 +13,32 @@ export interface BlockNccProps {
   entry?: string | undefined;
 }
 
-export const blockNcc: BlockWithAddons<BlockNccProps, Options> =
-  base.createBlock({
-    about: {
-      name: 'ncc',
-    },
-    addons: {
-      entry: z.string().optional(),
-    },
-    intake({ options }) {
-      return {
-        entry: options.packageData?.scripts?.['build:release']?.match(
-          /ncc build (.+) -o dist/,
-        )?.[1],
-      };
-    },
-    produce({ addons }) {
-      const { entry = 'src/index.ts' } = addons;
+export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
+  about: {
+    name: 'ncc',
+  },
+  addons: {
+    entry: z.string().optional(),
+  },
+  intake({ options }) {
+    return {
+      entry: options.packageData?.scripts?.['build:release']?.match(
+        /ncc build (.+) -o dist/,
+      )?.[1],
+    };
+  },
+  produce({ addons }) {
+    const { entry = 'src/index.ts' } = addons;
 
-      return {
-        addons: [
-          blockCspell({
-            ignorePaths: ['dist'],
-          }),
-          blockDevelopmentDocs({
-            sections: {
-              Building: {
-                contents: `
+    return {
+      addons: [
+        blockCspell({
+          ignorePaths: ['dist'],
+        }),
+        blockDevelopmentDocs({
+          sections: {
+            Building: {
+              contents: `
 Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from \`src/\` into output files in \`lib/\`:
 
 \`\`\`shell
@@ -53,51 +51,51 @@ Add \`--watch\` to run the builder in a watch mode that continuously cleans and 
 pnpm build --watch
 \`\`\`
 `,
-                innerSections: [
-                  {
-                    contents: `
+              innerSections: [
+                {
+                  contents: `
 Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/\` to be used in production.
 
 \`\`\`shell
 pnpm build:release
 \`\`\`
 		`,
-                    heading: 'Building for Release',
-                  },
-                ],
-              },
+                  heading: 'Building for Release',
+                },
+              ],
             },
-          }),
-          blockEslint({
-            ignores: ['dist'],
-          }),
-          blockGithubActionsCi({
-            jobs: [
-              {
-                name: 'Build',
-                steps: [{ run: 'pnpm build' }],
-              },
-              {
-                name: 'Build (Release)',
-                steps: [{ run: 'pnpm build:release' }],
-              },
-            ],
-          }),
-          blockPackageJson({
-            properties: {
-              devDependencies: {
-                '@vercel/ncc': '^0.38.3',
-              },
-              scripts: {
-                build: 'tsc',
-                'build:release': `ncc build ${entry} -o dist`,
-              },
+          },
+        }),
+        blockEslint({
+          ignores: ['dist'],
+        }),
+        blockGithubActionsCi({
+          jobs: [
+            {
+              name: 'Build',
+              steps: [{ run: 'pnpm build' }],
             },
-          }),
-          blockPrettier({
-            ignores: ['/dist'],
-          }),
-        ],
-      };
-    },
-  });
+            {
+              name: 'Build (Release)',
+              steps: [{ run: 'pnpm build:release' }],
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: {
+              '@vercel/ncc': '^0.38.3',
+            },
+            scripts: {
+              build: 'tsc',
+              'build:release': `ncc build ${entry} -o dist`,
+            },
+          },
+        }),
+        blockPrettier({
+          ignores: ['/dist'],
+        }),
+      ],
+    };
+  },
+});

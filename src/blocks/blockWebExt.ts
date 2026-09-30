@@ -1,7 +1,5 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
@@ -9,7 +7,7 @@ import { blockGitignore } from './blockGitignore.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
 
-export const blockWebExt: BlockWithoutAddons<Options> = base.createBlock({
+export const blockWebExt: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Web-ext',
   },

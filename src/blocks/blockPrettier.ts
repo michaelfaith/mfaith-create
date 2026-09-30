@@ -1,10 +1,9 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import type { Options } from '../Options.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
@@ -40,7 +39,7 @@ export interface BlockPrettierProps {
   additionalConfig?: Record<string, unknown> | undefined;
 }
 
-export const blockPrettier: BlockWithAddons<BlockPrettierProps, Options> =
+export const blockPrettier: BlockWithProps<BlockPrettierProps> =
   base.createBlock({
     about: {
       name: 'Prettier',

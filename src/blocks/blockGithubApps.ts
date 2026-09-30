@@ -1,8 +1,7 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 import { getInstallationSuggestions } from './getInstallationSuggestions.ts';
 
 const appInfoSchema: z.ZodType<AppInfo> = z.object({
@@ -18,7 +17,7 @@ export interface BlockGithubAppsProps {
   apps?: AppInfo[];
 }
 
-export const blockGithubApps: BlockWithAddons<BlockGithubAppsProps, Options> =
+export const blockGithubApps: BlockWithProps<BlockGithubAppsProps> =
   base.createBlock({
     about: {
       name: 'GitHub Apps',

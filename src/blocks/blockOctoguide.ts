@@ -1,8 +1,7 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { intakeActionOrWorkflowSteps } from './intake/intakeActionOrWorkflowSteps.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
@@ -12,7 +11,7 @@ export interface BlockOctoguideProps {
   config?: 'strict' | 'recommended' | undefined;
 }
 
-export const blockOctoguide: BlockWithAddons<BlockOctoguideProps, Options> =
+export const blockOctoguide: BlockWithProps<BlockOctoguideProps> =
   base.createBlock({
     about: {
       name: 'OctoGuide',

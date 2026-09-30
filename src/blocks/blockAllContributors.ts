@@ -1,9 +1,9 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
 import _ from 'lodash';
 
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
-import type { Contributor, Options } from '../Options.ts';
+import type { Contributor } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
 import { blockPrettier } from './blockPrettier.ts';
@@ -11,102 +11,101 @@ import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
-export const blockAllContributors: BlockWithoutAddons<Options> =
-  base.createBlock({
-    about: {
-      name: 'AllContributors',
-    },
-    produce({ options }) {
-      const contributions = options.contributors?.length;
-      const ownerContributions = Array.from(
-        new Set(
-          [
-            options.contributors?.find(
-              (contributor) =>
-                contributor.login.toLowerCase() === options.owner.toLowerCase(),
-            )?.contributions,
-            startingOwnerContributions,
-          ]
-            .filter(Boolean)
-            .flat(),
-        ),
-      );
+export const blockAllContributors: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'AllContributors',
+  },
+  produce({ options }) {
+    const contributions = options.contributors?.length;
+    const ownerContributions = Array.from(
+      new Set(
+        [
+          options.contributors?.find(
+            (contributor) =>
+              contributor.login.toLowerCase() === options.owner.toLowerCase(),
+          )?.contributions,
+          startingOwnerContributions,
+        ]
+          .filter(Boolean)
+          .flat(),
+      ),
+    );
 
-      return {
-        addons: [
-          blockCspell({
-            ignorePaths: ['.all-contributorsrc'],
-          }),
-          blockGithubApps({
-            apps: [
-              {
-                name: 'All Contributors',
-                url: 'https://github.com/apps/allcontributors',
-              },
-            ],
-          }),
-          blockPrettier({
-            ignores: ['/.all-contributorsrc'],
-          }),
-          blockReadme({
-            badges: [
-              {
-                alt: `👪 All Contributors: ${contributions}`,
-                comments: {
-                  after: `
+    return {
+      addons: [
+        blockCspell({
+          ignorePaths: ['.all-contributorsrc'],
+        }),
+        blockGithubApps({
+          apps: [
+            {
+              name: 'All Contributors',
+              url: 'https://github.com/apps/allcontributors',
+            },
+          ],
+        }),
+        blockPrettier({
+          ignores: ['/.all-contributorsrc'],
+        }),
+        blockReadme({
+          badges: [
+            {
+              alt: `👪 All Contributors: ${contributions}`,
+              comments: {
+                after: `
   <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <!-- prettier-ignore-end -->`,
-                  before: `<!-- prettier-ignore-start -->
+                before: `<!-- prettier-ignore-start -->
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
   `,
-                },
-                href: '#contributors',
-                src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
               },
-            ],
-            sections: options.contributors
-              ? [printAllContributorsTable(options.contributors)]
-              : undefined,
-          }),
-        ],
-        files: {
-          '.all-contributorsrc': JSON.stringify(
-            {
-              badgeTemplate:
-                '	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
-              commitType: 'docs',
-              contributors: options.contributors ?? [],
-              contributorsPerLine: 7,
-              contributorsSortAlphabetically: true,
-              files: ['README.md'],
-              projectName: options.packageName,
-              projectOwner: options.owner,
-              repoType: 'github',
+              href: '#contributors',
+              src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
             },
-            null,
-            2,
-          ),
-        },
-        scripts: [
+          ],
+          sections: options.contributors
+            ? [printAllContributorsTable(options.contributors)]
+            : undefined,
+        }),
+      ],
+      files: {
+        '.all-contributorsrc': JSON.stringify(
           {
-            commands: [
-              `pnpx all-contributors-cli@latest add ${options.owner} ${ownerContributions.join(',')}`,
-            ],
-            phase: CommandPhase.Process,
+            badgeTemplate:
+              '	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
+            commitType: 'docs',
+            contributors: options.contributors ?? [],
+            contributorsPerLine: 7,
+            contributorsSortAlphabetically: true,
+            files: ['README.md'],
+            projectName: options.packageName,
+            projectOwner: options.owner,
+            repoType: 'github',
           },
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveFiles({
-            files: ['.github/workflows/contributors.yml'],
-          }),
-        ],
-      };
-    },
-  });
+          null,
+          2,
+        ),
+      },
+      scripts: [
+        {
+          commands: [
+            `pnpx all-contributors-cli@latest add ${options.owner} ${ownerContributions.join(',')}`,
+          ],
+          phase: CommandPhase.Process,
+        },
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveFiles({
+          files: ['.github/workflows/contributors.yml'],
+        }),
+      ],
+    };
+  },
+});
 
 function printAllContributorsTable(contributors: Contributor[]) {
   return [

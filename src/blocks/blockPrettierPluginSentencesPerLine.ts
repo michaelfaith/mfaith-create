@@ -1,10 +1,8 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 import { blockPrettier } from './blockPrettier.ts';
 
-export const blockPrettierPluginSentencesPerLine: BlockWithoutAddons<Options> =
+export const blockPrettierPluginSentencesPerLine: BlockWithoutProps =
   base.createBlock({
     about: {
       name: 'Prettier Plugin Sentences Per Line',
