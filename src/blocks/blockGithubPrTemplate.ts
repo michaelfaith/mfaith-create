@@ -1,19 +1,16 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 
-export const blockGithubPrTemplate: BlockWithoutAddons<Options> =
-  base.createBlock({
-    about: {
-      name: 'GitHub PR Template',
-      description: 'Creates a GitHub PR Template for the repo.',
-    },
-    produce({ options }) {
-      return {
-        files: {
-          '.github': {
-            'PULL_REQUEST_TEMPLATE.md': `<!-- 👋 Hi, thanks for contributing to ${options.packageName || options.repository}! ${options.emoji}
+export const blockGithubPrTemplate: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'GitHub PR Template',
+    description: 'Creates a GitHub PR Template for the repo.',
+  },
+  produce({ options }) {
+    return {
+      files: {
+        '.github': {
+          'PULL_REQUEST_TEMPLATE.md': `<!-- 👋 Hi, thanks for contributing to ${options.packageName || options.repository}! ${options.emoji}
 Please fill out all fields below and make sure each item is true and [x] checked.
 Otherwise we may not be able to review your PR. -->
 
@@ -27,8 +24,8 @@ Otherwise we may not be able to review your PR. -->
 
 <!-- Description of what is changed and how the code change does that. -->
 `,
-          },
         },
-      };
-    },
-  });
+      },
+    };
+  },
+});

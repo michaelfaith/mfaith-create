@@ -1,21 +1,18 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 import { blockPrettier } from './blockPrettier.ts';
 
-export const blockPrettierPluginCurly: BlockWithoutAddons<Options> =
-  base.createBlock({
-    about: {
-      name: 'Prettier Plugin Curly',
-    },
-    produce() {
-      return {
-        addons: [
-          blockPrettier({
-            plugins: ['prettier-plugin-curly'],
-          }),
-        ],
-      };
-    },
-  });
+export const blockPrettierPluginCurly: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'Prettier Plugin Curly',
+  },
+  produce() {
+    return {
+      addons: [
+        blockPrettier({
+          plugins: ['prettier-plugin-curly'],
+        }),
+      ],
+    };
+  },
+});

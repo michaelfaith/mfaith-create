@@ -1,4 +1,3 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import removeUndefinedObjects from 'remove-undefined-objects';
 import semver from 'semver';
 import sortPackageJson from 'sort-package-json';
@@ -6,8 +5,8 @@ import { z } from 'zod';
 import { PackageJson } from 'zod-package-json';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
@@ -27,7 +26,7 @@ export interface BlockPackageJsonProps {
   properties?: PackageJsonWithNullableScripts;
 }
 
-export const blockPackageJson: BlockWithAddons<BlockPackageJsonProps, Options> =
+export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> =
   base.createBlock({
     about: {
       name: 'Package JSON',

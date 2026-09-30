@@ -1,11 +1,10 @@
 import type { IntakeDirectory } from 'bingo-fs';
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import type { Options } from '../Options.ts';
 import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
@@ -75,47 +74,45 @@ export interface BlockVitestProps {
   permissions?: WorkflowPermissions | undefined;
 }
 
-export const blockVitest: BlockWithAddons<BlockVitestProps, Options> =
-  base.createBlock({
-    about: {
-      name: 'Vitest',
-    },
-    addons: {
-      actionSteps: z.array(stepSchema).default([]),
-      coverage: coverageSchema.default({}),
-      environment: environmentSchema.optional(),
-      exclude: excludeSchema.default([]),
-      flags: z.array(z.string()).default([]),
-      permissions: workflowPermissionsSchema.optional(),
-    },
-    intake({ files, options }) {
-      return {
-        ...intakeFromConfig(files),
-        flags: options.packageData?.scripts?.test
-          ?.match(/^vitest (.+)/)?.[1]
-          .split(' '),
-      };
-    },
-    produce({ addons, options }) {
-      const { actionSteps, coverage, environment, exclude, permissions } =
-        addons;
-      const { node } = options;
+export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
+  about: {
+    name: 'Vitest',
+  },
+  addons: {
+    actionSteps: z.array(stepSchema).default([]),
+    coverage: coverageSchema.default({}),
+    environment: environmentSchema.optional(),
+    exclude: excludeSchema.default([]),
+    flags: z.array(z.string()).default([]),
+    permissions: workflowPermissionsSchema.optional(),
+  },
+  intake({ files, options }) {
+    return {
+      ...intakeFromConfig(files),
+      flags: options.packageData?.scripts?.test
+        ?.match(/^vitest (.+)/)?.[1]
+        .split(' '),
+    };
+  },
+  produce({ addons, options }) {
+    const { actionSteps, coverage, environment, exclude, permissions } = addons;
+    const { node } = options;
 
-      const excludeText = JSON.stringify(
-        Array.from(new Set(['node_modules', ...exclude])).sort(),
-      );
+    const excludeText = JSON.stringify(
+      Array.from(new Set(['node_modules', ...exclude])).sort(),
+    );
 
-      const nodeVersions = getNodeMatrixVersions(node.supported);
+    const nodeVersions = getNodeMatrixVersions(node.supported);
 
-      return {
-        addons: [
-          blockCspell({
-            ignorePaths: ['coverage'],
-          }),
-          blockDevelopmentDocs({
-            sections: {
-              Testing: {
-                contents: `
+    return {
+      addons: [
+        blockCspell({
+          ignorePaths: ['coverage'],
+        }),
+        blockDevelopmentDocs({
+          sections: {
+            Testing: {
+              contents: `
 [Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
 
@@ -134,33 +131,33 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 
 
 		`,
+            },
+          },
+        }),
+        blockEslint({
+          extensions: [
+            {
+              extends: ['vitest.configs.recommended'],
+              files: ['**/*.test.*'],
+              rules: [
+                {
+                  entries: {
+                    '@typescript-eslint/no-unsafe-assignment': 'off',
+                    'vitest/prefer-describe-function-title': 'error',
+                  },
+                },
+              ],
+              settings: {
+                vitest: { typecheck: true },
               },
             },
-          }),
-          blockEslint({
-            extensions: [
-              {
-                extends: ['vitest.configs.recommended'],
-                files: ['**/*.test.*'],
-                rules: [
-                  {
-                    entries: {
-                      '@typescript-eslint/no-unsafe-assignment': 'off',
-                      'vitest/prefer-describe-function-title': 'error',
-                    },
-                  },
-                ],
-                settings: {
-                  vitest: { typecheck: true },
-                },
-              },
-            ],
-            ignores: ['coverage', '**/*.snap'],
-            imports: [{ source: '@vitest/eslint-plugin', specifier: 'vitest' }],
-          }),
-          blockExampleFiles({
-            files: {
-              'greet.test.ts': `import { describe, expect, it, vi } from 'vitest';
+          ],
+          ignores: ['coverage', '**/*.snap'],
+          imports: [{ source: '@vitest/eslint-plugin', specifier: 'vitest' }],
+        }),
+        blockExampleFiles({
+          files: {
+            'greet.test.ts': `import { describe, expect, it, vi } from 'vitest';
 
 import { greet } from './greet.ts';
 
@@ -205,90 +202,90 @@ describe(greet, () => {
 	});
 });
 `,
-            },
-          }),
-          blockGitignore({
-            ignores: ['/coverage'],
-          }),
-          blockGithubActionsCi({
-            jobs: [
-              {
-                id: 'test_node',
-                name: 'Test (Node.js ${{ matrix.node-version }})',
-                strategy: {
-                  'fail-fast': false,
-                  matrix: {
-                    'node-version': nodeVersions,
+          },
+        }),
+        blockGitignore({
+          ignores: ['/coverage'],
+        }),
+        blockGithubActionsCi({
+          jobs: [
+            {
+              id: 'test_node',
+              name: 'Test (Node.js ${{ matrix.node-version }})',
+              strategy: {
+                'fail-fast': false,
+                matrix: {
+                  'node-version': nodeVersions,
+                },
+              },
+              steps: [
+                {
+                  uses: '$/.github/actions/setup',
+                  with: {
+                    'node-version': '${{ matrix.node-version }}',
                   },
                 },
-                steps: [
-                  {
-                    uses: '$/.github/actions/setup',
-                    with: {
-                      'node-version': '${{ matrix.node-version }}',
-                    },
-                  },
-                  { run: 'pnpm test' },
-                ],
-              },
-              {
-                id: 'test_os',
-                name: 'Test (${{ matrix.os }})',
-                'runs-on': '${{ matrix.os }}',
-                ...(permissions ? { permissions } : {}),
-                strategy: {
-                  'fail-fast': false,
-                  matrix: {
-                    os: ['macos-latest', 'ubuntu-latest', 'windows-latest'],
-                  },
-                },
-                steps: [
-                  {
-                    run: "pnpm test ${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
-                  },
-                  ...actionSteps,
-                ],
-              },
-            ],
-          }),
-          blockKnip({
-            entry: ['src/**/*.test.*'],
-          }),
-          blockPackageJson({
-            properties: {
-              devDependencies: getPackageDependencies(
-                '@vitest/coverage-v8',
-                '@vitest/eslint-plugin',
-                'console-fail-test',
-                'vitest',
-              ),
-              scripts: {
-                test: `vitest ${addons.flags.join(' ')}`.trim(),
-              },
+                { run: 'pnpm test' },
+              ],
             },
-          }),
-          blockPrettier({
-            ignores: ['/coverage'],
-          }),
-          blockVscode({
-            debuggers: [
-              {
-                args: ['run', '${relativeFile}'],
-                autoAttachChildProcesses: true,
-                console: 'integratedTerminal',
-                name: 'Debug Current Test File',
-                program: '${workspaceRoot}/node_modules/vitest/vitest.mjs',
-                request: 'launch',
-                skipFiles: ['<node_internals>/**', '**/node_modules/**'],
-                smartStep: true,
-                type: 'node',
+            {
+              id: 'test_os',
+              name: 'Test (${{ matrix.os }})',
+              'runs-on': '${{ matrix.os }}',
+              ...(permissions ? { permissions } : {}),
+              strategy: {
+                'fail-fast': false,
+                matrix: {
+                  os: ['macos-latest', 'ubuntu-latest', 'windows-latest'],
+                },
               },
-            ],
-            extensions: ['vitest.explorer'],
-          }),
-        ],
-        files: {
-          'vitest.config.ts': `import { defineConfig, type ViteUserConfig } from 'vitest/config';
+              steps: [
+                {
+                  run: "pnpm test ${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                },
+                ...actionSteps,
+              ],
+            },
+          ],
+        }),
+        blockKnip({
+          entry: ['src/**/*.test.*'],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: getPackageDependencies(
+              '@vitest/coverage-v8',
+              '@vitest/eslint-plugin',
+              'console-fail-test',
+              'vitest',
+            ),
+            scripts: {
+              test: `vitest ${addons.flags.join(' ')}`.trim(),
+            },
+          },
+        }),
+        blockPrettier({
+          ignores: ['/coverage'],
+        }),
+        blockVscode({
+          debuggers: [
+            {
+              args: ['run', '${relativeFile}'],
+              autoAttachChildProcesses: true,
+              console: 'integratedTerminal',
+              name: 'Debug Current Test File',
+              program: '${workspaceRoot}/node_modules/vitest/vitest.mjs',
+              request: 'launch',
+              skipFiles: ['<node_internals>/**', '**/node_modules/**'],
+              smartStep: true,
+              type: 'node',
+            },
+          ],
+          extensions: ['vitest.explorer'],
+        }),
+      ],
+      files: {
+        'vitest.config.ts': `import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
 const config: ViteUserConfig = defineConfig({
 	test: {
@@ -314,28 +311,28 @@ const config: ViteUserConfig = defineConfig({
 
 export default config;
 `,
-        },
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveDependencies({
-            dependencies: [
-              '@vitest/coverage-istanbul',
-              'eslint-plugin-jest',
-              'eslint-plugin-mocha',
-              'eslint-plugin-vitest',
-              'jest mocha',
-            ],
-          }),
-          blockRemoveFiles({
-            files: ['.mocha*', 'jest.config.*', 'vitest.config.{c,j,m}*'],
-          }),
-          blockRemoveWorkflows({
-            workflows: ['test'],
-          }),
-        ],
-      };
-    },
-  });
+      },
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveDependencies({
+          dependencies: [
+            '@vitest/coverage-istanbul',
+            'eslint-plugin-jest',
+            'eslint-plugin-mocha',
+            'eslint-plugin-vitest',
+            'jest mocha',
+          ],
+        }),
+        blockRemoveFiles({
+          files: ['.mocha*', 'jest.config.*', 'vitest.config.{c,j,m}*'],
+        }),
+        blockRemoveWorkflows({
+          workflows: ['test'],
+        }),
+      ],
+    };
+  },
+});

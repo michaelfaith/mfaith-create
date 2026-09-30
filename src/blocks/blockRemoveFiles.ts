@@ -1,16 +1,15 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
 import { resolveBin } from '../utils/resolveBin.ts';
+import type { BlockWithProps } from './Block.ts';
 import { CommandPhase } from './phases.ts';
 
 export interface BlockRemoveFiles {
   files?: string[] | undefined;
 }
 
-export const blockRemoveFiles: BlockWithAddons<BlockRemoveFiles, Options> =
+export const blockRemoveFiles: BlockWithProps<BlockRemoveFiles> =
   base.createBlock({
     about: {
       name: 'Remove Files',

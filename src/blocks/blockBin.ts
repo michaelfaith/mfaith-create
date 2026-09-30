@@ -1,8 +1,6 @@
-import type { BlockWithAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
@@ -57,80 +55,79 @@ export interface BlockBinProps {
   src?: Bin;
 }
 
-export const blockBin: BlockWithAddons<BlockBinProps, Options> =
-  base.createBlock({
-    about: {
-      name: 'Bin',
-      description:
-        'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
-    },
-    addons: {
-      src: binSchema.optional(),
-    },
-    intake({ files }) {
-      const raw = intakeFileAsJson(files, ['package.json']);
-      const { data } = binSchema.safeParse(raw?.bin);
-      if (!data) {
-        return undefined;
-      }
+export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
+  about: {
+    name: 'Bin',
+    description:
+      'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
+  },
+  addons: {
+    src: binSchema.optional(),
+  },
+  intake({ files }) {
+    const raw = intakeFileAsJson(files, ['package.json']);
+    const { data } = binSchema.safeParse(raw?.bin);
+    if (!data) {
+      return undefined;
+    }
 
-      let src: string | Record<string, string>;
-      if (typeof data === 'string') {
-        src = distToSrc(data);
-      } else {
-        src = Object.fromEntries(
-          Object.entries(data).map(([key, value]) => [key, distToSrc(value)]),
-        );
-      }
+    let src: string | Record<string, string>;
+    if (typeof data === 'string') {
+      src = distToSrc(data);
+    } else {
+      src = Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key, distToSrc(value)]),
+      );
+    }
 
-      return {
-        src,
-      };
-    },
-    produce({ addons, options }) {
-      const { src = './src/bin/index.ts' } = addons;
-      const { devExports, emoji, packageName, repository } = options;
+    return {
+      src,
+    };
+  },
+  produce({ addons, options }) {
+    const { src = './src/bin/index.ts' } = addons;
+    const { devExports, emoji, packageName, repository } = options;
 
-      const srcBin = prepareBin(src, packageName ?? repository);
-      const bin = prepareBin(src, packageName ?? repository, srcToDist);
-      const binEntries = typeof src === 'string' ? [src] : Object.values(src);
+    const srcBin = prepareBin(src, packageName ?? repository);
+    const bin = prepareBin(src, packageName ?? repository, srcToDist);
+    const binEntries = typeof src === 'string' ? [src] : Object.values(src);
 
-      return {
-        addons: [
-          blockEslint({
-            extensions: [
-              {
-                files: JS_TS_FILES,
-                rules: [
-                  {
-                    comment: 'Using a ts bin file throws this rule off.',
-                    entries: { 'n/hashbang': 'off' as const },
-                  },
-                ],
-              },
-            ],
-          }),
-          blockPackageJson({
-            properties: {
-              bin: devExports ? srcBin : bin,
+    return {
+      addons: [
+        blockEslint({
+          extensions: [
+            {
+              files: JS_TS_FILES,
+              rules: [
+                {
+                  comment: 'Using a ts bin file throws this rule off.',
+                  entries: { 'n/hashbang': 'off' as const },
+                },
+              ],
             },
-          }),
-          blockExampleFiles({
-            files: {
-              bin: {
-                'index.ts': `#!/usr/bin/env node
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            bin: devExports ? srcBin : bin,
+          },
+        }),
+        blockExampleFiles({
+          files: {
+            bin: {
+              'index.ts': `#!/usr/bin/env node
 import { greet } from '../index.ts';
 
 greet('Hello, world! ${emoji}');`,
-              },
             },
-          }),
-          ...(devExports ? [blockPublishConfig({ bin })] : []),
-          blockTsdown({
-            entry: binEntries,
-            excludeFromExports: binEntries,
-          }),
-        ],
-      };
-    },
-  });
+          },
+        }),
+        ...(devExports ? [blockPublishConfig({ bin })] : []),
+        blockTsdown({
+          entry: binEntries,
+          excludeFromExports: binEntries,
+        }),
+      ],
+    };
+  },
+});

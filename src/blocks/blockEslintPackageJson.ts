@@ -1,64 +1,61 @@
-import type { BlockWithoutAddons } from 'bingo-stratum';
-
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithoutProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 
-export const blockEslintPackageJson: BlockWithoutAddons<Options> =
-  base.createBlock({
-    about: {
-      name: 'ESLint package.json Plugin',
-    },
-    produce() {
-      return {
-        addons: [
-          blockEslint({
-            extensions: [
-              {
-                extends: [
-                  'packageJson.configs.recommended',
-                  'packageJson.configs.stylistic',
-                ],
-                files: ['package.json'],
-              },
-            ],
-            imports: [
-              {
-                source: 'eslint-plugin-package-json',
-                specifier: 'packageJson',
-              },
-            ],
-          }),
-          blockPackageJson({
-            properties: {
-              scripts: {
-                'lint:package-json': undefined,
-              },
+export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'ESLint package.json Plugin',
+  },
+  produce() {
+    return {
+      addons: [
+        blockEslint({
+          extensions: [
+            {
+              extends: [
+                'packageJson.configs.recommended',
+                'packageJson.configs.stylistic',
+              ],
+              files: ['package.json'],
             },
-          }),
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveFiles({
-            files: ['.npmpackagejsonlintrc*'],
-          }),
-          blockRemoveDependencies({
-            dependencies: [
-              'npm-package-json-lint',
-              'npm-package-json-lint-config-default',
-            ],
-          }),
-          blockRemoveWorkflows({
-            workflows: ['lint-package-json'],
-          }),
-        ],
-      };
-    },
-  });
+          ],
+          imports: [
+            {
+              source: 'eslint-plugin-package-json',
+              specifier: 'packageJson',
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            scripts: {
+              'lint:package-json': undefined,
+            },
+          },
+        }),
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveFiles({
+          files: ['.npmpackagejsonlintrc*'],
+        }),
+        blockRemoveDependencies({
+          dependencies: [
+            'npm-package-json-lint',
+            'npm-package-json-lint-config-default',
+          ],
+        }),
+        blockRemoveWorkflows({
+          workflows: ['lint-package-json'],
+        }),
+      ],
+    };
+  },
+});

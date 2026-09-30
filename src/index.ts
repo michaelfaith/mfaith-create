@@ -91,6 +91,8 @@ export {
   blockVscode,
   type BlockVscodeProps,
   blockWebExt,
+  type BlockWithoutProps,
+  type BlockWithProps,
 } from './blocks/index.ts';
 export type { Config } from './Config.ts';
 export {
@@ -98,7 +100,3 @@ export {
   presetEverything,
   presetMinimal,
 } from './presets/index.ts';
-export type {
-  BlockWithoutAddons as BlockWithoutProps,
-  BlockWithAddons as BlockWithProps,
-} from 'bingo-stratum';

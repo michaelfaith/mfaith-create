@@ -1,3 +1,4 @@
+export type { BlockWithoutProps, BlockWithProps } from './Block.ts';
 export { blockAllContributors } from './blockAllContributors.ts';
 export { blockAreTheTypesWrong } from './blockAreTheTypesWrong.ts';
 export { blockBin, type BlockBinProps } from './blockBin.ts';

@@ -1,9 +1,8 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import type { Options } from '../Options.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
 
@@ -12,8 +11,8 @@ export interface BlockExportsProps {
   srcFilePath?: string;
 }
 
-export const blockExports: BlockWithAddons<BlockExportsProps, Options> =
-  base.createBlock({
+export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock(
+  {
     about: {
       name: 'Exports',
     },
@@ -51,4 +50,5 @@ export const blockExports: BlockWithAddons<BlockExportsProps, Options> =
         ],
       };
     },
-  });
+  },
+);

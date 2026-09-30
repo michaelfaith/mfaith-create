@@ -1,10 +1,9 @@
-import type { BlockWithAddons } from 'bingo-stratum';
 import sortKeys from 'sort-keys';
 import { type CompilerOptions, CompilerOptionsSchema } from 'zod-tsconfig';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
-import type { Options } from '../Options.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
@@ -22,7 +21,7 @@ export interface BlockTypescriptProps {
   compilerOptions?: CompilerOptions | undefined;
 }
 
-export const blockTypescript: BlockWithAddons<BlockTypescriptProps, Options> =
+export const blockTypescript: BlockWithProps<BlockTypescriptProps> =
   base.createBlock({
     about: {
       name: 'TypeScript',
