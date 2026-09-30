@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.5](https://github.com/michaelfaith/mfaith-create/compare/v0.5.4...v0.5.5) (2026-09-30)
+
+
+### 🚀 Features
+
+* export `*Props` types for all blocks with props ([#310](https://github.com/michaelfaith/mfaith-create/issues/310)) ([0ead25f](https://github.com/michaelfaith/mfaith-create/commit/0ead25fe5d42367c36ab12c7d1a35db8b84053df))
+* provide `Block` generic types ([#313](https://github.com/michaelfaith/mfaith-create/issues/313)) ([518e03f](https://github.com/michaelfaith/mfaith-create/commit/518e03f755f409a57548f8394f76d9aa8ad529c0))
+
 ## [0.5.4](https://github.com/michaelfaith/mfaith-create/compare/v0.5.3...v0.5.4) (2026-09-30)
 
 
