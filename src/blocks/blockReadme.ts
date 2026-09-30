@@ -1,6 +1,8 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 
 function printAttributes(attributes: Record<string, number | string>) {
   return Object.entries(attributes)
@@ -9,7 +11,7 @@ function printAttributes(attributes: Record<string, number | string>) {
     .join(' ');
 }
 
-const badgeSchema = z.object({
+const badgeSchema: z.ZodType<Badge> = z.object({
   alt: z.string(),
   comments: z
     .object({
@@ -20,38 +22,55 @@ const badgeSchema = z.object({
   href: z.string().optional(),
   src: z.string(),
 });
+export interface Badge {
+  alt: string;
+  src: string;
+  comments?:
+    | {
+        after: string;
+        before: string;
+      }
+    | undefined;
+  href?: string | undefined;
+}
 
-type Badge = z.infer<typeof badgeSchema>;
+export interface BlockReadmeProps {
+  badges?: Badge[];
+  defaultUsage?: string[];
+  notices?: string[];
+  sections?: string[];
+}
 
-export const blockReadme = base.createBlock({
-  about: {
-    name: 'README.md',
-  },
-  addons: {
-    badges: z.array(badgeSchema).default([]),
-    defaultUsage: z.array(z.string()).default([]),
-    notices: z.array(z.string()).default([]),
-    sections: z.array(z.string()).default([]),
-  },
-  produce({ addons, options }) {
-    const { badges, defaultUsage, notices, sections } = addons;
+export const blockReadme: BlockWithAddons<BlockReadmeProps, Options> =
+  base.createBlock({
+    about: {
+      name: 'README.md',
+    },
+    addons: {
+      badges: z.array(badgeSchema).default([]),
+      defaultUsage: z.array(z.string()).default([]),
+      notices: z.array(z.string()).default([]),
+      sections: z.array(z.string()).default([]),
+    },
+    produce({ addons, options }) {
+      const { badges, defaultUsage, notices, sections } = addons;
 
-    const explainer =
-      options.documentation.readme.explainer &&
-      `\n${options.documentation.readme.explainer}\n`;
+      const explainer =
+        options.documentation.readme.explainer &&
+        `\n${options.documentation.readme.explainer}\n`;
 
-    const logo =
-      options.logo &&
-      `\n<img ${printAttributes({ align: 'right', ...options.logo })}>\n`;
+      const logo =
+        options.logo &&
+        `\n<img ${printAttributes({ align: 'right', ...options.logo })}>\n`;
 
-    const suffixes = [
-      ...notices,
-      options.documentation.readme.footnotes,
-    ].filter((suffix) => typeof suffix === 'string');
+      const suffixes = [
+        ...notices,
+        options.documentation.readme.footnotes,
+      ].filter((suffix) => typeof suffix === 'string');
 
-    return {
-      files: {
-        'README.md': `<h1 align="center">${options.title}</h1>
+      return {
+        files: {
+          'README.md': `<h1 align="center">${options.title}</h1>
 
 <p align="center">${formatDescription(options.description)}</p>
 ${(badges.length ? ['\n<p align="center">', formatBadges(badges), '</p>\n'] : []).join('\n')}${[logo, explainer].filter(Boolean).join('')}
@@ -67,10 +86,10 @@ ${[...sections, options.documentation.readme.additional]
   .map((section) => `\n${section}`)
   .join('')}
 ${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join('\n\n')}` : ''}`,
-      },
-    };
-  },
-});
+        },
+      };
+    },
+  });
 
 function badgeSorter(a: Badge, b: Badge) {
   return removeEmojis(a.alt).localeCompare(removeEmojis(b.alt));

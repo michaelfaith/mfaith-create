@@ -1,9 +1,11 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import JSON5 from 'json5';
 import { getObjectStringsDeep } from 'object-strings-deep';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import type { Options } from '../Options.ts';
 import { resolveBin } from '../utils/resolveBin.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
@@ -19,109 +21,116 @@ const addons = {
   ignorePaths: z.array(z.string()).default([]),
   words: z.array(z.string()).default([]),
 };
+const addonsSchema: z.ZodType<BlockCspellProps> = z.object(addons);
 
-const addonsSchema = z.object(addons);
+export interface BlockCspellProps {
+  ignorePaths?: string[];
+  words?: string[];
+}
 
-export const blockCspell = base.createBlock({
-  about: {
-    name: 'CSpell',
-  },
-  addons,
-  intake({ files }) {
-    const cspellJson = intakeFile(files, ['cspell.json']);
-    if (!cspellJson) {
-      return undefined;
-    }
+export const blockCspell: BlockWithAddons<BlockCspellProps, Options> =
+  base.createBlock({
+    about: {
+      name: 'CSpell',
+    },
+    addons,
+    intake({ files }) {
+      const cspellJson = intakeFile(files, ['cspell.json']);
+      if (!cspellJson) {
+        return undefined;
+      }
 
-    const { data } = addonsSchema.safeParse(
-      JSON5.parse<unknown>(cspellJson[0]),
-    );
-    if (!data) {
-      return undefined;
-    }
+      const { data } = addonsSchema.safeParse(
+        JSON5.parse<unknown>(cspellJson[0]),
+      );
+      if (!data) {
+        return undefined;
+      }
 
-    return data;
-  },
-  produce({ addons, options }) {
-    const { ignorePaths, words } = addons;
+      return data;
+    },
+    produce({ addons, options }) {
+      const { ignorePaths, words } = addons;
 
-    const allWords = Array.from(
-      new Set([...(options.words ?? []), ...words]),
-    ).sort();
+      const allWords = Array.from(
+        new Set([...(options.words ?? []), ...words]),
+      ).sort();
 
-    return {
-      addons: [
-        blockDevelopmentDocs({
-          sections: {
-            Linting: {
-              contents: {
-                items: [
-                  `- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
-                ],
+      return {
+        addons: [
+          blockDevelopmentDocs({
+            sections: {
+              Linting: {
+                contents: {
+                  items: [
+                    `- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
+                  ],
+                },
               },
             },
-          },
-        }),
-        blockVscode({
-          extensions: ['streetsidesoftware.code-spell-checker'],
-        }),
-        blockGithubActionsCi({
-          jobs: [
-            {
-              name: 'Lint Spelling',
-              steps: [{ run: 'pnpm lint:spelling' }],
+          }),
+          blockVscode({
+            extensions: ['streetsidesoftware.code-spell-checker'],
+          }),
+          blockGithubActionsCi({
+            jobs: [
+              {
+                name: 'Lint Spelling',
+                steps: [{ run: 'pnpm lint:spelling' }],
+              },
+            ],
+          }),
+          blockPackageJson({
+            properties: {
+              devDependencies: getPackageDependencies('cspell'),
+              scripts: {
+                'lint:spelling': `cspell ${filesGlob}`,
+              },
             },
-          ],
-        }),
-        blockPackageJson({
-          properties: {
-            devDependencies: getPackageDependencies('cspell'),
-            scripts: {
-              'lint:spelling': `cspell ${filesGlob}`,
-            },
-          },
-        }),
-      ],
-      files: {
-        'cspell.json': JSON.stringify({
-          dictionaries: ['npm', 'node', 'typescript'],
-          ignorePaths: Array.from(
-            new Set([
-              '.github',
-              'CHANGELOG.md',
-              'dist',
-              'node_modules',
-              'package.json',
-              'pnpm-lock.yaml',
-              ...ignorePaths,
-            ]),
-          ).sort(),
-          ...(allWords.length && { words: allWords }),
-        }),
-      },
-    };
-  },
-  setup({ options }) {
-    const wordArgs = getObjectStringsDeep(options)
-      .map((word) => `--words "${word.replaceAll(`"`, ' ')}"`)
-      .join(' ');
-
-    return {
-      scripts: [
-        {
-          commands: [`node ${resolveBin('cspell-populate-words')} ${wordArgs}`],
-          phase: CommandPhase.Process,
+          }),
+        ],
+        files: {
+          'cspell.json': JSON.stringify({
+            dictionaries: ['npm', 'node', 'typescript'],
+            ignorePaths: Array.from(
+              new Set([
+                '.github',
+                'CHANGELOG.md',
+                'dist',
+                'node_modules',
+                'package.json',
+                'pnpm-lock.yaml',
+                ...ignorePaths,
+              ]),
+            ).sort(),
+            ...(allWords.length && { words: allWords }),
+          }),
         },
-      ],
-    };
-  },
-  transition() {
-    return {
-      addons: [
-        blockRemoveWorkflows({
-          workflows: ['lint-spelling', 'spelling'],
-        }),
-      ],
-    };
-  },
-});
+      };
+    },
+    setup({ options }) {
+      const wordArgs = getObjectStringsDeep(options)
+        .map((word) => `--words "${word.replaceAll(`"`, ' ')}"`)
+        .join(' ');
+
+      return {
+        scripts: [
+          {
+            commands: [
+              `node ${resolveBin('cspell-populate-words')} ${wordArgs}`,
+            ],
+            phase: CommandPhase.Process,
+          },
+        ],
+      };
+    },
+    transition() {
+      return {
+        addons: [
+          blockRemoveWorkflows({
+            workflows: ['lint-spelling', 'spelling'],
+          }),
+        ],
+      };
+    },
+  });

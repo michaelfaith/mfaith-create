@@ -1,12 +1,15 @@
 export { blockAllContributors } from './blockAllContributors.ts';
 export { blockAreTheTypesWrong } from './blockAreTheTypesWrong.ts';
-export { blockBin } from './blockBin.ts';
+export { blockBin, type BlockBinProps } from './blockBin.ts';
 export { blockCodecov } from './blockCodecov.ts';
 export { blockCodeOfConduct } from './blockCodeOfConduct.ts';
 export { blockContributingDocs } from './blockContributingDocs.ts';
-export { blockCspell } from './blockCspell.ts';
-export { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-export { blockEslint } from './blockEslint.ts';
+export { blockCspell, type BlockCspellProps } from './blockCspell.ts';
+export {
+  blockDevelopmentDocs,
+  type BlockDevelopmentDocsProps,
+} from './blockDevelopmentDocs.ts';
+export { blockEslint, type BlockEslintProps } from './blockEslint.ts';
 export { blockEslintComments } from './blockEslintComments.ts';
 export { blockEslintJsdoc } from './blockEslintJsdoc.ts';
 export { blockEslintJsonc } from './blockEslintJsonc.ts';
@@ -15,38 +18,62 @@ export { blockEslintMarkdownLinks } from './blockEslintMarkdownLinks.ts';
 export { blockEslintMoreStyling } from './blockEslintMoreStyling.ts';
 export { blockEslintNode } from './blockEslintNode.ts';
 export { blockEslintPackageJson } from './blockEslintPackageJson.ts';
-export { blockEslintPlugin } from './blockEslintPlugin.ts';
+export {
+  blockEslintPlugin,
+  type BlockEslintPluginProps,
+} from './blockEslintPlugin.ts';
 export { blockEslintRegexp } from './blockEslintRegexp.ts';
 export { blockEslintYml } from './blockEslintYml.ts';
-export { blockExports } from './blockExports.ts';
+export { blockExports, type BlockExportsProps } from './blockExports.ts';
 export { blockFunding } from './blockFunding.ts';
-export { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+export {
+  blockGithubActionsCi,
+  type BlockGithubActionsCiProps,
+} from './blockGithubActionsCi.ts';
 export { blockGithubIssueTemplates } from './blockGithubIssueTemplates.ts';
 export { blockGithubPrTemplate } from './blockGithubPrTemplate.ts';
-export { blockGitignore } from './blockGitignore.ts';
-export { blockKnip } from './blockKnip.ts';
+export { blockGitignore, type BlockGitignoreProps } from './blockGitignore.ts';
+export { blockKnip, type BlockKnipProps } from './blockKnip.ts';
 export { blockMitLicense } from './blockMitLicense.ts';
-export { blockNcc } from './blockNcc.ts';
+export { blockNcc, type BlockNccProps } from './blockNcc.ts';
 export { blockNvmrc } from './blockNvmrc.ts';
-export { blockOctoguide } from './blockOctoguide.ts';
+export { blockOctoguide, type BlockOctoguideProps } from './blockOctoguide.ts';
 export { blockOctoguideStrict } from './blockOctoguideStrict.ts';
-export { blockPackageJson } from './blockPackageJson.ts';
+export {
+  blockPackageJson,
+  type BlockPackageJsonProps,
+} from './blockPackageJson.ts';
 export { blockPnpmDedupe } from './blockPnpmDedupe.ts';
-export { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
-export { blockPrettier } from './blockPrettier.ts';
+export {
+  blockPnpmWorkspace,
+  type BlockPnpmWorkspaceProps,
+} from './blockPnpmWorkspace.ts';
+export { blockPrettier, type BlockPrettierProps } from './blockPrettier.ts';
 export { blockPrettierPluginCurly } from './blockPrettierPluginCurly.ts';
 export { blockPrettierPluginPackageJson } from './blockPrettierPluginPackageJson.ts';
 export { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
 export { blockPrettierPluginSh } from './blockPrettierPluginSh.ts';
-export { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
-export { blockReadme } from './blockReadme.ts';
-export { blockReleasePlease } from './blockReleasePlease.ts';
-export { blockRenovate } from './blockRenovate.ts';
+export {
+  blockPrPreviewRelease,
+  type BlockPrPreviewReleaseProps,
+} from './blockPrPreviewRelease.ts';
+export { blockReadme, type BlockReadmeProps } from './blockReadme.ts';
+export {
+  blockReleasePlease,
+  type BlockReleasePleaseProps,
+} from './blockReleasePlease.ts';
+export { blockRenovate, type BlockRenovateProps } from './blockRenovate.ts';
 export { blockSecurityDocs } from './blockSecurityDocs.ts';
-export { blockSideEffects } from './blockSideEffects.ts';
+export {
+  blockSideEffects,
+  type BlockSideEffectsProps,
+} from './blockSideEffects.ts';
 export { blockTemplatedWith } from './blockTemplatedWith.ts';
-export { blockTsdown } from './blockTsdown.ts';
-export { blockTypescript } from './blockTypescript.ts';
-export { blockVitest } from './blockVitest.ts';
-export { blockVscode } from './blockVscode.ts';
+export { blockTsdown, type BlockTsdownProps } from './blockTsdown.ts';
+export {
+  blockTypescript,
+  type BlockTypescriptProps,
+} from './blockTypescript.ts';
+export { blockVitest, type BlockVitestProps } from './blockVitest.ts';
+export { blockVscode, type BlockVscodeProps } from './blockVscode.ts';
 export { blockWebExt } from './blockWebExt.ts';

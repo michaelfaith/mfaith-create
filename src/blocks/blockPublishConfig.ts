@@ -1,10 +1,21 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { binSchema } from './packageJson/schemas.ts';
+import { type Bin, binSchema } from './packageJson/schemas.ts';
 
-export const blockPublishConfig = base.createBlock({
+export interface BlockPublishConfigProps {
+  access?: 'public' | 'restricted' | undefined;
+  bin?: Bin | undefined;
+  exports?: Record<string, unknown> | undefined;
+}
+
+export const blockPublishConfig: BlockWithAddons<
+  BlockPublishConfigProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Publish Config',
     description: 'Creates the publishConfig property on the package.json',

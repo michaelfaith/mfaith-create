@@ -1,10 +1,23 @@
-import { determineLabelChanges, zLabel } from 'set-github-repository-labels';
+import type { BlockWithAddons } from 'bingo-stratum';
+import {
+  determineLabelChanges,
+  type OutcomeLabel,
+  zLabel,
+} from 'set-github-repository-labels';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { repositoryLabels } from './repositoryLabels.ts';
 
-export const blockRepositoryLabels = base.createBlock({
+export interface BlockRepositoryLabelsProps {
+  additionalLabels?: OutcomeLabel[];
+}
+
+export const blockRepositoryLabels: BlockWithAddons<
+  BlockRepositoryLabelsProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Repository Labels',
     description: 'Add a list of labels to the GitHub repository.',

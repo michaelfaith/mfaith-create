@@ -1,20 +1,20 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 
-const innerSectionSchema = z.object({
+const innerSectionSchema: z.ZodType<InnerSection> = z.object({
   contents: z.string(),
   heading: z.string(),
 });
-
-type InnerSection = z.infer<typeof innerSectionSchema>;
-
-function printInnerSection(innerSection: InnerSection) {
-  return [`### ${innerSection.heading}`, ``, innerSection.contents];
+export interface InnerSection {
+  contents: string;
+  heading: string;
 }
 
-const sectionSchema = z.object({
+const sectionSchema: z.ZodType<Section> = z.object({
   contents: z
     .union([
       z.string(),
@@ -28,8 +28,22 @@ const sectionSchema = z.object({
     .optional(),
   innerSections: z.array(innerSectionSchema).optional(),
 });
+export interface Section {
+  contents?:
+    | string
+    | {
+        after?: string[] | undefined;
+        before?: string | undefined;
+        items?: string[] | undefined;
+        plural?: string | undefined;
+      }
+    | undefined;
+  innerSections?: InnerSection[] | undefined;
+}
 
-type Section = z.infer<typeof sectionSchema>;
+function printInnerSection(innerSection: InnerSection) {
+  return [`### ${innerSection.heading}`, ``, innerSection.contents];
+}
 
 function printSection(heading: string, section: Section) {
   const innerSections = section.innerSections?.flatMap(printInnerSection) ?? [];
@@ -56,7 +70,15 @@ function printSection(heading: string, section: Section) {
   ];
 }
 
-export const blockDevelopmentDocs = base.createBlock({
+export interface BlockDevelopmentDocsProps {
+  hints: string[];
+  sections: Record<string, Section>;
+}
+
+export const blockDevelopmentDocs: BlockWithAddons<
+  BlockDevelopmentDocsProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'Development Docs',
   },

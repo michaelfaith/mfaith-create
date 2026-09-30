@@ -1,6 +1,8 @@
+import type { BlockWithAddons } from 'bingo-stratum';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
+import type { Options } from '../Options.ts';
 import { getAllPossibleJobNames } from '../utils/getAllPossibleJobNames.ts';
 import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
@@ -22,7 +24,15 @@ const addSetupToSteps = (job: WorkflowJob): WorkflowJob => ({
     : [{ uses: setupActionPath }, ...job.steps],
 });
 
-export const blockGithubActionsCi = base.createBlock({
+export interface BlockGithubActionsCiProps {
+  jobs?: WorkflowJob[] | undefined;
+  nodeVersion?: string | number | undefined;
+}
+
+export const blockGithubActionsCi: BlockWithAddons<
+  BlockGithubActionsCiProps,
+  Options
+> = base.createBlock({
   about: {
     name: 'GitHub Actions CI',
   },
