@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.4](https://github.com/michaelfaith/mfaith-create/compare/v0.5.3...v0.5.4) (2026-09-30)
+
+
+### 🩹 Bug Fixes
+
+* allow empty strings to fallback on author inference ([#300](https://github.com/michaelfaith/mfaith-create/issues/300)) ([429bcdd](https://github.com/michaelfaith/mfaith-create/commit/429bcdd196ab7fcbf1e7624fd8621bcbd7828c75))
+* export PR Preview Release block ([#309](https://github.com/michaelfaith/mfaith-create/issues/309)) ([5c8a1e4](https://github.com/michaelfaith/mfaith-create/commit/5c8a1e42f396957e8e4b969293bfcdc2b43e2bc4))
+* make format calls more explicit ([#305](https://github.com/michaelfaith/mfaith-create/issues/305)) ([f5dd452](https://github.com/michaelfaith/mfaith-create/commit/f5dd452b90631391c90102c97f4879f1eff6aa4a))
+
 ## [0.5.3](https://github.com/michaelfaith/mfaith-create/compare/v0.5.2...v0.5.3) (2026-09-28)
 
 
