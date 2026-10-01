@@ -89,6 +89,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
 
 const config: KnipConfig = ${JSON.stringify({
           entry: entry?.sort(),
+          ignore: ['dist/**'],
           ignoreDependencies,
           ignoreExportsUsedInFile: {
             interface: true,

@@ -2,6 +2,7 @@ import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
   entry: ['src/**/*.test.*'],
+  ignore: ['dist/**'],
   ignoreDependencies: [
     'all-contributors-cli',
     'cspell-populate-words',
