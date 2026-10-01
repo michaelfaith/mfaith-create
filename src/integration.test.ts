@@ -129,6 +129,12 @@ If you're interested in learning more, see the 'getting started' docs on:
             ignoreDependencies: [
               'all-contributors-cli',
               'cspell-populate-words',
+              'prettier-plugin-curly',
+              'prettier-plugin-packagejson',
+              'prettier-plugin-padding-lines',
+              'prettier-plugin-sentences-per-line',
+              'prettier-plugin-sh',
+              'pretty-quick',
               'remove-dependencies',
               'trash-cli',
             ],
