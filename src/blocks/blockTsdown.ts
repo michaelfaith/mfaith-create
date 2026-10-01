@@ -1,6 +1,7 @@
 import { extname } from 'node:path';
 
 import removeUndefinedObjects from 'remove-undefined-objects';
+import { type UserConfig } from 'tsdown';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
@@ -20,8 +21,23 @@ import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVitest } from './blockVitest.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 
+const attwSchema: z.ZodType<Attw> = z.union([
+  z.boolean(),
+  z.object({
+    enabled: z
+      .union([z.boolean(), z.literal('ci-only'), z.literal('local-only')])
+      .optional(),
+    level: z.union([z.literal('error'), z.literal('warn')]).optional(),
+    profile: z
+      .union([z.literal('strict'), z.literal('node16'), z.literal('esm-only')])
+      .optional(),
+    ignoreRules: z.array(z.string()).optional(),
+  }),
+]);
+type Attw = UserConfig['attw'];
+
 const entrySchema = z.array(z.string());
-const propertiesSchema = z.record(z.string(), z.unknown());
+const additionalConfigSchema = z.record(z.string(), z.unknown());
 
 const relativePathRegex = /^\.\/(.*)$/;
 const srcPathRegex = /^\.\/src\/(.+)$/;
@@ -31,9 +47,10 @@ const makeExclusion = (input: string): string => {
 };
 
 export interface BlockTsdownProps {
+  additionalConfig?: Record<string, unknown>;
+  attw?: Attw | undefined;
   entry?: string[];
   excludeFromExports?: string[] | undefined;
-  properties?: Record<string, unknown>;
   runInCI?: string[];
 }
 
@@ -44,9 +61,10 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
   addons: {
+    additionalConfig: additionalConfigSchema.default({}),
+    attw: attwSchema.optional(),
     entry: entrySchema.default([]),
     excludeFromExports: entrySchema.optional(),
-    properties: propertiesSchema.default({}),
     runInCI: z.array(z.string()).default([]),
   },
   intake({ files }) {
@@ -59,14 +77,20 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
 
     return {
       entry: entrySchema.safeParse(rawEntry).data,
-      properties: removeUndefinedObjects({
-        ...propertiesSchema.safeParse(rest).data,
+      additionalConfig: removeUndefinedObjects({
+        ...additionalConfigSchema.safeParse(rest).data,
         format: rest.format === 'esm' ? undefined : rest.format,
       }),
     };
   },
   produce({ addons, options }) {
-    const { entry, excludeFromExports, properties, runInCI } = addons;
+    const {
+      attw,
+      entry,
+      excludeFromExports,
+      additionalConfig: properties,
+      runInCI,
+    } = addons;
     const { devExports } = options;
 
     const primaryEntry = 'src/index.ts';
@@ -168,12 +192,17 @@ pnpm build --watch
       files: {
         'tsdown.config.ts': `import { defineConfig, type UserConfig } from 'tsdown';
 
-const config: UserConfig = defineConfig(${JSON.stringify({
-          // If `src/index.ts` is the only entry, then omit it.
-          entry: entries.size > 1 ? Array.from(entries) : undefined,
-          exports,
-          ...properties,
-        })});
+const config: UserConfig = defineConfig(${JSON.stringify(
+          {
+            attw,
+            // If `src/index.ts` is the only entry, then omit it.
+            entry: entries.size > 1 ? Array.from(entries) : undefined,
+            exports,
+            ...properties,
+          },
+          null,
+          2,
+        )});
 
 export default config;
 `,

@@ -1,8 +1,13 @@
 import { testBlock } from 'bingo-stratum-testers';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import { blockAreTheTypesWrong } from './blockAreTheTypesWrong.ts';
 import { optionsBase } from './options.fakes.ts';
+
+vi.mock('../data/packageData.ts', () => ({
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+}));
 
 describe('blockAreTheTypesWrong', () => {
   test('production', () => {
@@ -15,24 +20,23 @@ describe('blockAreTheTypesWrong', () => {
         "addons": [
           {
             "addons": {
-              "jobs": [
-                {
-                  "name": "Are the Types Wrong?",
-                  "steps": [
-                    {
-                      "run": "pnpm build",
-                    },
-                    {
-                      "run": "pnpm pack --out test-repository.tgz",
-                    },
-                    {
-                      "run": "pnpx @arethetypeswrong/cli test-repository.tgz --profile esm-only",
-                    },
-                  ],
+              "properties": {
+                "devDependencies": {
+                  "@arethetypeswrong/core": "1.2.3",
                 },
-              ],
+              },
             },
-            "block": "[Block GitHub Actions CI]",
+            "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "attw": {
+                "enabled": "ci-only",
+                "level": "error",
+                "profile": "esm-only",
+              },
+            },
+            "block": "[Block tsdown]",
           },
         ],
       }

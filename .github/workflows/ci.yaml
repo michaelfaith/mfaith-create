@@ -7,15 +7,6 @@ on:
       - main
 
 jobs:
-  are_the_types_wrong:
-    name: Are the Types Wrong?
-    runs-on: ubuntu-latest
-    steps:
-      - uses: $/.github/actions/setup
-      - run: pnpm build
-      - run: pnpm pack --out mfaith-create.tgz
-      - run: pnpx @arethetypeswrong/cli mfaith-create.tgz --profile esm-only
-
   build:
     name: Build
     runs-on: ubuntu-latest

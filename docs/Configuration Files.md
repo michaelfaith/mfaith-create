@@ -61,9 +61,9 @@ See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them,
 
 ### `addons`
 
-Any additional [Addons](https://www.create.bingo/engines/stratum/concepts/blocks#addons) provided to Blocks provided by the selected Preset.
+Any additional [Props](https://www.create.bingo/engines/stratum/concepts/blocks#addons) you want to configure for Blocks provided by the selected Preset.
 
-For example, this configuration file adds the word `"michaelfaith"` to the CSpell Block's Addons:
+For example, this configuration file adds the word `"michaelfaith"` to the CSpell Block's Props:
 
 ```ts
 // mfaith-create.config.ts

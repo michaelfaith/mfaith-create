@@ -1,28 +1,28 @@
 import { base } from '../base.ts';
+import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockPackageJson } from './blockPackageJson.ts';
+import { blockTsdown } from './blockTsdown.ts';
 
 export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Are the Types Wrong',
+    description: 'Enables type validation for builds.',
   },
-  produce({ options }) {
-    const packName = `${options.repository}.tgz`;
+  produce() {
     return {
       addons: [
-        blockGithubActionsCi({
-          jobs: [
-            {
-              name: 'Are the Types Wrong?',
-              steps: [
-                { run: 'pnpm build' },
-                { run: `pnpm pack --out ${packName}` },
-                {
-                  run: `pnpx @arethetypeswrong/cli ${packName} --profile esm-only`,
-                },
-              ],
-            },
-          ],
+        blockPackageJson({
+          properties: {
+            devDependencies: getPackageDependencies('@arethetypeswrong/core'),
+          },
+        }),
+        blockTsdown({
+          attw: {
+            enabled: 'ci-only',
+            level: 'error',
+            profile: 'esm-only',
+          },
         }),
       ],
     };
