@@ -137,7 +137,9 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({"exports":true});
+      const config: UserConfig = defineConfig({
+        "exports": true
+      });
 
       export default config;
       ",
@@ -149,11 +151,16 @@ describe(blockTsdown, () => {
   test('with addons', () => {
     const creation = testBlock(blockTsdown, {
       addons: {
-        entry: ['src/other.ts', './src/other.ts', './src/bin/index.ts'],
-        excludeFromExports: ['./src/bin/index.ts'],
-        properties: {
+        additionalConfig: {
           dts: false,
         },
+        attw: {
+          enabled: 'ci-only',
+          profile: 'node16',
+          level: 'error',
+        },
+        entry: ['src/other.ts', './src/other.ts', './src/bin/index.ts'],
+        excludeFromExports: ['./src/bin/index.ts'],
         runInCI: ['dist/other.js'],
       },
       options: optionsBase,
@@ -284,7 +291,24 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({"entry":["src/index.ts","src/other.ts","src/bin/index.ts"],"exports":{"exclude":["bin/index"]},"dts":false});
+      const config: UserConfig = defineConfig({
+        "attw": {
+          "enabled": "ci-only",
+          "level": "error",
+          "profile": "node16"
+        },
+        "entry": [
+          "src/index.ts",
+          "src/other.ts",
+          "src/bin/index.ts"
+        ],
+        "exports": {
+          "exclude": [
+            "bin/index"
+          ]
+        },
+        "dts": false
+      });
 
       export default config;
       ",
@@ -454,7 +478,9 @@ describe(blockTsdown, () => {
         "files": {
           "tsdown.config.ts": "import { defineConfig, type UserConfig } from 'tsdown';
 
-      const config: UserConfig = defineConfig({"exports":true});
+      const config: UserConfig = defineConfig({
+        "exports": true
+      });
 
       export default config;
       ",
@@ -505,17 +531,19 @@ describe(blockTsdown, () => {
     });
 
     it('returns the properties when tsdown.config.ts contains other properties', () => {
-      const properties = { clean: false, dts: false, format: 'cjs' };
+      const additionalConfig = { clean: false, dts: false, format: 'cjs' };
 
       const actual = testIntake(blockTsdown, {
         files: {
-          'tsdown.config.ts': [`defineConfig(${JSON.stringify(properties)})`],
+          'tsdown.config.ts': [
+            `defineConfig(${JSON.stringify(additionalConfig)})`,
+          ],
         },
       });
 
       expect(actual).toEqual({
+        additionalConfig,
         entry: undefined,
-        properties,
       });
     });
   });
