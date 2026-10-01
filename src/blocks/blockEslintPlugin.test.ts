@@ -155,16 +155,15 @@ describe(blockEslintPlugin, () => {
           },
         ],
         "files": {
-          ".eslint-doc-generatorrc.js": "import prettier from "prettier";
+          ".eslint-doc-generatorrc.js": "import { format } from 'oxfmt';
 
       /** @type {import('eslint-doc-generator').GenerateOptions} */
       const config = {
-      	postprocess: async (content, path) =>
-      		prettier.format(content, {
-      			...(await prettier.resolveConfig(path)),
-      			parser: 'markdown',
-      		}),
-      	ruleDocTitleFormat: 'name',
+        postprocess: async (content, path) => {
+          const result = await format(basename(path), content, oxfmtConfig);
+          return result.code;
+        },
+        ruleDocTitleFormat: 'name',
       };
 
       export default config;
@@ -339,16 +338,15 @@ describe(blockEslintPlugin, () => {
           },
         ],
         "files": {
-          ".eslint-doc-generatorrc.js": "import prettier from "prettier";
+          ".eslint-doc-generatorrc.js": "import { format } from 'oxfmt';
 
       /** @type {import('eslint-doc-generator').GenerateOptions} */
       const config = {
-      	postprocess: async (content, path) =>
-      		prettier.format(content, {
-      			...(await prettier.resolveConfig(path)),
-      			parser: 'markdown',
-      		}),
-      	ruleDocTitleFormat: 'name',
+        postprocess: async (content, path) => {
+          const result = await format(basename(path), content, oxfmtConfig);
+          return result.code;
+        },
+        ruleDocTitleFormat: 'name',
       };
 
       export default config;
@@ -636,17 +634,16 @@ describe(blockEslintPlugin, () => {
           },
         ],
         "files": {
-          ".eslint-doc-generatorrc.js": "import prettier from "prettier";
+          ".eslint-doc-generatorrc.js": "import { format } from 'oxfmt';
 
       /** @type {import('eslint-doc-generator').GenerateOptions} */
       const config = {
-      	configEmoji: [["recommended","✅"],["legacy-recommended","✔️"]],
-      	postprocess: async (content, path) =>
-      		prettier.format(content, {
-      			...(await prettier.resolveConfig(path)),
-      			parser: 'markdown',
-      		}),
-      	ruleDocTitleFormat: 'name',
+        configEmoji: [["recommended","✅"],["legacy-recommended","✔️"]],
+      	postprocess: async (content, path) => {
+          const result = await format(basename(path), content, oxfmtConfig);
+          return result.code;
+        },
+        ruleDocTitleFormat: 'name',
       };
 
       export default config;
