@@ -49,12 +49,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
   },
   intake({ files }) {
     const eslintConfigRaw = intakeFile(files, [
-      [
-        'eslint.config.ts',
-        'eslint.config.mts',
-        'eslint.config.js',
-        'eslint.config.mjs',
-      ],
+      ['eslint.config.ts', 'eslint.config.mts', 'eslint.config.js', 'eslint.config.mjs'],
     ]);
 
     return eslintConfigRaw ? blockEslintIntake(eslintConfigRaw[0]) : undefined;
@@ -64,9 +59,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
 
     const explanation =
       explanations.length > 0
-        ? `${explanations
-            .map((explanation) => `/*\n${explanation}\n*/\n`)
-            .join('')}\n`
+        ? `${explanations.map((explanation) => `/*\n${explanation}\n*/\n`).join('')}\n`
         : '';
 
     const importLines = [
@@ -78,15 +71,11 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
         (packageImport) =>
           `import ${packageImport.specifier} from '${typeof packageImport.source === 'string' ? packageImport.source : packageImport.source.packageName}';`,
       ),
-    ].sort((a, b) =>
-      a.replace(/.+from/, '').localeCompare(b.replace(/.+from/, '')),
-    );
+    ].sort((a, b) => a.replace(/.+from/, '').localeCompare(b.replace(/.+from/, '')));
 
     const ignoreLines = Array.from(
       new Set(
-        ['node_modules', 'pnpm-lock.yaml', ...ignores].map((ignore) =>
-          JSON.stringify(ignore),
-        ),
+        ['node_modules', 'pnpm-lock.yaml', ...ignores].map((ignore) => JSON.stringify(ignore)),
       ),
     ).sort();
 
@@ -101,9 +90,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
         languageOptions: {
           parserOptions: {
             projectService: {
-              allowDefaultProject: Array.from(
-                new Set(['*.config.*s'].filter(Boolean).sort()),
-              ),
+              allowDefaultProject: Array.from(new Set(['*.config.*s'].filter(Boolean).sort())),
             },
           },
         },
@@ -123,9 +110,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
     );
 
     const coreConfigLines = extensionEntries
-      .sort((a, b) =>
-        processForSort(a.files).localeCompare(processForSort(b.files)),
-      )
+      .sort((a, b) => processForSort(a.files).localeCompare(processForSort(b.files)))
       .map(printExtension);
 
     return {
@@ -187,15 +172,10 @@ Each should be shown in VS Code, and can be run manually on the command-line:
               ...Object.fromEntries(
                 imports
                   .filter(
-                    (
-                      imported,
-                    ): imported is typeof imported & { source: object } =>
+                    (imported): imported is typeof imported & { source: object } =>
                       typeof imported.source === 'object',
                   )
-                  .map((imported) => [
-                    imported.source.packageName,
-                    imported.source.version,
-                  ]),
+                  .map((imported) => [imported.source.packageName, imported.source.version]),
               ),
             },
             scripts: {
@@ -293,12 +273,10 @@ function printExtension(extension: Extension): string {
     `files: [${extension.files.map((glob) => JSON.stringify(glob)).join(', ')}],`,
     extension.languageOptions &&
       `languageOptions: ${JSON.stringify(extension.languageOptions, null, 2).replace('"import.meta.dirname"', 'import.meta.dirname')},`,
-    extension.linterOptions &&
-      `linterOptions: ${JSON.stringify(extension.linterOptions)}`,
+    extension.linterOptions && `linterOptions: ${JSON.stringify(extension.linterOptions)}`,
     extension.plugins && `plugins: ${printPlugins(extension.plugins)},`,
     extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
-    extension.settings &&
-      `settings: ${JSON.stringify(sortKeys(extension.settings))},`,
+    extension.settings && `settings: ${JSON.stringify(sortKeys(extension.settings))},`,
     '}',
   ]
     .filter(Boolean)

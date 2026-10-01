@@ -32,17 +32,14 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
   },
   intake({ files }) {
     const knipJson =
-      intakeFileExportObject(files, ['knip.config.ts']) ??
-      intakeFileAsJson(files, ['knip.json']);
+      intakeFileExportObject(files, ['knip.config.ts']) ?? intakeFileAsJson(files, ['knip.json']);
     if (!knipJson) {
       return undefined;
     }
 
     return removeUndefinedObjects({
       entry: stringArraySchema.safeParse(knipJson.entry).data,
-      ignoreDependencies: stringArraySchema.safeParse(
-        knipJson.ignoreDependencies,
-      ).data,
+      ignoreDependencies: stringArraySchema.safeParse(knipJson.ignoreDependencies).data,
       project: stringArraySchema.safeParse(knipJson.project).data,
     });
   },

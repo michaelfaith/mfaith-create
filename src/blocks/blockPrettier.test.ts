@@ -150,13 +150,7 @@ describe(blockPrettier, () => {
     const creation = testBlock(blockPrettier, {
       addons: {
         additionalConfig: {
-          importOrder: [
-            '<BUILTIN_MODULES>',
-            '',
-            '<THIRD_PARTY_MODULES>',
-            '',
-            '^[.]',
-          ],
+          importOrder: ['<BUILTIN_MODULES>', '', '<THIRD_PARTY_MODULES>', '', '^[.]'],
           importOrderTypeScriptVersion: '6.0.0',
         },
         ignores: ['generated'],

@@ -17,9 +17,7 @@ export const blockEslintRegexp: BlockWithoutProps = base.createBlock({
               files: JS_TS_FILES,
             },
           ],
-          imports: [
-            { source: 'eslint-plugin-regexp', specifier: '* as regexp' },
-          ],
+          imports: [{ source: 'eslint-plugin-regexp', specifier: '* as regexp' }],
         }),
       ],
     };

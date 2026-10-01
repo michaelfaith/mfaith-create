@@ -9,11 +9,7 @@ describe(readRepository, () => {
     const getPackageData = vi.fn();
     const options = { repository };
 
-    const actual = await readRepository(
-      getGitDefaults,
-      getPackageData,
-      options,
-    );
+    const actual = await readRepository(getGitDefaults, getPackageData, options);
 
     expect(actual).toBe(repository);
     expect(getGitDefaults).not.toHaveBeenCalled();
@@ -49,11 +45,7 @@ describe(readRepository, () => {
     const getPackageData = vi.fn().mockResolvedValueOnce({});
     const options = { directory };
 
-    const actual = await readRepository(
-      getGitDefaults,
-      getPackageData,
-      options,
-    );
+    const actual = await readRepository(getGitDefaults, getPackageData, options);
 
     expect(actual).toBe(directory);
   });

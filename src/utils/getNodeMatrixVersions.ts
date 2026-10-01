@@ -44,8 +44,7 @@ export function getNodeMatrixVersions(range: string): NodeMatrixVersion[] {
       const lastMajor = upperMajor ?? lowerMajor;
 
       for (let major = lowerMajor; major <= lastMajor; major++) {
-        const minimumForMajor =
-          major === lowerMajor ? minimum : new SemVer(`${major}.0.0`);
+        const minimumForMajor = major === lowerMajor ? minimum : new SemVer(`${major}.0.0`);
 
         const version = minimumForMajor.version;
         const existing = majorVersions.get(major);
@@ -66,9 +65,7 @@ export function getNodeMatrixVersions(range: string): NodeMatrixVersion[] {
 /**
  * Find the minimum version accepted by a comparator set.
  */
-function getMinimumVersion(
-  comparators: readonly Comparator[],
-): SemVer | undefined {
+function getMinimumVersion(comparators: readonly Comparator[]): SemVer | undefined {
   let minimum: SemVer | undefined;
 
   for (const comparator of comparators) {

@@ -1,8 +1,6 @@
 import { z } from 'zod';
 
-export const configEmojiSchema: z.ZodType<ConfigEmoji> = z.array(
-  z.tuple([z.string(), z.string()]),
-);
+export const configEmojiSchema: z.ZodType<ConfigEmoji> = z.array(z.tuple([z.string(), z.string()]));
 export type ConfigEmoji = [string, string][];
 
 export const ruleOptionsSchema: z.ZodType<RuleOptions> = z.union([
@@ -10,11 +8,7 @@ export const ruleOptionsSchema: z.ZodType<RuleOptions> = z.union([
   z.literal('off'),
   z.literal('warn'),
   z.tuple([z.union([z.literal('error'), z.literal('warn')]), z.unknown()]),
-  z.tuple([
-    z.union([z.literal('error'), z.literal('warn')]),
-    z.unknown(),
-    z.unknown(),
-  ]),
+  z.tuple([z.union([z.literal('error'), z.literal('warn')]), z.unknown(), z.unknown()]),
 ]);
 
 export type RuleOptions =
@@ -34,16 +28,10 @@ export interface ExtensionRuleGroup {
   comment?: string | undefined;
 }
 
-const extensionPluginsSchema: z.ZodType<ExtensionPlugins> = z.record(
-  z.string(),
-  z.string(),
-);
+const extensionPluginsSchema: z.ZodType<ExtensionPlugins> = z.record(z.string(), z.string());
 export type ExtensionPlugins = Record<string, string>;
 
-const rulesRecordSchema: z.ZodType<RulesRecord> = z.record(
-  z.string(),
-  ruleOptionsSchema,
-);
+const rulesRecordSchema: z.ZodType<RulesRecord> = z.record(z.string(), ruleOptionsSchema);
 export type RulesRecord = Record<string, RuleOptions>;
 
 const extensionRulesSchema: z.ZodType<ExtensionRules> = z.union([
@@ -73,10 +61,7 @@ export interface Extension {
 }
 
 export const packageImportSchema: z.ZodType<PackageImport> = z.object({
-  source: z.union([
-    z.string(),
-    z.object({ packageName: z.string(), version: z.string() }),
-  ]),
+  source: z.union([z.string(), z.object({ packageName: z.string(), version: z.string() })]),
   specifier: z.string(),
   types: z.boolean().optional(),
 });

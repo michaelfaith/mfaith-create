@@ -10,8 +10,7 @@ export const repositoryLabels: OutcomeLabel[] = [
   },
   {
     name: 'area: testing',
-    description:
-      "Improving how the repository's tests are run and/or code is tested 🧪",
+    description: "Improving how the repository's tests are run and/or code is tested 🧪",
     color: '1177aa',
   },
   {
@@ -68,14 +67,12 @@ export const repositoryLabels: OutcomeLabel[] = [
   },
   {
     name: 'status: stale',
-    description:
-      'Detected as stale and will be automatically closed, if not updated. ⏱️',
+    description: 'Detected as stale and will be automatically closed, if not updated. ⏱️',
     color: 'bfd4f2',
   },
   {
     name: 'status: tracking',
-    description:
-      'This is just a tracking issue and not something directly actionable.',
+    description: 'This is just a tracking issue and not something directly actionable.',
     color: '182012',
   },
   {

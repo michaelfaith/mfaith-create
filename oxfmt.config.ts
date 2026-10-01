@@ -9,7 +9,6 @@ const config: OxfmtConfig = defineConfig({
     '/pnpm-lock.yaml',
   ],
   overrides: [{ files: ['.nvmrc'], options: { parser: 'yaml' } }],
-  printWidth: 80,
   singleQuote: true,
   sortImports: true,
   sortPackageJson: false,

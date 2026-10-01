@@ -35,11 +35,7 @@ export const blockEslintMarkdown: BlockWithoutProps = base.createBlock({
           ],
         }),
         blockRemoveDependencies({
-          dependencies: [
-            'eslint-plugin-markdown',
-            'markdownlint',
-            'markdownlint-cli',
-          ],
+          dependencies: ['eslint-plugin-markdown', 'markdownlint', 'markdownlint-cli'],
         }),
         blockRemoveFiles({
           files: ['.markdownlint*', '.markdownlintignore'],

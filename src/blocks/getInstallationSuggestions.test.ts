@@ -24,11 +24,7 @@ describe(getInstallationSuggestions, () => {
   });
 
   it('returns a plural list when there are multiple entries', () => {
-    const actual = getInstallationSuggestions(
-      description,
-      ['entry a', 'entry b'],
-      url,
-    );
+    const actual = getInstallationSuggestions(description, ['entry a', 'entry b'], url);
 
     expect(actual).toMatchInlineSnapshot(`
 			[

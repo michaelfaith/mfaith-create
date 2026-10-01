@@ -724,9 +724,7 @@ describe(blockEslintPlugin, () => {
     it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.js', () => {
       const actual = testIntake(blockEslintPlugin, {
         files: {
-          '.eslint-doc-generatorrc.js': [
-            `const config = { configEmoji: [["recommended", "✅"]] }`,
-          ],
+          '.eslint-doc-generatorrc.js': [`const config = { configEmoji: [["recommended", "✅"]] }`],
         },
         options: optionsBase,
       });
@@ -740,9 +738,7 @@ describe(blockEslintPlugin, () => {
   it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs', () => {
     const actual = testIntake(blockEslintPlugin, {
       files: {
-        '.eslint-doc-generatorrc.mjs': [
-          `const config = { configEmoji: [["recommended", "✅"]] }`,
-        ],
+        '.eslint-doc-generatorrc.mjs': [`const config = { configEmoji: [["recommended", "✅"]] }`],
       },
       options: optionsBase,
     });

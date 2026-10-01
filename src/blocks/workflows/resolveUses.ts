@@ -20,10 +20,7 @@ export function resolveUses(
 
   const biggestVersion = Object.keys(workflowVersions).reduce(
     (highestVersion, potentialVersion) =>
-      semver.gt(
-        semverCoercions.get(potentialVersion),
-        semverCoercions.get(highestVersion),
-      )
+      semver.gt(semverCoercions.get(potentialVersion), semverCoercions.get(highestVersion))
         ? potentialVersion
         : highestVersion,
     version,

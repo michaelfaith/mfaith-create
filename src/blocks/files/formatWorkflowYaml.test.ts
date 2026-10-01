@@ -139,9 +139,7 @@ describe(formatWorkflowYaml, () => {
         '  build:',
       ].join('\n'),
     );
-    expect(result).toContain(
-      ['      - run: pnpm build', '', '  test:'].join('\n'),
-    );
+    expect(result).toContain(['      - run: pnpm build', '', '  test:'].join('\n'));
   });
 
   it('should not treat a nested jobs property as the workflow jobs section', () => {

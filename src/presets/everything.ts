@@ -23,8 +23,7 @@ import { presetCommon } from './common.ts';
 
 export const presetEverything: Preset<OptionsShape> = base.createPreset({
   about: {
-    description:
-      'The most comprehensive tooling imaginable: sorting, spellchecking, and more!',
+    description: 'The most comprehensive tooling imaginable: sorting, spellchecking, and more!',
     name: 'Everything',
   },
   blocks: [

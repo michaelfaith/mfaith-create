@@ -25,13 +25,9 @@ import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 const attwSchema: z.ZodType<Attw> = z.union([
   z.boolean(),
   z.object({
-    enabled: z
-      .union([z.boolean(), z.literal('ci-only'), z.literal('local-only')])
-      .optional(),
+    enabled: z.union([z.boolean(), z.literal('ci-only'), z.literal('local-only')]).optional(),
     level: z.union([z.literal('error'), z.literal('warn')]).optional(),
-    profile: z
-      .union([z.literal('strict'), z.literal('node16'), z.literal('esm-only')])
-      .optional(),
+    profile: z.union([z.literal('strict'), z.literal('node16'), z.literal('esm-only')]).optional(),
     ignoreRules: z.array(z.string()).optional(),
   }),
 ]);
@@ -85,13 +81,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     };
   },
   produce({ addons, options }) {
-    const {
-      attw,
-      entry,
-      excludeFromExports,
-      additionalConfig: properties,
-      runInCI,
-    } = addons;
+    const { attw, entry, excludeFromExports, additionalConfig: properties, runInCI } = addons;
     const { devExports } = options;
 
     const primaryEntry = 'src/index.ts';
@@ -103,11 +93,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     ]);
     const exclude =
       excludeFromExports &&
-      Array.from(
-        new Set(
-          excludeFromExports.map((exclusion) => makeExclusion(exclusion)),
-        ),
-      );
+      Array.from(new Set(excludeFromExports.map((exclusion) => makeExclusion(exclusion))));
 
     let exports;
     if (devExports) {
@@ -217,22 +203,10 @@ export default config;
     return {
       addons: [
         blockRemoveDependencies({
-          dependencies: [
-            '@babel/cli',
-            '@babel/core',
-            '@babel/preset-typescript',
-            'babel',
-            'tsup',
-          ],
+          dependencies: ['@babel/cli', '@babel/core', '@babel/preset-typescript', 'babel', 'tsup'],
         }),
         blockRemoveFiles({
-          files: [
-            '.babelrc*',
-            'babel.config.*',
-            'dist',
-            'lib',
-            'tsup.config.*',
-          ],
+          files: ['.babelrc*', 'babel.config.*', 'dist', 'lib', 'tsup.config.*'],
         }),
         blockRemoveWorkflows({
           workflows: ['build', 'tsup'],

@@ -132,9 +132,7 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual(
-      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
-    );
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.\n\n> See here.');
   });
 
   it('parses a non-Usage h2 after full badges and a logo', async () => {
@@ -178,9 +176,7 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual(
-      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
-    );
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.\n\n> See here.');
   });
 
   it('returns existing content before a non-Usage h2 when the Usage h2 does not exist', async () => {
@@ -203,9 +199,7 @@ It is good.
 ...`),
     );
 
-    expect(actual).toEqual(
-      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
-    );
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.\n\n> See here.');
   });
 
   it('returns existing content until the end of the file when no subsequent h2 exists', async () => {
@@ -225,8 +219,6 @@ It is good.
 `),
     );
 
-    expect(actual).toEqual(
-      '## What?\n\nThis is my project.\nIt is good.\n\n> See here.',
-    );
+    expect(actual).toEqual('## What?\n\nThis is my project.\nIt is good.\n\n> See here.');
   });
 });

@@ -12,11 +12,7 @@ export const blockCodecov: BlockWithoutProps = base.createBlock({
   },
   produce({ options }) {
     const actionStep = {
-      uses: resolveUses(
-        'codecov/codecov-action',
-        'v7',
-        options.workflowsVersions,
-      ),
+      uses: resolveUses('codecov/codecov-action', 'v7', options.workflowsVersions),
       if: `success() && (matrix.os == 'ubuntu-latest')`,
       with: {
         fail_ci_if_error: true,

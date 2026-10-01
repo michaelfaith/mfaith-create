@@ -8,11 +8,8 @@ export function intakeFile(
     return undefined;
   }
 
-  const nextPathCandidates =
-    typeof filePath[0] === 'string' ? [filePath[0]] : filePath[0];
-  const nextFilePath = nextPathCandidates.find(
-    (candidate) => candidate in files,
-  );
+  const nextPathCandidates = typeof filePath[0] === 'string' ? [filePath[0]] : filePath[0];
+  const nextFilePath = nextPathCandidates.find((candidate) => candidate in files);
   if (!nextFilePath) {
     return undefined;
   }

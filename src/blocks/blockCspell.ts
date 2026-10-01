@@ -38,9 +38,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
       return undefined;
     }
 
-    const { data } = addonsSchema.safeParse(
-      JSON5.parse<unknown>(cspellJson[0]),
-    );
+    const { data } = addonsSchema.safeParse(JSON5.parse<unknown>(cspellJson[0]));
     if (!data) {
       return undefined;
     }
@@ -50,9 +48,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
   produce({ addons, options }) {
     const { ignorePaths, words } = addons;
 
-    const allWords = Array.from(
-      new Set([...(options.words ?? []), ...words]),
-    ).sort();
+    const allWords = Array.from(new Set([...(options.words ?? []), ...words])).sort();
 
     return {
       addons: [

@@ -17,22 +17,14 @@ export const mergeAllExtensions = (...extensions: Extension[]): Extension[] => {
   return Object.values(entries);
 };
 
-const mergeExtensions = (
-  a: Extension,
-  b: Extension,
-  files: string[],
-): Extension => {
+const mergeExtensions = (a: Extension, b: Extension, files: string[]): Extension => {
   return {
-    extends: Array.from(
-      new Set([...(a.extends ?? []), ...(b.extends ?? [])]),
-    ).sort(),
+    extends: Array.from(new Set([...(a.extends ?? []), ...(b.extends ?? [])])).sort(),
     files,
     languageOptions:
-      (a.languageOptions ?? b.languageOptions) &&
-      deepmerge(a.languageOptions, b.languageOptions),
+      (a.languageOptions ?? b.languageOptions) && deepmerge(a.languageOptions, b.languageOptions),
     linterOptions:
-      (a.linterOptions ?? b.linterOptions) &&
-      deepmerge(a.linterOptions, b.linterOptions),
+      (a.linterOptions ?? b.linterOptions) && deepmerge(a.linterOptions, b.linterOptions),
     plugins: (a.plugins ?? b.plugins) && deepmerge(a.plugins, b.plugins),
     rules: mergeExtensionsRules(a.rules, b.rules),
     settings: (a.settings ?? b.settings) && deepmerge(a.settings, b.settings),

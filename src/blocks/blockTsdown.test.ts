@@ -559,9 +559,7 @@ describe(blockTsdown, () => {
 
       const actual = testIntake(blockTsdown, {
         files: {
-          'tsdown.config.ts': [
-            `defineConfig(${JSON.stringify(additionalConfig)})`,
-          ],
+          'tsdown.config.ts': [`defineConfig(${JSON.stringify(additionalConfig)})`],
         },
       });
 

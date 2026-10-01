@@ -8,10 +8,7 @@ export async function readBin(
 
   return typeof bin === 'object'
     ? (Object.fromEntries(
-        Object.entries(bin).map(([key, value]) => [
-          key,
-          trimPrecedingSlash(value),
-        ]),
+        Object.entries(bin).map(([key, value]) => [key, trimPrecedingSlash(value)]),
       ) as typeof bin)
     : trimPrecedingSlash(bin);
 }

@@ -10,17 +10,13 @@ describe(readReadmeUsage, () => {
   });
 
   it('returns existing content when ## Usage is found and a next important heading is not found', async () => {
-    const actual = await readReadmeUsage(() =>
-      Promise.resolve('## Usage\n\nContents.'),
-    );
+    const actual = await readReadmeUsage(() => Promise.resolve('## Usage\n\nContents.'));
 
     expect(actual).toBe(`\n\nContents.`);
   });
 
   it('returns undefined when there is no content between ## Usage and ## Development', async () => {
-    const actual = await readReadmeUsage(() =>
-      Promise.resolve('## Usage\n\n  \n## Development'),
-    );
+    const actual = await readReadmeUsage(() => Promise.resolve('## Usage\n\n  \n## Development'));
 
     expect(actual).toBeUndefined();
   });
