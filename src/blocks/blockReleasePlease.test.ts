@@ -22,6 +22,14 @@ describe(blockReleasePlease, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/CHANGELOG.md",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "/CHANGELOG.md",
               ],
@@ -210,6 +218,14 @@ describe(blockReleasePlease, () => {
               ],
             },
             "block": "[Block CSpell]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/CHANGELOG.md",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {
@@ -423,6 +439,14 @@ describe(blockReleasePlease, () => {
               ],
             },
             "block": "[Block CSpell]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/CHANGELOG.md",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {

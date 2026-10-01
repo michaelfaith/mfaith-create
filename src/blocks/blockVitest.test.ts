@@ -235,6 +235,14 @@ describe(blockVitest, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "/coverage",
               ],
@@ -510,6 +518,14 @@ describe(blockVitest, () => {
               },
             },
             "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {
@@ -835,6 +851,14 @@ describe(blockVitest, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "/coverage",
               ],
@@ -1119,6 +1143,14 @@ describe(blockVitest, () => {
               },
             },
             "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {

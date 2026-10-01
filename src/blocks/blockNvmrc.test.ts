@@ -2,6 +2,7 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
 import { blockNvmrc } from './blockNvmrc.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
 
@@ -13,6 +14,16 @@ describe('blockNvmrc', () => {
 
     expect(creation).toEqual({
       addons: [
+        blockOxfmt({
+          overrides: [
+            {
+              files: ['.nvmrc'],
+              options: {
+                parser: 'yaml',
+              },
+            },
+          ],
+        }),
         blockPrettier({
           overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),
@@ -30,6 +41,16 @@ describe('blockNvmrc', () => {
 
     expect(creation).toEqual({
       addons: [
+        blockOxfmt({
+          overrides: [
+            {
+              files: ['.nvmrc'],
+              options: {
+                parser: 'yaml',
+              },
+            },
+          ],
+        }),
         blockPrettier({
           overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),

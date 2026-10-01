@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
 import { blockReadme } from './blockReadme.ts';
@@ -59,6 +60,7 @@ export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> =
       return {
         addons: [
           blockCspell({ words: ['RELEASEBOT'] }),
+          blockOxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
           blockPrettier({ ignores: ['/CHANGELOG.md'] }),
           ...(isScopedPackage(options.packageName)
             ? [blockPublishConfig({ access: 'public' })]

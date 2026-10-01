@@ -1,4 +1,3 @@
-import type { BlockWithProps } from './Block.ts';
 // @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
 import { parse as parsePackageName } from 'parse-package-name';
 import sortKeys from 'sort-keys';
@@ -6,6 +5,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
@@ -112,19 +112,6 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
         },
         rules: {
           'perfectionist/sort-exports': 'error',
-          'perfectionist/sort-imports': [
-            'error',
-            {
-              groups: [
-                'builtin',
-                'external',
-                ['internal', 'subpath'],
-                ['parent', 'sibling', 'index'],
-                'style',
-                'unknown',
-              ],
-            },
-          ],
           'perfectionist/sort-named-exports': 'error',
           'perfectionist/sort-named-imports': 'error',
         },

@@ -92,6 +92,14 @@ describe(blockTsdown, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/dist",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "/dist",
               ],
@@ -246,6 +254,14 @@ describe(blockTsdown, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/dist",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "/dist",
               ],
@@ -397,6 +413,14 @@ describe(blockTsdown, () => {
               },
             },
             "block": "[Block Package JSON]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/dist",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {

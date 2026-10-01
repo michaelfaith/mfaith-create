@@ -14,9 +14,9 @@ import { blockGithubIssueTemplates } from '../blocks/blockGithubIssueTemplates.t
 import { blockGithubPrTemplate } from '../blocks/blockGithubPrTemplate.ts';
 import { blockGitignore } from '../blocks/blockGitignore.ts';
 import { blockMitLicense } from '../blocks/blockMitLicense.ts';
+import { blockOxfmt } from '../blocks/blockOxfmt.ts';
 import { blockPackageJson } from '../blocks/blockPackageJson.ts';
 import { blockPnpmWorkspace } from '../blocks/blockPnpmWorkspace.ts';
-import { blockPrettier } from '../blocks/blockPrettier.ts';
 import { blockPublishConfig } from '../blocks/blockPublishConfig.ts';
 import { blockReadme } from '../blocks/blockReadme.ts';
 import { blockRemoveDependencies } from '../blocks/blockRemoveDependencies.ts';
@@ -55,7 +55,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     blockMitLicense,
     blockPackageJson,
     blockPnpmWorkspace,
-    blockPrettier,
+    blockOxfmt,
     blockPublishConfig,
     blockReadme,
     blockRemoveDependencies,

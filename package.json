@@ -25,12 +25,18 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "format": "prettier .",
+    "format": "oxfmt",
     "lint": "eslint . --max-warnings 0",
     "lint:knip": "knip",
     "lint:spelling": "cspell \"**\" \".github/**/*\"",
     "prepare": "simple-git-hooks",
     "test": "vitest"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "@typescript-eslint/typescript-estree": "^8.67.0",
@@ -100,6 +106,8 @@
     "eslint-plugin-yml": "3.8.1",
     "jiti": "2.7.0",
     "knip": "6.39.0",
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.71.0",
     "pkg-pr-new": "0.0.88",
     "prettier": "3.9.9",
     "prettier-plugin-curly": "0.4.1",
@@ -119,14 +127,14 @@
     "node": "^24.15.0 || >=26.0.0"
   },
   "publishConfig": {
-    "access": "public",
     "bin": {
       "create": "./dist/bin/index.mjs"
     },
     "exports": {
       ".": "./dist/index.mjs",
       "./package.json": "./package.json"
-    }
+    },
+    "access": "public"
   },
   "inlinedDependencies": {
     "@arethetypeswrong/core": "0.18.5",

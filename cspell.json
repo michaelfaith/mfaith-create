@@ -7,9 +7,9 @@
     "coverage",
     "dist",
     "node_modules",
+    "oxfmt.config.ts",
     "package.json",
-    "pnpm-lock.yaml",
-    "prettier.config.ts"
+    "pnpm-lock.yaml"
   ],
   "words": [
     "Anson",
