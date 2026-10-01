@@ -12,10 +12,7 @@ export const blockEslintYml: BlockWithoutProps = base.createBlock({
         blockEslint({
           extensions: [
             {
-              extends: [
-                `yml.configs['flat/standard']`,
-                `yml.configs['flat/prettier']`,
-              ],
+              extends: [`yml.configs['flat/standard']`, `yml.configs['flat/prettier']`],
               files: ['**/*.{yml,yaml}'],
               rules: {
                 'yml/file-extension': 'error',
@@ -31,10 +28,7 @@ export const blockEslintYml: BlockWithoutProps = base.createBlock({
             {
               files: ['pnpm-workspace.yaml'],
               rules: {
-                'yml/sort-keys': [
-                  'error',
-                  { order: { type: 'asc' }, pathPattern: '^.*$' },
-                ],
+                'yml/sort-keys': ['error', { order: { type: 'asc' }, pathPattern: '^.*$' }],
               },
             },
           ],

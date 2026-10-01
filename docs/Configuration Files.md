@@ -96,11 +96,7 @@ For example, this configuration file adds in `@mfaith/create`'s provided "arethe
 
 ```ts
 // mfaith-create.config.ts
-import {
-  blockAreTheTypesWrong,
-  type Config,
-  createConfig,
-} from '@mfaith/create';
+import { blockAreTheTypesWrong, type Config, createConfig } from '@mfaith/create';
 
 const config: Config = createConfig({
   refinements: {

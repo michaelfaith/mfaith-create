@@ -25,11 +25,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
   },
 });
 
-function formatContact(contact: {
-  bluesky?: string;
-  email?: string;
-  url?: string;
-}) {
+function formatContact(contact: { bluesky?: string; email?: string; url?: string }) {
   if (contact.bluesky) {
     return `on [Bluesky](https://bsky.app/profile/${contact.bluesky})`;
   } else {

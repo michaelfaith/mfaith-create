@@ -11,13 +11,10 @@ export async function readReadmeFootnotes(
     return undefined;
   }
 
-  const indexOfLastTemplatedBy = indicatorsTemplatedBy.reduce(
-    (largest, indicator) => {
-      const indexOf = indicator.exec(readme)?.index;
-      return indexOf ? Math.max(largest, indexOf) : largest;
-    },
-    0,
-  );
+  const indexOfLastTemplatedBy = indicatorsTemplatedBy.reduce((largest, indicator) => {
+    const indexOf = indicator.exec(readme)?.index;
+    return indexOf ? Math.max(largest, indexOf) : largest;
+  }, 0);
   if (!indexOfLastTemplatedBy) {
     return undefined;
   }

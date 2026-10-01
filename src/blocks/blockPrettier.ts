@@ -39,38 +39,31 @@ export interface BlockPrettierProps {
   additionalConfig?: Record<string, unknown> | undefined;
 }
 
-export const blockPrettier: BlockWithProps<BlockPrettierProps> =
-  base.createBlock({
-    about: {
-      name: 'Prettier',
-    },
-    addons: {
-      additionalConfig: z.record(z.string(), z.unknown()).optional(),
-      ignores: z.array(z.string()).default([]),
-      overrides: z.array(overrideSchema).default([]),
-      plugins: z.array(z.string()).default([]),
-      runBefore: z.array(z.string()).default([]),
-    },
-    produce({ addons }) {
-      const {
-        additionalConfig = {},
-        ignores,
-        overrides,
-        plugins,
-        runBefore,
-      } = addons;
+export const blockPrettier: BlockWithProps<BlockPrettierProps> = base.createBlock({
+  about: {
+    name: 'Prettier',
+  },
+  addons: {
+    additionalConfig: z.record(z.string(), z.unknown()).optional(),
+    ignores: z.array(z.string()).default([]),
+    overrides: z.array(overrideSchema).default([]),
+    plugins: z.array(z.string()).default([]),
+    runBefore: z.array(z.string()).default([]),
+  },
+  produce({ addons }) {
+    const { additionalConfig = {}, ignores, overrides, plugins, runBefore } = addons;
 
-      const simpleGitHooksConfigFileName = '.simple-git-hooks.js';
+    const simpleGitHooksConfigFileName = '.simple-git-hooks.js';
 
-      return {
-        addons: [
-          blockCspell({
-            ignorePaths: ['prettier.config.ts'],
-          }),
-          blockDevelopmentDocs({
-            sections: {
-              Formatting: {
-                contents: `
+    return {
+      addons: [
+        blockCspell({
+          ignorePaths: ['prettier.config.ts'],
+        }),
+        blockDevelopmentDocs({
+          sections: {
+            Formatting: {
+              contents: `
 [Prettier](https://prettier.io) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
@@ -80,106 +73,100 @@ To manually reformat all files, you can run:
 pnpm format --write
 \`\`\`
 `,
-              },
             },
-          }),
-          blockEslint({
-            extensions: [
-              {
-                files: JS_TS_FILES,
-                languageOptions: {
-                  parserOptions: {
-                    projectService: {
-                      allowDefaultProject: [simpleGitHooksConfigFileName],
-                    },
+          },
+        }),
+        blockEslint({
+          extensions: [
+            {
+              files: JS_TS_FILES,
+              languageOptions: {
+                parserOptions: {
+                  projectService: {
+                    allowDefaultProject: [simpleGitHooksConfigFileName],
                   },
                 },
               },
-            ],
-          }),
-          blockGithubActionsCi({
-            jobs: [
-              {
-                name: 'Format Check',
-                steps: [
-                  ...runBefore.map((run) => ({ run })),
-                  { run: 'pnpm run format --list-different' },
-                ],
-              },
-            ],
-          }),
-          blockPackageJson({
-            properties: {
-              devDependencies: getPackageDependencies(
-                ...plugins.filter((plugin) => !plugin.startsWith('.')),
-                'prettier',
-                'pretty-quick',
-                'simple-git-hooks',
-              ),
-              scripts: {
-                format: 'prettier .',
-                prepare: 'simple-git-hooks',
-              },
             },
-          }),
-          blockPnpmWorkspace({
-            config: {
-              allowBuilds: {
-                'simple-git-hooks': true,
-              },
+          ],
+        }),
+        blockGithubActionsCi({
+          jobs: [
+            {
+              name: 'Format Check',
+              steps: [
+                ...runBefore.map((run) => ({ run })),
+                { run: 'pnpm run format --list-different' },
+              ],
             },
-          }),
-          blockVscode({
-            extensions: ['esbenp.prettier-vscode'],
-            settings: { 'editor.defaultFormatter': 'esbenp.prettier-vscode' },
-          }),
-        ],
-        files: {
-          [simpleGitHooksConfigFileName]: `export default {
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            devDependencies: getPackageDependencies(
+              ...plugins.filter((plugin) => !plugin.startsWith('.')),
+              'prettier',
+              'pretty-quick',
+              'simple-git-hooks',
+            ),
+            scripts: {
+              format: 'prettier .',
+              prepare: 'simple-git-hooks',
+            },
+          },
+        }),
+        blockPnpmWorkspace({
+          config: {
+            allowBuilds: {
+              'simple-git-hooks': true,
+            },
+          },
+        }),
+        blockVscode({
+          extensions: ['esbenp.prettier-vscode'],
+          settings: { 'editor.defaultFormatter': 'esbenp.prettier-vscode' },
+        }),
+      ],
+      files: {
+        [simpleGitHooksConfigFileName]: `export default {
   'pre-commit': 'pnpm pretty-quick --staged',
 };`,
-          '.prettierignore': formatTextLines(
-            ['/.husky', '/pnpm-lock.yaml', ...ignores].sort(),
-          ),
-          'prettier.config.ts': `import type { Config } from 'prettier';
+        '.prettierignore': formatTextLines(['/.husky', '/pnpm-lock.yaml', ...ignores].sort()),
+        'prettier.config.ts': `import type { Config } from 'prettier';
 
 const config: Config = ${JSON.stringify(
-            sortKeys({
-              ...(overrides.length && { overrides: overrides.sort() }),
-              ...(plugins.length && { plugins: plugins.sort() }),
-              singleQuote: true,
-              ...additionalConfig,
-            }),
-          )};
+          sortKeys({
+            ...(overrides.length && { overrides: overrides.sort() }),
+            ...(plugins.length && { plugins: plugins.sort() }),
+            singleQuote: true,
+            ...additionalConfig,
+          }),
+        )};
 
 export default config;
 `,
+      },
+      scripts: [
+        {
+          commands: [...runBefore, 'pnpm run format --write'],
+          phase: CommandPhase.Format,
         },
-        scripts: [
-          {
-            commands: [...runBefore, 'pnpm run format --write'],
-            phase: CommandPhase.Format,
-          },
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveDependencies({
-            dependencies: ['eslint-config-prettier', 'eslint-plugin-prettier'],
-          }),
-          blockRemoveFiles({
-            files: [
-              '.prettierrc',
-              '.prettierrc.{c*,js,m*,t*}',
-              'prettier.config*',
-            ],
-          }),
-          blockRemoveWorkflows({
-            workflows: ['format', 'prettier'],
-          }),
-        ],
-      };
-    },
-  });
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveDependencies({
+          dependencies: ['eslint-config-prettier', 'eslint-plugin-prettier'],
+        }),
+        blockRemoveFiles({
+          files: ['.prettierrc', '.prettierrc.{c*,js,m*,t*}', 'prettier.config*'],
+        }),
+        blockRemoveWorkflows({
+          workflows: ['format', 'prettier'],
+        }),
+      ],
+    };
+  },
+});

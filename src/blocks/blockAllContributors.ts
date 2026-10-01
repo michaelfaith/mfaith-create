@@ -22,8 +22,7 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
       new Set(
         [
           options.contributors?.find(
-            (contributor) =>
-              contributor.login.toLowerCase() === options.owner.toLowerCase(),
+            (contributor) => contributor.login.toLowerCase() === options.owner.toLowerCase(),
           )?.contributions,
           startingOwnerContributions,
         ]

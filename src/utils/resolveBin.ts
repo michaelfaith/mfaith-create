@@ -16,10 +16,7 @@ export const clearCache = (): void => {
   cache.clear();
 };
 
-export const resolveBin = (
-  packageName: string,
-  binName: string = packageName,
-): string => {
+export const resolveBin = (packageName: string, binName: string = packageName): string => {
   const cacheKey = [packageName, binName].join(cacheKeyDelimiter);
   const cachedValue = cache.get(cacheKey);
   if (cachedValue) {
@@ -44,14 +41,9 @@ export const resolveBin = (
   }
 
   const packageRoot = dirname(packageJsonPath);
-  const packageJson = JSON.parse(
-    readFileSync(packageJsonPath, 'utf8'),
-  ) as PackageJson;
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as PackageJson;
 
-  const bin =
-    typeof packageJson.bin === 'string'
-      ? packageJson.bin
-      : packageJson.bin?.[binName];
+  const bin = typeof packageJson.bin === 'string' ? packageJson.bin : packageJson.bin?.[binName];
 
   if (!bin) {
     throw new Error(`Package "${packageName}" has no bin named "${binName}".`);

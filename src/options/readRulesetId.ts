@@ -15,7 +15,5 @@ export async function readRulesetId(
     },
   })) as undefined | { id: string; name: string }[];
 
-  return rulesets?.find(
-    (ruleset) => ruleset.name === 'Branch protection for main',
-  )?.id;
+  return rulesets?.find((ruleset) => ruleset.name === 'Branch protection for main')?.id;
 }

@@ -123,14 +123,8 @@ export default tseslint.config(
         rules: [
           {
             entries: {
-              '@typescript-eslint/prefer-nullish-coalescing': [
-                'error',
-                { ignorePrimitives: true },
-              ],
-              '@typescript-eslint/restrict-template-expressions': [
-                'error',
-                { allowBoolean: true },
-              ],
+              '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
+              '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true }],
             },
           },
         ],
@@ -163,14 +157,8 @@ export default tseslint.config(
         rules: [
           {
             entries: {
-              '@typescript-eslint/prefer-nullish-coalescing': [
-                'error',
-                { ignorePrimitives: true },
-              ],
-              '@typescript-eslint/restrict-template-expressions': [
-                'error',
-                { allowBoolean: true },
-              ],
+              '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
+              '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true }],
             },
           },
         ],
@@ -203,17 +191,10 @@ export default tseslint.config(
         ignores: ['dist', 'node_modules', 'pnpm-lock.yaml'],
         rules: [
           {
-            comment:
-              'These on-by-default rules work well for this repo if configured',
+            comment: 'These on-by-default rules work well for this repo if configured',
             entries: {
-              '@typescript-eslint/prefer-nullish-coalescing': [
-                'error',
-                { ignorePrimitives: true },
-              ],
-              '@typescript-eslint/restrict-template-expressions': [
-                'error',
-                { allowBoolean: true },
-              ],
+              '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
+              '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true }],
             },
           },
         ],
@@ -248,20 +229,13 @@ export default tseslint.config(
         rules: [
           {
             entries: {
-              '@typescript-eslint/restrict-template-expressions': [
-                'error',
-                { allowBoolean: true },
-              ],
+              '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true }],
             },
           },
           {
-            comment:
-              'These on-by-default rules work well for this repo if configured',
+            comment: 'These on-by-default rules work well for this repo if configured',
             entries: {
-              '@typescript-eslint/prefer-nullish-coalescing': [
-                'error',
-                { ignorePrimitives: true },
-              ],
+              '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
             },
           },
         ],
@@ -297,17 +271,10 @@ export default tseslint.config(
         ignores: ['dist'],
         rules: [
           {
-            comment:
-              'These on-by-default rules work well for this repo if configured',
+            comment: 'These on-by-default rules work well for this repo if configured',
             entries: {
-              '@typescript-eslint/prefer-nullish-coalescing': [
-                'error',
-                { ignorePrimitives: true },
-              ],
-              '@typescript-eslint/restrict-template-expressions': [
-                'error',
-                { allowBoolean: true },
-              ],
+              '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
+              '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true }],
             },
           },
         ],

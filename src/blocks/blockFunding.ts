@@ -11,8 +11,7 @@ export const blockFunding: BlockWithoutProps = base.createBlock({
     return {
       files: {
         '.github': {
-          'FUNDING.yaml':
-            options.funding && formatYaml({ github: options.funding }),
+          'FUNDING.yaml': options.funding && formatYaml({ github: options.funding }),
         },
       },
     };

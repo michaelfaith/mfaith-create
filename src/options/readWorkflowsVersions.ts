@@ -5,9 +5,7 @@ import { inputFromDirectory } from '../inputs/inputFromDirectory.ts';
 import type { WorkflowsVersions } from '../Options.ts';
 import { swallowErrorAsync } from '../utils/swallowErrorAsync.ts';
 
-export async function readWorkflowsVersions(
-  take: TakeInput,
-): Promise<WorkflowsVersions> {
+export async function readWorkflowsVersions(take: TakeInput): Promise<WorkflowsVersions> {
   const workflowsVersions: WorkflowsVersions = {};
 
   // TODO: This would be more straightforward if bingo-fs provided globbing...
@@ -26,9 +24,7 @@ export async function readWorkflowsVersions(
         });
 
         for (const compositeFileName of compositeFileNames) {
-          await collectFile(
-            `.github/actions/${compositeName}/${compositeFileName}`,
-          );
+          await collectFile(`.github/actions/${compositeName}/${compositeFileName}`);
         }
       }),
     );

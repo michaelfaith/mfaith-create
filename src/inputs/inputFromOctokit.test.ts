@@ -12,9 +12,7 @@ describe(inputFromOctokit, () => {
         endpoint: 'GET /repos/{owner}/{repo}/rulesets',
         options: {},
       },
-      fetchers: createMockFetchers(
-        vi.fn().mockResolvedValueOnce(new Response(data)),
-      ),
+      fetchers: createMockFetchers(vi.fn().mockResolvedValueOnce(new Response(data))),
     });
 
     expect(actual).toEqual(data);

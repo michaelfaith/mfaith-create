@@ -3,10 +3,7 @@ import { load } from 'js-yaml';
 
 import { intakeFile } from './intakeFile.ts';
 
-export function intakeFileAsYaml(
-  files: IntakeDirectory,
-  filePath: string[],
-): unknown {
+export function intakeFileAsYaml(files: IntakeDirectory, filePath: string[]): unknown {
   const file =
     intakeFile(files, filePath) ??
     intakeFile(files, [

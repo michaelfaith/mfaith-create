@@ -2,12 +2,7 @@ import { formatWorkflowYaml } from '../files/formatWorkflowYaml.ts';
 import { createJobName } from '../workflows/createJobName.ts';
 import type { Workflow } from './schema.ts';
 
-export function createMultiJobWorkflow({
-  concurrency,
-  jobs,
-  name,
-  on,
-}: Workflow): string {
+export function createMultiJobWorkflow({ concurrency, jobs, name, on }: Workflow): string {
   return formatWorkflowYaml({
     name,
     on,

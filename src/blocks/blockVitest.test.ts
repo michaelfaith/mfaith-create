@@ -1248,9 +1248,7 @@ describe(blockVitest, () => {
     it('returns nothing when vitest.config.ts passes invalid test data to defineConfig', () => {
       const actual = testIntake(blockVitest, {
         files: {
-          'vitest.config.ts': [
-            `defineConfig({ test: { coverage: 'invalid' } })`,
-          ],
+          'vitest.config.ts': [`defineConfig({ test: { coverage: 'invalid' } })`],
         },
         options: optionsBase,
       });

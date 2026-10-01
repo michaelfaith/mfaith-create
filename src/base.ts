@@ -46,18 +46,10 @@ export const base: Base<OptionsShape> = createBase({
   prepare({ options, take }) {
     const getAccess = lazyValue(async () => await readAccess(getPackageData));
 
-    const getAllContributors = lazyValue(
-      async () => await readAllContributors(take),
-    );
+    const getAllContributors = lazyValue(async () => await readAllContributors(take));
 
     const getAuthor = lazyValue(
-      async () =>
-        await readAuthor(
-          getPackageAuthor,
-          getNpmDefaults,
-          getGitUser,
-          options.owner,
-        ),
+      async () => await readAuthor(getPackageAuthor, getNpmDefaults, getGitUser, options.owner),
     );
 
     const getContact = lazyValue(
@@ -73,8 +65,7 @@ export const base: Base<OptionsShape> = createBase({
     const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
     const getDescription = lazyValue(
-      async () =>
-        await readDescription(getPackageData, getReadme, getRepository),
+      async () => await readDescription(getPackageData, getReadme, getRepository),
     );
 
     const getDevelopmentDocumentation = lazyValue(
@@ -96,9 +87,7 @@ export const base: Base<OptionsShape> = createBase({
         ),
     );
 
-    const getKeywords = lazyValue(
-      async () => await readKeywords(getPackageData),
-    );
+    const getKeywords = lazyValue(async () => await readKeywords(getPackageData));
 
     const getContactFromCodeOfConduct = lazyValue(
       async () => await readContactFromCodeOfConduct(take),
@@ -119,8 +108,7 @@ export const base: Base<OptionsShape> = createBase({
     const getGitDefaults = lazyValue(async () => await readGitDefaults(take));
 
     const getGitUser = lazyValue(
-      async () =>
-        await take(inputFromScript, { command: 'git config user.name' }),
+      async () => await take(inputFromScript, { command: 'git config user.name' }),
     );
 
     const getGuide = lazyValue(async () => await readGuide(take));
@@ -129,17 +117,12 @@ export const base: Base<OptionsShape> = createBase({
 
     const getPackageData = lazyValue(async () => await readPackageData(take));
 
-    const getNode = lazyValue(
-      async () => await readNode(getNvmrc, getPackageData),
-    );
+    const getNode = lazyValue(async () => await readNode(getNvmrc, getPackageData));
 
-    const getNpmDefaults = lazyValue(
-      async () => await readNpmDefaults(getNpmWhoami),
-    );
+    const getNpmDefaults = lazyValue(async () => await readNpmDefaults(getNpmWhoami));
 
     const getNpmWhoami = lazyValue(
-      async () =>
-        await take(inputFromScript, { command: 'npm whoami --offline' }),
+      async () => await take(inputFromScript, { command: 'npm whoami --offline' }),
     );
 
     const getNvmrc = lazyValue(
@@ -149,13 +132,9 @@ export const base: Base<OptionsShape> = createBase({
         }),
     );
 
-    const getOwner = lazyValue(
-      async () => await readOwner(take, getGitDefaults, getPackageAuthor),
-    );
+    const getOwner = lazyValue(async () => await readOwner(take, getGitDefaults, getPackageAuthor));
 
-    const getPackageAuthor = lazyValue(
-      async () => await readPackageAuthor(getPackageData),
-    );
+    const getPackageAuthor = lazyValue(async () => await readPackageAuthor(getPackageData));
 
     const getPackageName = lazyValue(
       async () => await readPackageName(getPackageData, getRepository, options),
@@ -163,37 +142,23 @@ export const base: Base<OptionsShape> = createBase({
 
     const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
 
-    const getReadme = lazyValue(
-      async () => await readFileSafe('README.md', ''),
-    );
+    const getReadme = lazyValue(async () => await readFileSafe('README.md', ''));
 
-    const getReadmeAdditional = lazyValue(
-      async () => await readReadmeAdditional(getReadme),
-    );
+    const getReadmeAdditional = lazyValue(async () => await readReadmeAdditional(getReadme));
 
-    const getReadmeExplainer = lazyValue(
-      async () => await readReadmeExplainer(getReadme),
-    );
+    const getReadmeExplainer = lazyValue(async () => await readReadmeExplainer(getReadme));
 
-    const getReadmeFootnotes = lazyValue(
-      async () => await readReadmeFootnotes(getReadme),
-    );
+    const getReadmeFootnotes = lazyValue(async () => await readReadmeFootnotes(getReadme));
 
-    const getReadmeUsage = lazyValue(
-      async () => await readReadmeUsage(getReadme),
-    );
+    const getReadmeUsage = lazyValue(async () => await readReadmeUsage(getReadme));
 
     const getRepository = lazyValue(
       async () => await readRepository(getGitDefaults, getPackageData, options),
     );
 
-    const getRulesetId = lazyValue(
-      async () => await readRulesetId(take, getOwner, getRepository),
-    );
+    const getRulesetId = lazyValue(async () => await readRulesetId(take, getOwner, getRepository));
 
-    const getTitle = lazyValue(
-      async () => await readTitle(getReadme, getRepository),
-    );
+    const getTitle = lazyValue(async () => await readTitle(getReadme, getRepository));
 
     const getTsdownConfig = lazyValue(async () => await readTsdownConfig(take));
 
@@ -201,9 +166,7 @@ export const base: Base<OptionsShape> = createBase({
 
     const getWords = lazyValue(async () => await readWords(take));
 
-    const getWorkflowVersions = lazyValue(
-      async () => await readWorkflowsVersions(take),
-    );
+    const getWorkflowVersions = lazyValue(async () => await readWorkflowsVersions(take));
 
     return {
       access: getAccess,

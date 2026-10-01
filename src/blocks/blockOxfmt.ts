@@ -80,11 +80,7 @@ pnpm format
         }),
         blockPackageJson({
           properties: {
-            devDependencies: getPackageDependencies(
-              'lint-staged',
-              'oxfmt',
-              'simple-git-hooks',
-            ),
+            devDependencies: getPackageDependencies('lint-staged', 'oxfmt', 'simple-git-hooks'),
             scripts: {
               format: 'oxfmt',
               prepare: 'simple-git-hooks',
@@ -116,7 +112,6 @@ const config: OxfmtConfig = defineConfig(${JSON.stringify(
           sortKeys({
             ignorePatterns: ['/pnpm-lock.yaml', ...ignorePatterns].sort(),
             ...(overrides.length && { overrides: overrides.sort() }),
-            printWidth: 80,
             singleQuote: true,
             sortImports: true,
             sortPackageJson: false,

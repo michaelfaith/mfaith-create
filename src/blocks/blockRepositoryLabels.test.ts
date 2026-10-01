@@ -573,9 +573,7 @@ describe(blockRepositoryLabels, () => {
       options: {
         ...optionsBase,
         existingLabels: [
-          ...repositoryLabels.filter(
-            (label) => !label.name.includes('documentation'),
-          ),
+          ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
           {
             color: '0075ca',
             description: 'Improvements or additions to docs 📝',
@@ -616,14 +614,12 @@ describe(blockRepositoryLabels, () => {
             {
               color: '#313131',
               name: 'autorelease: tagged',
-              description:
-                'Label for PRs created by Release Please that have already merged.',
+              description: 'Label for PRs created by Release Please that have already merged.',
             },
             {
               color: '#810bb8',
               name: 'autorelease: pending',
-              description:
-                'Label for PRs created by Release Please that have not merged yet.',
+              description: 'Label for PRs created by Release Please that have not merged yet.',
             },
           ],
         },
@@ -933,14 +929,12 @@ describe(blockRepositoryLabels, () => {
             {
               color: '#313131',
               name: 'autorelease: tagged',
-              description:
-                'Label for PRs created by Release Please that have already merged.',
+              description: 'Label for PRs created by Release Please that have already merged.',
             },
             {
               color: '#810bb8',
               name: 'autorelease: pending',
-              description:
-                'Label for PRs created by Release Please that have not merged yet.',
+              description: 'Label for PRs created by Release Please that have not merged yet.',
             },
           ],
         },
@@ -1256,23 +1250,19 @@ describe(blockRepositoryLabels, () => {
             {
               color: '#313131',
               name: 'autorelease: tagged',
-              description:
-                'Label for PRs created by Release Please that have already merged.',
+              description: 'Label for PRs created by Release Please that have already merged.',
             },
             {
               color: '#810bb8',
               name: 'autorelease: pending',
-              description:
-                'Label for PRs created by Release Please that have not merged yet.',
+              description: 'Label for PRs created by Release Please that have not merged yet.',
             },
           ],
         },
         options: {
           ...optionsBase,
           existingLabels: [
-            ...repositoryLabels.filter(
-              (label) => !label.name.includes('documentation'),
-            ),
+            ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
             {
               color: '0075ca',
               description: 'Improvements or additions to docs 📝',

@@ -5,8 +5,7 @@ export async function readTitle(
   getRepository: () => Promise<string | undefined>,
 ): Promise<string | undefined> {
   const text = await getReadme();
-  const fromText = (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??
-    /^# (.+)/.exec(text))?.[1];
+  const fromText = (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ?? /^# (.+)/.exec(text))?.[1];
   if (fromText) {
     return fromText;
   }

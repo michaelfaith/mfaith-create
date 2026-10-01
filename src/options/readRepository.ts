@@ -2,17 +2,13 @@ import type { GitUrl } from 'git-url-parse';
 
 import type { PartialPackageData } from '../types.ts';
 
-const repositoryRegex =
-  /^(?:git\+)?https:\/\/github\.com\/[^/]+\/(.+?)(?:\.git)?$/;
+const repositoryRegex = /^(?:git\+)?https:\/\/github\.com\/[^/]+\/(.+?)(?:\.git)?$/;
 
 const getRepositoryFromPackageData = async (
   getPackageData: () => Promise<PartialPackageData>,
 ): Promise<string | undefined> => {
   const packageData = await getPackageData();
-  if (
-    typeof packageData.repository === 'object' &&
-    packageData.repository.url
-  ) {
+  if (typeof packageData.repository === 'object' && packageData.repository.url) {
     return repositoryRegex.exec(packageData.repository.url)?.[1];
   }
 

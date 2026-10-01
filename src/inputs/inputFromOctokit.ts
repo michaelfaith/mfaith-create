@@ -6,10 +6,7 @@ export interface InputFromOctokitArgs extends AnyShape {
   options: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
 }
 
-export const inputFromOctokit: InputWithArgs<
-  Promise<unknown>,
-  InputFromOctokitArgs
-> = createInput({
+export const inputFromOctokit: InputWithArgs<Promise<unknown>, InputFromOctokitArgs> = createInput({
   args: {
     endpoint: z.string(),
     options: z.record(z.string(), z.unknown()).optional(),

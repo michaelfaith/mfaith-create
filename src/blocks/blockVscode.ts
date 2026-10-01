@@ -72,9 +72,7 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
             : undefined,
           'launch.json': debuggers?.length
             ? JSON.stringify({
-                configurations: [...debuggers].sort((a, b) =>
-                  a.name.localeCompare(b.name),
-                ),
+                configurations: [...debuggers].sort((a, b) => a.name.localeCompare(b.name)),
                 version: '0.2.0',
               })
             : undefined,

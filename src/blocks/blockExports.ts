@@ -11,44 +11,42 @@ export interface BlockExportsProps {
   srcFilePath?: string;
 }
 
-export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock(
-  {
-    about: {
-      name: 'Exports',
-    },
-    addons: {
-      filePath: z.string().default('./dist/index.mjs'),
-      srcFilePath: z.string().default('./src/index.ts'),
-    },
-    produce({ addons, options }) {
-      const { filePath, srcFilePath } = addons;
-      const { devExports } = options;
-
-      const exportFilePath = devExports ? srcFilePath : filePath;
-      const publishConfigExportFilePath = devExports ? filePath : undefined;
-
-      return {
-        addons: [
-          blockPackageJson({
-            properties: {
-              exports: {
-                '.': makeRelativePath(exportFilePath),
-                './package.json': './package.json',
-              },
-            },
-          }),
-          ...(publishConfigExportFilePath
-            ? [
-                blockPublishConfig({
-                  exports: {
-                    '.': makeRelativePath(publishConfigExportFilePath),
-                    './package.json': './package.json',
-                  },
-                }),
-              ]
-            : []),
-        ],
-      };
-    },
+export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock({
+  about: {
+    name: 'Exports',
   },
-);
+  addons: {
+    filePath: z.string().default('./dist/index.mjs'),
+    srcFilePath: z.string().default('./src/index.ts'),
+  },
+  produce({ addons, options }) {
+    const { filePath, srcFilePath } = addons;
+    const { devExports } = options;
+
+    const exportFilePath = devExports ? srcFilePath : filePath;
+    const publishConfigExportFilePath = devExports ? filePath : undefined;
+
+    return {
+      addons: [
+        blockPackageJson({
+          properties: {
+            exports: {
+              '.': makeRelativePath(exportFilePath),
+              './package.json': './package.json',
+            },
+          },
+        }),
+        ...(publishConfigExportFilePath
+          ? [
+              blockPublishConfig({
+                exports: {
+                  '.': makeRelativePath(publishConfigExportFilePath),
+                  './package.json': './package.json',
+                },
+              }),
+            ]
+          : []),
+      ],
+    };
+  },
+});

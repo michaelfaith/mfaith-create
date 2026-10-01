@@ -29,9 +29,7 @@ export const blockRepositoryVariables: BlockWithProps<BlockRepositoryVariablesPr
       return {
         suggestions: getInstallationSuggestions(
           'populate the variable',
-          addons.variables.map(
-            (variable) => `${variable.name} (${variable.description})`,
-          ),
+          addons.variables.map((variable) => `${variable.name} (${variable.description})`),
           `https://github.com/${options.owner}/${options.repository}/settings/variables/actions`,
         ),
       };

@@ -35,8 +35,7 @@ import type { OptionsShape } from '../Options.ts';
 
 export const presetMinimal: Preset<OptionsShape> = base.createPreset({
   about: {
-    description:
-      'Just bare starter tooling: building, formatting, linting, and type checking.',
+    description: 'Just bare starter tooling: building, formatting, linting, and type checking.',
     name: 'Minimal',
   },
   blocks: [

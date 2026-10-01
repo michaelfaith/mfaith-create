@@ -13,10 +13,7 @@ export async function readContactFromCodeOfConduct(
     filePath: '.github/CODE_OF_CONDUCT.md',
   });
 
-  if (
-    typeof codeOfConduct !== 'string' ||
-    !codeOfConduct.includes('# Code of Conduct')
-  ) {
+  if (typeof codeOfConduct !== 'string' || !codeOfConduct.includes('# Code of Conduct')) {
     return undefined;
   }
 

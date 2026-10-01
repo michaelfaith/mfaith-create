@@ -3,8 +3,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 
-export const stylisticComment =
-  "Stylistic concerns that don't interfere with Prettier";
+export const stylisticComment = "Stylistic concerns that don't interfere with Prettier";
 
 export const blockEslintMoreStyling: BlockWithoutProps = base.createBlock({
   about: {

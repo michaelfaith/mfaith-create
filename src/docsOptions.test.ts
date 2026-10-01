@@ -28,9 +28,7 @@ describe('Docs: Options', () => {
       ).flat(),
     );
 
-    const missingOptions = Object.keys(base.options).filter(
-      (key) => !existingOptions.has(key),
-    );
+    const missingOptions = Object.keys(base.options).filter((key) => !existingOptions.has(key));
 
     expect(missingOptions).toEqual([]);
   });
