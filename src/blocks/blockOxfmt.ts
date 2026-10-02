@@ -149,9 +149,6 @@ export default config;
             'prettier.config*',
           ],
         }),
-        blockRemoveWorkflows({
-          workflows: ['format', 'prettier'],
-        }),
       ],
     };
   },
