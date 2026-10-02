@@ -6,7 +6,6 @@ import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockEslint } from './blockEslint.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
@@ -14,7 +13,6 @@ import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVscode } from './blockVscode.ts';
-import { JS_TS_FILES } from './eslint/globs.ts';
 import { formatTextLines } from './files/formatTextLines.ts';
 import { CommandPhase } from './phases.ts';
 
@@ -53,8 +51,6 @@ export const blockPrettier: BlockWithProps<BlockPrettierProps> = base.createBloc
   produce({ addons }) {
     const { additionalConfig = {}, ignores, overrides, plugins, runBefore } = addons;
 
-    const simpleGitHooksConfigFileName = '.simple-git-hooks.js';
-
     return {
       addons: [
         blockCspell({
@@ -75,20 +71,6 @@ pnpm format --write
 `,
             },
           },
-        }),
-        blockEslint({
-          extensions: [
-            {
-              files: JS_TS_FILES,
-              languageOptions: {
-                parserOptions: {
-                  projectService: {
-                    allowDefaultProject: [simpleGitHooksConfigFileName],
-                  },
-                },
-              },
-            },
-          ],
         }),
         blockGithubActionsCi({
           jobs: [
@@ -113,6 +95,9 @@ pnpm format --write
               format: 'prettier .',
               prepare: 'simple-git-hooks',
             },
+            'simple-git-hooks': {
+              'pre-commit': 'pnpm pretty-quick --staged',
+            },
           },
         }),
         blockPnpmWorkspace({
@@ -128,9 +113,6 @@ pnpm format --write
         }),
       ],
       files: {
-        [simpleGitHooksConfigFileName]: `export default {
-  'pre-commit': 'pnpm pretty-quick --staged',
-};`,
         '.prettierignore': formatTextLines(['/.husky', '/pnpm-lock.yaml', ...ignores].sort()),
         'prettier.config.ts': `import type { Config } from 'prettier';
 

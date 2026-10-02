@@ -361,15 +361,6 @@ describe(blockOxfmt, () => {
             },
             "block": "[Block Remove Files]",
           },
-          {
-            "addons": {
-              "workflows": [
-                "format",
-                "prettier",
-              ],
-            },
-            "block": "[Block Remove Workflows]",
-          },
         ],
         "files": {
           "oxfmt.config.ts": "import { defineConfig, type OxfmtConfig } from 'oxfmt';
