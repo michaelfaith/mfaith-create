@@ -40,7 +40,7 @@ describe(blockVscode, () => {
           ".vscode": {
             "extensions.json": undefined,
             "launch.json": undefined,
-            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
+            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[100]}",
             "tasks.json": undefined,
           },
         },
@@ -88,7 +88,7 @@ describe(blockVscode, () => {
           ".vscode": {
             "extensions.json": undefined,
             "launch.json": undefined,
-            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
+            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[100]}",
             "tasks.json": undefined,
           },
         },
@@ -167,8 +167,24 @@ describe(blockVscode, () => {
           ".vscode": {
             "extensions.json": "{"recommendations":["dbaeumer.vscode-eslint","esbenp.prettier-vscode","streetsidesoftware.code-spell-checker","vitest.explorer","webpro.vscode-knip"]}",
             "launch.json": "{"configurations":[{"name":"fake-debugger","other":false},{"name":"other-debugger","other":true}],"version":"0.2.0"}",
-            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
-            "tasks.json": "{"tasks":[{"detail":"Build the project","label":"build","script":"build","type":"npm"},{"detail":"Test the project","label":"test","script":"test","type":"npm"}],"version":"2.0.0"}",
+            "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[100]}",
+            "tasks.json": "{
+        "tasks": [
+          {
+            "detail": "Build the project",
+            "label": "build",
+            "script": "build",
+            "type": "npm"
+          },
+          {
+            "detail": "Test the project",
+            "label": "test",
+            "script": "test",
+            "type": "npm"
+          }
+        ],
+        "version": "2.0.0"
+      }",
           },
         },
       }

@@ -292,7 +292,7 @@ function printExtension(extension: Extension): string {
     extension.extends && `extends: [${extension.extends.join(', ')}],`,
     `files: [${extension.files.map((glob) => JSON.stringify(glob)).join(', ')}],`,
     extension.languageOptions &&
-      `languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', 'import.meta.dirname')},`,
+      `languageOptions: ${JSON.stringify(extension.languageOptions, null, 2).replace('"import.meta.dirname"', 'import.meta.dirname')},`,
     extension.linterOptions &&
       `linterOptions: ${JSON.stringify(extension.linterOptions)}`,
     extension.plugins && `plugins: ${printPlugins(extension.plugins)},`,
@@ -302,7 +302,7 @@ function printExtension(extension: Extension): string {
     '}',
   ]
     .filter(Boolean)
-    .join(' ');
+    .join('\n');
 }
 
 function printExtensionRules(rules: ExtensionRules): string {

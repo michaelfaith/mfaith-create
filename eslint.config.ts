@@ -48,7 +48,9 @@ const config: ConfigObject[] = defineConfig(
     files: ['**/*.js', '**/*.ts'],
     languageOptions: {
       parserOptions: {
-        projectService: { allowDefaultProject: ['*.config.*s'] },
+        projectService: {
+          allowDefaultProject: ['*.config.*s'],
+        },
       },
     },
     plugins: { perfectionist },

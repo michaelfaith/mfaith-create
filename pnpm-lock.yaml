@@ -290,9 +290,6 @@ importers:
       '@eslint/markdown':
         specifier: 8.0.3
         version: 8.0.3(supports-color@7.2.0)
-      '@prettier/sync':
-        specifier: 0.6.1
-        version: 0.6.1(prettier@3.9.9)
       '@types/html-to-text':
         specifier: 9.0.4
         version: 9.0.4
@@ -324,8 +321,8 @@ importers:
         specifier: 0.5.14
         version: 0.5.14(bingo-fs@0.6.0)(bingo-stratum@0.7.1(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.0)(zod@4.6.5))(bingo-systems@0.7.0)(bingo@0.13.0)
       bingo-testers:
-        specifier: 0.7.0
-        version: 0.7.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.0)
+        specifier: 0.8.0
+        version: 0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.0)
       console-fail-test:
         specifier: 0.9.0
         version: 0.9.0
@@ -1326,11 +1323,6 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@prettier/sync@0.6.1':
-    resolution: {integrity: sha512-yF9G8vK/LYUTF3Cijd7VC9La3b20F20/J/fgoR4H0B8JGOWnZVZX6+I6+vODPosjmMcpdlUV+gUqJQZp3kLOcw==}
-    peerDependencies:
-      prettier: '*'
-
   '@quansync/fs@1.1.0':
     resolution: {integrity: sha512-qAPG/t3HqML1TlN7sY/pTbEjzFVAKsMjNNMGheyDosro+kT4iw2KCUoHcVdmliwWjorm4elZbgNQyU2eD97eDg==}
 
@@ -1981,11 +1973,11 @@ packages:
     resolution: {integrity: sha512-Aw5dokVSssSagrVcib9dfVYobp0h/pJKb5m+PhCkAjYkzgGiEN4E56uBVeB42rMAedg7/hxvhFsCsH6wthrDFw==}
     engines: {node: '>=22'}
 
-  bingo-testers@0.7.0:
-    resolution: {integrity: sha512-NtmtP/HMJvTs+XFxS9VLqHfzNPMxwapROyDgHlY+cZzSKZfA1gzfedZZFNRNfzViY4FjldPK/4Y9S0aP5OIJfA==}
+  bingo-testers@0.8.0:
+    resolution: {integrity: sha512-B8hQ2zQas/pOejrVCSlHJR+rYxFlkTWYZQwT+Gcbefm07y4R8AUThmPUL6V3DoKwwedfZA/DtJqbmslRaAuixw==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.13.0
+      bingo: ^0.13.1
       bingo-fs: ^0.6.0
       bingo-systems: ^0.7.0
 
@@ -2969,9 +2961,6 @@ packages:
 
   magicast@0.5.5:
     resolution: {integrity: sha512-UicdXN8zQ3JHlxVq+28afMXPr1z7WNY6+7EJnzTdQWkTAlMLF5fNCCKxJHBQwGaNGR11581EiQmQzx73+MvszA==}
-
-  make-synchronized@0.8.0:
-    resolution: {integrity: sha512-DZu4lwc0ffoFz581BSQa/BJl+1ZqIkoRQ+VejMlH0VrP4E86StAODnZujZ4sepumQj8rcP7wUnUBGM8Gu+zKUA==}
 
   markdown-it@14.3.2:
     resolution: {integrity: sha512-sHHjZ5fJKlgrG4qns2YwVcdNep35h5fERrfkD2YNsb9UFk0UIHarbiTaHKVMlPuWAoiilyK8Fv/jAm11slsY7Q==}
@@ -4941,11 +4930,6 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@prettier/sync@0.6.1(prettier@3.9.9)':
-    dependencies:
-      make-synchronized: 0.8.0
-      prettier: 3.9.9
-
   '@quansync/fs@1.1.0':
     dependencies:
       quansync: 1.0.0
@@ -5506,7 +5490,7 @@ snapshots:
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.7.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.0):
+  bingo-testers@0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.0):
     dependencies:
       '@vitest/utils': 4.1.11
       all-properties-lazy: 0.1.0
@@ -6549,8 +6533,6 @@ snapshots:
       '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
       source-map-js: 1.2.1
-
-  make-synchronized@0.8.0: {}
 
   markdown-it@14.3.2:
     dependencies:

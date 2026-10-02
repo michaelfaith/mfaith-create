@@ -5,6 +5,7 @@ const config: KnipConfig = {
   ignoreDependencies: [
     'all-contributors-cli',
     'cspell-populate-words',
+    'prettier',
     'prettier-plugin-curly',
     'prettier-plugin-packagejson',
     'prettier-plugin-padding-lines',

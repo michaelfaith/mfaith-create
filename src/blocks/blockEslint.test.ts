@@ -119,7 +119,22 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -270,7 +285,22 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -437,7 +467,31 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["generated", "node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{
+      extends: [a.configs.recommended],
+      files: ["**/*.a"],
+      rules: {"a/b":"error","a/c":["error",{"d":"e"}]},
+      },{
+      extends: [b.configs.recommended],
+      files: ["**/*.b"],
+      rules: {"b/c":"error","b/d":["error",{"e":"f"}]},
+      settings: {"react":{"version":"detect"}},
+      },{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -592,13 +646,32 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [], files: ["**/*.js"], rules: {
+      	{
+      extends: [],
+      files: ["**/*.js"],
+      rules: {
 
       // Duplicated comment
       'a': "error",'c': "error",'d': "error",'f': "error",
 
       // Standalone comment
-      'b': "error",'e': "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      'b': "error",'e': "error",},
+      },{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -736,7 +809,9 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ files: ["**/*.js"], rules: {
+      	{
+      files: ["**/*.js"],
+      rules: {
 
       // One line
       'a': "error",
@@ -748,7 +823,23 @@ describe(blockEslint, () => {
       // Three lines
       // three lines
       // three lines
-      'a': "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      'a': "error",},
+      },{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -894,7 +985,32 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {'plugin-a-key': plugin-a-value,import: importPlugin,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{
+      extends: [a.configs.recommended],
+      files: ["**/*.a"],
+      languageOptions: {
+        "languageOption": true
+      },
+      linterOptions: {"linterOption":true}
+      plugins: {'plugin-a-key': plugin-a-value,import: importPlugin,},
+      rules: {"a/b":"error"},
+      settings: {"react":{"version":"detect"}},
+      },{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
@@ -1039,7 +1155,32 @@ describe(blockEslint, () => {
       const config: ConfigObject[] = defineConfig(
       	globalIgnores( ["node_modules", "pnpm-lock.yaml"], 'Global Ignores' ),
       	{ linterOptions: { reportUnusedDisableDirectives: 'error' } },
-      	{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} plugins: {'plugin-a-key': plugin-a-value,}, rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, plugins: {perfectionist,}, rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"}, settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}}, }
+      	{
+      extends: [a.configs.recommended],
+      files: ["**/*.a"],
+      languageOptions: {
+        "languageOption": true
+      },
+      linterOptions: {"linterOption":true}
+      plugins: {'plugin-a-key': plugin-a-value,},
+      rules: {"a/b":"error"},
+      settings: {"react":{"version":"detect"}},
+      },{
+      extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+      files: ["**/*.js", "**/*.ts"],
+      languageOptions: {
+        "parserOptions": {
+          "projectService": {
+            "allowDefaultProject": [
+              "*.config.*s"
+            ]
+          }
+        }
+      },
+      plugins: {perfectionist,},
+      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
+      }
       );
 
       export default config;
