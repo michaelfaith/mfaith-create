@@ -44,6 +44,8 @@ export {
   blockExports,
   type BlockExportsProps,
   blockFunding,
+  blockGitattributes,
+  type BlockGitattributesProps,
   blockGithubActionsCi,
   type BlockGithubActionsCiProps,
   blockGithubIssueTemplates,

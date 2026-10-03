@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { formatIgnoreFile } from './files/formatIgnoreFile.ts';
+import { formatTextLines } from './files/formatTextLines.ts';
 
 export interface BlockGitignoreProps {
   ignores?: string[];
@@ -21,7 +21,7 @@ export const blockGitignore: BlockWithProps<BlockGitignoreProps> =
 
       return {
         files: {
-          '.gitignore': formatIgnoreFile(['/node_modules', ...ignores].sort()),
+          '.gitignore': formatTextLines(['/node_modules', ...ignores].sort()),
         },
       };
     },

@@ -15,7 +15,7 @@ import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVscode } from './blockVscode.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
-import { formatIgnoreFile } from './files/formatIgnoreFile.ts';
+import { formatTextLines } from './files/formatTextLines.ts';
 import { CommandPhase } from './phases.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
@@ -138,7 +138,7 @@ pnpm format --write
           [simpleGitHooksConfigFileName]: `export default {
   'pre-commit': 'pnpm pretty-quick --staged',
 };`,
-          '.prettierignore': formatIgnoreFile(
+          '.prettierignore': formatTextLines(
             ['/.husky', '/pnpm-lock.yaml', ...ignores].sort(),
           ),
           'prettier.config.ts': `import type { Config } from 'prettier';
