@@ -54,9 +54,7 @@ describe(readExistingLabels, () => {
   });
 
   it("returns the repository's labels when owner and repository are defined and the GET call succeeds", async () => {
-    const labels = [
-      { color: 'ffffff', description: 'Welcome!', name: 'good first issue' },
-    ];
+    const labels = [{ color: 'ffffff', description: 'Welcome!', name: 'good first issue' }];
     const take = vi.fn().mockResolvedValueOnce(labels);
 
     const actual = await readExistingLabels(

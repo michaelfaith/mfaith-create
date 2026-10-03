@@ -25,16 +25,11 @@ export async function readDescription(
 
   // If the package.json is @mfaith/create's but the repository isn't,
   // we're almost certainly in transition mode after cloning the template.
-  if (
-    (await getRepository()) !== 'mfaith-create' &&
-    fromPackageJson === packageData.description
-  ) {
+  if ((await getRepository()) !== 'mfaith-create' && fromPackageJson === packageData.description) {
     return undefined;
   }
 
-  const fromPackageJsonNormalized = htmlToTextSafe(
-    await marked.parseInline(fromPackageJson),
-  );
+  const fromPackageJsonNormalized = htmlToTextSafe(await marked.parseInline(fromPackageJson));
   const fromReadmeNormalized = htmlToTextSafe(fromReadme);
 
   // If the package.json and README.md don't match, we prefer the package.json,

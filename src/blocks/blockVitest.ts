@@ -90,18 +90,14 @@ export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
   intake({ files, options }) {
     return {
       ...intakeFromConfig(files),
-      flags: options.packageData?.scripts?.test
-        ?.match(/^vitest (.+)/)?.[1]
-        .split(' '),
+      flags: options.packageData?.scripts?.test?.match(/^vitest (.+)/)?.[1].split(' '),
     };
   },
   produce({ addons, options }) {
     const { actionSteps, coverage, environment, exclude, permissions } = addons;
     const { node } = options;
 
-    const excludeText = JSON.stringify(
-      Array.from(new Set(['node_modules', ...exclude])).sort(),
-    );
+    const excludeText = JSON.stringify(Array.from(new Set(['node_modules', ...exclude])).sort());
 
     const nodeVersions = getNodeMatrixVersions(node.supported);
 

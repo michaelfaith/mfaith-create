@@ -1,10 +1,7 @@
 import type { InferredObject } from 'bingo';
 import { z } from 'zod';
 
-const accessSchema: z.ZodType<Access> = z.union([
-  z.literal('public'),
-  z.literal('restricted'),
-]);
+const accessSchema: z.ZodType<Access> = z.union([z.literal('public'), z.literal('restricted')]);
 export type Access = 'public' | 'restricted';
 
 const authorSchema: z.ZodType<string> = z.string();
@@ -168,17 +165,11 @@ const workflowsVersionsSchema: z.ZodType<WorkflowsVersions> = z.record(
 export type WorkflowsVersions = Record<string, WorkflowVersions>;
 
 export const optionsShape: OptionsShape = {
-  access: accessSchema.describe(
-    'which `npm publish --access` to release npm packages with',
-  ),
-  author: authorSchema
-    .optional()
-    .describe('username on npm to publish packages under'),
+  access: accessSchema.describe('which `npm publish --access` to release npm packages with'),
+  author: authorSchema.optional().describe('username on npm to publish packages under'),
   contact: contactSchema
     .transform((email) => (typeof email === 'string' ? { email } : email))
-    .describe(
-      'contact information to be listed as the point of contact in docs and packages',
-    ),
+    .describe('contact information to be listed as the point of contact in docs and packages'),
   contributors: contributorsSchema
     .optional()
     .describe('AllContributors contributors to store in .all-contributorsrc'),
@@ -191,12 +182,8 @@ export const optionsShape: OptionsShape = {
       'whether or not to generate dev exports and use `publishConfig` for exports and bin entries',
     ),
   directory: directorySchema.describe('Directory to create the repository in'),
-  documentation: documentationSchema.describe(
-    'additional docs to add to .md files',
-  ),
-  emoji: emojiSchema
-    .optional()
-    .describe('decorative emoji to use in descriptions and docs'),
+  documentation: documentationSchema.describe('additional docs to add to .md files'),
+  emoji: emojiSchema.optional().describe('decorative emoji to use in descriptions and docs'),
   existingLabels: existingLabelsSchema
     .optional()
     .describe('existing labels from the GitHub repository'),
@@ -206,33 +193,21 @@ export const optionsShape: OptionsShape = {
     .describe('GitHub organization or username to mention in `funding.yaml`'),
   guide: guideLinkSchema
     .optional()
-    .describe(
-      'link to a contribution guide to place at the top of development docs',
-    ),
+    .describe('link to a contribution guide to place at the top of development docs'),
   keywords: keywordsSchema
     .optional()
     .describe('any number of keywords to include in `package.json`'),
   logo: logoSchema
     .optional()
-    .describe(
-      'local image file and alt text to display near the top of the README.md',
-    ),
-  node: nodeVersionsSchema.describe(
-    'Node.js engine version(s) to pin and support',
-  ),
+    .describe('local image file and alt text to display near the top of the README.md'),
+  node: nodeVersionsSchema.describe('Node.js engine version(s) to pin and support'),
   owner: ownerSchema.describe('organization or user owning the repository'),
   packageData: packageDataSchema
     .optional()
     .describe('additional properties to include in `package.json`'),
-  packageName: packageNameSchema
-    .optional()
-    .describe('name of the package to publish to npm'),
-  pnpm: pnpmSchema
-    .optional()
-    .describe("pnpm version for package.json's packageManager field"),
-  repository: repositorySchema.describe(
-    "'kebab-case' or 'PascalCase' title of the repository",
-  ),
+  packageName: packageNameSchema.optional().describe('name of the package to publish to npm'),
+  pnpm: pnpmSchema.optional().describe("pnpm version for package.json's packageManager field"),
+  repository: repositorySchema.describe("'kebab-case' or 'PascalCase' title of the repository"),
   rulesetId: rulesetIdSchema
     .optional()
     .describe('GitHub branch ruleset ID for main branch protections'),
@@ -240,9 +215,7 @@ export const optionsShape: OptionsShape = {
   version: versionSchema
     .optional()
     .describe('package version to publish as and store in `package.json`'),
-  words: wordsSchema
-    .optional()
-    .describe('additional words to add to the CSpell dictionary'),
+  words: wordsSchema.optional().describe('additional words to add to the CSpell dictionary'),
   workflowsVersions: workflowsVersionsSchema
     .optional()
     .describe('existing versions of GitHub Actions workflows used'),

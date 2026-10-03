@@ -8,24 +8,23 @@ export interface BlockGitattributesProps {
   additionalAttributes?: string[];
 }
 
-export const blockGitattributes: BlockWithProps<BlockGitattributesProps> =
-  base.createBlock({
-    about: {
-      name: 'Gitattributes',
-      description: 'Adds a .gitattributes file to the project.',
-    },
-    addons: {
-      additionalAttributes: z.array(z.string()).default([]),
-    },
-    produce({ addons }) {
-      const { additionalAttributes } = addons;
+export const blockGitattributes: BlockWithProps<BlockGitattributesProps> = base.createBlock({
+  about: {
+    name: 'Gitattributes',
+    description: 'Adds a .gitattributes file to the project.',
+  },
+  addons: {
+    additionalAttributes: z.array(z.string()).default([]),
+  },
+  produce({ addons }) {
+    const { additionalAttributes } = addons;
 
-      return {
-        files: {
-          '.gitattributes': `# Enforce LF endings globally across all text files on any OS
+    return {
+      files: {
+        '.gitattributes': `# Enforce LF endings globally across all text files on any OS
 * text=auto eol=lf
 ${additionalAttributes.length ? formatTextLines(['\n# Additional attributes', ...additionalAttributes]) : ''}`,
-        },
-      };
-    },
-  });
+      },
+    };
+  },
+});

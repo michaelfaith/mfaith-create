@@ -13,24 +13,23 @@ import { presetCommon } from './presets/common.ts';
 import { presetEverything } from './presets/everything.ts';
 import { presetMinimal } from './presets/minimal.ts';
 
-export const template: StratumTemplate<OptionsShape> =
-  base.createStratumTemplate({
-    about: {
-      name: '@mfaith/create',
-      repository: {
-        owner: 'michaelfaith',
-        repository: 'mfaith-create',
-      },
+export const template: StratumTemplate<OptionsShape> = base.createStratumTemplate({
+  about: {
+    name: '@mfaith/create',
+    repository: {
+      owner: 'michaelfaith',
+      repository: 'mfaith-create',
     },
-    blocks: [
-      blockAreTheTypesWrong,
-      blockRepoTransitions,
-      blockEslintPlugin,
-      blockNcc,
-      blockRemoveDependencies,
-      blockRemoveFiles,
-      blockWebExt,
-    ],
-    presets: [presetMinimal, presetCommon, presetEverything],
-    suggested: presetCommon,
-  });
+  },
+  blocks: [
+    blockAreTheTypesWrong,
+    blockRepoTransitions,
+    blockEslintPlugin,
+    blockNcc,
+    blockRemoveDependencies,
+    blockRemoveFiles,
+    blockWebExt,
+  ],
+  presets: [presetMinimal, presetCommon, presetEverything],
+  suggested: presetCommon,
+});

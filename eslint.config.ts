@@ -56,10 +56,7 @@ const config: ConfigObject[] = defineConfig(
     plugins: { perfectionist },
     rules: {
       // These on-by-default rules work well for this repo
-      '@typescript-eslint/prefer-nullish-coalescing': [
-        'error',
-        { ignorePrimitives: true },
-      ],
+      '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
       '@typescript-eslint/restrict-template-expressions': [
         'error',
         { allowBoolean: true, allowNullish: true, allowNumber: true },
@@ -72,11 +69,7 @@ const config: ConfigObject[] = defineConfig(
       '@typescript-eslint/explicit-module-boundary-types': 'error',
 
       // Stylistic concerns that don't interfere with Prettier
-      'logical-assignment-operators': [
-        'error',
-        'always',
-        { enforceForIfStatements: true },
-      ],
+      'logical-assignment-operators': ['error', 'always', { enforceForIfStatements: true }],
       'no-useless-rename': 'error',
       'object-shorthand': 'error',
       'operator-assignment': 'error',
@@ -117,10 +110,7 @@ const config: ConfigObject[] = defineConfig(
     files: ['**/*.{yml,yaml}'],
     rules: {
       'yml/file-extension': 'error',
-      'yml/sort-sequence-values': [
-        'error',
-        { order: { type: 'asc' }, pathPattern: '^.*$' },
-      ],
+      'yml/sort-sequence-values': ['error', { order: { type: 'asc' }, pathPattern: '^.*$' }],
     },
   },
   {
@@ -129,12 +119,7 @@ const config: ConfigObject[] = defineConfig(
   },
   {
     files: ['pnpm-workspace.yaml'],
-    rules: {
-      'yml/sort-keys': [
-        'error',
-        { order: { type: 'asc' }, pathPattern: '^.*$' },
-      ],
-    },
+    rules: { 'yml/sort-keys': ['error', { order: { type: 'asc' }, pathPattern: '^.*$' }] },
   },
 );
 

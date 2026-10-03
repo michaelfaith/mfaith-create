@@ -3,10 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { WorkflowJob } from '../blocks/workflows/schema.ts';
 import { getAllPossibleJobNames } from './getAllPossibleJobNames.ts';
 
-const createJob = (
-  name: string,
-  strategy?: WorkflowJob['strategy'],
-): WorkflowJob => ({
+const createJob = (name: string, strategy?: WorkflowJob['strategy']): WorkflowJob => ({
   name,
   steps: [],
   strategy,
@@ -66,9 +63,7 @@ describe(getAllPossibleJobNames, () => {
       matrix: { os: ['ubuntu'] },
     });
 
-    expect(getAllPossibleJobNames(job)).toEqual([
-      'ubuntu / ${{ matrix.node }}',
-    ]);
+    expect(getAllPossibleJobNames(job)).toEqual(['ubuntu / ${{ matrix.node }}']);
   });
 
   it('deduplicates names when an axis is not used in the job name', () => {

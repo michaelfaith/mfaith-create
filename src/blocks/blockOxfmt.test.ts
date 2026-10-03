@@ -107,7 +107,7 @@ describe(blockOxfmt, () => {
         "files": {
           "oxfmt.config.ts": "import { defineConfig, type OxfmtConfig } from 'oxfmt';
 
-      const config: OxfmtConfig = defineConfig({"ignorePatterns":["/pnpm-lock.yaml"],"printWidth":80,"singleQuote":true,"sortImports":true,"sortPackageJson":false});
+      const config: OxfmtConfig = defineConfig({"ignorePatterns":["/pnpm-lock.yaml"],"singleQuote":true,"sortImports":true,"sortPackageJson":false});
 
       export default config;
       ",
@@ -228,7 +228,7 @@ describe(blockOxfmt, () => {
         "files": {
           "oxfmt.config.ts": "import { defineConfig, type OxfmtConfig } from 'oxfmt';
 
-      const config: OxfmtConfig = defineConfig({"arrowParens":"avoid","ignorePatterns":["/pnpm-lock.yaml","generated"],"overrides":[{"files":[".nvmrc"],"options":{"parser":"yaml"}}],"printWidth":80,"singleQuote":true,"sortImports":true,"sortPackageJson":false});
+      const config: OxfmtConfig = defineConfig({"arrowParens":"avoid","ignorePatterns":["/pnpm-lock.yaml","generated"],"overrides":[{"files":[".nvmrc"],"options":{"parser":"yaml"}}],"singleQuote":true,"sortImports":true,"sortPackageJson":false});
 
       export default config;
       ",
@@ -374,7 +374,7 @@ describe(blockOxfmt, () => {
         "files": {
           "oxfmt.config.ts": "import { defineConfig, type OxfmtConfig } from 'oxfmt';
 
-      const config: OxfmtConfig = defineConfig({"ignorePatterns":["/pnpm-lock.yaml"],"printWidth":80,"singleQuote":true,"sortImports":true,"sortPackageJson":false});
+      const config: OxfmtConfig = defineConfig({"ignorePatterns":["/pnpm-lock.yaml"],"singleQuote":true,"sortImports":true,"sortPackageJson":false});
 
       export default config;
       ",

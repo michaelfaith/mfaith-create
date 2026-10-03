@@ -3,10 +3,7 @@ import { inputFromFileJSON } from 'input-from-file-json';
 
 import { startingOwnerContributions } from '../data/contributions.ts';
 import { inputFromOctokit } from '../inputs/inputFromOctokit.ts';
-import type {
-  AllContributorContributor,
-  AllContributorsData,
-} from '../types.ts';
+import type { AllContributorContributor, AllContributorsData } from '../types.ts';
 
 export async function readAllContributors(
   take: TakeInput,
@@ -21,9 +18,7 @@ export async function readAllContributors(
 
   const user = (await take(inputFromOctokit, {
     endpoint: 'GET /user',
-  })) as
-    | undefined
-    | { avatar_url: string; blog: string; login: string; name: string };
+  })) as undefined | { avatar_url: string; blog: string; login: string; name: string };
 
   return (
     user && [

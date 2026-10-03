@@ -54,17 +54,14 @@ export const blockReadme: BlockWithProps<BlockReadmeProps> = base.createBlock({
     const { badges, defaultUsage, notices, sections } = addons;
 
     const explainer =
-      options.documentation.readme.explainer &&
-      `\n${options.documentation.readme.explainer}\n`;
+      options.documentation.readme.explainer && `\n${options.documentation.readme.explainer}\n`;
 
     const logo =
-      options.logo &&
-      `\n<img ${printAttributes({ align: 'right', ...options.logo })}>\n`;
+      options.logo && `\n<img ${printAttributes({ align: 'right', ...options.logo })}>\n`;
 
-    const suffixes = [
-      ...notices,
-      options.documentation.readme.footnotes,
-    ].filter((suffix) => typeof suffix === 'string');
+    const suffixes = [...notices, options.documentation.readme.footnotes].filter(
+      (suffix) => typeof suffix === 'string',
+    );
 
     return {
       files: {
@@ -95,9 +92,7 @@ function badgeSorter(a: Badge, b: Badge) {
 
 function formatBadge(badge: Badge) {
   const image = `<img alt="${badge.alt}" src="${badge.src}" />`;
-  const tagged = badge.href
-    ? `<a href="${badge.href}" target="_blank">${image}</a>`
-    : image;
+  const tagged = badge.href ? `<a href="${badge.href}" target="_blank">${image}</a>` : image;
   const commented = badge.comments
     ? `${badge.comments.before}${tagged}${badge.comments.after}`
     : tagged;

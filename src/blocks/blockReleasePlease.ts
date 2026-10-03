@@ -24,167 +24,156 @@ export interface BlockReleasePleaseProps {
   currentVersion?: string | undefined;
 }
 
-export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> =
-  base.createBlock({
-    about: {
-      name: 'Release Please',
-      description:
-        'Creates a release workflow and all of the necessary configuration for using Release Please for versioning, publishing, tagging, and creating GH releases.',
-    },
-    addons: {
-      builders: z.array(builderSchema).default([]),
-      currentVersion: z.string().optional(),
-    },
-    intake({ files }) {
-      const releasePleaseManifest = intakeFileAsJson(files, [
-        '.github',
-        'release-please',
-        'release-please-manifest.main.json',
-      ]);
-      const { data: manifestVersion } = z
-        .string()
-        .safeParse(releasePleaseManifest?.['.']);
-      if (manifestVersion) {
-        return {
-          currentVersion: manifestVersion,
-        };
-      }
-
-      return undefined;
-    },
-    produce({ addons, options }) {
-      const { builders, currentVersion } = addons;
-
-      const version = currentVersion ?? options.version ?? '0.0.0';
-
+export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.createBlock({
+  about: {
+    name: 'Release Please',
+    description:
+      'Creates a release workflow and all of the necessary configuration for using Release Please for versioning, publishing, tagging, and creating GH releases.',
+  },
+  addons: {
+    builders: z.array(builderSchema).default([]),
+    currentVersion: z.string().optional(),
+  },
+  intake({ files }) {
+    const releasePleaseManifest = intakeFileAsJson(files, [
+      '.github',
+      'release-please',
+      'release-please-manifest.main.json',
+    ]);
+    const { data: manifestVersion } = z.string().safeParse(releasePleaseManifest?.['.']);
+    if (manifestVersion) {
       return {
-        addons: [
-          blockCspell({ words: ['RELEASEBOT'] }),
-          blockOxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
-          blockPrettier({ ignores: ['/CHANGELOG.md'] }),
-          ...(isScopedPackage(options.packageName)
-            ? [blockPublishConfig({ access: 'public' })]
-            : []),
-          blockReadme({
-            badges: [
-              {
-                alt: '📦 npm version',
-                href: `http://npmjs.com/package/${options.packageName}`,
-                src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
-              },
-            ],
-          }),
-          blockRepositoryLabels({
-            additionalLabels: [
-              {
-                color: '#bfd4f2',
-                name: 'autorelease: pending',
-                description:
-                  'Label used for release PRs that have not yet merged.',
-              },
-              {
-                color: '#c2e0c6',
-                name: 'autorelease: tagged',
-                description:
-                  'Label used for release PRs that have already merged, and the release has been made.',
-              },
-            ],
-          }),
-          blockRepositorySecrets({
-            secrets: [
-              {
-                description:
-                  'an app Private Key for generating an ephemeral token',
-                name: 'RELEASEBOT_APP_PRIVATE_KEY',
-              },
-            ],
-          }),
-          blockRepositoryVariables({
-            variables: [
-              {
-                description:
-                  'the client id for an app that generates an ephemeral token',
-                name: 'RELEASEBOT_APP_CLIENT_ID',
-              },
-            ],
-          }),
-        ],
-        files: {
-          '.github': {
-            workflows: {
-              'release.yaml': createMultiJobWorkflow({
-                name: 'Release',
-                on: {
-                  push: {
-                    branches: ['main'],
-                  },
+        currentVersion: manifestVersion,
+      };
+    }
+
+    return undefined;
+  },
+  produce({ addons, options }) {
+    const { builders, currentVersion } = addons;
+
+    const version = currentVersion ?? options.version ?? '0.0.0';
+
+    return {
+      addons: [
+        blockCspell({ words: ['RELEASEBOT'] }),
+        blockOxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
+        blockPrettier({ ignores: ['/CHANGELOG.md'] }),
+        ...(isScopedPackage(options.packageName) ? [blockPublishConfig({ access: 'public' })] : []),
+        blockReadme({
+          badges: [
+            {
+              alt: '📦 npm version',
+              href: `http://npmjs.com/package/${options.packageName}`,
+              src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+            },
+          ],
+        }),
+        blockRepositoryLabels({
+          additionalLabels: [
+            {
+              color: '#bfd4f2',
+              name: 'autorelease: pending',
+              description: 'Label used for release PRs that have not yet merged.',
+            },
+            {
+              color: '#c2e0c6',
+              name: 'autorelease: tagged',
+              description:
+                'Label used for release PRs that have already merged, and the release has been made.',
+            },
+          ],
+        }),
+        blockRepositorySecrets({
+          secrets: [
+            {
+              description: 'an app Private Key for generating an ephemeral token',
+              name: 'RELEASEBOT_APP_PRIVATE_KEY',
+            },
+          ],
+        }),
+        blockRepositoryVariables({
+          variables: [
+            {
+              description: 'the client id for an app that generates an ephemeral token',
+              name: 'RELEASEBOT_APP_CLIENT_ID',
+            },
+          ],
+        }),
+      ],
+      files: {
+        '.github': {
+          workflows: {
+            'release.yaml': createMultiJobWorkflow({
+              name: 'Release',
+              on: {
+                push: {
+                  branches: ['main'],
                 },
-                concurrency: {
-                  group: '${{ github.workflow }}',
-                },
-                jobs: [
-                  {
-                    id: 'release_please',
-                    name: 'Manage Release PR',
-                    if: 'github.event.repository.fork != true',
-                    outputs: {
-                      releases_created:
-                        '${{ steps.release.outputs.releases_created }}',
-                      tag_name: '${{ steps.release.outputs.tag_name }}',
-                    },
-                    steps: [
-                      {
-                        name: 'Create Token',
-                        id: 'create_token',
-                        uses: resolveUses(
-                          'actions/create-github-app-token',
-                          'v3.2.0',
-                          options.workflowsVersions,
-                        ),
-                        with: {
-                          'client-id': '${{ vars.RELEASEBOT_APP_CLIENT_ID }}',
-                          'private-key':
-                            '${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}',
-                        },
-                      },
-                      {
-                        name: 'Release Please',
-                        id: 'release',
-                        uses: resolveUses(
-                          'googleapis/release-please-action',
-                          'v5.0.0',
-                          options.workflowsVersions,
-                        ),
-                        with: {
-                          'config-file':
-                            '.github/release-please/release-please-config.${{ github.ref_name }}.json',
-                          'manifest-file':
-                            '.github/release-please/release-please-manifest.${{ github.ref_name }}.json',
-                          'target-branch': '${{ github.ref_name }}',
-                          token: '${{ steps.create_token.outputs.token }}',
-                        },
-                      },
-                    ],
+              },
+              concurrency: {
+                group: '${{ github.workflow }}',
+              },
+              jobs: [
+                {
+                  id: 'release_please',
+                  name: 'Manage Release PR',
+                  if: 'github.event.repository.fork != true',
+                  outputs: {
+                    releases_created: '${{ steps.release.outputs.releases_created }}',
+                    tag_name: '${{ steps.release.outputs.tag_name }}',
                   },
-                  {
-                    id: 'publish',
-                    name: 'Publish Package',
-                    if: "${{ needs.release_please.outputs.releases_created == 'true' }}",
-                    needs: 'release_please',
-                    permissions: {
-                      contents: 'read',
-                      'id-token': 'write',
+                  steps: [
+                    {
+                      name: 'Create Token',
+                      id: 'create_token',
+                      uses: resolveUses(
+                        'actions/create-github-app-token',
+                        'v3.2.0',
+                        options.workflowsVersions,
+                      ),
+                      with: {
+                        'client-id': '${{ vars.RELEASEBOT_APP_CLIENT_ID }}',
+                        'private-key': '${{ secrets.RELEASEBOT_APP_PRIVATE_KEY }}',
+                      },
                     },
-                    outputs: {
-                      dist_tag:
-                        '${{ steps.determine_dist_tag.outputs.dist_tag }}',
+                    {
+                      name: 'Release Please',
+                      id: 'release',
+                      uses: resolveUses(
+                        'googleapis/release-please-action',
+                        'v5.0.0',
+                        options.workflowsVersions,
+                      ),
+                      with: {
+                        'config-file':
+                          '.github/release-please/release-please-config.${{ github.ref_name }}.json',
+                        'manifest-file':
+                          '.github/release-please/release-please-manifest.${{ github.ref_name }}.json',
+                        'target-branch': '${{ github.ref_name }}',
+                        token: '${{ steps.create_token.outputs.token }}',
+                      },
                     },
-                    steps: [
-                      { uses: '$/.github/actions/setup' },
-                      {
-                        name: 'Determine dist-tag',
-                        id: 'determine_dist_tag',
-                        run: `TAG_NAME="\${{ needs.release_please.outputs.tag_name }}"
+                  ],
+                },
+                {
+                  id: 'publish',
+                  name: 'Publish Package',
+                  if: "${{ needs.release_please.outputs.releases_created == 'true' }}",
+                  needs: 'release_please',
+                  permissions: {
+                    contents: 'read',
+                    'id-token': 'write',
+                  },
+                  outputs: {
+                    dist_tag: '${{ steps.determine_dist_tag.outputs.dist_tag }}',
+                  },
+                  steps: [
+                    { uses: '$/.github/actions/setup' },
+                    {
+                      name: 'Determine dist-tag',
+                      id: 'determine_dist_tag',
+                      run: `TAG_NAME="\${{ needs.release_please.outputs.tag_name }}"
 echo "Release tag: $TAG_NAME"
 
 if [[ "$TAG_NAME" == *"-alpha."* ]]; then
@@ -200,48 +189,44 @@ else
 fi
 
 echo "dist_tag=$DIST_TAG" >> "$GITHUB_OUTPUT"`,
-                      },
-                      ...builders
-                        .sort((a, b) => a.order - b.order)
-                        .map(({ run }) => ({ name: 'Build', run })),
-                      {
-                        name: 'Publish',
-                        run: `echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
-pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}`,
-                      },
-                    ],
-                  },
-                  {
-                    id: 'post_release',
-                    name: 'Post Release Comments',
-                    needs: 'publish',
-                    permissions: {
-                      issues: 'write',
-                      'pull-requests': 'write',
                     },
-                    steps: [
-                      {
-                        uses: resolveUses(
-                          'actions/checkout',
-                          'v7',
-                          options.workflowsVersions,
-                        ),
-                        with: {
-                          'fetch-depth': 0,
-                        },
+                    ...builders
+                      .sort((a, b) => a.order - b.order)
+                      .map(({ run }) => ({ name: 'Build', run })),
+                    {
+                      name: 'Publish',
+                      run: `echo "Publishing to npm with dist-tag '\${{ steps.determine_dist_tag.outputs.dist_tag }}'"
+pnpm publish --publish-branch \${{ github.ref_name }} --tag \${{ steps.determine_dist_tag.outputs.dist_tag }}`,
+                    },
+                  ],
+                },
+                {
+                  id: 'post_release',
+                  name: 'Post Release Comments',
+                  needs: 'publish',
+                  permissions: {
+                    issues: 'write',
+                    'pull-requests': 'write',
+                  },
+                  steps: [
+                    {
+                      uses: resolveUses('actions/checkout', 'v7', options.workflowsVersions),
+                      with: {
+                        'fetch-depth': 0,
                       },
-                      {
-                        run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
-                      },
-                      {
-                        uses: resolveUses(
-                          'apexskier/github-release-commenter',
-                          'v1',
-                          options.workflowsVersions,
-                        ),
-                        with: {
-                          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-                          'comment-template': `:tada: This is included in version {release_link} :tada:
+                    },
+                    {
+                      run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
+                    },
+                    {
+                      uses: resolveUses(
+                        'apexskier/github-release-commenter',
+                        'v1',
+                        options.workflowsVersions,
+                      ),
+                      with: {
+                        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+                        'comment-template': `:tada: This is included in version {release_link} :tada:
 
 The release is available on:
 
@@ -249,67 +234,64 @@ The release is available on:
 * [npm package (@\${{ needs.publish.outputs.dist_tag }} dist-tag)](https://www.npmjs.com/package/@mfaith/create/v/\${{ env.npm_version }})
 
 Cheers! 📦🚀`,
-                        },
                       },
-                    ],
-                  },
-                ],
-              }),
-            },
-            'release-please': {
-              'release-please-config.main.json': JSON.stringify({
-                'bump-minor-pre-major': true,
-                'bump-patch-for-minor-pre-major': true,
-                'changelog-sections': [
-                  { type: 'feat', section: '🚀 Features', hidden: false },
-                  { type: 'fix', section: '🩹 Bug Fixes', hidden: false },
-                  {
-                    type: 'perf',
-                    section: '🏁 Performance Improvements',
-                    hidden: false,
-                  },
-                  { type: 'build', hidden: true },
-                  { type: 'chore', hidden: true },
-                  { type: 'ci', hidden: true },
-                  { type: 'docs', hidden: true },
-                  { type: 'refactor', hidden: true },
-                  { type: 'test', hidden: true },
-                ],
-                'include-component-in-tag': false,
-                'initial-version': '0.1.0',
-                'release-type': 'node',
-                packages: {
-                  '.': {},
+                    },
+                  ],
                 },
-              }),
-              'release-please-manifest.main.json': JSON.stringify(
+              ],
+            }),
+          },
+          'release-please': {
+            'release-please-config.main.json': JSON.stringify({
+              'bump-minor-pre-major': true,
+              'bump-patch-for-minor-pre-major': true,
+              'changelog-sections': [
+                { type: 'feat', section: '🚀 Features', hidden: false },
+                { type: 'fix', section: '🩹 Bug Fixes', hidden: false },
                 {
-                  '.': version,
+                  type: 'perf',
+                  section: '🏁 Performance Improvements',
+                  hidden: false,
                 },
-                null,
-                2,
-              ),
-            },
+                { type: 'build', hidden: true },
+                { type: 'chore', hidden: true },
+                { type: 'ci', hidden: true },
+                { type: 'docs', hidden: true },
+                { type: 'refactor', hidden: true },
+                { type: 'test', hidden: true },
+              ],
+              'include-component-in-tag': false,
+              'initial-version': '0.1.0',
+              'release-type': 'node',
+              packages: {
+                '.': {},
+              },
+            }),
+            'release-please-manifest.main.json': JSON.stringify(
+              {
+                '.': version,
+              },
+              null,
+              2,
+            ),
           },
         },
-        suggestions: [
-          [
-            `- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
-            `   https://www.npmjs.com/package/${options.packageName}/access`,
-          ].join('\n'),
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveFiles({
-            files: [
-              '.github/workflows/post-release.yml',
-              '.github/workflows/release.yml',
-            ],
-          }),
-        ],
-      };
-    },
-  });
+      },
+      suggestions: [
+        [
+          `- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
+          `   https://www.npmjs.com/package/${options.packageName}/access`,
+        ].join('\n'),
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [
+        blockRemoveFiles({
+          files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
+        }),
+      ],
+    };
+  },
+});

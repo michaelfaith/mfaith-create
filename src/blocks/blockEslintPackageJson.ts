@@ -16,10 +16,7 @@ export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
         blockEslint({
           extensions: [
             {
-              extends: [
-                'packageJson.configs.recommended',
-                'packageJson.configs.stylistic',
-              ],
+              extends: ['packageJson.configs.recommended', 'packageJson.configs.stylistic'],
               files: ['package.json'],
             },
           ],
@@ -47,10 +44,7 @@ export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
           files: ['.npmpackagejsonlintrc*'],
         }),
         blockRemoveDependencies({
-          dependencies: [
-            'npm-package-json-lint',
-            'npm-package-json-lint-config-default',
-          ],
+          dependencies: ['npm-package-json-lint', 'npm-package-json-lint-config-default'],
         }),
         blockRemoveWorkflows({
           workflows: ['lint-package-json'],

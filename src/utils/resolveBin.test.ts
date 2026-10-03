@@ -24,9 +24,7 @@ describe(resolveBin, () => {
   });
 
   it('resolves a string bin from an exported package manifest', () => {
-    const packageJsonPath = fileURLToPath(
-      import.meta.resolve('vitest/package.json'),
-    );
+    const packageJsonPath = fileURLToPath(import.meta.resolve('vitest/package.json'));
     mockReadFileSync.mockReturnValue(JSON.stringify({ bin: 'bin/cli.js' }));
 
     const result = resolveBin('vitest');
@@ -37,9 +35,7 @@ describe(resolveBin, () => {
   });
 
   it('resolves a named bin from an exported package manifest', () => {
-    const packageJsonPath = fileURLToPath(
-      import.meta.resolve('vitest/package.json'),
-    );
+    const packageJsonPath = fileURLToPath(import.meta.resolve('vitest/package.json'));
     mockReadFileSync.mockReturnValue(
       JSON.stringify({ bin: { vitest: 'bin/vitest.js', cli: 'bin/cli.js' } }),
     );
@@ -50,12 +46,8 @@ describe(resolveBin, () => {
   });
 
   it('uses the package name as the default named bin', () => {
-    const packageJsonPath = fileURLToPath(
-      import.meta.resolve('vitest/package.json'),
-    );
-    mockReadFileSync.mockReturnValue(
-      JSON.stringify({ bin: { vitest: 'bin/vitest.js' } }),
-    );
+    const packageJsonPath = fileURLToPath(import.meta.resolve('vitest/package.json'));
+    mockReadFileSync.mockReturnValue(JSON.stringify({ bin: { vitest: 'bin/vitest.js' } }));
 
     const result = resolveBin('vitest');
 
@@ -65,9 +57,7 @@ describe(resolveBin, () => {
   it('finds a manifest when the package does not export it', () => {
     const packageJsonPath = resolve('packages/example/package.json');
     mockFindUpSync.mockReturnValue(packageJsonPath);
-    mockReadFileSync.mockReturnValue(
-      JSON.stringify({ bin: { example: 'bin/example.js' } }),
-    );
+    mockReadFileSync.mockReturnValue(JSON.stringify({ bin: { example: 'bin/example.js' } }));
 
     const result = resolveBin('find-up-simple', 'example');
 
@@ -97,9 +87,7 @@ describe(resolveBin, () => {
   it('caches the value for subsequent calls', () => {
     const packageJsonPath = resolve('packages/example/package.json');
     mockFindUpSync.mockReturnValue(packageJsonPath);
-    mockReadFileSync.mockReturnValue(
-      JSON.stringify({ bin: { example: 'bin/example.js' } }),
-    );
+    mockReadFileSync.mockReturnValue(JSON.stringify({ bin: { example: 'bin/example.js' } }));
 
     resolveBin('find-up-simple', 'example');
     resolveBin('find-up-simple', 'example');

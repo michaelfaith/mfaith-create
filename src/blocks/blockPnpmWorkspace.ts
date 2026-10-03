@@ -9,9 +9,7 @@ import { intakeFileAsYaml } from './intake/intakeFileAsYaml.ts';
 const pnpmWorkspaceSchema = z.looseObject({
   allowBuilds: z.record(z.string(), z.boolean()).optional(),
   overrides: z.record(z.string(), z.string()).optional(),
-  trustPolicy: z
-    .union([z.literal('off'), z.literal('no-downgrade')])
-    .optional(),
+  trustPolicy: z.union([z.literal('off'), z.literal('no-downgrade')]).optional(),
 });
 export interface PnpmWorkspace {
   [x: string]: unknown;
@@ -24,38 +22,37 @@ export interface BlockPnpmWorkspaceProps {
   config?: PnpmWorkspace;
 }
 
-export const blockPnpmWorkspace: BlockWithProps<BlockPnpmWorkspaceProps> =
-  base.createBlock({
-    about: {
-      name: 'pnpm Workspace',
-      description: 'Creates a Workspace configuration file for pnpm.',
-    },
-    addons: {
-      config: pnpmWorkspaceSchema.optional(),
-    },
-    intake({ files }) {
-      const existingWorkspace = intakeFileAsYaml(files, [
-        'pnpm-workspace.yaml',
-      ]) as PnpmWorkspace | undefined;
-      if (!existingWorkspace) {
-        return undefined;
-      }
+export const blockPnpmWorkspace: BlockWithProps<BlockPnpmWorkspaceProps> = base.createBlock({
+  about: {
+    name: 'pnpm Workspace',
+    description: 'Creates a Workspace configuration file for pnpm.',
+  },
+  addons: {
+    config: pnpmWorkspaceSchema.optional(),
+  },
+  intake({ files }) {
+    const existingWorkspace = intakeFileAsYaml(files, ['pnpm-workspace.yaml']) as
+      | PnpmWorkspace
+      | undefined;
+    if (!existingWorkspace) {
+      return undefined;
+    }
 
-      return {
-        config: existingWorkspace,
-      };
-    },
-    produce({ addons }) {
-      const { config } = addons;
-      return {
-        files: {
-          'pnpm-workspace.yaml': formatYaml(
-            sortKeys({
-              trustPolicy: 'no-downgrade',
-              ...config,
-            }),
-          ),
-        },
-      };
-    },
-  });
+    return {
+      config: existingWorkspace,
+    };
+  },
+  produce({ addons }) {
+    const { config } = addons;
+    return {
+      files: {
+        'pnpm-workspace.yaml': formatYaml(
+          sortKeys({
+            trustPolicy: 'no-downgrade',
+            ...config,
+          }),
+        ),
+      },
+    };
+  },
+});

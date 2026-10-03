@@ -22,9 +22,7 @@ export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
   },
   intake({ options }) {
     return {
-      entry: options.packageData?.scripts?.['build:release']?.match(
-        /ncc build (.+) -o dist/,
-      )?.[1],
+      entry: options.packageData?.scripts?.['build:release']?.match(/ncc build (.+) -o dist/)?.[1],
     };
   },
   produce({ addons }) {

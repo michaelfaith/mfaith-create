@@ -4,9 +4,7 @@ import { readDevelopmentDocumentation } from './readDevelopmentDocumentation.ts'
 
 describe(readDevelopmentDocumentation, () => {
   it('returns undefined when no .github/DEVELOPMENT.md exists', async () => {
-    const documentation = await readDevelopmentDocumentation(() =>
-      Promise.resolve(undefined),
-    );
+    const documentation = await readDevelopmentDocumentation(() => Promise.resolve(undefined));
 
     expect(documentation).toBeUndefined();
   });

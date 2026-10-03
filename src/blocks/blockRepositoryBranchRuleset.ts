@@ -21,10 +21,7 @@ export const blockRepositoryBranchRuleset: BlockWithProps<BlockRepositoryBranchR
         requests: [
           {
             endpoint: 'POST /repos/{owner}/{repo}/rulesets',
-            parameters: createRulesetParameters(
-              addons.requiredStatusChecks,
-              options,
-            ),
+            parameters: createRulesetParameters(addons.requiredStatusChecks, options),
             type: 'octokit',
           },
         ],
@@ -34,8 +31,7 @@ export const blockRepositoryBranchRuleset: BlockWithProps<BlockRepositoryBranchR
       return {
         requests: [
           {
-            endpoint:
-              'DELETE /repos/{owner}/{repo}/branches/{branch}/protection',
+            endpoint: 'DELETE /repos/{owner}/{repo}/branches/{branch}/protection',
             parameters: {
               branch: 'main',
               owner: options.owner,
@@ -56,10 +52,7 @@ export const blockRepositoryBranchRuleset: BlockWithProps<BlockRepositoryBranchR
               }
             : {
                 endpoint: 'POST /repos/{owner}/{repo}/rulesets',
-                parameters: createRulesetParameters(
-                  addons.requiredStatusChecks,
-                  options,
-                ),
+                parameters: createRulesetParameters(addons.requiredStatusChecks, options),
                 type: 'octokit',
               },
         ],

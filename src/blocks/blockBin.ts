@@ -23,10 +23,7 @@ const convertToCommand = (packageName: string): string => {
   return parts.length > 1 ? parts[1] : parts[0];
 };
 
-const createExplicitBin = (
-  binPath: string,
-  packageName: string,
-): Record<string, string> => {
+const createExplicitBin = (binPath: string, packageName: string): Record<string, string> => {
   const binCommand = convertToCommand(packageName);
   return { [binCommand]: binPath };
 };
@@ -37,17 +34,11 @@ const prepareBin = (
   transformPath = (binPath: string) => binPath,
 ): Record<string, string> => {
   if (typeof input === 'string') {
-    return createExplicitBin(
-      makeRelativePath(transformPath(input)),
-      packageName,
-    );
+    return createExplicitBin(makeRelativePath(transformPath(input)), packageName);
   }
 
   return Object.fromEntries(
-    Object.entries(input).map(([key, value]) => [
-      key,
-      makeRelativePath(transformPath(value)),
-    ]),
+    Object.entries(input).map(([key, value]) => [key, makeRelativePath(transformPath(value))]),
   );
 };
 
@@ -75,9 +66,7 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
     if (typeof data === 'string') {
       src = distToSrc(data);
     } else {
-      src = Object.fromEntries(
-        Object.entries(data).map(([key, value]) => [key, distToSrc(value)]),
-      );
+      src = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, distToSrc(value)]));
     }
 
     return {

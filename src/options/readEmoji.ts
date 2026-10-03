@@ -11,12 +11,8 @@ export async function readEmoji(
   const description = await getDescription();
 
   return (
-    Array.from(
-      graphemeSegmenter.segment(description ?? ''),
-      ({ segment }) => segment,
-    ).findLast(
-      (grapheme) =>
-        pictographicPattern.test(grapheme) || keyCapPattern.test(grapheme),
+    Array.from(graphemeSegmenter.segment(description ?? ''), ({ segment }) => segment).findLast(
+      (grapheme) => pictographicPattern.test(grapheme) || keyCapPattern.test(grapheme),
     ) ?? '✨'
   );
 }
