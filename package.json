@@ -126,14 +126,14 @@
     "node": "^24.15.0 || >=26.0.0"
   },
   "publishConfig": {
+    "access": "public",
     "bin": {
       "create": "./dist/bin/index.mjs"
     },
     "exports": {
       ".": "./dist/index.mjs",
       "./package.json": "./package.json"
-    },
-    "access": "public"
+    }
   },
   "inlinedDependencies": {
     "@arethetypeswrong/core": "0.18.5",
