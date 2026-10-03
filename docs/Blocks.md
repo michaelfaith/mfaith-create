@@ -46,11 +46,7 @@ This table summarizes each block and which base levels they're included in:
 | pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
 | pnpm workspace                     | `--add-pnpm-workspace`, `--exclude-pnpm-workspace`                                         | ✔️      | ✅     | 💯         |
 | Prettier                           | `--add-prettier`, `--exclude-prettier`                                                     |         |        |            |
-| Prettier Plugin Curly              | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`                           |         |        |            |
-| Prettier Plugin Package JSON       | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json`             |         |        |            |
-| Prettier Plugin Padding Lines      | `--add-prettier-plugin-padding-lines`, `--exclude-prettier-plugin-padding-lines`           |         |        |            |
 | Prettier Plugin Sentences Per Line | `--add-prettier-plugin-sentences-per-line`, `--exclude-prettier-plugin-sentences-per-line` |         |        |            |
-| Prettier Plugin Sh                 | `--add-prettier-plugin-sh`, `--exclude-prettier-plugin-sh`                                 |         |        |            |
 | PR Preview Release                 | `--add-pr-preview-release`, `--exclude-pr-preview-release`                                 |         | ✅     | 💯         |
 | README.md                          | `--add-readme-md`, `--exclude-readme-md`                                                   | ✔️      | ✅     | 💯         |
 | Release Please                     | `--add-release-please`, `--exclude-release-please`                                         |         | ✅     | 💯         |
