@@ -5,7 +5,6 @@ import { diffCreatedDirectory } from 'bingo-testers';
 import { format } from 'oxfmt';
 import { expect, test, vi } from 'vitest';
 
-import oxfmtConfig from '../oxfmt.config.ts';
 import { blockBin } from './blocks/blockBin.ts';
 import { JS_TS_FILES } from './blocks/eslint/globs.ts';
 import {
@@ -165,7 +164,9 @@ If you're interested in learning more, see the 'getting started' docs on:
 
     const processText = async (text: string, filePath: string) => {
       if (/all-contributorsrc|js|md|ts|yaml/.test(filePath)) {
-        const formatResult = await format(filePath, text, oxfmtConfig);
+        const formatResult = await format(filePath, text, {
+          printWidth: 80,
+        });
         return formatResult.code;
       }
       return text;
