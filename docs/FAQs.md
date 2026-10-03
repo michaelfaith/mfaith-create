@@ -81,7 +81,7 @@ Here we'll outline the steps required to migrate an @mfaith/create app to a GitH
    +"build": "ncc build src/index.ts -o dist --license licenses.txt",
    ```
 
-   - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
+   - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to the eslint and oxfmt ignores:
 
    ```diff
    +dist

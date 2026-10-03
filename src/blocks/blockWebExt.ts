@@ -4,6 +4,7 @@ import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
 
@@ -109,6 +110,9 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
               'lint:web-ext': 'web-ext lint',
             },
           },
+        }),
+        blockOxfmt({
+          ignorePatterns: ['assets/'],
         }),
         blockPrettier({
           ignores: ['assets/'],

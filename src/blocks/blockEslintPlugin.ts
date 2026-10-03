@@ -147,16 +147,15 @@ These are all set to \`"error"\` in the recommended config:
           }),
         ],
         files: {
-          [configFileName]: `import prettier from "prettier";
+          [configFileName]: `import { format } from 'oxfmt';
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
-	${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ''}postprocess: async (content, path) =>
-		prettier.format(content, {
-			...(await prettier.resolveConfig(path)),
-			parser: 'markdown',
-		}),
-	ruleDocTitleFormat: 'name',
+  ${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ''}postprocess: async (content, path) => {
+    const result = await format(basename(path), content, oxfmtConfig);
+    return result.code;
+  },
+  ruleDocTitleFormat: 'name',
 };
 
 export default config;

@@ -142,6 +142,14 @@ describe('blockWebExt', () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "assets/",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "ignores": [
                 "assets/",
               ],

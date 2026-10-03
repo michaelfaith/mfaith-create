@@ -44,6 +44,7 @@ export { blockNcc, type BlockNccProps } from './blockNcc.ts';
 export { blockNvmrc } from './blockNvmrc.ts';
 export { blockOctoguide, type BlockOctoguideProps } from './blockOctoguide.ts';
 export { blockOctoguideStrict } from './blockOctoguideStrict.ts';
+export { blockOxfmt, type BlockOxfmtProps } from './blockOxfmt.ts';
 export {
   blockPackageJson,
   type BlockPackageJsonProps,

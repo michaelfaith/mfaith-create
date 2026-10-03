@@ -88,6 +88,14 @@ describe(blockNcc, () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/dist",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "properties": {
                 "devDependencies": {
                   "@vercel/ncc": "^0.38.3",
@@ -196,6 +204,14 @@ describe(blockNcc, () => {
               ],
             },
             "block": "[Block GitHub Actions CI]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/dist",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {

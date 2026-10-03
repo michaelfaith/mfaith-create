@@ -12,6 +12,7 @@ import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockKnip } from './blockKnip.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
@@ -263,6 +264,9 @@ describe(greet, () => {
               test: `vitest ${addons.flags.join(' ')}`.trim(),
             },
           },
+        }),
+        blockOxfmt({
+          ignorePatterns: ['/coverage'],
         }),
         blockPrettier({
           ignores: ['/coverage'],

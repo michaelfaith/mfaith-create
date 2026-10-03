@@ -41,6 +41,14 @@ describe('blockAllContributors', () => {
           },
           {
             "addons": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+            "block": "[Block Oxfmt]",
+          },
+          {
+            "addons": {
               "badges": [
                 {
                   "alt": "👪 All Contributors: undefined",
@@ -134,6 +142,14 @@ describe('blockAllContributors', () => {
               ],
             },
             "block": "[Block Prettier]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {
@@ -262,6 +278,14 @@ describe('blockAllContributors', () => {
               ],
             },
             "block": "[Block Prettier]",
+          },
+          {
+            "addons": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+            "block": "[Block Oxfmt]",
           },
           {
             "addons": {

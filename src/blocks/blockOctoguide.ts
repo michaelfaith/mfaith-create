@@ -42,7 +42,9 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> =
 
       return {
         config: runOctoGuideStep.with?.config as
-          'recommended' | 'strict' | undefined,
+          | 'recommended'
+          | 'strict'
+          | undefined,
       };
     },
     produce({ addons, options }) {

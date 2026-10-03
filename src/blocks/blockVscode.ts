@@ -81,15 +81,19 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
           'settings.json': JSON.stringify(
             sortKeys({
               'editor.formatOnSave': true,
-              'editor.rulers': [80],
+              'editor.rulers': [100],
               ...settings,
             }),
           ),
           'tasks.json': tasks?.length
-            ? JSON.stringify({
-                tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
-                version: '2.0.0',
-              })
+            ? JSON.stringify(
+                {
+                  tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
+                  version: '2.0.0',
+                },
+                null,
+                2,
+              )
             : undefined,
         },
       },
