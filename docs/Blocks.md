@@ -30,6 +30,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint YML Plugin                  | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                                   |         |        | 💯         |
 | Exports                            | `--add-exports`, `--exclude-exports`                                                       | ✔️      | ✅     | 💯         |
 | Funding                            | `--add-funding`, `--exclude-funding`                                                       |         | ✅     | 💯         |
+| Gitattributes                      | `--add-gitattributes`, `--exclude-gitattributes`                                           | ✔️      | ✅     | 💯         |
 | GitHub Actions CI                  | `--add-github-actions-ci`, `--exclude-github-actions-ci`                                   | ✔️      | ✅     | 💯         |
 | GitHub Issue Templates             | `--add-github-issue-templates`, `--exclude-github-issue-templates`                         | ✔️      | ✅     | 💯         |
 | GitHub PR Template                 | `--add-github-pr-template`, `--exclude-github-pr-template`                                 | ✔️      | ✅     | 💯         |

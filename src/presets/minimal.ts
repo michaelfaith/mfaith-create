@@ -7,6 +7,7 @@ import { blockDevelopmentDocs } from '../blocks/blockDevelopmentDocs.ts';
 import { blockEslint } from '../blocks/blockEslint.ts';
 import { blockExampleFiles } from '../blocks/blockExampleFiles.ts';
 import { blockExports } from '../blocks/blockExports.ts';
+import { blockGitattributes } from '../blocks/blockGitattributes.ts';
 import { blockGithubActionsCi } from '../blocks/blockGithubActionsCi.ts';
 import { blockGithubApps } from '../blocks/blockGithubApps.ts';
 import { blockGithubIssueTemplates } from '../blocks/blockGithubIssueTemplates.ts';
@@ -45,6 +46,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     blockEslint,
     blockExampleFiles,
     blockExports,
+    blockGitattributes,
     blockGithubActionsCi,
     blockGithubApps,
     blockGithubIssueTemplates,

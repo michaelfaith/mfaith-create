@@ -28,6 +28,10 @@ export { blockEslintYml } from './blockEslintYml.ts';
 export { blockExports, type BlockExportsProps } from './blockExports.ts';
 export { blockFunding } from './blockFunding.ts';
 export {
+  blockGitattributes,
+  type BlockGitattributesProps,
+} from './blockGitattributes.ts';
+export {
   blockGithubActionsCi,
   type BlockGithubActionsCiProps,
 } from './blockGithubActionsCi.ts';
