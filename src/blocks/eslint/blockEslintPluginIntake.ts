@@ -34,9 +34,7 @@ export function blockEslintPluginIntake(sourceText: string):
     return undefined;
   }
 
-  const { data } = configEmojiSchema.safeParse(
-    JSON5.parse(sourceText.slice(...configEmoji.range)),
-  );
+  const { data } = configEmojiSchema.safeParse(JSON5.parse(sourceText.slice(...configEmoji.range)));
 
   return data && { configEmoji: data };
 

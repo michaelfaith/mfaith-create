@@ -26,8 +26,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                     label: 'Bug Report Checklist',
                     options: [
                       {
-                        label:
-                          'I have tried restarting my IDE and the issue persists.',
+                        label: 'I have tried restarting my IDE and the issue persists.',
                         required: true,
                       },
                       {
@@ -91,8 +90,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                     label: 'Documentation Report Checklist',
                     options: [
                       {
-                        label:
-                          'I have checked the latest `main` branch of the repository.',
+                        label: 'I have checked the latest `main` branch of the repository.',
                         required: true,
                       },
                       {
@@ -123,8 +121,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
             }),
             '03-feature.yaml': formatYaml({
               name: '🚀 Feature',
-              description:
-                'Request that a new feature be added or an existing feature improved',
+              description: 'Request that a new feature be added or an existing feature improved',
               title: '🚀 Feature: <short description of the feature>',
               labels: ['type: feature'],
               body: [
@@ -163,8 +160,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
             }),
             '04-tooling.yaml': formatYaml({
               name: '🛠 Tooling',
-              description:
-                'Report a bug or request an enhancement in repository tooling',
+              description: 'Report a bug or request an enhancement in repository tooling',
               title: '🛠 Tooling: <short description of the change>',
               labels: ['area: tooling'],
               body: [
@@ -176,13 +172,11 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                     label: 'Tooling Report Checklist',
                     options: [
                       {
-                        label:
-                          'I have tried restarting my IDE and the issue persists.',
+                        label: 'I have tried restarting my IDE and the issue persists.',
                         required: true,
                       },
                       {
-                        label:
-                          'I have pulled the latest `main` branch of the repository.',
+                        label: 'I have pulled the latest `main` branch of the repository.',
                         required: true,
                       },
                       {

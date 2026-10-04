@@ -7,11 +7,7 @@ import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
 import { stylisticComment } from '../blockEslintMoreStyling.ts';
-import {
-  type ExtensionRuleGroup,
-  type RuleOptions,
-  ruleOptionsSchema,
-} from './schemas.ts';
+import { type ExtensionRuleGroup, type RuleOptions, ruleOptionsSchema } from './schemas.ts';
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {
   declaration: TSESTree.CallExpression;
@@ -107,8 +103,7 @@ export function blockEslintIntake(sourceText: string):
         (previousNode?.range[1] ?? rulesObject.range[0]) + 1,
         property.range[0],
       );
-      const comment =
-        precedingText.replaceAll(/\/\/ ?|\t\s*/g, '').trim() || undefined;
+      const comment = precedingText.replaceAll(/\/\/ ?|\t\s*/g, '').trim() || undefined;
 
       // blockESLintMoreStyling's comment always gets pushed to the end.
       if (comment === stylisticComment) {
@@ -142,8 +137,7 @@ export function blockEslintIntake(sourceText: string):
       node.properties[0].value.type === AST_NODE_TYPES.ArrayExpression &&
       node.properties[0].value.elements.every(
         (element): element is TSESTree.Literal & { value: string } =>
-          element?.type === AST_NODE_TYPES.Literal &&
-          typeof element.value === 'string',
+          element?.type === AST_NODE_TYPES.Literal && typeof element.value === 'string',
       ) &&
       node.properties[0].value.elements.map((element) => element.value)
     );

@@ -7,9 +7,7 @@ import { tryParseJson5 } from '../utils/tryParseJson5.ts';
 
 const defineConfig = /defineConfig\(\{(.*)\}\)/;
 
-export async function readTsdownConfig(
-  take: TakeInput,
-): Promise<PartialTsdownConfig> {
+export async function readTsdownConfig(take: TakeInput): Promise<PartialTsdownConfig> {
   const tsdownConfigFile =
     swallowError(
       await take(inputFromFile, {

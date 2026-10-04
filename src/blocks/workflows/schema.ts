@@ -45,9 +45,7 @@ export const stepSchema: z.ZodType<Step> = z.intersection(
     id: z.string().optional(),
     if: z.string().optional(),
     name: z.string().optional(),
-    with: z
-      .record(z.string(), z.union([z.boolean(), z.number(), z.string()]))
-      .optional(),
+    with: z.record(z.string(), z.union([z.boolean(), z.number(), z.string()])).optional(),
   }),
 );
 
@@ -64,14 +62,13 @@ export interface WorkflowPermissions {
   'pull-requests'?: string;
 }
 
-export const workflowPermissionsSchema: z.ZodType<WorkflowPermissions> =
-  z.object({
-    contents: z.string().optional(),
-    discussions: z.string().optional(),
-    'id-token': z.string().optional(),
-    issues: z.string().optional(),
-    'pull-requests': z.string().optional(),
-  });
+export const workflowPermissionsSchema: z.ZodType<WorkflowPermissions> = z.object({
+  contents: z.string().optional(),
+  discussions: z.string().optional(),
+  'id-token': z.string().optional(),
+  issues: z.string().optional(),
+  'pull-requests': z.string().optional(),
+});
 
 export interface WorkflowOn {
   discussion?: {
@@ -115,9 +112,7 @@ interface WorkflowJobStrategy {
 
 const workflowJobStrategySchema: z.ZodType<WorkflowJobStrategy> = z.object({
   'fail-fast': z.boolean().optional(),
-  matrix: z
-    .record(z.string(), z.array(z.union([z.number(), z.string()])))
-    .optional(),
+  matrix: z.record(z.string(), z.array(z.union([z.number(), z.string()]))).optional(),
 });
 
 export interface WorkflowJob {

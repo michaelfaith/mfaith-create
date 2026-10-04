@@ -7,15 +7,13 @@ import { base } from './base.ts';
 import type { AllContributorsData } from './types.ts';
 
 vi.mock('./options/readEmailFromGit.js', () => ({
-  readEmailFromGit: () =>
-    Promise.resolve('michaelfaith@users.noreply.github.com'),
+  readEmailFromGit: () => Promise.resolve('michaelfaith@users.noreply.github.com'),
 }));
 
 vi.mock('./options/readGitDefaults.ts', async () => {
   const { default: gitUrlParse } = await import('git-url-parse');
   return {
-    readGitDefaults: () =>
-      gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
+    readGitDefaults: () => gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
   };
 });
 
@@ -41,12 +39,9 @@ describe(
           url: 'https://michael.faith',
         },
         contributors: (
-          JSON.parse(
-            (await readFile('.all-contributorsrc')).toString(),
-          ) as AllContributorsData
+          JSON.parse((await readFile('.all-contributorsrc')).toString()) as AllContributorsData
         ).contributors,
-        description:
-          'A quickstart-friendly repo template with comprehensive, opinionated tooling.',
+        description: 'A quickstart-friendly repo template with comprehensive, opinionated tooling.',
         devExports: true,
         documentation: {
           development: expect.any(String),

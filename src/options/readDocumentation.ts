@@ -7,14 +7,13 @@ export async function readDocumentation(
   getReadmeFootnotes: () => Promise<string | undefined>,
   getReadmeUsage: () => Promise<string | undefined>,
 ): Promise<Documentation> {
-  const [additional, explainer, footnotes, development, usage] =
-    await Promise.all([
-      getReadmeAdditional(),
-      getReadmeExplainer(),
-      getReadmeFootnotes(),
-      getDevelopmentDocumentation(),
-      getReadmeUsage(),
-    ]);
+  const [additional, explainer, footnotes, development, usage] = await Promise.all([
+    getReadmeAdditional(),
+    getReadmeExplainer(),
+    getReadmeFootnotes(),
+    getDevelopmentDocumentation(),
+    getReadmeUsage(),
+  ]);
 
   return {
     development,

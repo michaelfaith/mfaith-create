@@ -26,8 +26,7 @@ vi.mock('./utils/resolveBin.ts', () => ({
 vi.mock('./options/readGitDefaults.ts', async () => {
   const { default: gitUrlParse } = await import('git-url-parse');
   return {
-    readGitDefaults: () =>
-      gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
+    readGitDefaults: () => gitUrlParse('https://github.com/michaelfaith/mfaith-create'),
   };
 });
 
@@ -103,8 +102,7 @@ If you're interested in learning more, see the 'getting started' docs on:
                 files: JS_TS_FILES,
                 rules: [
                   {
-                    comment:
-                      'These on-by-default rules work well for this repo',
+                    comment: 'These on-by-default rules work well for this repo',
                     entries: {
                       '@typescript-eslint/prefer-nullish-coalescing': [
                         'error',
@@ -155,9 +153,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 
     const processText = async (text: string, filePath: string) => {
       if (/all-contributorsrc|js|md|ts|yaml/.test(filePath)) {
-        const formatResult = await format(filePath, text, {
-          printWidth: 80,
-        });
+        const formatResult = await format(filePath, text);
         return formatResult.code;
       }
       return text;

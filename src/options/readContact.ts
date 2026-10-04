@@ -16,10 +16,7 @@ export async function readContact(
   const bluesky = contactFromCodeOfConduct?.bluesky || undefined;
 
   const email =
-    packageAuthor.email ||
-    contactFromCodeOfConduct?.email ||
-    emailFromGit ||
-    emailFromNpm;
+    packageAuthor.email || contactFromCodeOfConduct?.email || emailFromGit || emailFromNpm;
 
   const url = packageAuthor.url || contactFromCodeOfConduct?.url;
 

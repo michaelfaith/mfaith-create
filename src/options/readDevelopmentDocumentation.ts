@@ -12,9 +12,7 @@ const knownHeadings = new Set([
   'type checking',
 ]);
 
-export async function readDevelopmentDocumentation(
-  take: TakeInput,
-): Promise<string | undefined> {
+export async function readDevelopmentDocumentation(take: TakeInput): Promise<string | undefined> {
   const existing = swallowError(
     await take(inputFromFile, {
       filePath: '.github/DEVELOPMENT.md',

@@ -11,54 +11,47 @@ export interface BlockRenovateProps {
   ignoreDeps?: string[];
 }
 
-export const blockRenovate: BlockWithProps<BlockRenovateProps> =
-  base.createBlock({
-    about: {
-      name: 'Renovate',
-    },
-    addons: {
-      ignoreDeps: ignoreDepsSchema,
-    },
-    intake({ files }) {
-      const raw = intakeFileAsJson(files, ['.github', 'renovate.json']);
+export const blockRenovate: BlockWithProps<BlockRenovateProps> = base.createBlock({
+  about: {
+    name: 'Renovate',
+  },
+  addons: {
+    ignoreDeps: ignoreDepsSchema,
+  },
+  intake({ files }) {
+    const raw = intakeFileAsJson(files, ['.github', 'renovate.json']);
 
-      return {
-        ignoreDeps: ignoreDepsSchema.safeParse(raw?.ignoreDeps).data,
-      };
-    },
-    produce({ addons }) {
-      const { ignoreDeps } = addons;
+    return {
+      ignoreDeps: ignoreDepsSchema.safeParse(raw?.ignoreDeps).data,
+    };
+  },
+  produce({ addons }) {
+    const { ignoreDeps } = addons;
 
-      return {
-        addons: [
-          blockGithubApps({
-            apps: [
-              {
-                name: 'Renovate',
-                url: 'https://github.com/apps/renovate',
-              },
-            ],
+    return {
+      addons: [
+        blockGithubApps({
+          apps: [
+            {
+              name: 'Renovate',
+              url: 'https://github.com/apps/renovate',
+            },
+          ],
+        }),
+      ],
+      files: {
+        '.github': {
+          'renovate.json': JSON.stringify({
+            $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+            automerge: true,
+            extends: [':preserveSemverRanges', 'config:best-practices', 'replacements:all'],
+            ignoreDeps: ignoreDeps.length ? Array.from(new Set(ignoreDeps)).sort() : undefined,
+            labels: ['dependencies'],
+            minimumReleaseAge: '7 days',
+            postUpdateOptions: ['pnpmDedupe'],
           }),
-        ],
-        files: {
-          '.github': {
-            'renovate.json': JSON.stringify({
-              $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-              automerge: true,
-              extends: [
-                ':preserveSemverRanges',
-                'config:best-practices',
-                'replacements:all',
-              ],
-              ignoreDeps: ignoreDeps.length
-                ? Array.from(new Set(ignoreDeps)).sort()
-                : undefined,
-              labels: ['dependencies'],
-              minimumReleaseAge: '7 days',
-              postUpdateOptions: ['pnpmDedupe'],
-            }),
-          },
         },
-      };
-    },
-  });
+      },
+    };
+  },
+});

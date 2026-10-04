@@ -637,10 +637,7 @@ describe(blockReleasePlease, () => {
 
     expect(creation.addons).toContainEqual(
       blockRemoveFiles({
-        files: [
-          '.github/workflows/post-release.yml',
-          '.github/workflows/release.yml',
-        ],
+        files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
       }),
     );
   });
@@ -673,9 +670,7 @@ describe(blockReleasePlease, () => {
         files: {
           '.github': {
             'release-please': {
-              'release-please-manifest.main.json': [
-                JSON.stringify({ '.': '13.0.0' }),
-              ],
+              'release-please-manifest.main.json': [JSON.stringify({ '.': '13.0.0' })],
             },
           },
         },

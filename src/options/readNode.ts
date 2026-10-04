@@ -13,8 +13,7 @@ export async function readNode(
 
   return {
     supported:
-      (engines?.node && numberRegex.test(engines.node) && engines.node) ||
-      defaults.node.supported,
+      (engines?.node && numberRegex.test(engines.node) && engines.node) || defaults.node.supported,
     pinned: swallowError(await getNvmrc())?.trim() || defaults.node.pinned,
   };
 }

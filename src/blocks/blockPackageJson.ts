@@ -11,13 +11,9 @@ import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
 const packageJsonWithNullableScriptsSchema = PackageJson.partial().extend({
-  scripts: z
-    .record(z.string(), z.union([z.string(), z.undefined()]))
-    .optional(),
+  scripts: z.record(z.string(), z.union([z.string(), z.undefined()])).optional(),
 });
-export interface PackageJsonWithNullableScripts extends Partial<
-  Omit<PackageJson, 'scripts'>
-> {
+export interface PackageJsonWithNullableScripts extends Partial<Omit<PackageJson, 'scripts'>> {
   scripts?: Record<string, string | undefined>;
 }
 
@@ -26,99 +22,86 @@ export interface BlockPackageJsonProps {
   properties?: PackageJsonWithNullableScripts;
 }
 
-export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> =
-  base.createBlock({
-    about: {
-      name: 'Package JSON',
-    },
-    addons: {
-      cleanupCommands: z.array(z.string()).default([]),
-      properties: packageJsonWithNullableScriptsSchema.default({}),
-    },
-    produce({ addons, offline, options }) {
-      const dependencies = useLargerVersions(
-        options.packageData?.dependencies,
-        {
-          ...options.packageData?.dependencies,
-          ...addons.properties.dependencies,
-        },
-      );
-      const devDependencies = useLargerVersions(
-        options.packageData?.devDependencies,
-        {
-          ...options.packageData?.devDependencies,
-          ...addons.properties.devDependencies,
-        },
-      );
-      const description = htmlToTextSafe(options.description);
+export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.createBlock({
+  about: {
+    name: 'Package JSON',
+  },
+  addons: {
+    cleanupCommands: z.array(z.string()).default([]),
+    properties: packageJsonWithNullableScriptsSchema.default({}),
+  },
+  produce({ addons, offline, options }) {
+    const dependencies = useLargerVersions(options.packageData?.dependencies, {
+      ...options.packageData?.dependencies,
+      ...addons.properties.dependencies,
+    });
+    const devDependencies = useLargerVersions(options.packageData?.devDependencies, {
+      ...options.packageData?.devDependencies,
+      ...addons.properties.devDependencies,
+    });
+    const description = htmlToTextSafe(options.description);
 
-      return {
-        files: {
-          'package.json': sortPackageJson(
-            JSON.stringify(
-              removeUndefinedObjects({
-                ...options.packageData,
-                ...addons.properties,
-                author: {
-                  name: options.author,
-                  ...(options.contact.url
-                    ? { url: options.contact.url }
-                    : options.contact.email
-                      ? { email: options.contact.email }
-                      : {}),
-                },
-                bin: addons.properties.bin,
-                dependencies: Object.keys(dependencies).length
-                  ? dependencies
-                  : undefined,
-                description,
-                devDependencies: Object.keys(devDependencies).length
-                  ? devDependencies
-                  : undefined,
-                engines: {
-                  node: /^\d/u.test(options.node.supported)
-                    ? `>=${options.node.supported}`
-                    : options.node.supported,
-                },
-                ...(options.pnpm && {
-                  packageManager: `pnpm@${options.pnpm}`,
-                }),
-                files: processFiles(addons.properties.files),
-                keywords: options.keywords,
-                name: options.packageName,
-                repository: {
-                  type: 'git',
-                  url: `git+https://github.com/${options.owner}/${options.repository}.git`,
-                },
-                scripts: {
-                  ...options.packageData?.scripts,
-                  ...addons.properties.scripts,
-                },
-                type: 'module',
-                version: options.version ?? '0.0.0',
+    return {
+      files: {
+        'package.json': sortPackageJson(
+          JSON.stringify(
+            removeUndefinedObjects({
+              ...options.packageData,
+              ...addons.properties,
+              author: {
+                name: options.author,
+                ...(options.contact.url
+                  ? { url: options.contact.url }
+                  : options.contact.email
+                    ? { email: options.contact.email }
+                    : {}),
+              },
+              bin: addons.properties.bin,
+              dependencies: Object.keys(dependencies).length ? dependencies : undefined,
+              description,
+              devDependencies: Object.keys(devDependencies).length ? devDependencies : undefined,
+              engines: {
+                node: /^\d/u.test(options.node.supported)
+                  ? `>=${options.node.supported}`
+                  : options.node.supported,
+              },
+              ...(options.pnpm && {
+                packageManager: `pnpm@${options.pnpm}`,
               }),
-            ),
+              files: processFiles(addons.properties.files),
+              keywords: options.keywords,
+              name: options.packageName,
+              repository: {
+                type: 'git',
+                url: `git+https://github.com/${options.owner}/${options.repository}.git`,
+              },
+              scripts: {
+                ...options.packageData?.scripts,
+                ...addons.properties.scripts,
+              },
+              type: 'module',
+              version: options.version ?? '0.0.0',
+            }),
           ),
+        ),
+      },
+      scripts: [
+        {
+          commands: [
+            `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
+            ...addons.cleanupCommands,
+          ],
+          phase: CommandPhase.Install,
         },
-        scripts: [
-          {
-            commands: [
-              `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
-              ...addons.cleanupCommands,
-            ],
-            phase: CommandPhase.Install,
-          },
-        ],
-      };
-    },
-    transition() {
-      return {
-        addons: [
-          blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] }),
-        ],
-      };
-    },
-  });
+      ],
+    };
+  },
+  transition() {
+    return {
+      addons: [blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] })],
+    };
+  },
+});
 
 function processFiles(files: string[] | undefined) {
   // If no files have been specified, we can skip the property altogether
@@ -127,9 +110,7 @@ function processFiles(files: string[] | undefined) {
   }
 
   // First sort so that shorter entries are first (e.g. "dist/")...
-  const sortedByLength = files
-    .filter(Boolean)
-    .sort((a, b) => a.length - b.length);
+  const sortedByLength = files.filter(Boolean).sort((a, b) => a.length - b.length);
 
   // ...then remove entries captured by earlier directories (e.g. "dist/index.mjs")
   return sortedByLength
@@ -155,8 +136,7 @@ function useLargerVersion(existing: string | undefined, replacement: string) {
 
   const existingCoerced = semver.coerce(removeRangePrefix(existing));
 
-  return existingCoerced &&
-    semver.gt(existingCoerced, removeRangePrefix(replacement))
+  return existingCoerced && semver.gt(existingCoerced, removeRangePrefix(replacement))
     ? existing
     : replacement;
 }

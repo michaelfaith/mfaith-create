@@ -9,10 +9,7 @@ describe(removeUsesQuotes, () => {
     ['- uses: actions/checkout@v4'],
     ["- uses: 'actions/checkout@v4'", '- uses: actions/checkout@v4'],
     ['- uses: actions/checkout@abc # v4'],
-    [
-      "- uses: 'actions/checkout@abc # v4'",
-      '- uses: actions/checkout@abc # v4',
-    ],
+    ["- uses: 'actions/checkout@abc # v4'", '- uses: actions/checkout@abc # v4'],
   ])('%s', (input, expected = input) => {
     expect(removeUsesQuotes(input)).toBe(expected);
   });

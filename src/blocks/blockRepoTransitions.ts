@@ -54,21 +54,15 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
                         options.workflowsVersions,
                       ),
                       with: {
-                        commit_author:
-                          'The Friendly Bingo Bot <bot@create.bingo>',
-                        commit_message:
-                          'Check in changes from re-running npx @mfaith/create',
+                        commit_author: 'The Friendly Bingo Bot <bot@create.bingo>',
+                        commit_message: 'Check in changes from re-running npx @mfaith/create',
                         commit_user_email: 'bot@create.bingo',
                         commit_user_name: 'The Friendly Bingo Bot',
                       },
                     },
                     {
                       if: "steps.auto-commit-action.outputs.changes_detected == 'true'",
-                      uses: resolveUses(
-                        'mshick/add-pr-comment',
-                        'v2',
-                        options.workflowsVersions,
-                      ),
+                      uses: resolveUses('mshick/add-pr-comment', 'v2', options.workflowsVersions),
                       with: {
                         issue: '${{ github.event.pull_request.number }}',
                         message: [
@@ -134,16 +128,11 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
                   {
                     id: 'checkout',
                     if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, '@mfaith/create')`,
-                    uses: resolveUses(
-                      'actions/checkout',
-                      'v4',
-                      options.workflowsVersions,
-                    ),
+                    uses: resolveUses('actions/checkout', 'v4', options.workflowsVersions),
                     with: {
                       'fetch-depth': 0,
                       ref: '${{github.event.pull_request.head.ref}}',
-                      repository:
-                        '${{github.event.pull_request.head.repo.full_name}}',
+                      repository: '${{github.event.pull_request.head.repo.full_name}}',
                     },
                   },
                   {

@@ -3,9 +3,7 @@ import { inputFromFile } from 'input-from-file';
 
 import type { GuideLink } from '../Options.ts';
 
-export async function readGuide(
-  take: TakeInput,
-): Promise<GuideLink | undefined> {
+export async function readGuide(take: TakeInput): Promise<GuideLink | undefined> {
   const development = await take(inputFromFile, {
     filePath: '.github/DEVELOPMENT.md',
   });
@@ -14,9 +12,7 @@ export async function readGuide(
     return undefined;
   }
 
-  const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
-    development,
-  );
+  const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(development);
 
   if (!tag) {
     return undefined;

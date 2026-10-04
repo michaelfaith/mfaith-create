@@ -17,8 +17,8 @@ export interface BlockRepositorySecretsProps {
   secrets?: Secret[];
 }
 
-export const blockRepositorySecrets: BlockWithProps<BlockRepositorySecretsProps> =
-  base.createBlock({
+export const blockRepositorySecrets: BlockWithProps<BlockRepositorySecretsProps> = base.createBlock(
+  {
     about: {
       name: 'Repository Secrets',
     },
@@ -29,11 +29,10 @@ export const blockRepositorySecrets: BlockWithProps<BlockRepositorySecretsProps>
       return {
         suggestions: getInstallationSuggestions(
           'populate the secret',
-          addons.secrets.map(
-            (secret) => `${secret.name} (${secret.description})`,
-          ),
+          addons.secrets.map((secret) => `${secret.name} (${secret.description})`),
           `https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
         ),
       };
     },
-  });
+  },
+);
