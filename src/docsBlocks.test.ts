@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises';
 
 import type { Block } from 'bingo-stratum';
-import * as prettier from 'prettier';
+import { format } from 'oxfmt';
 import { describe, expect, test } from 'vitest';
 
 import * as blocks from './blocks/index.ts';
@@ -68,11 +68,9 @@ async function createExpectedLines() {
     );
   }
 
-  const expectedTable = await prettier.format(lines.join('\n'), {
-    parser: 'markdown',
-  });
+  const expectedTable = await format('Blocks.md', lines.join('\n'));
 
-  return splitTable(expectedTable);
+  return splitTable(expectedTable.code);
 }
 
 function createFlag(prefix: string, name: string) {

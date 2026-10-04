@@ -16,11 +16,6 @@ import { blockKnip } from '../blocks/blockKnip.ts';
 import { blockNvmrc } from '../blocks/blockNvmrc.ts';
 import { blockOctoguideStrict } from '../blocks/blockOctoguideStrict.ts';
 import { blockPnpmDedupe } from '../blocks/blockPnpmDedupe.ts';
-import { blockPrettierPluginCurly } from '../blocks/blockPrettierPluginCurly.ts';
-import { blockPrettierPluginPackageJson } from '../blocks/blockPrettierPluginPackageJson.ts';
-import { blockPrettierPluginPaddingLines } from '../blocks/blockPrettierPluginPaddingLines.ts';
-import { blockPrettierPluginSentencesPerLine } from '../blocks/blockPrettierPluginSentencesPerLine.ts';
-import { blockPrettierPluginSh } from '../blocks/blockPrettierPluginSh.ts';
 import { blockRenovate } from '../blocks/blockRenovate.ts';
 import { blockVscode } from '../blocks/blockVscode.ts';
 import type { OptionsShape } from '../Options.ts';
@@ -49,11 +44,6 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
     blockNvmrc,
     blockPnpmDedupe,
     blockOctoguideStrict,
-    blockPrettierPluginCurly,
-    blockPrettierPluginPackageJson,
-    blockPrettierPluginPaddingLines,
-    blockPrettierPluginSentencesPerLine,
-    blockPrettierPluginSh,
     blockRenovate,
     blockVscode,
   ],

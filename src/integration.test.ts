@@ -1,8 +1,8 @@
-import prettier from '@prettier/sync';
 import { prepareOptions } from 'bingo';
 import { intake, type IntakeDirectory } from 'bingo-fs';
 import { producePreset } from 'bingo-stratum';
 import { diffCreatedDirectory } from 'bingo-testers';
+import { format } from 'oxfmt';
 import { expect, test, vi } from 'vitest';
 
 import { blockBin } from './blocks/blockBin.ts';
@@ -128,6 +128,13 @@ If you're interested in learning more, see the 'getting started' docs on:
             ignoreDependencies: [
               'all-contributors-cli',
               'cspell-populate-words',
+              'prettier',
+              'prettier-plugin-curly',
+              'prettier-plugin-packagejson',
+              'prettier-plugin-padding-lines',
+              'prettier-plugin-sentences-per-line',
+              'prettier-plugin-sh',
+              'pretty-quick',
               'remove-dependencies',
               'trash-cli',
             ],
@@ -146,14 +153,19 @@ If you're interested in learning more, see the 'getting started' docs on:
       },
     });
 
-    const processText = (text: string, filePath: string) =>
-      /all-contributorsrc|js|md|ts|yaml/.test(filePath)
-        ? prettier.format(text, { filepath: filePath })
-        : text;
+    const processText = async (text: string, filePath: string) => {
+      if (/all-contributorsrc|js|md|ts|yaml/.test(filePath)) {
+        const formatResult = await format(filePath, text, {
+          printWidth: 80,
+        });
+        return formatResult.code;
+      }
+      return text;
+    };
 
-    expect(
+    await expect(
       diffCreatedDirectory(actual, created.files, { processText }),
-    ).toBeUndefined();
+    ).resolves.toBeUndefined();
   },
   isWindowsCI ? 25_000 : 15_000,
 );

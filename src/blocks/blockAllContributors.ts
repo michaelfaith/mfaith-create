@@ -6,6 +6,7 @@ import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockReadme } from './blockReadme.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
@@ -46,6 +47,9 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
         }),
         blockPrettier({
           ignores: ['/.all-contributorsrc'],
+        }),
+        blockOxfmt({
+          ignorePatterns: ['/.all-contributorsrc'],
         }),
         blockReadme({
           badges: [

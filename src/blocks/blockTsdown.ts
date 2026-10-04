@@ -11,6 +11,7 @@ import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
@@ -167,6 +168,9 @@ pnpm build --watch
               build: 'tsdown',
             },
           },
+        }),
+        blockOxfmt({
+          ignorePatterns: ['/dist'],
         }),
         blockPrettier({
           ignores: ['/dist'],

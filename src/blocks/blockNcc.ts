@@ -6,9 +6,9 @@ import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
-
 export interface BlockNccProps {
   entry?: string | undefined;
 }
@@ -80,6 +80,9 @@ pnpm build:release
               steps: [{ run: 'pnpm build:release' }],
             },
           ],
+        }),
+        blockOxfmt({
+          ignorePatterns: ['/dist'],
         }),
         blockPackageJson({
           properties: {

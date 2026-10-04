@@ -61,6 +61,8 @@ export {
   blockOctoguide,
   type BlockOctoguideProps,
   blockOctoguideStrict,
+  blockOxfmt,
+  type BlockOxfmtProps,
   blockPackageJson,
   type BlockPackageJsonProps,
   blockPnpmDedupe,
