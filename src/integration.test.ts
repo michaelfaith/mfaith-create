@@ -133,14 +133,6 @@ If you're interested in learning more, see the 'getting started' docs on:
               'trash-cli',
             ],
           }),
-          // https://github.com/bingo-js/bingo/issues/420
-          blockPnpmWorkspace({
-            config: {
-              overrides: {
-                'vitest@5.0.2>why-is-node-running': '3.2.1',
-              },
-            },
-          }),
           // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
           blockTypescript({
             compilerOptions: {

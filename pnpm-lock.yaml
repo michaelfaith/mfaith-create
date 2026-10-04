@@ -162,9 +162,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  vitest@5.0.2>why-is-node-running: 3.2.1
-
 importers:
 
   .:
