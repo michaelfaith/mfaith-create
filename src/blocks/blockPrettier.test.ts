@@ -47,28 +47,6 @@ describe(blockPrettier, () => {
           },
           {
             "addons": {
-              "extensions": [
-                {
-                  "files": [
-                    "**/*.js",
-                    "**/*.ts",
-                  ],
-                  "languageOptions": {
-                    "parserOptions": {
-                      "projectService": {
-                        "allowDefaultProject": [
-                          ".simple-git-hooks.js",
-                        ],
-                      },
-                    },
-                  },
-                },
-              ],
-            },
-            "block": "[Block ESLint]",
-          },
-          {
-            "addons": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -93,6 +71,9 @@ describe(blockPrettier, () => {
                 "scripts": {
                   "format": "prettier .",
                   "prepare": "simple-git-hooks",
+                },
+                "simple-git-hooks": {
+                  "pre-commit": "pnpm pretty-quick --staged",
                 },
               },
             },
@@ -124,9 +105,6 @@ describe(blockPrettier, () => {
           ".prettierignore": "/.husky
       /pnpm-lock.yaml
       ",
-          ".simple-git-hooks.js": "export default {
-        'pre-commit': 'pnpm pretty-quick --staged',
-      };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
       const config: Config = {"singleQuote":true};
@@ -198,28 +176,6 @@ describe(blockPrettier, () => {
           },
           {
             "addons": {
-              "extensions": [
-                {
-                  "files": [
-                    "**/*.js",
-                    "**/*.ts",
-                  ],
-                  "languageOptions": {
-                    "parserOptions": {
-                      "projectService": {
-                        "allowDefaultProject": [
-                          ".simple-git-hooks.js",
-                        ],
-                      },
-                    },
-                  },
-                },
-              ],
-            },
-            "block": "[Block ESLint]",
-          },
-          {
-            "addons": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -250,6 +206,9 @@ describe(blockPrettier, () => {
                 "scripts": {
                   "format": "prettier .",
                   "prepare": "simple-git-hooks",
+                },
+                "simple-git-hooks": {
+                  "pre-commit": "pnpm pretty-quick --staged",
                 },
               },
             },
@@ -282,9 +241,6 @@ describe(blockPrettier, () => {
       /pnpm-lock.yaml
       generated
       ",
-          ".simple-git-hooks.js": "export default {
-        'pre-commit': 'pnpm pretty-quick --staged',
-      };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
       const config: Config = {"importOrder":["<BUILTIN_MODULES>","","<THIRD_PARTY_MODULES>","","^[.]"],"importOrderTypeScriptVersion":"6.0.0","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./dist/index.mjs","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"singleQuote":true};
@@ -343,28 +299,6 @@ describe(blockPrettier, () => {
           },
           {
             "addons": {
-              "extensions": [
-                {
-                  "files": [
-                    "**/*.js",
-                    "**/*.ts",
-                  ],
-                  "languageOptions": {
-                    "parserOptions": {
-                      "projectService": {
-                        "allowDefaultProject": [
-                          ".simple-git-hooks.js",
-                        ],
-                      },
-                    },
-                  },
-                },
-              ],
-            },
-            "block": "[Block ESLint]",
-          },
-          {
-            "addons": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -389,6 +323,9 @@ describe(blockPrettier, () => {
                 "scripts": {
                   "format": "prettier .",
                   "prepare": "simple-git-hooks",
+                },
+                "simple-git-hooks": {
+                  "pre-commit": "pnpm pretty-quick --staged",
                 },
               },
             },
@@ -448,9 +385,6 @@ describe(blockPrettier, () => {
           ".prettierignore": "/.husky
       /pnpm-lock.yaml
       ",
-          ".simple-git-hooks.js": "export default {
-        'pre-commit': 'pnpm pretty-quick --staged',
-      };",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
       const config: Config = {"singleQuote":true};

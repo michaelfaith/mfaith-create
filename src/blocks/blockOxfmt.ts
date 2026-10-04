@@ -11,7 +11,6 @@ import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVscode } from './blockVscode.ts';
 import { CommandPhase } from './phases.ts';
 
@@ -148,9 +147,6 @@ export default config;
             '.prettierignore',
             'prettier.config*',
           ],
-        }),
-        blockRemoveWorkflows({
-          workflows: ['format', 'prettier'],
         }),
       ],
     };

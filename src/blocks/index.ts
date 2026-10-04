@@ -37,10 +37,7 @@ export { blockPackageJson, type BlockPackageJsonProps } from './blockPackageJson
 export { blockPnpmDedupe } from './blockPnpmDedupe.ts';
 export { blockPnpmWorkspace, type BlockPnpmWorkspaceProps } from './blockPnpmWorkspace.ts';
 export { blockPrettier, type BlockPrettierProps } from './blockPrettier.ts';
-export { blockPrettierPluginCurly } from './blockPrettierPluginCurly.ts';
-export { blockPrettierPluginPackageJson } from './blockPrettierPluginPackageJson.ts';
 export { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
-export { blockPrettierPluginSh } from './blockPrettierPluginSh.ts';
 export { blockPrPreviewRelease, type BlockPrPreviewReleaseProps } from './blockPrPreviewRelease.ts';
 export { blockReadme, type BlockReadmeProps } from './blockReadme.ts';
 export { blockReleasePlease, type BlockReleasePleaseProps } from './blockReleasePlease.ts';
