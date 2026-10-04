@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0](https://github.com/michaelfaith/mfaith-create/compare/v0.5.5...v0.6.0) (2026-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TypeScript:** enable `isolatedDeclarations` ([#312](https://github.com/michaelfaith/mfaith-create/issues/312))
+
+### 🚀 Features
+
+* add new `gitattributes` block ([#334](https://github.com/michaelfaith/mfaith-create/issues/334)) ([b0e2125](https://github.com/michaelfaith/mfaith-create/commit/b0e21257237840b5c68739d7c5bc4c63c3e7b687))
+* **AreTheTypesWrong:** shift to using tsdown integration ([#317](https://github.com/michaelfaith/mfaith-create/issues/317)) ([0f714e8](https://github.com/michaelfaith/mfaith-create/commit/0f714e8feacb39155fe607c15590a109db8f1d49))
+* **TypeScript:** enable `isolatedDeclarations` ([#312](https://github.com/michaelfaith/mfaith-create/issues/312)) ([0158180](https://github.com/michaelfaith/mfaith-create/commit/0158180423efbddfd1b24eeec1f22ef39c240394))
+
 ## [0.5.5](https://github.com/michaelfaith/mfaith-create/compare/v0.5.4...v0.5.5) (2026-09-30)
 
 
