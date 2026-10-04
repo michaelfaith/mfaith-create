@@ -2,6 +2,6 @@ allowBuilds:
   simple-git-hooks: true
 
 overrides:
-  vitest@5.0.2>why-is-node-running: 3.2.1
+  vitest@5.0.2>why-is-node-running: 3.2.2
 
 trustPolicy: no-downgrade
