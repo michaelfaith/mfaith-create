@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/michaelfaith/mfaith-create/compare/v0.6.0...v0.7.0) (2026-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove multiple prettier plugin blocks ([#327](https://github.com/michaelfaith/mfaith-create/issues/327))
+
+### 🚀 Features
+
+* **Oxfmt:** add new Oxfmt block ([#321](https://github.com/michaelfaith/mfaith-create/issues/321)) ([353bcb4](https://github.com/michaelfaith/mfaith-create/commit/353bcb41592a8779a2c5e3d46d957cf578db4f21))
+* remove multiple prettier plugin blocks ([#327](https://github.com/michaelfaith/mfaith-create/issues/327)) ([e654ce9](https://github.com/michaelfaith/mfaith-create/commit/e654ce93c3aaee500393691e0e179b30456e418d))
+
 ## [0.6.0](https://github.com/michaelfaith/mfaith-create/compare/v0.5.5...v0.6.0) (2026-10-03)
 
 
