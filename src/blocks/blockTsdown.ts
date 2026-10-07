@@ -1,7 +1,6 @@
 import { extname } from 'node:path';
 
 import removeUndefinedObjects from 'remove-undefined-objects';
-import { type UserConfig } from 'tsdown';
 import { z } from 'zod';
 
 import { base } from '../base.ts';
@@ -31,7 +30,14 @@ const attwSchema: z.ZodType<Attw> = z.union([
     ignoreRules: z.array(z.string()).optional(),
   }),
 ]);
-type Attw = UserConfig['attw'];
+type Attw =
+  | boolean
+  | {
+      enabled?: boolean | 'ci-only' | 'local-only';
+      level?: 'error' | 'warn';
+      profile?: 'strict' | 'node16' | 'esm-only';
+      ignoreRules?: string[];
+    };
 
 const entrySchema = z.array(z.string());
 const additionalConfigSchema = z.record(z.string(), z.unknown());
