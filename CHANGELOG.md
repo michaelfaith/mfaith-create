@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/michaelfaith/mfaith-create/compare/v0.7.1...v0.7.2) (2026-10-07)
+
+
+### 🩹 Bug Fixes
+
+* make `Config` type consistent with `createConfig` ([#349](https://github.com/michaelfaith/mfaith-create/issues/349)) ([f09a717](https://github.com/michaelfaith/mfaith-create/commit/f09a717da57e75c35d37e4ce37da49cc1ea6cfcf))
+
 ## [0.7.1](https://github.com/michaelfaith/mfaith-create/compare/v0.7.0...v0.7.1) (2026-10-07)
 
 
