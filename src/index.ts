@@ -1,15 +1,6 @@
-import type { CreateTemplateConfig } from 'bingo';
-import type { StratumRefinements, StratumTemplateOptionsShapeFor } from 'bingo-stratum';
-
-import type { Options, OptionsShape } from './Options.ts';
 import { template } from './template.ts';
 
 export { template };
-
-export const createConfig: CreateTemplateConfig<
-  StratumTemplateOptionsShapeFor<OptionsShape>,
-  StratumRefinements<Options>
-> = template.createConfig;
 
 export { base, type BaseOptions } from './base.ts';
 export {
@@ -92,5 +83,5 @@ export {
   type BlockWithoutProps,
   type BlockWithProps,
 } from './blocks/index.ts';
-export type { Config } from './Config.ts';
+export { type Config, createConfig } from './Config.ts';
 export { presetCommon, presetEverything, presetMinimal } from './presets/index.ts';
