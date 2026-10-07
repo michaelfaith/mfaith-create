@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/michaelfaith/mfaith-create/compare/v0.7.0...v0.7.1) (2026-10-07)
+
+
+### 🩹 Bug Fixes
+
+* remove inlined dependencies from package ([#347](https://github.com/michaelfaith/mfaith-create/issues/347)) ([253aefc](https://github.com/michaelfaith/mfaith-create/commit/253aefc74ad07f7a4c9fb52c363d9a1049aa1f05))
+
 ## [0.7.0](https://github.com/michaelfaith/mfaith-create/compare/v0.6.0...v0.7.0) (2026-10-07)
 
 
