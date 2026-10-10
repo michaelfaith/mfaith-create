@@ -9,6 +9,7 @@
     "node_modules",
     "oxfmt.config.ts",
     "package.json",
+    "patches",
     "pnpm-lock.yaml"
   ],
   "words": [

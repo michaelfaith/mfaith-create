@@ -74,7 +74,7 @@ describe(blockCspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","patches","pnpm-lock.yaml"]}",
         },
       }
     `);
@@ -144,7 +144,7 @@ describe(blockCspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","patches","pnpm-lock.yaml"],"words":["michaelfaith"]}",
         },
       }
     `);
@@ -213,7 +213,7 @@ describe(blockCspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","patches","pnpm-lock.yaml"],"words":["michaelfaith"]}",
         },
       }
     `);
@@ -280,7 +280,7 @@ describe(blockCspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","patches","pnpm-lock.yaml"]}",
         },
         "scripts": [
           {
@@ -364,7 +364,7 @@ describe(blockCspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","pnpm-lock.yaml"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","package.json","patches","pnpm-lock.yaml"]}",
         },
       }
     `);
