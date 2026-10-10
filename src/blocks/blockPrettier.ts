@@ -41,18 +41,18 @@ export const blockPrettier: BlockWithProps<BlockPrettierProps> = base.createBloc
   about: {
     name: 'Prettier',
   },
-  addons: {
+  props: {
     additionalConfig: z.record(z.string(), z.unknown()).optional(),
     ignores: z.array(z.string()).default([]),
     overrides: z.array(overrideSchema).default([]),
     plugins: z.array(z.string()).default([]),
     runBefore: z.array(z.string()).default([]),
   },
-  produce({ addons }) {
-    const { additionalConfig = {}, ignores, overrides, plugins, runBefore } = addons;
+  produce({ props }) {
+    const { additionalConfig = {}, ignores, overrides, plugins, runBefore } = props;
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: ['prettier.config.ts'],
         }),
@@ -138,7 +138,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveDependencies({
           dependencies: ['eslint-config-prettier', 'eslint-plugin-prettier'],
         }),

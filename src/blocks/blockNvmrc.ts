@@ -9,7 +9,7 @@ export const blockNvmrc: BlockWithoutProps = base.createBlock({
   },
   produce({ options }) {
     return {
-      addons: [
+      extensions: [
         blockOxfmt({
           overrides: [{ files: ['.nvmrc'], options: { parser: 'yaml' } }],
         }),

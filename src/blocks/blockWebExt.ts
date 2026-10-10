@@ -14,7 +14,7 @@ export const blockWebExt: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: ['assets'],
         }),

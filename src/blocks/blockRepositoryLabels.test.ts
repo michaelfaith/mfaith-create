@@ -606,10 +606,10 @@ describe(blockRepositoryLabels, () => {
 		`);
   });
 
-  describe('with addons', () => {
+  describe('with props', () => {
     test('when options.existingLabels is undefined', () => {
       const creation = testBlock(blockRepositoryLabels, {
-        addons: {
+        props: {
           additionalLabels: [
             {
               color: '#313131',
@@ -924,7 +924,7 @@ describe(blockRepositoryLabels, () => {
 
     test('when options.existingLabels contains default entries', () => {
       const creation = testBlock(blockRepositoryLabels, {
-        addons: {
+        props: {
           additionalLabels: [
             {
               color: '#313131',
@@ -1245,7 +1245,7 @@ describe(blockRepositoryLabels, () => {
 
     test('when options.existingLabels contains duplicate entries', () => {
       const creation = testBlock(blockRepositoryLabels, {
-        addons: {
+        props: {
           additionalLabels: [
             {
               color: '#313131',

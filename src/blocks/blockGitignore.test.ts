@@ -5,7 +5,7 @@ import { blockGitignore } from './blockGitignore.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitignore, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockGitignore, {
       options: optionsBase,
     });
@@ -20,9 +20,9 @@ describe(blockGitignore, () => {
 		`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockGitignore, {
-      addons: {
+      props: {
         ignores: ['/dist'],
       },
       options: optionsBase,

@@ -16,9 +16,10 @@ describe('blockEslintNode', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -57,7 +58,6 @@ describe('blockEslintNode', () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
         ],
       }

@@ -162,6 +162,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  bingo-stratum: bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96
+  bingo-stratum-testers: 9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f
+
 importers:
 
   .:
@@ -177,7 +181,7 @@ importers:
         version: 0.6.0
       bingo-stratum:
         specifier: ^0.8.0
-        version: 0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5)
+        version: 0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5)
       cached-factory:
         specifier: ^0.3.0
         version: 0.3.0
@@ -316,7 +320,7 @@ importers:
         version: 0.5.6
       bingo-stratum-testers:
         specifier: 0.5.15
-        version: 0.5.15(bingo-fs@0.6.0)(bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5))(bingo-systems@0.7.0)(bingo@0.13.1)
+        version: 0.5.15(patch_hash=9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f)(bingo-fs@0.6.0)(bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5))(bingo-systems@0.7.0)(bingo@0.13.1)
       bingo-testers:
         specifier: 0.8.0
         version: 0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)
@@ -5229,14 +5233,14 @@ snapshots:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.15(bingo-fs@0.6.0)(bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5))(bingo-systems@0.7.0)(bingo@0.13.1):
+  bingo-stratum-testers@0.5.15(patch_hash=9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f)(bingo-fs@0.6.0)(bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5))(bingo-systems@0.7.0)(bingo@0.13.1):
     dependencies:
       bingo: 0.13.1
       bingo-fs: 0.6.0
-      bingo-stratum: 0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5)
+      bingo-stratum: 0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5)
       bingo-systems: 0.7.0
 
-  bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5):
+  bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.1)(zod@4.6.5):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.13.1

@@ -5,7 +5,7 @@ import { blockGithubApps } from './blockGithubApps.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGithubApps, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockGithubApps, {
       options: optionsBase,
     });
@@ -17,9 +17,9 @@ describe(blockGithubApps, () => {
 		`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockGithubApps, {
-      addons: {
+      props: {
         apps: [
           {
             name: 'Secret A.',

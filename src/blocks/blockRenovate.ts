@@ -15,7 +15,7 @@ export const blockRenovate: BlockWithProps<BlockRenovateProps> = base.createBloc
   about: {
     name: 'Renovate',
   },
-  addons: {
+  props: {
     ignoreDeps: ignoreDepsSchema,
   },
   intake({ files }) {
@@ -25,11 +25,11 @@ export const blockRenovate: BlockWithProps<BlockRenovateProps> = base.createBloc
       ignoreDeps: ignoreDepsSchema.safeParse(raw?.ignoreDeps).data,
     };
   },
-  produce({ addons }) {
-    const { ignoreDeps } = addons;
+  produce({ props }) {
+    const { ignoreDeps } = props;
 
     return {
-      addons: [
+      extensions: [
         blockGithubApps({
           apps: [
             {

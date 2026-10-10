@@ -293,7 +293,7 @@ describe(blockReadme, () => {
 		`);
   });
 
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockReadme, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -317,9 +317,9 @@ describe(blockReadme, () => {
 		`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockReadme, {
-      addons: {
+      props: {
         badges: [
           {
             alt: 'Badge Z',

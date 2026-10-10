@@ -23,21 +23,21 @@ export const blockExampleFiles: BlockWithProps<BlockExampleFilesProps> = base.cr
   about: {
     name: 'Example Files',
   },
-  addons: {
+  props: {
     files: fileEntrySchema.default({}),
     usage: z.array(z.string()).default([]),
   },
-  setup({ addons }) {
-    const { usage } = addons;
+  setup({ props }) {
+    const { usage } = props;
 
     return {
-      addons: [
+      extensions: [
         blockReadme({
           defaultUsage: usage,
         }),
       ],
       files: {
-        src: addons.files,
+        src: props.files,
       },
     };
   },

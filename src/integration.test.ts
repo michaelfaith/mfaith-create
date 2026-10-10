@@ -14,6 +14,7 @@ import {
   blockCspell,
   blockEslint,
   blockKnip,
+  blockPnpmWorkspace,
   blockTemplatedWith,
   blockTypescript,
   presetEverything,
@@ -42,7 +43,7 @@ const presetIntegration = base.createPreset({
 });
 
 // This test checks the Bingo production using options inferred from disk,
-// along with some explicit addons and blocks specified.
+// along with some explicit extensions and blocks specified.
 // It ensures that result has no differences from the actual files on disk.
 //
 // If the test fails, it's most likely due to a block being changed without the
@@ -50,7 +51,7 @@ const presetIntegration = base.createPreset({
 // You may need to manually update files on disk to match the block's output.
 //
 // The next most likely culprit for failures is changing file contents that are
-// specified by the addons mentioned in the producePreset() call below.
+// specified by the extensions mentioned in the producePreset() call below.
 // For now, if you change the output on disk, you'll need to manually update here too.
 // TODO: Eventually the create engine will be able to infer them:
 //   https://github.com/JoshuaKGoldberg/bingo/issues/128
@@ -67,7 +68,7 @@ test(
     const created = producePreset(presetIntegration, {
       options: (await prepareOptions(base)) as BaseOptions,
       refinements: {
-        addons: [
+        extensions: [
           blockCspell({
             words: [
               'Anson',
@@ -132,6 +133,15 @@ If you're interested in learning more, see the 'getting started' docs on:
               'remove-dependencies',
               'trash-cli',
             ],
+          }),
+          // TEMPORARY: Should not be merged!  This is only needed until https://github.com/bingo-js/bingo/pull/472 is merged and released.
+          blockPnpmWorkspace({
+            config: {
+              patchedDependencies: {
+                'bingo-stratum': 'patches/bingo-stratum.patch',
+                'bingo-stratum-testers': 'patches/bingo-stratum-testers.patch',
+              },
+            },
           }),
           // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
           blockTypescript({

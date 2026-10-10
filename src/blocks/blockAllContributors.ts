@@ -32,7 +32,7 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
     );
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: ['.all-contributorsrc'],
         }),
@@ -101,7 +101,7 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.github/workflows/contributors.yml'],
         }),

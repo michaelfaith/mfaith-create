@@ -8,7 +8,7 @@ export const blockOctoguideStrict: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockOctoguide({
           config: 'strict',
         }),

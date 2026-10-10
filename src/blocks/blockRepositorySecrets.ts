@@ -22,14 +22,14 @@ export const blockRepositorySecrets: BlockWithProps<BlockRepositorySecretsProps>
     about: {
       name: 'Repository Secrets',
     },
-    addons: {
+    props: {
       secrets: z.array(secretSchema).default([]),
     },
-    produce({ addons, options }) {
+    produce({ options, props }) {
       return {
         suggestions: getInstallationSuggestions(
           'populate the secret',
-          addons.secrets.map((secret) => `${secret.name} (${secret.description})`),
+          props.secrets.map((secret) => `${secret.name} (${secret.description})`),
           `https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
         ),
       };

@@ -14,7 +14,7 @@ export const blockRemoveDependencies: BlockWithProps<BlockRemoveDependenciesProp
     about: {
       name: 'Remove Dependencies',
     },
-    addons: {
+    props: {
       dependencies: z.array(z.string()).optional(),
     },
     // TODO: Make produce() optional, so this empty-ish produce() can be removed
@@ -22,13 +22,13 @@ export const blockRemoveDependencies: BlockWithProps<BlockRemoveDependenciesProp
     produce() {
       return {};
     },
-    transition({ addons }) {
+    transition({ props }) {
       return {
-        scripts: addons.dependencies
+        scripts: props.dependencies
           ? [
               {
                 commands: [
-                  `node ${resolveBin('remove-dependencies')} ${addons.dependencies.join(' ')}`,
+                  `node ${resolveBin('remove-dependencies')} ${props.dependencies.join(' ')}`,
                 ],
                 phase: CommandPhase.Process,
               },

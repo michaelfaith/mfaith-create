@@ -8,7 +8,7 @@ export const blockEslintMarkdownLinks: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {

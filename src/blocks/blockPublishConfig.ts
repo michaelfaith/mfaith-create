@@ -16,20 +16,20 @@ export const blockPublishConfig: BlockWithProps<BlockPublishConfigProps> = base.
     name: 'Publish Config',
     description: 'Creates the publishConfig property on the package.json',
   },
-  addons: {
+  props: {
     access: z.union([z.literal('public'), z.literal('restricted')]).optional(),
     bin: binSchema.optional(),
     exports: z.record(z.string(), z.unknown()).optional(),
   },
-  produce({ addons }) {
-    const { access, bin, exports } = addons;
+  produce({ props }) {
+    const { access, bin, exports } = props;
 
     if (!access && !exports && !bin) {
       return {};
     }
 
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             publishConfig: {

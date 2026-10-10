@@ -11,7 +11,7 @@ export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             devDependencies: getPackageDependencies('@arethetypeswrong/core'),

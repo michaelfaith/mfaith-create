@@ -18,7 +18,7 @@ export const blockFunding: BlockWithoutProps = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.github/FUNDING.yml'],
         }),

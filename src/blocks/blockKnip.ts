@@ -25,7 +25,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
   about: {
     name: 'Knip',
   },
-  addons: {
+  props: {
     entry: stringArraySchema.optional(),
     ignoreDependencies: stringArraySchema.optional(),
     project: stringArraySchema.optional(),
@@ -43,10 +43,10 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
       project: stringArraySchema.safeParse(knipJson.project).data,
     });
   },
-  produce({ addons }) {
-    const { entry, ignoreDependencies, project } = addons;
+  produce({ props }) {
+    const { entry, ignoreDependencies, project } = props;
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           sections: {
             Linting: {
@@ -102,7 +102,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.knip*', 'knip.{c,j,m}*', 'knip.json*'],
         }),

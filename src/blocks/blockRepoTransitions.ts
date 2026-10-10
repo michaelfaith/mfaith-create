@@ -13,7 +13,7 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
   },
   produce({ options }) {
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             devDependencies: {

@@ -30,7 +30,7 @@ export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.
     description:
       'Creates a release workflow and all of the necessary configuration for using Release Please for versioning, publishing, tagging, and creating GH releases.',
   },
-  addons: {
+  props: {
     builders: z.array(builderSchema).default([]),
     currentVersion: z.string().optional(),
   },
@@ -49,13 +49,13 @@ export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.
 
     return undefined;
   },
-  produce({ addons, options }) {
-    const { builders, currentVersion } = addons;
+  produce({ options, props }) {
+    const { builders, currentVersion } = props;
 
     const version = currentVersion ?? options.version ?? '0.0.0';
 
     return {
-      addons: [
+      extensions: [
         blockCspell({ words: ['RELEASEBOT'] }),
         blockOxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
         blockPrettier({ ignores: ['/CHANGELOG.md'] }),
@@ -287,7 +287,7 @@ Cheers! 📦🚀`,
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
         }),

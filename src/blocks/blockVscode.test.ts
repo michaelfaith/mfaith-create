@@ -5,16 +5,17 @@ import { blockVscode } from './blockVscode.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockVscode, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockVscode, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "hints": [
                 "> This repository includes a list of suggested VS Code extensions.",
                 "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -33,7 +34,6 @@ describe(blockVscode, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
         ],
         "files": {
@@ -48,9 +48,9 @@ describe(blockVscode, () => {
     `);
   });
 
-  test('with empty addons', () => {
+  test('with empty props', () => {
     const creation = testBlock(blockVscode, {
-      addons: {
+      props: {
         debuggers: [],
         settings: {},
         tasks: [],
@@ -60,9 +60,10 @@ describe(blockVscode, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "hints": [
                 "> This repository includes a list of suggested VS Code extensions.",
                 "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -81,7 +82,6 @@ describe(blockVscode, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
         ],
         "files": {
@@ -96,9 +96,9 @@ describe(blockVscode, () => {
     `);
   });
 
-  test('with full addons', () => {
+  test('with full props', () => {
     const creation = testBlock(blockVscode, {
-      addons: {
+      props: {
         debuggers: [
           {
             name: 'other-debugger',
@@ -139,9 +139,10 @@ describe(blockVscode, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "hints": [
                 "> This repository includes a list of suggested VS Code extensions.",
                 "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -160,7 +161,6 @@ describe(blockVscode, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
         ],
         "files": {
