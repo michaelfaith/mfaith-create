@@ -93,6 +93,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
               'dist',
               'node_modules',
               'package.json',
+              'patches',
               'pnpm-lock.yaml',
               ...ignorePaths,
             ]),
