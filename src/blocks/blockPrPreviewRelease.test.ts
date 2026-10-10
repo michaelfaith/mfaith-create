@@ -30,7 +30,7 @@ describe(blockPrPreviewRelease, () => {
             "addons": {
               "properties": {
                 "devDependencies": {
-                  "pkg-pr-new": "0.0.88",
+                  "pkg-pr-new": "1.2.3",
                 },
               },
             },
@@ -103,7 +103,7 @@ describe(blockPrPreviewRelease, () => {
             "addons": {
               "properties": {
                 "devDependencies": {
-                  "pkg-pr-new": "0.0.88",
+                  "pkg-pr-new": "1.2.3",
                 },
               },
             },
