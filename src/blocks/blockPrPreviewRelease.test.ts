@@ -1,7 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
+
+vi.mock('../data/packageData.ts', () => ({
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+}));
 
 describe(blockPrPreviewRelease, () => {
   test('without addons', () => {
@@ -25,7 +30,7 @@ describe(blockPrPreviewRelease, () => {
             "addons": {
               "properties": {
                 "devDependencies": {
-                  "pkg-pr-new": "0.0.88",
+                  "pkg-pr-new": "1.2.3",
                 },
               },
             },
@@ -98,7 +103,7 @@ describe(blockPrPreviewRelease, () => {
             "addons": {
               "properties": {
                 "devDependencies": {
-                  "pkg-pr-new": "0.0.88",
+                  "pkg-pr-new": "1.2.3",
                 },
               },
             },
