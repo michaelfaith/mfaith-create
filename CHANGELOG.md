@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.3](https://github.com/michaelfaith/mfaith-create/compare/v0.7.2...v0.7.3) (2026-10-10)
+
+
+### 🩹 Bug Fixes
+
+* **Cspell:** add `patches` dir to `ignorePaths` ([#367](https://github.com/michaelfaith/mfaith-create/issues/367)) ([0958954](https://github.com/michaelfaith/mfaith-create/commit/0958954ef4bea20cc12c1c3c0b65524ea5ade6e4))
+* **deps:** update dependency bingo-stratum to ^0.8.0 ([#361](https://github.com/michaelfaith/mfaith-create/issues/361)) ([8b53491](https://github.com/michaelfaith/mfaith-create/commit/8b5349147659dd781cbfa77547ffc6ee2955cc8c))
+* **deps:** update dependency zod-tsconfig to ^0.3.0 ([#364](https://github.com/michaelfaith/mfaith-create/issues/364)) ([a9e5b7a](https://github.com/michaelfaith/mfaith-create/commit/a9e5b7abd369317eedf5dae86706801a5ffad75f))
+
 ## [0.7.2](https://github.com/michaelfaith/mfaith-create/compare/v0.7.1...v0.7.2) (2026-10-07)
 
 
