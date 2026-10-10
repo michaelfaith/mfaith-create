@@ -18,14 +18,14 @@ export const blockPrPreviewRelease: BlockWithProps<BlockPrPreviewReleaseProps> =
     description:
       'Creates a workflow using pkg-pr-new to publish preview versions of packages at PR-time.',
   },
-  addons: {
+  props: {
     builders: z.array(builderSchema).default([]),
   },
-  produce({ addons }) {
-    const { builders } = addons;
+  produce({ props }) {
+    const { builders } = props;
 
     return {
-      addons: [
+      extensions: [
         blockGithubApps({
           apps: [
             {

@@ -10,24 +10,25 @@ vi.mock('../data/packageData.ts', () => ({
 }));
 
 describe(blockOxfmt, () => {
-  test('without addons or mode', () => {
+  test('without props or mode', () => {
     const creation = testBlock(blockOxfmt, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "oxfmt.config.ts",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Formatting": {
                   "contents": "
@@ -43,10 +44,10 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -58,10 +59,10 @@ describe(blockOxfmt, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "lint-staged": "1.2.3",
@@ -80,20 +81,20 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block pnpm Workspace]",
+            "props": {
               "config": {
                 "allowBuilds": {
                   "simple-git-hooks": true,
                 },
               },
             },
-            "block": "[Block pnpm Workspace]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "oxc.oxc-vscode",
               ],
@@ -101,7 +102,6 @@ describe(blockOxfmt, () => {
                 "editor.defaultFormatter": "oxc.oxc-vscode",
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -124,9 +124,9 @@ describe(blockOxfmt, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockOxfmt, {
-      addons: {
+      props: {
         additionalConfig: {
           arrowParens: 'avoid',
         },
@@ -138,17 +138,18 @@ describe(blockOxfmt, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "oxfmt.config.ts",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Formatting": {
                   "contents": "
@@ -164,10 +165,10 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -179,10 +180,10 @@ describe(blockOxfmt, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "lint-staged": "1.2.3",
@@ -201,20 +202,20 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block pnpm Workspace]",
+            "props": {
               "config": {
                 "allowBuilds": {
                   "simple-git-hooks": true,
                 },
               },
             },
-            "block": "[Block pnpm Workspace]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "oxc.oxc-vscode",
               ],
@@ -222,7 +223,6 @@ describe(blockOxfmt, () => {
                 "editor.defaultFormatter": "oxc.oxc-vscode",
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -253,17 +253,18 @@ describe(blockOxfmt, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "oxfmt.config.ts",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Formatting": {
                   "contents": "
@@ -279,10 +280,10 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Format Check",
@@ -294,10 +295,10 @@ describe(blockOxfmt, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "lint-staged": "1.2.3",
@@ -316,20 +317,20 @@ describe(blockOxfmt, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block pnpm Workspace]",
+            "props": {
               "config": {
                 "allowBuilds": {
                   "simple-git-hooks": true,
                 },
               },
             },
-            "block": "[Block pnpm Workspace]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "oxc.oxc-vscode",
               ],
@@ -337,10 +338,10 @@ describe(blockOxfmt, () => {
                 "editor.defaultFormatter": "oxc.oxc-vscode",
               },
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Dependencies]",
+            "props": {
               "dependencies": [
                 "eslint-config-prettier",
                 "eslint-plugin-prettier",
@@ -348,10 +349,10 @@ describe(blockOxfmt, () => {
                 "pretty-quick",
               ],
             },
-            "block": "[Block Remove Dependencies]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".prettierrc",
                 ".prettierrc.{c*,js,m*,t*}",
@@ -359,7 +360,6 @@ describe(blockOxfmt, () => {
                 "prettier.config*",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {

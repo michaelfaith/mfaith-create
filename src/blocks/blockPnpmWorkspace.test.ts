@@ -6,7 +6,7 @@ import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockPnpmWorkspace, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockPnpmWorkspace, {
       options: optionsBase,
     });
@@ -37,9 +37,9 @@ describe(blockPnpmWorkspace, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockPnpmWorkspace, {
-      addons: {
+      props: {
         config: {
           minimumReleaseAge: 1440,
           trustPolicy: 'off',

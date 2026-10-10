@@ -44,14 +44,14 @@ export const blockReadme: BlockWithProps<BlockReadmeProps> = base.createBlock({
   about: {
     name: 'README.md',
   },
-  addons: {
+  props: {
     badges: z.array(badgeSchema).default([]),
     defaultUsage: z.array(z.string()).default([]),
     notices: z.array(z.string()).default([]),
     sections: z.array(z.string()).default([]),
   },
-  produce({ addons, options }) {
-    const { badges, defaultUsage, notices, sections } = addons;
+  produce({ options, props }) {
+    const { badges, defaultUsage, notices, sections } = props;
 
     const explainer =
       options.documentation.readme.explainer && `\n${options.documentation.readme.explainer}\n`;

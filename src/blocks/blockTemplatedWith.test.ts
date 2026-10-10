@@ -16,9 +16,10 @@ describe('blockTemplatedWith', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "notices": [
                 "
       <!-- You can remove this notice if you don't want it 🙂 no worries! -->",
@@ -26,7 +27,6 @@ describe('blockTemplatedWith', () => {
       ",
               ],
             },
-            "block": "[Block README.md]",
           },
         ],
       }
@@ -43,15 +43,15 @@ describe('blockTemplatedWith', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "notices": [
                 "> 💝 This package was templated with [\`@mfaith/create\`](https://github.com/michaelfaith/mfaith-create) using the [Bingo framework](https://create.bingo).
       ",
               ],
             },
-            "block": "[Block README.md]",
           },
         ],
       }

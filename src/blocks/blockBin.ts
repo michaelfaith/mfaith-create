@@ -52,7 +52,7 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
     description:
       'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
   },
-  addons: {
+  props: {
     src: binSchema.optional(),
   },
   intake({ files }) {
@@ -73,8 +73,8 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
       src,
     };
   },
-  produce({ addons, options }) {
-    const { src = './src/bin/index.ts' } = addons;
+  produce({ options, props }) {
+    const { src = './src/bin/index.ts' } = props;
     const { devExports, emoji, packageName, repository } = options;
 
     const srcBin = prepareBin(src, packageName ?? repository);
@@ -82,7 +82,7 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
     const binEntries = typeof src === 'string' ? [src] : Object.values(src);
 
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {

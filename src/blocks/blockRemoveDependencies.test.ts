@@ -9,7 +9,7 @@ vi.mock('../utils/resolveBin.ts', () => ({
 }));
 
 describe(blockRemoveDependencies, () => {
-  test('without addons or mode', () => {
+  test('without props or mode', () => {
     const creation = testBlock(blockRemoveDependencies, {
       options: optionsBase,
     });
@@ -17,9 +17,9 @@ describe(blockRemoveDependencies, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockRemoveDependencies, {
-      addons: {
+      props: {
         dependencies: ['a', 'b', 'c'],
       },
       options: optionsBase,
@@ -37,9 +37,9 @@ describe(blockRemoveDependencies, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test('with addons and mode', () => {
+  test('with props and mode', () => {
     const creation = testBlock(blockRemoveDependencies, {
-      addons: {
+      props: {
         dependencies: ['a', 'b', 'c'],
       },
       mode: 'transition',

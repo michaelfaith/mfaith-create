@@ -38,18 +38,18 @@ export const blockOxfmt: BlockWithProps<BlockOxfmtProps> = base.createBlock({
     name: 'Oxfmt',
     description: "Sets up Oxfmt as the project's formatter.",
   },
-  addons: {
+  props: {
     additionalConfig: z.record(z.string(), z.unknown()).optional(),
     ignorePatterns: z.array(z.string()).default([]),
     overrides: z.array(overrideSchema).default([]),
   },
-  produce({ addons }) {
-    const { additionalConfig = {}, ignorePatterns, overrides } = addons;
+  produce({ props }) {
+    const { additionalConfig = {}, ignorePatterns, overrides } = props;
 
     const oxfmtConfig = 'oxfmt.config.ts';
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: [oxfmtConfig],
         }),
@@ -131,7 +131,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveDependencies({
           dependencies: [
             'eslint-config-prettier',

@@ -163,14 +163,14 @@ describe('blockCodeOfConduct', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 "CODE_OF_CONDUCT.md",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {

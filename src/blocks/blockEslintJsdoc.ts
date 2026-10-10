@@ -9,7 +9,7 @@ export const blockEslintJsdoc: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {

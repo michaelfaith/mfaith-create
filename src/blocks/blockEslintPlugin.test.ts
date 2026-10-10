@@ -5,24 +5,25 @@ import { blockEslintPlugin } from './blockEslintPlugin.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockEslintPlugin, () => {
-  test('without addons, mode, or options', () => {
+  test('without props, mode, or options', () => {
     const creation = testBlock(blockEslintPlugin, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "eslint-doc-generatorrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "innerSections": [
@@ -47,10 +48,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -76,10 +77,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Docs",
@@ -94,10 +95,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "defaultUsage": [
                 "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
@@ -121,10 +122,10 @@ describe(blockEslintPlugin, () => {
       <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "dependencies": {
                   "@typescript-eslint/utils": "^8.29.0",
@@ -140,10 +141,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "exclude": [
                   "src/index.ts",
@@ -151,7 +152,6 @@ describe(blockEslintPlugin, () => {
                 ],
               },
             },
-            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -195,17 +195,18 @@ describe(blockEslintPlugin, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "eslint-doc-generatorrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "innerSections": [
@@ -230,10 +231,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -259,10 +260,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Docs",
@@ -277,10 +278,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "defaultUsage": [
                 "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
@@ -304,10 +305,10 @@ describe(blockEslintPlugin, () => {
       <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "dependencies": {
                   "@typescript-eslint/utils": "^8.29.0",
@@ -323,10 +324,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "exclude": [
                   "src/index.ts",
@@ -334,7 +335,6 @@ describe(blockEslintPlugin, () => {
                 ],
               },
             },
-            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -478,9 +478,9 @@ describe(blockEslintPlugin, () => {
     `);
   });
 
-  test('addons', () => {
+  test('props', () => {
     const creation = testBlock(blockEslintPlugin, {
-      addons: {
+      props: {
         configEmoji: [
           ['recommended', '✅'],
           ['legacy-recommended', '✔️'],
@@ -491,17 +491,18 @@ describe(blockEslintPlugin, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "eslint-doc-generatorrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "innerSections": [
@@ -526,10 +527,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -555,10 +556,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Docs",
@@ -573,10 +574,10 @@ describe(blockEslintPlugin, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "defaultUsage": [
                 "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
@@ -600,10 +601,10 @@ describe(blockEslintPlugin, () => {
       <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "dependencies": {
                   "@typescript-eslint/utils": "^8.29.0",
@@ -619,10 +620,10 @@ describe(blockEslintPlugin, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "exclude": [
                   "src/index.ts",
@@ -630,7 +631,6 @@ describe(blockEslintPlugin, () => {
                 ],
               },
             },
-            "block": "[Block Vitest]",
           },
         ],
         "files": {

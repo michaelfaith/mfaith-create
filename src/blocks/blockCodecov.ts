@@ -21,7 +21,7 @@ export const blockCodecov: BlockWithoutProps = base.createBlock({
     };
 
     return {
-      addons: [
+      extensions: [
         blockGithubApps({
           apps: [
             {
@@ -50,7 +50,7 @@ export const blockCodecov: BlockWithoutProps = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.github/codecov.{yaml,yml}', 'codecov.{yaml,yml}'],
         }),

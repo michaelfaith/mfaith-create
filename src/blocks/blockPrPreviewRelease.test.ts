@@ -9,14 +9,15 @@ vi.mock('../data/packageData.ts', () => ({
 }));
 
 describe(blockPrPreviewRelease, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockPrPreviewRelease, {});
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "pkg-pr-new",
@@ -24,17 +25,16 @@ describe(blockPrPreviewRelease, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "pkg-pr-new": "1.2.3",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -65,9 +65,9 @@ describe(blockPrPreviewRelease, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockPrPreviewRelease, {
-      addons: {
+      props: {
         builders: [
           {
             order: 1,
@@ -87,9 +87,10 @@ describe(blockPrPreviewRelease, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "pkg-pr-new",
@@ -97,17 +98,16 @@ describe(blockPrPreviewRelease, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "pkg-pr-new": "1.2.3",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {

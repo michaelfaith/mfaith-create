@@ -5,14 +5,15 @@ import { blockBin } from './blockBin.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockBin, () => {
-  it('without addons', () => {
+  it('without props', () => {
     const creation = testBlock(blockBin, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -30,20 +31,20 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "test-package-name": "./dist/bin/index.mjs",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -53,10 +54,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "./src/bin/index.ts",
               ],
@@ -64,23 +65,23 @@ describe(blockBin, () => {
                 "./src/bin/index.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
     `);
   });
 
-  it('without addons (options.devExports: true)', () => {
+  it('without props (options.devExports: true)', () => {
     const creation = testBlock(blockBin, {
       options: { ...optionsBase, devExports: true },
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -98,20 +99,20 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "test-package-name": "./src/bin/index.ts",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -121,18 +122,18 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block Publish Config]",
+            "props": {
               "bin": {
                 "test-package-name": "./dist/bin/index.mjs",
               },
             },
-            "block": "[Block Publish Config]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "./src/bin/index.ts",
               ],
@@ -140,23 +141,23 @@ describe(blockBin, () => {
                 "./src/bin/index.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
     `);
   });
 
-  it('without addons (scoped package name)', () => {
+  it('without props (scoped package name)', () => {
     const creation = testBlock(blockBin, {
       options: { ...optionsBase, packageName: '@test/create-app' },
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -174,20 +175,20 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "create-app": "./dist/bin/index.mjs",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -197,10 +198,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "./src/bin/index.ts",
               ],
@@ -208,23 +209,23 @@ describe(blockBin, () => {
                 "./src/bin/index.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
     `);
   });
 
-  it('without addons (no package name)', () => {
+  it('without props (no package name)', () => {
     const creation = testBlock(blockBin, {
       options: { ...optionsBase, packageName: undefined },
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -242,20 +243,20 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "test-repository": "./dist/bin/index.mjs",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -265,10 +266,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "./src/bin/index.ts",
               ],
@@ -276,7 +277,6 @@ describe(blockBin, () => {
                 "./src/bin/index.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
@@ -285,7 +285,7 @@ describe(blockBin, () => {
 
   it('with string src', () => {
     const creation = testBlock(blockBin, {
-      addons: {
+      props: {
         src: 'dist/cli.ts',
       },
       options: optionsBase,
@@ -293,9 +293,10 @@ describe(blockBin, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -313,20 +314,20 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "test-package-name": "./dist/cli.mjs",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -336,10 +337,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "dist/cli.ts",
               ],
@@ -347,7 +348,6 @@ describe(blockBin, () => {
                 "dist/cli.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
@@ -356,7 +356,7 @@ describe(blockBin, () => {
 
   it('with object src', () => {
     const creation = testBlock(blockBin, {
-      addons: {
+      props: {
         src: {
           'test-repo': 'dist/bin/index.mts',
           'other-bin': 'dist/bin/other.ts',
@@ -367,9 +367,10 @@ describe(blockBin, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -387,10 +388,10 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "other-bin": "./dist/bin/other.mjs",
@@ -398,10 +399,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -411,10 +412,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "dist/bin/index.mts",
                 "dist/bin/other.ts",
@@ -424,7 +425,6 @@ describe(blockBin, () => {
                 "dist/bin/other.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }
@@ -433,7 +433,7 @@ describe(blockBin, () => {
 
   it('with object src (options.devExports: true)', () => {
     const creation = testBlock(blockBin, {
-      addons: {
+      props: {
         src: {
           'test-repo': 'dist/bin/index.mts',
           'other-bin': 'dist/bin/other.ts',
@@ -444,9 +444,10 @@ describe(blockBin, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -464,10 +465,10 @@ describe(blockBin, () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "bin": {
                   "other-bin": "./dist/bin/other.ts",
@@ -475,10 +476,10 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Example Files]",
+            "props": {
               "files": {
                 "bin": {
                   "index.ts": "#!/usr/bin/env node
@@ -488,19 +489,19 @@ describe(blockBin, () => {
                 },
               },
             },
-            "block": "[Block Example Files]",
           },
           {
-            "addons": {
+            "block": "[Block Publish Config]",
+            "props": {
               "bin": {
                 "other-bin": "./dist/bin/other.mjs",
                 "test-repo": "./dist/bin/index.mjs",
               },
             },
-            "block": "[Block Publish Config]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "entry": [
                 "dist/bin/index.mts",
                 "dist/bin/other.ts",
@@ -510,7 +511,6 @@ describe(blockBin, () => {
                 "dist/bin/other.ts",
               ],
             },
-            "block": "[Block tsdown]",
           },
         ],
       }

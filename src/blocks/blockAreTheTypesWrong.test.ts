@@ -17,26 +17,26 @@ describe('blockAreTheTypesWrong', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@arethetypeswrong/core": "1.2.3",
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block tsdown]",
+            "props": {
               "attw": {
                 "enabled": "ci-only",
                 "level": "error",
                 "profile": "esm-only",
               },
             },
-            "block": "[Block tsdown]",
           },
         ],
       }

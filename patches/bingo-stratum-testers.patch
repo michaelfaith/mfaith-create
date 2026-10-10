@@ -1,0 +1,238 @@
+diff --git a/lib/testBlock.d.ts b/lib/testBlock.d.ts
+index b73bfceeba2b0cfef2b1ed3fccd097999f167f95..48d458724461b1ae611ea1b552df8234a08546e0 100644
+--- a/lib/testBlock.d.ts
++++ b/lib/testBlock.d.ts
+@@ -1,11 +1,11 @@
+ import { ProductionMode } from "bingo";
+-import { BlockWithAddons, BlockWithoutAddons } from "bingo-stratum";
++import { BlockWithoutProps, BlockWithProps } from "bingo-stratum";
+ import { BlockCreation } from "bingo-stratum/lib/types/creations.js";
+ import { StratumTemplateOptions } from "bingo-stratum/lib/types/templates.js";
+-export interface BlockContextSettingsWithOptionalAddons<Addons extends object, Options extends object> extends BlockContextSettingsWithoutAddons<Options> {
+-    addons?: Partial<Addons>;
++export interface BlockContextSettingsWithOptionalProps<Props extends object, Options extends object> extends BlockContextSettingsWithoutProps<Options> {
++    props?: Partial<Props>;
+ }
+-export interface BlockContextSettingsWithoutAddons<Options extends object> {
++export interface BlockContextSettingsWithoutProps<Options extends object> {
+     /**
+      * Which repository mode Bingo to simulate being run in.
+      * @see {@link https://create.bingo/build/concepts/modes}
+@@ -25,6 +25,6 @@ export interface BlockContextSettingsWithoutAddons<Options extends object> {
+  * Simulates running a Block in-memory for tests.
+  * @see {@link https://www.create.bingo/engines/stratum/packages/bingo-stratum-testers/#testblock}
+  */
+-export declare function testBlock<Addons extends object, Options extends object>(block: BlockWithAddons<Addons, Options>, settings: BlockContextSettingsWithOptionalAddons<Addons, Options>): Partial<BlockCreation<Options>>;
+-export declare function testBlock<Options extends object>(block: BlockWithoutAddons<Options>, settings?: BlockContextSettingsWithoutAddons<Options>): Partial<BlockCreation<Options>>;
++export declare function testBlock<Props extends object, Options extends object>(block: BlockWithProps<Props, Options>, settings: BlockContextSettingsWithOptionalProps<Props, Options>): Partial<BlockCreation<Options>>;
++export declare function testBlock<Options extends object>(block: BlockWithoutProps<Options>, settings?: BlockContextSettingsWithoutProps<Options>): Partial<BlockCreation<Options>>;
+ //# sourceMappingURL=testBlock.d.ts.map
+\ No newline at end of file
+diff --git a/lib/testBlock.d.ts.map b/lib/testBlock.d.ts.map
+index ae4e92a4462966f40977d5677f248fe90e3572e3..7046ea7b5f7d4bd0712a891cb85a210ef2a0712d 100644
+--- a/lib/testBlock.d.ts.map
++++ b/lib/testBlock.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"testBlock.d.ts","sourceRoot":"","sources":["../src/testBlock.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AACvC,OAAO,EACN,eAAe,EACf,kBAAkB,EAGlB,MAAM,eAAe,CAAC;AACvB,OAAO,EAAE,aAAa,EAAE,MAAM,sCAAsC,CAAC;AACrE,OAAO,EAAE,sBAAsB,EAAE,MAAM,sCAAsC,CAAC;AAI9E,MAAM,WAAW,sCAAsC,CACtD,MAAM,SAAS,MAAM,EACrB,OAAO,SAAS,MAAM,CACrB,SAAQ,iCAAiC,CAAC,OAAO,CAAC;IACnD,MAAM,CAAC,EAAE,OAAO,CAAC,MAAM,CAAC,CAAC;CACzB;AAED,MAAM,WAAW,iCAAiC,CAAC,OAAO,SAAS,MAAM;IACxE;;;OAGG;IACH,IAAI,CAAC,EAAE,cAAc,CAAC;IAEtB;;;OAGG;IACH,OAAO,CAAC,EAAE,OAAO,CAAC;IAElB;;OAEG;IACH,OAAO,CAAC,EAAE,OAAO,GAAG,sBAAsB,CAAC;CAC3C;AAED;;;GAGG;AACH,wBAAgB,SAAS,CAAC,MAAM,SAAS,MAAM,EAAE,OAAO,SAAS,MAAM,EACtE,KAAK,EAAE,eAAe,CAAC,MAAM,EAAE,OAAO,CAAC,EACvC,QAAQ,EAAE,sCAAsC,CAAC,MAAM,EAAE,OAAO,CAAC,GAC/D,OAAO,CAAC,aAAa,CAAC,OAAO,CAAC,CAAC,CAAC;AACnC,wBAAgB,SAAS,CAAC,OAAO,SAAS,MAAM,EAC/C,KAAK,EAAE,kBAAkB,CAAC,OAAO,CAAC,EAClC,QAAQ,CAAC,EAAE,iCAAiC,CAAC,OAAO,CAAC,GACnD,OAAO,CAAC,aAAa,CAAC,OAAO,CAAC,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"testBlock.d.ts","sourceRoot":"","sources":["../src/testBlock.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AACvC,OAAO,EACN,iBAAiB,EACjB,cAAc,EAGd,MAAM,eAAe,CAAC;AACvB,OAAO,EAAE,aAAa,EAAE,MAAM,sCAAsC,CAAC;AACrE,OAAO,EAAE,sBAAsB,EAAE,MAAM,sCAAsC,CAAC;AAI9E,MAAM,WAAW,qCAAqC,CACrD,KAAK,SAAS,MAAM,EACpB,OAAO,SAAS,MAAM,CACrB,SAAQ,gCAAgC,CAAC,OAAO,CAAC;IAClD,KAAK,CAAC,EAAE,OAAO,CAAC,KAAK,CAAC,CAAC;CACvB;AAED,MAAM,WAAW,gCAAgC,CAAC,OAAO,SAAS,MAAM;IACvE;;;OAGG;IACH,IAAI,CAAC,EAAE,cAAc,CAAC;IAEtB;;;OAGG;IACH,OAAO,CAAC,EAAE,OAAO,CAAC;IAElB;;OAEG;IACH,OAAO,CAAC,EAAE,OAAO,GAAG,sBAAsB,CAAC;CAC3C;AAED;;;GAGG;AACH,wBAAgB,SAAS,CAAC,KAAK,SAAS,MAAM,EAAE,OAAO,SAAS,MAAM,EACrE,KAAK,EAAE,cAAc,CAAC,KAAK,EAAE,OAAO,CAAC,EACrC,QAAQ,EAAE,qCAAqC,CAAC,KAAK,EAAE,OAAO,CAAC,GAC7D,OAAO,CAAC,aAAa,CAAC,OAAO,CAAC,CAAC,CAAC;AACnC,wBAAgB,SAAS,CAAC,OAAO,SAAS,MAAM,EAC/C,KAAK,EAAE,iBAAiB,CAAC,OAAO,CAAC,EACjC,QAAQ,CAAC,EAAE,gCAAgC,CAAC,OAAO,CAAC,GAClD,OAAO,CAAC,aAAa,CAAC,OAAO,CAAC,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/lib/testBlock.js b/lib/testBlock.js
+index 14cc63583211408b9f3f29ee7487770a3df4c81d..2fabd5f18d7d8a88b62daeed7196d99a158bb9b7 100644
+--- a/lib/testBlock.js
++++ b/lib/testBlock.js
+@@ -3,9 +3,9 @@ import { createFailingObject } from "./utils.js";
+ export function testBlock(block, settings = {}) {
+     return produceBlock(block, {
+         ...settings,
+-        addons: settings.addons ?? {},
+         options: settings.options ??
+             createFailingObject("options", "the Block"),
++        props: settings.props ?? {},
+     });
+ }
+ //# sourceMappingURL=testBlock.js.map
+\ No newline at end of file
+diff --git a/lib/testBlock.js.map b/lib/testBlock.js.map
+index 72cbe6c0c4982fa8a679429c52bbfbf6661ca869..e99a7e663b0c2bf6d494b379a48915372e36a0c6 100644
+--- a/lib/testBlock.js.map
++++ b/lib/testBlock.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"testBlock.js","sourceRoot":"","sources":["../src/testBlock.ts"],"names":[],"mappings":"AACA,OAAO,EAGN,YAAY,GAEZ,MAAM,eAAe,CAAC;AAIvB,OAAO,EAAE,mBAAmB,EAAE,MAAM,YAAY,CAAC;AAwCjD,MAAM,UAAU,SAAS,CACxB,KAAqE,EACrE,WAAoE,EAAE;IAEtE,OAAO,YAAY,CAClB,KAAyC,EACzC;QACC,GAAG,QAAQ;QACX,MAAM,EAAE,QAAQ,CAAC,MAAM,IAAI,EAAE;QAC7B,OAAO,EACN,QAAQ,CAAC,OAAO;YACf,mBAAmB,CAAC,SAAS,EAAE,WAAW,CAAa;KACN,CACpD,CAAC;AACH,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"testBlock.js","sourceRoot":"","sources":["../src/testBlock.ts"],"names":[],"mappings":"AACA,OAAO,EAGN,YAAY,GAEZ,MAAM,eAAe,CAAC;AAIvB,OAAO,EAAE,mBAAmB,EAAE,MAAM,YAAY,CAAC;AAwCjD,MAAM,UAAU,SAAS,CACxB,KAAkE,EAClE,WAAkE,EAAE;IAEpE,OAAO,YAAY,CAClB,KAAuC,EACvC;QACC,GAAG,QAAQ;QACX,OAAO,EACN,QAAQ,CAAC,OAAO;YACf,mBAAmB,CAAC,SAAS,EAAE,WAAW,CAAa;QACzD,KAAK,EAAE,QAAQ,CAAC,KAAK,IAAI,EAAE;KACsB,CAClD,CAAC;AACH,CAAC"}
+\ No newline at end of file
+diff --git a/lib/testBlock.test.js b/lib/testBlock.test.js
+index e4de00baca68547ff1e93abaee84663547fb04ed..110a9378fe33d7108c1971907a32d3bee796ec44 100644
+--- a/lib/testBlock.test.js
++++ b/lib/testBlock.test.js
+@@ -16,7 +16,7 @@ const blockStandalone = base.createBlock({
+         };
+     },
+ });
+-describe("testBlock", () => {
++describe(testBlock, () => {
+     it("doesn't throw an error when settings isn't provided and the block uses no settings", () => {
+         const actual = testBlock(blockStandalone);
+         expect(actual).toEqual({ files: { "value.txt": "abc" } });
+@@ -25,21 +25,21 @@ describe("testBlock", () => {
+         const actual = testBlock(blockStandalone, {});
+         expect(actual).toEqual({ files: { "value.txt": "abc" } });
+     });
+-    describe("addons", () => {
+-        const blockUsingAddons = base.createBlock({
+-            addons: {
+-                value: z.string().optional(),
+-            },
+-            produce({ addons }) {
++    describe("props", () => {
++        const blockUsingProps = base.createBlock({
++            produce({ props }) {
+                 return {
+                     files: {
+-                        "value.txt": addons.value ?? "default",
++                        "value.txt": props.value ?? "default",
+                     },
+                 };
+             },
++            props: {
++                value: z.string().optional(),
++            },
+         });
+-        it("does not throw an error when addons isn't provided and a block uses addons", () => {
+-            const actual = testBlock(blockUsingAddons, {});
++        it("does not throw an error when props aren't provided and a block has props", () => {
++            const actual = testBlock(blockUsingProps, {});
+             expect(actual).toMatchInlineSnapshot(`
+ 				{
+ 				  "files": {
+@@ -48,9 +48,9 @@ describe("testBlock", () => {
+ 				}
+ 			`);
+         });
+-        it("passes addons to the block when provided", () => {
+-            const actual = testBlock(blockUsingAddons, {
+-                addons: { value: "abc" },
++        it("passes props to the block when provided", () => {
++            const actual = testBlock(blockUsingProps, {
++                props: { value: "abc" },
+             });
+             expect(actual).toEqual({ files: { "value.txt": "abc" } });
+         });
+diff --git a/lib/testBlock.test.js.map b/lib/testBlock.test.js.map
+index c36bf0cf9d3ffcc182c52f32cc42e17cc9d52a5e..9059c13bce267df5c800b1ab1a5bb73aca3d9bf5 100644
+--- a/lib/testBlock.test.js.map
++++ b/lib/testBlock.test.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"testBlock.test.js","sourceRoot":"","sources":["../src/testBlock.test.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
++{"version":3,"file":"testBlock.test.js","sourceRoot":"","sources":["../src/testBlock.test.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
+diff --git a/lib/testIntake.d.ts b/lib/testIntake.d.ts
+index 04d2ed3df7c64d58942aa3ee2451056514f99f9b..89b161aa974bf80f27184d1d6682fc15c347636e 100644
+--- a/lib/testIntake.d.ts
++++ b/lib/testIntake.d.ts
+@@ -1,5 +1,5 @@
+ import { IntakeDirectory } from "bingo-fs";
+-import { BlockWithAddons } from "bingo-stratum";
++import { BlockWithProps } from "bingo-stratum";
+ import { StratumTemplateOptions } from "bingo-stratum/lib/types/templates.js";
+ export interface TestIntakeSettings<Options extends object> {
+     /**
+@@ -15,5 +15,5 @@ export interface TestIntakeSettings<Options extends object> {
+  * Simulates running a Block's intake in-memory for tests.
+  * @see {@link https://www.create.bingo/engines/stratum/packages/bingo-stratum-testers/#testintake}
+  */
+-export declare function testIntake<Addons extends object, Options extends object>(block: BlockWithAddons<Addons, Options>, settings: TestIntakeSettings<Options>): Partial<Addons> | undefined;
++export declare function testIntake<Props extends object, Options extends object>(block: BlockWithProps<Props, Options>, settings: TestIntakeSettings<Options>): Partial<Props> | undefined;
+ //# sourceMappingURL=testIntake.d.ts.map
+\ No newline at end of file
+diff --git a/lib/testIntake.d.ts.map b/lib/testIntake.d.ts.map
+index 98429bc27146904efadc15d7e3478b8707a24399..c115f6ff152546055665a9c43a893d6976dd4b00 100644
+--- a/lib/testIntake.d.ts.map
++++ b/lib/testIntake.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"testIntake.d.ts","sourceRoot":"","sources":["../src/testIntake.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAC3C,OAAO,EAAE,eAAe,EAAE,MAAM,eAAe,CAAC;AAChD,OAAO,EAAE,sBAAsB,EAAE,MAAM,sCAAsC,CAAC;AAI9E,MAAM,WAAW,kBAAkB,CAAC,OAAO,SAAS,MAAM;IACzD;;OAEG;IACH,KAAK,EAAE,eAAe,CAAC;IAEvB;;OAEG;IACH,OAAO,CAAC,EAAE,OAAO,GAAG,sBAAsB,CAAC;CAC3C;AAED;;;GAGG;AACH,wBAAgB,UAAU,CAAC,MAAM,SAAS,MAAM,EAAE,OAAO,SAAS,MAAM,EACvE,KAAK,EAAE,eAAe,CAAC,MAAM,EAAE,OAAO,CAAC,EACvC,QAAQ,EAAE,kBAAkB,CAAC,OAAO,CAAC,GACnC,OAAO,CAAC,MAAM,CAAC,GAAG,SAAS,CAO7B"}
+\ No newline at end of file
++{"version":3,"file":"testIntake.d.ts","sourceRoot":"","sources":["../src/testIntake.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAC3C,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;AAC/C,OAAO,EAAE,sBAAsB,EAAE,MAAM,sCAAsC,CAAC;AAI9E,MAAM,WAAW,kBAAkB,CAAC,OAAO,SAAS,MAAM;IACzD;;OAEG;IACH,KAAK,EAAE,eAAe,CAAC;IAEvB;;OAEG;IACH,OAAO,CAAC,EAAE,OAAO,GAAG,sBAAsB,CAAC;CAC3C;AAED;;;GAGG;AACH,wBAAgB,UAAU,CAAC,KAAK,SAAS,MAAM,EAAE,OAAO,SAAS,MAAM,EACtE,KAAK,EAAE,cAAc,CAAC,KAAK,EAAE,OAAO,CAAC,EACrC,QAAQ,EAAE,kBAAkB,CAAC,OAAO,CAAC,GACnC,OAAO,CAAC,KAAK,CAAC,GAAG,SAAS,CAO5B"}
+\ No newline at end of file
+diff --git a/lib/testIntake.js.map b/lib/testIntake.js.map
+index c0e56582df01de6e62a62ebfac64d717299b0d45..0f5140ca4d4cb8e218a29fa24c9eb6f0698c2967 100644
+--- a/lib/testIntake.js.map
++++ b/lib/testIntake.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"testIntake.js","sourceRoot":"","sources":["../src/testIntake.ts"],"names":[],"mappings":"AAIA,OAAO,EAAE,mBAAmB,EAAE,MAAM,YAAY,CAAC;AAcjD;;;GAGG;AACH,MAAM,UAAU,UAAU,CACzB,KAAuC,EACvC,QAAqC;IAErC,OAAO,KAAK,CAAC,MAAM,EAAE,CAAC;QACrB,GAAG,QAAQ;QACX,OAAO,EACN,QAAQ,CAAC,OAAO;YACf,mBAAmB,CAAC,SAAS,EAAE,WAAW,CAAa;KACzD,CAAC,CAAC;AACJ,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"testIntake.js","sourceRoot":"","sources":["../src/testIntake.ts"],"names":[],"mappings":"AAIA,OAAO,EAAE,mBAAmB,EAAE,MAAM,YAAY,CAAC;AAcjD;;;GAGG;AACH,MAAM,UAAU,UAAU,CACzB,KAAqC,EACrC,QAAqC;IAErC,OAAO,KAAK,CAAC,MAAM,EAAE,CAAC;QACrB,GAAG,QAAQ;QACX,OAAO,EACN,QAAQ,CAAC,OAAO;YACf,mBAAmB,CAAC,SAAS,EAAE,WAAW,CAAa;KACzD,CAAC,CAAC;AACJ,CAAC"}
+\ No newline at end of file
+diff --git a/lib/testIntake.test.js b/lib/testIntake.test.js
+index 9fbfef55238c45b4c6baad64a38ea050d8210e25..9430ec98b117514d3f2282c944331ef9c0952ad8 100644
+--- a/lib/testIntake.test.js
++++ b/lib/testIntake.test.js
+@@ -7,24 +7,21 @@ const base = createBase({
+         value: z.string(),
+     },
+ });
+-describe("testIntake", () => {
++describe(testIntake, () => {
+     it("returns undefined when the Block doesn't define an intake", () => {
+         const block = base.createBlock({
+-            addons: {
+-                value: z.string().optional(),
+-            },
+             produce() {
+                 return {};
+             },
++            props: {
++                value: z.string().optional(),
++            },
+         });
+         const actual = testIntake(block, { files: {} });
+         expect(actual).toBeUndefined();
+     });
+     it("returns the intake result when the Block defines an intake", () => {
+         const block = base.createBlock({
+-            addons: {
+-                value: z.string().optional(),
+-            },
+             intake({ files }) {
+                 return {
+                     value: files["value.txt"][0],
+@@ -33,6 +30,9 @@ describe("testIntake", () => {
+             produce() {
+                 return {};
+             },
++            props: {
++                value: z.string().optional(),
++            },
+         });
+         const value = "abc";
+         const actual = testIntake(block, {
+@@ -44,9 +44,6 @@ describe("testIntake", () => {
+     });
+     describe("options", () => {
+         const blockUsingOptions = base.createBlock({
+-            addons: {
+-                extra: z.string().optional(),
+-            },
+             intake({ options }) {
+                 return {
+                     extra: options.value + "!",
+@@ -55,6 +52,9 @@ describe("testIntake", () => {
+             produce() {
+                 return {};
+             },
++            props: {
++                extra: z.string().optional(),
++            },
+         });
+         it("throws an error when options isn't provided and a block uses options", () => {
+             expect(() => testIntake(blockUsingOptions, {
+diff --git a/lib/testIntake.test.js.map b/lib/testIntake.test.js.map
+index ddd13c7a305a68c991db9d4efe1ecea8c1db227f..21d6bd7a073f36a38248c58f0759df664d3a1e0c 100644
+--- a/lib/testIntake.test.js.map
++++ b/lib/testIntake.test.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"testIntake.test.js","sourceRoot":"","sources":["../src/testIntake.test.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
++{"version":3,"file":"testIntake.test.js","sourceRoot":"","sources":["../src/testIntake.test.ts"],"names":[],"mappings":"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"}

@@ -21,14 +21,14 @@ export const blockGithubApps: BlockWithProps<BlockGithubAppsProps> = base.create
   about: {
     name: 'GitHub Apps',
   },
-  addons: {
+  props: {
     apps: z.array(appInfoSchema).default([]),
   },
-  produce({ addons, options }) {
+  produce({ options, props }) {
     return {
       suggestions: getInstallationSuggestions(
         'enable the GitHub app',
-        addons.apps.map((app) => `${app.name} (${app.url})`),
+        props.apps.map((app) => `${app.name} (${app.url})`),
         `https://github.com/${options.owner}/${options.repository}/settings/installations`,
       ),
     };
