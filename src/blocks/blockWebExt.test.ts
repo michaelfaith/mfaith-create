@@ -12,17 +12,18 @@ describe('blockWebExt', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "assets",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -87,10 +88,10 @@ describe('blockWebExt', () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -113,19 +114,19 @@ describe('blockWebExt', () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Gitignore]",
+            "props": {
               "ignores": [
                 "*.zip",
                 "web-ext-artifacts",
               ],
             },
-            "block": "[Block Gitignore]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "esbuild": "^0.25.0",
@@ -138,23 +139,22 @@ describe('blockWebExt', () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "assets/",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "assets/",
               ],
             },
-            "block": "[Block Prettier]",
           },
         ],
       }

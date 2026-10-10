@@ -16,11 +16,11 @@ import { CommandPhase } from './phases.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
 
-const addons = {
+const props = {
   ignorePaths: z.array(z.string()).default([]),
   words: z.array(z.string()).default([]),
 };
-const addonsSchema: z.ZodType<BlockCspellProps> = z.object(addons);
+const propsSchema: z.ZodType<BlockCspellProps> = z.object(props);
 
 export interface BlockCspellProps {
   ignorePaths?: string[];
@@ -31,27 +31,27 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
   about: {
     name: 'CSpell',
   },
-  addons,
+  props,
   intake({ files }) {
     const cspellJson = intakeFile(files, ['cspell.json']);
     if (!cspellJson) {
       return undefined;
     }
 
-    const { data } = addonsSchema.safeParse(JSON5.parse<unknown>(cspellJson[0]));
+    const { data } = propsSchema.safeParse(JSON5.parse<unknown>(cspellJson[0]));
     if (!data) {
       return undefined;
     }
 
     return data;
   },
-  produce({ addons, options }) {
-    const { ignorePaths, words } = addons;
+  produce({ options, props }) {
+    const { ignorePaths, words } = props;
 
     const allWords = Array.from(new Set([...(options.words ?? []), ...words])).sort();
 
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           sections: {
             Linting: {
@@ -119,7 +119,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveWorkflows({
           workflows: ['lint-spelling', 'spelling'],
         }),

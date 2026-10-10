@@ -12,14 +12,14 @@ export const blockSideEffects: BlockWithProps<BlockSideEffectsProps> = base.crea
   about: {
     name: 'Side Effects',
   },
-  addons: {
+  props: {
     sideEffects: z.union([z.boolean(), z.array(z.string())]).optional(),
   },
-  produce({ addons }) {
-    const { sideEffects = false } = addons;
+  produce({ props }) {
+    const { sideEffects = false } = props;
 
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             sideEffects,

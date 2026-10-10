@@ -12,12 +12,12 @@ describe('blockOctoguideStrict', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block OctoGuide]",
+            "props": {
               "config": "strict",
             },
-            "block": "[Block OctoGuide]",
           },
         ],
       }

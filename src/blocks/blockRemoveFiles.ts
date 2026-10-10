@@ -13,7 +13,7 @@ export const blockRemoveFiles: BlockWithProps<BlockRemoveFiles> = base.createBlo
   about: {
     name: 'Remove Files',
   },
-  addons: {
+  props: {
     files: z.array(z.string()).optional(),
   },
   // TODO: Make produce() optional, so this empty-ish produce() can be removed
@@ -21,12 +21,12 @@ export const blockRemoveFiles: BlockWithProps<BlockRemoveFiles> = base.createBlo
   produce() {
     return {};
   },
-  transition({ addons }) {
+  transition({ props }) {
     return {
-      scripts: addons.files
+      scripts: props.files
         ? [
             {
-              commands: [`node ${resolveBin('trash-cli', 'trash')} ${addons.files.join(' ')}`],
+              commands: [`node ${resolveBin('trash-cli', 'trash')} ${props.files.join(' ')}`],
               phase: CommandPhase.Migrations,
               silent: true,
             },

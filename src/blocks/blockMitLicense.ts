@@ -9,7 +9,7 @@ export const blockMitLicense: BlockWithoutProps = base.createBlock({
   },
   produce({ options }) {
     return {
-      addons: [
+      extensions: [
         blockReadme({
           badges: [
             {

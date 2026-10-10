@@ -6,38 +6,39 @@ import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockReleasePlease, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockReleasePlease, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "RELEASEBOT",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "📦 npm version",
@@ -46,10 +47,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Labels]",
+            "props": {
               "additionalLabels": [
                 {
                   "color": "#bfd4f2",
@@ -63,10 +64,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Labels]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Secrets]",
+            "props": {
               "secrets": [
                 {
                   "description": "an app Private Key for generating an ephemeral token",
@@ -74,10 +75,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Secrets]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Variables]",
+            "props": {
               "variables": [
                 {
                   "description": "the client id for an app that generates an ephemeral token",
@@ -85,7 +86,6 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Variables]",
           },
         ],
         "files": {
@@ -203,46 +203,47 @@ describe(blockReleasePlease, () => {
     `);
   });
 
-  test('without addons (scoped package name)', () => {
+  test('without props (scoped package name)', () => {
     const creation = testBlock(blockReleasePlease, {
       options: { ...optionsBase, packageName: '@test/create' },
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "RELEASEBOT",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block Publish Config]",
+            "props": {
               "access": "public",
             },
-            "block": "[Block Publish Config]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "📦 npm version",
@@ -251,10 +252,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Labels]",
+            "props": {
               "additionalLabels": [
                 {
                   "color": "#bfd4f2",
@@ -268,10 +269,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Labels]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Secrets]",
+            "props": {
               "secrets": [
                 {
                   "description": "an app Private Key for generating an ephemeral token",
@@ -279,10 +280,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Secrets]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Variables]",
+            "props": {
               "variables": [
                 {
                   "description": "the client id for an app that generates an ephemeral token",
@@ -290,7 +291,6 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Variables]",
           },
         ],
         "files": {
@@ -408,9 +408,9 @@ describe(blockReleasePlease, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockReleasePlease, {
-      addons: {
+      props: {
         builders: [
           {
             order: 1,
@@ -431,33 +431,34 @@ describe(blockReleasePlease, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "words": [
                 "RELEASEBOT",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/CHANGELOG.md",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "📦 npm version",
@@ -466,10 +467,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Labels]",
+            "props": {
               "additionalLabels": [
                 {
                   "color": "#bfd4f2",
@@ -483,10 +484,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Labels]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Secrets]",
+            "props": {
               "secrets": [
                 {
                   "description": "an app Private Key for generating an ephemeral token",
@@ -494,10 +495,10 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Secrets]",
           },
           {
-            "addons": {
+            "block": "[Block Repository Variables]",
+            "props": {
               "variables": [
                 {
                   "description": "the client id for an app that generates an ephemeral token",
@@ -505,7 +506,6 @@ describe(blockReleasePlease, () => {
                 },
               ],
             },
-            "block": "[Block Repository Variables]",
           },
         ],
         "files": {
@@ -635,7 +635,7 @@ describe(blockReleasePlease, () => {
       options: optionsBase,
     });
 
-    expect(creation.addons).toContainEqual(
+    expect(creation.extensions).toContainEqual(
       blockRemoveFiles({
         files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
       }),

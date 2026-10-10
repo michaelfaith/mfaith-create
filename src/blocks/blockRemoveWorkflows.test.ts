@@ -5,7 +5,7 @@ import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockRemoveWorkflows, () => {
-  test('without addons or mode', () => {
+  test('without props or mode', () => {
     const creation = testBlock(blockRemoveWorkflows, {
       options: optionsBase,
     });
@@ -13,9 +13,9 @@ describe(blockRemoveWorkflows, () => {
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockRemoveWorkflows, {
-      addons: {
+      props: {
         workflows: ['a', 'b', 'c'],
       },
       options: optionsBase,
@@ -32,21 +32,21 @@ describe(blockRemoveWorkflows, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": undefined,
             },
-            "block": "[Block Remove Files]",
           },
         ],
       }
     `);
   });
 
-  test('with addons and mode', () => {
+  test('with props and mode', () => {
     const creation = testBlock(blockRemoveWorkflows, {
-      addons: {
+      props: {
         workflows: ['a', 'b', 'c'],
       },
       mode: 'transition',
@@ -55,16 +55,16 @@ describe(blockRemoveWorkflows, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".github/workflows/a.{yaml,yml}",
                 ".github/workflows/b.{yaml,yml}",
                 ".github/workflows/c.{yaml,yml}",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
       }

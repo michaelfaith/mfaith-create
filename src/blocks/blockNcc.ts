@@ -17,7 +17,7 @@ export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
   about: {
     name: 'ncc',
   },
-  addons: {
+  props: {
     entry: z.string().optional(),
   },
   intake({ options }) {
@@ -25,11 +25,11 @@ export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
       entry: options.packageData?.scripts?.['build:release']?.match(/ncc build (.+) -o dist/)?.[1],
     };
   },
-  produce({ addons }) {
-    const { entry = 'src/index.ts' } = addons;
+  produce({ props }) {
+    const { entry = 'src/index.ts' } = props;
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: ['dist'],
         }),

@@ -1,4 +1,8 @@
 allowBuilds:
   simple-git-hooks: true
 
+patchedDependencies:
+  bingo-stratum: patches/bingo-stratum.patch
+  bingo-stratum-testers: patches/bingo-stratum-testers.patch
+
 trustPolicy: no-downgrade

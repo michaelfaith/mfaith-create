@@ -12,6 +12,8 @@ describe('blockFunding', () => {
       options: optionsBase,
     });
 
-    expect(creation.addons).toContainEqual(blockRemoveFiles({ files: ['.github/FUNDING.yml'] }));
+    expect(creation.extensions).toContainEqual(
+      blockRemoveFiles({ files: ['.github/FUNDING.yml'] }),
+    );
   });
 });

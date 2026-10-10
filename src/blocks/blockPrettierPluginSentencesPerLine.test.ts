@@ -12,14 +12,14 @@ describe('blockPrettierPluginSentencesPerLine', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "plugins": [
                 "prettier-plugin-sentences-per-line",
               ],
             },
-            "block": "[Block Prettier]",
           },
         ],
       }

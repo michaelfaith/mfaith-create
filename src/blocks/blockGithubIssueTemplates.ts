@@ -222,7 +222,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: [
             '.github/ISSUE_TEMPLATE/01-bug.yml',

@@ -104,7 +104,7 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
+      extensions: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
     };
   },
 });

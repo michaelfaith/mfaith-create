@@ -12,9 +12,10 @@ describe('blockEslintComments', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -33,7 +34,6 @@ describe('blockEslintComments', () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
         ],
       }

@@ -8,7 +8,7 @@ export const blockPrettierPluginSentencesPerLine: BlockWithoutProps = base.creat
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockPrettier({
           plugins: ['prettier-plugin-sentences-per-line'],
         }),
