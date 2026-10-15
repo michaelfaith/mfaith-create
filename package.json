@@ -86,7 +86,7 @@
     "@types/node": "26.6.5",
     "@types/parse-author": "2.0.3",
     "@types/semver": "7.8.0",
-    "@vitest/coverage-v8": "5.0.3",
+    "@vitest/coverage-v8": "5.0.4",
     "@vitest/eslint-plugin": "1.6.27",
     "all-contributors-cli": "6.26.1",
     "bingo-requests": "0.5.6",
@@ -115,7 +115,7 @@
     "tsdown": "0.23.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.1",
-    "vitest": "5.0.3"
+    "vitest": "5.0.4"
   },
   "packageManager": "pnpm@12.11.2",
   "engines": {
