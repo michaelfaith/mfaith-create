@@ -82,7 +82,7 @@
     "@eslint/js": "10.0.1",
     "@eslint/markdown": "8.0.3",
     "@types/html-to-text": "9.0.4",
-    "@types/lodash": "4.17.26",
+    "@types/lodash": "4.17.27",
     "@types/node": "26.6.5",
     "@types/parse-author": "2.0.3",
     "@types/semver": "7.8.0",
