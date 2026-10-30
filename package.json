@@ -88,7 +88,7 @@
     "@types/semver": "7.8.0",
     "@vitest/coverage-v8": "5.0.5",
     "@vitest/eslint-plugin": "1.6.28",
-    "all-contributors-cli": "6.26.1",
+    "all-contributors-cli": "7.0.0",
     "bingo-requests": "0.5.6",
     "bingo-stratum-testers": "0.5.15",
     "bingo-testers": "0.8.0",
