@@ -134,15 +134,6 @@ If you're interested in learning more, see the 'getting started' docs on:
               'trash-cli',
             ],
           }),
-          // TEMPORARY: Should not be merged!  This is only needed until https://github.com/bingo-js/bingo/pull/472 is merged and released.
-          blockPnpmWorkspace({
-            config: {
-              patchedDependencies: {
-                'bingo-stratum': 'patches/bingo-stratum.patch',
-                'bingo-stratum-testers': 'patches/bingo-stratum-testers.patch',
-              },
-            },
-          }),
           // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
           blockTypescript({
             compilerOptions: {

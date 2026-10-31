@@ -162,10 +162,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  bingo-stratum: bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96
-  bingo-stratum-testers: 9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f
-
 importers:
 
   .:
@@ -180,8 +176,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0
       bingo-stratum:
-        specifier: ^0.8.0
-        version: 0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7)
+        specifier: ^0.9.0
+        version: 0.9.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7)
       cached-factory:
         specifier: ^0.3.0
         version: 0.3.0
@@ -319,8 +315,8 @@ importers:
         specifier: 0.5.6
         version: 0.5.6
       bingo-stratum-testers:
-        specifier: 0.5.15
-        version: 0.5.15(patch_hash=9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f)(bingo-fs@0.6.0)(bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7))(bingo-systems@0.7.0)(bingo@0.13.2)
+        specifier: 0.6.0
+        version: 0.6.0(bingo-fs@0.6.0)(bingo-stratum@0.9.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7))(bingo-systems@0.7.0)(bingo@0.13.2)
       bingo-testers:
         specifier: 0.8.0
         version: 0.8.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)
@@ -1913,20 +1909,20 @@ packages:
     resolution: {integrity: sha512-cpvNWqMlFkbynxJzyKJ4B/R57zR2MsPkJSldNJRxSTN6LlgB9uzQ8jAeDZy2ENoUHNlH5nApv2JyHxVqFxcjSg==}
     engines: {node: '>=18'}
 
-  bingo-stratum-testers@0.5.15:
-    resolution: {integrity: sha512-RD+paWoZqg/umpZ6/ywRTOxCsdbvdXx0RCm0op9Ihfk18sLqMNCbJ63qvZn9nrzDeCIxgXF2vk2F1PFE56dK9Q==}
+  bingo-stratum-testers@0.6.0:
+    resolution: {integrity: sha512-zNdQEVx6YfE4krURUnCg8eu8xOvqwW23dYpAH4KohPU+zLPID9u3jIuzaJq1vxQH40CEWEh6txWEn42SBSG1FA==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.13.1
+      bingo: ^0.13.2
       bingo-fs: ^0.6.0
-      bingo-stratum: ^0.8.0
+      bingo-stratum: ^0.9.0
       bingo-systems: ^0.7.0
 
-  bingo-stratum@0.8.0:
-    resolution: {integrity: sha512-n3NlAge52Kg4os7OyexD79UccRYhdDUeqrL+mWxmDOoaGeJG6Hc7V1sBiB3p1rS7QJB13a8kGLhwQ71zyBCylg==}
+  bingo-stratum@0.9.0:
+    resolution: {integrity: sha512-Q9WSIC8yjC0dxw0mRXF5enQjEFKHdkoFBVRyOKvt/6nTFksBRVQArK7KHVpq5DjhMLZnr14zwbr4jW2uH6ZHSg==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
-      bingo: ^0.13.1
+      bingo: ^0.13.2
       bingo-fs: ^0.6.0
       bingo-systems: ^0.7.0
       zod: ^4.4.3
@@ -5309,14 +5305,14 @@ snapshots:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.15(patch_hash=9e61a7b8faea9e7c308a9a7ee88a1d403b514adacf464affda072508efc4410f)(bingo-fs@0.6.0)(bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7))(bingo-systems@0.7.0)(bingo@0.13.2):
+  bingo-stratum-testers@0.6.0(bingo-fs@0.6.0)(bingo-stratum@0.9.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7))(bingo-systems@0.7.0)(bingo@0.13.2):
     dependencies:
       bingo: 0.13.2
       bingo-fs: 0.6.0
-      bingo-stratum: 0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7)
+      bingo-stratum: 0.9.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7)
       bingo-systems: 0.7.0
 
-  bingo-stratum@0.8.0(patch_hash=bd7ee2afb5473b1202dcab55ea5c0cfe89b3d74d7642955f5df31dbe88a8bd96)(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7):
+  bingo-stratum@0.9.0(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.13.2)(zod@4.6.7):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.13.2
