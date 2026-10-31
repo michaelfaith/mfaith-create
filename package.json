@@ -112,7 +112,7 @@
     "prettier-plugin-sentences-per-line": "0.2.5",
     "pretty-quick": "4.2.2",
     "simple-git-hooks": "2.14.0",
-    "tsdown": "0.23.2",
+    "tsdown": "0.23.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
     "vitest": "5.0.5"
