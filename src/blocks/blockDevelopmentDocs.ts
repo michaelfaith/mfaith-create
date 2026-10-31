@@ -76,11 +76,11 @@ export const blockDevelopmentDocs: BlockWithProps<BlockDevelopmentDocsProps> = b
   about: {
     name: 'Development Docs',
   },
-  addons: {
+  props: {
     hints: z.array(z.string()).default([]),
     sections: z.record(z.string(), sectionSchema).default({}),
   },
-  produce({ addons, options }) {
+  produce({ options, props }) {
     const lines = [
       `# Development`,
       ``,
@@ -99,8 +99,8 @@ export const blockDevelopmentDocs: BlockWithProps<BlockDevelopmentDocsProps> = b
       `pnpm install`,
       `\`\`\``,
       ``,
-      ...(addons.hints.length ? [...addons.hints, ``] : []),
-      ...Object.entries(addons.sections)
+      ...(props.hints.length ? [...props.hints, ``] : []),
+      ...Object.entries(props.sections)
         .sort(([a], [b]) => a.localeCompare(b))
         .flatMap(([heading, section]) => printSection(heading, section)),
       ...(options.documentation.development ? [options.documentation.development] : []),
@@ -116,7 +116,7 @@ export const blockDevelopmentDocs: BlockWithProps<BlockDevelopmentDocsProps> = b
   },
   transition() {
     return {
-      addons: [blockRemoveFiles({ files: ['DEVELOPMENT.md'] })],
+      extensions: [blockRemoveFiles({ files: ['DEVELOPMENT.md'] })],
     };
   },
 });

@@ -79,7 +79,7 @@ export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
   about: {
     name: 'Vitest',
   },
-  addons: {
+  props: {
     actionSteps: z.array(stepSchema).default([]),
     coverage: coverageSchema.default({}),
     environment: environmentSchema.optional(),
@@ -93,8 +93,8 @@ export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
       flags: options.packageData?.scripts?.test?.match(/^vitest (.+)/)?.[1].split(' '),
     };
   },
-  produce({ addons, options }) {
-    const { actionSteps, coverage, environment, exclude, permissions } = addons;
+  produce({ options, props }) {
+    const { actionSteps, coverage, environment, exclude, permissions } = props;
     const { node } = options;
 
     const excludeText = JSON.stringify(Array.from(new Set(['node_modules', ...exclude])).sort());
@@ -102,7 +102,7 @@ export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
     const nodeVersions = getNodeMatrixVersions(node.supported);
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           ignorePaths: ['coverage'],
         }),
@@ -257,7 +257,7 @@ describe(greet, () => {
               'vitest',
             ),
             scripts: {
-              test: `vitest ${addons.flags.join(' ')}`.trim(),
+              test: `vitest ${props.flags.join(' ')}`.trim(),
             },
           },
         }),
@@ -316,7 +316,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveDependencies({
           dependencies: [
             '@vitest/coverage-istanbul',

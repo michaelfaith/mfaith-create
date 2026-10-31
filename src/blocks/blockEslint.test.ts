@@ -20,16 +20,17 @@ vi.mock('../data/packageData.ts', () => ({
 }));
 
 describe(blockEslint, () => {
-  test('without addons or mode', () => {
+  test('without props or mode', () => {
     const creation = testBlock(blockEslint, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -54,10 +55,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -69,10 +70,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -87,10 +88,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -107,7 +108,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -160,9 +160,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -187,10 +188,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -202,10 +203,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -220,10 +221,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -240,10 +241,10 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Dependencies]",
+            "props": {
               "dependencies": [
                 "@types/eslint",
                 "@typescript-eslint/eslint-plugin",
@@ -254,26 +255,25 @@ describe(blockEslint, () => {
                 "yaml-eslint-parser",
               ],
             },
-            "block": "[Block Remove Dependencies]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".eslintrc*",
                 ".eslintignore",
                 "eslint.config.{cjs,js,mjs}",
               ],
             },
-            "block": "[Block Remove Files]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Workflows]",
+            "props": {
               "workflows": [
                 "eslint",
                 "lint",
               ],
             },
-            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {
@@ -318,9 +318,9 @@ describe(blockEslint, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockEslint, {
-      addons: {
+      props: {
         beforeLint: 'Before lint.',
         explanations: ['This is a great config!', 'You should use it!'],
         extensions: [
@@ -361,9 +361,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -389,10 +390,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -404,10 +405,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -425,10 +426,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -445,7 +446,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -509,9 +509,9 @@ describe(blockEslint, () => {
     `);
   });
 
-  test('with identical addon rules comments across two extensions', () => {
+  test('with identical prop rules comments across two extensions', () => {
     const creation = testBlock(blockEslint, {
-      addons: {
+      props: {
         extensions: [
           {
             files: ['**/*.js'],
@@ -554,9 +554,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -581,10 +582,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -596,10 +597,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -614,10 +615,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -634,7 +635,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -689,9 +689,9 @@ describe(blockEslint, () => {
     `);
   });
 
-  test('with multiline addon rules comments', () => {
+  test('with multiline prop rules comments', () => {
     const creation = testBlock(blockEslint, {
-      addons: {
+      props: {
         extensions: [
           {
             files: ['**/*.js'],
@@ -717,9 +717,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -744,10 +745,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -759,10 +760,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -777,10 +778,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -797,7 +798,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -857,9 +857,9 @@ describe(blockEslint, () => {
     `);
   });
 
-  test('with addon extensions merging where the first provides everything', () => {
+  test('with prop extensions merging where the first provides everything', () => {
     const creation = testBlock(blockEslint, {
-      addons: {
+      props: {
         extensions: [
           {
             extends: ['a.configs.recommended'],
@@ -893,9 +893,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -920,10 +921,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -935,10 +936,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -953,10 +954,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -973,7 +974,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {
@@ -1028,9 +1028,9 @@ describe(blockEslint, () => {
     `);
   });
 
-  test('with addon extensions merging where the second provides everything', () => {
+  test('with prop extensions merging where the second provides everything', () => {
     const creation = testBlock(blockEslint, {
-      addons: {
+      props: {
         extensions: [
           {
             files: ['**/*.a'],
@@ -1063,9 +1063,10 @@ describe(blockEslint, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -1090,10 +1091,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint",
@@ -1105,10 +1106,10 @@ describe(blockEslint, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@eslint/js": "1.2.3",
@@ -1123,10 +1124,10 @@ describe(blockEslint, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "dbaeumer.vscode-eslint",
               ],
@@ -1143,7 +1144,6 @@ describe(blockEslint, () => {
                 ],
               },
             },
-            "block": "[Block VS Code]",
           },
         ],
         "files": {

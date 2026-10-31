@@ -10,16 +10,17 @@ vi.mock('../data/packageData.ts', () => ({
 }));
 
 describe(blockTsdown, () => {
-  test('without addons or options', () => {
+  test('without props or options', () => {
     const creation = testBlock(blockTsdown, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -38,18 +39,18 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "ignores": [
                 "dist",
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -64,18 +65,18 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Gitignore]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Gitignore]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "tsdown": "1.2.3",
@@ -88,37 +89,26 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/dist",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
-              "builders": [
-                {
-                  "order": 0,
-                  "run": "pnpm build",
-                },
-              ],
-            },
             "block": "[Block PR Preview Release]",
-          },
-          {
-            "addons": {
+            "props": {
               "builders": [
                 {
                   "order": 0,
@@ -126,10 +116,21 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block Release Please]",
           },
           {
-            "addons": {
+            "block": "[Block Release Please]",
+            "props": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "include": [
                   "src",
@@ -139,7 +140,6 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -156,9 +156,9 @@ describe(blockTsdown, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockTsdown, {
-      addons: {
+      props: {
         additionalConfig: {
           dts: false,
         },
@@ -176,9 +176,10 @@ describe(blockTsdown, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -197,18 +198,18 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "ignores": [
                 "dist",
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -226,18 +227,18 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Gitignore]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Gitignore]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "tsdown": "1.2.3",
@@ -250,37 +251,26 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/dist",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
-              "builders": [
-                {
-                  "order": 0,
-                  "run": "pnpm build",
-                },
-              ],
-            },
             "block": "[Block PR Preview Release]",
-          },
-          {
-            "addons": {
+            "props": {
               "builders": [
                 {
                   "order": 0,
@@ -288,10 +278,21 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block Release Please]",
           },
           {
-            "addons": {
+            "block": "[Block Release Please]",
+            "props": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "include": [
                   "src",
@@ -301,7 +302,6 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": "[Block Vitest]",
           },
         ],
         "files": {
@@ -341,9 +341,10 @@ describe(blockTsdown, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -362,18 +363,18 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "ignores": [
                 "dist",
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -388,18 +389,18 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Gitignore]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Gitignore]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "tsdown": "1.2.3",
@@ -412,37 +413,26 @@ describe(blockTsdown, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/dist",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
-              "builders": [
-                {
-                  "order": 0,
-                  "run": "pnpm build",
-                },
-              ],
-            },
             "block": "[Block PR Preview Release]",
-          },
-          {
-            "addons": {
+            "props": {
               "builders": [
                 {
                   "order": 0,
@@ -450,10 +440,21 @@ describe(blockTsdown, () => {
                 },
               ],
             },
-            "block": "[Block Release Please]",
           },
           {
-            "addons": {
+            "block": "[Block Release Please]",
+            "props": {
+              "builders": [
+                {
+                  "order": 0,
+                  "run": "pnpm build",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Vitest]",
+            "props": {
               "coverage": {
                 "include": [
                   "src",
@@ -463,10 +464,10 @@ describe(blockTsdown, () => {
                 "dist",
               ],
             },
-            "block": "[Block Vitest]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Dependencies]",
+            "props": {
               "dependencies": [
                 "@babel/cli",
                 "@babel/core",
@@ -475,10 +476,10 @@ describe(blockTsdown, () => {
                 "tsup",
               ],
             },
-            "block": "[Block Remove Dependencies]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".babelrc*",
                 "babel.config.*",
@@ -487,16 +488,15 @@ describe(blockTsdown, () => {
                 "tsup.config.*",
               ],
             },
-            "block": "[Block Remove Files]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Workflows]",
+            "props": {
               "workflows": [
                 "build",
                 "tsup",
               ],
             },
-            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {

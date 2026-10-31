@@ -32,17 +32,17 @@ export const blockVscode: BlockWithProps<BlockVscodeProps> = base.createBlock({
   about: {
     name: 'VS Code',
   },
-  addons: {
+  props: {
     debuggers: z.array(debuggerSchema).optional(),
     extensions: z.array(z.string()).optional(),
     settings: z.record(z.string(), z.unknown()).default({}),
     tasks: z.array(taskSchema).optional(),
   },
-  produce({ addons }) {
-    const { debuggers, extensions, settings, tasks } = addons;
+  produce({ props }) {
+    const { debuggers, extensions, settings, tasks } = props;
 
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           hints: [
             `> This repository includes a list of suggested VS Code extensions.`,

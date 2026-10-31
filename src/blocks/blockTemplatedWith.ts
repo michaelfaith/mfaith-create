@@ -8,7 +8,7 @@ export const blockTemplatedWith: BlockWithoutProps = base.createBlock({
   },
   produce({ options }) {
     return {
-      addons: [
+      extensions: [
         blockReadme({
           notices: [
             options.owner !== 'michaelfaith' &&

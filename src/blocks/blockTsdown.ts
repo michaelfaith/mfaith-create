@@ -63,7 +63,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     description:
       'Set up the project to build with tsdown, including config, scripts, ci job, and more.',
   },
-  addons: {
+  props: {
     additionalConfig: additionalConfigSchema.default({}),
     attw: attwSchema.optional(),
     entry: entrySchema.default([]),
@@ -86,8 +86,8 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
       }),
     };
   },
-  produce({ addons, options }) {
-    const { attw, entry, excludeFromExports, additionalConfig: properties, runInCI } = addons;
+  produce({ options, props }) {
+    const { attw, entry, excludeFromExports, additionalConfig: properties, runInCI } = props;
     const { devExports } = options;
 
     const primaryEntry = 'src/index.ts';
@@ -114,7 +114,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     }
 
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           sections: {
             Building: {
@@ -207,7 +207,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveDependencies({
           dependencies: ['@babel/cli', '@babel/core', '@babel/preset-typescript', 'babel', 'tsup'],
         }),

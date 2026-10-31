@@ -12,7 +12,7 @@ export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {
@@ -39,7 +39,7 @@ export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: ['.npmpackagejsonlintrc*'],
         }),

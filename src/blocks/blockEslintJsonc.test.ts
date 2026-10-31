@@ -12,9 +12,10 @@ describe('blockEslintJsonc', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -32,7 +33,6 @@ describe('blockEslintJsonc', () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
         ],
       }

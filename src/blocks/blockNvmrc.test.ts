@@ -7,13 +7,13 @@ import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe('blockNvmrc', () => {
-  it('only includes blockPackageJson addons when options.node.pinned does not exist', () => {
+  it('only includes blockPackageJson props when options.node.pinned does not exist', () => {
     const creation = testBlock(blockNvmrc, {
       options: { ...optionsBase, node: { supported: '>=24' } },
     });
 
     expect(creation).toEqual({
-      addons: [
+      extensions: [
         blockOxfmt({
           overrides: [
             {
@@ -40,7 +40,7 @@ describe('blockNvmrc', () => {
     });
 
     expect(creation).toEqual({
-      addons: [
+      extensions: [
         blockOxfmt({
           overrides: [
             {

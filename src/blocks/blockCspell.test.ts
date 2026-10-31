@@ -14,16 +14,17 @@ vi.mock('../data/packageData.ts', () => ({
 }));
 
 describe(blockCspell, () => {
-  test('without addons or options', () => {
+  test('without props or options', () => {
     const creation = testBlock(blockCspell, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -34,18 +35,18 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Spelling",
@@ -57,10 +58,10 @@ describe(blockCspell, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "cspell": "1.2.3",
@@ -70,7 +71,6 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -80,9 +80,9 @@ describe(blockCspell, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockCspell, {
-      addons: {
+      props: {
         ignorePaths: ['dist/'],
         words: ['michaelfaith'],
       },
@@ -91,9 +91,10 @@ describe(blockCspell, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -104,18 +105,18 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Spelling",
@@ -127,10 +128,10 @@ describe(blockCspell, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "cspell": "1.2.3",
@@ -140,7 +141,6 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -160,9 +160,10 @@ describe(blockCspell, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -173,18 +174,18 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Spelling",
@@ -196,10 +197,10 @@ describe(blockCspell, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "cspell": "1.2.3",
@@ -209,7 +210,6 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -227,9 +227,10 @@ describe(blockCspell, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -240,18 +241,18 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Spelling",
@@ -263,10 +264,10 @@ describe(blockCspell, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "cspell": "1.2.3",
@@ -276,7 +277,6 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {
@@ -302,9 +302,10 @@ describe(blockCspell, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Linting": {
                   "contents": {
@@ -315,18 +316,18 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block VS Code]",
+            "props": {
               "extensions": [
                 "streetsidesoftware.code-spell-checker",
               ],
             },
-            "block": "[Block VS Code]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Lint Spelling",
@@ -338,10 +339,10 @@ describe(blockCspell, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "cspell": "1.2.3",
@@ -351,16 +352,15 @@ describe(blockCspell, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Workflows]",
+            "props": {
               "workflows": [
                 "lint-spelling",
                 "spelling",
               ],
             },
-            "block": "[Block Remove Workflows]",
           },
         ],
         "files": {

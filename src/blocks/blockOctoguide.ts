@@ -15,7 +15,7 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> = base.createBl
   about: {
     name: 'OctoGuide',
   },
-  addons: {
+  props: {
     config: z.union([z.literal('recommended'), z.literal('strict')]).optional(),
   },
   intake({ files }) {
@@ -39,7 +39,7 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> = base.createBl
       config: runOctoGuideStep.with?.config as 'recommended' | 'strict' | undefined,
     };
   },
-  produce({ addons, options }) {
+  produce({ options, props }) {
     return {
       files: {
         '.github': {
@@ -81,7 +81,7 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> = base.createBl
                       options.workflowsVersions,
                     ),
                     with: {
-                      config: addons.config ?? 'recommended',
+                      config: props.config ?? 'recommended',
                       'github-token': '${{ secrets.GITHUB_TOKEN }}',
                       // https://github.com/octoguide/bot/issues/624
                       rules: `{
@@ -99,7 +99,7 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> = base.createBl
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: [
             '.github/workflows/accessibility-alt-text-bot.{yaml,yml}',

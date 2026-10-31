@@ -11,7 +11,7 @@ export const blockEslintMarkdown: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {

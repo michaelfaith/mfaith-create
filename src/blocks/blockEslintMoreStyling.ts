@@ -11,7 +11,7 @@ export const blockEslintMoreStyling: BlockWithoutProps = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockEslint({
           extensions: [
             {
