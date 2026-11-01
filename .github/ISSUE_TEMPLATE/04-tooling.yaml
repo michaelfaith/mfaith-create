@@ -6,6 +6,7 @@ title: '🛠 Tooling: <short description of the change>'
 
 labels:
   - 'area: tooling'
+  - 'status: in discussion'
 
 body:
   - type: checkboxes
