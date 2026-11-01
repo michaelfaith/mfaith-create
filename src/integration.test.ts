@@ -14,7 +14,6 @@ import {
   blockCspell,
   blockEslint,
   blockKnip,
-  blockPnpmWorkspace,
   blockTemplatedWith,
   blockTypescript,
   presetEverything,
