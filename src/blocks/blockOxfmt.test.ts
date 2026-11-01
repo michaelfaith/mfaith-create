@@ -86,8 +86,10 @@ describe(blockOxfmt, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },
@@ -207,8 +209,10 @@ describe(blockOxfmt, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },
@@ -322,8 +326,10 @@ describe(blockOxfmt, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },
