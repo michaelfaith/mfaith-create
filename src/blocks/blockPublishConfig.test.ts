@@ -5,15 +5,15 @@ import { blockPublishConfig } from './blockPublishConfig.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockPublishConfig, () => {
-  it('without addons', () => {
+  it('without props', () => {
     const creation = testBlock(blockPublishConfig, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`{}`);
   });
 
-  it('with addons', () => {
+  it('with props', () => {
     const creation = testBlock(blockPublishConfig, {
-      addons: {
+      props: {
         access: 'public',
         bin: './dist/bin/index.mjs',
         exports: {
@@ -26,9 +26,10 @@ describe(blockPublishConfig, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "publishConfig": {
                   "access": "public",
@@ -40,7 +41,6 @@ describe(blockPublishConfig, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
       }

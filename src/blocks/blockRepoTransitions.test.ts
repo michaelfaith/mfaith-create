@@ -13,7 +13,7 @@ describe('blockRepoTransitions', () => {
       options: optionsBase,
     });
 
-    expect(creation.addons).toEqual([
+    expect(creation.extensions).toEqual([
       blockPackageJson({
         properties: {
           devDependencies: {

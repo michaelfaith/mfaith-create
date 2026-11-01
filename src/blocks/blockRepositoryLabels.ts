@@ -14,11 +14,11 @@ export const blockRepositoryLabels: BlockWithProps<BlockRepositoryLabelsProps> =
     name: 'Repository Labels',
     description: 'Add a list of labels to the GitHub repository.',
   },
-  addons: {
+  props: {
     additionalLabels: z.array(zLabel).optional(),
   },
-  produce({ addons, options }) {
-    const { additionalLabels } = addons;
+  produce({ options, props }) {
+    const { additionalLabels } = props;
 
     const requiredLabels = new Set(
       additionalLabels ? [...repositoryLabels, ...additionalLabels] : repositoryLabels,

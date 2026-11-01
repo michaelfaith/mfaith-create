@@ -22,14 +22,14 @@ export const blockRepositoryVariables: BlockWithProps<BlockRepositoryVariablesPr
     about: {
       name: 'Repository Variables',
     },
-    addons: {
+    props: {
       variables: z.array(variableSchema).default([]),
     },
-    produce({ addons, options }) {
+    produce({ options, props }) {
       return {
         suggestions: getInstallationSuggestions(
           'populate the variable',
-          addons.variables.map((variable) => `${variable.name} (${variable.description})`),
+          props.variables.map((variable) => `${variable.name} (${variable.description})`),
           `https://github.com/${options.owner}/${options.repository}/settings/variables/actions`,
         ),
       };

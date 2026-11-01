@@ -11,7 +11,7 @@ const options = {
 };
 
 describe(blockPackageJson, () => {
-  test('without addons or mode', () => {
+  test('without props or mode', () => {
     const creation = testBlock(blockPackageJson, { options });
 
     expect(creation).toMatchInlineSnapshot(`
@@ -39,15 +39,15 @@ describe(blockPackageJson, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 "package-lock.json",
                 "yarn.lock",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {
@@ -65,9 +65,9 @@ describe(blockPackageJson, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         cleanupCommands: ['pnpm dedupe'],
         properties: {
           dependencies: {
@@ -97,9 +97,9 @@ describe(blockPackageJson, () => {
     `);
   });
 
-  test('with addons adding devDependencies', () => {
+  test('with props adding devDependencies', () => {
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         cleanupCommands: ['pnpm dedupe'],
         properties: {
           dependencies: {
@@ -132,9 +132,9 @@ describe(blockPackageJson, () => {
     `);
   });
 
-  test('with addons adding overlapping files', () => {
+  test('with props adding overlapping files', () => {
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           files: ['README.md', 'LICENSE.md', 'dist/', 'dist/bin/file.js'],
         },
@@ -270,10 +270,10 @@ describe(blockPackageJson, () => {
     `);
   });
 
-  it('preserves an existing dependency when the addon has an invalid version', () => {
+  it('preserves an existing dependency when the prop has an invalid version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '0.9.0',
@@ -300,10 +300,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("uses an addon's version when there is no existing equivalent", () => {
+  it("uses the prop's version when there is no existing equivalent", () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '1.1.0',
@@ -328,10 +328,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it("uses the addon's version when the existing equivalent is invalid semver", () => {
+  it("uses the prop's version when the existing equivalent is invalid semver", () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '1.0.0',
@@ -358,10 +358,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('preserves an existing dependency when the addon has an older version minimum', () => {
+  it('preserves an existing dependency when the prop has an older version minimum', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '^0.9.0',
@@ -388,10 +388,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('preserves an existing dependency when the addon has an older version range', () => {
+  it('preserves an existing dependency when the prop has an older version range', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '^0.9.0',
@@ -418,10 +418,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('merges an existing dependency when the addon has the same version', () => {
+  it('merges an existing dependency when the prop has the same version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '1.0.0',
@@ -448,10 +448,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('replaces an existing dependency when the addon has a newer version', () => {
+  it('replaces an existing dependency when the prop has a newer version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '1.1.0',
@@ -478,10 +478,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('replaces an existing dependency when the addon has a newer version than the first range element', () => {
+  it('replaces an existing dependency when the prop has a newer version than the first range element', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           dependencies: {
             [dependency]: '^1.1.0',
@@ -508,10 +508,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('preserves an existing devDependency when the addon has an older pinned version', () => {
+  it('preserves an existing devDependency when the prop has an older pinned version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           devDependencies: {
             [dependency]: '0.9.0',
@@ -538,10 +538,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('merges an existing devDependency when the addon has the same version', () => {
+  it('merges an existing devDependency when the prop has the same version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           devDependencies: {
             [dependency]: '1.0.0',
@@ -568,10 +568,10 @@ describe(blockPackageJson, () => {
 		`);
   });
 
-  it('replaces an existing devDependency when the addon has a newer version', () => {
+  it('replaces an existing devDependency when the prop has a newer version', () => {
     const dependency = 'test-dependency';
     const creation = testBlock(blockPackageJson, {
-      addons: {
+      props: {
         properties: {
           devDependencies: {
             [dependency]: '1.1.0',

@@ -21,7 +21,7 @@ export const blockEslintPlugin: BlockWithProps<BlockEslintPluginProps> = base.cr
   about: {
     name: 'ESLint Plugin',
   },
-  addons: {
+  props: {
     configEmoji: configEmojiSchema.optional(),
   },
   intake({ files }) {
@@ -31,15 +31,15 @@ export const blockEslintPlugin: BlockWithProps<BlockEslintPluginProps> = base.cr
 
     return docGeneratorConfigRaw ? blockEslintPluginIntake(docGeneratorConfigRaw[0]) : undefined;
   },
-  produce({ addons, options }) {
-    const { configEmoji } = addons;
+  produce({ options, props }) {
+    const { configEmoji } = props;
     const configFileName = '.eslint-doc-generatorrc.js';
     const pluginName = options.repository
       .replace(/^eslint-plugin-/, '')
       .replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
     return {
-      addons: [
+      extensions: [
         blockCspell({
           words: ['eslint-doc-generatorrc'],
         }),

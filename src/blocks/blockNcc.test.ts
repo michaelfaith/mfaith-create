@@ -5,24 +5,25 @@ import { blockNcc } from './blockNcc.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockNcc, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockNcc, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "dist",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -53,18 +54,18 @@ describe(blockNcc, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "ignores": [
                 "dist",
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -84,18 +85,18 @@ describe(blockNcc, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/dist",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@vercel/ncc": "^0.38.3",
@@ -106,24 +107,23 @@ describe(blockNcc, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Prettier]",
           },
         ],
       }
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockNcc, {
-      addons: {
+      props: {
         entry: 'src/action/index.ts',
       },
       options: optionsBase,
@@ -131,17 +131,18 @@ describe(blockNcc, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 "dist",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block Development Docs]",
+            "props": {
               "sections": {
                 "Building": {
                   "contents": "
@@ -172,18 +173,18 @@ describe(blockNcc, () => {
                 },
               },
             },
-            "block": "[Block Development Docs]",
           },
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "ignores": [
                 "dist",
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
               "jobs": [
                 {
                   "name": "Build",
@@ -203,18 +204,18 @@ describe(blockNcc, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Actions CI]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/dist",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "devDependencies": {
                   "@vercel/ncc": "^0.38.3",
@@ -225,15 +226,14 @@ describe(blockNcc, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/dist",
               ],
             },
-            "block": "[Block Prettier]",
           },
         ],
       }

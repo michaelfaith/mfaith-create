@@ -25,7 +25,7 @@ export const blockTypescript: BlockWithProps<BlockTypescriptProps> = base.create
   about: {
     name: 'TypeScript',
   },
-  addons: {
+  props: {
     compilerOptions: CompilerOptionsSchema.optional(),
   },
   intake({ files }) {
@@ -39,11 +39,11 @@ export const blockTypescript: BlockWithProps<BlockTypescriptProps> = base.create
       compilerOptions: data,
     };
   },
-  produce({ addons, options }) {
-    const { compilerOptions } = addons;
+  produce({ options, props }) {
+    const { compilerOptions } = props;
 
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           sections: {
             'Type Checking': {
@@ -168,7 +168,7 @@ greet('Hello, world! ${options.emoji}');
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveWorkflows({
           workflows: ['tsc'],
         }),

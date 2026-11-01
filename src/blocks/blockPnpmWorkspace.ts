@@ -27,7 +27,7 @@ export const blockPnpmWorkspace: BlockWithProps<BlockPnpmWorkspaceProps> = base.
     name: 'pnpm Workspace',
     description: 'Creates a Workspace configuration file for pnpm.',
   },
-  addons: {
+  props: {
     config: pnpmWorkspaceSchema.optional(),
   },
   intake({ files }) {
@@ -42,8 +42,8 @@ export const blockPnpmWorkspace: BlockWithProps<BlockPnpmWorkspaceProps> = base.
       config: existingWorkspace,
     };
   },
-  produce({ addons }) {
-    const { config } = addons;
+  produce({ props }) {
+    const { config } = props;
     return {
       files: {
         'pnpm-workspace.yaml': formatYaml(

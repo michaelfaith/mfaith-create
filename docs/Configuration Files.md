@@ -59,9 +59,9 @@ export default config;
 
 See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them, and their corresponding `--exclude-*` flags.
 
-### `addons`
+### `extensions`
 
-Any additional [Props](https://www.create.bingo/engines/stratum/concepts/blocks#addons) you want to configure for Blocks provided by the selected Preset.
+Any additional [Props](https://www.create.bingo/engines/stratum/concepts/blocks#props) you want to configure for Blocks provided by the selected Preset.
 
 For example, this configuration file adds the word `"michaelfaith"` to the CSpell Block's Props:
 
@@ -71,7 +71,7 @@ import { blockCspell, type Config, createConfig } from '@mfaith/create';
 
 const config: Config = createConfig({
   refinements: {
-    addons: [
+    extensions: [
       blockCspell({
         words: ['michaelfaith'],
       }),
@@ -151,7 +151,7 @@ export const blockLintAreTheTypesWrong = base.createBlock({
   },
   produce() {
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             devDependencies: {

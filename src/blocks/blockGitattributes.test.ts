@@ -5,7 +5,7 @@ import { blockGitattributes } from './blockGitattributes.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitattributes, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockGitattributes, {
       options: optionsBase,
     });
@@ -21,9 +21,9 @@ describe(blockGitattributes, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockGitattributes, {
-      addons: {
+      props: {
         additionalAttributes: ['*.jpg binary', '*.png binary'],
       },
       options: optionsBase,

@@ -5,7 +5,7 @@ import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockRepositoryVariables, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockRepositoryVariables, {
       options: optionsBase,
     });
@@ -17,9 +17,9 @@ describe(blockRepositoryVariables, () => {
 		`);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockRepositoryVariables, {
-      addons: {
+      props: {
         variables: [
           {
             description: 'Variable description a.',

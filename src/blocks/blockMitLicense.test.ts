@@ -12,9 +12,10 @@ describe('blockMitLicense', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "📝 License: MIT",
@@ -23,15 +24,14 @@ describe('blockMitLicense', () => {
                 },
               ],
             },
-            "block": "[Block README.md]",
           },
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "license": "MIT",
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
         "files": {

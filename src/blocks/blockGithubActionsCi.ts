@@ -32,7 +32,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
   about: {
     name: 'GitHub Actions CI',
   },
-  addons: {
+  props: {
     jobs: z.array(workflowJobSchema).optional(),
     nodeVersion: z.union([z.number(), z.string()]).optional(),
   },
@@ -48,8 +48,8 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
 
     return { nodeVersion: String(nodeVersionInput.default) };
   },
-  produce({ addons, options }) {
-    const { jobs, nodeVersion = options.node.pinned } = addons;
+  produce({ options, props }) {
+    const { jobs, nodeVersion = options.node.pinned } = props;
     const { node } = options;
 
     const enginesVersionMatrix = getNodeMatrixVersions(node.supported);
@@ -83,7 +83,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
       );
 
     return {
-      addons: [
+      extensions: [
         blockRepositoryBranchRuleset({
           requiredStatusChecks: jobsWithEnginesCheck?.flatMap((job) => getAllPossibleJobNames(job)),
         }),
@@ -194,7 +194,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveFiles({
           files: [
             '.circleci',

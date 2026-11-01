@@ -5,16 +5,17 @@ import { blockRenovate } from './blockRenovate.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockRenovate, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockRenovate, {
       options: optionsBase,
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "Renovate",
@@ -22,7 +23,6 @@ describe(blockRenovate, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
         ],
         "files": {
@@ -34,9 +34,9 @@ describe(blockRenovate, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockRenovate, {
-      addons: {
+      props: {
         ignoreDeps: ['all-contributors-cli'],
       },
       options: optionsBase,
@@ -44,9 +44,10 @@ describe(blockRenovate, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "Renovate",
@@ -54,7 +55,6 @@ describe(blockRenovate, () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
         ],
         "files": {

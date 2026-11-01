@@ -5,14 +5,15 @@ import { blockExports } from './blockExports.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockExports, () => {
-  it('without addons', () => {
+  it('without props', () => {
     const creation = testBlock(blockExports, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "exports": {
                   ".": "./dist/index.mjs",
@@ -20,23 +21,23 @@ describe(blockExports, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
       }
     `);
   });
 
-  it('without addons (devExports: true)', () => {
+  it('without props (devExports: true)', () => {
     const creation = testBlock(blockExports, {
       options: { ...optionsBase, devExports: true },
     });
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "exports": {
                   ".": "./src/index.ts",
@@ -44,25 +45,24 @@ describe(blockExports, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Publish Config]",
+            "props": {
               "exports": {
                 ".": "./dist/index.mjs",
                 "./package.json": "./package.json",
               },
             },
-            "block": "[Block Publish Config]",
           },
         ],
       }
     `);
   });
 
-  it('with addons (no leading ./)', () => {
+  it('with props (no leading ./)', () => {
     const creation = testBlock(blockExports, {
-      addons: {
+      props: {
         filePath: 'other.js',
         srcFilePath: 'other.ts',
       },
@@ -71,9 +71,10 @@ describe(blockExports, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "exports": {
                   ".": "./other.js",
@@ -81,16 +82,15 @@ describe(blockExports, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
       }
     `);
   });
 
-  it('with addons (with leading ./)', () => {
+  it('with props (with leading ./)', () => {
     const creation = testBlock(blockExports, {
-      addons: {
+      props: {
         filePath: './other.js',
         srcFilePath: './other.ts',
       },
@@ -99,9 +99,10 @@ describe(blockExports, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "exports": {
                   ".": "./other.js",
@@ -109,16 +110,15 @@ describe(blockExports, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
         ],
       }
     `);
   });
 
-  it('with addons (devExports: true)', () => {
+  it('with props (devExports: true)', () => {
     const creation = testBlock(blockExports, {
-      addons: {
+      props: {
         filePath: './other.js',
         srcFilePath: './other.ts',
       },
@@ -127,9 +127,10 @@ describe(blockExports, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Package JSON]",
+            "props": {
               "properties": {
                 "exports": {
                   ".": "./other.ts",
@@ -137,16 +138,15 @@ describe(blockExports, () => {
                 },
               },
             },
-            "block": "[Block Package JSON]",
           },
           {
-            "addons": {
+            "block": "[Block Publish Config]",
+            "props": {
               "exports": {
                 ".": "./other.js",
                 "./package.json": "./package.json",
               },
             },
-            "block": "[Block Publish Config]",
           },
         ],
       }

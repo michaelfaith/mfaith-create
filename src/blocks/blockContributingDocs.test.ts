@@ -116,14 +116,14 @@ describe('blockContributingDocs', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 "CONTRIBUTING.md",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {

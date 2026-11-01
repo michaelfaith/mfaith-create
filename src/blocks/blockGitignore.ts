@@ -12,11 +12,11 @@ export const blockGitignore: BlockWithProps<BlockGitignoreProps> = base.createBl
   about: {
     name: 'Gitignore',
   },
-  addons: {
+  props: {
     ignores: z.array(z.string()).default([]),
   },
-  produce({ addons }) {
-    const { ignores } = addons;
+  produce({ props }) {
+    const { ignores } = props;
 
     return {
       files: {

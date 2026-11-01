@@ -12,9 +12,10 @@ describe('blockEslintMoreStyling', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "files": [
@@ -41,7 +42,6 @@ describe('blockEslintMoreStyling', () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
         ],
       }

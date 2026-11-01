@@ -6,7 +6,7 @@ import { blockOctoguide } from './blockOctoguide.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockOctoguide, () => {
-  test('without addons', () => {
+  test('without props', () => {
     const creation = testBlock(blockOctoguide, {
       options: optionsBase,
     });
@@ -80,16 +80,16 @@ describe(blockOctoguide, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
                 ".github/workflows/compliance.{yaml,yml}",
                 ".github/workflows/octoguide.yml",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {
@@ -151,9 +151,9 @@ describe(blockOctoguide, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockOctoguide, {
-      addons: {
+      props: {
         config: 'strict',
       },
       options: optionsBase,

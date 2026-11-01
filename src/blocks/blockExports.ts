@@ -15,19 +15,19 @@ export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock(
   about: {
     name: 'Exports',
   },
-  addons: {
+  props: {
     filePath: z.string().default('./dist/index.mjs'),
     srcFilePath: z.string().default('./src/index.ts'),
   },
-  produce({ addons, options }) {
-    const { filePath, srcFilePath } = addons;
+  produce({ options, props }) {
+    const { filePath, srcFilePath } = props;
     const { devExports } = options;
 
     const exportFilePath = devExports ? srcFilePath : filePath;
     const publishConfigExportFilePath = devExports ? filePath : undefined;
 
     return {
-      addons: [
+      extensions: [
         blockPackageJson({
           properties: {
             exports: {

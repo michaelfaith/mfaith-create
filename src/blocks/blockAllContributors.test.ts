@@ -11,17 +11,18 @@ describe('blockAllContributors', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 ".all-contributorsrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "All Contributors",
@@ -29,26 +30,26 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "👪 All Contributors: undefined",
@@ -66,7 +67,6 @@ describe('blockAllContributors', () => {
               ],
               "sections": undefined,
             },
-            "block": "[Block README.md]",
           },
         ],
         "files": {
@@ -115,17 +115,18 @@ describe('blockAllContributors', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 ".all-contributorsrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "All Contributors",
@@ -133,26 +134,26 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "👪 All Contributors: 1",
@@ -188,7 +189,6 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: enable -->",
               ],
             },
-            "block": "[Block README.md]",
           },
         ],
         "files": {
@@ -251,17 +251,18 @@ describe('blockAllContributors', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block CSpell]",
+            "props": {
               "ignorePaths": [
                 ".all-contributorsrc",
               ],
             },
-            "block": "[Block CSpell]",
           },
           {
-            "addons": {
+            "block": "[Block GitHub Apps]",
+            "props": {
               "apps": [
                 {
                   "name": "All Contributors",
@@ -269,26 +270,26 @@ describe('blockAllContributors', () => {
                 },
               ],
             },
-            "block": "[Block GitHub Apps]",
           },
           {
-            "addons": {
+            "block": "[Block Prettier]",
+            "props": {
               "ignores": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Prettier]",
           },
           {
-            "addons": {
+            "block": "[Block Oxfmt]",
+            "props": {
               "ignorePatterns": [
                 "/.all-contributorsrc",
               ],
             },
-            "block": "[Block Oxfmt]",
           },
           {
-            "addons": {
+            "block": "[Block README.md]",
+            "props": {
               "badges": [
                 {
                   "alt": "👪 All Contributors: 1",
@@ -324,7 +325,6 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: enable -->",
               ],
             },
-            "block": "[Block README.md]",
           },
         ],
         "files": {
@@ -375,7 +375,7 @@ describe('blockAllContributors', () => {
       options: optionsBase,
     });
 
-    expect(creation.addons).toContainEqual(
+    expect(creation.extensions).toContainEqual(
       blockRemoveFiles({ files: ['.github/workflows/contributors.yml'] }),
     );
   });

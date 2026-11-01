@@ -40,7 +40,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
   about: {
     name: 'ESLint',
   },
-  addons: {
+  props: {
     beforeLint: z.string().optional(),
     explanations: z.array(z.string()).default([]),
     extensions: z.array(extensionSchema).default([]),
@@ -54,8 +54,8 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
 
     return eslintConfigRaw ? blockEslintIntake(eslintConfigRaw[0]) : undefined;
   },
-  produce({ addons }) {
-    const { explanations, extensions, ignores, imports } = addons;
+  produce({ props }) {
+    const { explanations, extensions, ignores, imports } = props;
 
     const explanation =
       explanations.length > 0
@@ -114,7 +114,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
       .map(printExtension);
 
     return {
-      addons: [
+      extensions: [
         blockDevelopmentDocs({
           sections: {
             Linting: {
@@ -127,7 +127,7 @@ For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complai
 pnpm run lint --fix
 \`\`\`
 `,
-                  ...(addons.beforeLint ? [addons.beforeLint] : []),
+                  ...(props.beforeLint ? [props.beforeLint] : []),
                 ],
                 before: `
 This package includes several forms of linting to enforce consistent code quality and styling.
@@ -221,7 +221,7 @@ export default config;
   },
   transition() {
     return {
-      addons: [
+      extensions: [
         blockRemoveDependencies({
           dependencies: [
             '@types/eslint',

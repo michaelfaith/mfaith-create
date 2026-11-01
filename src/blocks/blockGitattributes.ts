@@ -13,11 +13,11 @@ export const blockGitattributes: BlockWithProps<BlockGitattributesProps> = base.
     name: 'Gitattributes',
     description: 'Adds a .gitattributes file to the project.',
   },
-  addons: {
+  props: {
     additionalAttributes: z.array(z.string()).default([]),
   },
-  produce({ addons }) {
-    const { additionalAttributes } = addons;
+  produce({ props }) {
+    const { additionalAttributes } = props;
 
     return {
       files: {

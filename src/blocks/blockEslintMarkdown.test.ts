@@ -12,9 +12,10 @@ describe('blockEslintMarkdown', () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block ESLint]",
+            "props": {
               "extensions": [
                 {
                   "extends": [
@@ -40,35 +41,34 @@ describe('blockEslintMarkdown', () => {
                 },
               ],
             },
-            "block": "[Block ESLint]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Dependencies]",
+            "props": {
               "dependencies": [
                 "eslint-plugin-markdown",
                 "markdownlint",
                 "markdownlint-cli",
               ],
             },
-            "block": "[Block Remove Dependencies]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".markdownlint*",
                 ".markdownlintignore",
               ],
             },
-            "block": "[Block Remove Files]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Workflows]",
+            "props": {
               "workflows": [
                 "lint_markdown",
                 "lint_md",
               ],
             },
-            "block": "[Block Remove Workflows]",
           },
         ],
       }

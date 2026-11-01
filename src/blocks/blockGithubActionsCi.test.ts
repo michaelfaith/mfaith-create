@@ -13,12 +13,12 @@ describe(blockGithubActionsCi, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Repository Branch Ruleset]",
+            "props": {
               "requiredStatusChecks": undefined,
             },
-            "block": "[Block Repository Branch Ruleset]",
           },
         ],
         "files": {
@@ -101,15 +101,16 @@ describe(blockGithubActionsCi, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Repository Branch Ruleset]",
+            "props": {
               "requiredStatusChecks": undefined,
             },
-            "block": "[Block Repository Branch Ruleset]",
           },
           {
-            "addons": {
+            "block": "[Block Remove Files]",
+            "props": {
               "files": [
                 ".circleci",
                 ".github/actions/setup/action.yml",
@@ -118,7 +119,6 @@ describe(blockGithubActionsCi, () => {
                 "travis.{yaml,yml}",
               ],
             },
-            "block": "[Block Remove Files]",
           },
         ],
         "files": {
@@ -193,9 +193,9 @@ describe(blockGithubActionsCi, () => {
     `);
   });
 
-  test('with addons', () => {
+  test('with props', () => {
     const creation = testBlock(blockGithubActionsCi, {
-      addons: {
+      props: {
         jobs: [
           {
             name: 'Engines Check',
@@ -248,9 +248,10 @@ describe(blockGithubActionsCi, () => {
 
     expect(creation).toMatchInlineSnapshot(`
       {
-        "addons": [
+        "extensions": [
           {
-            "addons": {
+            "block": "[Block Repository Branch Ruleset]",
+            "props": {
               "requiredStatusChecks": [
                 "Engines Check",
                 "Engines Check (Node.js 24.15.0)",
@@ -264,7 +265,6 @@ describe(blockGithubActionsCi, () => {
                 "Validate",
               ],
             },
-            "block": "[Block Repository Branch Ruleset]",
           },
         ],
         "files": {

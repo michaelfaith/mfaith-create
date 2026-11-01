@@ -12,7 +12,7 @@ describe('blockGithubIssueTemplates', () => {
       options: optionsBase,
     });
 
-    expect(creation.addons).toContainEqual(
+    expect(creation.extensions).toContainEqual(
       blockRemoveFiles({
         files: [
           '.github/ISSUE_TEMPLATE/01-bug.yml',
