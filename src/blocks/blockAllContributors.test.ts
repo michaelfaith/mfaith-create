@@ -5,7 +5,7 @@ import { blockAllContributors } from './blockAllContributors.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockAllContributors, () => {
+describe('blockAllContributors', () => {
   it('defaults contributors to [] when not provided', () => {
     const creation = testBlock(blockAllContributors, { options: optionsBase });
 
