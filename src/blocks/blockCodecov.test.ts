@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockCodecov } from './blockCodecov.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockCodecov', () => {
+describe(blockCodecov, () => {
   test('without props or mode', () => {
     const creation = testBlock(blockCodecov, {
       options: optionsBase,

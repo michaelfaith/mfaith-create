@@ -5,7 +5,7 @@ import { blockFunding } from './blockFunding.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockFunding', () => {
+describe(blockFunding, () => {
   test('transition mode', () => {
     const creation = testBlock(blockFunding, {
       mode: 'transition',

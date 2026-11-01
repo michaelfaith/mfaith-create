@@ -9,7 +9,7 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe('blockAreTheTypesWrong', () => {
+describe(blockAreTheTypesWrong, () => {
   test('production', () => {
     const creation = testBlock(blockAreTheTypesWrong, {
       options: optionsBase,

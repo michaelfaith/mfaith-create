@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockPrettierPluginSentencesPerLine', () => {
+describe(blockPrettierPluginSentencesPerLine, () => {
   test('production', () => {
     const creation = testBlock(blockPrettierPluginSentencesPerLine, {
       options: optionsBase,

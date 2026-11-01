@@ -6,7 +6,7 @@ import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockNvmrc', () => {
+describe(blockNvmrc, () => {
   it('only includes blockPackageJson props when options.node.pinned does not exist', () => {
     const creation = testBlock(blockNvmrc, {
       options: { ...optionsBase, node: { supported: '>=24' } },

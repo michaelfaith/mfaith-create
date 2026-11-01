@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockPnpmDedupe } from './blockPnpmDedupe.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockPnpmDedupe', () => {
+describe(blockPnpmDedupe, () => {
   test('without mode', () => {
     const creation = testBlock(blockPnpmDedupe, {
       options: optionsBase,

@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockSecurityDocs } from './blockSecurityDocs.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockSecurityDocs', () => {
+describe(blockSecurityDocs, () => {
   test('production (with contact.bluesky)', () => {
     const creation = testBlock(blockSecurityDocs, {
       options: { ...optionsBase, contact: { bluesky: 'social.media' } },

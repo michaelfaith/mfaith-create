@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockCodeOfConduct } from './blockCodeOfConduct.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockCodeOfConduct', () => {
+describe(blockCodeOfConduct, () => {
   test('without mode', () => {
     const creation = testBlock(blockCodeOfConduct, {
       options: optionsBase,

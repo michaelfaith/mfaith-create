@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockGithubPrTemplate } from './blockGithubPrTemplate.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockGithubPrTemplate', () => {
+describe(blockGithubPrTemplate, () => {
   test('production', () => {
     const creation = testBlock(blockGithubPrTemplate, {
       options: optionsBase,

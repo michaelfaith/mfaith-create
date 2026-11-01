@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockWebExt } from './blockWebExt.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockWebExt', () => {
+describe(blockWebExt, () => {
   test('production', () => {
     const creation = testBlock(blockWebExt, {
       options: optionsBase,
