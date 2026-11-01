@@ -57,12 +57,12 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
             {
               alt: `👪 All Contributors: ${contributions}`,
               comments: {
-                after: `
-  <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <!-- prettier-ignore-end -->`,
                 before: `<!-- prettier-ignore-start -->
-  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-  `,
+\t<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+\t`,
+                after: `
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <!-- prettier-ignore-end -->`,
               },
               href: '#contributors',
               src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
@@ -83,9 +83,10 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
             contributorsPerLine: 7,
             contributorsSortAlphabetically: true,
             files: ['README.md'],
-            projectName: options.packageName,
+            projectName: options.repository,
             projectOwner: options.owner,
             repoType: 'github',
+            commitConvention: 'angular',
           },
           null,
           2,
@@ -159,6 +160,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `<!-- spellchecker: disable -->`,
     `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`,
     `<!-- prettier-ignore-start -->`,
+    `<!-- markdownlint-disable -->`,
     `<table>`,
     `  <tbody>`,
     `    <tr>`,
@@ -173,6 +175,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `  </tbody>`,
     `</table>`,
     ``,
+    `<!-- markdownlint-restore -->`,
     `<!-- prettier-ignore-end -->`,
     ``,
     `<!-- ALL-CONTRIBUTORS-LIST:END -->`,
