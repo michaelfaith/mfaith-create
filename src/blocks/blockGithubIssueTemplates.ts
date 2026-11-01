@@ -16,7 +16,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
               name: '🐛 Bug',
               description: 'Report a bug trying to run the code',
               title: '🐛 Bug: <short description of the bug>',
-              labels: ['type: bug'],
+              labels: ['status: in discussion', 'type: bug'],
               body: [
                 {
                   type: 'checkboxes',
@@ -80,7 +80,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
               name: '📝 Documentation',
               description: 'Report a typo or missing area of documentation',
               title: '📝 Documentation: <short description of the request>',
-              labels: ['area: documentation'],
+              labels: ['area: documentation', 'status: in discussion'],
               body: [
                 {
                   type: 'checkboxes',
@@ -123,7 +123,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
               name: '🚀 Feature',
               description: 'Request that a new feature be added or an existing feature improved',
               title: '🚀 Feature: <short description of the feature>',
-              labels: ['type: feature'],
+              labels: ['status: in discussion', 'type: feature'],
               body: [
                 {
                   type: 'checkboxes',
@@ -162,7 +162,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
               name: '🛠 Tooling',
               description: 'Report a bug or request an enhancement in repository tooling',
               title: '🛠 Tooling: <short description of the change>',
-              labels: ['area: tooling'],
+              labels: ['area: tooling', 'status: in discussion'],
               body: [
                 {
                   type: 'checkboxes',
