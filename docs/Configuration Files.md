@@ -35,7 +35,7 @@ For example, changing `node` versions to values different from what would be inf
 
 ```ts
 // mfaith-create.config.ts
-import { type Config, createConfig } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create/config';
 
 const config: Config = createConfig({
   options: {
@@ -67,7 +67,8 @@ For example, this configuration file adds the word `"michaelfaith"` to the CSpel
 
 ```ts
 // mfaith-create.config.ts
-import { blockCspell, type Config, createConfig } from '@mfaith/create';
+import { blockCspell } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create/config';
 
 const config: Config = createConfig({
   refinements: {
@@ -96,7 +97,8 @@ For example, this configuration file adds in `@mfaith/create`'s provided "arethe
 
 ```ts
 // mfaith-create.config.ts
-import { blockAreTheTypesWrong, type Config, createConfig } from '@mfaith/create';
+import { blockAreTheTypesWrong } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create/config';
 
 const config: Config = createConfig({
   refinements: {
@@ -119,7 +121,8 @@ For example, this configuration file omits the default _"This package was templa
 
 ```ts
 // mfaith-create.config.ts
-import { blockTemplatedBy, type Config, createConfig } from '@mfaith/create';
+import { blockTemplatedBy } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create/config';
 
 const config: Config = createConfig({
   refinements: {
@@ -170,7 +173,7 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 
 ```ts
 // mfaith-create.config.ts
-import { type Config, createConfig } from '@mfaith/create';
+import { type Config, createConfig } from '@mfaith/create/config';
 
 import { blockLintAreTheTypesWrong } from './blockLintAreTheTypesWrong.ts';
 

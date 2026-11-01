@@ -6,7 +6,7 @@ const config: UserConfig = defineConfig({
     level: 'error',
     profile: 'esm-only',
   },
-  entry: ['src/index.ts', 'src/bin/index.ts'],
+  entry: ['src/index.ts', 'src/config.ts', 'src/bin/index.ts'],
   exports: {
     devExports: true,
     exclude: ['bin/index'],

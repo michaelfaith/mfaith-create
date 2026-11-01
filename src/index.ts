@@ -1,7 +1,3 @@
-import { template } from './template.ts';
-
-export { template };
-
 export { base, type BaseOptions } from './base.ts';
 export {
   blockAllContributors,
@@ -83,5 +79,4 @@ export {
   type BlockWithoutProps,
   type BlockWithProps,
 } from './blocks/index.ts';
-export { type Config, createConfig } from './Config.ts';
 export { presetCommon, presetEverything, presetMinimal } from './presets/index.ts';
