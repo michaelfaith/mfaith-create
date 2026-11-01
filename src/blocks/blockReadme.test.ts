@@ -349,9 +349,9 @@ describe(blockReadme, () => {
       <p align="center">Test description</p>
 
       <p align="center">
-        <img alt="Badge A" src="https://img.shields.io/badge/my_badge-000000" />
-        <a href="https://create.bingo" target="_blank"><img alt="Badge With Link" src="https://img.shields.io/badge/my_badge-000000" /></a>
-        <img alt="Badge Z" src="https://img.shields.io/badge/my_badge-000000" />
+      	<img alt="Badge A" src="https://img.shields.io/badge/my_badge-000000" />
+      	<a href="https://create.bingo" target="_blank"><img alt="Badge With Link" src="https://img.shields.io/badge/my_badge-000000" /></a>
+      	<img alt="Badge Z" src="https://img.shields.io/badge/my_badge-000000" />
       </p>
 
       ## Usage
