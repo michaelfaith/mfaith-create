@@ -55,11 +55,11 @@ describe('blockAllContributors', () => {
                   "alt": "👪 All Contributors: undefined",
                   "comments": {
                     "after": "
-        <!-- ALL-CONTRIBUTORS-BADGE:END -->
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
         <!-- prettier-ignore-end -->",
                     "before": "<!-- prettier-ignore-start -->
-        <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-        ",
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
                   },
                   "href": "#contributors",
                   "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-undefined-21bb42.svg",
@@ -79,9 +79,10 @@ describe('blockAllContributors', () => {
         "files": [
           "README.md"
         ],
-        "projectName": "test-package-name",
+        "projectName": "test-repository",
         "projectOwner": "test-owner",
-        "repoType": "github"
+        "repoType": "github",
+        "commitConvention": "angular"
       }",
           ".github": {
             "workflows": {
@@ -190,11 +191,11 @@ describe('blockAllContributors', () => {
                   "alt": "👪 All Contributors: 1",
                   "comments": {
                     "after": "
-        <!-- ALL-CONTRIBUTORS-BADGE:END -->
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
         <!-- prettier-ignore-end -->",
                     "before": "<!-- prettier-ignore-start -->
-        <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-        ",
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
                   },
                   "href": "#contributors",
                   "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg",
@@ -206,6 +207,7 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: disable -->
       <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
       <!-- prettier-ignore-start -->
+      <!-- markdownlint-disable -->
       <table>
         <tbody>
           <tr>
@@ -214,6 +216,7 @@ describe('blockAllContributors', () => {
         </tbody>
       </table>
 
+      <!-- markdownlint-restore -->
       <!-- prettier-ignore-end -->
 
       <!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -247,9 +250,10 @@ describe('blockAllContributors', () => {
         "files": [
           "README.md"
         ],
-        "projectName": "test-package-name",
+        "projectName": "test-repository",
         "projectOwner": "michaelfaith",
-        "repoType": "github"
+        "repoType": "github",
+        "commitConvention": "angular"
       }",
           ".github": {
             "workflows": {
@@ -357,11 +361,11 @@ describe('blockAllContributors', () => {
                   "alt": "👪 All Contributors: 1",
                   "comments": {
                     "after": "
-        <!-- ALL-CONTRIBUTORS-BADGE:END -->
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
         <!-- prettier-ignore-end -->",
                     "before": "<!-- prettier-ignore-start -->
-        <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-        ",
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
                   },
                   "href": "#contributors",
                   "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg",
@@ -373,6 +377,7 @@ describe('blockAllContributors', () => {
       <!-- spellchecker: disable -->
       <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
       <!-- prettier-ignore-start -->
+      <!-- markdownlint-disable -->
       <table>
         <tbody>
           <tr>
@@ -381,6 +386,7 @@ describe('blockAllContributors', () => {
         </tbody>
       </table>
 
+      <!-- markdownlint-restore -->
       <!-- prettier-ignore-end -->
 
       <!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -414,9 +420,10 @@ describe('blockAllContributors', () => {
         "files": [
           "README.md"
         ],
-        "projectName": "test-package-name",
+        "projectName": "test-repository",
         "projectOwner": "test-owner",
-        "repoType": "github"
+        "repoType": "github",
+        "commitConvention": "angular"
       }",
           ".github": {
             "workflows": {

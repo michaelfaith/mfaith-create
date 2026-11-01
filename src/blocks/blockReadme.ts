@@ -97,7 +97,7 @@ function formatBadge(badge: Badge) {
     ? `${badge.comments.before}${tagged}${badge.comments.after}`
     : tagged;
 
-  return `  ${commented}`;
+  return `\t${commented}`;
 }
 
 function formatBadges(badges: Badge[]) {

@@ -26,7 +26,8 @@
   "files": [
     "README.md"
   ],
-  "projectName": "@mfaith/create",
+  "projectName": "mfaith-create",
   "projectOwner": "michaelfaith",
-  "repoType": "github"
+  "repoType": "github",
+  "commitConvention": "angular"
 }
