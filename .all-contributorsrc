@@ -19,6 +19,15 @@
       "login": "michaelfaith",
       "name": "michael faith",
       "profile": "https://github.com/michaelfaith"
+    },
+    {
+      "login": "lishaduck",
+      "name": "Eli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88557639?v=4",
+      "profile": "http://lishaduck.dev",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
