@@ -83,8 +83,10 @@ describe(blockPrettier, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },
@@ -218,8 +220,10 @@ describe(blockPrettier, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },
@@ -335,8 +339,10 @@ describe(blockPrettier, () => {
             "block": "[Block pnpm Workspace]",
             "props": {
               "config": {
-                "allowBuilds": {
-                  "simple-git-hooks": true,
+                "permissions": {
+                  "simple-git-hooks": {
+                    "build": false,
+                  },
                 },
               },
             },

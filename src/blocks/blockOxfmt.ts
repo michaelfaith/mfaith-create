@@ -94,8 +94,8 @@ pnpm format
         }),
         blockPnpmWorkspace({
           config: {
-            allowBuilds: {
-              'simple-git-hooks': true,
+            permissions: {
+              'simple-git-hooks': { build: false },
             },
           },
         }),

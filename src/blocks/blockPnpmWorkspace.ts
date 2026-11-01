@@ -9,12 +9,18 @@ import { intakeFileAsYaml } from './intake/intakeFileAsYaml.ts';
 const pnpmWorkspaceSchema = z.looseObject({
   allowBuilds: z.record(z.string(), z.boolean()).optional(),
   overrides: z.record(z.string(), z.string()).optional(),
+  permissions: z
+    .record(z.string(), z.object({ build: z.boolean().optional(), skills: z.boolean().optional() }))
+    .optional(),
   trustPolicy: z.union([z.literal('off'), z.literal('no-downgrade')]).optional(),
 });
 export interface PnpmWorkspace {
   [x: string]: unknown;
   allowBuilds?: Record<string, boolean> | undefined;
   overrides?: Record<string, string> | undefined;
+  permissions?:
+    | Record<string, { build?: boolean | undefined; skills?: boolean | undefined }>
+    | undefined;
   trustPolicy?: 'off' | 'no-downgrade' | undefined;
 }
 
