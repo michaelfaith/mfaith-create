@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.8.0](https://github.com/michaelfaith/mfaith-create/compare/v0.7.3...v0.8.0) (2026-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* adopt new `bingo-stratum` props/extensions API ([#366](https://github.com/michaelfaith/mfaith-create/issues/366))
+
+### 🚀 Features
+
+* adopt new `bingo-stratum` props/extensions API ([#366](https://github.com/michaelfaith/mfaith-create/issues/366)) ([f01c0c4](https://github.com/michaelfaith/mfaith-create/commit/f01c0c4470ebcf6a74b23ec02ab33dfecce4448e))
+* **AllContributors:** re-add `contributors` workflow generation ([#447](https://github.com/michaelfaith/mfaith-create/issues/447)) ([2a8cd1f](https://github.com/michaelfaith/mfaith-create/commit/2a8cd1f463f7b790483e7e17fe98c6ff556d70bb))
+* **GithubIssueTemplates:** add `status: in discussion` label ([#452](https://github.com/michaelfaith/mfaith-create/issues/452)) ([c1d11b5](https://github.com/michaelfaith/mfaith-create/commit/c1d11b54572a314bc525ae1381941099cccebfca))
+* **Oxfmt:** set `permissions` in `pnpm-workspace` instead of `allowBuilds` for `simple-git-hooks` ([#453](https://github.com/michaelfaith/mfaith-create/issues/453)) ([6d93788](https://github.com/michaelfaith/mfaith-create/commit/6d93788f77c46d0b0df53558f10676bb92bd040a))
+
+
+### 🩹 Bug Fixes
+
+* **AllContributors:** fix badge formatting ([#451](https://github.com/michaelfaith/mfaith-create/issues/451)) ([202bab3](https://github.com/michaelfaith/mfaith-create/commit/202bab354de3999141815b3777a8054a4a8270e1))
+* **GithubPrTemplate:** improve language ([#449](https://github.com/michaelfaith/mfaith-create/issues/449)) ([2e61349](https://github.com/michaelfaith/mfaith-create/commit/2e61349cf5abebe4d9fe7912f62b28f9d9a1242c))
+
 ## [0.7.3](https://github.com/michaelfaith/mfaith-create/compare/v0.7.2...v0.7.3) (2026-10-10)
 
 
