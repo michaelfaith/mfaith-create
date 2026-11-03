@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockEslintComments } from './blockEslintComments.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockEslintComments', () => {
+describe(blockEslintComments, () => {
   test('production', () => {
     const creation = testBlock(blockEslintComments, {
       options: optionsBase,

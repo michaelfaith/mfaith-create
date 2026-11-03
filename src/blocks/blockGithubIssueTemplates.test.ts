@@ -5,7 +5,7 @@ import { blockGithubIssueTemplates } from './blockGithubIssueTemplates.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockGithubIssueTemplates', () => {
+describe(blockGithubIssueTemplates, () => {
   test('production', () => {
     const creation = testBlock(blockGithubIssueTemplates, {
       options: optionsBase,

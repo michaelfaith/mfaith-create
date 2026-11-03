@@ -7,7 +7,7 @@ import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts'
 import { blockRepoTransitions } from './blockRepoTransitions.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockRepoTransitions', () => {
+describe(blockRepoTransitions, () => {
   test('production', () => {
     const creation = testBlock(blockRepoTransitions, {
       options: optionsBase,

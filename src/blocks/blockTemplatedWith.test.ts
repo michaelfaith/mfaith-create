@@ -8,7 +8,7 @@ vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe('blockTemplatedWith', () => {
+describe(blockTemplatedWith, () => {
   test('production with unknown owner', () => {
     const creation = testBlock(blockTemplatedWith, {
       options: optionsBase,

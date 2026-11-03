@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockMitLicense } from './blockMitLicense.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockMitLicense', () => {
+describe(blockMitLicense, () => {
   test('production', () => {
     const creation = testBlock(blockMitLicense, {
       options: optionsBase,

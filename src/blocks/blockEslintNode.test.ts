@@ -8,7 +8,7 @@ vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe('blockEslintNode', () => {
+describe(blockEslintNode, () => {
   test('production', () => {
     const creation = testBlock(blockEslintNode, {
       options: optionsBase,

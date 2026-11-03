@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import { blockOctoguideStrict } from './blockOctoguideStrict.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe('blockOctoguideStrict', () => {
+describe(blockOctoguideStrict, () => {
   test('production', () => {
     const creation = testBlock(blockOctoguideStrict, {
       options: optionsBase,
