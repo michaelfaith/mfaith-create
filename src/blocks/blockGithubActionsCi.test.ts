@@ -25,7 +25,7 @@ describe(blockGithubActionsCi, () => {
           ".github": {
             "actions": {
               "setup": {
-                "action.yaml": "name: Setup
+                "action.yml": "name: Setup
 
       description: Sets up the repo for a typical CI job
 
@@ -64,8 +64,8 @@ describe(blockGithubActionsCi, () => {
               },
             },
             "workflows": {
-              "ci.yaml": undefined,
-              "pr-review-requested.yaml": "name: PR Review Requested
+              "ci.yml": undefined,
+              "pr-review-requested.yml": "name: PR Review Requested
 
       on:
         pull_request_target:
@@ -113,9 +113,9 @@ describe(blockGithubActionsCi, () => {
             "props": {
               "files": [
                 ".circleci",
-                ".github/actions/setup/action.yml",
-                ".github/workflows/ci.yml",
-                ".github/workflows/pr-review-requested.yml",
+                ".github/actions/setup/action.yaml",
+                ".github/workflows/ci.yaml",
+                ".github/workflows/pr-review-requested.yaml",
                 "travis.{yaml,yml}",
               ],
             },
@@ -125,7 +125,7 @@ describe(blockGithubActionsCi, () => {
           ".github": {
             "actions": {
               "setup": {
-                "action.yaml": "name: Setup
+                "action.yml": "name: Setup
 
       description: Sets up the repo for a typical CI job
 
@@ -164,8 +164,8 @@ describe(blockGithubActionsCi, () => {
               },
             },
             "workflows": {
-              "ci.yaml": undefined,
-              "pr-review-requested.yaml": "name: PR Review Requested
+              "ci.yml": undefined,
+              "pr-review-requested.yml": "name: PR Review Requested
 
       on:
         pull_request_target:
@@ -271,7 +271,7 @@ describe(blockGithubActionsCi, () => {
           ".github": {
             "actions": {
               "setup": {
-                "action.yaml": "name: Setup
+                "action.yml": "name: Setup
 
       description: Sets up the repo for a typical CI job
 
@@ -310,7 +310,7 @@ describe(blockGithubActionsCi, () => {
               },
             },
             "workflows": {
-              "ci.yaml": "name: CI
+              "ci.yml": "name: CI
 
       on:
         pull_request: ~
@@ -366,7 +366,7 @@ describe(blockGithubActionsCi, () => {
               with:
                 VAR_WITH: 'true'
       ",
-              "pr-review-requested.yaml": "name: PR Review Requested
+              "pr-review-requested.yml": "name: PR Review Requested
 
       on:
         pull_request_target:

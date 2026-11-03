@@ -40,7 +40,7 @@ describe(blockPrPreviewRelease, () => {
         "files": {
           ".github": {
             "workflows": {
-              "publish-preview.yaml": "name: Publish Preview
+              "publish-preview.yml": "name: Publish Preview
 
       on:
         pull_request: ~
@@ -113,7 +113,7 @@ describe(blockPrPreviewRelease, () => {
         "files": {
           ".github": {
             "workflows": {
-              "publish-preview.yaml": "name: Publish Preview
+              "publish-preview.yml": "name: Publish Preview
 
       on:
         pull_request: ~

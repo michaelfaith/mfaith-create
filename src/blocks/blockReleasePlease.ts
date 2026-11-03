@@ -104,7 +104,7 @@ export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.
       files: {
         '.github': {
           workflows: {
-            'release.yaml': createMultiJobWorkflow({
+            'release.yml': createMultiJobWorkflow({
               name: 'Release',
               on: {
                 push: {
@@ -289,7 +289,7 @@ Cheers! 📦🚀`,
     return {
       extensions: [
         blockRemoveFiles({
-          files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
+          files: ['.github/workflows/post-release.{yaml,yml}', '.github/workflows/release.yaml'],
         }),
       ],
     };

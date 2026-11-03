@@ -86,7 +86,7 @@ describe(blockAllContributors, () => {
       }",
           ".github": {
             "workflows": {
-              "contributors.yaml": "name: Contributors
+              "contributors.yml": "name: Contributors
 
       on:
         push:
@@ -257,7 +257,7 @@ describe(blockAllContributors, () => {
       }",
           ".github": {
             "workflows": {
-              "contributors.yaml": "name: Contributors
+              "contributors.yml": "name: Contributors
 
       on:
         push:
@@ -427,7 +427,7 @@ describe(blockAllContributors, () => {
       }",
           ".github": {
             "workflows": {
-              "contributors.yaml": "name: Contributors
+              "contributors.yml": "name: Contributors
 
       on:
         push:

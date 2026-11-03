@@ -16,7 +16,7 @@ describe(blockGithubIssueTemplates, () => {
         "files": {
           ".github": {
             "ISSUE_TEMPLATE": {
-              "01-bug.yaml": "name: 🐛 Bug
+              "01-bug.yml": "name: 🐛 Bug
 
       description: Report a bug trying to run the code
 
@@ -60,7 +60,7 @@ describe(blockGithubIssueTemplates, () => {
             description: Any additional info you'd like to provide.
             label: Additional Info
       ",
-              "02-documentation.yaml": "name: 📝 Documentation
+              "02-documentation.yml": "name: 📝 Documentation
 
       description: Report a typo or missing area of documentation
 
@@ -91,7 +91,7 @@ describe(blockGithubIssueTemplates, () => {
             description: Any additional info you'd like to provide.
             label: Additional Info
       ",
-              "03-feature.yaml": "name: 🚀 Feature
+              "03-feature.yml": "name: 🚀 Feature
 
       description: Request that a new feature be added or an existing feature improved
 
@@ -120,7 +120,7 @@ describe(blockGithubIssueTemplates, () => {
             description: Any additional info you'd like to provide.
             label: Additional Info
       ",
-              "04-tooling.yaml": "name: 🛠 Tooling
+              "04-tooling.yml": "name: 🛠 Tooling
 
       description: Report a bug or request an enhancement in repository tooling
 
