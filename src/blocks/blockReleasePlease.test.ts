@@ -97,7 +97,7 @@ describe(blockReleasePlease, () => {
       }",
             },
             "workflows": {
-              "release.yaml": "name: Release
+              "release.yml": "name: Release
 
       on:
         push:
@@ -302,7 +302,7 @@ describe(blockReleasePlease, () => {
       }",
             },
             "workflows": {
-              "release.yaml": "name: Release
+              "release.yml": "name: Release
 
       on:
         push:
@@ -517,7 +517,7 @@ describe(blockReleasePlease, () => {
       }",
             },
             "workflows": {
-              "release.yaml": "name: Release
+              "release.yml": "name: Release
 
       on:
         push:
@@ -637,7 +637,7 @@ describe(blockReleasePlease, () => {
 
     expect(creation.extensions).toContainEqual(
       blockRemoveFiles({
-        files: ['.github/workflows/post-release.yml', '.github/workflows/release.yml'],
+        files: ['.github/workflows/post-release.{yaml,yml}', '.github/workflows/release.yaml'],
       }),
     );
   });

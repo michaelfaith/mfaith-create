@@ -16,7 +16,7 @@ describe(blockOctoguide, () => {
         "files": {
           ".github": {
             "workflows": {
-              "octoguide.yaml": "name: OctoGuide
+              "octoguide.yml": "name: OctoGuide
 
       on:
         discussion:
@@ -95,7 +95,7 @@ describe(blockOctoguide, () => {
         "files": {
           ".github": {
             "workflows": {
-              "octoguide.yaml": "name: OctoGuide
+              "octoguide.yml": "name: OctoGuide
 
       on:
         discussion:
@@ -164,7 +164,7 @@ describe(blockOctoguide, () => {
         "files": {
           ".github": {
             "workflows": {
-              "octoguide.yaml": "name: OctoGuide
+              "octoguide.yml": "name: OctoGuide
 
       on:
         discussion:

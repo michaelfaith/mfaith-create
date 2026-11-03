@@ -92,7 +92,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
         '.github': {
           actions: {
             setup: {
-              'action.yaml': formatWorkflowYaml({
+              'action.yml': formatWorkflowYaml({
                 name: 'Setup',
                 description: 'Sets up the repo for a typical CI job',
                 inputs: {
@@ -146,7 +146,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
             },
           },
           workflows: {
-            'ci.yaml':
+            'ci.yml':
               jobsWithEnginesCheck &&
               createMultiJobWorkflow({
                 name: 'CI',
@@ -158,7 +158,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
                 },
                 jobs: jobsWithEnginesCheck,
               }),
-            'pr-review-requested.yaml': createSingleJobWorkflow({
+            'pr-review-requested.yml': createSingleJobWorkflow({
               name: 'PR Review Requested',
               on: {
                 pull_request_target: {
@@ -198,9 +198,9 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
         blockRemoveFiles({
           files: [
             '.circleci',
-            '.github/actions/setup/action.yml',
-            '.github/workflows/ci.yml',
-            '.github/workflows/pr-review-requested.yml',
+            '.github/actions/setup/action.yaml',
+            '.github/workflows/ci.yaml',
+            '.github/workflows/pr-review-requested.yaml',
             'travis.{yaml,yml}',
           ],
         }),

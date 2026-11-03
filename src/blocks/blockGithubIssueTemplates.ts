@@ -12,7 +12,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
       files: {
         '.github': {
           ISSUE_TEMPLATE: {
-            '01-bug.yaml': formatYaml({
+            '01-bug.yml': formatYaml({
               name: '🐛 Bug',
               description: 'Report a bug trying to run the code',
               title: '🐛 Bug: <short description of the bug>',
@@ -76,7 +76,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                 },
               ],
             }),
-            '02-documentation.yaml': formatYaml({
+            '02-documentation.yml': formatYaml({
               name: '📝 Documentation',
               description: 'Report a typo or missing area of documentation',
               title: '📝 Documentation: <short description of the request>',
@@ -119,7 +119,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                 },
               ],
             }),
-            '03-feature.yaml': formatYaml({
+            '03-feature.yml': formatYaml({
               name: '🚀 Feature',
               description: 'Request that a new feature be added or an existing feature improved',
               title: '🚀 Feature: <short description of the feature>',
@@ -158,7 +158,7 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                 },
               ],
             }),
-            '04-tooling.yaml': formatYaml({
+            '04-tooling.yml': formatYaml({
               name: '🛠 Tooling',
               description: 'Report a bug or request an enhancement in repository tooling',
               title: '🛠 Tooling: <short description of the change>',

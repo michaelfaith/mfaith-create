@@ -93,7 +93,7 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
         ),
         '.github': {
           workflows: {
-            'contributors.yaml': createSingleJobWorkflow({
+            'contributors.yml': createSingleJobWorkflow({
               name: 'Contributors',
               on: {
                 push: {

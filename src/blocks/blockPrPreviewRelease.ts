@@ -43,7 +43,7 @@ export const blockPrPreviewRelease: BlockWithProps<BlockPrPreviewReleaseProps> =
       files: {
         '.github': {
           workflows: {
-            'publish-preview.yaml': createSingleJobWorkflow({
+            'publish-preview.yml': createSingleJobWorkflow({
               name: 'Publish Preview',
               on: {
                 pull_request: null,

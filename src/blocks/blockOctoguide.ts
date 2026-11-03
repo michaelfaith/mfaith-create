@@ -44,7 +44,7 @@ export const blockOctoguide: BlockWithProps<BlockOctoguideProps> = base.createBl
       files: {
         '.github': {
           workflows: {
-            'octoguide.yaml': createSingleJobWorkflow({
+            'octoguide.yml': createSingleJobWorkflow({
               name: 'OctoGuide',
               on: {
                 discussion: {

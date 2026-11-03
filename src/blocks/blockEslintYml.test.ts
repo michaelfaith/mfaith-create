@@ -26,7 +26,12 @@ describe('blockESLintYML', () => {
                     "**/*.{yml,yaml}",
                   ],
                   "rules": {
-                    "yml/file-extension": "error",
+                    "yml/file-extension": [
+                      "error",
+                      {
+                        "extension": "yml",
+                      },
+                    ],
                     "yml/sort-sequence-values": [
                       "error",
                       {
@@ -43,6 +48,7 @@ describe('blockESLintYML', () => {
                     "pnpm-workspace.yaml",
                   ],
                   "rules": {
+                    "yml/file-extension": "off",
                     "yml/sort-keys": [
                       "error",
                       {
