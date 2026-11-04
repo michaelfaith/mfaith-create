@@ -108,10 +108,7 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
                   },
                   'node-version': {
                     description: 'Node.js version to use',
-                    default:
-                      typeof nodeVersion === 'string'
-                        ? nodeVersion.split('.')[0]
-                        : String(nodeVersion),
+                    default: String(nodeVersion),
                     required: false,
                   },
                   'skip-checkout': {
