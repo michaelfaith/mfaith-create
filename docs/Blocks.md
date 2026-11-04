@@ -40,7 +40,6 @@ This table summarizes each block and which base levels they're included in:
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
-| OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
 | Oxfmt                              | `--add-oxfmt`, `--exclude-oxfmt`                                                           | ✔️      | ✅     | 💯         |
 | Package JSON                       | `--add-package-json`, `--exclude-package-json`                                             | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
