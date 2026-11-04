@@ -40,7 +40,7 @@ describe(blockGithubActionsCi, () => {
           type: string
         node-version:
           description: Node.js version to use
-          default: '24'
+          default: 24.19.0
           required: false
         skip-checkout:
           description: Skip the checkout step if the repo is already checked out
@@ -140,7 +140,7 @@ describe(blockGithubActionsCi, () => {
           type: string
         node-version:
           description: Node.js version to use
-          default: '24'
+          default: 24.19.0
           required: false
         skip-checkout:
           description: Skip the checkout step if the repo is already checked out
