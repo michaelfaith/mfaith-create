@@ -14,7 +14,7 @@ import { blockEslintRegexp } from '../blocks/blockEslintRegexp.ts';
 import { blockEslintYml } from '../blocks/blockEslintYml.ts';
 import { blockKnip } from '../blocks/blockKnip.ts';
 import { blockNvmrc } from '../blocks/blockNvmrc.ts';
-import { blockOctoguideStrict } from '../blocks/blockOctoguideStrict.ts';
+import { blockOctoguide } from '../blocks/blockOctoguide.ts';
 import { blockPnpmDedupe } from '../blocks/blockPnpmDedupe.ts';
 import { blockRenovate } from '../blocks/blockRenovate.ts';
 import { blockVscode } from '../blocks/blockVscode.ts';
@@ -42,7 +42,7 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
     blockKnip,
     blockNvmrc,
     blockPnpmDedupe,
-    blockOctoguideStrict,
+    blockOctoguide,
     blockRenovate,
     blockVscode,
   ],

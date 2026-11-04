@@ -11,7 +11,7 @@ export const blockFunding: BlockWithoutProps = base.createBlock({
     return {
       files: {
         '.github': {
-          'FUNDING.yaml': options.funding && formatYaml({ github: options.funding }),
+          'FUNDING.yml': options.funding && formatYaml({ github: options.funding }),
         },
       },
     };
@@ -20,7 +20,7 @@ export const blockFunding: BlockWithoutProps = base.createBlock({
     return {
       extensions: [
         blockRemoveFiles({
-          files: ['.github/FUNDING.yml'],
+          files: ['.github/FUNDING.yaml'],
         }),
       ],
     };

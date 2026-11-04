@@ -47,8 +47,6 @@ export {
   type BlockNccProps,
   blockNvmrc,
   blockOctoguide,
-  type BlockOctoguideProps,
-  blockOctoguideStrict,
   blockOxfmt,
   type BlockOxfmtProps,
   blockPackageJson,

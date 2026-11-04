@@ -196,7 +196,7 @@ describe(blockReleasePlease, () => {
           },
         },
         "suggestions": [
-          "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+          "- add test-owner/test-repository and \`release.yml\` as a Trusted Publisher on:
          https://www.npmjs.com/package/test-package-name/access",
         ],
       }
@@ -401,7 +401,7 @@ describe(blockReleasePlease, () => {
           },
         },
         "suggestions": [
-          "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+          "- add test-owner/test-repository and \`release.yml\` as a Trusted Publisher on:
          https://www.npmjs.com/package/@test/create/access",
         ],
       }
@@ -622,7 +622,7 @@ describe(blockReleasePlease, () => {
           },
         },
         "suggestions": [
-          "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+          "- add test-owner/test-repository and \`release.yml\` as a Trusted Publisher on:
          https://www.npmjs.com/package/test-package-name/access",
         ],
       }

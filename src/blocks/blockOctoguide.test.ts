@@ -1,12 +1,11 @@
-import { testBlock, testIntake } from 'bingo-stratum-testers';
-import { dump } from 'js-yaml';
-import { describe, expect, it, test } from 'vitest';
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, test } from 'vitest';
 
 import { blockOctoguide } from './blockOctoguide.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockOctoguide, () => {
-  test('without props', () => {
+  test('production', () => {
     const creation = testBlock(blockOctoguide, {
       options: optionsBase,
     });
@@ -19,29 +18,6 @@ describe(blockOctoguide, () => {
               "octoguide.yml": "name: OctoGuide
 
       on:
-        discussion:
-          types:
-            - created
-            - edited
-        discussion_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issue_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issues:
-          types:
-            - edited
-            - opened
-        pull_request_review_comment:
-          types:
-            - created
-            - deleted
-            - edited
         pull_request_target:
           types:
             - edited
@@ -52,17 +28,14 @@ describe(blockOctoguide, () => {
           if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
           runs-on: ubuntu-latest
           permissions:
-            discussions: write
-            issues: write
             pull-requests: write
           steps:
-            - uses: JoshuaKGoldberg/octoguide@0.11.1
+            - uses: octoguide/bot@0.32.0
               with:
-                config: recommended
                 github-token: \${{ secrets.GITHUB_TOKEN }}
                 rules: |-
                   {
-                    "pr-branch-non-default": false
+                    "pr-title-conventional": true
                   }
       ",
             },
@@ -98,29 +71,6 @@ describe(blockOctoguide, () => {
               "octoguide.yml": "name: OctoGuide
 
       on:
-        discussion:
-          types:
-            - created
-            - edited
-        discussion_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issue_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issues:
-          types:
-            - edited
-            - opened
-        pull_request_review_comment:
-          types:
-            - created
-            - deleted
-            - edited
         pull_request_target:
           types:
             - edited
@@ -131,17 +81,14 @@ describe(blockOctoguide, () => {
           if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
           runs-on: ubuntu-latest
           permissions:
-            discussions: write
-            issues: write
             pull-requests: write
           steps:
-            - uses: JoshuaKGoldberg/octoguide@0.11.1
+            - uses: octoguide/bot@0.32.0
               with:
-                config: recommended
                 github-token: \${{ secrets.GITHUB_TOKEN }}
                 rules: |-
                   {
-                    "pr-branch-non-default": false
+                    "pr-title-conventional": true
                   }
       ",
             },
@@ -149,146 +96,5 @@ describe(blockOctoguide, () => {
         },
       }
     `);
-  });
-
-  test('with props', () => {
-    const creation = testBlock(blockOctoguide, {
-      props: {
-        config: 'strict',
-      },
-      options: optionsBase,
-    });
-
-    expect(creation).toMatchInlineSnapshot(`
-      {
-        "files": {
-          ".github": {
-            "workflows": {
-              "octoguide.yml": "name: OctoGuide
-
-      on:
-        discussion:
-          types:
-            - created
-            - edited
-        discussion_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issue_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        issues:
-          types:
-            - edited
-            - opened
-        pull_request_review_comment:
-          types:
-            - created
-            - deleted
-            - edited
-        pull_request_target:
-          types:
-            - edited
-            - opened
-
-      jobs:
-        octoguide:
-          if: \${{ !endsWith(github.actor, '[bot]') && !contains(github.event.pull_request.labels.*.name, 'autorelease') }}
-          runs-on: ubuntu-latest
-          permissions:
-            discussions: write
-            issues: write
-            pull-requests: write
-          steps:
-            - uses: JoshuaKGoldberg/octoguide@0.11.1
-              with:
-                config: strict
-                github-token: \${{ secrets.GITHUB_TOKEN }}
-                rules: |-
-                  {
-                    "pr-branch-non-default": false
-                  }
-      ",
-            },
-          },
-        },
-      }
-    `);
-  });
-
-  describe('intake', () => {
-    it('returns undefined when octoguide.yaml does not exist', () => {
-      const actual = testIntake(blockOctoguide, {
-        files: {
-          '.github': {
-            workflows: {},
-          },
-        },
-      });
-
-      expect(actual).toBeUndefined();
-    });
-
-    it('returns undefined when octoguide.yaml contains an octoguide job with no octoguide step', () => {
-      const actual = testIntake(blockOctoguide, {
-        files: {
-          '.github': {
-            workflows: {
-              'octoguide.yaml': [
-                dump({
-                  jobs: {
-                    octoguide: {
-                      name: 'Octoguide',
-                      steps: [
-                        {
-                          uses: 'other/workflow@1',
-                          with: { config: 'strict' },
-                        },
-                      ],
-                    },
-                  },
-                }),
-              ],
-            },
-          },
-        },
-      });
-
-      expect(actual).toEqual(undefined);
-    });
-
-    it('returns config when octoguide.yaml contains an octoguide job with config in its octoguide step', () => {
-      const config = 'strict';
-
-      const actual = testIntake(blockOctoguide, {
-        files: {
-          '.github': {
-            workflows: {
-              'octoguide.yaml': [
-                dump({
-                  jobs: {
-                    octoguide: {
-                      name: 'Octoguide',
-                      steps: [
-                        {
-                          uses: 'JoshuaKGoldberg/octoguide@1',
-                          with: { config },
-                        },
-                      ],
-                    },
-                  },
-                }),
-              ],
-            },
-          },
-        },
-      });
-
-      expect(actual).toEqual({ config });
-    });
   });
 });

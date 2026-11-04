@@ -323,7 +323,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 
 ### Lint YML
 
-[`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yaml` files, such as sorting keys.
+[`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yml` and `yaml` files, such as sorting keys.
 
 ### OctoGuide Strict
 
