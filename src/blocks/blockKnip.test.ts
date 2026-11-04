@@ -29,7 +29,7 @@ describe(blockKnip, () => {
                 "Linting": {
                   "contents": {
                     "items": [
-                      "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+                      "- \`pnpm knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
                     ],
                   },
                 },
@@ -44,7 +44,7 @@ describe(blockKnip, () => {
                   "name": "Lint Knip",
                   "steps": [
                     {
-                      "run": "pnpm lint:knip",
+                      "run": "pnpm knip",
                     },
                   ],
                 },
@@ -57,9 +57,6 @@ describe(blockKnip, () => {
               "properties": {
                 "devDependencies": {
                   "knip": "1.2.3",
-                },
-                "scripts": {
-                  "lint:knip": "knip",
                 },
               },
             },
@@ -113,7 +110,7 @@ describe(blockKnip, () => {
                 "Linting": {
                   "contents": {
                     "items": [
-                      "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+                      "- \`pnpm knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
                     ],
                   },
                 },
@@ -128,7 +125,7 @@ describe(blockKnip, () => {
                   "name": "Lint Knip",
                   "steps": [
                     {
-                      "run": "pnpm lint:knip",
+                      "run": "pnpm knip",
                     },
                   ],
                 },
@@ -141,9 +138,6 @@ describe(blockKnip, () => {
               "properties": {
                 "devDependencies": {
                   "knip": "1.2.3",
-                },
-                "scripts": {
-                  "lint:knip": "knip",
                 },
               },
             },
@@ -193,7 +187,7 @@ describe(blockKnip, () => {
                 "Linting": {
                   "contents": {
                     "items": [
-                      "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+                      "- \`pnpm knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
                     ],
                   },
                 },
@@ -208,7 +202,7 @@ describe(blockKnip, () => {
                   "name": "Lint Knip",
                   "steps": [
                     {
-                      "run": "pnpm lint:knip",
+                      "run": "pnpm knip",
                     },
                   ],
                 },
@@ -221,9 +215,6 @@ describe(blockKnip, () => {
               "properties": {
                 "devDependencies": {
                   "knip": "1.2.3",
-                },
-                "scripts": {
-                  "lint:knip": "knip",
                 },
               },
             },

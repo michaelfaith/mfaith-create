@@ -185,7 +185,7 @@ These added tooling pieces are those that aren't quite essential for a repositor
 This is recommended for most users of `@mfaith/create` to start with.
 
 - [Contributors](#contributors)
-- [Lint Knip](#lint-knip)
+- [Knip](#knip)
 - [OctoGuide](#octoguide)
 - [Releases](#releases)
 - [Renovate](#renovate)
@@ -196,14 +196,14 @@ This is recommended for most users of `@mfaith/create` to start with.
 [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
 Contributions will be auto-detected when possible using [all-contributors-auto-action](https://github.com/JoshuaKGoldberg/all-contributors-auto-action).
 
-### Lint Knip
+### Knip
 
 [**Knip**](https://github.com/webpro/knip): Detects unused files, dependencies, and code exports.
 
 Running Knip:
 
 ```shell
-pnpm lint:knip
+pnpm knip
 ```
 
 ### OctoGuide
@@ -261,7 +261,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Type Checking](#type-checking)
   - ["Common" Base Level](#common-base-level)
     - [Contributors](#contributors)
-    - [Lint Knip](#lint-knip)
+    - [Knip](#knip)
     - [OctoGuide](#octoguide)
     - [Releases](#releases)
     - [Renovate](#renovate)
