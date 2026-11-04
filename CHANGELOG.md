@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/michaelfaith/mfaith-create/compare/v0.8.0...v0.9.0) (2026-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Octoguide:** remove support for config usage ([#465](https://github.com/michaelfaith/mfaith-create/issues/465))
+
+### 🚀 Features
+
+* **multiple:** change all yaml files to `yml` extensions ([#463](https://github.com/michaelfaith/mfaith-create/issues/463)) ([354108d](https://github.com/michaelfaith/mfaith-create/commit/354108d14488bc510e6a25a21484cb161b34d56f))
+* **Octoguide:** remove support for config usage ([#465](https://github.com/michaelfaith/mfaith-create/issues/465)) ([7b9d9bd](https://github.com/michaelfaith/mfaith-create/commit/7b9d9bd3ca92ccde71d500a0759d94dd59590b27))
+* remove redundant `lint:knip` command ([#466](https://github.com/michaelfaith/mfaith-create/issues/466)) ([d7043f5](https://github.com/michaelfaith/mfaith-create/commit/d7043f5ed7ca3c03ea01ec398f2c6db61a69c760))
+
 ## [0.8.0](https://github.com/michaelfaith/mfaith-create/compare/v0.7.3...v0.8.0) (2026-11-01)
 
 
