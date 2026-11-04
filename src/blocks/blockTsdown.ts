@@ -5,6 +5,8 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
+import { makeRelativePath } from '../utils/makeRelativePath.ts';
+import { srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
@@ -91,7 +93,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     const { devExports } = options;
 
     const primaryEntry = 'src/index.ts';
-    const distFilePath = './dist/index.mjs';
+    const distFilePath = makeRelativePath(srcToDist(primaryEntry));
 
     const entries = new Set([
       primaryEntry,
