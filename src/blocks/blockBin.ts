@@ -1,5 +1,6 @@
 import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
+import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
@@ -9,14 +10,6 @@ import { blockTsdown } from './blockTsdown.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
-
-const tsExtensionRegex = /(.*)\.[cm]?ts$/i;
-const jsExtensionRegex = /(.*)\.[cm]?js$/i;
-
-const srcToDist = (value: string) =>
-  value.replace('src', 'dist').replace(tsExtensionRegex, '$1.mjs');
-const distToSrc = (value: string) =>
-  value.replace('dist', 'src').replace(jsExtensionRegex, '$1.ts');
 
 const convertToCommand = (packageName: string): string => {
   const parts = packageName.split('/');

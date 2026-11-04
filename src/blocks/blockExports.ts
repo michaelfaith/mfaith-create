@@ -6,41 +6,61 @@ import type { BlockWithProps } from './Block.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPublishConfig } from './blockPublishConfig.ts';
 
-export interface BlockExportsProps {
-  filePath?: string;
-  srcFilePath?: string;
+const exportEntrySchema: z.ZodType<ExportEntry> = z.object({
+  path: z.string(),
+  srcPath: z.string().optional(),
+});
+const exportsSchema: z.ZodType<Exports> = z.record(z.string(), exportEntrySchema);
+
+export interface ExportEntry {
+  path: string;
+  srcPath?: string | undefined;
 }
+export type Exports = Record<string, ExportEntry>;
+export interface BlockExportsProps {
+  exports?: Exports | undefined;
+}
+
+const createExportEntries = (exports: Exports, isSrcExports: boolean): Record<string, string> => {
+  return Object.fromEntries(
+    Object.entries(exports).map(([key, value]) => {
+      const filePath = isSrcExports && value.srcPath ? value.srcPath : value.path;
+      return [key, makeRelativePath(filePath)];
+    }),
+  );
+};
 
 export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock({
   about: {
     name: 'Exports',
   },
   props: {
-    filePath: z.string().default('./dist/index.mjs'),
-    srcFilePath: z.string().default('./src/index.ts'),
+    exports: exportsSchema.default({
+      '.': {
+        path: './dist/index.mjs',
+        srcPath: './src/index.ts',
+      },
+    }),
   },
   produce({ options, props }) {
-    const { filePath, srcFilePath } = props;
+    const { exports } = props;
     const { devExports } = options;
-
-    const exportFilePath = devExports ? srcFilePath : filePath;
-    const publishConfigExportFilePath = devExports ? filePath : undefined;
 
     return {
       extensions: [
         blockPackageJson({
           properties: {
             exports: {
-              '.': makeRelativePath(exportFilePath),
+              ...createExportEntries(exports, devExports),
               './package.json': './package.json',
             },
           },
         }),
-        ...(publishConfigExportFilePath
+        ...(devExports
           ? [
               blockPublishConfig({
                 exports: {
-                  '.': makeRelativePath(publishConfigExportFilePath),
+                  ...createExportEntries(exports, false),
                   './package.json': './package.json',
                 },
               }),

@@ -63,8 +63,12 @@ describe(blockExports, () => {
   it('with props (no leading ./)', () => {
     const creation = testBlock(blockExports, {
       props: {
-        filePath: 'other.js',
-        srcFilePath: 'other.ts',
+        exports: {
+          '.': {
+            path: 'other.js',
+            srcPath: 'other.ts',
+          },
+        },
       },
       options: optionsBase,
     });
@@ -91,8 +95,12 @@ describe(blockExports, () => {
   it('with props (with leading ./)', () => {
     const creation = testBlock(blockExports, {
       props: {
-        filePath: './other.js',
-        srcFilePath: './other.ts',
+        exports: {
+          '.': {
+            path: './other.js',
+            srcPath: './other.ts',
+          },
+        },
       },
       options: optionsBase,
     });
@@ -119,8 +127,12 @@ describe(blockExports, () => {
   it('with props (devExports: true)', () => {
     const creation = testBlock(blockExports, {
       props: {
-        filePath: './other.js',
-        srcFilePath: './other.ts',
+        exports: {
+          '.': {
+            path: './other.js',
+            srcPath: './other.ts',
+          },
+        },
       },
       options: { ...optionsBase, devExports: true },
     });
