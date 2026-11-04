@@ -52,7 +52,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
             Linting: {
               contents: {
                 items: [
-                  `- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+                  `- \`pnpm knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
                 ],
               },
             },
@@ -62,16 +62,13 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
           jobs: [
             {
               name: 'Lint Knip',
-              steps: [{ run: 'pnpm lint:knip' }],
+              steps: [{ run: 'pnpm knip' }],
             },
           ],
         }),
         blockPackageJson({
           properties: {
             devDependencies: getPackageDependencies('knip'),
-            scripts: {
-              'lint:knip': 'knip',
-            },
           },
         }),
         blockRemoveFiles({
