@@ -29,7 +29,7 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
         '.github': {
           actions: {
             transition: {
-              'action.yaml': formatYaml({
+              'action.yml': formatYaml({
                 description: 'Runs @mfaith/create in transition mode',
                 inputs: {
                   token: {
@@ -112,7 +112,7 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
             },
           },
           workflows: {
-            'repo-transition.yaml': createSingleJobWorkflow({
+            'repo-transition.yml': createSingleJobWorkflow({
               name: 'Transition Repo',
               on: {
                 pull_request: {

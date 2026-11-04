@@ -40,7 +40,6 @@ This table summarizes each block and which base levels they're included in:
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
-| OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
 | Oxfmt                              | `--add-oxfmt`, `--exclude-oxfmt`                                                           | ✔️      | ✅     | 💯         |
 | Package JSON                       | `--add-package-json`, `--exclude-package-json`                                             | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
@@ -323,7 +322,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 
 ### Lint YML
 
-[`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yaml` files, such as sorting keys.
+[`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yml` and `yaml` files, such as sorting keys.
 
 ### OctoGuide Strict
 

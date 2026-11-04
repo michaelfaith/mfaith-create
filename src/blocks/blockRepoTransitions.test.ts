@@ -30,7 +30,7 @@ describe(blockRepoTransitions, () => {
         ".github": {
           "actions": {
             "transition": {
-              "action.yaml": "description: Runs @mfaith/create in transition mode
+              "action.yml": "description: Runs @mfaith/create in transition mode
 
       inputs:
         token:
@@ -82,7 +82,7 @@ describe(blockRepoTransitions, () => {
             },
           },
           "workflows": {
-            "repo-transition.yaml": "name: Transition Repo
+            "repo-transition.yml": "name: Transition Repo
 
       on:
         pull_request:

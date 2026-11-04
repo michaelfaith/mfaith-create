@@ -13,7 +13,7 @@ describe(blockFunding, () => {
     });
 
     expect(creation.extensions).toContainEqual(
-      blockRemoveFiles({ files: ['.github/FUNDING.yml'] }),
+      blockRemoveFiles({ files: ['.github/FUNDING.yaml'] }),
     );
   });
 });

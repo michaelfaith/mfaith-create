@@ -279,7 +279,7 @@ Cheers! 📦🚀`,
       },
       suggestions: [
         [
-          `- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
+          `- add ${options.owner}/${options.repository} and \`release.yml\` as a Trusted Publisher on:`,
           `   https://www.npmjs.com/package/${options.packageName}/access`,
         ].join('\n'),
       ],

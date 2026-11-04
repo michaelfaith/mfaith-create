@@ -148,7 +148,7 @@ If you're interested in learning more, see the 'getting started' docs on:
     });
 
     const processText = async (text: string, filePath: string) => {
-      if (/all-contributorsrc|js|md|ts|yaml/.test(filePath)) {
+      if (/all-contributorsrc|js|md|ts|yml/.test(filePath)) {
         const formatResult = await format(filePath, text);
         return formatResult.code;
       }
