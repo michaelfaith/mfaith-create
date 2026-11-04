@@ -206,16 +206,6 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
               ],
             }),
           },
-          'ISSUE_TEMPLATE.md': `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->
-<!-- 👉 https://github.com/${options.owner}/${options.repository}/issues/new/choose 👈 -->
-<!-- **Issues that should have been filed with a template will be closed without action, and we will ask you to use a template.** -->
-
-<!-- This blank issue template is only for issues that don't fit any of the templates. -->
-
-## Overview
-
-...
-`,
         },
       },
     };
@@ -225,10 +215,11 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
       extensions: [
         blockRemoveFiles({
           files: [
-            '.github/ISSUE_TEMPLATE/01-bug.yml',
-            '.github/ISSUE_TEMPLATE/02-documentation.yml',
-            '.github/ISSUE_TEMPLATE/03-feature.yml',
-            '.github/ISSUE_TEMPLATE/04-tooling.yml',
+            '.github/ISSUE_TEMPLATE.md',
+            '.github/ISSUE_TEMPLATE/01-bug.yaml',
+            '.github/ISSUE_TEMPLATE/02-documentation.yaml',
+            '.github/ISSUE_TEMPLATE/03-feature.yaml',
+            '.github/ISSUE_TEMPLATE/04-tooling.yaml',
           ],
         }),
       ],
