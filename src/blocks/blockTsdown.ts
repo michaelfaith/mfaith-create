@@ -77,9 +77,6 @@ const createExportEntry = (filePath: string): ExportEntry => {
  */
 const createExportsFromEntries = (entries: string[], exclude: string[] = []): Exports => {
   const filteredEntries = entries.filter((entry) => !exclude.includes(entryKey(entry)));
-  if (filteredEntries.length === 0) {
-    return {};
-  }
 
   const exports = Object.fromEntries(
     filteredEntries.map((entry) => {
