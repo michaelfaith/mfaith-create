@@ -129,6 +129,17 @@ describe(blockTsdown, () => {
             },
           },
           {
+            "block": "[Block Exports]",
+            "props": {
+              "exports": {
+                ".": {
+                  "path": "dist/index.mjs",
+                  "srcPath": "src/index.ts",
+                },
+              },
+            },
+          },
+          {
             "block": "[Block Vitest]",
             "props": {
               "coverage": {
@@ -167,7 +178,7 @@ describe(blockTsdown, () => {
           profile: 'node16',
           level: 'error',
         },
-        entry: ['src/other.ts', './src/other.ts', './src/bin/index.ts'],
+        entry: ['src/other.ts', './src/other.ts', './src/third/index.ts', './src/bin/index.ts'],
         excludeFromExports: ['./src/bin/index.ts'],
         runInCI: ['dist/other.js'],
       },
@@ -291,6 +302,25 @@ describe(blockTsdown, () => {
             },
           },
           {
+            "block": "[Block Exports]",
+            "props": {
+              "exports": {
+                ".": {
+                  "path": "dist/index.mjs",
+                  "srcPath": "src/index.ts",
+                },
+                "./other": {
+                  "path": "dist/other.mjs",
+                  "srcPath": "src/other.ts",
+                },
+                "./third": {
+                  "path": "dist/third/index.mjs",
+                  "srcPath": "src/third/index.ts",
+                },
+              },
+            },
+          },
+          {
             "block": "[Block Vitest]",
             "props": {
               "coverage": {
@@ -316,6 +346,7 @@ describe(blockTsdown, () => {
         "entry": [
           "src/index.ts",
           "src/other.ts",
+          "src/third/index.ts",
           "src/bin/index.ts"
         ],
         "exports": {
@@ -450,6 +481,17 @@ describe(blockTsdown, () => {
                   "run": "pnpm build",
                 },
               ],
+            },
+          },
+          {
+            "block": "[Block Exports]",
+            "props": {
+              "exports": {
+                ".": {
+                  "path": "dist/index.mjs",
+                  "srcPath": "src/index.ts",
+                },
+              },
             },
           },
           {

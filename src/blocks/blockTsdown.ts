@@ -10,6 +10,7 @@ import { srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
+import { blockExports, type ExportEntry, type Exports } from './blockExports.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
@@ -45,10 +46,46 @@ const entrySchema = z.array(z.string());
 const additionalConfigSchema = z.record(z.string(), z.unknown());
 
 const relativePathRegex = /^\.\/(.*)$/;
-const srcPathRegex = /^\.\/src\/(.+)$/;
+const srcPathRegex = /^(?:\.\/)?src\/(.+)$/;
 
-const makeExclusion = (input: string): string => {
+const entryKey = (input: string): string => {
   return input.replace(srcPathRegex, '$1').replace(extname(input), '');
+};
+
+/**
+ * Given a src file path, create a subpath key for the exports object.
+ * `./src/index.ts` should be the default entry point, so we use `.` as the key for that.
+ * For any other entry point, we use the subpath as the key, but remove any trailing `/index` if present.
+ * e.g. `./src/foo/index.ts` should have a key of `./foo`, and `./src/bar.ts` should have a key of `./bar`.
+ */
+const createSubpathKey = (filePath: string): string => {
+  const subpath = entryKey(filePath);
+
+  return subpath === 'index' ? '.' : `./${subpath.replace('/index', '')}`;
+};
+
+const createExportEntry = (filePath: string): ExportEntry => {
+  const srcPath = filePath;
+  const path = srcToDist(srcPath);
+
+  return { path, srcPath };
+};
+
+/**
+ * Given a list of entry file paths and a list of files to exclude from exports, create
+ * an `Exports` object that we can pass to the Exports block.
+ */
+const createExportsFromEntries = (entries: string[], exclude: string[] = []): Exports => {
+  const filteredEntries = entries.filter((entry) => !exclude.includes(entryKey(entry)));
+
+  const exports = Object.fromEntries(
+    filteredEntries.map((entry) => {
+      const key = createSubpathKey(entry);
+      const exportEntry = createExportEntry(entry);
+      return [key, exportEntry];
+    }),
+  );
+  return exports;
 };
 
 export interface BlockTsdownProps {
@@ -95,13 +132,15 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     const primaryEntry = 'src/index.ts';
     const distFilePath = makeRelativePath(srcToDist(primaryEntry));
 
-    const entries = new Set([
-      primaryEntry,
-      ...entry.map((filePath) => filePath.replace(relativePathRegex, '$1')),
-    ]);
+    const entries = Array.from(
+      new Set([
+        primaryEntry,
+        ...entry.map((filePath) => filePath.replace(relativePathRegex, '$1')),
+      ]),
+    );
     const exclude =
       excludeFromExports &&
-      Array.from(new Set(excludeFromExports.map((exclusion) => makeExclusion(exclusion))));
+      Array.from(new Set(excludeFromExports.map((exclusion) => entryKey(exclusion))));
 
     let exports;
     if (devExports) {
@@ -114,6 +153,8 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
     } else {
       exports = true;
     }
+
+    const packageExports = createExportsFromEntries(entries, exclude);
 
     return {
       extensions: [
@@ -185,6 +226,7 @@ pnpm build --watch
             },
           ],
         }),
+        blockExports({ exports: packageExports }),
         blockVitest({ coverage: { include: ['src'] }, exclude: ['dist'] }),
       ],
       files: {
@@ -194,7 +236,7 @@ const config: UserConfig = defineConfig(${JSON.stringify(
           {
             attw,
             // If `src/index.ts` is the only entry, then omit it.
-            entry: entries.size > 1 ? Array.from(entries) : undefined,
+            entry: entries.length > 1 ? entries : undefined,
             exports,
             ...properties,
           },
