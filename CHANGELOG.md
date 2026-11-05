@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.10.0](https://github.com/michaelfaith/mfaith-create/compare/v0.9.0...v0.10.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Exports:** allow for multiple entry points ([#473](https://github.com/michaelfaith/mfaith-create/issues/473))
+
+### 🚀 Features
+
+* **Exports:** allow for multiple entry points ([#473](https://github.com/michaelfaith/mfaith-create/issues/473)) ([17e625f](https://github.com/michaelfaith/mfaith-create/commit/17e625f76b70d4c6b4df4f2299ce230b8cbfdaba))
+* **Tsdown:** automatically generate package export from provided entries ([#475](https://github.com/michaelfaith/mfaith-create/issues/475)) ([7d1a629](https://github.com/michaelfaith/mfaith-create/commit/7d1a629579a3b75ca40adeccef3210ceee2d7564))
+* update default node version to v26 ([#469](https://github.com/michaelfaith/mfaith-create/issues/469)) ([ae2bea4](https://github.com/michaelfaith/mfaith-create/commit/ae2bea49e1ed76007f144fbf1db5a87144000cee))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo to ^0.14.0 ([#472](https://github.com/michaelfaith/mfaith-create/issues/472)) ([86a0c0f](https://github.com/michaelfaith/mfaith-create/commit/86a0c0fd8798edf1354823f1ffae7a7ec9328cd6))
+* **GithubIssueTemplates:** remove legacy issue template ([#474](https://github.com/michaelfaith/mfaith-create/issues/474)) ([6ff22dc](https://github.com/michaelfaith/mfaith-create/commit/6ff22dce52cf3556a2ae4dfeb660b68585ce0888))
+
 ## [0.9.0](https://github.com/michaelfaith/mfaith-create/compare/v0.8.0...v0.9.0) (2026-11-04)
 
 
