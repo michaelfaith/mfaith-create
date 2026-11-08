@@ -61,7 +61,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
         blockGithubActionsCi({
           jobs: [
             {
-              name: 'Lint Knip',
+              name: 'Knip',
               steps: [{ run: 'pnpm knip' }],
             },
           ],

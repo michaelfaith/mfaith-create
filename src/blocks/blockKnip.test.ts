@@ -41,7 +41,7 @@ describe(blockKnip, () => {
             "props": {
               "jobs": [
                 {
-                  "name": "Lint Knip",
+                  "name": "Knip",
                   "steps": [
                     {
                       "run": "pnpm knip",
@@ -122,7 +122,7 @@ describe(blockKnip, () => {
             "props": {
               "jobs": [
                 {
-                  "name": "Lint Knip",
+                  "name": "Knip",
                   "steps": [
                     {
                       "run": "pnpm knip",
@@ -199,7 +199,7 @@ describe(blockKnip, () => {
             "props": {
               "jobs": [
                 {
-                  "name": "Lint Knip",
+                  "name": "Knip",
                   "steps": [
                     {
                       "run": "pnpm knip",
