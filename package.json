@@ -41,7 +41,7 @@
     "@typescript-eslint/typescript-estree": "^8.67.0",
     "bingo": "^0.15.0",
     "bingo-fs": "^0.7.0",
-    "bingo-stratum": "^0.9.1",
+    "bingo-stratum": "^0.10.0",
     "cached-factory": "^0.3.0",
     "cspell-populate-words": "^0.3.1",
     "deepmerge-ts": "^8.0.2",
