@@ -312,8 +312,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@types/node@26.6.6)
       bingo-requests:
-        specifier: 0.5.6
-        version: 0.5.6
+        specifier: 0.6.0
+        version: 0.6.0
       bingo-stratum-testers:
         specifier: 0.6.1
         version: 0.6.1(bingo-fs@0.6.0)(bingo-stratum@0.9.1(bingo-fs@0.6.0)(bingo-systems@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7))(bingo-systems@0.7.0)(bingo@0.14.0(zod@4.6.7))
@@ -1872,6 +1872,10 @@ packages:
   bingo-requests@0.5.6:
     resolution: {integrity: sha512-cpvNWqMlFkbynxJzyKJ4B/R57zR2MsPkJSldNJRxSTN6LlgB9uzQ8jAeDZy2ENoUHNlH5nApv2JyHxVqFxcjSg==}
     engines: {node: '>=18'}
+
+  bingo-requests@0.6.0:
+    resolution: {integrity: sha512-00RdK8M2agqi5Fu+jC/oLWL1c9cDTcD3mxZJzTQS88yiwhrodKpeIv9aByMGxQiuNQuPwU741yB1SgG8AEQoRQ==}
+    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
 
   bingo-stratum-testers@0.6.1:
     resolution: {integrity: sha512-FGfrjOTwMfwyw0MvIDflShczKNyTh7svLs9nRKWZjzUW7U7Ow+qFw3D3NfbN8r92Qb6qdK+Zids5mm8B0nnzfA==}
@@ -5253,6 +5257,10 @@ snapshots:
   bingo-fs@0.6.0: {}
 
   bingo-requests@0.5.6:
+    dependencies:
+      '@octokit/types': 16.0.0
+
+  bingo-requests@0.6.0:
     dependencies:
       '@octokit/types': 16.0.0
 
