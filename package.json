@@ -53,7 +53,7 @@
     "image-size": "^2.0.2",
     "input-from-file": "^0.7.0",
     "input-from-file-json": "^0.6.0",
-    "input-from-script": "^0.6.0",
+    "input-from-script": "^0.7.0",
     "js-yaml": "^5.0.0",
     "json5": "^2.2.3",
     "lazy-value": "^3.0.0",
