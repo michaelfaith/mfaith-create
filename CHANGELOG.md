@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.1](https://github.com/michaelfaith/mfaith-create/compare/v0.10.0...v0.10.1) (2026-11-10)
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo to ^0.15.0 ([#489](https://github.com/michaelfaith/mfaith-create/issues/489)) ([7c30d74](https://github.com/michaelfaith/mfaith-create/commit/7c30d746258b0c55d4ec3dd93c22e9e2001a2eb9))
+* **deps:** update dependency bingo-fs to ^0.7.0 ([#491](https://github.com/michaelfaith/mfaith-create/issues/491)) ([b3554be](https://github.com/michaelfaith/mfaith-create/commit/b3554bed144f9a2d943bfc262e1afe58c3818206))
+* **deps:** update dependency bingo-stratum to ^0.10.0 ([#492](https://github.com/michaelfaith/mfaith-create/issues/492)) ([72d38e6](https://github.com/michaelfaith/mfaith-create/commit/72d38e60bbfb8b09bd208ff19e1bc12c9af4b9b1))
+* **deps:** update dependency input-from-file to ^0.7.0 ([#493](https://github.com/michaelfaith/mfaith-create/issues/493)) ([ff3e3c6](https://github.com/michaelfaith/mfaith-create/commit/ff3e3c6b0edbcdcb051696efc9272fcbc8b347be))
+* **deps:** update dependency input-from-file-json to ^0.6.0 ([#494](https://github.com/michaelfaith/mfaith-create/issues/494)) ([6aab865](https://github.com/michaelfaith/mfaith-create/commit/6aab8652667ed0cd21089775ba8e546697455bb4))
+* **deps:** update dependency input-from-script to ^0.7.0 ([#496](https://github.com/michaelfaith/mfaith-create/issues/496)) ([fafd793](https://github.com/michaelfaith/mfaith-create/commit/fafd793a6128f9140a35960f60e34d8714d5f5a2))
+* **Knip:** rename knip ci job to match command ([#495](https://github.com/michaelfaith/mfaith-create/issues/495)) ([f12eae1](https://github.com/michaelfaith/mfaith-create/commit/f12eae1ecce7749afad63403bdfcb3014f2b0667))
+
 ## [0.10.0](https://github.com/michaelfaith/mfaith-create/compare/v0.9.0...v0.10.0) (2026-11-05)
 
 
