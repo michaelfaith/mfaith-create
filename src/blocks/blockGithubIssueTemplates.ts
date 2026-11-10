@@ -39,18 +39,8 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                 {
                   type: 'textarea',
                   attributes: {
-                    description: 'What did you expect to happen?',
-                    label: 'Expected',
-                  },
-                  validations: {
-                    required: true,
-                  },
-                },
-                {
-                  type: 'textarea',
-                  attributes: {
-                    description: 'What happened instead?',
-                    label: 'Actual',
+                    description: 'Describe what happened and what you expected to happen.',
+                    label: 'Description',
                   },
                   validations: {
                     required: true,
@@ -65,6 +55,15 @@ export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
                   },
                   validations: {
                     required: true,
+                  },
+                },
+                {
+                  type: 'input',
+                  attributes: {
+                    description:
+                      'If possible, please create a repository that reproduces the issue with the minimal amount of code possible.',
+                    label: 'Minimal Reproduction',
+                    placeholder: 'https://github.com/user/repo',
                   },
                 },
                 {
