@@ -122,6 +122,9 @@ export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = b
                     {
                       uses: resolveUses('actions/checkout', 'v7', options.workflowsVersions),
                       if: "${{ inputs.skip-checkout == 'false' }}",
+                      with: {
+                        'persist-credentials': false,
+                      },
                     },
                     {
                       uses: resolveUses('pnpm/setup', 'v2', options.workflowsVersions),

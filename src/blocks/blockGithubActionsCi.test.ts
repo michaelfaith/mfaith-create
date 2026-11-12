@@ -51,6 +51,8 @@ describe(blockGithubActionsCi, () => {
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
+            with:
+              persist-credentials: false
           - uses: pnpm/setup@v2
             with:
               cache: \${{ inputs.cache }}
@@ -151,6 +153,8 @@ describe(blockGithubActionsCi, () => {
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
+            with:
+              persist-credentials: false
           - uses: pnpm/setup@v2
             with:
               cache: \${{ inputs.cache }}
@@ -297,6 +301,8 @@ describe(blockGithubActionsCi, () => {
         steps:
           - uses: actions/checkout@v7
             if: \${{ inputs.skip-checkout == 'false' }}
+            with:
+              persist-credentials: false
           - uses: pnpm/setup@v2
             with:
               cache: \${{ inputs.cache }}
