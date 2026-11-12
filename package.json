@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@typescript-eslint/typescript-estree": "^8.67.0",
-    "bingo": "^0.15.0",
+    "bingo": "^0.16.0",
     "bingo-fs": "^0.7.0",
     "bingo-stratum": "^0.10.0",
     "cached-factory": "^0.3.0",
