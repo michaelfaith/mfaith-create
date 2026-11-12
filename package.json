@@ -15,6 +15,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
+    "./config": "./src/config.ts",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -127,6 +128,7 @@
     },
     "exports": {
       ".": "./dist/index.mjs",
+      "./config": "./dist/config.mjs",
       "./package.json": "./package.json"
     }
   }

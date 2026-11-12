@@ -597,4 +597,82 @@ describe(blockPackageJson, () => {
 			}
 		`);
   });
+
+  it('should sort top-level exports keys when subpaths', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          exports: {
+            '.': 'index.ts',
+            './package.json': './package.json',
+            './config': './config/index.ts',
+          },
+          publishConfig: {
+            access: 'public',
+            exports: {
+              '.': 'index.mjs',
+              './package.json': './package.json',
+              './config': './config/index.mjs',
+            },
+          },
+        },
+      },
+      options,
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).exports,
+    ).toMatchInlineSnapshot(`
+      {
+        ".": "index.ts",
+        "./config": "./config/index.ts",
+        "./package.json": "./package.json",
+      }
+    `);
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).publishConfig,
+    ).toMatchInlineSnapshot(`
+      {
+        "access": "public",
+        "exports": {
+          ".": "index.mjs",
+          "./config": "./config/index.mjs",
+          "./package.json": "./package.json",
+        },
+      }
+    `);
+  });
+
+  it('should do nothing, if exports is a string', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          exports: './index.ts',
+          publishConfig: {
+            access: 'public',
+            exports: './index.mjs',
+          },
+        },
+      },
+      options,
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).exports,
+    ).toMatchInlineSnapshot(`"./index.ts"`);
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).publishConfig,
+    ).toMatchInlineSnapshot(`
+      {
+        "access": "public",
+        "exports": "./index.mjs",
+      }
+    `);
+  });
 });
