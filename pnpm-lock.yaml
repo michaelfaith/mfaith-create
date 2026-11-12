@@ -318,8 +318,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0(bingo-fs@0.7.0)(bingo-stratum@0.10.0(bingo-fs@0.7.0)(bingo@0.15.0(zod@4.6.7))(zod@4.6.7))(bingo@0.15.0(zod@4.6.7))
       bingo-testers:
-        specifier: 0.9.0
-        version: 0.9.0(bingo-fs@0.7.0)(bingo@0.15.0(zod@4.6.7))
+        specifier: 0.10.0
+        version: 0.10.0(bingo-fs@0.7.0)(bingo@0.15.0(zod@4.6.7))
       console-fail-test:
         specifier: 0.10.0
         version: 0.10.0
@@ -1882,14 +1882,14 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@4.1.12':
-    resolution: {integrity: sha512-XW9O8+Mxx4VpCtkYdMJLZQQwsVryP9wk7cPKDxtXFfwSak6yRh5+2fep/Y0XF/ElBvJHq8bcYdi6aeuai0opZA==}
+  '@vitest/pretty-format@5.1.0':
+    resolution: {integrity: sha512-IRx5mc30CrFzyMNni6SZKQ1r53kv049Mcvvk0WbWcD6PUz/bFjG4zYv0KosQAeonPpGp5WxqYBMqdSOfJfvVWw==}
 
   '@vitest/spy@5.1.0':
     resolution: {integrity: sha512-2DPO5OMHWKrBngC+fCmTQqemNF0gidRhp3lxbBmRhW+M1XJrfgPpqNqWVevXtn2f2ufD5ZaR1B6B641aAlcX5A==}
 
-  '@vitest/utils@4.1.12':
-    resolution: {integrity: sha512-Q3awXrwOfEV+qc3WmO5ONyE0yO7Q1gQ9/oyHxGLZ/pl7N3NO/ZztqQwKLuwMkV+CA1JYSIeO3gkHnRDIo4AVaA==}
+  '@vitest/utils@5.1.0':
+    resolution: {integrity: sha512-V+qgCwkvVw+s1t1S5TaoBHsLi5Sz/YmohCMoOu0mZ8ZQst2bKhRYARAQucWpVg8D0mv0x5MHcWXY5QdOsoiGBQ==}
 
   '@yuku-toolchain/darwin-arm64@0.27.0':
     resolution: {integrity: sha512-A3v83rNyHWlnJeeMBsWggZ+RZDP2BEMHIiMk+j23LqtVch24MXwg8veflkQgZ2GtCtZOxcG+NkztnsSUS4rWEQ==}
@@ -2020,13 +2020,13 @@ packages:
     resolution: {integrity: sha512-AvVE1kyPC5w367+jzZ64z00J0uAIvVnS7FdTcm+JkIIZt0/e1hhFrgQpfrtlHeh4Zr9ZQ9ViY5ajwFSsYGtCtA==}
     engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
 
-  bingo-testers@0.9.0:
-    resolution: {integrity: sha512-fa8GlPOrEOfD2kfp5qzih2/YpbvTOFCiAmesk08w6eRgRt22eEEMLuNEcECIZlAAkrnzgHhYCRdKK6Zo6FxCLw==}
-    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
+  bingo-testers@0.10.0:
+    resolution: {integrity: sha512-Naa0fIIYQbG3qCu6TKGoyHm9HnEHOdstVQeM9variVhhwCSQbtK2HxDUSDFSCCnrb1TrlPFx1NY7FWUNnRhAoA==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     peerDependencies:
-      bingo: ^0.15.0
-      bingo-fs: ^0.7.0
-      bingo-systems: ^0.8.0
+      bingo: ^0.16.0
+      bingo-fs: ^0.8.0
+      bingo-systems: ^0.9.0
 
   bingo@0.15.0:
     resolution: {integrity: sha512-tYleUoZttXhGK0x794Oxns7/eE23nzzfH4uYSolcQP/9BduFBej4Eg0cbaSfubOJg2qT8lGF/Y+8FfIVjKs2dw==}
@@ -5361,15 +5361,15 @@ snapshots:
     optionalDependencies:
       vite: 8.3.6(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1)
 
-  '@vitest/pretty-format@4.1.12':
+  '@vitest/pretty-format@5.1.0':
     dependencies:
       tinyrainbow: 3.2.0
 
   '@vitest/spy@5.1.0': {}
 
-  '@vitest/utils@4.1.12':
+  '@vitest/utils@5.1.0':
     dependencies:
-      '@vitest/pretty-format': 4.1.12
+      '@vitest/pretty-format': 5.1.0
       convert-source-map: 2.0.0
       tinyrainbow: 3.2.0
 
@@ -5485,9 +5485,9 @@ snapshots:
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.9.0(bingo-fs@0.7.0)(bingo@0.15.0(zod@4.6.7)):
+  bingo-testers@0.10.0(bingo-fs@0.7.0)(bingo@0.15.0(zod@4.6.7)):
     dependencies:
-      '@vitest/utils': 4.1.12
+      '@vitest/utils': 5.1.0
       all-properties-lazy: 0.1.0
       bingo: 0.15.0(zod@4.6.7)
       bingo-fs: 0.7.0
