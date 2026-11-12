@@ -15,6 +15,7 @@ import {
   blockEslint,
   blockKnip,
   blockTemplatedWith,
+  blockTsdown,
   blockTypescript,
   presetEverything,
 } from './index.ts';
@@ -133,6 +134,7 @@ If you're interested in learning more, see the 'getting started' docs on:
               'trash-cli',
             ],
           }),
+          blockTsdown({ entry: ['src/config.ts'] }),
           // Only needed until our `target` moves up to ES2025 or higher (primarily for RegExp.escape types)
           blockTypescript({
             compilerOptions: {

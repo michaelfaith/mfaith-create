@@ -6,29 +6,44 @@ import { PackageJson } from 'zod-package-json';
 
 import { base } from '../base.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
 
-const packageJsonWithNullableScriptsSchema = PackageJson.partial().extend({
+const isRecord = (value: unknown): value is Record<string, unknown> => {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+};
+
+const publishConfigSchema = z
+  .object({
+    exports: PackageJson.shape.exports.optional(),
+  })
+  .catchall(z.unknown());
+interface PublishConfig {
+  exports?: PackageJson['exports'];
+  [k: string]: unknown;
+}
+const packageJsonSchema = PackageJson.partial().extend({
+  publishConfig: publishConfigSchema.optional(),
   scripts: z.record(z.string(), z.union([z.string(), z.undefined()])).optional(),
 });
-export interface PackageJsonWithNullableScripts extends Partial<Omit<PackageJson, 'scripts'>> {
+export interface PackageJsonExt extends Partial<Omit<PackageJson, 'scripts'>> {
+  publishConfig?: PublishConfig | undefined;
   scripts?: Record<string, string | undefined>;
 }
 
 export interface BlockPackageJsonProps {
   cleanupCommands?: string[];
-  properties?: PackageJsonWithNullableScripts;
+  properties?: PackageJsonExt;
 }
-
 export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.createBlock({
   about: {
     name: 'Package JSON',
   },
   props: {
     cleanupCommands: z.array(z.string()).default([]),
-    properties: packageJsonWithNullableScriptsSchema.default({}),
+    properties: packageJsonSchema.default({}),
   },
   produce({ offline, options, props }) {
     const dependencies = useLargerVersions(options.packageData?.dependencies, {
@@ -40,6 +55,8 @@ export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.crea
       ...props.properties.devDependencies,
     });
     const description = htmlToTextSafe(options.description);
+    const exports = processExports(props.properties.exports);
+    const publishConfig = processPublishConfig(props.properties.publishConfig);
 
     return {
       files: {
@@ -65,12 +82,14 @@ export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.crea
                   ? `>=${options.node.supported}`
                   : options.node.supported,
               },
-              ...(options.pnpm && {
-                packageManager: `pnpm@${options.pnpm}`,
-              }),
+              ...(exports ? { exports } : {}),
               files: processFiles(props.properties.files),
               keywords: options.keywords,
               name: options.packageName,
+              ...(options.pnpm && {
+                packageManager: `pnpm@${options.pnpm}`,
+              }),
+              ...(publishConfig ? { publishConfig } : {}),
               repository: {
                 type: 'git',
                 url: `git+https://github.com/${options.owner}/${options.repository}.git`,
@@ -103,7 +122,26 @@ export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.crea
   },
 });
 
-function processFiles(files: string[] | undefined) {
+const processExports = (exports: PackageJson['exports']): PackageJson['exports'] => {
+  // We only want to sort exports, if it's an object, and if all of the keys start with `.`,
+  // indicating that they're subpaths, rather than other types of conditions (e.g. types, import)
+  if (!isRecord(exports) || !Object.keys(exports).every((condition) => condition.startsWith('.'))) {
+    return exports;
+  }
+
+  return sortKeys(exports);
+};
+
+const processPublishConfig = (
+  publishConfig: PackageJsonExt['publishConfig'],
+): PackageJsonExt['publishConfig'] => {
+  if (!publishConfig?.exports) {
+    return publishConfig;
+  }
+  return { ...publishConfig, exports: processExports(publishConfig.exports) };
+};
+
+const processFiles = (files: string[] | undefined) => {
   // If no files have been specified, we can skip the property altogether
   if (!files?.length) {
     return undefined;
@@ -121,15 +159,15 @@ function processFiles(files: string[] | undefined) {
           .some((earlier) => earlier.endsWith('/') && file.startsWith(earlier)),
     )
     .sort();
-}
+};
 
-function removeRangePrefix(version: string) {
+const removeRangePrefix = (version: string) => {
   const raw = version.replaceAll(/[\^~><=]/gu, '').split(' ')[0];
 
   return semver.coerce(raw) ?? raw;
-}
+};
 
-function useLargerVersion(existing: string | undefined, replacement: string) {
+const useLargerVersion = (existing: string | undefined, replacement: string) => {
   if (!existing || existing === replacement) {
     return replacement;
   }
@@ -139,12 +177,12 @@ function useLargerVersion(existing: string | undefined, replacement: string) {
   return existingCoerced && semver.gt(existingCoerced, removeRangePrefix(replacement))
     ? existing
     : replacement;
-}
+};
 
-function useLargerVersions(
+const useLargerVersions = (
   existing: Record<string, string | undefined> | undefined,
   replacements: Record<string, string>,
-) {
+) => {
   if (!existing) {
     return replacements;
   }
@@ -155,4 +193,4 @@ function useLargerVersions(
       useLargerVersion(existing[key], replacement),
     ]),
   );
-}
+};

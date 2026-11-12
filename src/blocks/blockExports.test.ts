@@ -132,6 +132,10 @@ describe(blockExports, () => {
             path: './other.js',
             srcPath: './other.ts',
           },
+          './second': {
+            path: './second/index.js',
+            srcPath: './second/index.ts',
+          },
         },
       },
       options: { ...optionsBase, devExports: true },
@@ -147,6 +151,7 @@ describe(blockExports, () => {
                 "exports": {
                   ".": "./other.ts",
                   "./package.json": "./package.json",
+                  "./second": "./second/index.ts",
                 },
               },
             },
@@ -157,6 +162,7 @@ describe(blockExports, () => {
               "exports": {
                 ".": "./other.js",
                 "./package.json": "./package.json",
+                "./second": "./second/index.js",
               },
             },
           },
