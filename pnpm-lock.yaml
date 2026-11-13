@@ -209,8 +209,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
       input-from-file-json:
-        specifier: ^0.6.0
-        version: 0.6.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
+        specifier: ^0.7.0
+        version: 0.7.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
       input-from-script:
         specifier: ^0.7.0
         version: 0.7.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
@@ -2746,21 +2746,11 @@ packages:
     resolution: {integrity: sha512-IBTdIkzZNOpqm7q3dRqJvMaldXjDHWkEDfrwGEQTs5eaQMWV+djAhR+wahyNNMAa+qpbDUhBMVt4ZKNwpPm7xQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  input-from-file-json@0.6.0:
-    resolution: {integrity: sha512-LYdayY0OCmkDdxjPC8h9hjarLL6J1Wr9owI0FE4Vt0fLtGlsTg3RGoI0FeogQTlzMjluRuDLmIN+JXoiDdDq7w==}
-    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
+  input-from-file-json@0.7.0:
+    resolution: {integrity: sha512-2AeMb7CUo53rIxtG8ukyHRJWQeXfNe1ADm7BhX+vA99A4CnTM1BikXokc75334IOqbVyBKK8f5SIwQjUVKzIMQ==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     peerDependencies:
-      bingo: ^0.15.0
-      zod: ^4.4.3
-    peerDependenciesMeta:
-      zod:
-        optional: true
-
-  input-from-file@0.7.0:
-    resolution: {integrity: sha512-jUO4XZLZoOeaCLJr43c1RYQRr4OW5nW0JtsgyPG9ttpIlKoQFOxPjlD1nmrTh35lP/BGNpkWed1/5RYciXTZyw==}
-    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
-    peerDependencies:
-      bingo: ^0.15.0
+      bingo: ^0.16.0
       zod: ^4.4.3
     peerDependenciesMeta:
       zod:
@@ -6294,16 +6284,10 @@ snapshots:
 
   ini@6.0.0: {}
 
-  input-from-file-json@0.6.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7):
+  input-from-file-json@0.7.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.16.0(zod@4.6.7)
-      input-from-file: 0.7.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
-    optionalDependencies:
-      zod: 4.6.7
-
-  input-from-file@0.7.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7):
-    dependencies:
-      bingo: 0.16.0(zod@4.6.7)
+      input-from-file: 0.8.0(bingo@0.16.0(zod@4.6.7))(zod@4.6.7)
     optionalDependencies:
       zod: 4.6.7
 
