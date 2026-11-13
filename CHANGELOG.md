@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.11.0](https://github.com/michaelfaith/mfaith-create/compare/v0.10.1...v0.11.0) (2026-11-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **config:** export `createConfig` and `Config` from new `./config` entry point ([#454](https://github.com/michaelfaith/mfaith-create/issues/454))
+
+### 🚀 Features
+
+* **config:** export `createConfig` and `Config` from new `./config` entry point ([#454](https://github.com/michaelfaith/mfaith-create/issues/454)) ([f502a31](https://github.com/michaelfaith/mfaith-create/commit/f502a3149f50bfe475708c8ff046d5e5a814b010))
+* **GithubActionsCi:** add `persist-credentials` to setup checkout step ([#516](https://github.com/michaelfaith/mfaith-create/issues/516)) ([8b9ab37](https://github.com/michaelfaith/mfaith-create/commit/8b9ab37d18b98aac7f72787bfb6dabb8a1ff182e))
+* **GithubIssueTemplates:** improve the Bug template ([#504](https://github.com/michaelfaith/mfaith-create/issues/504)) ([2fac66f](https://github.com/michaelfaith/mfaith-create/commit/2fac66f8405537142c5267c9d08aa18c279eefd7))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo to ^0.16.0 ([#512](https://github.com/michaelfaith/mfaith-create/issues/512)) ([0fd5a14](https://github.com/michaelfaith/mfaith-create/commit/0fd5a1490d4296691c9cdda0e795abc996388498))
+* **deps:** update dependency bingo-fs to ^0.8.0 ([#514](https://github.com/michaelfaith/mfaith-create/issues/514)) ([0675ebd](https://github.com/michaelfaith/mfaith-create/commit/0675ebd4fa4fd46b35e776945a883efce59cc8d5))
+* **deps:** update dependency bingo-stratum to ^0.11.0 ([#517](https://github.com/michaelfaith/mfaith-create/issues/517)) ([a5c549e](https://github.com/michaelfaith/mfaith-create/commit/a5c549ecc3c8037ae77fc7299c5d777d748de0b5))
+* **deps:** update dependency input-from-file to ^0.8.0 ([#518](https://github.com/michaelfaith/mfaith-create/issues/518)) ([32e203a](https://github.com/michaelfaith/mfaith-create/commit/32e203a6deb7d6c5929f3a554b67ef85a4f81c41))
+* **deps:** update dependency input-from-file-json to ^0.7.0 ([#520](https://github.com/michaelfaith/mfaith-create/issues/520)) ([441e2c7](https://github.com/michaelfaith/mfaith-create/commit/441e2c7a1d67410936097c0c4dd58f1b412d8752))
+* **deps:** update dependency input-from-script to ^0.8.0 ([#521](https://github.com/michaelfaith/mfaith-create/issues/521)) ([1f06d07](https://github.com/michaelfaith/mfaith-create/commit/1f06d07c3e0ede5c48a98a290f974f01c94d50eb))
+
 ## [0.10.1](https://github.com/michaelfaith/mfaith-create/compare/v0.10.0...v0.10.1) (2026-11-10)
 
 
