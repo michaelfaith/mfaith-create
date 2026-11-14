@@ -369,14 +369,14 @@ importers:
         specifier: 0.0.93
         version: 0.0.93
       prettier:
-        specifier: 3.9.10
-        version: 3.9.10
+        specifier: 3.10.0
+        version: 3.10.0
       prettier-plugin-sentences-per-line:
         specifier: 0.2.5
-        version: 0.2.5(prettier@3.9.10)
+        version: 0.2.5(prettier@3.10.0)
       pretty-quick:
         specifier: 4.2.2
-        version: 4.2.2(prettier@3.9.10)
+        version: 4.2.2(prettier@3.10.0)
       simple-git-hooks:
         specifier: 2.14.0
         version: 2.14.0
@@ -3435,8 +3435,8 @@ packages:
     peerDependencies:
       prettier: ^3
 
-  prettier@3.9.10:
-    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
+  prettier@3.10.0:
+    resolution: {integrity: sha512-mBi4765LgjO1PFjlEs7pUeK0nb1bw71c+N4/ItfeUWNdY5cV2pRKaFpbbFRYmDJMO+5ZwzGxHRqHxFZna7iv5w==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5412,7 +5412,7 @@ snapshots:
       yargs: 18.2.0
       yoctocolors: 2.2.0
     optionalDependencies:
-      prettier: 3.9.10
+      prettier: 3.10.0
     transitivePeerDependencies:
       - '@types/node'
 
@@ -7155,25 +7155,25 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-sentences-per-line@0.2.5(prettier@3.9.10):
+  prettier-plugin-sentences-per-line@0.2.5(prettier@3.10.0):
     dependencies:
-      prettier: 3.9.10
+      prettier: 3.10.0
       sentences-per-line: 0.5.6
 
-  prettier@3.9.10: {}
+  prettier@3.10.0: {}
 
   pretty-ms@9.3.1:
     dependencies:
       parse-ms: 4.0.0
 
-  pretty-quick@4.2.2(prettier@3.9.10):
+  pretty-quick@4.2.2(prettier@3.10.0):
     dependencies:
       '@pkgr/core': 0.2.10
       ignore: 7.0.14
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 4.0.7
-      prettier: 3.9.10
+      prettier: 3.10.0
       tinyexec: 0.3.2
       tslib: 2.9.1
 

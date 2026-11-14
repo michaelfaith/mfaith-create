@@ -108,7 +108,7 @@
     "lint-staged": "17.6.0",
     "oxfmt": "0.78.0",
     "pkg-pr-new": "0.0.93",
-    "prettier": "3.9.10",
+    "prettier": "3.10.0",
     "prettier-plugin-sentences-per-line": "0.2.5",
     "pretty-quick": "4.2.2",
     "simple-git-hooks": "2.14.0",
