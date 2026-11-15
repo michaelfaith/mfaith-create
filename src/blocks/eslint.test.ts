@@ -6,11 +6,11 @@ import { optionsBase } from './options.fakes.ts';
 
 const mockIntakeData = { ignores: ['dist'] };
 
-const mockBlockEslintIntake = vi.fn().mockReturnValue(mockIntakeData);
+const mockEslintIntake = vi.fn().mockReturnValue(mockIntakeData);
 
-vi.mock('./eslint/blockEslintIntake.ts', () => ({
-  get blockEslintIntake() {
-    return mockBlockEslintIntake;
+vi.mock('./eslint/eslintIntake.ts', () => ({
+  get eslintIntake() {
+    return mockEslintIntake;
   },
 }));
 
@@ -1216,7 +1216,7 @@ describe(blockEslint, () => {
         },
       });
 
-      expect(mockBlockEslintIntake).toHaveBeenCalledWith(sourceText);
+      expect(mockEslintIntake).toHaveBeenCalledWith(sourceText);
       expect(actual).toBe(mockIntakeData);
     });
 
@@ -1229,7 +1229,7 @@ describe(blockEslint, () => {
         },
       });
 
-      expect(mockBlockEslintIntake).toHaveBeenCalledWith(sourceText);
+      expect(mockEslintIntake).toHaveBeenCalledWith(sourceText);
       expect(actual).toBe(mockIntakeData);
     });
   });
