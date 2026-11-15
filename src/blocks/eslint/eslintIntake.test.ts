@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { blockEslintIntake } from './eslintIntake.ts';
+import { eslintIntake } from './eslintIntake.ts';
 
-describe(blockEslintIntake, () => {
+describe(eslintIntake, () => {
   it.each([
     ['an empty string', ''],
     ['unrelated text', 'other;'],
@@ -87,7 +87,7 @@ describe(blockEslintIntake, () => {
 			`,
     ],
   ])('returns undefined when given %s', (_, sourceText) => {
-    const actual = blockEslintIntake(sourceText);
+    const actual = eslintIntake(sourceText);
 
     expect(actual).toBeUndefined();
   });
@@ -311,7 +311,7 @@ export default tseslint.config(
       },
     ],
   ])('returns data when given %s', (_, sourceText, expected) => {
-    const actual = blockEslintIntake(sourceText);
+    const actual = eslintIntake(sourceText);
 
     expect(actual).toEqual(expected);
   });

@@ -3,7 +3,7 @@ import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './cspell.ts';
 import { blockDevelopmentDocs } from './developmentDocs.ts';
 import { blockEslint } from './eslint.ts';
-import { blockEslintPluginIntake } from './eslint/blockEslintPluginIntake.ts';
+import { eslintPluginIntake } from './eslint/eslintPluginIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { type ConfigEmoji, configEmojiSchema } from './eslint/schemas.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
@@ -29,7 +29,7 @@ export const blockEslintPlugin: BlockWithProps<BlockEslintPluginProps> = base.cr
       ['.eslint-doc-generatorrc.js', '.eslint-doc-generatorrc.mjs'],
     ]);
 
-    return docGeneratorConfigRaw ? blockEslintPluginIntake(docGeneratorConfigRaw[0]) : undefined;
+    return docGeneratorConfigRaw ? eslintPluginIntake(docGeneratorConfigRaw[0]) : undefined;
   },
   produce({ options, props }) {
     const { configEmoji } = props;

@@ -13,7 +13,7 @@ type ConfigExport = TSESTree.ExportDefaultDeclaration & {
   declaration: TSESTree.CallExpression;
 };
 
-export function blockEslintIntake(sourceText: string):
+export function eslintIntake(sourceText: string):
   | {
       ignores: string[];
       rules: ExtensionRuleGroup[];

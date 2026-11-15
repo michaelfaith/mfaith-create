@@ -8,7 +8,7 @@ import JSON5 from 'json5';
 import { tryCatch } from '../../utils/tryCatch.ts';
 import { type ConfigEmoji, configEmojiSchema } from './schemas.ts';
 
-export function blockEslintPluginIntake(sourceText: string):
+export function eslintPluginIntake(sourceText: string):
   | {
       configEmoji: ConfigEmoji;
     }

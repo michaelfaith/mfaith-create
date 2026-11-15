@@ -7,7 +7,7 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslintIntake } from './eslint/eslintIntake.ts';
+import { eslintIntake } from './eslint/eslintIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
 import {
@@ -52,7 +52,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
       ['eslint.config.ts', 'eslint.config.mts', 'eslint.config.js', 'eslint.config.mjs'],
     ]);
 
-    return eslintConfigRaw ? blockEslintIntake(eslintConfigRaw[0]) : undefined;
+    return eslintConfigRaw ? eslintIntake(eslintConfigRaw[0]) : undefined;
   },
   produce({ props }) {
     const { explanations, extensions, ignores, imports } = props;
