@@ -11,8 +11,8 @@ import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockVscode } from './blockVscode.ts';
 import { CommandPhase } from './phases.ts';
+import { blockVscode } from './vscode.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
   files: z.array(z.string()),

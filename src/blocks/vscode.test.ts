@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockVscode } from './blockVscode.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockVscode } from './vscode.ts';
 
 describe(blockVscode, () => {
   test('without props', () => {

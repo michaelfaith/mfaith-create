@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockBin } from './blockBin.ts';
+import { blockBin } from './bin.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockBin, () => {

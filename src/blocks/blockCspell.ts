@@ -10,9 +10,9 @@ import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVscode } from './blockVscode.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { CommandPhase } from './phases.ts';
+import { blockVscode } from './vscode.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
 

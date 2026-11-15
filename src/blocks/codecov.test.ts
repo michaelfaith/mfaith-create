@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockCodecov } from './blockCodecov.ts';
+import { blockCodecov } from './codecov.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockCodecov, () => {

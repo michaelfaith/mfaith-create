@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockAreTheTypesWrong } from './blockAreTheTypesWrong.ts';
+import { blockAreTheTypesWrong } from './areTheTypesWrong.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../data/packageData.ts', () => ({

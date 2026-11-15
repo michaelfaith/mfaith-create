@@ -13,9 +13,9 @@ import { blockKnip } from './blockKnip.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockVitest } from './blockVitest.ts';
-import { blockVscode } from './blockVscode.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
+import { blockVscode } from './vscode.ts';
 
 export interface BlockTypescriptProps {
   compilerOptions?: CompilerOptions | undefined;
