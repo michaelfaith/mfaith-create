@@ -39,8 +39,8 @@ export { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSenten
 export { blockPrPreviewRelease, type BlockPrPreviewReleaseProps } from './blockPrPreviewRelease.ts';
 export { blockReadme, type BlockReadmeProps } from './blockReadme.ts';
 export { blockReleasePlease, type BlockReleasePleaseProps } from './blockReleasePlease.ts';
-export { blockRenovate, type BlockRenovateProps } from './blockRenovate.ts';
 export { blockCodecov } from './codecov.ts';
+export { blockRenovate, type BlockRenovateProps } from './renovate.ts';
 export { blockSecurityDocs } from './securityDocs.ts';
 export { blockSideEffects, type BlockSideEffectsProps } from './sideEffects.ts';
 export { blockTemplatedWith } from './templatedWith.ts';

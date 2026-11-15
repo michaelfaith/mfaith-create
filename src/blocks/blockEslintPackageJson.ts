@@ -4,7 +4,7 @@ import { blockEslint } from './blockEslint.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
   about: {

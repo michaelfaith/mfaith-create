@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 describe(blockRemoveWorkflows, () => {
   test('without props or mode', () => {

@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 
 describe(blockRepositoryBranchRuleset, () => {
   test('without props when mode is undefined', () => {

@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 export const blockPnpmDedupe: BlockWithoutProps = base.createBlock({
   about: {

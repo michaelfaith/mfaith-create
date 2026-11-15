@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockRenovate } from './blockRenovate.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRenovate } from './renovate.ts';
 
 describe(blockRenovate, () => {
   test('without props', () => {

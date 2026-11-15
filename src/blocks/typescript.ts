@@ -11,9 +11,9 @@ import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockKnip } from './blockKnip.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVitest } from './vitest.ts';
 import { blockVscode } from './vscode.ts';
 

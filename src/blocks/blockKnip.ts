@@ -8,9 +8,9 @@ import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVscode } from './vscode.ts';
 
 const stringArraySchema = z.array(z.string());

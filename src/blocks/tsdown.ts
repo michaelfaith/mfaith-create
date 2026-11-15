@@ -20,8 +20,8 @@ import { blockPrPreviewRelease } from './blockPrPreviewRelease.ts';
 import { blockReleasePlease } from './blockReleasePlease.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVitest } from './vitest.ts';
 
 const attwSchema: z.ZodType<Attw> = z.union([

@@ -11,7 +11,6 @@ import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
-import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
 import { blockEslintIntake } from './eslint/blockEslintIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
@@ -26,6 +25,7 @@ import {
 } from './eslint/schemas.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { CommandPhase } from './phases.ts';
+import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVscode } from './vscode.ts';
 
 export interface BlockEslintProps {
