@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockCspell } from './cspell.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockGitignore } from './gitignore.ts';
 import { blockOxfmt } from './oxfmt.ts';

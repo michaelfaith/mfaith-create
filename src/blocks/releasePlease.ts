@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './blockCspell.ts';
+import { blockCspell } from './cspell.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { blockPrettier } from './prettier.ts';

@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
 import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockCspell } from './blockCspell.ts';
+import { blockCspell } from './cspell.ts';
 import { blockGithubApps } from './githubApps.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { CommandPhase } from './phases.ts';

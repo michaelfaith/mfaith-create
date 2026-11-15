@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockCspell } from './cspell.ts';
 import { blockEslint } from './eslint.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockOxfmt } from './oxfmt.ts';

@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockCspell } from './blockCspell.ts';
+import { blockCspell } from './cspell.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({

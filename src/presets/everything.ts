@@ -1,7 +1,7 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockCspell } from '../blocks/blockCspell.ts';
+import { blockCspell } from '../blocks/cspell.ts';
 import { blockEslintComments } from '../blocks/eslintComments.ts';
 import { blockEslintJsdoc } from '../blocks/eslintJsdoc.ts';
 import { blockEslintJsonc } from '../blocks/eslintJsonc.ts';
