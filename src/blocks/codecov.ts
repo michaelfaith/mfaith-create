@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
-import { blockReadme } from './blockReadme.ts';
+import { blockReadme } from './readme.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockVitest } from './vitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';

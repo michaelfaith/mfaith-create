@@ -5,12 +5,12 @@ import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockReadme } from './blockReadme.ts';
 import { blockEslintPluginIntake } from './eslint/blockEslintPluginIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { type ConfigEmoji, configEmojiSchema } from './eslint/schemas.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { CommandPhase } from './phases.ts';
+import { blockReadme } from './readme.ts';
 import { blockVitest } from './vitest.ts';
 
 export interface BlockEslintPluginProps {

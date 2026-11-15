@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockReadme } from './blockReadme.ts';
+import { blockReadme } from './readme.ts';
 
 export interface DirectoryEntry {
   [i: string]: Entry;

@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockPublishConfig } from './blockPublishConfig.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockPublishConfig } from './publishConfig.ts';
 
 describe(blockPublishConfig, () => {
   it('without props', () => {

@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockPublishConfig } from './blockPublishConfig.ts';
+import { blockPublishConfig } from './publishConfig.ts';
 
 const exportEntrySchema: z.ZodType<ExportEntry> = z.object({
   path: z.string(),

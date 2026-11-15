@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockReadme } from './blockReadme.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockReadme } from './readme.ts';
 
 describe(blockReadme, () => {
   test('description with one sentence', () => {

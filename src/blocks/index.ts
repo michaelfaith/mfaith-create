@@ -35,10 +35,10 @@ export { blockPackageJson, type BlockPackageJsonProps } from './blockPackageJson
 export { blockPnpmDedupe } from './blockPnpmDedupe.ts';
 export { blockPnpmWorkspace, type BlockPnpmWorkspaceProps } from './blockPnpmWorkspace.ts';
 export { blockPrettier, type BlockPrettierProps } from './blockPrettier.ts';
-export { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
-export { blockPrPreviewRelease, type BlockPrPreviewReleaseProps } from './blockPrPreviewRelease.ts';
-export { blockReadme, type BlockReadmeProps } from './blockReadme.ts';
 export { blockCodecov } from './codecov.ts';
+export { blockPrettierPluginSentencesPerLine } from './prettierPluginSentencesPerLine.ts';
+export { blockPrPreviewRelease, type BlockPrPreviewReleaseProps } from './prPreviewRelease.ts';
+export { blockReadme, type BlockReadmeProps } from './readme.ts';
 export { blockReleasePlease, type BlockReleasePleaseProps } from './releasePlease.ts';
 export { blockRenovate, type BlockRenovateProps } from './renovate.ts';
 export { blockSecurityDocs } from './securityDocs.ts';

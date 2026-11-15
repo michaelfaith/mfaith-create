@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockPrettierPluginSentencesPerLine } from './blockPrettierPluginSentencesPerLine.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockPrettierPluginSentencesPerLine } from './prettierPluginSentencesPerLine.ts';
 
 describe(blockPrettierPluginSentencesPerLine, () => {
   test('production', () => {

@@ -5,10 +5,10 @@ import type { BlockWithProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockPublishConfig } from './blockPublishConfig.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
+import { blockPublishConfig } from './publishConfig.ts';
 import { blockTsdown } from './tsdown.ts';
 
 const convertToCommand = (packageName: string): string => {

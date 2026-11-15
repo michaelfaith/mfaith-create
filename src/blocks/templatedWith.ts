@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockReadme } from './blockReadme.ts';
+import { blockReadme } from './readme.ts';
 
 export const blockTemplatedWith: BlockWithoutProps = base.createBlock({
   about: {
