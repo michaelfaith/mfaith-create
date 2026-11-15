@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { blockEslintIntake } from './blockEslintIntake.ts';
+import { blockEslintIntake } from './eslintIntake.ts';
 
 describe(blockEslintIntake, () => {
   it.each([
