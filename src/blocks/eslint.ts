@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockDevelopmentDocs } from './developmentDocs.ts';
 import { blockEslintIntake } from './eslint/blockEslintIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';

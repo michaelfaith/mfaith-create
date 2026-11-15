@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockDevelopmentDocs } from './developmentDocs.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockDevelopmentDocs, () => {

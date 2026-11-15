@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockDevelopmentDocs } from './developmentDocs.ts';
 
 const debuggerSchema: z.ZodType<Debugger> = z.intersection(
   z.record(z.string(), z.unknown()),

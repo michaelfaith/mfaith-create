@@ -8,7 +8,7 @@ import { getPackageDependencies } from '../data/packageData.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
+import { blockDevelopmentDocs } from './developmentDocs.ts';
 import { blockEslint } from './eslint.ts';
 import { blockExports, type ExportEntry, type Exports } from './exports.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';

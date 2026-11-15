@@ -1,9 +1,9 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockContributingDocs } from '../blocks/blockContributingDocs.ts';
-import { blockDevelopmentDocs } from '../blocks/blockDevelopmentDocs.ts';
 import { blockCodeOfConduct } from '../blocks/codeOfConduct.ts';
+import { blockContributingDocs } from '../blocks/contributingDocs.ts';
+import { blockDevelopmentDocs } from '../blocks/developmentDocs.ts';
 import { blockEslint } from '../blocks/eslint.ts';
 import { blockExampleFiles } from '../blocks/exampleFiles.ts';
 import { blockExports } from '../blocks/exports.ts';
