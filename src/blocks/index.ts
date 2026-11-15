@@ -24,12 +24,12 @@ export { blockGitattributes, type BlockGitattributesProps } from './blockGitattr
 export { blockGithubActionsCi, type BlockGithubActionsCiProps } from './blockGithubActionsCi.ts';
 export { blockGithubIssueTemplates } from './blockGithubIssueTemplates.ts';
 export { blockGithubPrTemplate } from './blockGithubPrTemplate.ts';
-export { blockGitignore, type BlockGitignoreProps } from './blockGitignore.ts';
-export { blockKnip, type BlockKnipProps } from './blockKnip.ts';
-export { blockMitLicense } from './blockMitLicense.ts';
-export { blockNcc, type BlockNccProps } from './blockNcc.ts';
-export { blockNvmrc } from './blockNvmrc.ts';
 export { blockCodecov } from './codecov.ts';
+export { blockGitignore, type BlockGitignoreProps } from './gitignore.ts';
+export { blockKnip, type BlockKnipProps } from './knip.ts';
+export { blockMitLicense } from './mitLicense.ts';
+export { blockNcc, type BlockNccProps } from './ncc.ts';
+export { blockNvmrc } from './nvmrc.ts';
 export { blockOctoguide } from './octoguide.ts';
 export { blockOxfmt, type BlockOxfmtProps } from './oxfmt.ts';
 export { blockPackageJson, type BlockPackageJsonProps } from './packageJson.ts';

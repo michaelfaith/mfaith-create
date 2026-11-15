@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockMitLicense } from './blockMitLicense.ts';
+import { blockMitLicense } from './mitLicense.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockMitLicense, () => {

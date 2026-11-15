@@ -3,7 +3,7 @@ import type { StratumTemplate } from 'bingo-stratum';
 import { base } from './base.ts';
 import { blockAreTheTypesWrong } from './blocks/areTheTypesWrong.ts';
 import { blockEslintPlugin } from './blocks/blockEslintPlugin.ts';
-import { blockNcc } from './blocks/blockNcc.ts';
+import { blockNcc } from './blocks/ncc.ts';
 import { blockRemoveDependencies } from './blocks/removeDependencies.ts';
 import { blockRemoveFiles } from './blocks/removeFiles.ts';
 import { blockRepoTransitions } from './blocks/repoTransitions.ts';

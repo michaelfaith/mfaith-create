@@ -3,7 +3,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
-import { blockGitignore } from './blockGitignore.ts';
+import { blockGitignore } from './gitignore.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { blockPrettier } from './prettier.ts';

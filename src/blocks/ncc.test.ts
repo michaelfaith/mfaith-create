@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockNcc } from './blockNcc.ts';
+import { blockNcc } from './ncc.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockNcc, () => {

@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGitignore } from './blockGitignore.ts';
+import { blockGitignore } from './gitignore.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitignore, () => {

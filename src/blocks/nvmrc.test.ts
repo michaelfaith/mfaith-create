@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockNvmrc } from './blockNvmrc.ts';
+import { blockNvmrc } from './nvmrc.ts';
 import { optionsBase } from './options.fakes.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { blockPrettier } from './prettier.ts';
