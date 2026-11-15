@@ -1,0 +1,196 @@
+import removeUndefinedObjects from 'remove-undefined-objects';
+import semver from 'semver';
+import sortPackageJson from 'sort-package-json';
+import { z } from 'zod';
+import { PackageJson } from 'zod-package-json';
+
+import { base } from '../base.ts';
+import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import { sortKeys } from '../utils/sortKeys.ts';
+import type { BlockWithProps } from './Block.ts';
+import { CommandPhase } from './phases.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
+
+const isRecord = (value: unknown): value is Record<string, unknown> => {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+};
+
+const publishConfigSchema = z
+  .object({
+    exports: PackageJson.shape.exports.optional(),
+  })
+  .catchall(z.unknown());
+interface PublishConfig {
+  exports?: PackageJson['exports'];
+  [k: string]: unknown;
+}
+const packageJsonSchema = PackageJson.partial().extend({
+  publishConfig: publishConfigSchema.optional(),
+  scripts: z.record(z.string(), z.union([z.string(), z.undefined()])).optional(),
+});
+export interface PackageJsonExt extends Partial<Omit<PackageJson, 'scripts'>> {
+  publishConfig?: PublishConfig | undefined;
+  scripts?: Record<string, string | undefined>;
+}
+
+export interface BlockPackageJsonProps {
+  cleanupCommands?: string[];
+  properties?: PackageJsonExt;
+}
+export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.createBlock({
+  about: {
+    name: 'Package JSON',
+  },
+  props: {
+    cleanupCommands: z.array(z.string()).default([]),
+    properties: packageJsonSchema.default({}),
+  },
+  produce({ offline, options, props }) {
+    const dependencies = useLargerVersions(options.packageData?.dependencies, {
+      ...options.packageData?.dependencies,
+      ...props.properties.dependencies,
+    });
+    const devDependencies = useLargerVersions(options.packageData?.devDependencies, {
+      ...options.packageData?.devDependencies,
+      ...props.properties.devDependencies,
+    });
+    const description = htmlToTextSafe(options.description);
+    const exports = processExports(props.properties.exports);
+    const publishConfig = processPublishConfig(props.properties.publishConfig);
+
+    return {
+      files: {
+        'package.json': sortPackageJson(
+          JSON.stringify(
+            removeUndefinedObjects({
+              ...options.packageData,
+              ...props.properties,
+              author: {
+                name: options.author,
+                ...(options.contact.url
+                  ? { url: options.contact.url }
+                  : options.contact.email
+                    ? { email: options.contact.email }
+                    : {}),
+              },
+              bin: props.properties.bin,
+              dependencies: Object.keys(dependencies).length ? dependencies : undefined,
+              description,
+              devDependencies: Object.keys(devDependencies).length ? devDependencies : undefined,
+              engines: {
+                node: /^\d/u.test(options.node.supported)
+                  ? `>=${options.node.supported}`
+                  : options.node.supported,
+              },
+              ...(exports ? { exports } : {}),
+              files: processFiles(props.properties.files),
+              keywords: options.keywords,
+              name: options.packageName,
+              ...(options.pnpm && {
+                packageManager: `pnpm@${options.pnpm}`,
+              }),
+              ...(publishConfig ? { publishConfig } : {}),
+              repository: {
+                type: 'git',
+                url: `git+https://github.com/${options.owner}/${options.repository}.git`,
+              },
+              scripts: {
+                ...options.packageData?.scripts,
+                ...props.properties.scripts,
+              },
+              type: 'module',
+              version: options.version ?? '0.0.0',
+            }),
+          ),
+        ),
+      },
+      scripts: [
+        {
+          commands: [
+            `pnpm install ${offline ? '--offline ' : ''}--no-frozen-lockfile`,
+            ...props.cleanupCommands,
+          ],
+          phase: CommandPhase.Install,
+        },
+      ],
+    };
+  },
+  transition() {
+    return {
+      extensions: [blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] })],
+    };
+  },
+});
+
+const processExports = (exports: PackageJson['exports']): PackageJson['exports'] => {
+  // We only want to sort exports, if it's an object, and if all of the keys start with `.`,
+  // indicating that they're subpaths, rather than other types of conditions (e.g. types, import)
+  if (!isRecord(exports) || !Object.keys(exports).every((condition) => condition.startsWith('.'))) {
+    return exports;
+  }
+
+  return sortKeys(exports);
+};
+
+const processPublishConfig = (
+  publishConfig: PackageJsonExt['publishConfig'],
+): PackageJsonExt['publishConfig'] => {
+  if (!publishConfig?.exports) {
+    return publishConfig;
+  }
+  return { ...publishConfig, exports: processExports(publishConfig.exports) };
+};
+
+const processFiles = (files: string[] | undefined) => {
+  // If no files have been specified, we can skip the property altogether
+  if (!files?.length) {
+    return undefined;
+  }
+
+  // First sort so that shorter entries are first (e.g. "dist/")...
+  const sortedByLength = files.filter(Boolean).sort((a, b) => a.length - b.length);
+
+  // ...then remove entries captured by earlier directories (e.g. "dist/index.mjs")
+  return sortedByLength
+    .filter(
+      (file, i) =>
+        !sortedByLength
+          .slice(0, i)
+          .some((earlier) => earlier.endsWith('/') && file.startsWith(earlier)),
+    )
+    .sort();
+};
+
+const removeRangePrefix = (version: string) => {
+  const raw = version.replaceAll(/[\^~><=]/gu, '').split(' ')[0];
+
+  return semver.coerce(raw) ?? raw;
+};
+
+const useLargerVersion = (existing: string | undefined, replacement: string) => {
+  if (!existing || existing === replacement) {
+    return replacement;
+  }
+
+  const existingCoerced = semver.coerce(removeRangePrefix(existing));
+
+  return existingCoerced && semver.gt(existingCoerced, removeRangePrefix(replacement))
+    ? existing
+    : replacement;
+};
+
+const useLargerVersions = (
+  existing: Record<string, string | undefined> | undefined,
+  replacements: Record<string, string>,
+) => {
+  if (!existing) {
+    return replacements;
+  }
+
+  return Object.fromEntries(
+    Object.entries(replacements).map(([key, replacement]) => [
+      key,
+      useLargerVersion(existing[key], replacement),
+    ]),
+  );
+};

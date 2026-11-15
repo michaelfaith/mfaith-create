@@ -1,0 +1,60 @@
+import { base } from '../base.ts';
+import type { BlockWithoutProps } from './Block.ts';
+import { blockGithubApps } from './githubApps.ts';
+import { blockReadme } from './readme.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
+import { blockVitest } from './vitest.ts';
+import { resolveUses } from './workflows/resolveUses.ts';
+
+export const blockCodecov: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'Codecov',
+  },
+  produce({ options }) {
+    const actionStep = {
+      uses: resolveUses('codecov/codecov-action', 'v7', options.workflowsVersions),
+      if: `success() && (matrix.os == 'ubuntu-latest')`,
+      with: {
+        fail_ci_if_error: true,
+        use_oidc: true,
+      },
+    };
+
+    return {
+      extensions: [
+        blockGithubApps({
+          apps: [
+            {
+              name: 'Codecov',
+              url: 'https://github.com/apps/codecov',
+            },
+          ],
+        }),
+        blockReadme({
+          badges: [
+            {
+              alt: '🧪 Coverage',
+              href: `https://codecov.io/gh/${options.owner}/${options.repository}`,
+              src: `https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage`,
+            },
+          ],
+        }),
+        blockVitest({
+          actionSteps: [actionStep],
+          permissions: {
+            'id-token': 'write',
+          },
+        }),
+      ],
+    };
+  },
+  transition() {
+    return {
+      extensions: [
+        blockRemoveFiles({
+          files: ['.github/codecov.{yaml,yml}', 'codecov.{yaml,yml}'],
+        }),
+      ],
+    };
+  },
+});

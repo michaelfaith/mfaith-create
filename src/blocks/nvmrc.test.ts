@@ -1,0 +1,63 @@
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, it } from 'vitest';
+
+import { blockNvmrc } from './nvmrc.ts';
+import { optionsBase } from './options.fakes.ts';
+import { blockOxfmt } from './oxfmt.ts';
+import { blockPrettier } from './prettier.ts';
+
+describe(blockNvmrc, () => {
+  it('only includes blockPackageJson props when options.node.pinned does not exist', () => {
+    const creation = testBlock(blockNvmrc, {
+      options: { ...optionsBase, node: { supported: '>=24' } },
+    });
+
+    expect(creation).toEqual({
+      extensions: [
+        blockOxfmt({
+          overrides: [
+            {
+              files: ['.nvmrc'],
+              options: {
+                parser: 'yaml',
+              },
+            },
+          ],
+        }),
+        blockPrettier({
+          overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
+        }),
+      ],
+    });
+  });
+
+  it('also includes files when options.node.pinned exists', () => {
+    const creation = testBlock(blockNvmrc, {
+      options: {
+        ...optionsBase,
+        node: { pinned: '24.3.0', supported: '>=20.19.0' },
+      },
+    });
+
+    expect(creation).toEqual({
+      extensions: [
+        blockOxfmt({
+          overrides: [
+            {
+              files: ['.nvmrc'],
+              options: {
+                parser: 'yaml',
+              },
+            },
+          ],
+        }),
+        blockPrettier({
+          overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
+        }),
+      ],
+      files: {
+        '.nvmrc': `24.3.0\n`,
+      },
+    });
+  });
+});

@@ -1,0 +1,1333 @@
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test, vi } from 'vitest';
+
+import { optionsBase } from './options.fakes.ts';
+import { blockVitest } from './vitest.ts';
+
+vi.mock('../utils/resolveBin.ts', () => ({
+  resolveBin: (bin: string) => `path/to/${bin}`,
+}));
+
+vi.mock('../data/packageData.ts', () => ({
+  getPackageDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+}));
+
+describe(blockVitest, () => {
+  test('without props or mode', () => {
+    const creation = testBlock(blockVitest, {
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Development Docs]",
+            "props": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
+              },
+            },
+          },
+          {
+            "block": "[Block Gitignore]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
+              "jobs": [
+                {
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
+                  "steps": [
+                    {
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Knip]",
+            "props": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block VS Code]",
+            "props": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+          },
+        ],
+        "files": {
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
+
+      const config: ViteUserConfig = defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			include: undefined,
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+
+      export default config;
+      ",
+        },
+      }
+    `);
+  });
+
+  test('transition mode', () => {
+    const creation = testBlock(blockVitest, {
+      mode: 'transition',
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Development Docs]",
+            "props": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
+              },
+            },
+          },
+          {
+            "block": "[Block Gitignore]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
+              "jobs": [
+                {
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
+                  "steps": [
+                    {
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Knip]",
+            "props": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block VS Code]",
+            "props": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+          },
+          {
+            "block": "[Block Remove Dependencies]",
+            "props": {
+              "dependencies": [
+                "@vitest/coverage-istanbul",
+                "eslint-plugin-jest",
+                "eslint-plugin-mocha",
+                "eslint-plugin-vitest",
+                "jest mocha",
+              ],
+            },
+          },
+          {
+            "block": "[Block Remove Files]",
+            "props": {
+              "files": [
+                ".mocha*",
+                "jest.config.*",
+                "vitest.config.{c,j,m}*",
+              ],
+            },
+          },
+          {
+            "block": "[Block Remove Workflows]",
+            "props": {
+              "workflows": [
+                "test",
+              ],
+            },
+          },
+        ],
+        "files": {
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
+
+      const config: ViteUserConfig = defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			include: undefined,
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+
+      export default config;
+      ",
+        },
+      }
+    `);
+  });
+
+  test('with props', () => {
+    const creation = testBlock(blockVitest, {
+      props: {
+        coverage: {
+          exclude: ['other'],
+          include: ['src/'],
+        },
+        environment: 'happy-dom',
+        exclude: ['dist/'],
+        flags: ['--typecheck'],
+        permissions: {
+          'id-token': 'write',
+        },
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Development Docs]",
+            "props": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
+              },
+            },
+          },
+          {
+            "block": "[Block Gitignore]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
+              "jobs": [
+                {
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
+                  "steps": [
+                    {
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "permissions": {
+                    "id-token": "write",
+                  },
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Knip]",
+            "props": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest --typecheck",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block VS Code]",
+            "props": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+          },
+        ],
+        "files": {
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
+
+      const config: ViteUserConfig = defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			exclude: ["other"],
+      			include: ["src/"],
+      			reporter: ['html', 'lcov'],
+      		},
+      		environment: 'happy-dom',
+      		exclude: ["dist/","node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+
+      export default config;
+      ",
+        },
+      }
+    `);
+  });
+
+  test('with duplicate excludes props', () => {
+    const creation = testBlock(blockVitest, {
+      props: {
+        coverage: {
+          exclude: ['other'],
+          include: ['src/'],
+        },
+        exclude: ['dist/', 'node_modules', 'node_modules'],
+        flags: ['--typecheck'],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                "coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Development Docs]",
+            "props": {
+              "sections": {
+                "Testing": {
+                  "contents": "
+      [Vitest](https://vitest.dev) is used for tests.
+      You can run it locally on the command-line:
+
+      \`\`\`shell
+      pnpm run test
+      \`\`\`
+
+      Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+      \`\`\`shell
+      pnpm run test --coverage
+      \`\`\`
+
+      Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+      Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+      		",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "extends": [
+                    "vitest.configs.recommended",
+                  ],
+                  "files": [
+                    "**/*.test.*",
+                  ],
+                  "rules": [
+                    {
+                      "entries": {
+                        "@typescript-eslint/no-unsafe-assignment": "off",
+                        "vitest/prefer-describe-function-title": "error",
+                      },
+                    },
+                  ],
+                  "settings": {
+                    "vitest": {
+                      "typecheck": true,
+                    },
+                  },
+                },
+              ],
+              "ignores": [
+                "coverage",
+                "**/*.snap",
+              ],
+              "imports": [
+                {
+                  "source": "@vitest/eslint-plugin",
+                  "specifier": "vitest",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "greet.test.ts": "import { describe, expect, it, vi } from 'vitest';
+
+      import { greet } from './greet.ts';
+
+      const message = 'Yay, testing!';
+
+      describe(greet, () => {
+      	it('logs to the console once when message is provided as a string', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet(message);
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs to the console once when message is provided as an object', () => {
+      		const logger = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+      		greet({ message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs once when times is not provided in an object', () => {
+      		const logger = vi.fn();
+
+      		greet({ logger, message });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(1);
+      	});
+
+      	it('logs a specified number of times when times is provided', () => {
+      		const logger = vi.fn();
+      		const times = 7;
+
+      		greet({ logger, message, times });
+
+      		expect(logger).toHaveBeenCalledWith(message);
+      		expect(logger).toHaveBeenCalledTimes(7);
+      	});
+      });
+      ",
+              },
+            },
+          },
+          {
+            "block": "[Block Gitignore]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Actions CI]",
+            "props": {
+              "jobs": [
+                {
+                  "id": "test_node",
+                  "name": "Test (Node.js \${{ matrix.node-version }})",
+                  "steps": [
+                    {
+                      "uses": "$/.github/actions/setup",
+                      "with": {
+                        "node-version": "\${{ matrix.node-version }}",
+                      },
+                    },
+                    {
+                      "run": "pnpm test",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "node-version": [
+                        "24.15.0",
+                        24,
+                        "26.0.0",
+                        26,
+                      ],
+                    },
+                  },
+                },
+                {
+                  "id": "test_os",
+                  "name": "Test (\${{ matrix.os }})",
+                  "runs-on": "\${{ matrix.os }}",
+                  "steps": [
+                    {
+                      "run": "pnpm test \${{ matrix.os == 'ubuntu-latest' && '--coverage' || '' }}",
+                    },
+                  ],
+                  "strategy": {
+                    "fail-fast": false,
+                    "matrix": {
+                      "os": [
+                        "macos-latest",
+                        "ubuntu-latest",
+                        "windows-latest",
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Knip]",
+            "props": {
+              "entry": [
+                "src/**/*.test.*",
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "devDependencies": {
+                  "@vitest/coverage-v8": "1.2.3",
+                  "@vitest/eslint-plugin": "1.2.3",
+                  "console-fail-test": "1.2.3",
+                  "vitest": "1.2.3",
+                },
+                "scripts": {
+                  "test": "vitest --typecheck",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/coverage",
+              ],
+            },
+          },
+          {
+            "block": "[Block VS Code]",
+            "props": {
+              "debuggers": [
+                {
+                  "args": [
+                    "run",
+                    "\${relativeFile}",
+                  ],
+                  "autoAttachChildProcesses": true,
+                  "console": "integratedTerminal",
+                  "name": "Debug Current Test File",
+                  "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+                  "request": "launch",
+                  "skipFiles": [
+                    "<node_internals>/**",
+                    "**/node_modules/**",
+                  ],
+                  "smartStep": true,
+                  "type": "node",
+                },
+              ],
+              "extensions": [
+                "vitest.explorer",
+              ],
+            },
+          },
+        ],
+        "files": {
+          "vitest.config.ts": "import { defineConfig, type ViteUserConfig } from 'vitest/config';
+
+      const config: ViteUserConfig = defineConfig({
+      	test: {
+      		clearMocks: true,
+      		coverage: {
+      			exclude: ["other"],
+      			include: ["src/"],
+      			reporter: ['html', 'lcov'],
+      		},
+      		exclude: ["dist/","node_modules"],
+      		setupFiles: ['console-fail-test/setup'],
+      	},
+      });
+
+      export default config;
+      ",
+        },
+      }
+    `);
+  });
+
+  describe('intake', () => {
+    it('returns nothing when vitest.config.ts does not pass a test to defineConfig', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [`defineConfig({ other: true })`],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({});
+    });
+
+    it('returns nothing when vitest.config.ts passes unknown test data to defineConfig', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [`defineConfig({ test: true })`],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({});
+    });
+
+    it('returns nothing when vitest.config.ts passes invalid test syntax to defineConfig', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [`defineConfig({ test: { ! } })`],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({});
+    });
+
+    it('returns nothing when vitest.config.ts passes invalid test data to defineConfig', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [`defineConfig({ test: { coverage: 'invalid' } })`],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({});
+    });
+
+    it('returns coverage and exclude when they exist in vitest.config.ts', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [
+            `import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+	test: {
+		clearMocks: true,
+		coverage: {
+			all: true,
+			exclude: ["src/index.ts"],
+			include: ["src", "other"],
+			reporter: ["html", "lcov"],
+		},
+		exclude: ["dist", "node_modules"],
+		setupFiles: ["console-fail-test/setup"],
+	},
+});
+`,
+          ],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({
+        coverage: {
+          exclude: ['src/index.ts'],
+          include: ['src', 'other'],
+        },
+        exclude: ['dist', 'node_modules'],
+      });
+    });
+
+    it('returns environment when it exists in vitest.config.ts', () => {
+      const actual = testIntake(blockVitest, {
+        files: {
+          'vitest.config.ts': [
+            `import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+	test: {
+		environment: "happy-dom",
+	},
+});
+`,
+          ],
+        },
+        options: optionsBase,
+      });
+
+      expect(actual).toEqual({
+        environment: 'happy-dom',
+      });
+    });
+
+    it('returns flags when it exists in package.json', () => {
+      const actual = testIntake(blockVitest, {
+        files: {},
+        options: {
+          ...optionsBase,
+          packageData: {
+            scripts: {
+              test: 'vitest --typecheck',
+            },
+          },
+        },
+      });
+
+      expect(actual).toEqual({
+        flags: ['--typecheck'],
+      });
+    });
+  });
+});

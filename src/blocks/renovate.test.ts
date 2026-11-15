@@ -1,0 +1,135 @@
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it, test } from 'vitest';
+
+import { optionsBase } from './options.fakes.ts';
+import { blockRenovate } from './renovate.ts';
+
+describe(blockRenovate, () => {
+  test('without props', () => {
+    const creation = testBlock(blockRenovate, {
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block GitHub Apps]",
+            "props": {
+              "apps": [
+                {
+                  "name": "Renovate",
+                  "url": "https://github.com/apps/renovate",
+                },
+              ],
+            },
+          },
+        ],
+        "files": {
+          ".github": {
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+          },
+        },
+      }
+    `);
+  });
+
+  test('with props', () => {
+    const creation = testBlock(blockRenovate, {
+      props: {
+        ignoreDeps: ['all-contributors-cli'],
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block GitHub Apps]",
+            "props": {
+              "apps": [
+                {
+                  "name": "Renovate",
+                  "url": "https://github.com/apps/renovate",
+                },
+              ],
+            },
+          },
+        ],
+        "files": {
+          ".github": {
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+          },
+        },
+      }
+    `);
+  });
+
+  describe('intake', () => {
+    it('returns no ignoreDeps when .github/renovate.json does not exist', () => {
+      const actual = testIntake(blockRenovate, {
+        files: {},
+      });
+
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
+
+    it('returns no ignoreDeps when .github/renovate.json does not contain truthy data', () => {
+      const actual = testIntake(blockRenovate, {
+        files: {
+          '.github': {
+            'renovate.json': [JSON.stringify(null)],
+          },
+        },
+      });
+
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
+
+    it('returns no ignoreDeps when .github/renovate.json contains only unrelated data', () => {
+      const actual = testIntake(blockRenovate, {
+        files: {
+          '.github': {
+            'renovate.json': [JSON.stringify({ other: true })],
+          },
+        },
+      });
+
+      expect(actual).toEqual({ ignoreDeps: [] });
+    });
+
+    it('returns ignoreDeps when .github/renovate.json contains ignoreDeps', () => {
+      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
+
+      const actual = testIntake(blockRenovate, {
+        files: {
+          '.github': {
+            'renovate.json': [JSON.stringify({ ignoreDeps })],
+          },
+        },
+      });
+
+      expect(actual).toEqual({ ignoreDeps });
+    });
+
+    it('returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data', () => {
+      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
+
+      const actual = testIntake(blockRenovate, {
+        files: {
+          '.github': {
+            'renovate.json': [
+              JSON.stringify({
+                ignoreDeps,
+                other: true,
+              }),
+            ],
+          },
+        },
+      });
+
+      expect(actual).toEqual({ ignoreDeps });
+    });
+  });
+});

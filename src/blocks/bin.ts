@@ -1,0 +1,115 @@
+import { base } from '../base.ts';
+import { makeRelativePath } from '../utils/makeRelativePath.ts';
+import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
+import type { BlockWithProps } from './Block.ts';
+import { blockEslint } from './eslint.ts';
+import { JS_TS_FILES } from './eslint/globs.ts';
+import { blockExampleFiles } from './exampleFiles.ts';
+import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
+import { blockPackageJson } from './packageJson.ts';
+import { type Bin, binSchema } from './packageJson/schemas.ts';
+import { blockPublishConfig } from './publishConfig.ts';
+import { blockTsdown } from './tsdown.ts';
+
+const convertToCommand = (packageName: string): string => {
+  const parts = packageName.split('/');
+  return parts.length > 1 ? parts[1] : parts[0];
+};
+
+const createExplicitBin = (binPath: string, packageName: string): Record<string, string> => {
+  const binCommand = convertToCommand(packageName);
+  return { [binCommand]: binPath };
+};
+
+const prepareBin = (
+  input: Bin,
+  packageName: string,
+  transformPath = (binPath: string) => binPath,
+): Record<string, string> => {
+  if (typeof input === 'string') {
+    return createExplicitBin(makeRelativePath(transformPath(input)), packageName);
+  }
+
+  return Object.fromEntries(
+    Object.entries(input).map(([key, value]) => [key, makeRelativePath(transformPath(value))]),
+  );
+};
+
+export interface BlockBinProps {
+  src?: Bin;
+}
+
+export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
+  about: {
+    name: 'Bin',
+    description:
+      'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
+  },
+  props: {
+    src: binSchema.optional(),
+  },
+  intake({ files }) {
+    const raw = intakeFileAsJson(files, ['package.json']);
+    const { data } = binSchema.safeParse(raw?.bin);
+    if (!data) {
+      return undefined;
+    }
+
+    let src: string | Record<string, string>;
+    if (typeof data === 'string') {
+      src = distToSrc(data);
+    } else {
+      src = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, distToSrc(value)]));
+    }
+
+    return {
+      src,
+    };
+  },
+  produce({ options, props }) {
+    const { src = './src/bin/index.ts' } = props;
+    const { devExports, emoji, packageName, repository } = options;
+
+    const srcBin = prepareBin(src, packageName ?? repository);
+    const bin = prepareBin(src, packageName ?? repository, srcToDist);
+    const binEntries = typeof src === 'string' ? [src] : Object.values(src);
+
+    return {
+      extensions: [
+        blockEslint({
+          extensions: [
+            {
+              files: JS_TS_FILES,
+              rules: [
+                {
+                  comment: 'Using a ts bin file throws this rule off.',
+                  entries: { 'n/hashbang': 'off' as const },
+                },
+              ],
+            },
+          ],
+        }),
+        blockPackageJson({
+          properties: {
+            bin: devExports ? srcBin : bin,
+          },
+        }),
+        blockExampleFiles({
+          files: {
+            bin: {
+              'index.ts': `#!/usr/bin/env node
+import { greet } from '../index.ts';
+
+greet('Hello, world! ${emoji}');`,
+            },
+          },
+        }),
+        ...(devExports ? [blockPublishConfig({ bin })] : []),
+        blockTsdown({
+          entry: binEntries,
+          excludeFromExports: binEntries,
+        }),
+      ],
+    };
+  },
+});

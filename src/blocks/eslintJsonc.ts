@@ -1,0 +1,24 @@
+import { base } from '../base.ts';
+import type { BlockWithoutProps } from './Block.ts';
+import { blockEslint } from './eslint.ts';
+
+export const blockEslintJsonc: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'ESLint JSONC Plugin',
+  },
+  produce() {
+    return {
+      extensions: [
+        blockEslint({
+          extensions: [
+            {
+              extends: [`jsonc.configs['flat/recommended-with-json']`],
+              files: ['**/*.json'],
+            },
+          ],
+          imports: [{ source: 'eslint-plugin-jsonc', specifier: 'jsonc' }],
+        }),
+      ],
+    };
+  },
+});

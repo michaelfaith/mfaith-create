@@ -1,0 +1,585 @@
+import { testBlock, testIntake } from 'bingo-stratum-testers';
+import { describe, expect, it } from 'vitest';
+
+import { blockBin } from './bin.ts';
+import { optionsBase } from './options.fakes.ts';
+
+describe(blockBin, () => {
+  it('without props', () => {
+    const creation = testBlock(blockBin, { options: optionsBase });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "test-package-name": "./dist/bin/index.mjs",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
+                "./src/bin/index.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('without props (options.devExports: true)', () => {
+    const creation = testBlock(blockBin, {
+      options: { ...optionsBase, devExports: true },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "test-package-name": "./src/bin/index.ts",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Publish Config]",
+            "props": {
+              "bin": {
+                "test-package-name": "./dist/bin/index.mjs",
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
+                "./src/bin/index.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('without props (scoped package name)', () => {
+    const creation = testBlock(blockBin, {
+      options: { ...optionsBase, packageName: '@test/create-app' },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "create-app": "./dist/bin/index.mjs",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
+                "./src/bin/index.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('without props (no package name)', () => {
+    const creation = testBlock(blockBin, {
+      options: { ...optionsBase, packageName: undefined },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "test-repository": "./dist/bin/index.mjs",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "./src/bin/index.ts",
+              ],
+              "excludeFromExports": [
+                "./src/bin/index.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('with string src', () => {
+    const creation = testBlock(blockBin, {
+      props: {
+        src: 'dist/cli.ts',
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "test-package-name": "./dist/cli.mjs",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "dist/cli.ts",
+              ],
+              "excludeFromExports": [
+                "dist/cli.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('with object src', () => {
+    const creation = testBlock(blockBin, {
+      props: {
+        src: {
+          'test-repo': 'dist/bin/index.mts',
+          'other-bin': 'dist/bin/other.ts',
+        },
+      },
+      options: optionsBase,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "other-bin": "./dist/bin/other.mjs",
+                  "test-repo": "./dist/bin/index.mjs",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+              "excludeFromExports": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  it('with object src (options.devExports: true)', () => {
+    const creation = testBlock(blockBin, {
+      props: {
+        src: {
+          'test-repo': 'dist/bin/index.mts',
+          'other-bin': 'dist/bin/other.ts',
+        },
+      },
+      options: { ...optionsBase, devExports: true },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block ESLint]",
+            "props": {
+              "extensions": [
+                {
+                  "files": [
+                    "**/*.js",
+                    "**/*.ts",
+                  ],
+                  "rules": [
+                    {
+                      "comment": "Using a ts bin file throws this rule off.",
+                      "entries": {
+                        "n/hashbang": "off",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Package JSON]",
+            "props": {
+              "properties": {
+                "bin": {
+                  "other-bin": "./dist/bin/other.ts",
+                  "test-repo": "./dist/bin/index.mts",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Example Files]",
+            "props": {
+              "files": {
+                "bin": {
+                  "index.ts": "#!/usr/bin/env node
+      import { greet } from '../index.ts';
+
+      greet('Hello, world! ✨');",
+                },
+              },
+            },
+          },
+          {
+            "block": "[Block Publish Config]",
+            "props": {
+              "bin": {
+                "other-bin": "./dist/bin/other.mjs",
+                "test-repo": "./dist/bin/index.mjs",
+              },
+            },
+          },
+          {
+            "block": "[Block tsdown]",
+            "props": {
+              "entry": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+              "excludeFromExports": [
+                "dist/bin/index.mts",
+                "dist/bin/other.ts",
+              ],
+            },
+          },
+        ],
+      }
+    `);
+  });
+
+  describe('intake', () => {
+    it('returns undefined when package.json does not exist', () => {
+      const actual = testIntake(blockBin, {
+        files: {},
+      });
+
+      expect(actual).toBeUndefined();
+    });
+
+    it('returns undefined when package.json does not contain a bin', () => {
+      const actual = testIntake(blockBin, {
+        files: {
+          'package.json': [JSON.stringify({ name: 'some-repo' })],
+        },
+      });
+
+      expect(actual).toBeUndefined();
+    });
+
+    it('returns bin when package.json contains a string bin', () => {
+      const packageJson = { bin: 'dist/cli.js' };
+
+      const actual = testIntake(blockBin, {
+        files: {
+          'package.json': [JSON.stringify(packageJson)],
+        },
+      });
+
+      expect(actual).toEqual({ src: 'src/cli.ts' });
+    });
+
+    it('returns bin when package.json contains a string bin with `mjs` extension', () => {
+      const packageJson = { bin: 'dist/cli.mjs' };
+
+      const actual = testIntake(blockBin, {
+        files: {
+          'package.json': [JSON.stringify(packageJson)],
+        },
+      });
+
+      expect(actual).toEqual({ src: 'src/cli.ts' });
+    });
+
+    it('returns bin when package.json contains an object bin', () => {
+      const packageJson = {
+        bin: {
+          'test-repo': 'dist/cli.mjs',
+          'other-bin': 'dist/other.cjs',
+        },
+      };
+
+      const actual = testIntake(blockBin, {
+        files: {
+          'package.json': [JSON.stringify(packageJson)],
+        },
+      });
+
+      expect(actual).toEqual({
+        src: {
+          'test-repo': 'src/cli.ts',
+          'other-bin': 'src/other.ts',
+        },
+      });
+    });
+  });
+});

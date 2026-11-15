@@ -1,0 +1,27 @@
+import { base } from '../base.ts';
+import type { BlockWithoutProps } from './Block.ts';
+import { blockOxfmt } from './oxfmt.ts';
+import { blockPrettier } from './prettier.ts';
+
+export const blockNvmrc: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'Nvmrc',
+  },
+  produce({ options }) {
+    return {
+      extensions: [
+        blockOxfmt({
+          overrides: [{ files: ['.nvmrc'], options: { parser: 'yaml' } }],
+        }),
+        blockPrettier({
+          overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
+        }),
+      ],
+      ...(options.node.pinned && {
+        files: {
+          '.nvmrc': `${options.node.pinned}\n`,
+        },
+      }),
+    };
+  },
+});

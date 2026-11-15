@@ -1,0 +1,678 @@
+import { testBlock } from 'bingo-stratum-testers';
+import { it } from 'vitest';
+import { describe, expect, test } from 'vitest';
+
+import { optionsBase } from './options.fakes.ts';
+import { blockPackageJson } from './packageJson.ts';
+
+const options = {
+  ...optionsBase,
+  description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,
+};
+
+describe(blockPackageJson, () => {
+  test('without props or mode', () => {
+    const creation = testBlock(blockPackageJson, { options });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('transition mode', () => {
+    const creation = testBlock(blockPackageJson, {
+      mode: 'transition',
+      options,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block Remove Files]",
+            "props": {
+              "files": [
+                "package-lock.json",
+                "yarn.lock",
+              ],
+            },
+          },
+        ],
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with props', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        cleanupCommands: ['pnpm dedupe'],
+        properties: {
+          dependencies: {
+            'is-odd': '1.2.3',
+          },
+          other: true,
+        },
+      },
+      options,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"engines":{"node":"^24.15.0 || >=26.0.0"},"other":true}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+              "pnpm dedupe",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with props adding devDependencies', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        cleanupCommands: ['pnpm dedupe'],
+        properties: {
+          dependencies: {
+            'is-odd': '1.2.3',
+          },
+          devDependencies: {
+            'is-even': '4.5.6',
+          },
+          other: true,
+        },
+      },
+      options,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"engines":{"node":"^24.15.0 || >=26.0.0"},"other":true}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+              "pnpm dedupe",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with props adding overlapping files', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          files: ['README.md', 'LICENSE.md', 'dist/', 'dist/bin/file.js'],
+        },
+      },
+      options,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","files":["LICENSE.md","README.md","dist/"],"engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with keywords', () => {
+    const creation = testBlock(blockPackageJson, {
+      options: {
+        ...options,
+        keywords: ['abc', 'def ghi'],
+      },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","keywords":["abc","def ghi"],"repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('with node and pnpm versions', () => {
+    const creation = testBlock(blockPackageJson, {
+      options: {
+        ...options,
+        node: {
+          supported: '22.0.0',
+        },
+        pnpm: '10.4.0',
+      },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","packageManager":"pnpm@10.4.0","engines":{"node":">=22.0.0"}}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install --no-frozen-lockfile",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+  });
+
+  test('with peerDependencies and peerDependenciesMeta', () => {
+    const creation = testBlock(blockPackageJson, {
+      options: {
+        ...options,
+        packageData: {
+          peerDependencies: {
+            '@types/estree': '>=1',
+            eslint: '>=8',
+          },
+          peerDependenciesMeta: {
+            '@types/estree': {
+              optional: true,
+            },
+          },
+        },
+      },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","peerDependencies":{"@types/estree":">=1","eslint":">=8"},"peerDependenciesMeta":{"@types/estree":{"optional":true}},"engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  test('offline mode', () => {
+    const creation = testBlock(blockPackageJson, {
+      offline: true,
+      options,
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "files": {
+          "package.json": "{"name":"test-package-name","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"url":"http://contact.url"},"type":"module","engines":{"node":"^24.15.0 || >=26.0.0"}}",
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpm install --offline --no-frozen-lockfile",
+            ],
+            "phase": 1,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('preserves an existing dependency when the prop has an invalid version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '0.9.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+  });
+
+  it("uses the prop's version when there is no existing equivalent", () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '1.1.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {},
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
+			}
+		`);
+  });
+
+  it("uses the prop's version when the existing equivalent is invalid semver", () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: 'next',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+  });
+
+  it('preserves an existing dependency when the prop has an older version minimum', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '^0.9.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '^1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.0.0",
+			}
+		`);
+  });
+
+  it('preserves an existing dependency when the prop has an older version range', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '^0.9.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '^1.0.0 || ^2.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.0.0 || ^2.0.0",
+			}
+		`);
+  });
+
+  it('merges an existing dependency when the prop has the same version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+  });
+
+  it('replaces an existing dependency when the prop has a newer version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '1.1.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
+			}
+		`);
+  });
+
+  it('replaces an existing dependency when the prop has a newer version than the first range element', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          dependencies: {
+            [dependency]: '^1.1.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          dependencies: {
+            [dependency]: '^1.0.0 || ^2.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).dependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.1.0",
+			}
+		`);
+  });
+
+  it('preserves an existing devDependency when the prop has an older pinned version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          devDependencies: {
+            [dependency]: '0.9.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          devDependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+  });
+
+  it('merges an existing devDependency when the prop has the same version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          devDependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          devDependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+  });
+
+  it('replaces an existing devDependency when the prop has a newer version', () => {
+    const dependency = 'test-dependency';
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          devDependencies: {
+            [dependency]: '1.1.0',
+          },
+        },
+      },
+      options: {
+        ...optionsBase,
+        packageData: {
+          devDependencies: {
+            [dependency]: '1.0.0',
+          },
+        },
+      },
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).devDependencies,
+    ).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
+			}
+		`);
+  });
+
+  it('should sort top-level exports keys when subpaths', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          exports: {
+            '.': 'index.ts',
+            './package.json': './package.json',
+            './config': './config/index.ts',
+          },
+          publishConfig: {
+            access: 'public',
+            exports: {
+              '.': 'index.mjs',
+              './package.json': './package.json',
+              './config': './config/index.mjs',
+            },
+          },
+        },
+      },
+      options,
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).exports,
+    ).toMatchInlineSnapshot(`
+      {
+        ".": "index.ts",
+        "./config": "./config/index.ts",
+        "./package.json": "./package.json",
+      }
+    `);
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).publishConfig,
+    ).toMatchInlineSnapshot(`
+      {
+        "access": "public",
+        "exports": {
+          ".": "index.mjs",
+          "./config": "./config/index.mjs",
+          "./package.json": "./package.json",
+        },
+      }
+    `);
+  });
+
+  it('should do nothing, if exports is a string', () => {
+    const creation = testBlock(blockPackageJson, {
+      props: {
+        properties: {
+          exports: './index.ts',
+          publishConfig: {
+            access: 'public',
+            exports: './index.mjs',
+          },
+        },
+      },
+      options,
+    });
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).exports,
+    ).toMatchInlineSnapshot(`"./index.ts"`);
+
+    expect(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+      JSON.parse(creation.files!['package.json'] as string).publishConfig,
+    ).toMatchInlineSnapshot(`
+      {
+        "access": "public",
+        "exports": "./index.mjs",
+      }
+    `);
+  });
+});

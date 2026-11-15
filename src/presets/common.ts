@@ -1,13 +1,13 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockAllContributors } from '../blocks/blockAllContributors.ts';
-import { blockCodecov } from '../blocks/blockCodecov.ts';
-import { blockFunding } from '../blocks/blockFunding.ts';
-import { blockOctoguide } from '../blocks/blockOctoguide.ts';
-import { blockPrPreviewRelease } from '../blocks/blockPrPreviewRelease.ts';
-import { blockReleasePlease } from '../blocks/blockReleasePlease.ts';
-import { blockVitest } from '../blocks/blockVitest.ts';
+import { blockAllContributors } from '../blocks/allContributors.ts';
+import { blockCodecov } from '../blocks/codecov.ts';
+import { blockFunding } from '../blocks/funding.ts';
+import { blockOctoguide } from '../blocks/octoguide.ts';
+import { blockPrPreviewRelease } from '../blocks/prPreviewRelease.ts';
+import { blockReleasePlease } from '../blocks/releasePlease.ts';
+import { blockVitest } from '../blocks/vitest.ts';
 import type { OptionsShape } from '../Options.ts';
 import { presetMinimal } from './minimal.ts';
 

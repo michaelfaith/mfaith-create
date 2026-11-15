@@ -5,7 +5,7 @@ import { diffCreatedDirectory } from 'bingo-testers';
 import { format } from 'oxfmt';
 import { expect, test, vi } from 'vitest';
 
-import { blockBin } from './blocks/blockBin.ts';
+import { blockBin } from './blocks/bin.ts';
 import { JS_TS_FILES } from './blocks/eslint/globs.ts';
 import {
   base,

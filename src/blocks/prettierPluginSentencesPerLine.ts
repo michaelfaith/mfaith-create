@@ -1,0 +1,18 @@
+import { base } from '../base.ts';
+import type { BlockWithoutProps } from './Block.ts';
+import { blockPrettier } from './prettier.ts';
+
+export const blockPrettierPluginSentencesPerLine: BlockWithoutProps = base.createBlock({
+  about: {
+    name: 'Prettier Plugin Sentences Per Line',
+  },
+  produce() {
+    return {
+      extensions: [
+        blockPrettier({
+          plugins: ['prettier-plugin-sentences-per-line'],
+        }),
+      ],
+    };
+  },
+});

@@ -1,0 +1,482 @@
+import { testBlock } from 'bingo-stratum-testers';
+import { describe, expect, it } from 'vitest';
+
+import { blockAllContributors } from './allContributors.ts';
+import { optionsBase } from './options.fakes.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
+
+describe(blockAllContributors, () => {
+  it('defaults contributors to [] when not provided', () => {
+    const creation = testBlock(blockAllContributors, { options: optionsBase });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                ".all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Apps]",
+            "props": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block README.md]",
+            "props": {
+              "badges": [
+                {
+                  "alt": "👪 All Contributors: undefined",
+                  "comments": {
+                    "after": "
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
+        <!-- prettier-ignore-end -->",
+                    "before": "<!-- prettier-ignore-start -->
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
+                  },
+                  "href": "#contributors",
+                  "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-undefined-21bb42.svg",
+                },
+              ],
+              "sections": undefined,
+            },
+          },
+        ],
+        "files": {
+          ".all-contributorsrc": "{
+        "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+        "commitType": "docs",
+        "contributors": [],
+        "contributorsPerLine": 7,
+        "contributorsSortAlphabetically": true,
+        "files": [
+          "README.md"
+        ],
+        "projectName": "test-repository",
+        "projectOwner": "test-owner",
+        "repoType": "github",
+        "commitConvention": "angular"
+      }",
+          ".github": {
+            "workflows": {
+              "contributors.yml": "name: Contributors
+
+      on:
+        push:
+          branches:
+            - main
+
+      jobs:
+        new_contributor_check:
+          name: New Contributor Check
+          if: github.event.repository.fork != true
+          runs-on: ubuntu-slim
+          permissions:
+            contents: read
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: actions/checkout@v7
+              with:
+                fetch-depth: 0
+            - uses: $/.github/actions/setup
+              with:
+                skip-checkout: true
+            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
+              env:
+                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      ",
+            },
+          },
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('runs add including existing owner contributions when they exist', () => {
+    const creation = testBlock(blockAllContributors, {
+      options: {
+        ...optionsBase,
+        contributors: [
+          {
+            avatar_url: 'https://avatars.githubusercontent.com/u/3335181?v=4',
+            contributions: ['bug', 'code', 'design', 'doc', 'test', 'tool'],
+            login: 'michaelfaith',
+            name: 'michael faith',
+            profile: 'https://michael.faith',
+          },
+        ],
+        owner: 'michaelfaith',
+      },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                ".all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Apps]",
+            "props": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block README.md]",
+            "props": {
+              "badges": [
+                {
+                  "alt": "👪 All Contributors: 1",
+                  "comments": {
+                    "after": "
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
+        <!-- prettier-ignore-end -->",
+                    "before": "<!-- prettier-ignore-start -->
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
+                  },
+                  "href": "#contributors",
+                  "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg",
+                },
+              ],
+              "sections": [
+                "## Contributors
+
+      <!-- spellchecker: disable -->
+      <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+      <!-- prettier-ignore-start -->
+      <!-- markdownlint-disable -->
+      <table>
+        <tbody>
+          <tr>
+            <td align="center" valign="top" width="14.28%"><a href="https://michael.faith"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Amichaelfaith" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Code">💻</a> <a href="#design-michaelfaith" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Tests">⚠️</a> <a href="#tool-michaelfaith" title="Tools">🔧</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- markdownlint-restore -->
+      <!-- prettier-ignore-end -->
+
+      <!-- ALL-CONTRIBUTORS-LIST:END -->
+      <!-- spellchecker: enable -->",
+              ],
+            },
+          },
+        ],
+        "files": {
+          ".all-contributorsrc": "{
+        "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+        "commitType": "docs",
+        "contributors": [
+          {
+            "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+            "contributions": [
+              "bug",
+              "code",
+              "design",
+              "doc",
+              "test",
+              "tool"
+            ],
+            "login": "michaelfaith",
+            "name": "michael faith",
+            "profile": "https://michael.faith"
+          }
+        ],
+        "contributorsPerLine": 7,
+        "contributorsSortAlphabetically": true,
+        "files": [
+          "README.md"
+        ],
+        "projectName": "test-repository",
+        "projectOwner": "michaelfaith",
+        "repoType": "github",
+        "commitConvention": "angular"
+      }",
+          ".github": {
+            "workflows": {
+              "contributors.yml": "name: Contributors
+
+      on:
+        push:
+          branches:
+            - main
+
+      jobs:
+        new_contributor_check:
+          name: New Contributor Check
+          if: github.event.repository.fork != true
+          runs-on: ubuntu-slim
+          permissions:
+            contents: read
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: actions/checkout@v7
+              with:
+                fetch-depth: 0
+            - uses: $/.github/actions/setup
+              with:
+                skip-checkout: true
+            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
+              env:
+                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      ",
+            },
+          },
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpx all-contributors-cli@latest add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('adds full owner contributions when no existing contributor is the owner', () => {
+    const creation = testBlock(blockAllContributors, {
+      options: {
+        ...optionsBase,
+        contributors: [
+          {
+            avatar_url: 'https://avatars.githubusercontent.com/u/3335181?v=4',
+            contributions: ['bug', 'code', 'design', 'doc', 'test', 'tool'],
+            login: 'other',
+            name: 'Other',
+            profile: 'http://www.example.com',
+          },
+        ],
+      },
+    });
+
+    expect(creation).toMatchInlineSnapshot(`
+      {
+        "extensions": [
+          {
+            "block": "[Block CSpell]",
+            "props": {
+              "ignorePaths": [
+                ".all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block GitHub Apps]",
+            "props": {
+              "apps": [
+                {
+                  "name": "All Contributors",
+                  "url": "https://github.com/apps/allcontributors",
+                },
+              ],
+            },
+          },
+          {
+            "block": "[Block Prettier]",
+            "props": {
+              "ignores": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block Oxfmt]",
+            "props": {
+              "ignorePatterns": [
+                "/.all-contributorsrc",
+              ],
+            },
+          },
+          {
+            "block": "[Block README.md]",
+            "props": {
+              "badges": [
+                {
+                  "alt": "👪 All Contributors: 1",
+                  "comments": {
+                    "after": "
+      <!-- ALL-CONTRIBUTORS-BADGE:END -->
+        <!-- prettier-ignore-end -->",
+                    "before": "<!-- prettier-ignore-start -->
+      	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+      	",
+                  },
+                  "href": "#contributors",
+                  "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg",
+                },
+              ],
+              "sections": [
+                "## Contributors
+
+      <!-- spellchecker: disable -->
+      <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+      <!-- prettier-ignore-start -->
+      <!-- markdownlint-disable -->
+      <table>
+        <tbody>
+          <tr>
+            <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- markdownlint-restore -->
+      <!-- prettier-ignore-end -->
+
+      <!-- ALL-CONTRIBUTORS-LIST:END -->
+      <!-- spellchecker: enable -->",
+              ],
+            },
+          },
+        ],
+        "files": {
+          ".all-contributorsrc": "{
+        "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+        "commitType": "docs",
+        "contributors": [
+          {
+            "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+            "contributions": [
+              "bug",
+              "code",
+              "design",
+              "doc",
+              "test",
+              "tool"
+            ],
+            "login": "other",
+            "name": "Other",
+            "profile": "http://www.example.com"
+          }
+        ],
+        "contributorsPerLine": 7,
+        "contributorsSortAlphabetically": true,
+        "files": [
+          "README.md"
+        ],
+        "projectName": "test-repository",
+        "projectOwner": "test-owner",
+        "repoType": "github",
+        "commitConvention": "angular"
+      }",
+          ".github": {
+            "workflows": {
+              "contributors.yml": "name: Contributors
+
+      on:
+        push:
+          branches:
+            - main
+
+      jobs:
+        new_contributor_check:
+          name: New Contributor Check
+          if: github.event.repository.fork != true
+          runs-on: ubuntu-slim
+          permissions:
+            contents: read
+            issues: write
+            pull-requests: write
+          steps:
+            - uses: actions/checkout@v7
+              with:
+                fetch-depth: 0
+            - uses: $/.github/actions/setup
+              with:
+                skip-checkout: true
+            - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
+              env:
+                GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      ",
+            },
+          },
+        },
+        "scripts": [
+          {
+            "commands": [
+              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+            ],
+            "phase": 3,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('removes the previous .yml workflow file when in transition mode', () => {
+    const creation = testBlock(blockAllContributors, {
+      mode: 'transition',
+      options: optionsBase,
+    });
+
+    expect(creation.extensions).toContainEqual(
+      blockRemoveFiles({ files: ['.github/workflows/contributors.yml'] }),
+    );
+  });
+});
