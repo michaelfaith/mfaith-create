@@ -11,7 +11,7 @@ import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExports, type ExportEntry, type Exports } from './blockExports.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockGitignore } from './gitignore.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 import { blockOxfmt } from './oxfmt.ts';

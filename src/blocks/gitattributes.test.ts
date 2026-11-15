@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGitattributes } from './blockGitattributes.ts';
+import { blockGitattributes } from './gitattributes.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGitattributes, () => {

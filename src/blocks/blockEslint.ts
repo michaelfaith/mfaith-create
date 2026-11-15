@@ -7,7 +7,6 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockEslintIntake } from './eslint/blockEslintIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
@@ -20,6 +19,7 @@ import {
   type PackageImport,
   packageImportSchema,
 } from './eslint/schemas.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';

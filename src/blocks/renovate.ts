@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockGithubApps } from './blockGithubApps.ts';
+import { blockGithubApps } from './githubApps.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const ignoreDepsSchema = z.array(z.string()).default([]);

@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGithubIssueTemplates } from './blockGithubIssueTemplates.ts';
+import { blockGithubIssueTemplates } from './githubIssueTemplates.ts';
 import { optionsBase } from './options.fakes.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 

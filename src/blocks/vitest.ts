@@ -9,7 +9,7 @@ import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockEslint } from './blockEslint.ts';
 import { blockExampleFiles } from './blockExampleFiles.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockGitignore } from './gitignore.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
 import { blockKnip } from './knip.ts';

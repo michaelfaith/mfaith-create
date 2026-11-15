@@ -5,7 +5,7 @@ import { startingOwnerContributions } from '../data/contributions.ts';
 import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
-import { blockGithubApps } from './blockGithubApps.ts';
+import { blockGithubApps } from './githubApps.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { CommandPhase } from './phases.ts';
 import { blockPrettier } from './prettier.ts';

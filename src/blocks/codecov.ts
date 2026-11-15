@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockGithubApps } from './blockGithubApps.ts';
+import { blockGithubApps } from './githubApps.ts';
 import { blockReadme } from './readme.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockVitest } from './vitest.ts';

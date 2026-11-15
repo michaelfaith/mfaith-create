@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGithubPrTemplate } from './blockGithubPrTemplate.ts';
+import { blockGithubPrTemplate } from './githubPrTemplate.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGithubPrTemplate, () => {

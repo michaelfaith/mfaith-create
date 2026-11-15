@@ -2,7 +2,7 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { dump } from 'js-yaml';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockGithubActionsCi, () => {

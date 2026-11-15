@@ -7,7 +7,7 @@ import { getPackageDependencies } from '../data/packageData.ts';
 import { resolveBin } from '../utils/resolveBin.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';

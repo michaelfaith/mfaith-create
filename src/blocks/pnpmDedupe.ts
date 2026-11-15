@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 

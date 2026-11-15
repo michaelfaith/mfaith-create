@@ -6,7 +6,7 @@ import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { blockPnpmWorkspace } from './pnpmWorkspace.ts';

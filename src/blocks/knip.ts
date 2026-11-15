@@ -5,7 +5,7 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
+import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 import { blockPackageJson } from './packageJson.ts';
