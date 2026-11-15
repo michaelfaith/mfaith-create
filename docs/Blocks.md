@@ -7,7 +7,7 @@ This table summarizes each block and which base levels they're included in:
 
 | Block                              | Flags                                                                                      | Minimal | Common | Everything |
 | ---------------------------------- | ------------------------------------------------------------------------------------------ | ------- | ------ | ---------- |
-| AllContributors                    | `--add-allcontributors`, `--exclude-allcontributors`                                       |         | ✅     | 💯         |
+| All Contributors                   | `--add-all-contributors`, `--exclude-all-contributors`                                     |         | ✅     | 💯         |
 | Are The Types Wrong                | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                               |         |        |            |
 | Bin                                | `--add-bin`, `--exclude-bin`                                                               |         |        |            |
 | Contributing Docs                  | `--add-contributing-docs`, `--exclude-contributing-docs`                                   | ✔️      | ✅     | 💯         |

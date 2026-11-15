@@ -1,7 +1,7 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockCodeOfConduct } from '../blocks/codeOfConduct.ts';
+import { codeOfConduct } from '../blocks/codeOfConduct.ts';
 import { blockContributingDocs } from '../blocks/contributingDocs.ts';
 import { blockDevelopmentDocs } from '../blocks/developmentDocs.ts';
 import { blockEslint } from '../blocks/eslint.ts';
@@ -40,7 +40,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
   },
   blocks: [
     blockContributingDocs,
-    blockCodeOfConduct,
+    codeOfConduct,
     blockDevelopmentDocs,
     blockEslint,
     blockExampleFiles,

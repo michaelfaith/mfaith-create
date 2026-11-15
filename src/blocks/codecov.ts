@@ -6,7 +6,7 @@ import { blockRemoveFiles } from './removeFiles.ts';
 import { blockVitest } from './vitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockCodecov: BlockWithoutProps = base.createBlock({
+export const codecov: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Codecov',
   },

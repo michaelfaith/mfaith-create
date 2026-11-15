@@ -1,7 +1,7 @@
 import type { StratumTemplate } from 'bingo-stratum';
 
 import { base } from './base.ts';
-import { blockAreTheTypesWrong } from './blocks/areTheTypesWrong.ts';
+import { areTheTypesWrong } from './blocks/areTheTypesWrong.ts';
 import { blockEslintPlugin } from './blocks/eslintPlugin.ts';
 import { blockNcc } from './blocks/ncc.ts';
 import { blockRemoveDependencies } from './blocks/removeDependencies.ts';
@@ -22,7 +22,7 @@ export const template: StratumTemplate<OptionsShape> = base.createStratumTemplat
     },
   },
   blocks: [
-    blockAreTheTypesWrong,
+    areTheTypesWrong,
     blockRepoTransitions,
     blockEslintPlugin,
     blockNcc,

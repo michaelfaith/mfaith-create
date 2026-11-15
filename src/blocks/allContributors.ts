@@ -14,9 +14,9 @@ import { blockRemoveFiles } from './removeFiles.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockAllContributors: BlockWithoutProps = base.createBlock({
+export const allContributors: BlockWithoutProps = base.createBlock({
   about: {
-    name: 'AllContributors',
+    name: 'All Contributors',
   },
   produce({ options }) {
     const contributions = options.contributors?.length;

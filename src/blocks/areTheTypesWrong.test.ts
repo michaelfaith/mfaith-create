@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockAreTheTypesWrong } from './areTheTypesWrong.ts';
+import { areTheTypesWrong } from './areTheTypesWrong.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../data/packageData.ts', () => ({
@@ -9,9 +9,9 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockAreTheTypesWrong, () => {
+describe(areTheTypesWrong, () => {
   test('production', () => {
-    const creation = testBlock(blockAreTheTypesWrong, {
+    const creation = testBlock(areTheTypesWrong, {
       options: optionsBase,
     });
 

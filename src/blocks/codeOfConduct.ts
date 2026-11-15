@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-export const blockCodeOfConduct: BlockWithoutProps = base.createBlock({
+export const codeOfConduct: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Code of Conduct',
   },

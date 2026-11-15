@@ -5,7 +5,7 @@ import { diffCreatedDirectory } from 'bingo-testers';
 import { format } from 'oxfmt';
 import { expect, test, vi } from 'vitest';
 
-import { blockBin } from './blocks/bin.ts';
+import { bin } from './blocks/bin.ts';
 import { JS_TS_FILES } from './blocks/eslint/globs.ts';
 import {
   base,
@@ -39,7 +39,7 @@ const presetIntegration = base.createPreset({
     description: 'Preset used for integration tests',
     name: 'Integration',
   },
-  blocks: [...presetEverything.blocks, blockBin],
+  blocks: [...presetEverything.blocks, bin],
 });
 
 // This test checks the Bingo production using options inferred from disk,

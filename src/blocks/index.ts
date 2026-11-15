@@ -1,9 +1,9 @@
-export { blockAllContributors } from './allContributors.ts';
-export { blockAreTheTypesWrong } from './areTheTypesWrong.ts';
-export { blockBin, type BlockBinProps } from './bin.ts';
+export { allContributors } from './allContributors.ts';
+export { areTheTypesWrong } from './areTheTypesWrong.ts';
+export { bin, type BinProps } from './bin.ts';
 export type { BlockWithoutProps, BlockWithProps } from './Block.ts';
-export { blockCodecov } from './codecov.ts';
-export { blockCodeOfConduct } from './codeOfConduct.ts';
+export { codecov } from './codecov.ts';
+export { codeOfConduct } from './codeOfConduct.ts';
 export { blockContributingDocs } from './contributingDocs.ts';
 export { blockCspell, type BlockCspellProps } from './cspell.ts';
 export { blockDevelopmentDocs, type BlockDevelopmentDocsProps } from './developmentDocs.ts';

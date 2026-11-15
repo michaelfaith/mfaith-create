@@ -1,11 +1,11 @@
 export { base, type BaseOptions } from './base.ts';
 export {
-  blockAllContributors,
-  blockAreTheTypesWrong,
-  blockBin,
-  type BlockBinProps,
-  blockCodecov,
-  blockCodeOfConduct,
+  allContributors as blockAllContributors,
+  areTheTypesWrong as blockAreTheTypesWrong,
+  bin as blockBin,
+  type BinProps as BlockBinProps,
+  codecov as blockCodecov,
+  codeOfConduct as blockCodeOfConduct,
   blockContributingDocs,
   blockCspell,
   type BlockCspellProps,

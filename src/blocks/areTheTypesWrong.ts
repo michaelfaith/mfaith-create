@@ -4,7 +4,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { blockTsdown } from './tsdown.ts';
 
-export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
+export const areTheTypesWrong: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Are the Types Wrong',
     description: 'Enables type validation for builds.',

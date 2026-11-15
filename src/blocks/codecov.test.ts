@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockCodecov } from './codecov.ts';
+import { codecov } from './codecov.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockCodecov, () => {
+describe(codecov, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockCodecov, {
+    const creation = testBlock(codecov, {
       options: optionsBase,
     });
 
@@ -60,7 +60,7 @@ describe(blockCodecov, () => {
   });
 
   test('transition mode without files', () => {
-    const creation = testBlock(blockCodecov, {
+    const creation = testBlock(codecov, {
       mode: 'transition',
       options: optionsBase,
     });

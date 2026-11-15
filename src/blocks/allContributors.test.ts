@@ -1,13 +1,13 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockAllContributors } from './allContributors.ts';
+import { allContributors } from './allContributors.ts';
 import { optionsBase } from './options.fakes.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-describe(blockAllContributors, () => {
+describe(allContributors, () => {
   it('defaults contributors to [] when not provided', () => {
-    const creation = testBlock(blockAllContributors, { options: optionsBase });
+    const creation = testBlock(allContributors, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -129,7 +129,7 @@ describe(blockAllContributors, () => {
   });
 
   it('runs add including existing owner contributions when they exist', () => {
-    const creation = testBlock(blockAllContributors, {
+    const creation = testBlock(allContributors, {
       options: {
         ...optionsBase,
         contributors: [
@@ -300,7 +300,7 @@ describe(blockAllContributors, () => {
   });
 
   it('adds full owner contributions when no existing contributor is the owner', () => {
-    const creation = testBlock(blockAllContributors, {
+    const creation = testBlock(allContributors, {
       options: {
         ...optionsBase,
         contributors: [
@@ -470,7 +470,7 @@ describe(blockAllContributors, () => {
   });
 
   it('removes the previous .yml workflow file when in transition mode', () => {
-    const creation = testBlock(blockAllContributors, {
+    const creation = testBlock(allContributors, {
       mode: 'transition',
       options: optionsBase,
     });

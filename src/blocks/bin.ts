@@ -35,13 +35,13 @@ const prepareBin = (
   );
 };
 
-export interface BlockBinProps {
+export interface BinProps {
   src?: Bin;
 }
 
-export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
+export const bin: BlockWithProps<BinProps> = base.createBlock({
   about: {
-    name: 'Bin',
+    name: 'bin',
     description:
       'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
   },
