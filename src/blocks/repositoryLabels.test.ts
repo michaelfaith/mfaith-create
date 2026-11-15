@@ -3,9 +3,9 @@ import { testBlock } from 'bingo-stratum-testers';
 import { githubDefaultLabels } from 'github-default-labels';
 import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryLabels } from './blockRepositoryLabels.ts';
 import { optionsBase } from './options.fakes.ts';
-import { repositoryLabels } from './repositoryLabels.ts';
+import { repositoryLabels } from './repositoryLabels.data.ts';
+import { blockRepositoryLabels } from './repositoryLabels.ts';
 
 describe(blockRepositoryLabels, () => {
   test('when options.existingLabels is undefined', () => {
