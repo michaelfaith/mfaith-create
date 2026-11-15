@@ -6,7 +6,7 @@ import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
-import { blockOxfmt } from './blockOxfmt.ts';
+import { blockOxfmt } from './oxfmt.ts';
 import { CommandPhase } from './phases.ts';
 import { blockPrettier } from './prettier.ts';
 import { blockReadme } from './readme.ts';

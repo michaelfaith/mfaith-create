@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockOxfmt } from './blockOxfmt.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockOxfmt } from './oxfmt.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>

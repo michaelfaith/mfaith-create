@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockOctoguide } from './blockOctoguide.ts';
+import { blockOctoguide } from './octoguide.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe(blockOctoguide, () => {
