@@ -2,8 +2,8 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { dump } from 'js-yaml';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockPnpmWorkspace } from './pnpmWorkspace.ts';
 
 describe(blockPnpmWorkspace, () => {
   test('without props', () => {

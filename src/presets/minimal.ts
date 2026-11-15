@@ -16,7 +16,7 @@ import { blockGitignore } from '../blocks/blockGitignore.ts';
 import { blockMitLicense } from '../blocks/blockMitLicense.ts';
 import { blockOxfmt } from '../blocks/blockOxfmt.ts';
 import { blockPackageJson } from '../blocks/blockPackageJson.ts';
-import { blockPnpmWorkspace } from '../blocks/blockPnpmWorkspace.ts';
+import { blockPnpmWorkspace } from '../blocks/pnpmWorkspace.ts';
 import { blockPublishConfig } from '../blocks/publishConfig.ts';
 import { blockReadme } from '../blocks/readme.ts';
 import { blockRemoveDependencies } from '../blocks/removeDependencies.ts';

@@ -15,7 +15,7 @@ import { blockEslintYml } from '../blocks/blockEslintYml.ts';
 import { blockKnip } from '../blocks/blockKnip.ts';
 import { blockNvmrc } from '../blocks/blockNvmrc.ts';
 import { blockOctoguide } from '../blocks/blockOctoguide.ts';
-import { blockPnpmDedupe } from '../blocks/blockPnpmDedupe.ts';
+import { blockPnpmDedupe } from '../blocks/pnpmDedupe.ts';
 import { blockRenovate } from '../blocks/renovate.ts';
 import { blockVscode } from '../blocks/vscode.ts';
 import type { OptionsShape } from '../Options.ts';
