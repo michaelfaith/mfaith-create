@@ -7,9 +7,9 @@ import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVscode } from './vscode.ts';
 

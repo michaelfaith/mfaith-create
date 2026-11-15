@@ -15,9 +15,9 @@ import { blockKnip } from './blockKnip.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPrettier } from './blockPrettier.ts';
-import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { blockRemoveDependencies } from './removeDependencies.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVscode } from './vscode.ts';
 import {

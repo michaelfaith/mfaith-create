@@ -9,10 +9,10 @@ import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockPnpmWorkspace } from './blockPnpmWorkspace.ts';
-import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { formatTextLines } from './files/formatTextLines.ts';
 import { CommandPhase } from './phases.ts';
+import { blockRemoveDependencies } from './removeDependencies.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { blockVscode } from './vscode.ts';
 

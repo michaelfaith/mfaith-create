@@ -9,8 +9,8 @@ import { blockGithubApps } from './blockGithubApps.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPrettier } from './blockPrettier.ts';
 import { blockReadme } from './blockReadme.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 

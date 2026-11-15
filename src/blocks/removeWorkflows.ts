@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 
 export interface BlockRemoveWorkflowsProps {
   workflows?: string[] | undefined;

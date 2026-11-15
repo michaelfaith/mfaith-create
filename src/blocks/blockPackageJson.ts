@@ -8,8 +8,8 @@ import { base } from '../base.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { CommandPhase } from './phases.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 
 export const blockContributingDocs: BlockWithoutProps = base.createBlock({
   about: {

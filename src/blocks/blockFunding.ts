@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { formatYaml } from './files/formatYaml.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 
 export const blockFunding: BlockWithoutProps = base.createBlock({
   about: {

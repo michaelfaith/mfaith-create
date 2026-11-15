@@ -1,8 +1,8 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockEslint } from './blockEslint.ts';
-import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
-import { blockRemoveFiles } from './blockRemoveFiles.ts';
+import { blockRemoveDependencies } from './removeDependencies.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 export const blockEslintMarkdown: BlockWithoutProps = base.createBlock({

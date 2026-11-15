@@ -1,16 +1,16 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRemoveFiles } from './removeFiles.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (packageName: string) => `path/to/${packageName}/bin/index.mjs`,
 }));
 
-describe(blockRemoveDependencies, () => {
+describe(blockRemoveFiles, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(blockRemoveFiles, {
       options: optionsBase,
     });
 
@@ -18,9 +18,9 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(blockRemoveFiles, {
       props: {
-        dependencies: ['a', 'b', 'c'],
+        files: ['a', 'b', 'c'],
       },
       options: optionsBase,
     });
@@ -29,7 +29,7 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(blockRemoveFiles, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -38,9 +38,9 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with props and mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(blockRemoveFiles, {
       props: {
-        dependencies: ['a', 'b', 'c'],
+        files: ['a', 'b', 'c'],
       },
       mode: 'transition',
       options: optionsBase,
@@ -51,9 +51,10 @@ describe(blockRemoveDependencies, () => {
         "scripts": [
           {
             "commands": [
-              "node path/to/remove-dependencies/bin/index.mjs a b c",
+              "node path/to/trash-cli/bin/index.mjs a b c",
             ],
-            "phase": 3,
+            "phase": 0,
+            "silent": true,
           },
         ],
       }
