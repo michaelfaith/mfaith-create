@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
-import { blockPrettier } from './blockPrettier.ts';
+import { blockPrettier } from './prettier.ts';
 
 export const blockNvmrc: BlockWithoutProps = base.createBlock({
   about: {

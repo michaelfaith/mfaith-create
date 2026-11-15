@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 
 import { blockNvmrc } from './blockNvmrc.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
-import { blockPrettier } from './blockPrettier.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockPrettier } from './prettier.ts';
 
 describe(blockNvmrc, () => {
   it('only includes blockPackageJson props when options.node.pinned does not exist', () => {

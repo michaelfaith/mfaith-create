@@ -8,7 +8,7 @@ import { blockEslint } from './blockEslint.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockPrettier } from './blockPrettier.ts';
+import { blockPrettier } from './prettier.ts';
 export interface BlockNccProps {
   entry?: string | undefined;
 }

@@ -6,7 +6,7 @@ import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockPrettier } from './blockPrettier.ts';
+import { blockPrettier } from './prettier.ts';
 
 export const blockWebExt: BlockWithoutProps = base.createBlock({
   about: {
