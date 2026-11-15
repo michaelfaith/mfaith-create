@@ -6,8 +6,8 @@ import { blockFunding } from '../blocks/blockFunding.ts';
 import { blockOctoguide } from '../blocks/blockOctoguide.ts';
 import { blockPrPreviewRelease } from '../blocks/blockPrPreviewRelease.ts';
 import { blockReleasePlease } from '../blocks/blockReleasePlease.ts';
-import { blockVitest } from '../blocks/blockVitest.ts';
 import { blockCodecov } from '../blocks/codecov.ts';
+import { blockVitest } from '../blocks/vitest.ts';
 import type { OptionsShape } from '../Options.ts';
 import { presetMinimal } from './minimal.ts';
 

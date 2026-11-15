@@ -18,8 +18,8 @@ import { blockPrettier } from './blockPrettier.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVscode } from './blockVscode.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { blockVscode } from './vscode.ts';
 import {
   type Step,
   stepSchema,

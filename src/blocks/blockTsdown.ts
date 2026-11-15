@@ -21,8 +21,8 @@ import { blockReleasePlease } from './blockReleasePlease.ts';
 import { blockRemoveDependencies } from './blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from './blockRemoveWorkflows.ts';
-import { blockVitest } from './blockVitest.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { blockVitest } from './vitest.ts';
 
 const attwSchema: z.ZodType<Attw> = z.union([
   z.boolean(),

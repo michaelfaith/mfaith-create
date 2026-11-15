@@ -45,7 +45,7 @@ export { blockSideEffects, type BlockSideEffectsProps } from './blockSideEffects
 export { blockTemplatedWith } from './blockTemplatedWith.ts';
 export { blockTsdown, type BlockTsdownProps } from './blockTsdown.ts';
 export { blockTypescript, type BlockTypescriptProps } from './blockTypescript.ts';
-export { blockVitest, type BlockVitestProps } from './blockVitest.ts';
 export { blockCodecov } from './codecov.ts';
+export { blockVitest, type BlockVitestProps } from './vitest.ts';
 export { blockVscode, type BlockVscodeProps } from './vscode.ts';
 export { blockWebExt } from './webExt.ts';
