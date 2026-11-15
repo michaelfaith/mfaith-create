@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockReleasePlease } from './blockReleasePlease.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockReleasePlease } from './releasePlease.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
 describe(blockReleasePlease, () => {
