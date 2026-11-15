@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import { blockCodeOfConduct } from '../blocks/blockCodeOfConduct.ts';
 import { blockContributingDocs } from '../blocks/blockContributingDocs.ts';
 import { blockDevelopmentDocs } from '../blocks/blockDevelopmentDocs.ts';
-import { blockEslint } from '../blocks/blockEslint.ts';
+import { blockEslint } from '../blocks/eslint.ts';
 import { blockExampleFiles } from '../blocks/exampleFiles.ts';
 import { blockExports } from '../blocks/exports.ts';
 import { blockGitattributes } from '../blocks/gitattributes.ts';

@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { optionsBase } from './options.fakes.ts';
 
 const mockIntakeData = { ignores: ['dist'] };

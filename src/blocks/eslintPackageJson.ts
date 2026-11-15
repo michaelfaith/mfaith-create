@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { blockPackageJson } from './packageJson.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';

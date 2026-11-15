@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockOxfmt } from './oxfmt.ts';
 import { blockPackageJson } from './packageJson.ts';

@@ -9,7 +9,7 @@ import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { blockExports, type ExportEntry, type Exports } from './exports.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockGitignore } from './gitignore.ts';

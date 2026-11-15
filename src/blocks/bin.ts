@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';

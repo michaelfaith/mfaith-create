@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 
 export const blockEslintRegexp: BlockWithoutProps = base.createBlock({

@@ -5,7 +5,7 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';

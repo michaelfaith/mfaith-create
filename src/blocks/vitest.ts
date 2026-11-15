@@ -7,7 +7,7 @@ import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
-import { blockEslint } from './blockEslint.ts';
+import { blockEslint } from './eslint.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
 import { blockGithubActionsCi } from './githubActionsCi.ts';
 import { blockGitignore } from './gitignore.ts';
