@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockGithubApps } from './blockGithubApps.ts';
-import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPackageJson } from './packageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { type Builder, builderSchema } from './workflows/schema.ts';
 

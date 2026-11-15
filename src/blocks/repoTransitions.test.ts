@@ -2,8 +2,8 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { packageData } from '../data/packageData.ts';
-import { blockPackageJson } from './blockPackageJson.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockPackageJson } from './packageJson.ts';
 import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { blockRepoTransitions } from './repoTransitions.ts';
 

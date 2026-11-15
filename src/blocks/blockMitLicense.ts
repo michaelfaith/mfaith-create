@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPackageJson } from './packageJson.ts';
 import { blockReadme } from './readme.ts';
 
 export const blockMitLicense: BlockWithoutProps = base.createBlock({

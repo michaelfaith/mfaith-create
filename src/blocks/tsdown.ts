@@ -14,8 +14,8 @@ import { blockExports, type ExportEntry, type Exports } from './blockExports.ts'
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
 import { blockGitignore } from './blockGitignore.ts';
 import { blockOxfmt } from './blockOxfmt.ts';
-import { blockPackageJson } from './blockPackageJson.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
+import { blockPackageJson } from './packageJson.ts';
 import { blockPrettier } from './prettier.ts';
 import { blockPrPreviewRelease } from './prPreviewRelease.ts';
 import { blockReleasePlease } from './releasePlease.ts';

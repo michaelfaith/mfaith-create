@@ -7,7 +7,7 @@ import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './blockCspell.ts';
 import { blockDevelopmentDocs } from './blockDevelopmentDocs.ts';
 import { blockGithubActionsCi } from './blockGithubActionsCi.ts';
-import { blockPackageJson } from './blockPackageJson.ts';
+import { blockPackageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { blockPnpmWorkspace } from './pnpmWorkspace.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
