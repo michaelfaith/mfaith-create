@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockRepositoryVariables } from './blockRepositoryVariables.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRepositoryVariables } from './repositoryVariables.ts';
 
 describe(blockRepositoryVariables, () => {
   test('without props', () => {

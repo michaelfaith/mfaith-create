@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockSideEffects } from './blockSideEffects.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockSideEffects } from './sideEffects.ts';
 
 describe(blockSideEffects, () => {
   it('without props', () => {

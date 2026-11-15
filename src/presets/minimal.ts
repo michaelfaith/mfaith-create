@@ -23,14 +23,14 @@ import { blockRemoveDependencies } from '../blocks/blockRemoveDependencies.ts';
 import { blockRemoveFiles } from '../blocks/blockRemoveFiles.ts';
 import { blockRemoveWorkflows } from '../blocks/blockRemoveWorkflows.ts';
 import { blockRepositoryBranchRuleset } from '../blocks/blockRepositoryBranchRuleset.ts';
-import { blockRepositoryLabels } from '../blocks/blockRepositoryLabels.ts';
-import { blockRepositorySecrets } from '../blocks/blockRepositorySecrets.ts';
-import { blockRepositorySettings } from '../blocks/blockRepositorySettings.ts';
-import { blockSecurityDocs } from '../blocks/blockSecurityDocs.ts';
-import { blockSideEffects } from '../blocks/blockSideEffects.ts';
-import { blockTemplatedWith } from '../blocks/blockTemplatedWith.ts';
-import { blockTsdown } from '../blocks/blockTsdown.ts';
-import { blockTypescript } from '../blocks/blockTypescript.ts';
+import { blockRepositoryLabels } from '../blocks/repositoryLabels.ts';
+import { blockRepositorySecrets } from '../blocks/repositorySecrets.ts';
+import { blockRepositorySettings } from '../blocks/repositorySettings.ts';
+import { blockSecurityDocs } from '../blocks/securityDocs.ts';
+import { blockSideEffects } from '../blocks/sideEffects.ts';
+import { blockTemplatedWith } from '../blocks/templatedWith.ts';
+import { blockTsdown } from '../blocks/tsdown.ts';
+import { blockTypescript } from '../blocks/typescript.ts';
 import type { OptionsShape } from '../Options.ts';
 
 export const presetMinimal: Preset<OptionsShape> = base.createPreset({

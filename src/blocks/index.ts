@@ -40,12 +40,12 @@ export { blockPrPreviewRelease, type BlockPrPreviewReleaseProps } from './blockP
 export { blockReadme, type BlockReadmeProps } from './blockReadme.ts';
 export { blockReleasePlease, type BlockReleasePleaseProps } from './blockReleasePlease.ts';
 export { blockRenovate, type BlockRenovateProps } from './blockRenovate.ts';
-export { blockSecurityDocs } from './blockSecurityDocs.ts';
-export { blockSideEffects, type BlockSideEffectsProps } from './blockSideEffects.ts';
-export { blockTemplatedWith } from './blockTemplatedWith.ts';
-export { blockTsdown, type BlockTsdownProps } from './blockTsdown.ts';
-export { blockTypescript, type BlockTypescriptProps } from './blockTypescript.ts';
 export { blockCodecov } from './codecov.ts';
+export { blockSecurityDocs } from './securityDocs.ts';
+export { blockSideEffects, type BlockSideEffectsProps } from './sideEffects.ts';
+export { blockTemplatedWith } from './templatedWith.ts';
+export { blockTsdown, type BlockTsdownProps } from './tsdown.ts';
+export { blockTypescript, type BlockTypescriptProps } from './typescript.ts';
 export { blockVitest, type BlockVitestProps } from './vitest.ts';
 export { blockVscode, type BlockVscodeProps } from './vscode.ts';
 export { blockWebExt } from './webExt.ts';

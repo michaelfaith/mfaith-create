@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockSecurityDocs } from './blockSecurityDocs.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockSecurityDocs } from './securityDocs.ts';
 
 describe(blockSecurityDocs, () => {
   test('production (with contact.bluesky)', () => {

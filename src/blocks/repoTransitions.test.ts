@@ -4,8 +4,8 @@ import { describe, expect, test } from 'vitest';
 import { packageData } from '../data/packageData.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
 import { blockRepositoryBranchRuleset } from './blockRepositoryBranchRuleset.ts';
-import { blockRepoTransitions } from './blockRepoTransitions.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockRepoTransitions } from './repoTransitions.ts';
 
 describe(blockRepoTransitions, () => {
   test('production', () => {

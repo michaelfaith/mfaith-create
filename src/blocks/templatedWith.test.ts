@@ -1,8 +1,8 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockTemplatedWith } from './blockTemplatedWith.ts';
 import { optionsBase } from './options.fakes.ts';
+import { blockTemplatedWith } from './templatedWith.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,

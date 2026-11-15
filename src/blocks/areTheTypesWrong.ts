@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockPackageJson } from './blockPackageJson.ts';
-import { blockTsdown } from './blockTsdown.ts';
+import { blockTsdown } from './tsdown.ts';
 
 export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
   about: {

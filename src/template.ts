@@ -6,7 +6,7 @@ import { blockEslintPlugin } from './blocks/blockEslintPlugin.ts';
 import { blockNcc } from './blocks/blockNcc.ts';
 import { blockRemoveDependencies } from './blocks/blockRemoveDependencies.ts';
 import { blockRemoveFiles } from './blocks/blockRemoveFiles.ts';
-import { blockRepoTransitions } from './blocks/blockRepoTransitions.ts';
+import { blockRepoTransitions } from './blocks/repoTransitions.ts';
 import { blockWebExt } from './blocks/webExt.ts';
 import type { OptionsShape } from './Options.ts';
 import { presetCommon } from './presets/common.ts';
