@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintJsdoc } from './blockEslintJsdoc.ts';
+import { blockEslintJsonc } from './eslintJsonc.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintJsdoc, () => {
+describe(blockEslintJsonc, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintJsdoc, {
+    const creation = testBlock(blockEslintJsonc, {
       options: optionsBase,
     });
 
@@ -19,20 +19,17 @@ describe(blockEslintJsdoc, () => {
               "extensions": [
                 {
                   "extends": [
-                    "jsdoc.configs['flat/contents-typescript-error']",
-                    "jsdoc.configs['flat/logical-typescript-error']",
-                    "jsdoc.configs['flat/stylistic-typescript-error']",
+                    "jsonc.configs['flat/recommended-with-json']",
                   ],
                   "files": [
-                    "**/*.js",
-                    "**/*.ts",
+                    "**/*.json",
                   ],
                 },
               ],
               "imports": [
                 {
-                  "source": "eslint-plugin-jsdoc",
-                  "specifier": "jsdoc",
+                  "source": "eslint-plugin-jsonc",
+                  "specifier": "jsonc",
                 },
               ],
             },

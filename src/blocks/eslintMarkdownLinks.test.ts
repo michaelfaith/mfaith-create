@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintRegexp } from './blockEslintRegexp.ts';
+import { blockEslintMarkdownLinks } from './eslintMarkdownLinks.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintRegexp, () => {
+describe(blockEslintMarkdownLinks, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintRegexp, {
+    const creation = testBlock(blockEslintMarkdownLinks, {
       options: optionsBase,
     });
 
@@ -19,18 +19,17 @@ describe(blockEslintRegexp, () => {
               "extensions": [
                 {
                   "extends": [
-                    "regexp.configs['flat/recommended']",
+                    "markdownLinks.configs.recommended",
                   ],
                   "files": [
-                    "**/*.js",
-                    "**/*.ts",
+                    "**/*.md",
                   ],
                 },
               ],
               "imports": [
                 {
-                  "source": "eslint-plugin-regexp",
-                  "specifier": "* as regexp",
+                  "source": "eslint-plugin-markdown-links",
+                  "specifier": "markdownLinks",
                 },
               ],
             },

@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintComments } from './blockEslintComments.ts';
+import { blockEslintJsdoc } from './eslintJsdoc.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintComments, () => {
+describe(blockEslintJsdoc, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintComments, {
+    const creation = testBlock(blockEslintJsdoc, {
       options: optionsBase,
     });
 
@@ -19,7 +19,9 @@ describe(blockEslintComments, () => {
               "extensions": [
                 {
                   "extends": [
-                    "comments.recommended",
+                    "jsdoc.configs['flat/contents-typescript-error']",
+                    "jsdoc.configs['flat/logical-typescript-error']",
+                    "jsdoc.configs['flat/stylistic-typescript-error']",
                   ],
                   "files": [
                     "**/*.js",
@@ -29,8 +31,8 @@ describe(blockEslintComments, () => {
               ],
               "imports": [
                 {
-                  "source": "@eslint-community/eslint-plugin-eslint-comments/configs",
-                  "specifier": "comments",
+                  "source": "eslint-plugin-jsdoc",
+                  "specifier": "jsdoc",
                 },
               ],
             },

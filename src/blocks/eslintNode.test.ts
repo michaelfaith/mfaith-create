@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockEslintNode } from './blockEslintNode.ts';
+import { blockEslintNode } from './eslintNode.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({

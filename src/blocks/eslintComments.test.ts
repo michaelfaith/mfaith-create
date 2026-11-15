@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintMarkdownLinks } from './blockEslintMarkdownLinks.ts';
+import { blockEslintComments } from './eslintComments.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintMarkdownLinks, () => {
+describe(blockEslintComments, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintMarkdownLinks, {
+    const creation = testBlock(blockEslintComments, {
       options: optionsBase,
     });
 
@@ -19,17 +19,18 @@ describe(blockEslintMarkdownLinks, () => {
               "extensions": [
                 {
                   "extends": [
-                    "markdownLinks.configs.recommended",
+                    "comments.recommended",
                   ],
                   "files": [
-                    "**/*.md",
+                    "**/*.js",
+                    "**/*.ts",
                   ],
                 },
               ],
               "imports": [
                 {
-                  "source": "eslint-plugin-markdown-links",
-                  "specifier": "markdownLinks",
+                  "source": "@eslint-community/eslint-plugin-eslint-comments/configs",
+                  "specifier": "comments",
                 },
               ],
             },

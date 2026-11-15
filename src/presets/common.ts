@@ -2,8 +2,8 @@ import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
 import { blockAllContributors } from '../blocks/allContributors.ts';
-import { blockFunding } from '../blocks/blockFunding.ts';
 import { blockCodecov } from '../blocks/codecov.ts';
+import { blockFunding } from '../blocks/funding.ts';
 import { blockOctoguide } from '../blocks/octoguide.ts';
 import { blockPrPreviewRelease } from '../blocks/prPreviewRelease.ts';
 import { blockReleasePlease } from '../blocks/releasePlease.ts';

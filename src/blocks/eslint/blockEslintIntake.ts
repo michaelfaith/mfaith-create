@@ -6,7 +6,7 @@ import {
 import JSON5 from 'json5';
 
 import { tryCatch } from '../../utils/tryCatch.ts';
-import { stylisticComment } from '../blockEslintMoreStyling.ts';
+import { stylisticComment } from '../eslintMoreStyling.ts';
 import { type ExtensionRuleGroup, type RuleOptions, ruleOptionsSchema } from './schemas.ts';
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {

@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintJsonc } from './blockEslintJsonc.ts';
+import { blockEslintRegexp } from './eslintRegexp.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintJsonc, () => {
+describe(blockEslintRegexp, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintJsonc, {
+    const creation = testBlock(blockEslintRegexp, {
       options: optionsBase,
     });
 
@@ -19,17 +19,18 @@ describe(blockEslintJsonc, () => {
               "extensions": [
                 {
                   "extends": [
-                    "jsonc.configs['flat/recommended-with-json']",
+                    "regexp.configs['flat/recommended']",
                   ],
                   "files": [
-                    "**/*.json",
+                    "**/*.js",
+                    "**/*.ts",
                   ],
                 },
               ],
               "imports": [
                 {
-                  "source": "eslint-plugin-jsonc",
-                  "specifier": "jsonc",
+                  "source": "eslint-plugin-regexp",
+                  "specifier": "* as regexp",
                 },
               ],
             },

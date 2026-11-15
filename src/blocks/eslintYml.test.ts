@@ -1,7 +1,7 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintYml } from './blockEslintYml.ts';
+import { blockEslintYml } from './eslintYml.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe('blockESLintYML', () => {
