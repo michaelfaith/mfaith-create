@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.1](https://github.com/michaelfaith/mfaith-create/compare/v0.11.0...v0.11.1) (2026-11-16)
+
+
+### 🩹 Bug Fixes
+
+* safely handle missing or unreadable logo files in options intake ([#535](https://github.com/michaelfaith/mfaith-create/issues/535)) ([9685f1e](https://github.com/michaelfaith/mfaith-create/commit/9685f1ebfa7ed40d9cd4897fb14d1e465b057dda))
+* strip range prefix in getPackageDependency to ensure pinned devDependencies ([#541](https://github.com/michaelfaith/mfaith-create/issues/541)) ([9e12c38](https://github.com/michaelfaith/mfaith-create/commit/9e12c385d82c0590e7ae5b20444162ae2fb847f6))
+
 ## [0.11.0](https://github.com/michaelfaith/mfaith-create/compare/v0.10.1...v0.11.0) (2026-11-13)
 
 
