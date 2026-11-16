@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { base } from '../base.ts';
-import { getPackageDependencies } from '../data/packageData.ts';
+import { getPackageDevDependencies } from '../data/packageData.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockCspell } from './cspell.ts';
@@ -85,7 +85,7 @@ pnpm format --write
         }),
         blockPackageJson({
           properties: {
-            devDependencies: getPackageDependencies(
+            devDependencies: getPackageDevDependencies(
               ...plugins.filter((plugin) => !plugin.startsWith('.')),
               'prettier',
               'pretty-quick',

@@ -10,7 +10,15 @@ export function getPackageDependencies(...names: string[]): Record<string, strin
   );
 }
 
-function getPackageDependency(name: string): string {
+export function getPackageDevDependencies(...names: string[]): Record<string, string> {
+  return Object.fromEntries(
+    names.map((name) => {
+      return [name, getVersionForDevDependency(name)];
+    }),
+  );
+}
+
+export function getPackageDependency(name: string): string {
   const version = getPackageInner('devDependencies', name) ?? getPackageInner('dependencies', name);
 
   if (!version) {
@@ -18,6 +26,10 @@ function getPackageDependency(name: string): string {
   }
 
   return version;
+}
+
+export function getVersionForDevDependency(name: string): string {
+  return getPackageDependency(name).replace(/^[\^~]/, '');
 }
 
 function getPackageInner(
