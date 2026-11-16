@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 2" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-2-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 3" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-3-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/michaelfaith/mfaith-create" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/michaelfaith/mfaith-create?label=%F0%9F%A7%AA%20coverage" /></a>
@@ -59,6 +59,7 @@ See [`CONTRIBUTING`](./.github/CONTRIBUTING.md), then [`DEVELOPMENT`](./.github/
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://lishaduck.dev"><img src="https://avatars.githubusercontent.com/u/88557639?v=4&size=100" width="100px" height="100px" alt="Eli"/><br /><sub><b>Eli</b></sub></a><br /><a href="#ideas-lishaduck" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/klnmurthi12345"><img src="https://avatars.githubusercontent.com/u/225702679?v=4&size=100" width="100px" height="100px" alt="k l n murthi"/><br /><sub><b>k l n murthi</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/commits?author=klnmurthi12345" title="Code">💻</a> <a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Aklnmurthi12345" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/michaelfaith"><img src="https://avatars.githubusercontent.com/u/8071845?v=4&size=100" width="100px" height="100px" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Amichaelfaith" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Code">💻</a> <a href="#design-michaelfaith" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Documentation">📖</a> <a href="#ideas-michaelfaith" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-michaelfaith" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-michaelfaith" title="Maintenance">🚧</a> <a href="https://github.com/michaelfaith/mfaith-create/pulls?q=is%3Apr+reviewed-by%3Amichaelfaith" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Tests">⚠️</a> <a href="#tool-michaelfaith" title="Tools">🔧</a></td>
     </tr>
   </tbody>
