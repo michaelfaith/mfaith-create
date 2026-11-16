@@ -1,16 +1,16 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockReadme } from './readme.ts';
+import { packageJson } from './packageJson.ts';
+import { readme } from './readme.ts';
 
-export const blockMitLicense: BlockWithoutProps = base.createBlock({
+export const mitLicense: BlockWithoutProps = base.createBlock({
   about: {
     name: 'MIT License',
   },
   produce({ options }) {
     return {
       extensions: [
-        blockReadme({
+        readme({
           badges: [
             {
               alt: '📝 License: MIT',
@@ -19,7 +19,7 @@ export const blockMitLicense: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             license: 'MIT',
           },

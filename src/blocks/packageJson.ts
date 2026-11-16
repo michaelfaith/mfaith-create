@@ -33,11 +33,11 @@ export interface PackageJsonExt extends Partial<Omit<PackageJson, 'scripts'>> {
   scripts?: Record<string, string | undefined>;
 }
 
-export interface BlockPackageJsonProps {
+export interface PackageJsonProps {
   cleanupCommands?: string[];
   properties?: PackageJsonExt;
 }
-export const blockPackageJson: BlockWithProps<BlockPackageJsonProps> = base.createBlock({
+export const packageJson: BlockWithProps<PackageJsonProps> = base.createBlock({
   about: {
     name: 'Package JSON',
   },

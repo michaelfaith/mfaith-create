@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockMitLicense } from './mitLicense.ts';
+import { mitLicense } from './mitLicense.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockMitLicense, () => {
+describe(mitLicense, () => {
   test('production', () => {
-    const creation = testBlock(blockMitLicense, {
+    const creation = testBlock(mitLicense, {
       options: optionsBase,
     });
 

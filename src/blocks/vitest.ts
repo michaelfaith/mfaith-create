@@ -5,21 +5,21 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslint } from './eslint.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { eslint } from './eslint.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockGitignore } from './gitignore.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { gitignore } from './gitignore.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
-import { blockKnip } from './knip.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockPrettier } from './prettier.ts';
+import { knip } from './knip.ts';
+import { oxfmt } from './oxfmt.ts';
+import { packageJson } from './packageJson.ts';
+import { prettier } from './prettier.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 import {
   type Step,
   stepSchema,
@@ -66,7 +66,7 @@ function intakeFromConfig(files: IntakeDirectory) {
   };
 }
 
-export interface BlockVitestProps {
+export interface VitestProps {
   actionSteps?: Step[];
   coverage?: Coverage;
   environment?: string | undefined;
@@ -75,7 +75,7 @@ export interface BlockVitestProps {
   permissions?: WorkflowPermissions | undefined;
 }
 
-export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
+export const vitest: BlockWithProps<VitestProps> = base.createBlock({
   about: {
     name: 'Vitest',
   },
@@ -103,10 +103,10 @@ export const blockVitest: BlockWithProps<BlockVitestProps> = base.createBlock({
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: ['coverage'],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Testing: {
               contents: `
@@ -131,7 +131,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
             },
           },
         }),
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: ['vitest.configs.recommended'],
@@ -201,10 +201,10 @@ describe(greet, () => {
 `,
           },
         }),
-        blockGitignore({
+        gitignore({
           ignores: ['/coverage'],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               id: 'test_node',
@@ -245,10 +245,10 @@ describe(greet, () => {
             },
           ],
         }),
-        blockKnip({
+        knip({
           entry: ['src/**/*.test.*'],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies(
               '@vitest/coverage-v8',
@@ -261,13 +261,13 @@ describe(greet, () => {
             },
           },
         }),
-        blockOxfmt({
+        oxfmt({
           ignorePatterns: ['/coverage'],
         }),
-        blockPrettier({
+        prettier({
           ignores: ['/coverage'],
         }),
-        blockVscode({
+        vscode({
           debuggers: [
             {
               args: ['run', '${relativeFile}'],

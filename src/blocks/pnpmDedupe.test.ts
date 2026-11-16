@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockPnpmDedupe } from './pnpmDedupe.ts';
+import { pnpmDedupe } from './pnpmDedupe.ts';
 
-describe(blockPnpmDedupe, () => {
+describe(pnpmDedupe, () => {
   test('without mode', () => {
-    const creation = testBlock(blockPnpmDedupe, {
+    const creation = testBlock(pnpmDedupe, {
       options: optionsBase,
     });
 
@@ -42,7 +42,7 @@ describe(blockPnpmDedupe, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockPnpmDedupe, {
+    const creation = testBlock(pnpmDedupe, {
       mode: 'transition',
       options: optionsBase,
     });

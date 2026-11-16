@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
+import { developmentDocs } from './developmentDocs.ts';
 import { eslintIntake } from './eslint/eslintIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { mergeAllExtensions } from './eslint/mergeAllExtensions.ts';
@@ -19,16 +19,16 @@ import {
   type PackageImport,
   packageImportSchema,
 } from './eslint/schemas.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
-export interface BlockEslintProps {
+export interface EslintProps {
   beforeLint?: string | undefined;
   explanations?: string[];
   extensions?: Extension[];
@@ -36,7 +36,7 @@ export interface BlockEslintProps {
   imports?: PackageImport[];
 }
 
-export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
+export const eslint: BlockWithProps<EslintProps> = base.createBlock({
   about: {
     name: 'ESLint',
   },
@@ -115,7 +115,7 @@ export const blockEslint: BlockWithProps<BlockEslintProps> = base.createBlock({
 
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Linting: {
               contents: {
@@ -141,7 +141,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             },
           },
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Lint',
@@ -149,7 +149,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: {
               ...getPackageDependencies(
@@ -183,7 +183,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
             },
           },
         }),
-        blockVscode({
+        vscode({
           extensions: ['dbaeumer.vscode-eslint'],
           settings: {
             'eslint.probe': [

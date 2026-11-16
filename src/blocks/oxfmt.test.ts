@@ -2,16 +2,16 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockOxfmt } from './oxfmt.ts';
+import { oxfmt } from './oxfmt.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockOxfmt, () => {
+describe(oxfmt, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockOxfmt, {
+    const creation = testBlock(oxfmt, {
       options: optionsBase,
     });
 
@@ -127,7 +127,7 @@ describe(blockOxfmt, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockOxfmt, {
+    const creation = testBlock(oxfmt, {
       props: {
         additionalConfig: {
           arrowParens: 'avoid',
@@ -250,7 +250,7 @@ describe(blockOxfmt, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockOxfmt, {
+    const creation = testBlock(oxfmt, {
       mode: 'transition',
       options: optionsBase,
     });

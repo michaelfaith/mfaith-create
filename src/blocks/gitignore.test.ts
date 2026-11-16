@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGitignore } from './gitignore.ts';
+import { gitignore } from './gitignore.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockGitignore, () => {
+describe(gitignore, () => {
   test('without props', () => {
-    const creation = testBlock(blockGitignore, {
+    const creation = testBlock(gitignore, {
       options: optionsBase,
     });
 
@@ -21,7 +21,7 @@ describe(blockGitignore, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockGitignore, {
+    const creation = testBlock(gitignore, {
       props: {
         ignores: ['/dist'],
       },

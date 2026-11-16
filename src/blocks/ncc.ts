@@ -2,13 +2,13 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslint } from './eslint.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockPrettier } from './prettier.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { eslint } from './eslint.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { oxfmt } from './oxfmt.ts';
+import { packageJson } from './packageJson.ts';
+import { prettier } from './prettier.ts';
 export interface BlockNccProps {
   entry?: string | undefined;
 }
@@ -30,10 +30,10 @@ export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: ['dist'],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Building: {
               contents: `
@@ -64,10 +64,10 @@ pnpm build:release
             },
           },
         }),
-        blockEslint({
+        eslint({
           ignores: ['dist'],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Build',
@@ -79,10 +79,10 @@ pnpm build:release
             },
           ],
         }),
-        blockOxfmt({
+        oxfmt({
           ignorePatterns: ['/dist'],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: {
               '@vercel/ncc': '^0.38.3',
@@ -93,7 +93,7 @@ pnpm build:release
             },
           },
         }),
-        blockPrettier({
+        prettier({
           ignores: ['/dist'],
         }),
       ],

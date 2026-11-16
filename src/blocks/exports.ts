@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { blockPublishConfig } from './publishConfig.ts';
 
 const exportEntrySchema: z.ZodType<ExportEntry> = z.object({
@@ -17,7 +17,7 @@ export interface ExportEntry {
   srcPath?: string | undefined;
 }
 export type Exports = Record<string, ExportEntry>;
-export interface BlockExportsProps {
+export interface ExportsProps {
   exports?: Exports | undefined;
 }
 
@@ -30,7 +30,7 @@ const createExportEntries = (exports: Exports, isSrcExports: boolean): Record<st
   );
 };
 
-export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock({
+export const exports: BlockWithProps<ExportsProps> = base.createBlock({
   about: {
     name: 'Exports',
   },
@@ -48,7 +48,7 @@ export const blockExports: BlockWithProps<BlockExportsProps> = base.createBlock(
 
     return {
       extensions: [
-        blockPackageJson({
+        packageJson({
           properties: {
             exports: {
               ...createExportEntries(exports, devExports),

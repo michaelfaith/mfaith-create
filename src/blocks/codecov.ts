@@ -1,9 +1,9 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { blockGithubApps } from './githubApps.ts';
-import { blockReadme } from './readme.ts';
+import { readme } from './readme.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
-import { blockVitest } from './vitest.ts';
+import { vitest } from './vitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
 export const codecov: BlockWithoutProps = base.createBlock({
@@ -30,7 +30,7 @@ export const codecov: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockReadme({
+        readme({
           badges: [
             {
               alt: '🧪 Coverage',
@@ -39,7 +39,7 @@ export const codecov: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockVitest({
+        vitest({
           actionSteps: [actionStep],
           permissions: {
             'id-token': 'write',

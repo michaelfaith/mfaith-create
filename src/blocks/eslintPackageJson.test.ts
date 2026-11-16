@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintPackageJson } from './eslintPackageJson.ts';
+import { eslintPackageJson } from './eslintPackageJson.ts';
 import { optionsBase } from './options.fakes.ts';
 
 describe('blockESLintPackageJson', () => {
   test('without mode', () => {
-    const creation = testBlock(blockEslintPackageJson, {
+    const creation = testBlock(eslintPackageJson, {
       options: optionsBase,
     });
 
@@ -51,7 +51,7 @@ describe('blockESLintPackageJson', () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockEslintPackageJson, {
+    const creation = testBlock(eslintPackageJson, {
       mode: 'transition',
       options: optionsBase,
     });

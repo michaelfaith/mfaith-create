@@ -2,16 +2,16 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockPrettier } from './prettier.ts';
+import { prettier } from './prettier.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockPrettier, () => {
+describe(prettier, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockPrettier, {
+    const creation = testBlock(prettier, {
       options: optionsBase,
     });
 
@@ -127,7 +127,7 @@ describe(blockPrettier, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockPrettier, {
+    const creation = testBlock(prettier, {
       props: {
         additionalConfig: {
           importOrder: ['<BUILTIN_MODULES>', '', '<THIRD_PARTY_MODULES>', '', '^[.]'],
@@ -266,7 +266,7 @@ describe(blockPrettier, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockPrettier, {
+    const creation = testBlock(prettier, {
       mode: 'transition',
       options: optionsBase,
     });

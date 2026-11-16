@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockSideEffects } from './sideEffects.ts';
+import { sideEffects } from './sideEffects.ts';
 
-describe(blockSideEffects, () => {
+describe(sideEffects, () => {
   it('without props', () => {
-    const creation = testBlock(blockSideEffects, { options: optionsBase });
+    const creation = testBlock(sideEffects, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -25,7 +25,7 @@ describe(blockSideEffects, () => {
   });
 
   it('with props (boolean)', () => {
-    const creation = testBlock(blockSideEffects, {
+    const creation = testBlock(sideEffects, {
       props: {
         sideEffects: true,
       },
@@ -49,7 +49,7 @@ describe(blockSideEffects, () => {
   });
 
   it('with props (Array)', () => {
-    const creation = testBlock(blockSideEffects, {
+    const creation = testBlock(sideEffects, {
       props: {
         sideEffects: ['./main.js'],
       },

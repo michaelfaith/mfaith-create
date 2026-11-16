@@ -6,13 +6,13 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { resolveBin } from '../utils/resolveBin.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
 
@@ -20,14 +20,14 @@ const props = {
   ignorePaths: z.array(z.string()).default([]),
   words: z.array(z.string()).default([]),
 };
-const propsSchema: z.ZodType<BlockCspellProps> = z.object(props);
+const propsSchema: z.ZodType<CspellProps> = z.object(props);
 
-export interface BlockCspellProps {
+export interface CspellProps {
   ignorePaths?: string[];
   words?: string[];
 }
 
-export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
+export const cspell: BlockWithProps<CspellProps> = base.createBlock({
   about: {
     name: 'CSpell',
   },
@@ -52,7 +52,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
 
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Linting: {
               contents: {
@@ -63,10 +63,10 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
             },
           },
         }),
-        blockVscode({
+        vscode({
           extensions: ['streetsidesoftware.code-spell-checker'],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Lint Spelling',
@@ -74,7 +74,7 @@ export const blockCspell: BlockWithProps<BlockCspellProps> = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('cspell'),
             scripts: {

@@ -3,11 +3,11 @@ import type { Preset } from 'bingo-stratum';
 import { base } from '../base.ts';
 import { allContributors } from '../blocks/allContributors.ts';
 import { codecov } from '../blocks/codecov.ts';
-import { blockFunding } from '../blocks/funding.ts';
-import { blockOctoguide } from '../blocks/octoguide.ts';
-import { blockPrPreviewRelease } from '../blocks/prPreviewRelease.ts';
-import { blockReleasePlease } from '../blocks/releasePlease.ts';
-import { blockVitest } from '../blocks/vitest.ts';
+import { funding } from '../blocks/funding.ts';
+import { octoguide } from '../blocks/octoguide.ts';
+import { prPreviewRelease } from '../blocks/prPreviewRelease.ts';
+import { releasePlease } from '../blocks/releasePlease.ts';
+import { vitest } from '../blocks/vitest.ts';
 import type { OptionsShape } from '../Options.ts';
 import { presetMinimal } from './minimal.ts';
 
@@ -21,10 +21,10 @@ export const presetCommon: Preset<OptionsShape> = base.createPreset({
     ...presetMinimal.blocks,
     allContributors,
     codecov,
-    blockFunding,
-    blockOctoguide,
-    blockPrPreviewRelease,
-    blockReleasePlease,
-    blockVitest,
+    funding,
+    octoguide,
+    prPreviewRelease,
+    releasePlease,
+    vitest,
   ],
 });

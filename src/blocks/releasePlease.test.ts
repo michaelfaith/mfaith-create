@@ -2,12 +2,12 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockReleasePlease } from './releasePlease.ts';
+import { releasePlease } from './releasePlease.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-describe(blockReleasePlease, () => {
+describe(releasePlease, () => {
   test('without props', () => {
-    const creation = testBlock(blockReleasePlease, { options: optionsBase });
+    const creation = testBlock(releasePlease, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -204,7 +204,7 @@ describe(blockReleasePlease, () => {
   });
 
   test('without props (scoped package name)', () => {
-    const creation = testBlock(blockReleasePlease, {
+    const creation = testBlock(releasePlease, {
       options: { ...optionsBase, packageName: '@test/create' },
     });
 
@@ -409,7 +409,7 @@ describe(blockReleasePlease, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockReleasePlease, {
+    const creation = testBlock(releasePlease, {
       props: {
         builders: [
           {
@@ -630,7 +630,7 @@ describe(blockReleasePlease, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockReleasePlease, {
+    const creation = testBlock(releasePlease, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -644,7 +644,7 @@ describe(blockReleasePlease, () => {
 
   describe('intake', () => {
     it('should return undefined when the release please manifest does not exist', () => {
-      const actual = testIntake(blockReleasePlease, {
+      const actual = testIntake(releasePlease, {
         files: {},
       });
 
@@ -652,7 +652,7 @@ describe(blockReleasePlease, () => {
     });
 
     it('should return undefined when the manifest exists but does not contain a version', () => {
-      const actual = testIntake(blockReleasePlease, {
+      const actual = testIntake(releasePlease, {
         files: {
           '.github': {
             'release-please': {
@@ -666,7 +666,7 @@ describe(blockReleasePlease, () => {
     });
 
     it('should return a version when the manifest exists and has a version', () => {
-      const actual = testIntake(blockReleasePlease, {
+      const actual = testIntake(releasePlease, {
         files: {
           '.github': {
             'release-please': {

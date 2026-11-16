@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockDevelopmentDocs } from './developmentDocs.ts';
+import { developmentDocs } from './developmentDocs.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockDevelopmentDocs, () => {
+describe(developmentDocs, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockDevelopmentDocs, {
+    const creation = testBlock(developmentDocs, {
       options: optionsBase,
     });
 
@@ -31,7 +31,7 @@ describe(blockDevelopmentDocs, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockDevelopmentDocs, {
+    const creation = testBlock(developmentDocs, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -67,7 +67,7 @@ describe(blockDevelopmentDocs, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockDevelopmentDocs, {
+    const creation = testBlock(developmentDocs, {
       props: {
         hints: ['> Be excellent to each other!'],
         sections: {
@@ -146,7 +146,7 @@ describe(blockDevelopmentDocs, () => {
   });
 
   test('with options.documentation', () => {
-    const creation = testBlock(blockDevelopmentDocs, {
+    const creation = testBlock(developmentDocs, {
       options: {
         ...optionsBase,
         documentation: {
@@ -178,7 +178,7 @@ describe(blockDevelopmentDocs, () => {
   });
 
   test('with options.guide', () => {
-    const creation = testBlock(blockDevelopmentDocs, {
+    const creation = testBlock(developmentDocs, {
       options: {
         ...optionsBase,
         guide: {

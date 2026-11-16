@@ -4,7 +4,7 @@ import { blockRemoveFiles } from './removeFiles.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockOctoguide: BlockWithoutProps = base.createBlock({
+export const octoguide: BlockWithoutProps = base.createBlock({
   about: {
     name: 'OctoGuide',
   },

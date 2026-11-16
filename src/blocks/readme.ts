@@ -33,14 +33,14 @@ export interface Badge {
   href?: string | undefined;
 }
 
-export interface BlockReadmeProps {
+export interface ReadmeProps {
   badges?: Badge[];
   defaultUsage?: string[];
   notices?: string[];
   sections?: string[];
 }
 
-export const blockReadme: BlockWithProps<BlockReadmeProps> = base.createBlock({
+export const readme: BlockWithProps<ReadmeProps> = base.createBlock({
   about: {
     name: 'README.md',
   },

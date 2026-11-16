@@ -1,16 +1,16 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockPrPreviewRelease } from './prPreviewRelease.ts';
+import { prPreviewRelease } from './prPreviewRelease.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockPrPreviewRelease, () => {
+describe(prPreviewRelease, () => {
   test('without props', () => {
-    const creation = testBlock(blockPrPreviewRelease, {});
+    const creation = testBlock(prPreviewRelease, {});
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -66,7 +66,7 @@ describe(blockPrPreviewRelease, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockPrPreviewRelease, {
+    const creation = testBlock(prPreviewRelease, {
       props: {
         builders: [
           {

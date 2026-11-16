@@ -1,24 +1,24 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockGitignore } from './gitignore.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockPrettier } from './prettier.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { gitignore } from './gitignore.ts';
+import { oxfmt } from './oxfmt.ts';
+import { packageJson } from './packageJson.ts';
+import { prettier } from './prettier.ts';
 
-export const blockWebExt: BlockWithoutProps = base.createBlock({
+export const webExt: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Web-ext',
   },
   produce() {
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: ['assets'],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Building: {
               contents: `
@@ -83,7 +83,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
             },
           },
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Build',
@@ -95,10 +95,10 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
             },
           ],
         }),
-        blockGitignore({
+        gitignore({
           ignores: ['*.zip', 'web-ext-artifacts'],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: {
               esbuild: '^0.25.0',
@@ -111,10 +111,10 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
             },
           },
         }),
-        blockOxfmt({
+        oxfmt({
           ignorePatterns: ['assets/'],
         }),
-        blockPrettier({
+        prettier({
           ignores: ['assets/'],
         }),
       ],

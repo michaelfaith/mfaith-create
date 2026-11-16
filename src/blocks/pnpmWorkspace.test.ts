@@ -3,11 +3,11 @@ import { dump } from 'js-yaml';
 import { describe, expect, it, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockPnpmWorkspace } from './pnpmWorkspace.ts';
+import { pnpmWorkspace } from './pnpmWorkspace.ts';
 
-describe(blockPnpmWorkspace, () => {
+describe(pnpmWorkspace, () => {
   test('without props', () => {
-    const creation = testBlock(blockPnpmWorkspace, {
+    const creation = testBlock(pnpmWorkspace, {
       options: optionsBase,
     });
 
@@ -22,7 +22,7 @@ describe(blockPnpmWorkspace, () => {
   });
 
   test('transition mode without files', () => {
-    const creation = testBlock(blockPnpmWorkspace, {
+    const creation = testBlock(pnpmWorkspace, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -38,7 +38,7 @@ describe(blockPnpmWorkspace, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockPnpmWorkspace, {
+    const creation = testBlock(pnpmWorkspace, {
       props: {
         config: {
           minimumReleaseAge: 1440,
@@ -62,7 +62,7 @@ describe(blockPnpmWorkspace, () => {
 
   describe('intake', () => {
     it('returns undefined when pnpm-workspace.yaml does not exist', () => {
-      const actual = testIntake(blockPnpmWorkspace, {
+      const actual = testIntake(pnpmWorkspace, {
         files: {},
       });
 
@@ -70,7 +70,7 @@ describe(blockPnpmWorkspace, () => {
     });
 
     it('returns and empty object when pnpm-workspace.yaml is empty', () => {
-      const actual = testIntake(blockPnpmWorkspace, {
+      const actual = testIntake(pnpmWorkspace, {
         files: {
           'pnpm-workspace.yaml': [''],
         },
@@ -85,7 +85,7 @@ describe(blockPnpmWorkspace, () => {
         minimumReleaseAgeExclude: ['react', 'webpack'],
       };
 
-      const actual = testIntake(blockPnpmWorkspace, {
+      const actual = testIntake(pnpmWorkspace, {
         files: {
           'pnpm-workspace.yaml': [dump(config)],
         },

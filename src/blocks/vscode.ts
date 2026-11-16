@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
+import { developmentDocs } from './developmentDocs.ts';
 
 const debuggerSchema: z.ZodType<Debugger> = z.intersection(
   z.record(z.string(), z.unknown()),
@@ -21,14 +21,14 @@ export type Task = Record<string, unknown> & {
   detail: string;
 };
 
-export interface BlockVscodeProps {
+export interface VscodeProps {
   debuggers?: Debugger[] | undefined;
   extensions?: string[] | undefined;
   settings?: Record<string, unknown>;
   tasks?: Task[] | undefined;
 }
 
-export const blockVscode: BlockWithProps<BlockVscodeProps> = base.createBlock({
+export const vscode: BlockWithProps<VscodeProps> = base.createBlock({
   about: {
     name: 'VS Code',
   },
@@ -43,7 +43,7 @@ export const blockVscode: BlockWithProps<BlockVscodeProps> = base.createBlock({
 
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           hints: [
             `> This repository includes a list of suggested VS Code extensions.`,
             `> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.`,

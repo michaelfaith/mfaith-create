@@ -4,17 +4,17 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
 import { formatTextLines } from './files/formatTextLines.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
-import { blockPnpmWorkspace } from './pnpmWorkspace.ts';
+import { pnpmWorkspace } from './pnpmWorkspace.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
   files: z.string(),
@@ -29,7 +29,7 @@ export interface Override {
   };
 }
 
-export interface BlockPrettierProps {
+export interface PrettierProps {
   ignores?: string[] | undefined;
   overrides?: Override[] | undefined;
   plugins?: string[] | undefined;
@@ -37,7 +37,7 @@ export interface BlockPrettierProps {
   additionalConfig?: Record<string, unknown> | undefined;
 }
 
-export const blockPrettier: BlockWithProps<BlockPrettierProps> = base.createBlock({
+export const prettier: BlockWithProps<PrettierProps> = base.createBlock({
   about: {
     name: 'Prettier',
   },
@@ -53,10 +53,10 @@ export const blockPrettier: BlockWithProps<BlockPrettierProps> = base.createBloc
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: ['prettier.config.ts'],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Formatting: {
               contents: `
@@ -72,7 +72,7 @@ pnpm format --write
             },
           },
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Format Check',
@@ -83,7 +83,7 @@ pnpm format --write
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies(
               ...plugins.filter((plugin) => !plugin.startsWith('.')),
@@ -100,14 +100,14 @@ pnpm format --write
             },
           },
         }),
-        blockPnpmWorkspace({
+        pnpmWorkspace({
           config: {
             permissions: {
               'simple-git-hooks': { build: false },
             },
           },
         }),
-        blockVscode({
+        vscode({
           extensions: ['esbenp.prettier-vscode'],
           settings: { 'editor.defaultFormatter': 'esbenp.prettier-vscode' },
         }),

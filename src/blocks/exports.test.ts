@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockExports } from './exports.ts';
+import { exports } from './exports.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockExports, () => {
+describe(exports, () => {
   it('without props', () => {
-    const creation = testBlock(blockExports, { options: optionsBase });
+    const creation = testBlock(exports, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -28,7 +28,7 @@ describe(blockExports, () => {
   });
 
   it('without props (devExports: true)', () => {
-    const creation = testBlock(blockExports, {
+    const creation = testBlock(exports, {
       options: { ...optionsBase, devExports: true },
     });
 
@@ -61,7 +61,7 @@ describe(blockExports, () => {
   });
 
   it('with props (no leading ./)', () => {
-    const creation = testBlock(blockExports, {
+    const creation = testBlock(exports, {
       props: {
         exports: {
           '.': {
@@ -93,7 +93,7 @@ describe(blockExports, () => {
   });
 
   it('with props (with leading ./)', () => {
-    const creation = testBlock(blockExports, {
+    const creation = testBlock(exports, {
       props: {
         exports: {
           '.': {
@@ -125,7 +125,7 @@ describe(blockExports, () => {
   });
 
   it('with props (devExports: true)', () => {
-    const creation = testBlock(blockExports, {
+    const creation = testBlock(exports, {
       props: {
         exports: {
           '.': {

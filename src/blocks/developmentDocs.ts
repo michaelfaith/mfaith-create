@@ -67,12 +67,12 @@ function printSection(heading: string, section: Section) {
   ];
 }
 
-export interface BlockDevelopmentDocsProps {
+export interface DevelopmentDocsProps {
   hints: string[];
   sections: Record<string, Section>;
 }
 
-export const blockDevelopmentDocs: BlockWithProps<BlockDevelopmentDocsProps> = base.createBlock({
+export const developmentDocs: BlockWithProps<DevelopmentDocsProps> = base.createBlock({
   about: {
     name: 'Development Docs',
   },

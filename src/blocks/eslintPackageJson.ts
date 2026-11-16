@@ -1,19 +1,19 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { eslint } from './eslint.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
-export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
+export const eslintPackageJson: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint package.json Plugin',
   },
   produce() {
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: ['packageJson.configs.recommended', 'packageJson.configs.stylistic'],
@@ -27,7 +27,7 @@ export const blockEslintPackageJson: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             scripts: {
               'lint:package-json': undefined,

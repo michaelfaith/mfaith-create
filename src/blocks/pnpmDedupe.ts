@@ -1,17 +1,17 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
-export const blockPnpmDedupe: BlockWithoutProps = base.createBlock({
+export const pnpmDedupe: BlockWithoutProps = base.createBlock({
   about: {
     name: 'pnpm Dedupe',
   },
   produce() {
     return {
       extensions: [
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Dedupe Check',
@@ -19,7 +19,7 @@ export const blockPnpmDedupe: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           cleanupCommands: ['pnpm dedupe'],
         }),
       ],

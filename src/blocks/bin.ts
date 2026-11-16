@@ -2,14 +2,14 @@ import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
 import { blockPublishConfig } from './publishConfig.ts';
-import { blockTsdown } from './tsdown.ts';
+import { tsdown } from './tsdown.ts';
 
 const convertToCommand = (packageName: string): string => {
   const parts = packageName.split('/');
@@ -76,7 +76,7 @@ export const bin: BlockWithProps<BinProps> = base.createBlock({
 
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               files: JS_TS_FILES,
@@ -89,7 +89,7 @@ export const bin: BlockWithProps<BinProps> = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             bin: devExports ? srcBin : bin,
           },
@@ -105,7 +105,7 @@ greet('Hello, world! ${emoji}');`,
           },
         }),
         ...(devExports ? [blockPublishConfig({ bin })] : []),
-        blockTsdown({
+        tsdown({
           entry: binEntries,
           excludeFromExports: binEntries,
         }),

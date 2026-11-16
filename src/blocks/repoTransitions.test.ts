@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 
 import { packageData } from '../data/packageData.ts';
 import { optionsBase } from './options.fakes.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { blockRepoTransitions } from './repoTransitions.ts';
 
@@ -14,7 +14,7 @@ describe(blockRepoTransitions, () => {
     });
 
     expect(creation.extensions).toEqual([
-      blockPackageJson({
+      packageJson({
         properties: {
           devDependencies: {
             '@mfaith/create': packageData.version,

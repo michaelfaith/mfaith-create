@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockKnip } from './knip.ts';
+import { knip } from './knip.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
@@ -13,9 +13,9 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockKnip, () => {
+describe(knip, () => {
   test('without props', () => {
-    const creation = testBlock(blockKnip, {
+    const creation = testBlock(knip, {
       options: optionsBase,
     });
 
@@ -91,7 +91,7 @@ describe(blockKnip, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockKnip, {
+    const creation = testBlock(knip, {
       props: {
         entry: ['src/index.ts'],
         ignoreDependencies: ['abc', 'def'],
@@ -172,7 +172,7 @@ describe(blockKnip, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockKnip, {
+    const creation = testBlock(knip, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -262,7 +262,7 @@ describe(blockKnip, () => {
 
   describe('intake', () => {
     it('returns undefined when knip.config.ts and knip.json do not exist', () => {
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {},
       });
 
@@ -270,7 +270,7 @@ describe(blockKnip, () => {
     });
 
     it('returns undefined when knip.config.ts exists and does not contain ignoreDependencies', () => {
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {
           'knip.config.ts': [`export default { other: true };`],
         },
@@ -282,7 +282,7 @@ describe(blockKnip, () => {
     it('returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies', () => {
       const ignoreDependencies = ['a', 'b', 'c'];
 
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {
           'knip.config.ts': [
             `export default { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };`,
@@ -296,7 +296,7 @@ describe(blockKnip, () => {
     it('returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies with config variable', () => {
       const ignoreDependencies = ['a', 'b', 'c'];
 
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {
           'knip.config.ts': [
             `import type { KnipConfig } from 'knip';
@@ -312,7 +312,7 @@ export default config;`,
     });
 
     it('returns undefined when knip.json exists and does not contain ignoreDependencies', () => {
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {
           'knip.json': [JSON.stringify({ other: true })],
         },
@@ -324,7 +324,7 @@ export default config;`,
     it('returns ignoreDependencies when knip.json exists and contains ignoreDependencies', () => {
       const ignoreDependencies = ['a', 'b', 'c'];
 
-      const actual = testIntake(blockKnip, {
+      const actual = testIntake(knip, {
         files: {
           'knip.json': [JSON.stringify({ ignoreDependencies })],
         },

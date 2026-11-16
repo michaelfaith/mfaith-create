@@ -8,21 +8,21 @@ import { getPackageDependencies } from '../data/packageData.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslint } from './eslint.ts';
-import { blockExports, type ExportEntry, type Exports } from './exports.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockGitignore } from './gitignore.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { eslint } from './eslint.ts';
+import { type ExportEntry, type Exports, exports as exportsBlock } from './exports.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { gitignore } from './gitignore.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockPrettier } from './prettier.ts';
-import { blockPrPreviewRelease } from './prPreviewRelease.ts';
-import { blockReleasePlease } from './releasePlease.ts';
+import { oxfmt } from './oxfmt.ts';
+import { packageJson } from './packageJson.ts';
+import { prettier } from './prettier.ts';
+import { prPreviewRelease } from './prPreviewRelease.ts';
+import { releasePlease } from './releasePlease.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVitest } from './vitest.ts';
+import { vitest } from './vitest.ts';
 
 const attwSchema: z.ZodType<Attw> = z.union([
   z.boolean(),
@@ -88,7 +88,7 @@ const createExportsFromEntries = (entries: string[], exclude: string[] = []): Ex
   return exports;
 };
 
-export interface BlockTsdownProps {
+export interface TsdownProps {
   additionalConfig?: Record<string, unknown>;
   attw?: Attw | undefined;
   entry?: string[];
@@ -96,7 +96,7 @@ export interface BlockTsdownProps {
   runInCI?: string[];
 }
 
-export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
+export const tsdown: BlockWithProps<TsdownProps> = base.createBlock({
   about: {
     name: 'tsdown',
     description:
@@ -158,7 +158,7 @@ export const blockTsdown: BlockWithProps<BlockTsdownProps> = base.createBlock({
 
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Building: {
               contents: `
@@ -177,10 +177,10 @@ pnpm build --watch
             },
           },
         }),
-        blockEslint({
+        eslint({
           ignores: ['dist'],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Build',
@@ -192,10 +192,10 @@ pnpm build --watch
             },
           ],
         }),
-        blockGitignore({
+        gitignore({
           ignores: ['/dist'],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('tsdown'),
             files: ['dist/'],
@@ -204,13 +204,13 @@ pnpm build --watch
             },
           },
         }),
-        blockOxfmt({
+        oxfmt({
           ignorePatterns: ['/dist'],
         }),
-        blockPrettier({
+        prettier({
           ignores: ['/dist'],
         }),
-        blockPrPreviewRelease({
+        prPreviewRelease({
           builders: [
             {
               order: 0,
@@ -218,7 +218,7 @@ pnpm build --watch
             },
           ],
         }),
-        blockReleasePlease({
+        releasePlease({
           builders: [
             {
               order: 0,
@@ -226,8 +226,8 @@ pnpm build --watch
             },
           ],
         }),
-        blockExports({ exports: packageExports }),
-        blockVitest({ coverage: { include: ['src'] }, exclude: ['dist'] }),
+        exportsBlock({ exports: packageExports }),
+        vitest({ coverage: { include: ['src'] }, exclude: ['dist'] }),
       ],
       files: {
         'tsdown.config.ts': `import { defineConfig, type UserConfig } from 'tsdown';

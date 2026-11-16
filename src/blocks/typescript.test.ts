@@ -2,16 +2,16 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockTypescript } from './typescript.ts';
+import { typescript } from './typescript.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockTypescript, () => {
+describe(typescript, () => {
   test('without props or options', () => {
-    const creation = testBlock(blockTypescript, {
+    const creation = testBlock(typescript, {
       options: optionsBase,
     });
 
@@ -176,7 +176,7 @@ describe(blockTypescript, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockTypescript, {
+    const creation = testBlock(typescript, {
       props: {
         compilerOptions: {
           strictBindCallApply: false,
@@ -346,7 +346,7 @@ describe(blockTypescript, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockTypescript, {
+    const creation = testBlock(typescript, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -521,7 +521,7 @@ describe(blockTypescript, () => {
 
   describe('intake', () => {
     it('returns undefined when tsconfig.json does not exist', () => {
-      const actual = testIntake(blockTypescript, {
+      const actual = testIntake(typescript, {
         files: {},
       });
 
@@ -529,7 +529,7 @@ describe(blockTypescript, () => {
     });
 
     it('returns undefined when tsconfig.json does not contain truthy data', () => {
-      const actual = testIntake(blockTypescript, {
+      const actual = testIntake(typescript, {
         files: {
           'tsconfig.json': [JSON.stringify(null)],
         },
@@ -539,7 +539,7 @@ describe(blockTypescript, () => {
     });
 
     it('returns undefined when tsconfig.json does not contain compilerOptions', () => {
-      const actual = testIntake(blockTypescript, {
+      const actual = testIntake(typescript, {
         files: {
           'tsconfig.json': [JSON.stringify({ other: true })],
         },
@@ -551,7 +551,7 @@ describe(blockTypescript, () => {
     it('returns compilerOptions when tsconfig.json contains compilerOptions', () => {
       const compilerOptions = { module: 'ESNext' };
 
-      const actual = testIntake(blockTypescript, {
+      const actual = testIntake(typescript, {
         files: {
           'tsconfig.json': [JSON.stringify({ compilerOptions })],
         },
@@ -563,7 +563,7 @@ describe(blockTypescript, () => {
     it('returns compilerOptions when tsconfig.json contains compilerOptions and other data', () => {
       const compilerOptions = { module: 'ESNext' };
 
-      const actual = testIntake(blockTypescript, {
+      const actual = testIntake(typescript, {
         files: {
           'tsconfig.json': [
             JSON.stringify({

@@ -1,18 +1,18 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
-export const blockEslintMarkdown: BlockWithoutProps = base.createBlock({
+export const eslintMarkdown: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint Markdown Plugin',
   },
   produce() {
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: ['markdown.configs.recommended'],
