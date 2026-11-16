@@ -17,7 +17,7 @@ function getPackageDependency(name: string): string {
     throw new Error(`'${name}' is neither in package.json's dependencies nor its devDependencies.`);
   }
 
-  return version;
+  return version.replace(/^[\^~]/, '');
 }
 
 function getPackageInner(
