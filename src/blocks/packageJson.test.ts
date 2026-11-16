@@ -3,16 +3,16 @@ import { it } from 'vitest';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 
 const options = {
   ...optionsBase,
   description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,
 };
 
-describe(blockPackageJson, () => {
+describe(packageJson, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockPackageJson, { options });
+    const creation = testBlock(packageJson, { options });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -32,7 +32,7 @@ describe(blockPackageJson, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       mode: 'transition',
       options,
     });
@@ -66,7 +66,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         cleanupCommands: ['pnpm dedupe'],
         properties: {
@@ -98,7 +98,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with props adding devDependencies', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         cleanupCommands: ['pnpm dedupe'],
         properties: {
@@ -133,7 +133,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with props adding overlapping files', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           files: ['README.md', 'LICENSE.md', 'dist/', 'dist/bin/file.js'],
@@ -160,7 +160,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with keywords', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       options: {
         ...options,
         keywords: ['abc', 'def ghi'],
@@ -185,7 +185,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with node and pnpm versions', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       options: {
         ...options,
         node: {
@@ -213,7 +213,7 @@ describe(blockPackageJson, () => {
   });
 
   test('with peerDependencies and peerDependenciesMeta', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       options: {
         ...options,
         packageData: {
@@ -248,7 +248,7 @@ describe(blockPackageJson, () => {
   });
 
   test('offline mode', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       offline: true,
       options,
     });
@@ -272,7 +272,7 @@ describe(blockPackageJson, () => {
 
   it('preserves an existing dependency when the prop has an invalid version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -302,7 +302,7 @@ describe(blockPackageJson, () => {
 
   it("uses the prop's version when there is no existing equivalent", () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -330,7 +330,7 @@ describe(blockPackageJson, () => {
 
   it("uses the prop's version when the existing equivalent is invalid semver", () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -360,7 +360,7 @@ describe(blockPackageJson, () => {
 
   it('preserves an existing dependency when the prop has an older version minimum', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -390,7 +390,7 @@ describe(blockPackageJson, () => {
 
   it('preserves an existing dependency when the prop has an older version range', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -420,7 +420,7 @@ describe(blockPackageJson, () => {
 
   it('merges an existing dependency when the prop has the same version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -450,7 +450,7 @@ describe(blockPackageJson, () => {
 
   it('replaces an existing dependency when the prop has a newer version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -480,7 +480,7 @@ describe(blockPackageJson, () => {
 
   it('replaces an existing dependency when the prop has a newer version than the first range element', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           dependencies: {
@@ -510,7 +510,7 @@ describe(blockPackageJson, () => {
 
   it('preserves an existing devDependency when the prop has an older pinned version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           devDependencies: {
@@ -540,7 +540,7 @@ describe(blockPackageJson, () => {
 
   it('merges an existing devDependency when the prop has the same version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           devDependencies: {
@@ -570,7 +570,7 @@ describe(blockPackageJson, () => {
 
   it('replaces an existing devDependency when the prop has a newer version', () => {
     const dependency = 'test-dependency';
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           devDependencies: {
@@ -599,7 +599,7 @@ describe(blockPackageJson, () => {
   });
 
   it('should sort top-level exports keys when subpaths', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           exports: {
@@ -647,7 +647,7 @@ describe(blockPackageJson, () => {
   });
 
   it('should do nothing, if exports is a string', () => {
-    const creation = testBlock(blockPackageJson, {
+    const creation = testBlock(packageJson, {
       props: {
         properties: {
           exports: './index.ts',

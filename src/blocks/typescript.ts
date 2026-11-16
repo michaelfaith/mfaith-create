@@ -4,24 +4,24 @@ import { type CompilerOptions, CompilerOptionsSchema } from 'zod-tsconfig';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslint } from './eslint.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockGitignore } from './gitignore.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { gitignore } from './gitignore.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
-import { blockKnip } from './knip.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { knip } from './knip.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVitest } from './vitest.ts';
-import { blockVscode } from './vscode.ts';
+import { vitest } from './vitest.ts';
+import { vscode } from './vscode.ts';
 
-export interface BlockTypescriptProps {
+export interface typescriptProps {
   compilerOptions?: CompilerOptions | undefined;
 }
 
-export const blockTypescript: BlockWithProps<BlockTypescriptProps> = base.createBlock({
+export const typescript: BlockWithProps<typescriptProps> = base.createBlock({
   about: {
     name: 'TypeScript',
   },
@@ -44,7 +44,7 @@ export const blockTypescript: BlockWithProps<BlockTypescriptProps> = base.create
 
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             'Type Checking': {
               contents: `
@@ -65,7 +65,7 @@ pnpm tsc --watch
             },
           },
         }),
-        blockEslint({
+        eslint({
           extensions: [
             {
               files: JS_TS_FILES,
@@ -114,22 +114,22 @@ greet('Hello, world! ${options.emoji}');
 \`\`\``,
           ],
         }),
-        blockGitignore({
+        gitignore({
           ignores: ['tsconfig.tsbuildinfo'],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [{ name: 'Type Check', steps: [{ run: 'pnpm tsc' }] }],
         }),
-        blockKnip({
+        knip({
           project: ['src/**/*.ts'],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('typescript'),
           },
         }),
-        blockVitest({ coverage: { include: ['src'] } }),
-        blockVscode({
+        vitest({ coverage: { include: ['src'] } }),
+        vscode({
           settings: {
             'js/ts.tsdk.path': 'node_modules/typescript/lib',
           },

@@ -7,11 +7,11 @@ import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 
 const ignoreDepsSchema = z.array(z.string()).default([]);
 
-export interface BlockRenovateProps {
+export interface renovateProps {
   ignoreDeps?: string[];
 }
 
-export const blockRenovate: BlockWithProps<BlockRenovateProps> = base.createBlock({
+export const renovate: BlockWithProps<renovateProps> = base.createBlock({
   about: {
     name: 'Renovate',
   },

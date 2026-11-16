@@ -1,16 +1,16 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 
-export const blockEslintComments: BlockWithoutProps = base.createBlock({
+export const eslintComments: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint Comments Plugin',
   },
   produce() {
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: ['comments.recommended'],

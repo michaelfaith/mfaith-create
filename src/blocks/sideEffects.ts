@@ -2,13 +2,13 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 
-export interface BlockSideEffectsProps {
+export interface SideEffectsProps {
   sideEffects?: boolean | string[] | undefined;
 }
 
-export const blockSideEffects: BlockWithProps<BlockSideEffectsProps> = base.createBlock({
+export const sideEffects: BlockWithProps<SideEffectsProps> = base.createBlock({
   about: {
     name: 'Side Effects',
   },
@@ -20,7 +20,7 @@ export const blockSideEffects: BlockWithProps<BlockSideEffectsProps> = base.crea
 
     return {
       extensions: [
-        blockPackageJson({
+        packageJson({
           properties: {
             sideEffects,
           },

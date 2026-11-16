@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockSecurityDocs } from './securityDocs.ts';
+import { securityDocs } from './securityDocs.ts';
 
-describe(blockSecurityDocs, () => {
+describe(securityDocs, () => {
   test('production (with contact.bluesky)', () => {
-    const creation = testBlock(blockSecurityDocs, {
+    const creation = testBlock(securityDocs, {
       options: { ...optionsBase, contact: { bluesky: 'social.media' } },
     });
 
@@ -31,7 +31,7 @@ describe(blockSecurityDocs, () => {
   });
 
   test('production (with contact.url)', () => {
-    const creation = testBlock(blockSecurityDocs, {
+    const creation = testBlock(securityDocs, {
       options: optionsBase,
     });
 
@@ -56,7 +56,7 @@ describe(blockSecurityDocs, () => {
   });
 
   test('production (with no contact.bluesky or contact.url)', () => {
-    const creation = testBlock(blockSecurityDocs, {
+    const creation = testBlock(securityDocs, {
       options: { ...optionsBase, contact: { email: 'test@email.com' } },
     });
 

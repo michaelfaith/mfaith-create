@@ -4,24 +4,24 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
 const stringArraySchema = z.array(z.string());
 
-export interface BlockKnipProps {
+export interface KnipProps {
   entry?: string[] | undefined;
   ignoreDependencies?: string[] | undefined;
   project?: string[] | undefined;
 }
 
-export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
+export const knip: BlockWithProps<KnipProps> = base.createBlock({
   about: {
     name: 'Knip',
   },
@@ -47,7 +47,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
     const { entry, ignoreDependencies, project } = props;
     return {
       extensions: [
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Linting: {
               contents: {
@@ -58,7 +58,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
             },
           },
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Knip',
@@ -66,7 +66,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('knip'),
           },
@@ -74,7 +74,7 @@ export const blockKnip: BlockWithProps<BlockKnipProps> = base.createBlock({
         blockRemoveFiles({
           files: ['.ts-prunerc*'],
         }),
-        blockVscode({
+        vscode({
           extensions: ['webpro.vscode-knip'],
         }),
       ],

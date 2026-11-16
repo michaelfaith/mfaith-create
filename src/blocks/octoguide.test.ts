@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockOctoguide } from './octoguide.ts';
+import { octoguide } from './octoguide.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockOctoguide, () => {
+describe(octoguide, () => {
   test('production', () => {
-    const creation = testBlock(blockOctoguide, {
+    const creation = testBlock(octoguide, {
       options: optionsBase,
     });
 
@@ -46,7 +46,7 @@ describe(blockOctoguide, () => {
   });
 
   test('transition mode without files', () => {
-    const creation = testBlock(blockOctoguide, {
+    const creation = testBlock(octoguide, {
       mode: 'transition',
       options: optionsBase,
     });

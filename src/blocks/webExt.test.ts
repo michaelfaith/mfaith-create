@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockWebExt } from './webExt.ts';
+import { webExt } from './webExt.ts';
 
-describe(blockWebExt, () => {
+describe(webExt, () => {
   test('production', () => {
-    const creation = testBlock(blockWebExt, {
+    const creation = testBlock(webExt, {
       options: optionsBase,
     });
 

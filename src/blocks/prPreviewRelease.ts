@@ -4,15 +4,15 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
 import { blockGithubApps } from './githubApps.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { type Builder, builderSchema } from './workflows/schema.ts';
 
-export interface BlockPrPreviewReleaseProps {
+export interface PrPreviewReleaseProps {
   builders?: Builder[];
 }
 
-export const blockPrPreviewRelease: BlockWithProps<BlockPrPreviewReleaseProps> = base.createBlock({
+export const prPreviewRelease: BlockWithProps<PrPreviewReleaseProps> = base.createBlock({
   about: {
     name: 'PR Preview Release',
     description:
@@ -34,7 +34,7 @@ export const blockPrPreviewRelease: BlockWithProps<BlockPrPreviewReleaseProps> =
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('pkg-pr-new'),
           },

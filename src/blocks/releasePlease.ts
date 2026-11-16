@@ -2,12 +2,12 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
+import { cspell } from './cspell.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPrettier } from './prettier.ts';
+import { oxfmt } from './oxfmt.ts';
+import { prettier } from './prettier.ts';
 import { blockPublishConfig } from './publishConfig.ts';
-import { blockReadme } from './readme.ts';
+import { readme } from './readme.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { blockRepositoryLabels } from './repositoryLabels.ts';
 import { blockRepositorySecrets } from './repositorySecrets.ts';
@@ -19,12 +19,12 @@ import { type Builder, builderSchema } from './workflows/schema.ts';
 const isScopedPackage = (packageName: string | undefined): boolean =>
   !!packageName?.startsWith('@');
 
-export interface BlockReleasePleaseProps {
+export interface ReleasePleaseProps {
   builders?: Builder[] | undefined;
   currentVersion?: string | undefined;
 }
 
-export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.createBlock({
+export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBlock({
   about: {
     name: 'Release Please',
     description:
@@ -56,11 +56,11 @@ export const blockReleasePlease: BlockWithProps<BlockReleasePleaseProps> = base.
 
     return {
       extensions: [
-        blockCspell({ words: ['RELEASEBOT'] }),
-        blockOxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
-        blockPrettier({ ignores: ['/CHANGELOG.md'] }),
+        cspell({ words: ['RELEASEBOT'] }),
+        oxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
+        prettier({ ignores: ['/CHANGELOG.md'] }),
         ...(isScopedPackage(options.packageName) ? [blockPublishConfig({ access: 'public' })] : []),
-        blockReadme({
+        readme({
           badges: [
             {
               alt: '📦 npm version',

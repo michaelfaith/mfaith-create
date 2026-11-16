@@ -24,11 +24,11 @@ export interface PnpmWorkspace {
   trustPolicy?: 'off' | 'no-downgrade' | undefined;
 }
 
-export interface BlockPnpmWorkspaceProps {
+export interface PnpmWorkspaceProps {
   config?: PnpmWorkspace;
 }
 
-export const blockPnpmWorkspace: BlockWithProps<BlockPnpmWorkspaceProps> = base.createBlock({
+export const pnpmWorkspace: BlockWithProps<PnpmWorkspaceProps> = base.createBlock({
   about: {
     name: 'pnpm Workspace',
     description: 'Creates a Workspace configuration file for pnpm.',

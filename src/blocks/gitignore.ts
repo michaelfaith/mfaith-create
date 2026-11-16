@@ -4,11 +4,11 @@ import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 import { formatTextLines } from './files/formatTextLines.ts';
 
-export interface BlockGitignoreProps {
+export interface GitignoreProps {
   ignores?: string[];
 }
 
-export const blockGitignore: BlockWithProps<BlockGitignoreProps> = base.createBlock({
+export const gitignore: BlockWithProps<GitignoreProps> = base.createBlock({
   about: {
     name: 'Gitignore',
   },

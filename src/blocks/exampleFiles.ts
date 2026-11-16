@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockReadme } from './readme.ts';
+import { readme } from './readme.ts';
 
 export interface DirectoryEntry {
   [i: string]: Entry;
@@ -32,7 +32,7 @@ export const blockExampleFiles: BlockWithProps<BlockExampleFilesProps> = base.cr
 
     return {
       extensions: [
-        blockReadme({
+        readme({
           defaultUsage: usage,
         }),
       ],

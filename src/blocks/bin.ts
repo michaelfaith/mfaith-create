@@ -2,14 +2,14 @@ import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { blockExampleFiles } from './exampleFiles.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
 import { blockPublishConfig } from './publishConfig.ts';
-import { blockTsdown } from './tsdown.ts';
+import { tsdown } from './tsdown.ts';
 
 const convertToCommand = (packageName: string): string => {
   const parts = packageName.split('/');
@@ -35,13 +35,13 @@ const prepareBin = (
   );
 };
 
-export interface BlockBinProps {
+export interface BinProps {
   src?: Bin;
 }
 
-export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
+export const bin: BlockWithProps<BinProps> = base.createBlock({
   about: {
-    name: 'Bin',
+    name: 'bin',
     description:
       'Adds a `bin` entry in the `package.json` for any bin scripts that the package should expose.',
   },
@@ -76,7 +76,7 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
 
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               files: JS_TS_FILES,
@@ -89,7 +89,7 @@ export const blockBin: BlockWithProps<BlockBinProps> = base.createBlock({
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             bin: devExports ? srcBin : bin,
           },
@@ -105,7 +105,7 @@ greet('Hello, world! ${emoji}');`,
           },
         }),
         ...(devExports ? [blockPublishConfig({ bin })] : []),
-        blockTsdown({
+        tsdown({
           entry: binEntries,
           excludeFromExports: binEntries,
         }),

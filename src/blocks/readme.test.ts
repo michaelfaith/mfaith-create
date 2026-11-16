@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockReadme } from './readme.ts';
+import { readme } from './readme.ts';
 
-describe(blockReadme, () => {
+describe(readme, () => {
   test('description with one sentence', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         description: 'One sentence.',
@@ -35,7 +35,7 @@ describe(blockReadme, () => {
   });
 
   test('description with two sentences', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         description: 'First sentence. Second sentence.',
@@ -67,7 +67,7 @@ describe(blockReadme, () => {
   });
 
   test('options.documentation', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         documentation: {
@@ -103,7 +103,7 @@ describe(blockReadme, () => {
   });
 
   test('options.documentation.readme.explainer', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         documentation: {
@@ -141,7 +141,7 @@ describe(blockReadme, () => {
   });
 
   test('options.documentation.readme.footnotes', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         documentation: {
@@ -178,7 +178,7 @@ describe(blockReadme, () => {
   });
 
   test('options.logo without sizing', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         logo: {
@@ -212,7 +212,7 @@ describe(blockReadme, () => {
   });
 
   test('options.logo with sizing', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         logo: {
@@ -248,7 +248,7 @@ describe(blockReadme, () => {
   });
 
   test('options.explainer and options.logo', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       options: {
         ...optionsBase,
         documentation: {
@@ -294,7 +294,7 @@ describe(blockReadme, () => {
   });
 
   test('without props', () => {
-    const creation = testBlock(blockReadme, { options: optionsBase });
+    const creation = testBlock(readme, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
 			{
@@ -318,7 +318,7 @@ describe(blockReadme, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockReadme, {
+    const creation = testBlock(readme, {
       props: {
         badges: [
           {

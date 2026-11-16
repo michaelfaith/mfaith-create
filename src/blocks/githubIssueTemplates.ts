@@ -3,7 +3,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { formatYaml } from './files/formatYaml.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-export const blockGithubIssueTemplates: BlockWithoutProps = base.createBlock({
+export const githubIssueTemplates: BlockWithoutProps = base.createBlock({
   about: {
     name: 'GitHub Issue Templates',
   },

@@ -4,15 +4,15 @@ import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
+import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
-import { blockPnpmWorkspace } from './pnpmWorkspace.ts';
+import { pnpmWorkspace } from './pnpmWorkspace.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
   files: z.array(z.string()),
@@ -27,13 +27,13 @@ export interface Override {
   };
 }
 
-export interface BlockOxfmtProps {
+export interface OxfmtProps {
   additionalConfig?: Record<string, unknown> | undefined;
   ignorePatterns?: string[] | undefined;
   overrides?: Override[] | undefined;
 }
 
-export const blockOxfmt: BlockWithProps<BlockOxfmtProps> = base.createBlock({
+export const oxfmt: BlockWithProps<OxfmtProps> = base.createBlock({
   about: {
     name: 'Oxfmt',
     description: "Sets up Oxfmt as the project's formatter.",
@@ -50,10 +50,10 @@ export const blockOxfmt: BlockWithProps<BlockOxfmtProps> = base.createBlock({
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: [oxfmtConfig],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Formatting: {
               contents: `
@@ -69,7 +69,7 @@ pnpm format
             },
           },
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Format Check',
@@ -77,7 +77,7 @@ pnpm format
             },
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('lint-staged', 'oxfmt', 'simple-git-hooks'),
             scripts: {
@@ -92,14 +92,14 @@ pnpm format
             },
           },
         }),
-        blockPnpmWorkspace({
+        pnpmWorkspace({
           config: {
             permissions: {
               'simple-git-hooks': { build: false },
             },
           },
         }),
-        blockVscode({
+        vscode({
           extensions: ['oxc.oxc-vscode'],
           settings: { 'editor.defaultFormatter': 'oxc.oxc-vscode' },
         }),

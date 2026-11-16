@@ -1,22 +1,22 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockCspell } from '../blocks/cspell.ts';
-import { blockEslintComments } from '../blocks/eslintComments.ts';
-import { blockEslintJsdoc } from '../blocks/eslintJsdoc.ts';
-import { blockEslintJsonc } from '../blocks/eslintJsonc.ts';
-import { blockEslintMarkdown } from '../blocks/eslintMarkdown.ts';
-import { blockEslintMarkdownLinks } from '../blocks/eslintMarkdownLinks.ts';
-import { blockEslintMoreStyling } from '../blocks/eslintMoreStyling.ts';
+import { cspell } from '../blocks/cspell.ts';
+import { eslintComments } from '../blocks/eslintComments.ts';
+import { eslintJsdoc } from '../blocks/eslintJsdoc.ts';
+import { eslintJsonc } from '../blocks/eslintJsonc.ts';
+import { eslintMarkdown } from '../blocks/eslintMarkdown.ts';
+import { eslintMarkdownLinks } from '../blocks/eslintMarkdownLinks.ts';
+import { eslintMoreStyling } from '../blocks/eslintMoreStyling.ts';
 import { blockEslintNode } from '../blocks/eslintNode.ts';
-import { blockEslintPackageJson } from '../blocks/eslintPackageJson.ts';
-import { blockEslintRegexp } from '../blocks/eslintRegexp.ts';
-import { blockEslintYml } from '../blocks/eslintYml.ts';
-import { blockKnip } from '../blocks/knip.ts';
-import { blockNvmrc } from '../blocks/nvmrc.ts';
-import { blockPnpmDedupe } from '../blocks/pnpmDedupe.ts';
-import { blockRenovate } from '../blocks/renovate.ts';
-import { blockVscode } from '../blocks/vscode.ts';
+import { eslintPackageJson } from '../blocks/eslintPackageJson.ts';
+import { eslintRegexp } from '../blocks/eslintRegexp.ts';
+import { eslintYml } from '../blocks/eslintYml.ts';
+import { knip } from '../blocks/knip.ts';
+import { nvmrc } from '../blocks/nvmrc.ts';
+import { pnpmDedupe } from '../blocks/pnpmDedupe.ts';
+import { renovate } from '../blocks/renovate.ts';
+import { vscode } from '../blocks/vscode.ts';
 import type { OptionsShape } from '../Options.ts';
 import { presetCommon } from './common.ts';
 
@@ -27,21 +27,21 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
   },
   blocks: [
     ...presetCommon.blocks,
-    blockCspell,
-    blockEslintComments,
-    blockEslintJsdoc,
-    blockEslintJsonc,
-    blockEslintMarkdown,
-    blockEslintMarkdownLinks,
-    blockEslintMoreStyling,
+    cspell,
+    eslintComments,
+    eslintJsdoc,
+    eslintJsonc,
+    eslintMarkdown,
+    eslintMarkdownLinks,
+    eslintMoreStyling,
     blockEslintNode,
-    blockEslintPackageJson,
-    blockEslintRegexp,
-    blockEslintYml,
-    blockKnip,
-    blockNvmrc,
-    blockPnpmDedupe,
-    blockRenovate,
-    blockVscode,
+    eslintPackageJson,
+    eslintRegexp,
+    eslintYml,
+    knip,
+    nvmrc,
+    pnpmDedupe,
+    renovate,
+    vscode,
   ],
 });

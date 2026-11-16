@@ -2,16 +2,16 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockTsdown } from './tsdown.ts';
+import { tsdown } from './tsdown.ts';
 
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockTsdown, () => {
+describe(tsdown, () => {
   test('without props or options', () => {
-    const creation = testBlock(blockTsdown, {
+    const creation = testBlock(tsdown, {
       options: optionsBase,
     });
 
@@ -168,7 +168,7 @@ describe(blockTsdown, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockTsdown, {
+    const creation = testBlock(tsdown, {
       props: {
         additionalConfig: {
           dts: false,
@@ -365,7 +365,7 @@ describe(blockTsdown, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockTsdown, {
+    const creation = testBlock(tsdown, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -557,7 +557,7 @@ describe(blockTsdown, () => {
 
   describe('intake', () => {
     it('returns undefined when tsdown.config.ts does not exist', () => {
-      const actual = testIntake(blockTsdown, {
+      const actual = testIntake(tsdown, {
         files: {},
       });
 
@@ -565,7 +565,7 @@ describe(blockTsdown, () => {
     });
 
     it('returns undefined when tsdown.config.ts does not contain data', () => {
-      const actual = testIntake(blockTsdown, {
+      const actual = testIntake(tsdown, {
         files: {
           'tsdown.config.ts': ['...'],
         },
@@ -575,7 +575,7 @@ describe(blockTsdown, () => {
     });
 
     it('returns undefined when tsdown.config.ts does not contain properties', () => {
-      const actual = testIntake(blockTsdown, {
+      const actual = testIntake(tsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify({})})`],
         },
@@ -587,7 +587,7 @@ describe(blockTsdown, () => {
     it('returns entry when tsdown.config.ts contains entry', () => {
       const entry = ['src/index.ts', 'src/other.ts'];
 
-      const actual = testIntake(blockTsdown, {
+      const actual = testIntake(tsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify({ entry })})`],
         },
@@ -599,7 +599,7 @@ describe(blockTsdown, () => {
     it('returns the properties when tsdown.config.ts contains other properties', () => {
       const additionalConfig = { clean: false, dts: false, format: 'cjs' };
 
-      const actual = testIntake(blockTsdown, {
+      const actual = testIntake(tsdown, {
         files: {
           'tsdown.config.ts': [`defineConfig(${JSON.stringify(additionalConfig)})`],
         },

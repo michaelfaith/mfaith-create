@@ -1,20 +1,20 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockNvmrc } from './nvmrc.ts';
+import { nvmrc } from './nvmrc.ts';
 import { optionsBase } from './options.fakes.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPrettier } from './prettier.ts';
+import { oxfmt } from './oxfmt.ts';
+import { prettier } from './prettier.ts';
 
-describe(blockNvmrc, () => {
+describe(nvmrc, () => {
   it('only includes blockPackageJson props when options.node.pinned does not exist', () => {
-    const creation = testBlock(blockNvmrc, {
+    const creation = testBlock(nvmrc, {
       options: { ...optionsBase, node: { supported: '>=24' } },
     });
 
     expect(creation).toEqual({
       extensions: [
-        blockOxfmt({
+        oxfmt({
           overrides: [
             {
               files: ['.nvmrc'],
@@ -24,7 +24,7 @@ describe(blockNvmrc, () => {
             },
           ],
         }),
-        blockPrettier({
+        prettier({
           overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),
       ],
@@ -32,7 +32,7 @@ describe(blockNvmrc, () => {
   });
 
   it('also includes files when options.node.pinned exists', () => {
-    const creation = testBlock(blockNvmrc, {
+    const creation = testBlock(nvmrc, {
       options: {
         ...optionsBase,
         node: { pinned: '24.3.0', supported: '>=20.19.0' },
@@ -41,7 +41,7 @@ describe(blockNvmrc, () => {
 
     expect(creation).toEqual({
       extensions: [
-        blockOxfmt({
+        oxfmt({
           overrides: [
             {
               files: ['.nvmrc'],
@@ -51,7 +51,7 @@ describe(blockNvmrc, () => {
             },
           ],
         }),
-        blockPrettier({
+        prettier({
           overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),
       ],

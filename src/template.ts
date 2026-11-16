@@ -1,13 +1,13 @@
 import type { StratumTemplate } from 'bingo-stratum';
 
 import { base } from './base.ts';
-import { blockAreTheTypesWrong } from './blocks/areTheTypesWrong.ts';
-import { blockEslintPlugin } from './blocks/eslintPlugin.ts';
+import { areTheTypesWrong } from './blocks/areTheTypesWrong.ts';
+import { eslintPlugin } from './blocks/eslintPlugin.ts';
 import { blockNcc } from './blocks/ncc.ts';
 import { blockRemoveDependencies } from './blocks/removeDependencies.ts';
 import { blockRemoveFiles } from './blocks/removeFiles.ts';
 import { blockRepoTransitions } from './blocks/repoTransitions.ts';
-import { blockWebExt } from './blocks/webExt.ts';
+import { webExt } from './blocks/webExt.ts';
 import type { OptionsShape } from './Options.ts';
 import { presetCommon } from './presets/common.ts';
 import { presetEverything } from './presets/everything.ts';
@@ -22,13 +22,13 @@ export const template: StratumTemplate<OptionsShape> = base.createStratumTemplat
     },
   },
   blocks: [
-    blockAreTheTypesWrong,
+    areTheTypesWrong,
     blockRepoTransitions,
-    blockEslintPlugin,
+    eslintPlugin,
     blockNcc,
     blockRemoveDependencies,
     blockRemoveFiles,
-    blockWebExt,
+    webExt,
   ],
   presets: [presetMinimal, presetCommon, presetEverything],
   suggested: presetCommon,

@@ -1,15 +1,15 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockReadme } from './readme.ts';
+import { readme } from './readme.ts';
 
-export const blockTemplatedWith: BlockWithoutProps = base.createBlock({
+export const templatedWith: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Templated With',
   },
   produce({ options }) {
     return {
       extensions: [
-        blockReadme({
+        readme({
           notices: [
             options.owner !== 'michaelfaith' &&
               `

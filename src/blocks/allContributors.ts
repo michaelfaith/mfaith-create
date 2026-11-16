@@ -4,19 +4,19 @@ import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
 import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
+import { cspell } from './cspell.ts';
 import { blockGithubApps } from './githubApps.ts';
-import { blockOxfmt } from './oxfmt.ts';
+import { oxfmt } from './oxfmt.ts';
 import { CommandPhase } from './phases.ts';
-import { blockPrettier } from './prettier.ts';
-import { blockReadme } from './readme.ts';
+import { prettier } from './prettier.ts';
+import { readme } from './readme.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockAllContributors: BlockWithoutProps = base.createBlock({
+export const allContributors: BlockWithoutProps = base.createBlock({
   about: {
-    name: 'AllContributors',
+    name: 'All Contributors',
   },
   produce({ options }) {
     const contributions = options.contributors?.length;
@@ -35,7 +35,7 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           ignorePaths: ['.all-contributorsrc'],
         }),
         blockGithubApps({
@@ -46,13 +46,13 @@ export const blockAllContributors: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockPrettier({
+        prettier({
           ignores: ['/.all-contributorsrc'],
         }),
-        blockOxfmt({
+        oxfmt({
           ignorePatterns: ['/.all-contributorsrc'],
         }),
-        blockReadme({
+        readme({
           badges: [
             {
               alt: `👪 All Contributors: ${contributions}`,

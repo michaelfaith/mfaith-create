@@ -1,12 +1,12 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it } from 'vitest';
 
-import { blockBin } from './bin.ts';
+import { bin } from './bin.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockBin, () => {
+describe(bin, () => {
   it('without props', () => {
-    const creation = testBlock(blockBin, { options: optionsBase });
+    const creation = testBlock(bin, { options: optionsBase });
 
     expect(creation).toMatchInlineSnapshot(`
       {
@@ -72,7 +72,7 @@ describe(blockBin, () => {
   });
 
   it('without props (options.devExports: true)', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       options: { ...optionsBase, devExports: true },
     });
 
@@ -148,7 +148,7 @@ describe(blockBin, () => {
   });
 
   it('without props (scoped package name)', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       options: { ...optionsBase, packageName: '@test/create-app' },
     });
 
@@ -216,7 +216,7 @@ describe(blockBin, () => {
   });
 
   it('without props (no package name)', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       options: { ...optionsBase, packageName: undefined },
     });
 
@@ -284,7 +284,7 @@ describe(blockBin, () => {
   });
 
   it('with string src', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       props: {
         src: 'dist/cli.ts',
       },
@@ -355,7 +355,7 @@ describe(blockBin, () => {
   });
 
   it('with object src', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       props: {
         src: {
           'test-repo': 'dist/bin/index.mts',
@@ -432,7 +432,7 @@ describe(blockBin, () => {
   });
 
   it('with object src (options.devExports: true)', () => {
-    const creation = testBlock(blockBin, {
+    const creation = testBlock(bin, {
       props: {
         src: {
           'test-repo': 'dist/bin/index.mts',
@@ -519,7 +519,7 @@ describe(blockBin, () => {
 
   describe('intake', () => {
     it('returns undefined when package.json does not exist', () => {
-      const actual = testIntake(blockBin, {
+      const actual = testIntake(bin, {
         files: {},
       });
 
@@ -527,7 +527,7 @@ describe(blockBin, () => {
     });
 
     it('returns undefined when package.json does not contain a bin', () => {
-      const actual = testIntake(blockBin, {
+      const actual = testIntake(bin, {
         files: {
           'package.json': [JSON.stringify({ name: 'some-repo' })],
         },
@@ -539,7 +539,7 @@ describe(blockBin, () => {
     it('returns bin when package.json contains a string bin', () => {
       const packageJson = { bin: 'dist/cli.js' };
 
-      const actual = testIntake(blockBin, {
+      const actual = testIntake(bin, {
         files: {
           'package.json': [JSON.stringify(packageJson)],
         },
@@ -551,7 +551,7 @@ describe(blockBin, () => {
     it('returns bin when package.json contains a string bin with `mjs` extension', () => {
       const packageJson = { bin: 'dist/cli.mjs' };
 
-      const actual = testIntake(blockBin, {
+      const actual = testIntake(bin, {
         files: {
           'package.json': [JSON.stringify(packageJson)],
         },
@@ -568,7 +568,7 @@ describe(blockBin, () => {
         },
       };
 
-      const actual = testIntake(blockBin, {
+      const actual = testIntake(bin, {
         files: {
           'package.json': [JSON.stringify(packageJson)],
         },

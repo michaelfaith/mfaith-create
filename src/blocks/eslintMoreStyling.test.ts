@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintMoreStyling } from './eslintMoreStyling.ts';
+import { eslintMoreStyling } from './eslintMoreStyling.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintMoreStyling, () => {
+describe(eslintMoreStyling, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintMoreStyling, {
+    const creation = testBlock(eslintMoreStyling, {
       options: optionsBase,
     });
 

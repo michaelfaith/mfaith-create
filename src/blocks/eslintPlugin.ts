@@ -1,23 +1,23 @@
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockCspell } from './cspell.ts';
-import { blockDevelopmentDocs } from './developmentDocs.ts';
-import { blockEslint } from './eslint.ts';
+import { cspell } from './cspell.ts';
+import { developmentDocs } from './developmentDocs.ts';
+import { eslint } from './eslint.ts';
 import { eslintPluginIntake } from './eslint/eslintPluginIntake.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 import { type ConfigEmoji, configEmojiSchema } from './eslint/schemas.ts';
-import { blockGithubActionsCi } from './githubActionsCi.ts';
+import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
-import { blockReadme } from './readme.ts';
-import { blockVitest } from './vitest.ts';
+import { readme } from './readme.ts';
+import { vitest } from './vitest.ts';
 
-export interface BlockEslintPluginProps {
+export interface EslintPluginProps {
   configEmoji?: ConfigEmoji | undefined;
 }
 
-export const blockEslintPlugin: BlockWithProps<BlockEslintPluginProps> = base.createBlock({
+export const eslintPlugin: BlockWithProps<EslintPluginProps> = base.createBlock({
   about: {
     name: 'ESLint Plugin',
   },
@@ -40,10 +40,10 @@ export const blockEslintPlugin: BlockWithProps<BlockEslintPluginProps> = base.cr
 
     return {
       extensions: [
-        blockCspell({
+        cspell({
           words: ['eslint-doc-generatorrc'],
         }),
-        blockDevelopmentDocs({
+        developmentDocs({
           sections: {
             Building: {
               innerSections: [
@@ -68,7 +68,7 @@ pnpm build:docs
             },
           },
         }),
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: [`eslintPlugin.configs['flat/recommended']`],
@@ -86,7 +86,7 @@ pnpm build:docs
             },
           ],
         }),
-        blockGithubActionsCi({
+        githubActionsCi({
           jobs: [
             {
               name: 'Lint Docs',
@@ -94,7 +94,7 @@ pnpm build:docs
             },
           ],
         }),
-        blockReadme({
+        readme({
           defaultUsage: [
             `Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
@@ -118,7 +118,7 @@ These are all set to \`"error"\` in the recommended config:
 <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->`,
           ],
         }),
-        blockPackageJson({
+        packageJson({
           properties: {
             dependencies: {
               '@typescript-eslint/utils': '^8.29.0',
@@ -134,7 +134,7 @@ These are all set to \`"error"\` in the recommended config:
             },
           },
         }),
-        blockVitest({
+        vitest({
           coverage: {
             exclude: ['src/index.ts', 'src/rules/index.ts'],
           },

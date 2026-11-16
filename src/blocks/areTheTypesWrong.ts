@@ -1,10 +1,10 @@
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockPackageJson } from './packageJson.ts';
-import { blockTsdown } from './tsdown.ts';
+import { packageJson } from './packageJson.ts';
+import { tsdown } from './tsdown.ts';
 
-export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
+export const areTheTypesWrong: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Are the Types Wrong',
     description: 'Enables type validation for builds.',
@@ -12,12 +12,12 @@ export const blockAreTheTypesWrong: BlockWithoutProps = base.createBlock({
   produce() {
     return {
       extensions: [
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: getPackageDependencies('@arethetypeswrong/core'),
           },
         }),
-        blockTsdown({
+        tsdown({
           attw: {
             enabled: 'ci-only',
             level: 'error',

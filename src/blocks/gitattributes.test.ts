@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGitattributes } from './gitattributes.ts';
+import { gitattributes } from './gitattributes.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockGitattributes, () => {
+describe(gitattributes, () => {
   test('without props', () => {
-    const creation = testBlock(blockGitattributes, {
+    const creation = testBlock(gitattributes, {
       options: optionsBase,
     });
 
@@ -22,7 +22,7 @@ describe(blockGitattributes, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockGitattributes, {
+    const creation = testBlock(gitattributes, {
       props: {
         additionalAttributes: ['*.jpg binary', '*.png binary'],
       },

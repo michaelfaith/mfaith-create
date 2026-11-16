@@ -2,11 +2,11 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRenovate } from './renovate.ts';
+import { renovate } from './renovate.ts';
 
-describe(blockRenovate, () => {
+describe(renovate, () => {
   test('without props', () => {
-    const creation = testBlock(blockRenovate, {
+    const creation = testBlock(renovate, {
       options: optionsBase,
     });
 
@@ -35,7 +35,7 @@ describe(blockRenovate, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRenovate, {
+    const creation = testBlock(renovate, {
       props: {
         ignoreDeps: ['all-contributors-cli'],
       },
@@ -68,7 +68,7 @@ describe(blockRenovate, () => {
 
   describe('intake', () => {
     it('returns no ignoreDeps when .github/renovate.json does not exist', () => {
-      const actual = testIntake(blockRenovate, {
+      const actual = testIntake(renovate, {
         files: {},
       });
 
@@ -76,7 +76,7 @@ describe(blockRenovate, () => {
     });
 
     it('returns no ignoreDeps when .github/renovate.json does not contain truthy data', () => {
-      const actual = testIntake(blockRenovate, {
+      const actual = testIntake(renovate, {
         files: {
           '.github': {
             'renovate.json': [JSON.stringify(null)],
@@ -88,7 +88,7 @@ describe(blockRenovate, () => {
     });
 
     it('returns no ignoreDeps when .github/renovate.json contains only unrelated data', () => {
-      const actual = testIntake(blockRenovate, {
+      const actual = testIntake(renovate, {
         files: {
           '.github': {
             'renovate.json': [JSON.stringify({ other: true })],
@@ -102,7 +102,7 @@ describe(blockRenovate, () => {
     it('returns ignoreDeps when .github/renovate.json contains ignoreDeps', () => {
       const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
 
-      const actual = testIntake(blockRenovate, {
+      const actual = testIntake(renovate, {
         files: {
           '.github': {
             'renovate.json': [JSON.stringify({ ignoreDeps })],
@@ -116,7 +116,7 @@ describe(blockRenovate, () => {
     it('returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data', () => {
       const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
 
-      const actual = testIntake(blockRenovate, {
+      const actual = testIntake(renovate, {
         files: {
           '.github': {
             'renovate.json': [

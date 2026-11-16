@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 
-export const blockSecurityDocs: BlockWithoutProps = base.createBlock({
+export const securityDocs: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Security Docs',
   },

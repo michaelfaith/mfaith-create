@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 
-export const blockGithubPrTemplate: BlockWithoutProps = base.createBlock({
+export const githubPrTemplate: BlockWithoutProps = base.createBlock({
   about: {
     name: 'GitHub PR Template',
     description: 'Creates a GitHub PR Template for the repo.',

@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockCspell } from './cspell.ts';
+import { cspell } from './cspell.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
@@ -13,9 +13,9 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockCspell, () => {
+describe(cspell, () => {
   test('without props or options', () => {
-    const creation = testBlock(blockCspell, {
+    const creation = testBlock(cspell, {
       options: optionsBase,
     });
 
@@ -81,7 +81,7 @@ describe(blockCspell, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockCspell, {
+    const creation = testBlock(cspell, {
       props: {
         ignorePaths: ['dist/'],
         words: ['michaelfaith'],
@@ -151,7 +151,7 @@ describe(blockCspell, () => {
   });
 
   test('with options', () => {
-    const creation = testBlock(blockCspell, {
+    const creation = testBlock(cspell, {
       options: {
         ...optionsBase,
         words: ['michaelfaith'],
@@ -220,7 +220,7 @@ describe(blockCspell, () => {
   });
 
   test('setup mode', () => {
-    const creation = testBlock(blockCspell, {
+    const creation = testBlock(cspell, {
       mode: 'setup',
       options: optionsBase,
     });
@@ -295,7 +295,7 @@ describe(blockCspell, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockCspell, {
+    const creation = testBlock(cspell, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -372,7 +372,7 @@ describe(blockCspell, () => {
 
   describe('intake', () => {
     it('returns undefined when cspell.json does not exist', () => {
-      const actual = testIntake(blockCspell, {
+      const actual = testIntake(cspell, {
         files: {},
       });
 
@@ -380,7 +380,7 @@ describe(blockCspell, () => {
     });
 
     it('returns undefined when cspell.json does not contain truthy data', () => {
-      const actual = testIntake(blockCspell, {
+      const actual = testIntake(cspell, {
         files: {
           'cspell.json': [JSON.stringify(null)],
         },
@@ -390,7 +390,7 @@ describe(blockCspell, () => {
     });
 
     it('returns undefined when cspell.json contains invalid data', () => {
-      const actual = testIntake(blockCspell, {
+      const actual = testIntake(cspell, {
         files: {
           'cspell.json': [JSON.stringify({ ignorePaths: true })],
         },
@@ -405,7 +405,7 @@ describe(blockCspell, () => {
         words: ['abc', 'def'],
       };
 
-      const actual = testIntake(blockCspell, {
+      const actual = testIntake(cspell, {
         files: {
           'cspell.json': [JSON.stringify(data)],
         },

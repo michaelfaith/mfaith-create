@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockVscode } from './vscode.ts';
+import { vscode } from './vscode.ts';
 
-describe(blockVscode, () => {
+describe(vscode, () => {
   test('without props', () => {
-    const creation = testBlock(blockVscode, {
+    const creation = testBlock(vscode, {
       options: optionsBase,
     });
 
@@ -49,7 +49,7 @@ describe(blockVscode, () => {
   });
 
   test('with empty props', () => {
-    const creation = testBlock(blockVscode, {
+    const creation = testBlock(vscode, {
       props: {
         debuggers: [],
         settings: {},
@@ -97,7 +97,7 @@ describe(blockVscode, () => {
   });
 
   test('with full props', () => {
-    const creation = testBlock(blockVscode, {
+    const creation = testBlock(vscode, {
       props: {
         debuggers: [
           {

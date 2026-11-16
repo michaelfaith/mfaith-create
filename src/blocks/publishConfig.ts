@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
 
 export interface BlockPublishConfigProps {
@@ -30,7 +30,7 @@ export const blockPublishConfig: BlockWithProps<BlockPublishConfigProps> = base.
 
     return {
       extensions: [
-        blockPackageJson({
+        packageJson({
           properties: {
             publishConfig: {
               access,

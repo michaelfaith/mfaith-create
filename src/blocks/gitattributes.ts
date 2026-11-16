@@ -4,11 +4,11 @@ import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 import { formatTextLines } from './files/formatTextLines.ts';
 
-export interface BlockGitattributesProps {
+export interface GitattributesProps {
   additionalAttributes?: string[];
 }
 
-export const blockGitattributes: BlockWithProps<BlockGitattributesProps> = base.createBlock({
+export const gitattributes: BlockWithProps<GitattributesProps> = base.createBlock({
   about: {
     name: 'Gitattributes',
     description: 'Adds a .gitattributes file to the project.',

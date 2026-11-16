@@ -1,15 +1,15 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 
-export const blockEslintMarkdownLinks: BlockWithoutProps = base.createBlock({
+export const eslintMarkdownLinks: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint Markdown Links Plugin',
   },
   produce() {
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               extends: ['markdownLinks.configs.recommended'],

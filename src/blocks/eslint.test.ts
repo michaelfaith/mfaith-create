@@ -1,7 +1,7 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { optionsBase } from './options.fakes.ts';
 
 const mockIntakeData = { ignores: ['dist'] };
@@ -19,9 +19,9 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockEslint, () => {
+describe(eslint, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       options: optionsBase,
     });
 
@@ -153,7 +153,7 @@ describe(blockEslint, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -319,7 +319,7 @@ describe(blockEslint, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       props: {
         beforeLint: 'Before lint.',
         explanations: ['This is a great config!', 'You should use it!'],
@@ -510,7 +510,7 @@ describe(blockEslint, () => {
   });
 
   test('with identical prop rules comments across two extensions', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       props: {
         extensions: [
           {
@@ -690,7 +690,7 @@ describe(blockEslint, () => {
   });
 
   test('with multiline prop rules comments', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       props: {
         extensions: [
           {
@@ -858,7 +858,7 @@ describe(blockEslint, () => {
   });
 
   test('with prop extensions merging where the first provides everything', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       props: {
         extensions: [
           {
@@ -1029,7 +1029,7 @@ describe(blockEslint, () => {
   });
 
   test('with prop extensions merging where the second provides everything', () => {
-    const creation = testBlock(blockEslint, {
+    const creation = testBlock(eslint, {
       props: {
         extensions: [
           {
@@ -1200,7 +1200,7 @@ describe(blockEslint, () => {
 
   describe('intake', () => {
     it('returns undefined when there is no eslint.config file', () => {
-      const actual = testIntake(blockEslint, {
+      const actual = testIntake(eslint, {
         files: {},
       });
 
@@ -1210,7 +1210,7 @@ describe(blockEslint, () => {
     it('returns data when there is an eslint.config.ts file', () => {
       const sourceText = 'export default ...';
 
-      const actual = testIntake(blockEslint, {
+      const actual = testIntake(eslint, {
         files: {
           'eslint.config.ts': [sourceText],
         },
@@ -1223,7 +1223,7 @@ describe(blockEslint, () => {
     it('returns data when there is an eslint.config.mts file', () => {
       const sourceText = 'export default ...';
 
-      const actual = testIntake(blockEslint, {
+      const actual = testIntake(eslint, {
         files: {
           'eslint.config.mts': [sourceText],
         },

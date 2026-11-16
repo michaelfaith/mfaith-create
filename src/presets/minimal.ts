@@ -1,24 +1,24 @@
 import type { Preset } from 'bingo-stratum';
 
 import { base } from '../base.ts';
-import { blockCodeOfConduct } from '../blocks/codeOfConduct.ts';
-import { blockContributingDocs } from '../blocks/contributingDocs.ts';
-import { blockDevelopmentDocs } from '../blocks/developmentDocs.ts';
-import { blockEslint } from '../blocks/eslint.ts';
+import { codeOfConduct } from '../blocks/codeOfConduct.ts';
+import { contributingDocs } from '../blocks/contributingDocs.ts';
+import { developmentDocs } from '../blocks/developmentDocs.ts';
+import { eslint } from '../blocks/eslint.ts';
 import { blockExampleFiles } from '../blocks/exampleFiles.ts';
-import { blockExports } from '../blocks/exports.ts';
-import { blockGitattributes } from '../blocks/gitattributes.ts';
-import { blockGithubActionsCi } from '../blocks/githubActionsCi.ts';
+import { exports } from '../blocks/exports.ts';
+import { gitattributes } from '../blocks/gitattributes.ts';
+import { githubActionsCi } from '../blocks/githubActionsCi.ts';
 import { blockGithubApps } from '../blocks/githubApps.ts';
-import { blockGithubIssueTemplates } from '../blocks/githubIssueTemplates.ts';
-import { blockGithubPrTemplate } from '../blocks/githubPrTemplate.ts';
-import { blockGitignore } from '../blocks/gitignore.ts';
-import { blockMitLicense } from '../blocks/mitLicense.ts';
-import { blockOxfmt } from '../blocks/oxfmt.ts';
-import { blockPackageJson } from '../blocks/packageJson.ts';
-import { blockPnpmWorkspace } from '../blocks/pnpmWorkspace.ts';
+import { githubIssueTemplates } from '../blocks/githubIssueTemplates.ts';
+import { githubPrTemplate } from '../blocks/githubPrTemplate.ts';
+import { gitignore } from '../blocks/gitignore.ts';
+import { mitLicense } from '../blocks/mitLicense.ts';
+import { oxfmt } from '../blocks/oxfmt.ts';
+import { packageJson } from '../blocks/packageJson.ts';
+import { pnpmWorkspace } from '../blocks/pnpmWorkspace.ts';
 import { blockPublishConfig } from '../blocks/publishConfig.ts';
-import { blockReadme } from '../blocks/readme.ts';
+import { readme } from '../blocks/readme.ts';
 import { blockRemoveDependencies } from '../blocks/removeDependencies.ts';
 import { blockRemoveFiles } from '../blocks/removeFiles.ts';
 import { blockRemoveWorkflows } from '../blocks/removeWorkflows.ts';
@@ -26,11 +26,11 @@ import { blockRepositoryBranchRuleset } from '../blocks/repositoryBranchRuleset.
 import { blockRepositoryLabels } from '../blocks/repositoryLabels.ts';
 import { blockRepositorySecrets } from '../blocks/repositorySecrets.ts';
 import { blockRepositorySettings } from '../blocks/repositorySettings.ts';
-import { blockSecurityDocs } from '../blocks/securityDocs.ts';
-import { blockSideEffects } from '../blocks/sideEffects.ts';
-import { blockTemplatedWith } from '../blocks/templatedWith.ts';
-import { blockTsdown } from '../blocks/tsdown.ts';
-import { blockTypescript } from '../blocks/typescript.ts';
+import { securityDocs } from '../blocks/securityDocs.ts';
+import { sideEffects } from '../blocks/sideEffects.ts';
+import { templatedWith } from '../blocks/templatedWith.ts';
+import { tsdown } from '../blocks/tsdown.ts';
+import { typescript } from '../blocks/typescript.ts';
 import type { OptionsShape } from '../Options.ts';
 
 export const presetMinimal: Preset<OptionsShape> = base.createPreset({
@@ -39,24 +39,24 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     name: 'Minimal',
   },
   blocks: [
-    blockContributingDocs,
-    blockCodeOfConduct,
-    blockDevelopmentDocs,
-    blockEslint,
+    contributingDocs,
+    codeOfConduct,
+    developmentDocs,
+    eslint,
     blockExampleFiles,
-    blockExports,
-    blockGitattributes,
-    blockGithubActionsCi,
+    exports,
+    gitattributes,
+    githubActionsCi,
     blockGithubApps,
-    blockGithubIssueTemplates,
-    blockGithubPrTemplate,
-    blockGitignore,
-    blockMitLicense,
-    blockPackageJson,
-    blockPnpmWorkspace,
-    blockOxfmt,
+    githubIssueTemplates,
+    githubPrTemplate,
+    gitignore,
+    mitLicense,
+    packageJson,
+    pnpmWorkspace,
+    oxfmt,
     blockPublishConfig,
-    blockReadme,
+    readme,
     blockRemoveDependencies,
     blockRemoveFiles,
     blockRemoveWorkflows,
@@ -64,10 +64,10 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     blockRepositoryLabels,
     blockRepositorySecrets,
     blockRepositorySettings,
-    blockSecurityDocs,
-    blockSideEffects,
-    blockTemplatedWith,
-    blockTsdown,
-    blockTypescript,
+    securityDocs,
+    sideEffects,
+    templatedWith,
+    tsdown,
+    typescript,
   ],
 });

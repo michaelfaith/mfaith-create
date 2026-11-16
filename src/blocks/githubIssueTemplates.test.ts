@@ -1,13 +1,13 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGithubIssueTemplates } from './githubIssueTemplates.ts';
+import { githubIssueTemplates } from './githubIssueTemplates.ts';
 import { optionsBase } from './options.fakes.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-describe(blockGithubIssueTemplates, () => {
+describe(githubIssueTemplates, () => {
   test('production', () => {
-    const creation = testBlock(blockGithubIssueTemplates, {
+    const creation = testBlock(githubIssueTemplates, {
       options: optionsBase,
     });
 
@@ -160,7 +160,7 @@ describe(blockGithubIssueTemplates, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockGithubIssueTemplates, {
+    const creation = testBlock(githubIssueTemplates, {
       mode: 'transition',
       options: optionsBase,
     });

@@ -1,18 +1,18 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockEslint } from './eslint.ts';
+import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 
 export const stylisticComment = "Stylistic concerns that don't interfere with Prettier";
 
-export const blockEslintMoreStyling: BlockWithoutProps = base.createBlock({
+export const eslintMoreStyling: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint More Styling',
   },
   produce() {
     return {
       extensions: [
-        blockEslint({
+        eslint({
           extensions: [
             {
               files: JS_TS_FILES,

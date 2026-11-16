@@ -1,19 +1,19 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockOxfmt } from './oxfmt.ts';
-import { blockPrettier } from './prettier.ts';
+import { oxfmt } from './oxfmt.ts';
+import { prettier } from './prettier.ts';
 
-export const blockNvmrc: BlockWithoutProps = base.createBlock({
+export const nvmrc: BlockWithoutProps = base.createBlock({
   about: {
-    name: 'Nvmrc',
+    name: 'nvmrc',
   },
   produce({ options }) {
     return {
       extensions: [
-        blockOxfmt({
+        oxfmt({
           overrides: [{ files: ['.nvmrc'], options: { parser: 'yaml' } }],
         }),
-        blockPrettier({
+        prettier({
           overrides: [{ files: '.nvmrc', options: { parser: 'yaml' } }],
         }),
       ],

@@ -1,12 +1,12 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockEslintPlugin } from './eslintPlugin.ts';
+import { eslintPlugin } from './eslintPlugin.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintPlugin, () => {
+describe(eslintPlugin, () => {
   test('without props, mode, or options', () => {
-    const creation = testBlock(blockEslintPlugin, {
+    const creation = testBlock(eslintPlugin, {
       options: optionsBase,
     });
 
@@ -188,7 +188,7 @@ describe(blockEslintPlugin, () => {
   });
 
   test('setup mode', () => {
-    const creation = testBlock(blockEslintPlugin, {
+    const creation = testBlock(eslintPlugin, {
       mode: 'setup',
       options: optionsBase,
     });
@@ -479,7 +479,7 @@ describe(blockEslintPlugin, () => {
   });
 
   test('props', () => {
-    const creation = testBlock(blockEslintPlugin, {
+    const creation = testBlock(eslintPlugin, {
       props: {
         configEmoji: [
           ['recommended', '✅'],
@@ -669,7 +669,7 @@ describe(blockEslintPlugin, () => {
 
   describe('intake', () => {
     it('returns nothing when .eslint-doc-generatorrc.js and .eslint-doc-generatorrc.mjs do not exist', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {},
         options: optionsBase,
       });
@@ -678,7 +678,7 @@ describe(blockEslintPlugin, () => {
     });
 
     it('returns nothing when .eslint-doc-generatorrc.js does not have a to const config =', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {
           '.eslint-doc-generatorrc.js': [`const other = {};`],
         },
@@ -689,7 +689,7 @@ describe(blockEslintPlugin, () => {
     });
 
     it('returns nothing when .eslint-doc-generatorrc.js passes nothing to config =', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {
           '.eslint-doc-generatorrc.js': [`const config = {};`],
         },
@@ -700,7 +700,7 @@ describe(blockEslintPlugin, () => {
     });
 
     it('returns nothing when .eslint-doc-generatorrc.js passes invalid syntax to config =', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {
           '.eslint-doc-generatorrc.js': [`const config = { ! }`],
         },
@@ -711,7 +711,7 @@ describe(blockEslintPlugin, () => {
     });
 
     it('returns nothing when .eslint-doc-generatorrc.js passes unrelated properties to config =', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {
           '.eslint-doc-generatorrc.js': [`const config = { other: true }`],
         },
@@ -722,7 +722,7 @@ describe(blockEslintPlugin, () => {
     });
 
     it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.js', () => {
-      const actual = testIntake(blockEslintPlugin, {
+      const actual = testIntake(eslintPlugin, {
         files: {
           '.eslint-doc-generatorrc.js': [`const config = { configEmoji: [["recommended", "✅"]] }`],
         },
@@ -736,7 +736,7 @@ describe(blockEslintPlugin, () => {
   });
 
   it('returns configEmoji when it exists alone in .eslint-doc-generatorrc.mjs', () => {
-    const actual = testIntake(blockEslintPlugin, {
+    const actual = testIntake(eslintPlugin, {
       files: {
         '.eslint-doc-generatorrc.mjs': [`const config = { configEmoji: [["recommended", "✅"]] }`],
       },
@@ -749,7 +749,7 @@ describe(blockEslintPlugin, () => {
   });
 
   it('returns configEmoji when it exists with other data in .eslint-doc-generatorrc.js', () => {
-    const actual = testIntake(blockEslintPlugin, {
+    const actual = testIntake(eslintPlugin, {
       files: {
         '.eslint-doc-generatorrc.js': [
           `const config = { configEmoji: [["recommended", "✅"]], other: true }`,
@@ -764,7 +764,7 @@ describe(blockEslintPlugin, () => {
   });
 
   it('returns configEmoji when it exists with other, non-JSON5 data in a full .eslint-doc-generatorrc.js', () => {
-    const actual = testIntake(blockEslintPlugin, {
+    const actual = testIntake(eslintPlugin, {
       files: {
         '.eslint-doc-generatorrc.js': [
           `import prettier from "prettier";

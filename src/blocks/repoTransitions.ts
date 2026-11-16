@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import { packageData } from '../data/packageData.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { formatYaml } from './files/formatYaml.ts';
-import { blockPackageJson } from './packageJson.ts';
+import { packageJson } from './packageJson.ts';
 import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
@@ -14,7 +14,7 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
   produce({ options }) {
     return {
       extensions: [
-        blockPackageJson({
+        packageJson({
           properties: {
             devDependencies: {
               '@mfaith/create': packageData.version,

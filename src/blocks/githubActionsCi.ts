@@ -23,12 +23,12 @@ const addSetupToSteps = (job: WorkflowJob): WorkflowJob => ({
     : [{ uses: setupActionPath }, ...job.steps],
 });
 
-export interface BlockGithubActionsCiProps {
+export interface GithubActionsCiProps {
   jobs?: WorkflowJob[] | undefined;
   nodeVersion?: string | number | undefined;
 }
 
-export const blockGithubActionsCi: BlockWithProps<BlockGithubActionsCiProps> = base.createBlock({
+export const githubActionsCi: BlockWithProps<GithubActionsCiProps> = base.createBlock({
   about: {
     name: 'GitHub Actions CI',
   },

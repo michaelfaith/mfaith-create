@@ -1,13 +1,13 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockFunding } from './funding.ts';
+import { funding } from './funding.ts';
 import { optionsBase } from './options.fakes.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
 
-describe(blockFunding, () => {
+describe(funding, () => {
   test('transition mode', () => {
-    const creation = testBlock(blockFunding, {
+    const creation = testBlock(funding, {
       mode: 'transition',
       options: optionsBase,
     });

@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockEslintMarkdownLinks } from './eslintMarkdownLinks.ts';
+import { eslintMarkdownLinks } from './eslintMarkdownLinks.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockEslintMarkdownLinks, () => {
+describe(eslintMarkdownLinks, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintMarkdownLinks, {
+    const creation = testBlock(eslintMarkdownLinks, {
       options: optionsBase,
     });
 

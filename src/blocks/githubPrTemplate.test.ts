@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGithubPrTemplate } from './githubPrTemplate.ts';
+import { githubPrTemplate } from './githubPrTemplate.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockGithubPrTemplate, () => {
+describe(githubPrTemplate, () => {
   test('production', () => {
-    const creation = testBlock(blockGithubPrTemplate, {
+    const creation = testBlock(githubPrTemplate, {
       options: optionsBase,
     });
 
@@ -35,7 +35,7 @@ describe(blockGithubPrTemplate, () => {
   });
 
   test('production (with no packageName)', () => {
-    const creation = testBlock(blockGithubPrTemplate, {
+    const creation = testBlock(githubPrTemplate, {
       options: { ...optionsBase, packageName: undefined },
     });
 

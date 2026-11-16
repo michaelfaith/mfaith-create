@@ -2,7 +2,7 @@ import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockVitest } from './vitest.ts';
+import { vitest } from './vitest.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
@@ -13,9 +13,9 @@ vi.mock('../data/packageData.ts', () => ({
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
 }));
 
-describe(blockVitest, () => {
+describe(vitest, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockVitest, {
+    const creation = testBlock(vitest, {
       options: optionsBase,
     });
 
@@ -300,7 +300,7 @@ describe(blockVitest, () => {
   });
 
   test('transition mode', () => {
-    const creation = testBlock(blockVitest, {
+    const creation = testBlock(vitest, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -616,7 +616,7 @@ describe(blockVitest, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockVitest, {
+    const creation = testBlock(vitest, {
       props: {
         coverage: {
           exclude: ['other'],
@@ -918,7 +918,7 @@ describe(blockVitest, () => {
   });
 
   test('with duplicate excludes props', () => {
-    const creation = testBlock(blockVitest, {
+    const creation = testBlock(vitest, {
       props: {
         coverage: {
           exclude: ['other'],
@@ -1213,7 +1213,7 @@ describe(blockVitest, () => {
 
   describe('intake', () => {
     it('returns nothing when vitest.config.ts does not pass a test to defineConfig', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [`defineConfig({ other: true })`],
         },
@@ -1224,7 +1224,7 @@ describe(blockVitest, () => {
     });
 
     it('returns nothing when vitest.config.ts passes unknown test data to defineConfig', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [`defineConfig({ test: true })`],
         },
@@ -1235,7 +1235,7 @@ describe(blockVitest, () => {
     });
 
     it('returns nothing when vitest.config.ts passes invalid test syntax to defineConfig', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [`defineConfig({ test: { ! } })`],
         },
@@ -1246,7 +1246,7 @@ describe(blockVitest, () => {
     });
 
     it('returns nothing when vitest.config.ts passes invalid test data to defineConfig', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [`defineConfig({ test: { coverage: 'invalid' } })`],
         },
@@ -1257,7 +1257,7 @@ describe(blockVitest, () => {
     });
 
     it('returns coverage and exclude when they exist in vitest.config.ts', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [
             `import { defineConfig } from "vitest/config";
@@ -1291,7 +1291,7 @@ export default defineConfig({
     });
 
     it('returns environment when it exists in vitest.config.ts', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {
           'vitest.config.ts': [
             `import { defineConfig } from "vitest/config";
@@ -1313,7 +1313,7 @@ export default defineConfig({
     });
 
     it('returns flags when it exists in package.json', () => {
-      const actual = testIntake(blockVitest, {
+      const actual = testIntake(vitest, {
         files: {},
         options: {
           ...optionsBase,
