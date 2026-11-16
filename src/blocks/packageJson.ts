@@ -15,21 +15,11 @@ const isRecord = (value: unknown): value is Record<string, unknown> => {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 };
 
-const publishConfigSchema = z
-  .object({
-    exports: PackageJson.shape.exports.optional(),
-  })
-  .catchall(z.unknown());
-interface PublishConfig {
-  exports?: PackageJson['exports'];
-  [k: string]: unknown;
-}
 const packageJsonSchema = PackageJson.partial().extend({
-  publishConfig: publishConfigSchema.optional(),
   scripts: z.record(z.string(), z.union([z.string(), z.undefined()])).optional(),
 });
 export interface PackageJsonExt extends Partial<Omit<PackageJson, 'scripts'>> {
-  publishConfig?: PublishConfig | undefined;
+  publishConfig?: PackageJson['publishConfig'];
   scripts?: Record<string, string | undefined>;
 }
 
