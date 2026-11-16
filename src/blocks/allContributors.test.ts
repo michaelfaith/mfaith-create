@@ -211,7 +211,7 @@ describe(blockAllContributors, () => {
       <table>
         <tbody>
           <tr>
-            <td align="center" valign="top" width="14.28%"><a href="https://michael.faith"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Amichaelfaith" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Code">💻</a> <a href="#design-michaelfaith" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Tests">⚠️</a> <a href="#tool-michaelfaith" title="Tools">🔧</a></td>
+            <td align="center" valign="top" width="14.28%"><a href="https://michael.faith"><img src="https://avatars.githubusercontent.com/u/3335181?v=4&size=100" width="100px" height="100px" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Amichaelfaith" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Code">💻</a> <a href="#design-michaelfaith" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=michaelfaith" title="Tests">⚠️</a> <a href="#tool-michaelfaith" title="Tools">🔧</a></td>
           </tr>
         </tbody>
       </table>
@@ -381,7 +381,7 @@ describe(blockAllContributors, () => {
       <table>
         <tbody>
           <tr>
-            <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+            <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4&size=100" width="100px" height="100px" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/michaelfaith/mfaith-create/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/michaelfaith/mfaith-create/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
           </tr>
         </tbody>
       </table>

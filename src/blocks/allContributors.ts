@@ -187,7 +187,7 @@ function printContributorCell(contributor: Contributor) {
   return [
     '      <td align="center" valign="top" width="14.28%">',
     `<a href="${contributor.profile}">`,
-    `<img src="${contributor.avatar_url}?s=100" width="100px;" alt="${contributor.name}"/>`,
+    `<img src="${contributor.avatar_url}&size=100" width="100px" height="100px" alt="${contributor.name}"/>`,
     '<br />',
     `<sub><b>${contributor.name}</b></sub></a><br />`,
     contributor.contributions
