@@ -7,6 +7,9 @@ import { blockPrettier } from './prettier.ts';
 vi.mock('../data/packageData.ts', () => ({
   getPackageDependencies: (...names: string[]) =>
     Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+  getPackageDevDependencies: (...names: string[]) =>
+    Object.fromEntries(names.map((name) => [name, '1.2.3'])),
+  getVersionForDevDependency: () => '1.2.3',
 }));
 
 describe(blockPrettier, () => {
