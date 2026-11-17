@@ -13,7 +13,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: octoguide/bot@95af986081bee9208897c7ad8e056b19fadf2dc9 # 0.33.0
+      - uses: octoguide/bot@8d29abce6793b35c6bfab51d4db6bfa62634b871 # 0.33.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           rules: |-
