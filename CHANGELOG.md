@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.2](https://github.com/michaelfaith/mfaith-create/compare/v0.11.1...v0.11.2) (2026-11-19)
+
+
+### 🩹 Bug Fixes
+
+* **AllContributors:** update table format to match latest App version ([#546](https://github.com/michaelfaith/mfaith-create/issues/546)) ([8cae6bc](https://github.com/michaelfaith/mfaith-create/commit/8cae6bc2ab503db205a4f7b03af0f170f53c0962))
+
 ## [0.11.1](https://github.com/michaelfaith/mfaith-create/compare/v0.11.0...v0.11.1) (2026-11-16)
 
 
