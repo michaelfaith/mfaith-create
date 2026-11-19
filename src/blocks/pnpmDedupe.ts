@@ -20,7 +20,7 @@ export const pnpmDedupe: BlockWithoutProps = base.createBlock({
           ],
         }),
         packageJson({
-          cleanupCommands: ['pnpm dedupe'],
+          cleanupCommands: ['pnpm dedupe --prefer-offline'],
         }),
       ],
     };

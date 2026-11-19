@@ -32,7 +32,7 @@ describe(pnpmDedupe, () => {
             "block": "[Block Package JSON]",
             "props": {
               "cleanupCommands": [
-                "pnpm dedupe",
+                "pnpm dedupe --prefer-offline",
               ],
             },
           },
@@ -69,7 +69,7 @@ describe(pnpmDedupe, () => {
             "block": "[Block Package JSON]",
             "props": {
               "cleanupCommands": [
-                "pnpm dedupe",
+                "pnpm dedupe --prefer-offline",
               ],
             },
           },
