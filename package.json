@@ -104,7 +104,7 @@
     "jiti": "2.7.0",
     "knip": "6.45.1",
     "lint-staged": "17.6.1",
-    "oxfmt": "0.78.0",
+    "oxfmt": "0.79.0",
     "pkg-pr-new": "0.0.94",
     "prettier": "3.10.1",
     "prettier-plugin-sentences-per-line": "0.2.5",
