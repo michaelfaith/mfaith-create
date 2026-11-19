@@ -1,6 +1,6 @@
 import type { IntakeDirectory } from 'bingo-fs';
-import _ from 'lodash';
 
+import { isPlainObject } from '../../utils/isPlainObject.ts';
 import type { ActionInput } from '../workflows/schema.ts';
 import { intakeFileAsYaml } from './intakeFileAsYaml.ts';
 
@@ -14,9 +14,13 @@ export function intakeActionInput(
     return undefined;
   }
 
-  const ymlPath = ['inputs', inputName];
+  if (!isPlainObject(actionYml)) {
+    return undefined;
+  }
 
-  const inputValue = _.get(actionYml, ymlPath) as ActionInput | undefined;
+  const inputs = actionYml.inputs as Record<string, unknown> | undefined;
+
+  const inputValue = inputs?.[inputName];
   if (!inputValue || typeof inputValue !== 'object') {
     return undefined;
   }

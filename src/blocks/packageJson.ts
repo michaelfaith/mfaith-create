@@ -6,14 +6,11 @@ import { PackageJson } from 'zod-package-json';
 
 import { base } from '../base.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
+import { isPlainObject } from '../utils/isPlainObject.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { CommandPhase } from './phases.ts';
 import { blockRemoveFiles } from './removeFiles.ts';
-
-const isRecord = (value: unknown): value is Record<string, unknown> => {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-};
 
 const publishConfigSchema = z
   .object({
@@ -125,7 +122,10 @@ export const packageJson: BlockWithProps<PackageJsonProps> = base.createBlock({
 const processExports = (exports: PackageJson['exports']): PackageJson['exports'] => {
   // We only want to sort exports, if it's an object, and if all of the keys start with `.`,
   // indicating that they're subpaths, rather than other types of conditions (e.g. types, import)
-  if (!isRecord(exports) || !Object.keys(exports).every((condition) => condition.startsWith('.'))) {
+  if (
+    !isPlainObject(exports) ||
+    !Object.keys(exports).every((condition) => condition.startsWith('.'))
+  ) {
     return exports;
   }
 

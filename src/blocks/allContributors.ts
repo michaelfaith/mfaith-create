@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { base } from '../base.ts';
 import { startingOwnerContributions } from '../data/contributions.ts';
 import type { Contributor } from '../Options.ts';
@@ -166,11 +164,13 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `    <tr>`,
     // This intentionally uses the same sort as all-contributors-cli:
     // https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
-    ..._.sortBy(contributors, 'name').flatMap((contributor, i) => {
-      const row = printContributorCell(contributor);
+    ...contributors
+      .toSorted((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+      .flatMap((contributor, i) => {
+        const row = printContributorCell(contributor);
 
-      return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
-    }),
+        return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
+      }),
     `    </tr>`,
     `  </tbody>`,
     `</table>`,
