@@ -73,6 +73,7 @@ describe(vitest, () => {
                     {
                       "entries": {
                         "@typescript-eslint/no-unsafe-assignment": "off",
+                        "@typescript-eslint/no-unsafe-class-instance-assignment": "off",
                         "vitest/prefer-describe-function-title": "error",
                       },
                     },
@@ -359,6 +360,7 @@ describe(vitest, () => {
                     {
                       "entries": {
                         "@typescript-eslint/no-unsafe-assignment": "off",
+                        "@typescript-eslint/no-unsafe-class-instance-assignment": "off",
                         "vitest/prefer-describe-function-title": "error",
                       },
                     },
@@ -686,6 +688,7 @@ describe(vitest, () => {
                     {
                       "entries": {
                         "@typescript-eslint/no-unsafe-assignment": "off",
+                        "@typescript-eslint/no-unsafe-class-instance-assignment": "off",
                         "vitest/prefer-describe-function-title": "error",
                       },
                     },
@@ -984,6 +987,7 @@ describe(vitest, () => {
                     {
                       "entries": {
                         "@typescript-eslint/no-unsafe-assignment": "off",
+                        "@typescript-eslint/no-unsafe-class-instance-assignment": "off",
                         "vitest/prefer-describe-function-title": "error",
                       },
                     },
