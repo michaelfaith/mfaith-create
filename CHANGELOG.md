@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.3](https://github.com/michaelfaith/mfaith-create/compare/v0.11.2...v0.11.3) (2026-11-20)
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency zod-package-json to v3 ([#557](https://github.com/michaelfaith/mfaith-create/issues/557)) ([80f680a](https://github.com/michaelfaith/mfaith-create/commit/80f680a0702c5d133fcb0e3203f69cb48364090c))
+* remove lodash dependency ([#559](https://github.com/michaelfaith/mfaith-create/issues/559)) ([2d573d9](https://github.com/michaelfaith/mfaith-create/commit/2d573d958f6159dee6f1b7d61751c50efa0b2633))
+
+
+### 🏁 Performance Improvements
+
+* use `prefer-offline` for initial dedupe ([#565](https://github.com/michaelfaith/mfaith-create/issues/565)) ([211a8b0](https://github.com/michaelfaith/mfaith-create/commit/211a8b07b7035fd4910b654729bb2e99353c15ec))
+
 ## [0.11.2](https://github.com/michaelfaith/mfaith-create/compare/v0.11.1...v0.11.2) (2026-11-19)
 
 
