@@ -79,7 +79,7 @@
     "@arethetypeswrong/core": "0.18.5",
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@eslint/js": "10.0.1",
-    "@eslint/markdown": "8.0.3",
+    "@eslint/markdown": "9.0.0",
     "@types/html-to-text": "9.0.4",
     "@types/node": "26.6.6",
     "@types/parse-author": "2.0.3",
