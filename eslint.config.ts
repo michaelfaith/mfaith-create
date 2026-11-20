@@ -101,6 +101,7 @@ const config: ConfigObject[] = defineConfig(
     files: ['**/*.test.*'],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
       'vitest/prefer-describe-function-title': 'error',
     },
     settings: { vitest: { typecheck: true } },
