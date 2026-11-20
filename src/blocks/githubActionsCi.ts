@@ -108,7 +108,7 @@ export const githubActionsCi: BlockWithProps<GithubActionsCiProps> = base.create
                   },
                   'node-version': {
                     description: 'Node.js version to use',
-                    default: String(nodeVersion),
+                    default: String(nodeVersion).split('.')[0],
                     required: false,
                   },
                   'skip-checkout': {
