@@ -675,4 +675,22 @@ describe(packageJson, () => {
       }
     `);
   });
+
+  it('lowercases a repository name with capital letters for the package name', () => {
+    const creation = testBlock(packageJson, {
+      options: {
+        ...options,
+        packageName: 'Test-Package',
+      },
+    });
+
+    const packageJsonResult = JSON.parse(creation.files?.['package.json'] as string);
+
+    expect(packageJsonResult).toMatchObject({
+      name: 'test-package',
+      repository: {
+        url: 'git+https://github.com/test-owner/test-repository.git',
+      },
+    });
+  });
 });

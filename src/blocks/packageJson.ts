@@ -71,7 +71,7 @@ export const packageJson: BlockWithProps<PackageJsonProps> = base.createBlock({
               ...(exports ? { exports } : {}),
               files: processFiles(props.properties.files),
               keywords: options.keywords,
-              name: options.packageName,
+              name: options.packageName?.toLowerCase(),
               ...(options.pnpm && {
                 packageManager: `pnpm@${options.pnpm}`,
               }),
