@@ -107,8 +107,7 @@ describe(prettier, () => {
           },
         ],
         "files": {
-          ".prettierignore": "/.husky
-      /pnpm-lock.yaml
+          ".prettierignore": "/pnpm-lock.yaml
       ",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
@@ -244,8 +243,7 @@ describe(prettier, () => {
           },
         ],
         "files": {
-          ".prettierignore": "/.husky
-      /pnpm-lock.yaml
+          ".prettierignore": "/pnpm-lock.yaml
       generated
       ",
           "prettier.config.ts": "import type { Config } from 'prettier';
@@ -391,8 +389,7 @@ describe(prettier, () => {
           },
         ],
         "files": {
-          ".prettierignore": "/.husky
-      /pnpm-lock.yaml
+          ".prettierignore": "/pnpm-lock.yaml
       ",
           "prettier.config.ts": "import type { Config } from 'prettier';
 
@@ -410,6 +407,22 @@ describe(prettier, () => {
           },
         ],
       }
+    `);
+  });
+
+  test('with an ignores prop that duplicates a default ignore', () => {
+    const creation = testBlock(prettier, {
+      options: optionsBase,
+      props: {
+        ignores: ['/dist', '/lib', '/pnpm-lock.yaml'],
+      },
+    });
+
+    expect(creation.files?.['.prettierignore']).toMatchInlineSnapshot(`
+      "/dist
+      /lib
+      /pnpm-lock.yaml
+      "
     `);
   });
 });
