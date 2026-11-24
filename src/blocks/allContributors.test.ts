@@ -83,7 +83,7 @@ describe(allContributors, () => {
         "projectOwner": "test-owner",
         "repoType": "github",
         "commitConvention": "angular"
-      }",
+      }/n",
           ".github": {
             "workflows": {
               "contributors.yml": "name: Contributors
@@ -254,7 +254,7 @@ describe(allContributors, () => {
         "projectOwner": "michaelfaith",
         "repoType": "github",
         "commitConvention": "angular"
-      }",
+      }/n",
           ".github": {
             "workflows": {
               "contributors.yml": "name: Contributors
@@ -424,7 +424,7 @@ describe(allContributors, () => {
         "projectOwner": "test-owner",
         "repoType": "github",
         "commitConvention": "angular"
-      }",
+      }/n",
           ".github": {
             "workflows": {
               "contributors.yml": "name: Contributors
