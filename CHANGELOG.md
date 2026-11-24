@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.11.4](https://github.com/michaelfaith/mfaith-create/compare/v0.11.3...v0.11.4) (2026-11-24)
+
+
+### 🩹 Bug Fixes
+
+* **PackageJson:** lowercase package name ([#583](https://github.com/michaelfaith/mfaith-create/issues/583)) ([25efd24](https://github.com/michaelfaith/mfaith-create/commit/25efd24fb87da0afbb88e7193ffad6ff9db20850))
+* **Prettier:** dedupe ignore files ([#585](https://github.com/michaelfaith/mfaith-create/issues/585)) ([bf9d2e1](https://github.com/michaelfaith/mfaith-create/commit/bf9d2e1cb5ba4cf3949def21f4b366c3c5b49484))
+* **VSCode:** only show the test debugger if provided by the Vitest block ([#586](https://github.com/michaelfaith/mfaith-create/issues/586)) ([c8c6523](https://github.com/michaelfaith/mfaith-create/commit/c8c6523e10c14239877ef8ab99c479cdea984d10))
+
 ## [0.11.3](https://github.com/michaelfaith/mfaith-create/compare/v0.11.2...v0.11.3) (2026-11-20)
 
 
