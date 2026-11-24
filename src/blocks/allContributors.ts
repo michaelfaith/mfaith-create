@@ -89,7 +89,7 @@ export const allContributors: BlockWithoutProps = base.createBlock({
             },
             null,
             2,
-          ) + '/n',
+          ) + '\n',
         '.github': {
           workflows: {
             'contributors.yml': createSingleJobWorkflow({
