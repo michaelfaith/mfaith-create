@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.11.5](https://github.com/michaelfaith/mfaith-create/compare/v0.11.4...v0.11.5) (2026-11-24)
+
+
+### 🩹 Bug Fixes
+
+* **AllContributors:** adjust initial contributors table sort order to match v7 ([#591](https://github.com/michaelfaith/mfaith-create/issues/591)) ([9fa9fde](https://github.com/michaelfaith/mfaith-create/commit/9fa9fde8c84ff341891bff71f3bb74592525140b))
+* **AllContributors:** include new line at the end of config file ([#588](https://github.com/michaelfaith/mfaith-create/issues/588)) ([8e46e73](https://github.com/michaelfaith/mfaith-create/commit/8e46e736003b1efd2521bb0ff02aa456a767c30e))
+* **sideEffects:** preserve existing values on intake ([#590](https://github.com/michaelfaith/mfaith-create/issues/590)) ([35c9f18](https://github.com/michaelfaith/mfaith-create/commit/35c9f18f7712afa6fd44b552cefe3db0e641b11a))
+
 ## [0.11.4](https://github.com/michaelfaith/mfaith-create/compare/v0.11.3...v0.11.4) (2026-11-24)
 
 
