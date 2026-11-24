@@ -472,6 +472,34 @@ describe(allContributors, () => {
     `);
   });
 
+  it('sorts contributors by name or login, ignoring case and accents', () => {
+    const creation = testBlock(allContributors, {
+      options: {
+        ...optionsBase,
+        contributors: [
+          { login: 'z-login', name: 'Zed' },
+          { login: 'e-login', name: 'Éva' },
+          { login: 'c-login', name: '' },
+          { login: 'b-login', name: 'bea' },
+          { login: 'f-login', name: 'Fay' },
+          { login: 'a-login', name: 'Abe' },
+        ].map((contributor) => ({
+          ...contributor,
+          avatar_url: `https://example.com/${contributor.login}`,
+          contributions: ['code'],
+          profile: `https://example.com/${contributor.login}/profile`,
+        })),
+      },
+    });
+
+    const logins = Array.from(
+      JSON.stringify(creation.extensions).matchAll(/example\.com\/([a-z]-login)\/profile/g),
+      ([, login]) => login,
+    );
+
+    expect(logins).toEqual(['a-login', 'b-login', 'c-login', 'e-login', 'f-login', 'z-login']);
+  });
+
   it('removes the previous .yml workflow file when in transition mode', () => {
     const creation = testBlock(allContributors, {
       mode: 'transition',

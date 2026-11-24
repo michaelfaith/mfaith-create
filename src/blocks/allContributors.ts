@@ -164,9 +164,13 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `  <tbody>`,
     `    <tr>`,
     // This intentionally uses the same sort as all-contributors-cli:
-    // https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
+    // https://github.com/all-contributors/cli/blob/ad2f3c0de6521be6e8e736a57e0a31adeb58895d/src/generate/index.js#L92
     ...contributors
-      .toSorted((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+      .toSorted((a, b) =>
+        (a.name || a.login).localeCompare(b.name || b.login, undefined, {
+          sensitivity: 'base',
+        }),
+      )
       .flatMap((contributor, i) => {
         const row = printContributorCell(contributor);
 
