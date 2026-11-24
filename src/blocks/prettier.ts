@@ -113,7 +113,9 @@ pnpm format --write
         }),
       ],
       files: {
-        '.prettierignore': formatTextLines(['/.husky', '/pnpm-lock.yaml', ...ignores].sort()),
+        '.prettierignore': formatTextLines(
+          Array.from(new Set(['/pnpm-lock.yaml', ...ignores])).sort(),
+        ),
         'prettier.config.ts': `import type { Config } from 'prettier';
 
 const config: Config = ${JSON.stringify(
