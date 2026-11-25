@@ -125,7 +125,7 @@ If you're interested in learning more, see the 'getting started' docs on:
           }),
           blockKnip({
             ignoreDependencies: [
-              'all-contributors-cli',
+              '@all-contributors/cli',
               'cspell-populate-words',
               'prettier',
               'prettier-plugin-sentences-per-line',

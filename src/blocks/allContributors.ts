@@ -134,7 +134,7 @@ export const allContributors: BlockWithoutProps = base.createBlock({
       scripts: [
         {
           commands: [
-            `pnpx all-contributors-cli@latest add ${options.owner} ${ownerContributions.join(',')}`,
+            `pnpx @all-contributors/cli@latest add ${options.owner} ${ownerContributions.join(',')}`,
           ],
           phase: CommandPhase.Process,
         },
@@ -163,7 +163,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
     `<table>`,
     `  <tbody>`,
     `    <tr>`,
-    // This intentionally uses the same sort as all-contributors-cli:
+    // This intentionally uses the same sort as @all-contributors/cli:
     // https://github.com/all-contributors/cli/blob/ad2f3c0de6521be6e8e736a57e0a31adeb58895d/src/generate/index.js#L92
     ...contributors
       .toSorted((a, b) =>

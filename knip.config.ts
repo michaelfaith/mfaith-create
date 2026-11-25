@@ -3,7 +3,7 @@ import type { KnipConfig } from 'knip';
 const config: KnipConfig = {
   entry: ['src/**/*.test.*'],
   ignoreDependencies: [
-    'all-contributors-cli',
+    '@all-contributors/cli',
     'cspell-populate-words',
     'prettier',
     'prettier-plugin-sentences-per-line',

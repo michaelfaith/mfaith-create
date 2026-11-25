@@ -37,7 +37,7 @@ describe(renovate, () => {
   test('with props', () => {
     const creation = testBlock(renovate, {
       props: {
-        ignoreDeps: ['all-contributors-cli'],
+        ignoreDeps: ['@all-contributors/cli'],
       },
       options: optionsBase,
     });
@@ -59,7 +59,7 @@ describe(renovate, () => {
         ],
         "files": {
           ".github": {
-            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["all-contributors-cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["@all-contributors/cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
           },
         },
       }
@@ -100,7 +100,7 @@ describe(renovate, () => {
     });
 
     it('returns ignoreDeps when .github/renovate.json contains ignoreDeps', () => {
-      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
+      const ignoreDeps = ['@all-contributors/cli', 'codecov/codecov-action'];
 
       const actual = testIntake(renovate, {
         files: {
@@ -114,7 +114,7 @@ describe(renovate, () => {
     });
 
     it('returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data', () => {
-      const ignoreDeps = ['all-contributors-cli', 'codecov/codecov-action'];
+      const ignoreDeps = ['@all-contributors/cli', 'codecov/codecov-action'];
 
       const actual = testIntake(renovate, {
         files: {

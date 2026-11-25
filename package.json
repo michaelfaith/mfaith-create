@@ -76,6 +76,7 @@
     "zod-tsconfig": "^0.3.0"
   },
   "devDependencies": {
+    "@all-contributors/cli": "7.0.3",
     "@arethetypeswrong/core": "0.18.5",
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@eslint/js": "10.0.1",
@@ -86,7 +87,6 @@
     "@types/semver": "7.8.0",
     "@vitest/coverage-v8": "5.1.1",
     "@vitest/eslint-plugin": "1.6.28",
-    "all-contributors-cli": "7.0.3",
     "bingo-requests": "0.7.1",
     "bingo-stratum-testers": "0.8.0",
     "bingo-testers": "0.10.0",

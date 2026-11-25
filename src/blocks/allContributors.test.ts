@@ -120,7 +120,7 @@ describe(allContributors, () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+              "pnpx @all-contributors/cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
             ],
             "phase": 3,
           },
@@ -292,7 +292,7 @@ describe(allContributors, () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@latest add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+              "pnpx @all-contributors/cli@latest add michaelfaith bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
             ],
             "phase": 3,
           },
@@ -463,7 +463,7 @@ describe(allContributors, () => {
         "scripts": [
           {
             "commands": [
-              "pnpx all-contributors-cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+              "pnpx @all-contributors/cli@latest add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
             ],
             "phase": 3,
           },
