@@ -56,16 +56,16 @@ export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBloc
 
     return {
       extensions: [
-        cspell({ words: ['RELEASEBOT'] }),
+        cspell({ words: ['RELEASEBOT', 'npmx'] }),
         oxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
         prettier({ ignores: ['/CHANGELOG.md'] }),
         ...(isScopedPackage(options.packageName) ? [blockPublishConfig({ access: 'public' })] : []),
         readme({
           badges: [
             {
-              alt: '📦 npm version',
-              href: `http://npmjs.com/package/${options.packageName}`,
-              src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+              alt: 'Package version on npmx',
+              href: `https://npmx.dev/package/${options.packageName}`,
+              src: `https://npmx.dev/api/registry/badge/version/${options.packageName}?label=%F0%9F%93%A6%20npmx`,
             },
           ],
         }),
