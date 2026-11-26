@@ -19,7 +19,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Comments Plugin             | `--add-eslint-comments-plugin`, `--exclude-eslint-comments-plugin`                         |         |        | 💯         |
 | ESLint JSDoc Plugin                | `--add-eslint-jsdoc-plugin`, `--exclude-eslint-jsdoc-plugin`                               |         |        | 💯         |
 | ESLint JSONC Plugin                | `--add-eslint-jsonc-plugin`, `--exclude-eslint-jsonc-plugin`                               |         |        | 💯         |
-| ESLint Markdown Plugin             | `--add-eslint-markdown-plugin`, `--exclude-eslint-markdown-plugin`                         |         |        | 💯         |
+| ESLint Markdown Plugin             | `--add-eslint-markdown-plugin`, `--exclude-eslint-markdown-plugin`                         |         | ✅     | 💯         |
 | ESLint Markdown Links Plugin       | `--add-eslint-markdown-links-plugin`, `--exclude-eslint-markdown-links-plugin`             |         |        | 💯         |
 | ESLint More Styling                | `--add-eslint-more-styling`, `--exclude-eslint-more-styling`                               |         |        | 💯         |
 | ESLint Node Plugin                 | `--add-eslint-node-plugin`, `--exclude-eslint-node-plugin`                                 |         |        | 💯         |
