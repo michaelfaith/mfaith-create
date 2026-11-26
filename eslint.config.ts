@@ -61,6 +61,13 @@ const config: ConfigObject[] = defineConfig(
         'error',
         { allowBoolean: true, allowNullish: true, allowNumber: true },
       ],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'ExportAllDeclaration[exported=null]',
+          message: "Do not use 'export * from' statements. Please export individual symbols.",
+        },
+      ],
       'perfectionist/sort-exports': 'error',
       'perfectionist/sort-named-exports': 'error',
       'perfectionist/sort-named-imports': 'error',
