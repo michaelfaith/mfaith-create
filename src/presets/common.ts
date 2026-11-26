@@ -5,6 +5,7 @@ import { allContributors } from '../blocks/allContributors.ts';
 import { codecov } from '../blocks/codecov.ts';
 import { funding } from '../blocks/funding.ts';
 import { octoguide } from '../blocks/octoguide.ts';
+import { pnpmDedupe } from '../blocks/pnpmDedupe.ts';
 import { prPreviewRelease } from '../blocks/prPreviewRelease.ts';
 import { releasePlease } from '../blocks/releasePlease.ts';
 import { vitest } from '../blocks/vitest.ts';
@@ -23,6 +24,7 @@ export const presetCommon: Preset<OptionsShape> = base.createPreset({
     codecov,
     funding,
     octoguide,
+    pnpmDedupe,
     prPreviewRelease,
     releasePlease,
     vitest,

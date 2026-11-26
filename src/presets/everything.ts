@@ -14,7 +14,6 @@ import { eslintRegexp } from '../blocks/eslintRegexp.ts';
 import { eslintYml } from '../blocks/eslintYml.ts';
 import { knip } from '../blocks/knip.ts';
 import { nvmrc } from '../blocks/nvmrc.ts';
-import { pnpmDedupe } from '../blocks/pnpmDedupe.ts';
 import { renovate } from '../blocks/renovate.ts';
 import { vscode } from '../blocks/vscode.ts';
 import type { OptionsShape } from '../Options.ts';
@@ -40,7 +39,6 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
     eslintYml,
     knip,
     nvmrc,
-    pnpmDedupe,
     renovate,
     vscode,
   ],

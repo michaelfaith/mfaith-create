@@ -42,7 +42,7 @@ This table summarizes each block and which base levels they're included in:
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
 | Oxfmt                              | `--add-oxfmt`, `--exclude-oxfmt`                                                           | ✔️      | ✅     | 💯         |
 | Package JSON                       | `--add-package-json`, `--exclude-package-json`                                             | ✔️      | ✅     | 💯         |
-| pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
+| pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         | ✅     | 💯         |
 | pnpm workspace                     | `--add-pnpm-workspace`, `--exclude-pnpm-workspace`                                         | ✔️      | ✅     | 💯         |
 | Prettier                           | `--add-prettier`, `--exclude-prettier`                                                     |         |        |            |
 | Prettier Plugin Sentences Per Line | `--add-prettier-plugin-sentences-per-line`, `--exclude-prettier-plugin-sentences-per-line` |         |        |            |
