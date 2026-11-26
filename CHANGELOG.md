@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.11.6](https://github.com/michaelfaith/mfaith-create/compare/v0.11.5...v0.11.6) (2026-11-26)
+
+
+### 🚀 Features
+
+* **ReleasePlease:** create npmx version badge for the `README` in place of npm badge ([#599](https://github.com/michaelfaith/mfaith-create/issues/599)) ([6c61eb9](https://github.com/michaelfaith/mfaith-create/commit/6c61eb9e9e5b85fc62c5a91b3469ca2eb90cc604))
+
+
+### 🩹 Bug Fixes
+
+* **AllContributors:** update to use new package name ([#594](https://github.com/michaelfaith/mfaith-create/issues/594)) ([1bf2d0a](https://github.com/michaelfaith/mfaith-create/commit/1bf2d0a1dca8b878a1d44ef7bdfc183c644452cf))
+
 ## [0.11.5](https://github.com/michaelfaith/mfaith-create/compare/v0.11.4...v0.11.5) (2026-11-24)
 
 
