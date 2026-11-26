@@ -17,11 +17,11 @@ import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { vitest } from './vitest.ts';
 import { vscode } from './vscode.ts';
 
-export interface typescriptProps {
+export interface TypescriptProps {
   compilerOptions?: CompilerOptions | undefined;
 }
 
-export const typescript: BlockWithProps<typescriptProps> = base.createBlock({
+export const typescript: BlockWithProps<TypescriptProps> = base.createBlock({
   about: {
     name: 'TypeScript',
   },
