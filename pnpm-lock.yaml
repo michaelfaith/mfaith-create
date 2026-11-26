@@ -315,8 +315,8 @@ importers:
         specifier: 1.6.28
         version: 1.6.28(@typescript-eslint/eslint-plugin@8.73.0(@typescript-eslint/parser@8.73.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@5.1.1)
       bingo-requests:
-        specifier: 0.7.1
-        version: 0.7.1
+        specifier: 0.8.0
+        version: 0.8.0
       bingo-stratum-testers:
         specifier: 0.8.0
         version: 0.8.0(bingo-fs@0.8.0)(bingo-stratum@0.11.1(bingo-fs@0.8.0)(bingo-systems@0.9.1)(bingo@0.16.2(zod@4.6.7))(zod@4.6.7))(bingo-systems@0.9.1)(bingo@0.16.2(zod@4.6.7))
@@ -2006,6 +2006,10 @@ packages:
 
   bingo-requests@0.7.1:
     resolution: {integrity: sha512-tch/Go3JFcc7Z+LysU0bp8o7m4uSszMQXZzW/kCM5nAj+xvp8Kz8tFNslzOuig+cOt/NM9Mt4f9LEThJk4TPUg==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
+
+  bingo-requests@0.8.0:
+    resolution: {integrity: sha512-p0Y6WPRUdSrNAYPhdF+hr7FgaP4EbIhllA36uh1azHylzMVsPg9Ae+5FubjfSKbIL8ngJs1BL9irC3cMGigBzQ==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
   bingo-stratum-testers@0.8.0:
@@ -5480,6 +5484,10 @@ snapshots:
   bingo-fs@0.8.0: {}
 
   bingo-requests@0.7.1:
+    dependencies:
+      '@octokit/types': 18.0.0
+
+  bingo-requests@0.8.0:
     dependencies:
       '@octokit/types': 18.0.0
 
