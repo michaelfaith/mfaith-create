@@ -17,6 +17,7 @@ describe(releasePlease, () => {
             "props": {
               "words": [
                 "RELEASEBOT",
+                "npmx",
               ],
             },
           },
@@ -43,7 +44,7 @@ describe(releasePlease, () => {
                 {
                   "alt": "Package version on npmx",
                   "href": "https://npmx.dev/package/test-package-name",
-                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name",
+                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name?label=%F0%9F%93%A6%20npmx",
                 },
               ],
             },
@@ -216,6 +217,7 @@ describe(releasePlease, () => {
             "props": {
               "words": [
                 "RELEASEBOT",
+                "npmx",
               ],
             },
           },
@@ -248,7 +250,7 @@ describe(releasePlease, () => {
                 {
                   "alt": "Package version on npmx",
                   "href": "https://npmx.dev/package/@test/create",
-                  "src": "https://npmx.dev/api/registry/badge/version/@test/create",
+                  "src": "https://npmx.dev/api/registry/badge/version/@test/create?label=%F0%9F%93%A6%20npmx",
                 },
               ],
             },
@@ -437,6 +439,7 @@ describe(releasePlease, () => {
             "props": {
               "words": [
                 "RELEASEBOT",
+                "npmx",
               ],
             },
           },
@@ -463,7 +466,7 @@ describe(releasePlease, () => {
                 {
                   "alt": "Package version on npmx",
                   "href": "https://npmx.dev/package/test-package-name",
-                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name",
+                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name?label=%F0%9F%93%A6%20npmx",
                 },
               ],
             },
