@@ -54,6 +54,14 @@ describe(vitest, () => {
 
 
       		",
+                  "innerSections": [
+                    {
+                      "contents": "
+      We recommend using the Vitest VSCode extension for debugging individual tests.
+      ",
+                      "heading": "Debugging Tests",
+                    },
+                  ],
                 },
               },
             },
@@ -341,6 +349,14 @@ describe(vitest, () => {
 
 
       		",
+                  "innerSections": [
+                    {
+                      "contents": "
+      We recommend using the Vitest VSCode extension for debugging individual tests.
+      ",
+                      "heading": "Debugging Tests",
+                    },
+                  ],
                 },
               },
             },
@@ -669,6 +685,14 @@ describe(vitest, () => {
 
 
       		",
+                  "innerSections": [
+                    {
+                      "contents": "
+      We recommend using the Vitest VSCode extension for debugging individual tests.
+      ",
+                      "heading": "Debugging Tests",
+                    },
+                  ],
                 },
               },
             },
@@ -968,6 +992,14 @@ describe(vitest, () => {
 
 
       		",
+                  "innerSections": [
+                    {
+                      "contents": "
+      We recommend using the Vitest VSCode extension for debugging individual tests.
+      ",
+                      "heading": "Debugging Tests",
+                    },
+                  ],
                 },
               },
             },

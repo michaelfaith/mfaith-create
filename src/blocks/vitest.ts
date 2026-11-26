@@ -128,6 +128,14 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 
 
 		`,
+              innerSections: [
+                {
+                  contents: `
+We recommend using the Vitest VSCode extension for debugging individual tests.
+`,
+                  heading: 'Debugging Tests',
+                },
+              ],
             },
           },
         }),
