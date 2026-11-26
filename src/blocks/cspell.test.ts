@@ -401,6 +401,7 @@ describe(cspell, () => {
 
     it('returns the data when cspell.json contains ignorePaths and words', () => {
       const data = {
+        dictionaries: [],
         ignorePaths: ['other'],
         words: ['abc', 'def'],
       };

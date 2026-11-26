@@ -16,13 +16,17 @@ import { vscode } from './vscode.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
 
+const defaultDictionaries = ['npm', 'node', 'typescript'];
+
 const props = {
+  dictionaries: z.array(z.string()).default([]),
   ignorePaths: z.array(z.string()).default([]),
   words: z.array(z.string()).default([]),
 };
 const propsSchema: z.ZodType<CspellProps> = z.object(props);
 
 export interface CspellProps {
+  dictionaries?: string[];
   ignorePaths?: string[];
   words?: string[];
 }
@@ -46,7 +50,7 @@ export const cspell: BlockWithProps<CspellProps> = base.createBlock({
     return data;
   },
   produce({ options, props }) {
-    const { ignorePaths, words } = props;
+    const { dictionaries, ignorePaths, words } = props;
 
     const allWords = Array.from(new Set([...(options.words ?? []), ...words])).sort();
 
@@ -85,7 +89,7 @@ export const cspell: BlockWithProps<CspellProps> = base.createBlock({
       ],
       files: {
         'cspell.json': JSON.stringify({
-          dictionaries: ['npm', 'node', 'typescript'],
+          dictionaries: Array.from(new Set([...defaultDictionaries, ...dictionaries])),
           ignorePaths: Array.from(
             new Set([
               '.github',
