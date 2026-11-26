@@ -5,7 +5,6 @@ import { cspell } from '../blocks/cspell.ts';
 import { eslintComments } from '../blocks/eslintComments.ts';
 import { eslintJsdoc } from '../blocks/eslintJsdoc.ts';
 import { eslintJsonc } from '../blocks/eslintJsonc.ts';
-import { eslintMarkdown } from '../blocks/eslintMarkdown.ts';
 import { eslintMarkdownLinks } from '../blocks/eslintMarkdownLinks.ts';
 import { eslintMoreStyling } from '../blocks/eslintMoreStyling.ts';
 import { blockEslintNode } from '../blocks/eslintNode.ts';
@@ -30,7 +29,6 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
     eslintComments,
     eslintJsdoc,
     eslintJsonc,
-    eslintMarkdown,
     eslintMarkdownLinks,
     eslintMoreStyling,
     blockEslintNode,
