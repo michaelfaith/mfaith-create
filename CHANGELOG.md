@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.11.7](https://github.com/michaelfaith/mfaith-create/compare/v0.11.6...v0.11.7) (2026-11-26)
+
+
+### 🚀 Features
+
+* add AI Contribution policy to CONTRIBUTING ([#607](https://github.com/michaelfaith/mfaith-create/issues/607)) ([aed15eb](https://github.com/michaelfaith/mfaith-create/commit/aed15eb25c9cfc26906a11599f98b253087c749b))
+* **Common:** add the `eslintMarkdown` block to the common preset ([#614](https://github.com/michaelfaith/mfaith-create/issues/614)) ([85bf592](https://github.com/michaelfaith/mfaith-create/commit/85bf5923c208df564be46231f031f07e0373c81e))
+* **Common:** add the `eslintPackageJson` block to the common preset ([#615](https://github.com/michaelfaith/mfaith-create/issues/615)) ([a1c3ba8](https://github.com/michaelfaith/mfaith-create/commit/a1c3ba8ddc53061f4b22d1f52f50db6033945f27))
+* **Common:** add the `pnpmDedupe` block to the common preset ([#611](https://github.com/michaelfaith/mfaith-create/issues/611)) ([4b6a080](https://github.com/michaelfaith/mfaith-create/commit/4b6a080efebc86ac082ac7654ee26cd1113d00bf))
+* **CSpell:** add prop for additional `dictionaries` ([#603](https://github.com/michaelfaith/mfaith-create/issues/603)) ([ff16560](https://github.com/michaelfaith/mfaith-create/commit/ff16560d25a48ec1bb2bb5796b2d23250190bf5a))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo to ^0.17.0 ([#613](https://github.com/michaelfaith/mfaith-create/issues/613)) ([db0efdf](https://github.com/michaelfaith/mfaith-create/commit/db0efdf2e3ce931722b7e643539697b5293f6173))
+
 ## [0.11.6](https://github.com/michaelfaith/mfaith-create/compare/v0.11.5...v0.11.6) (2026-11-26)
 
 
