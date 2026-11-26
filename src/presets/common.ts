@@ -4,6 +4,7 @@ import { base } from '../base.ts';
 import { allContributors } from '../blocks/allContributors.ts';
 import { codecov } from '../blocks/codecov.ts';
 import { eslintMarkdown } from '../blocks/eslintMarkdown.ts';
+import { eslintPackageJson } from '../blocks/eslintPackageJson.ts';
 import { funding } from '../blocks/funding.ts';
 import { octoguide } from '../blocks/octoguide.ts';
 import { pnpmDedupe } from '../blocks/pnpmDedupe.ts';
@@ -24,6 +25,7 @@ export const presetCommon: Preset<OptionsShape> = base.createPreset({
     allContributors,
     codecov,
     eslintMarkdown,
+    eslintPackageJson,
     funding,
     octoguide,
     pnpmDedupe,

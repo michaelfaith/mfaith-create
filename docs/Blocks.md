@@ -23,7 +23,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Markdown Links Plugin       | `--add-eslint-markdown-links-plugin`, `--exclude-eslint-markdown-links-plugin`             |         |        | 💯         |
 | ESLint More Styling                | `--add-eslint-more-styling`, `--exclude-eslint-more-styling`                               |         |        | 💯         |
 | ESLint Node Plugin                 | `--add-eslint-node-plugin`, `--exclude-eslint-node-plugin`                                 |         |        | 💯         |
-| ESLint package.json Plugin         | `--add-eslint-package-json-plugin`, `--exclude-eslint-package-json-plugin`                 |         |        | 💯         |
+| ESLint package.json Plugin         | `--add-eslint-package-json-plugin`, `--exclude-eslint-package-json-plugin`                 |         | ✅     | 💯         |
 | ESLint Perfectionist Plugin        | `--add-eslint-perfectionist-plugin`, `--exclude-eslint-perfectionist-plugin`               |         |        | 💯         |
 | ESLint Plugin                      | `--add-eslint-plugin`, `--exclude-eslint-plugin`                                           |         |        |            |
 | ESLint Regexp Plugin               | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                             |         |        | 💯         |
