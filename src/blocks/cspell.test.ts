@@ -83,6 +83,7 @@ describe(cspell, () => {
   test('with props', () => {
     const creation = testBlock(cspell, {
       props: {
+        dictionaries: ['another'],
         ignorePaths: ['dist/'],
         words: ['michaelfaith'],
       },
@@ -144,7 +145,7 @@ describe(cspell, () => {
           },
         ],
         "files": {
-          "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","patches","pnpm-lock.yaml"],"words":["michaelfaith"]}",
+          "cspell.json": "{"dictionaries":["npm","node","typescript","another"],"ignorePaths":[".github","CHANGELOG.md","dist","dist/","node_modules","package.json","patches","pnpm-lock.yaml"],"words":["michaelfaith"]}",
         },
       }
     `);
@@ -399,8 +400,9 @@ describe(cspell, () => {
       expect(actual).toBeUndefined();
     });
 
-    it('returns the data when cspell.json contains ignorePaths and words', () => {
+    it('returns the data when cspell.json contains dictionaries, ignorePaths, and words', () => {
       const data = {
+        dictionaries: ['css', 'npm'],
         ignorePaths: ['other'],
         words: ['abc', 'def'],
       };
