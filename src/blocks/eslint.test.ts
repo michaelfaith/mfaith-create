@@ -132,7 +132,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -298,7 +298,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -489,7 +489,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -669,7 +669,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -837,7 +837,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -1008,7 +1008,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );
@@ -1178,7 +1178,7 @@ describe(eslint, () => {
         }
       },
       plugins: {perfectionist,},
-      rules: {"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
+      rules: {"no-restricted-syntax":["error",{"selector":"ExportAllDeclaration[exported=null]","message":"Do not use 'export * from' statements. Please export individual symbols."}],"perfectionist/sort-exports":"error","perfectionist/sort-named-exports":"error","perfectionist/sort-named-imports":"error"},
       settings: {"perfectionist":{"partitionByComment":true,"type":"natural"}},
       }
       );

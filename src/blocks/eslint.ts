@@ -98,6 +98,13 @@ export const eslint: BlockWithProps<EslintProps> = base.createBlock({
           perfectionist: 'perfectionist',
         },
         rules: {
+          'no-restricted-syntax': [
+            'error',
+            {
+              selector: 'ExportAllDeclaration[exported=null]',
+              message: "Do not use 'export * from' statements. Please export individual symbols.",
+            },
+          ],
           'perfectionist/sort-exports': 'error',
           'perfectionist/sort-named-exports': 'error',
           'perfectionist/sort-named-imports': 'error',
