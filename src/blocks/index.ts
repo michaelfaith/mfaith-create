@@ -45,7 +45,7 @@ export { securityDocs } from './securityDocs.ts';
 export { sideEffects, type SideEffectsProps } from './sideEffects.ts';
 export { templatedWith } from './templatedWith.ts';
 export { tsdown, type TsdownProps } from './tsdown.ts';
-export { typescript, type typescriptProps } from './typescript.ts';
+export { typescript, type TypescriptProps } from './typescript.ts';
 export { vitest, type VitestProps } from './vitest.ts';
 export { vscode, type VscodeProps } from './vscode.ts';
 export { webExt } from './webExt.ts';

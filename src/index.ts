@@ -68,7 +68,7 @@ export {
   tsdown as blockTsdown,
   type TsdownProps as BlockTsdownProps,
   typescript as blockTypescript,
-  type typescriptProps as BlockTypescriptProps,
+  type TypescriptProps as BlockTypescriptProps,
   vitest as blockVitest,
   type VitestProps as BlockVitestProps,
   vscode as blockVscode,
