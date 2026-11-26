@@ -41,9 +41,9 @@ describe(releasePlease, () => {
             "props": {
               "badges": [
                 {
-                  "alt": "📦 npm version",
-                  "href": "http://npmjs.com/package/test-package-name",
-                  "src": "https://img.shields.io/npm/v/test-package-name?color=21bb42&label=%F0%9F%93%A6%20npm",
+                  "alt": "Package version on npmx",
+                  "href": "https://npmx.dev/package/test-package-name",
+                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name",
                 },
               ],
             },
@@ -246,9 +246,9 @@ describe(releasePlease, () => {
             "props": {
               "badges": [
                 {
-                  "alt": "📦 npm version",
-                  "href": "http://npmjs.com/package/@test/create",
-                  "src": "https://img.shields.io/npm/v/@test/create?color=21bb42&label=%F0%9F%93%A6%20npm",
+                  "alt": "Package version on npmx",
+                  "href": "https://npmx.dev/package/@test/create",
+                  "src": "https://npmx.dev/api/registry/badge/version/@test/create",
                 },
               ],
             },
@@ -461,9 +461,9 @@ describe(releasePlease, () => {
             "props": {
               "badges": [
                 {
-                  "alt": "📦 npm version",
-                  "href": "http://npmjs.com/package/test-package-name",
-                  "src": "https://img.shields.io/npm/v/test-package-name?color=21bb42&label=%F0%9F%93%A6%20npm",
+                  "alt": "Package version on npmx",
+                  "href": "https://npmx.dev/package/test-package-name",
+                  "src": "https://npmx.dev/api/registry/badge/version/test-package-name",
                 },
               ],
             },

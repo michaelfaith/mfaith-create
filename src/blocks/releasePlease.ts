@@ -63,9 +63,9 @@ export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBloc
         readme({
           badges: [
             {
-              alt: '📦 npm version',
-              href: `http://npmjs.com/package/${options.packageName}`,
-              src: `https://img.shields.io/npm/v/${options.packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+              alt: 'Package version on npmx',
+              href: `https://npmx.dev/package/${options.packageName}`,
+              src: `https://npmx.dev/api/registry/badge/version/${options.packageName}`,
             },
           ],
         }),
