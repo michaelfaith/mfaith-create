@@ -4,11 +4,11 @@ import { describe, expect, it, vi } from 'vitest';
 import { startingOwnerContributions } from '../data/contributions.ts';
 import { readAllContributors } from './readAllContributors.ts';
 
-const mockInputFromFileJSON = vi.fn();
+const mockInputFromFileJson = vi.fn();
 
 vi.mock('input-from-file-json', () => ({
-  get inputFromFileJSON() {
-    return mockInputFromFileJSON;
+  get inputFromFileJson() {
+    return mockInputFromFileJson;
   },
 }));
 
@@ -25,7 +25,7 @@ const { take } = createMockSystems();
 describe(readAllContributors, () => {
   it('returns contributors from .all-contributorsrc when it can be read', async () => {
     const contributors = ['a', 'b', 'c'];
-    mockInputFromFileJSON.mockResolvedValueOnce({ contributors });
+    mockInputFromFileJson.mockResolvedValueOnce({ contributors });
 
     const actual = await readAllContributors(take);
 
@@ -34,7 +34,7 @@ describe(readAllContributors, () => {
   });
 
   it('returns undefined when .all-contributorsrc cannot be read and GET /user resolves undefined', async () => {
-    mockInputFromFileJSON.mockResolvedValueOnce(new Error('Oh no!'));
+    mockInputFromFileJson.mockResolvedValueOnce(new Error('Oh no!'));
     mockInputFromOctokit.mockResolvedValueOnce(undefined);
 
     const actual = await readAllContributors(take);
@@ -43,7 +43,7 @@ describe(readAllContributors, () => {
   });
 
   it('returns the current user as a contributor when .all-contributorsrc cannot be read and GET /user resolves a user', async () => {
-    mockInputFromFileJSON.mockResolvedValueOnce(new Error('Oh no!'));
+    mockInputFromFileJson.mockResolvedValueOnce(new Error('Oh no!'));
     mockInputFromOctokit.mockResolvedValueOnce({
       avatar_url: 'avatar_url',
       blog: 'blog',
