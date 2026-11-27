@@ -4,7 +4,7 @@ import { githubDefaultLabels } from 'github-default-labels';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { repositoryLabels } from './repositoryLabels.data.ts';
+import { repositoryLabelsData } from './repositoryLabels.data.ts';
 import { repositoryLabels } from './repositoryLabels.ts';
 
 describe(repositoryLabels, () => {
@@ -573,7 +573,7 @@ describe(repositoryLabels, () => {
       options: {
         ...optionsBase,
         existingLabels: [
-          ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
+          ...repositoryLabelsData.filter((label) => !label.name.includes('documentation')),
           {
             color: '0075ca',
             description: 'Improvements or additions to docs 📝',
@@ -1262,7 +1262,7 @@ describe(repositoryLabels, () => {
         options: {
           ...optionsBase,
           existingLabels: [
-            ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
+            ...repositoryLabelsData.filter((label) => !label.name.includes('documentation')),
             {
               color: '0075ca',
               description: 'Improvements or additions to docs 📝',

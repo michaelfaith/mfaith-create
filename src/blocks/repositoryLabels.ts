@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { repositoryLabels as repoLabelsData } from './repositoryLabels.data.ts';
+import { repositoryLabelsData as repoLabelsData } from './repositoryLabels.data.ts';
 
 export interface RepositoryLabelsProps {
   additionalLabels?: OutcomeLabel[];
