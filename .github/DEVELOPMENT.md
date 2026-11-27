@@ -59,7 +59,7 @@ pnpm run lint --fix
 ## Testing
 
 [Vitest](https://vitest.dev) is used for tests.
-You can run it locally on the command-line:
+You can run it locally on the command line:
 
 ```shell
 pnpm run test
@@ -76,7 +76,7 @@ Calls to `console.log`, `console.warn`, and other console methods will cause a t
 
 ### Debugging Tests
 
-We recommend using the Vitest VSCode extension for debugging individual tests.
+We recommend using the official [Vitest VSCode extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) to run and / or debug individual tests (or entire test suites).
 
 ## Type Checking
 
