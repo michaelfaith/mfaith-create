@@ -225,8 +225,8 @@ importers:
         specifier: ^2.0.2
         version: 2.1.0
       input-from-file:
-        specifier: ^0.8.0
-        version: 0.8.0(bingo@0.17.0(zod@4.6.7))(zod@4.6.7)
+        specifier: ^0.9.0
+        version: 0.9.1(bingo@0.17.0(zod@4.6.7))(zod@4.6.7)
       input-from-file-json:
         specifier: ^0.7.0
         version: 0.7.0(bingo@0.17.0(zod@4.6.7))(zod@4.6.7)
@@ -2785,6 +2785,16 @@ packages:
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     peerDependencies:
       bingo: ^0.16.0
+      zod: ^4.4.3
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
+  input-from-file@0.9.1:
+    resolution: {integrity: sha512-fiEufR4kJ+c56fGbD2F/NKnOccIKkLACLWfr7q+0A4XLgo5JOemuItIPAA+gdqFuUScJjreeg31fDYxqjgn8Qg==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
+    peerDependencies:
+      bingo: ^0.17.1
       zod: ^4.4.3
     peerDependenciesMeta:
       zod:
@@ -6331,6 +6341,12 @@ snapshots:
       zod: 4.6.7
 
   input-from-file@0.8.0(bingo@0.17.0(zod@4.6.7))(zod@4.6.7):
+    dependencies:
+      bingo: 0.17.0(zod@4.6.7)
+    optionalDependencies:
+      zod: 4.6.7
+
+  input-from-file@0.9.1(bingo@0.17.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.17.0(zod@4.6.7)
     optionalDependencies:
