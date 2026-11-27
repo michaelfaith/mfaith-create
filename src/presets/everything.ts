@@ -7,7 +7,7 @@ import { eslintJsdoc } from '../blocks/eslintJsdoc.ts';
 import { eslintJsonc } from '../blocks/eslintJsonc.ts';
 import { eslintMarkdownLinks } from '../blocks/eslintMarkdownLinks.ts';
 import { eslintMoreStyling } from '../blocks/eslintMoreStyling.ts';
-import { blockEslintNode } from '../blocks/eslintNode.ts';
+import { eslintNode } from '../blocks/eslintNode.ts';
 import { eslintRegexp } from '../blocks/eslintRegexp.ts';
 import { eslintYml } from '../blocks/eslintYml.ts';
 import { knip } from '../blocks/knip.ts';
@@ -30,7 +30,7 @@ export const presetEverything: Preset<OptionsShape> = base.createPreset({
     eslintJsonc,
     eslintMarkdownLinks,
     eslintMoreStyling,
-    blockEslintNode,
+    eslintNode,
     eslintRegexp,
     eslintYml,
     knip,

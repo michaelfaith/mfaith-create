@@ -3,13 +3,13 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { repositoryLabels } from './repositoryLabels.data.ts';
+import { repositoryLabelsData as repoLabelsData } from './repositoryLabels.data.ts';
 
-export interface BlockRepositoryLabelsProps {
+export interface RepositoryLabelsProps {
   additionalLabels?: OutcomeLabel[];
 }
 
-export const blockRepositoryLabels: BlockWithProps<BlockRepositoryLabelsProps> = base.createBlock({
+export const repositoryLabels: BlockWithProps<RepositoryLabelsProps> = base.createBlock({
   about: {
     name: 'Repository Labels',
     description: 'Add a list of labels to the GitHub repository.',
@@ -21,7 +21,7 @@ export const blockRepositoryLabels: BlockWithProps<BlockRepositoryLabelsProps> =
     const { additionalLabels } = props;
 
     const requiredLabels = new Set(
-      additionalLabels ? [...repositoryLabels, ...additionalLabels] : repositoryLabels,
+      additionalLabels ? [...repoLabelsData, ...additionalLabels] : repoLabelsData,
     );
 
     const changes = determineLabelChanges(options.existingLabels ?? [], Array.from(requiredLabels));

@@ -7,7 +7,7 @@ import type { BlockWithProps } from './Block.ts';
 import { formatWorkflowYaml } from './files/formatWorkflowYaml.ts';
 import { intakeActionInput } from './intake/intakeActionInput.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
+import { repositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
@@ -84,7 +84,7 @@ export const githubActionsCi: BlockWithProps<GithubActionsCiProps> = base.create
 
     return {
       extensions: [
-        blockRepositoryBranchRuleset({
+        repositoryBranchRuleset({
           requiredStatusChecks: jobsWithEnginesCheck?.flatMap((job) => getAllPossibleJobNames(job)),
         }),
       ],

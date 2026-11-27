@@ -1,7 +1,7 @@
 import type { OutcomeLabel } from 'set-github-repository-labels';
 
 /* spellchecker:disable */
-export const repositoryLabels: OutcomeLabel[] = [
+export const repositoryLabelsData: OutcomeLabel[] = [
   {
     name: 'area: documentation',
     aliases: ['docs'],

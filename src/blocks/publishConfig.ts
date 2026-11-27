@@ -5,13 +5,13 @@ import type { BlockWithProps } from './Block.ts';
 import { packageJson } from './packageJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
 
-export interface BlockPublishConfigProps {
+export interface PublishConfigProps {
   access?: 'public' | 'restricted' | undefined;
   bin?: Bin | undefined;
   exports?: Record<string, unknown> | undefined;
 }
 
-export const blockPublishConfig: BlockWithProps<BlockPublishConfigProps> = base.createBlock({
+export const publishConfig: BlockWithProps<PublishConfigProps> = base.createBlock({
   about: {
     name: 'Publish Config',
     description: 'Creates the publishConfig property on the package.json',

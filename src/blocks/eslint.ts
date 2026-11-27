@@ -23,9 +23,9 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
 export interface EslintProps {
@@ -229,7 +229,7 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: [
             '@types/eslint',
             '@typescript-eslint/eslint-plugin',
@@ -243,7 +243,7 @@ export default config;
         removeFiles({
           files: ['.eslintrc*', '.eslintignore', 'eslint.config.{cjs,js,mjs}'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['eslint', 'lint'],
         }),
       ],

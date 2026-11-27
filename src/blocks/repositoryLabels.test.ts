@@ -4,12 +4,12 @@ import { githubDefaultLabels } from 'github-default-labels';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { repositoryLabels } from './repositoryLabels.data.ts';
-import { blockRepositoryLabels } from './repositoryLabels.ts';
+import { repositoryLabelsData } from './repositoryLabels.data.ts';
+import { repositoryLabels } from './repositoryLabels.ts';
 
-describe(blockRepositoryLabels, () => {
+describe(repositoryLabels, () => {
   test('when options.existingLabels is undefined', () => {
-    const creation = testBlock(blockRepositoryLabels, {
+    const creation = testBlock(repositoryLabels, {
       options: { ...optionsBase, existingLabels: undefined },
     });
 
@@ -286,7 +286,7 @@ describe(blockRepositoryLabels, () => {
   });
 
   test('when options.existingLabels contains default entries', () => {
-    const creation = testBlock(blockRepositoryLabels, {
+    const creation = testBlock(repositoryLabels, {
       options: { ...optionsBase, existingLabels: githubDefaultLabels },
     });
 
@@ -569,11 +569,11 @@ describe(blockRepositoryLabels, () => {
   });
 
   test('when options.existingLabels contains duplicate entries', () => {
-    const creation = testBlock(blockRepositoryLabels, {
+    const creation = testBlock(repositoryLabels, {
       options: {
         ...optionsBase,
         existingLabels: [
-          ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
+          ...repositoryLabelsData.filter((label) => !label.name.includes('documentation')),
           {
             color: '0075ca',
             description: 'Improvements or additions to docs 📝',
@@ -608,7 +608,7 @@ describe(blockRepositoryLabels, () => {
 
   describe('with props', () => {
     test('when options.existingLabels is undefined', () => {
-      const creation = testBlock(blockRepositoryLabels, {
+      const creation = testBlock(repositoryLabels, {
         props: {
           additionalLabels: [
             {
@@ -923,7 +923,7 @@ describe(blockRepositoryLabels, () => {
     });
 
     test('when options.existingLabels contains default entries', () => {
-      const creation = testBlock(blockRepositoryLabels, {
+      const creation = testBlock(repositoryLabels, {
         props: {
           additionalLabels: [
             {
@@ -1244,7 +1244,7 @@ describe(blockRepositoryLabels, () => {
     });
 
     test('when options.existingLabels contains duplicate entries', () => {
-      const creation = testBlock(blockRepositoryLabels, {
+      const creation = testBlock(repositoryLabels, {
         props: {
           additionalLabels: [
             {
@@ -1262,7 +1262,7 @@ describe(blockRepositoryLabels, () => {
         options: {
           ...optionsBase,
           existingLabels: [
-            ...repositoryLabels.filter((label) => !label.name.includes('documentation')),
+            ...repositoryLabelsData.filter((label) => !label.name.includes('documentation')),
             {
               color: '0075ca',
               description: 'Improvements or additions to docs 📝',

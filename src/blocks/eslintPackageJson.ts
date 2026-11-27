@@ -2,9 +2,9 @@ import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { eslint } from './eslint.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 
 export const eslintPackageJson: BlockWithoutProps = base.createBlock({
   about: {
@@ -43,10 +43,10 @@ export const eslintPackageJson: BlockWithoutProps = base.createBlock({
         removeFiles({
           files: ['.npmpackagejsonlintrc*'],
         }),
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: ['npm-package-json-lint', 'npm-package-json-lint-config-default'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['lint-package-json'],
         }),
       ],

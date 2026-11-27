@@ -3,10 +3,10 @@ import type { StratumTemplate } from 'bingo-stratum';
 import { base } from './base.ts';
 import { areTheTypesWrong } from './blocks/areTheTypesWrong.ts';
 import { eslintPlugin } from './blocks/eslintPlugin.ts';
-import { blockNcc } from './blocks/ncc.ts';
-import { blockRemoveDependencies } from './blocks/removeDependencies.ts';
+import { ncc } from './blocks/ncc.ts';
+import { removeDependencies } from './blocks/removeDependencies.ts';
 import { removeFiles } from './blocks/removeFiles.ts';
-import { blockRepoTransitions } from './blocks/repoTransitions.ts';
+import { repoTransitions } from './blocks/repoTransitions.ts';
 import { webExt } from './blocks/webExt.ts';
 import type { OptionsShape } from './Options.ts';
 import { presetCommon } from './presets/common.ts';
@@ -23,11 +23,11 @@ export const template: StratumTemplate<OptionsShape> = base.createStratumTemplat
   },
   blocks: [
     areTheTypesWrong,
-    blockRepoTransitions,
     eslintPlugin,
-    blockNcc,
-    blockRemoveDependencies,
+    ncc,
+    removeDependencies,
     removeFiles,
+    repoTransitions,
     webExt,
   ],
   presets: [presetMinimal, presetCommon, presetEverything],

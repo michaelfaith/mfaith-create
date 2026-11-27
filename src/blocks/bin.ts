@@ -4,11 +4,11 @@ import { distToSrc, srcToDist } from '../utils/srcToDist.ts';
 import type { BlockWithProps } from './Block.ts';
 import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
-import { blockExampleFiles } from './exampleFiles.ts';
+import { exampleFiles } from './exampleFiles.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { packageJson } from './packageJson.ts';
 import { type Bin, binSchema } from './packageJson/schemas.ts';
-import { blockPublishConfig } from './publishConfig.ts';
+import { publishConfig } from './publishConfig.ts';
 import { tsdown } from './tsdown.ts';
 
 const convertToCommand = (packageName: string): string => {
@@ -94,7 +94,7 @@ export const bin: BlockWithProps<BinProps> = base.createBlock({
             bin: devExports ? srcBin : bin,
           },
         }),
-        blockExampleFiles({
+        exampleFiles({
           files: {
             bin: {
               'index.ts': `#!/usr/bin/env node
@@ -104,7 +104,7 @@ greet('Hello, world! ${emoji}');`,
             },
           },
         }),
-        ...(devExports ? [blockPublishConfig({ bin })] : []),
+        ...(devExports ? [publishConfig({ bin })] : []),
         tsdown({
           entry: binEntries,
           excludeFromExports: binEntries,

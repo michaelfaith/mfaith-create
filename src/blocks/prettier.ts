@@ -11,9 +11,9 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { pnpmWorkspace } from './pnpmWorkspace.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
@@ -141,13 +141,13 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: ['eslint-config-prettier', 'eslint-plugin-prettier'],
         }),
         removeFiles({
           files: ['.prettierrc', '.prettierrc.{c*,js,m*,t*}', 'prettier.config*'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['format', 'prettier'],
         }),
       ],

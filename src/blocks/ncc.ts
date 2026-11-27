@@ -9,11 +9,11 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { oxfmt } from './oxfmt.ts';
 import { packageJson } from './packageJson.ts';
 import { prettier } from './prettier.ts';
-export interface BlockNccProps {
+export interface NccProps {
   entry?: string | undefined;
 }
 
-export const blockNcc: BlockWithProps<BlockNccProps> = base.createBlock({
+export const ncc: BlockWithProps<NccProps> = base.createBlock({
   about: {
     name: 'ncc',
   },

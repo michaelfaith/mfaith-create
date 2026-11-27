@@ -11,7 +11,7 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFile } from './intake/intakeFile.ts';
 import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
 const filesGlob = `"**" ".github/**/*"`;
@@ -124,7 +124,7 @@ export const cspell: BlockWithProps<CspellProps> = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['lint-spelling', 'spelling'],
         }),
       ],

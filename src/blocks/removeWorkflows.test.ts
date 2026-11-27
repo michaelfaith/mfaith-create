@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 
-describe(blockRemoveWorkflows, () => {
+describe(removeWorkflows, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockRemoveWorkflows, {
+    const creation = testBlock(removeWorkflows, {
       options: optionsBase,
     });
 
@@ -14,7 +14,7 @@ describe(blockRemoveWorkflows, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRemoveWorkflows, {
+    const creation = testBlock(removeWorkflows, {
       props: {
         workflows: ['a', 'b', 'c'],
       },
@@ -25,7 +25,7 @@ describe(blockRemoveWorkflows, () => {
   });
 
   test('with mode', () => {
-    const creation = testBlock(blockRemoveWorkflows, {
+    const creation = testBlock(removeWorkflows, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -45,7 +45,7 @@ describe(blockRemoveWorkflows, () => {
   });
 
   test('with props and mode', () => {
-    const creation = testBlock(blockRemoveWorkflows, {
+    const creation = testBlock(removeWorkflows, {
       props: {
         workflows: ['a', 'b', 'c'],
       },

@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRepositorySettings } from './repositorySettings.ts';
+import { repositorySettings } from './repositorySettings.ts';
 
-describe(blockRepositorySettings, () => {
+describe(repositorySettings, () => {
   test('with a short description', () => {
-    const creation = testBlock(blockRepositorySettings, {
+    const creation = testBlock(repositorySettings, {
       options: optionsBase,
     });
 
@@ -45,7 +45,7 @@ describe(blockRepositorySettings, () => {
   });
 
   test('with a long HTML description', () => {
-    const creation = testBlock(blockRepositorySettings, {
+    const creation = testBlock(repositorySettings, {
       options: {
         ...optionsBase,
         description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,

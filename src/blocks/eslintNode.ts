@@ -3,7 +3,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
 
-export const blockEslintNode: BlockWithoutProps = base.createBlock({
+export const eslintNode: BlockWithoutProps = base.createBlock({
   about: {
     name: 'ESLint Node Plugin',
   },

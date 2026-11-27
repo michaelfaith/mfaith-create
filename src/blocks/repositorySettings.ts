@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import { htmlToTextSafe } from '../utils/htmlToTextSafe.ts';
 import type { BlockWithoutProps } from './Block.ts';
 
-export const blockRepositorySettings: BlockWithoutProps = base.createBlock({
+export const repositorySettings: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Repository Settings',
   },

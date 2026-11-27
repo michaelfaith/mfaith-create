@@ -10,7 +10,7 @@ import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 import { packageJson } from './packageJson.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
 const stringArraySchema = z.array(z.string());
@@ -103,7 +103,7 @@ export default config;
         removeFiles({
           files: ['.knip*', 'knip.{c,j,m}*', 'knip.json*'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['knip', 'lint-knip'],
         }),
       ],

@@ -1,9 +1,9 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { eslint } from './eslint.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 
 export const eslintMarkdown: BlockWithoutProps = base.createBlock({
   about: {
@@ -34,13 +34,13 @@ export const eslintMarkdown: BlockWithoutProps = base.createBlock({
             },
           ],
         }),
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: ['eslint-plugin-markdown', 'markdownlint', 'markdownlint-cli'],
         }),
         removeFiles({
           files: ['.markdownlint*', '.markdownlintignore'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['lint_markdown', 'lint_md'],
         }),
       ],

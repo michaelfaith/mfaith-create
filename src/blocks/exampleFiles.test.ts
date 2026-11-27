@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockExampleFiles } from './exampleFiles.ts';
+import { exampleFiles } from './exampleFiles.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockExampleFiles, () => {
+describe(exampleFiles, () => {
   test('without props.files', () => {
-    const creation = testBlock(blockExampleFiles, {
+    const creation = testBlock(exampleFiles, {
       props: {},
       options: optionsBase,
     });
@@ -15,7 +15,7 @@ describe(blockExampleFiles, () => {
   });
 
   test('with props.files and without mode', () => {
-    const creation = testBlock(blockExampleFiles, {
+    const creation = testBlock(exampleFiles, {
       props: {
         files: {
           'index.ts': "console.log('Hello, world!');",
@@ -28,7 +28,7 @@ describe(blockExampleFiles, () => {
   });
 
   test('with props.files and mode: setup', () => {
-    const creation = testBlock(blockExampleFiles, {
+    const creation = testBlock(exampleFiles, {
       props: {
         files: {
           'index.ts': "console.log('Hello, world!');",
