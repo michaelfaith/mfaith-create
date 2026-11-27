@@ -84,6 +84,7 @@ test(
               'michaelfaith',
               'mshick',
               'octoguide',
+              'renovaterc',
               'stefanzweifel',
               'ts-prunerc',
               'webpro',

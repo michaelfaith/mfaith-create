@@ -37,7 +37,20 @@ describe(renovate, () => {
   test('with props', () => {
     const creation = testBlock(renovate, {
       props: {
+        customManagers: [
+          {
+            customType: 'regex',
+            datasourceTemplate: 'github-tags',
+            managerFilePatterns: ['/^src/.+\\.ts$/'],
+            matchStrings: ['uses\\("(?<depName>[^"]+)", "(?<currentValue>[^"]+)"'],
+          },
+        ],
         ignoreDeps: ['@all-contributors/cli'],
+        packageRules: [
+          { enabled: false, matchDepNames: ['node'] },
+          { automerge: false, matchDepNames: ['typescript'] },
+          { automerge: false, matchDepNames: ['eslint'] },
+        ],
       },
       options: optionsBase,
     });
@@ -59,7 +72,7 @@ describe(renovate, () => {
         ],
         "files": {
           ".github": {
-            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["@all-contributors/cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","postUpdateOptions":["pnpmDedupe"]}",
+            "renovate.json": "{"$schema":"https://docs.renovatebot.com/renovate-schema.json","automerge":true,"customManagers":[{"customType":"regex","datasourceTemplate":"github-tags","managerFilePatterns":["/^src/.+\\\\.ts$/"],"matchStrings":["uses\\\\(\\"(?<depName>[^\\"]+)\\", \\"(?<currentValue>[^\\"]+)\\""]}],"extends":[":preserveSemverRanges","config:best-practices","replacements:all"],"ignoreDeps":["@all-contributors/cli"],"labels":["dependencies"],"minimumReleaseAge":"7 days","packageRules":[{"enabled":false,"matchDepNames":["node"]},{"automerge":false,"matchDepNames":["typescript"]},{"automerge":false,"matchDepNames":["eslint"]}],"postUpdateOptions":["pnpmDedupe"]}",
           },
         },
       }
