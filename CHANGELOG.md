@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.11.8](https://github.com/michaelfaith/mfaith-create/compare/v0.11.7...v0.11.8) (2026-11-26)
+
+
+### 🚀 Features
+
+* **ESLint:** add rule to disallow `export * as` declarations ([#621](https://github.com/michaelfaith/mfaith-create/issues/621)) ([a1c3316](https://github.com/michaelfaith/mfaith-create/commit/a1c3316737e20413e62da12dfc5c0e0e0ce3b503))
+* **TypeScript:** add `exclude`, `include`, and `outDir` props ([#617](https://github.com/michaelfaith/mfaith-create/issues/617)) ([5fbeee7](https://github.com/michaelfaith/mfaith-create/commit/5fbeee74ff591f9e73842300c12f16d2cca6768b))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update dependency bingo-fs to ^0.9.0 ([#619](https://github.com/michaelfaith/mfaith-create/issues/619)) ([9980e81](https://github.com/michaelfaith/mfaith-create/commit/9980e815c152710532db26000788056830d193c5))
+* **deps:** update dependency bingo-stratum to ^0.12.0 ([#620](https://github.com/michaelfaith/mfaith-create/issues/620)) ([30e5538](https://github.com/michaelfaith/mfaith-create/commit/30e55380a732bf793b9123d9ba7555e5d0f648eb))
+
 ## [0.11.7](https://github.com/michaelfaith/mfaith-create/compare/v0.11.6...v0.11.7) (2026-11-26)
 
 
