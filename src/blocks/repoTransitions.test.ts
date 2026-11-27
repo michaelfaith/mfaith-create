@@ -4,12 +4,12 @@ import { describe, expect, test } from 'vitest';
 import { packageData } from '../data/packageData.ts';
 import { optionsBase } from './options.fakes.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
-import { blockRepoTransitions } from './repoTransitions.ts';
+import { repositoryBranchRuleset } from './repositoryBranchRuleset.ts';
+import { repoTransitions } from './repoTransitions.ts';
 
-describe(blockRepoTransitions, () => {
+describe(repoTransitions, () => {
   test('production', () => {
-    const creation = testBlock(blockRepoTransitions, {
+    const creation = testBlock(repoTransitions, {
       options: optionsBase,
     });
 
@@ -21,7 +21,7 @@ describe(blockRepoTransitions, () => {
           },
         },
       }),
-      blockRepositoryBranchRuleset({
+      repositoryBranchRuleset({
         requiredStatusChecks: ['Transition'],
       }),
     ]);

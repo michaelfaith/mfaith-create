@@ -19,9 +19,9 @@ import { packageJson } from './packageJson.ts';
 import { prettier } from './prettier.ts';
 import { prPreviewRelease } from './prPreviewRelease.ts';
 import { releasePlease } from './releasePlease.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vitest } from './vitest.ts';
 
 const attwSchema: z.ZodType<Attw> = z.union([
@@ -252,13 +252,13 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: ['@babel/cli', '@babel/core', '@babel/preset-typescript', 'babel', 'tsup'],
         }),
         removeFiles({
           files: ['.babelrc*', 'babel.config.*', 'dist', 'lib', 'tsup.config.*'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['build', 'tsup'],
         }),
       ],

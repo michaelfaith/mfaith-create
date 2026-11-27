@@ -14,12 +14,12 @@ const fileEntrySchema: z.ZodType<DirectoryEntry> = z.record(
   z.union([z.string(), z.lazy(() => fileEntrySchema)]),
 );
 
-export interface BlockExampleFilesProps {
+export interface ExampleFilesProps {
   files?: DirectoryEntry;
   usage?: string[];
 }
 
-export const blockExampleFiles: BlockWithProps<BlockExampleFilesProps> = base.createBlock({
+export const exampleFiles: BlockWithProps<ExampleFilesProps> = base.createBlock({
   about: {
     name: 'Example Files',
   },

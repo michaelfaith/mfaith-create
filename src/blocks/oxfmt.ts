@@ -10,7 +10,7 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { pnpmWorkspace } from './pnpmWorkspace.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
 import { vscode } from './vscode.ts';
 
@@ -132,7 +132,7 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: [
             'eslint-config-prettier',
             'eslint-plugin-prettier',

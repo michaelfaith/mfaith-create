@@ -4,7 +4,7 @@ import { base } from '../base.ts';
 import { makeRelativePath } from '../utils/makeRelativePath.ts';
 import type { BlockWithProps } from './Block.ts';
 import { packageJson } from './packageJson.ts';
-import { blockPublishConfig } from './publishConfig.ts';
+import { publishConfig } from './publishConfig.ts';
 
 const exportEntrySchema: z.ZodType<ExportEntry> = z.object({
   path: z.string(),
@@ -58,7 +58,7 @@ export const exports: BlockWithProps<ExportsProps> = base.createBlock({
         }),
         ...(devExports
           ? [
-              blockPublishConfig({
+              publishConfig({
                 exports: {
                   ...createExportEntries(exports, false),
                   './package.json': './package.json',

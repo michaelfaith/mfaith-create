@@ -6,11 +6,11 @@ import { cspell } from './cspell.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { oxfmt } from './oxfmt.ts';
 import { prettier } from './prettier.ts';
-import { blockPublishConfig } from './publishConfig.ts';
+import { publishConfig } from './publishConfig.ts';
 import { readme } from './readme.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRepositoryLabels } from './repositoryLabels.ts';
-import { blockRepositorySecrets } from './repositorySecrets.ts';
+import { repositoryLabels } from './repositoryLabels.ts';
+import { repositorySecrets } from './repositorySecrets.ts';
 import { blockRepositoryVariables } from './repositoryVariables.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
@@ -59,7 +59,7 @@ export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBloc
         cspell({ words: ['RELEASEBOT', 'npmx'] }),
         oxfmt({ ignorePatterns: ['/CHANGELOG.md'] }),
         prettier({ ignores: ['/CHANGELOG.md'] }),
-        ...(isScopedPackage(options.packageName) ? [blockPublishConfig({ access: 'public' })] : []),
+        ...(isScopedPackage(options.packageName) ? [publishConfig({ access: 'public' })] : []),
         readme({
           badges: [
             {
@@ -69,7 +69,7 @@ export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBloc
             },
           ],
         }),
-        blockRepositoryLabels({
+        repositoryLabels({
           additionalLabels: [
             {
               color: '#bfd4f2',
@@ -84,7 +84,7 @@ export const releasePlease: BlockWithProps<ReleasePleaseProps> = base.createBloc
             },
           ],
         }),
-        blockRepositorySecrets({
+        repositorySecrets({
           secrets: [
             {
               description: 'an app Private Key for generating an ephemeral token',

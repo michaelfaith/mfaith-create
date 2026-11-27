@@ -8,7 +8,7 @@ import type { BlockWithProps } from './Block.ts';
 import { cspell } from './cspell.ts';
 import { developmentDocs } from './developmentDocs.ts';
 import { eslint } from './eslint.ts';
-import { blockExampleFiles } from './exampleFiles.ts';
+import { exampleFiles } from './exampleFiles.ts';
 import { githubActionsCi } from './githubActionsCi.ts';
 import { gitignore } from './gitignore.ts';
 import { intakeFileDefineConfig } from './intake/intakeFileDefineConfig.ts';
@@ -16,9 +16,9 @@ import { knip } from './knip.ts';
 import { oxfmt } from './oxfmt.ts';
 import { packageJson } from './packageJson.ts';
 import { prettier } from './prettier.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 import { removeFiles } from './removeFiles.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 import {
   type Step,
@@ -161,7 +161,7 @@ We recommend using the official [Vitest VSCode extension](https://marketplace.vi
           ignores: ['coverage', '**/*.snap'],
           imports: [{ source: '@vitest/eslint-plugin', specifier: 'vitest' }],
         }),
-        blockExampleFiles({
+        exampleFiles({
           files: {
             'greet.test.ts': `import { describe, expect, it, vi } from 'vitest';
 
@@ -326,7 +326,7 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveDependencies({
+        removeDependencies({
           dependencies: [
             '@vitest/coverage-istanbul',
             'eslint-plugin-jest',
@@ -338,7 +338,7 @@ export default config;
         removeFiles({
           files: ['.mocha*', 'jest.config.*', 'vitest.config.{c,j,m}*'],
         }),
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['test'],
         }),
       ],

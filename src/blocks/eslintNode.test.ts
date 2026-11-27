@@ -1,16 +1,16 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
-import { blockEslintNode } from './eslintNode.ts';
+import { eslintNode } from './eslintNode.ts';
 import { optionsBase } from './options.fakes.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe(blockEslintNode, () => {
+describe(eslintNode, () => {
   test('production', () => {
-    const creation = testBlock(blockEslintNode, {
+    const creation = testBlock(eslintNode, {
       options: optionsBase,
     });
 

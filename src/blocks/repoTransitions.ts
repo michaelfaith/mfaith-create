@@ -3,11 +3,11 @@ import { packageData } from '../data/packageData.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { formatYaml } from './files/formatYaml.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
+import { repositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
-export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
+export const repoTransitions: BlockWithoutProps = base.createBlock({
   about: {
     name: 'Transitions',
   },
@@ -21,7 +21,7 @@ export const blockRepoTransitions: BlockWithoutProps = base.createBlock({
             },
           },
         }),
-        blockRepositoryBranchRuleset({
+        repositoryBranchRuleset({
           requiredStatusChecks: ['Transition'],
         }),
       ],

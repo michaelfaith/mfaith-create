@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { githubActionsCi } from './githubActionsCi.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 
 export const pnpmDedupe: BlockWithoutProps = base.createBlock({
   about: {
@@ -28,7 +28,7 @@ export const pnpmDedupe: BlockWithoutProps = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['lint-packages'],
         }),
       ],

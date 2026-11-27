@@ -4,11 +4,11 @@ import { z } from 'zod';
 import { base, type BaseOptions } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 
-export interface BlockRepositoryBranchRulesetProps {
+export interface RepositoryBranchRulesetProps {
   requiredStatusChecks?: string[] | undefined;
 }
 
-export const blockRepositoryBranchRuleset: BlockWithProps<BlockRepositoryBranchRulesetProps> =
+export const repositoryBranchRuleset: BlockWithProps<RepositoryBranchRulesetProps> =
   base.createBlock({
     about: {
       name: 'Repository Branch Ruleset',

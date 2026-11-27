@@ -4,11 +4,11 @@ import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
 import { removeFiles } from './removeFiles.ts';
 
-export interface BlockRemoveWorkflowsProps {
+export interface RemoveWorkflowsProps {
   workflows?: string[] | undefined;
 }
 
-export const blockRemoveWorkflows: BlockWithProps<BlockRemoveWorkflowsProps> = base.createBlock({
+export const removeWorkflows: BlockWithProps<RemoveWorkflowsProps> = base.createBlock({
   about: {
     name: 'Remove Workflows',
   },

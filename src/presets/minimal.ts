@@ -5,7 +5,7 @@ import { codeOfConduct } from '../blocks/codeOfConduct.ts';
 import { contributingDocs } from '../blocks/contributingDocs.ts';
 import { developmentDocs } from '../blocks/developmentDocs.ts';
 import { eslint } from '../blocks/eslint.ts';
-import { blockExampleFiles } from '../blocks/exampleFiles.ts';
+import { exampleFiles } from '../blocks/exampleFiles.ts';
 import { exports } from '../blocks/exports.ts';
 import { gitattributes } from '../blocks/gitattributes.ts';
 import { githubActionsCi } from '../blocks/githubActionsCi.ts';
@@ -17,15 +17,15 @@ import { mitLicense } from '../blocks/mitLicense.ts';
 import { oxfmt } from '../blocks/oxfmt.ts';
 import { packageJson } from '../blocks/packageJson.ts';
 import { pnpmWorkspace } from '../blocks/pnpmWorkspace.ts';
-import { blockPublishConfig } from '../blocks/publishConfig.ts';
+import { publishConfig } from '../blocks/publishConfig.ts';
 import { readme } from '../blocks/readme.ts';
-import { blockRemoveDependencies } from '../blocks/removeDependencies.ts';
+import { removeDependencies } from '../blocks/removeDependencies.ts';
 import { removeFiles } from '../blocks/removeFiles.ts';
-import { blockRemoveWorkflows } from '../blocks/removeWorkflows.ts';
-import { blockRepositoryBranchRuleset } from '../blocks/repositoryBranchRuleset.ts';
-import { blockRepositoryLabels } from '../blocks/repositoryLabels.ts';
-import { blockRepositorySecrets } from '../blocks/repositorySecrets.ts';
-import { blockRepositorySettings } from '../blocks/repositorySettings.ts';
+import { removeWorkflows } from '../blocks/removeWorkflows.ts';
+import { repositoryBranchRuleset } from '../blocks/repositoryBranchRuleset.ts';
+import { repositoryLabels } from '../blocks/repositoryLabels.ts';
+import { repositorySecrets } from '../blocks/repositorySecrets.ts';
+import { repositorySettings } from '../blocks/repositorySettings.ts';
 import { securityDocs } from '../blocks/securityDocs.ts';
 import { sideEffects } from '../blocks/sideEffects.ts';
 import { templatedWith } from '../blocks/templatedWith.ts';
@@ -43,7 +43,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     codeOfConduct,
     developmentDocs,
     eslint,
-    blockExampleFiles,
+    exampleFiles,
     exports,
     gitattributes,
     githubActionsCi,
@@ -55,15 +55,15 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     packageJson,
     pnpmWorkspace,
     oxfmt,
-    blockPublishConfig,
+    publishConfig,
     readme,
-    blockRemoveDependencies,
+    removeDependencies,
     removeFiles,
-    blockRemoveWorkflows,
-    blockRepositoryBranchRuleset,
-    blockRepositoryLabels,
-    blockRepositorySecrets,
-    blockRepositorySettings,
+    removeWorkflows,
+    repositoryBranchRuleset,
+    repositoryLabels,
+    repositorySecrets,
+    repositorySettings,
     securityDocs,
     sideEffects,
     templatedWith,

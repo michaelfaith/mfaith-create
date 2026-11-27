@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRepositorySecrets } from './repositorySecrets.ts';
+import { repositorySecrets } from './repositorySecrets.ts';
 
-describe(blockRepositorySecrets, () => {
+describe(repositorySecrets, () => {
   test('without props', () => {
-    const creation = testBlock(blockRepositorySecrets, {
+    const creation = testBlock(repositorySecrets, {
       options: optionsBase,
     });
 
@@ -18,7 +18,7 @@ describe(blockRepositorySecrets, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRepositorySecrets, {
+    const creation = testBlock(repositorySecrets, {
       props: {
         secrets: [
           {

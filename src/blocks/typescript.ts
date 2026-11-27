@@ -11,13 +11,13 @@ import type { BlockWithProps } from './Block.ts';
 import { developmentDocs } from './developmentDocs.ts';
 import { eslint } from './eslint.ts';
 import { JS_TS_FILES } from './eslint/globs.ts';
-import { blockExampleFiles } from './exampleFiles.ts';
+import { exampleFiles } from './exampleFiles.ts';
 import { githubActionsCi } from './githubActionsCi.ts';
 import { gitignore } from './gitignore.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { knip } from './knip.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRemoveWorkflows } from './removeWorkflows.ts';
+import { removeWorkflows } from './removeWorkflows.ts';
 import { vitest } from './vitest.ts';
 import { vscode } from './vscode.ts';
 
@@ -96,7 +96,7 @@ pnpm tsc --watch
             },
           ],
         }),
-        blockExampleFiles({
+        exampleFiles({
           files: {
             'greet.ts': `import type { GreetOptions } from './types.ts';
 
@@ -193,7 +193,7 @@ greet('Hello, world! ${options.emoji}');
   transition() {
     return {
       extensions: [
-        blockRemoveWorkflows({
+        removeWorkflows({
           workflows: ['tsc'],
         }),
       ],

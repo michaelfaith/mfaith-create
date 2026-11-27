@@ -13,26 +13,24 @@ export interface Secret {
   name: string;
 }
 
-export interface BlockRepositorySecretsProps {
+export interface RepositorySecretsProps {
   secrets?: Secret[];
 }
 
-export const blockRepositorySecrets: BlockWithProps<BlockRepositorySecretsProps> = base.createBlock(
-  {
-    about: {
-      name: 'Repository Secrets',
-    },
-    props: {
-      secrets: z.array(secretSchema).default([]),
-    },
-    produce({ options, props }) {
-      return {
-        suggestions: getInstallationSuggestions(
-          'populate the secret',
-          props.secrets.map((secret) => `${secret.name} (${secret.description})`),
-          `https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
-        ),
-      };
-    },
+export const repositorySecrets: BlockWithProps<RepositorySecretsProps> = base.createBlock({
+  about: {
+    name: 'Repository Secrets',
   },
-);
+  props: {
+    secrets: z.array(secretSchema).default([]),
+  },
+  produce({ options, props }) {
+    return {
+      suggestions: getInstallationSuggestions(
+        'populate the secret',
+        props.secrets.map((secret) => `${secret.name} (${secret.description})`),
+        `https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
+      ),
+    };
+  },
+});

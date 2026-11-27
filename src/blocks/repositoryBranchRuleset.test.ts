@@ -2,11 +2,11 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
+import { repositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 
-describe(blockRepositoryBranchRuleset, () => {
+describe(repositoryBranchRuleset, () => {
   test('without props when mode is undefined', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       options: optionsBase,
     });
 
@@ -14,7 +14,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('without props when mode is setup', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       mode: 'setup',
       options: optionsBase,
     });
@@ -80,7 +80,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('without props when mode is transition', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -156,7 +156,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('with props when mode is undefined', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       props: {
         requiredStatusChecks: ['build', 'test'],
       },
@@ -167,7 +167,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('with props when mode is setup', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       props: {
         requiredStatusChecks: ['build', 'test'],
       },
@@ -243,7 +243,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('with props when mode is transition', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       props: {
         requiredStatusChecks: ['build', 'test'],
       },
@@ -329,7 +329,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('with props and no rulesetId option when mode is transition', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       props: {
         requiredStatusChecks: ['build', 'test'],
       },
@@ -415,7 +415,7 @@ describe(blockRepositoryBranchRuleset, () => {
   });
 
   test('with props and a rulesetId option when mode is transition', () => {
-    const creation = testBlock(blockRepositoryBranchRuleset, {
+    const creation = testBlock(repositoryBranchRuleset, {
       props: {
         requiredStatusChecks: ['build', 'test'],
       },

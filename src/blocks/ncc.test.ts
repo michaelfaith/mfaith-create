@@ -1,12 +1,12 @@
 import { testBlock, testIntake } from 'bingo-stratum-testers';
 import { describe, expect, it, test } from 'vitest';
 
-import { blockNcc } from './ncc.ts';
+import { ncc } from './ncc.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockNcc, () => {
+describe(ncc, () => {
   test('without props', () => {
-    const creation = testBlock(blockNcc, {
+    const creation = testBlock(ncc, {
       options: optionsBase,
     });
 
@@ -122,7 +122,7 @@ describe(blockNcc, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockNcc, {
+    const creation = testBlock(ncc, {
       props: {
         entry: 'src/action/index.ts',
       },
@@ -242,7 +242,7 @@ describe(blockNcc, () => {
 
   describe('intake', () => {
     it('returns an undefined entry when options.packageData does not exist', () => {
-      const actual = testIntake(blockNcc, {
+      const actual = testIntake(ncc, {
         files: {},
         options: {
           ...optionsBase,
@@ -254,7 +254,7 @@ describe(blockNcc, () => {
     });
 
     it('returns an undefined entry when options.packageData does not contain scripts', () => {
-      const actual = testIntake(blockNcc, {
+      const actual = testIntake(ncc, {
         files: {},
         options: {
           ...optionsBase,
@@ -266,7 +266,7 @@ describe(blockNcc, () => {
     });
 
     it('returns an undefined entry when options.packageData does not contain a build:release script', () => {
-      const actual = testIntake(blockNcc, {
+      const actual = testIntake(ncc, {
         files: {},
         options: {
           ...optionsBase,
@@ -280,7 +280,7 @@ describe(blockNcc, () => {
     });
 
     it('returns an undefined entry when options.packageData contains an unrelated build:release script', () => {
-      const actual = testIntake(blockNcc, {
+      const actual = testIntake(ncc, {
         files: {},
         options: {
           ...optionsBase,
@@ -296,7 +296,7 @@ describe(blockNcc, () => {
     });
 
     it('returns a parsed entry when options.packageData contains a matching build:release script', () => {
-      const actual = testIntake(blockNcc, {
+      const actual = testIntake(ncc, {
         files: {},
         options: {
           ...optionsBase,

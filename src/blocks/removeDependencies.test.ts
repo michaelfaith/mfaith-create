@@ -2,15 +2,15 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveDependencies } from './removeDependencies.ts';
+import { removeDependencies } from './removeDependencies.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (packageName: string) => `path/to/${packageName}/bin/index.mjs`,
 }));
 
-describe(blockRemoveDependencies, () => {
+describe(removeDependencies, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(removeDependencies, {
       options: optionsBase,
     });
 
@@ -18,7 +18,7 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(removeDependencies, {
       props: {
         dependencies: ['a', 'b', 'c'],
       },
@@ -29,7 +29,7 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(removeDependencies, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -38,7 +38,7 @@ describe(blockRemoveDependencies, () => {
   });
 
   test('with props and mode', () => {
-    const creation = testBlock(blockRemoveDependencies, {
+    const creation = testBlock(removeDependencies, {
       props: {
         dependencies: ['a', 'b', 'c'],
       },
