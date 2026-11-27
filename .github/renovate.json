@@ -5,10 +5,7 @@
   "labels": ["dependencies"],
   "minimumReleaseAge": "7 days",
   "packageRules": [
-    {
-      "groupName": "bingo monorepo",
-      "matchSourceUrls": ["https://github.com/bingo-js/bingo"]
-    }
+    { "groupName": "bingo monorepo", "matchSourceUrls": ["https://github.com/bingo-js/bingo"] }
   ],
   "postUpdateOptions": ["pnpmDedupe"]
 }
