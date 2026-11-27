@@ -40,7 +40,7 @@ export { prettierPluginSentencesPerLine } from './prettierPluginSentencesPerLine
 export { prPreviewRelease, type PrPreviewReleaseProps } from './prPreviewRelease.ts';
 export { readme, type ReadmeProps } from './readme.ts';
 export { releasePlease, type ReleasePleaseProps } from './releasePlease.ts';
-export { renovate, type renovateProps } from './renovate.ts';
+export { renovate, type RenovateProps } from './renovate.ts';
 export { securityDocs } from './securityDocs.ts';
 export { sideEffects, type SideEffectsProps } from './sideEffects.ts';
 export { templatedWith } from './templatedWith.ts';

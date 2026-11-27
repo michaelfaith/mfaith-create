@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 
 import { funding } from './funding.ts';
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 describe(funding, () => {
   test('transition mode', () => {
@@ -12,8 +12,6 @@ describe(funding, () => {
       options: optionsBase,
     });
 
-    expect(creation.extensions).toContainEqual(
-      blockRemoveFiles({ files: ['.github/FUNDING.yaml'] }),
-    );
+    expect(creation.extensions).toContainEqual(removeFiles({ files: ['.github/FUNDING.yaml'] }));
   });
 });

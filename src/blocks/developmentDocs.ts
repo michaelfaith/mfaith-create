@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { base } from '../base.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 const innerSectionSchema: z.ZodType<InnerSection> = z.object({
   contents: z.string(),
@@ -116,7 +116,7 @@ export const developmentDocs: BlockWithProps<DevelopmentDocsProps> = base.create
   },
   transition() {
     return {
-      extensions: [blockRemoveFiles({ files: ['DEVELOPMENT.md'] })],
+      extensions: [removeFiles({ files: ['DEVELOPMENT.md'] })],
     };
   },
 });

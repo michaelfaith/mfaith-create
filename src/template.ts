@@ -5,7 +5,7 @@ import { areTheTypesWrong } from './blocks/areTheTypesWrong.ts';
 import { eslintPlugin } from './blocks/eslintPlugin.ts';
 import { blockNcc } from './blocks/ncc.ts';
 import { blockRemoveDependencies } from './blocks/removeDependencies.ts';
-import { blockRemoveFiles } from './blocks/removeFiles.ts';
+import { removeFiles } from './blocks/removeFiles.ts';
 import { blockRepoTransitions } from './blocks/repoTransitions.ts';
 import { webExt } from './blocks/webExt.ts';
 import type { OptionsShape } from './Options.ts';
@@ -27,7 +27,7 @@ export const template: StratumTemplate<OptionsShape> = base.createStratumTemplat
     eslintPlugin,
     blockNcc,
     blockRemoveDependencies,
-    blockRemoveFiles,
+    removeFiles,
     webExt,
   ],
   presets: [presetMinimal, presetCommon, presetEverything],

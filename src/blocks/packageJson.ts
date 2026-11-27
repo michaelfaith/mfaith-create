@@ -10,7 +10,7 @@ import { isPlainObject } from '../utils/isPlainObject.ts';
 import { sortKeys } from '../utils/sortKeys.ts';
 import type { BlockWithProps } from './Block.ts';
 import { CommandPhase } from './phases.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 const packageJsonSchema = PackageJson.partial().extend({
   scripts: z.record(z.string(), z.union([z.string(), z.undefined()])).optional(),
@@ -103,7 +103,7 @@ export const packageJson: BlockWithProps<PackageJsonProps> = base.createBlock({
   },
   transition() {
     return {
-      extensions: [blockRemoveFiles({ files: ['package-lock.json', 'yarn.lock'] })],
+      extensions: [removeFiles({ files: ['package-lock.json', 'yarn.lock'] })],
     };
   },
 });

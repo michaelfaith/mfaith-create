@@ -2,7 +2,7 @@ import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { eslint } from './eslint.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 export const eslintMarkdown: BlockWithoutProps = base.createBlock({
@@ -37,7 +37,7 @@ export const eslintMarkdown: BlockWithoutProps = base.createBlock({
         blockRemoveDependencies({
           dependencies: ['eslint-plugin-markdown', 'markdownlint', 'markdownlint-cli'],
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: ['.markdownlint*', '.markdownlintignore'],
         }),
         blockRemoveWorkflows({

@@ -2,15 +2,15 @@ import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test, vi } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 vi.mock('../utils/resolveBin.ts', () => ({
   resolveBin: (packageName: string) => `path/to/${packageName}/bin/index.mjs`,
 }));
 
-describe(blockRemoveFiles, () => {
+describe(removeFiles, () => {
   test('without props or mode', () => {
-    const creation = testBlock(blockRemoveFiles, {
+    const creation = testBlock(removeFiles, {
       options: optionsBase,
     });
 
@@ -18,7 +18,7 @@ describe(blockRemoveFiles, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockRemoveFiles, {
+    const creation = testBlock(removeFiles, {
       props: {
         files: ['a', 'b', 'c'],
       },
@@ -29,7 +29,7 @@ describe(blockRemoveFiles, () => {
   });
 
   test('with mode', () => {
-    const creation = testBlock(blockRemoveFiles, {
+    const creation = testBlock(removeFiles, {
       mode: 'transition',
       options: optionsBase,
     });
@@ -38,7 +38,7 @@ describe(blockRemoveFiles, () => {
   });
 
   test('with props and mode', () => {
-    const creation = testBlock(blockRemoveFiles, {
+    const creation = testBlock(removeFiles, {
       props: {
         files: ['a', 'b', 'c'],
       },

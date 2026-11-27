@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { allContributors } from './allContributors.ts';
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 describe(allContributors, () => {
   it('defaults contributors to [] when not provided', () => {
@@ -507,7 +507,7 @@ describe(allContributors, () => {
     });
 
     expect(creation.extensions).toContainEqual(
-      blockRemoveFiles({ files: ['.github/workflows/contributors.yml'] }),
+      removeFiles({ files: ['.github/workflows/contributors.yml'] }),
     );
   });
 });

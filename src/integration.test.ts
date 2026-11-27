@@ -14,6 +14,7 @@ import {
   blockCspell,
   blockEslint,
   blockKnip,
+  blockRenovate,
   blockTemplatedWith,
   blockTsdown,
   blockTypescript,
@@ -83,6 +84,7 @@ test(
               'michaelfaith',
               'mshick',
               'octoguide',
+              'renovaterc',
               'stefanzweifel',
               'ts-prunerc',
               'webpro',
@@ -132,6 +134,14 @@ If you're interested in learning more, see the 'getting started' docs on:
               'pretty-quick',
               'remove-dependencies',
               'trash-cli',
+            ],
+          }),
+          blockRenovate({
+            packageRules: [
+              {
+                groupName: 'bingo monorepo',
+                matchSourceUrls: ['https://github.com/bingo-js/bingo'],
+              },
             ],
           }),
           blockTsdown({ entry: ['src/config.ts'] }),

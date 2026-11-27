@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 export const contributingDocs: BlockWithoutProps = base.createBlock({
   about: {
@@ -151,7 +151,7 @@ Maintainers want to know what you think.
   },
   transition() {
     return {
-      extensions: [blockRemoveFiles({ files: ['CONTRIBUTING.md'] })],
+      extensions: [removeFiles({ files: ['CONTRIBUTING.md'] })],
     };
   },
 });

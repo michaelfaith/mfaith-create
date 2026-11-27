@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { base } from '../base.ts';
 import { getPackageDependencies } from '../data/packageData.ts';
 import type { BlockWithProps } from './Block.ts';
-import { blockGithubApps } from './githubApps.ts';
+import { githubApps } from './githubApps.ts';
 import { packageJson } from './packageJson.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { type Builder, builderSchema } from './workflows/schema.ts';
@@ -26,7 +26,7 @@ export const prPreviewRelease: BlockWithProps<PrPreviewReleaseProps> = base.crea
 
     return {
       extensions: [
-        blockGithubApps({
+        githubApps({
           apps: [
             {
               name: 'pkg-pr-new',

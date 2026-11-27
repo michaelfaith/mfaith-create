@@ -13,11 +13,11 @@ export interface AppInfo {
   url: string;
 }
 
-export interface BlockGithubAppsProps {
+export interface GithubAppsProps {
   apps?: AppInfo[];
 }
 
-export const blockGithubApps: BlockWithProps<BlockGithubAppsProps> = base.createBlock({
+export const githubApps: BlockWithProps<GithubAppsProps> = base.createBlock({
   about: {
     name: 'GitHub Apps',
   },

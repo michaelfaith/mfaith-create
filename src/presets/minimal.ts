@@ -9,7 +9,7 @@ import { blockExampleFiles } from '../blocks/exampleFiles.ts';
 import { exports } from '../blocks/exports.ts';
 import { gitattributes } from '../blocks/gitattributes.ts';
 import { githubActionsCi } from '../blocks/githubActionsCi.ts';
-import { blockGithubApps } from '../blocks/githubApps.ts';
+import { githubApps } from '../blocks/githubApps.ts';
 import { githubIssueTemplates } from '../blocks/githubIssueTemplates.ts';
 import { githubPrTemplate } from '../blocks/githubPrTemplate.ts';
 import { gitignore } from '../blocks/gitignore.ts';
@@ -20,7 +20,7 @@ import { pnpmWorkspace } from '../blocks/pnpmWorkspace.ts';
 import { blockPublishConfig } from '../blocks/publishConfig.ts';
 import { readme } from '../blocks/readme.ts';
 import { blockRemoveDependencies } from '../blocks/removeDependencies.ts';
-import { blockRemoveFiles } from '../blocks/removeFiles.ts';
+import { removeFiles } from '../blocks/removeFiles.ts';
 import { blockRemoveWorkflows } from '../blocks/removeWorkflows.ts';
 import { blockRepositoryBranchRuleset } from '../blocks/repositoryBranchRuleset.ts';
 import { blockRepositoryLabels } from '../blocks/repositoryLabels.ts';
@@ -47,7 +47,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     exports,
     gitattributes,
     githubActionsCi,
-    blockGithubApps,
+    githubApps,
     githubIssueTemplates,
     githubPrTemplate,
     gitignore,
@@ -58,7 +58,7 @@ export const presetMinimal: Preset<OptionsShape> = base.createPreset({
     blockPublishConfig,
     readme,
     blockRemoveDependencies,
-    blockRemoveFiles,
+    removeFiles,
     blockRemoveWorkflows,
     blockRepositoryBranchRuleset,
     blockRepositoryLabels,

@@ -17,7 +17,7 @@ import { oxfmt } from './oxfmt.ts';
 import { packageJson } from './packageJson.ts';
 import { prettier } from './prettier.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 import {
@@ -335,7 +335,7 @@ export default config;
             'jest mocha',
           ],
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: ['.mocha*', 'jest.config.*', 'vitest.config.{c,j,m}*'],
         }),
         blockRemoveWorkflows({

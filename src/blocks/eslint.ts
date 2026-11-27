@@ -24,7 +24,7 @@ import { intakeFile } from './intake/intakeFile.ts';
 import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
@@ -240,7 +240,7 @@ export default config;
             'yaml-eslint-parser',
           ],
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: ['.eslintrc*', '.eslintignore', 'eslint.config.{cjs,js,mjs}'],
         }),
         blockRemoveWorkflows({
