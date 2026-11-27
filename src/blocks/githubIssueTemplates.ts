@@ -1,7 +1,7 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { formatYaml } from './files/formatYaml.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 export const githubIssueTemplates: BlockWithoutProps = base.createBlock({
   about: {
@@ -212,7 +212,7 @@ export const githubIssueTemplates: BlockWithoutProps = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: [
             '.github/ISSUE_TEMPLATE.md',
             '.github/ISSUE_TEMPLATE/01-bug.yaml',

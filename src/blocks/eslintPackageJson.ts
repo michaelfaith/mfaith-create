@@ -3,7 +3,7 @@ import type { BlockWithoutProps } from './Block.ts';
 import { eslint } from './eslint.ts';
 import { packageJson } from './packageJson.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 
 export const eslintPackageJson: BlockWithoutProps = base.createBlock({
@@ -40,7 +40,7 @@ export const eslintPackageJson: BlockWithoutProps = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: ['.npmpackagejsonlintrc*'],
         }),
         blockRemoveDependencies({

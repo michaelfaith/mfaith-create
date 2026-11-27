@@ -3,7 +3,7 @@ import { describe, expect, it, test } from 'vitest';
 
 import { optionsBase } from './options.fakes.ts';
 import { releasePlease } from './releasePlease.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 describe(releasePlease, () => {
   test('without props', () => {
@@ -639,7 +639,7 @@ describe(releasePlease, () => {
     });
 
     expect(creation.extensions).toContainEqual(
-      blockRemoveFiles({
+      removeFiles({
         files: ['.github/workflows/post-release.{yaml,yml}', '.github/workflows/release.yaml'],
       }),
     );

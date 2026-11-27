@@ -5,11 +5,11 @@ import { resolveBin } from '../utils/resolveBin.ts';
 import type { BlockWithProps } from './Block.ts';
 import { CommandPhase } from './phases.ts';
 
-export interface BlockRemoveFiles {
+export interface RemoveFilesProps {
   files?: string[] | undefined;
 }
 
-export const blockRemoveFiles: BlockWithProps<BlockRemoveFiles> = base.createBlock({
+export const removeFiles: BlockWithProps<RemoveFilesProps> = base.createBlock({
   about: {
     name: 'Remove Files',
   },

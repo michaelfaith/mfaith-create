@@ -4,5 +4,11 @@
   "extends": [":preserveSemverRanges", "config:best-practices", "replacements:all"],
   "labels": ["dependencies"],
   "minimumReleaseAge": "7 days",
+  "packageRules": [
+    {
+      "groupName": "bingo monorepo",
+      "matchSourceUrls": ["https://github.com/bingo-js/bingo"]
+    }
+  ],
   "postUpdateOptions": ["pnpmDedupe"]
 }

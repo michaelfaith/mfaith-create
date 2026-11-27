@@ -1,12 +1,12 @@
 import { testBlock } from 'bingo-stratum-testers';
 import { describe, expect, test } from 'vitest';
 
-import { blockGithubApps } from './githubApps.ts';
+import { githubApps } from './githubApps.ts';
 import { optionsBase } from './options.fakes.ts';
 
-describe(blockGithubApps, () => {
+describe(githubApps, () => {
   test('without props', () => {
-    const creation = testBlock(blockGithubApps, {
+    const creation = testBlock(githubApps, {
       options: optionsBase,
     });
 
@@ -18,7 +18,7 @@ describe(blockGithubApps, () => {
   });
 
   test('with props', () => {
-    const creation = testBlock(blockGithubApps, {
+    const creation = testBlock(githubApps, {
       props: {
         apps: [
           {

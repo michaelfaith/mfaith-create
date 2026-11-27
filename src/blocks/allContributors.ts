@@ -3,12 +3,12 @@ import { startingOwnerContributions } from '../data/contributions.ts';
 import type { Contributor } from '../Options.ts';
 import type { BlockWithoutProps } from './Block.ts';
 import { cspell } from './cspell.ts';
-import { blockGithubApps } from './githubApps.ts';
+import { githubApps } from './githubApps.ts';
 import { oxfmt } from './oxfmt.ts';
 import { CommandPhase } from './phases.ts';
 import { prettier } from './prettier.ts';
 import { readme } from './readme.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
@@ -36,7 +36,7 @@ export const allContributors: BlockWithoutProps = base.createBlock({
         cspell({
           ignorePaths: ['.all-contributorsrc'],
         }),
-        blockGithubApps({
+        githubApps({
           apps: [
             {
               name: 'All Contributors',
@@ -144,7 +144,7 @@ export const allContributors: BlockWithoutProps = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: ['.github/workflows/contributors.yml'],
         }),
       ],

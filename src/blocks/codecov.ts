@@ -1,8 +1,8 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockGithubApps } from './githubApps.ts';
+import { githubApps } from './githubApps.ts';
 import { readme } from './readme.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { vitest } from './vitest.ts';
 import { resolveUses } from './workflows/resolveUses.ts';
 
@@ -22,7 +22,7 @@ export const codecov: BlockWithoutProps = base.createBlock({
 
     return {
       extensions: [
-        blockGithubApps({
+        githubApps({
           apps: [
             {
               name: 'Codecov',
@@ -51,7 +51,7 @@ export const codecov: BlockWithoutProps = base.createBlock({
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: ['.github/codecov.{yaml,yml}', 'codecov.{yaml,yml}'],
         }),
       ],

@@ -8,7 +8,7 @@ import { oxfmt } from './oxfmt.ts';
 import { prettier } from './prettier.ts';
 import { blockPublishConfig } from './publishConfig.ts';
 import { readme } from './readme.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRepositoryLabels } from './repositoryLabels.ts';
 import { blockRepositorySecrets } from './repositorySecrets.ts';
 import { blockRepositoryVariables } from './repositoryVariables.ts';
@@ -288,7 +288,7 @@ Cheers! 📦🚀`,
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: ['.github/workflows/post-release.{yaml,yml}', '.github/workflows/release.yaml'],
         }),
       ],

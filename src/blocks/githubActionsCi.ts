@@ -6,7 +6,7 @@ import { getNodeMatrixVersions } from '../utils/getNodeMatrixVersions.ts';
 import type { BlockWithProps } from './Block.ts';
 import { formatWorkflowYaml } from './files/formatWorkflowYaml.ts';
 import { intakeActionInput } from './intake/intakeActionInput.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRepositoryBranchRuleset } from './repositoryBranchRuleset.ts';
 import { createMultiJobWorkflow } from './workflows/createMultiJobWorkflow.ts';
 import { createSingleJobWorkflow } from './workflows/createSingleJobWorkflow.ts';
@@ -195,7 +195,7 @@ export const githubActionsCi: BlockWithProps<GithubActionsCiProps> = base.create
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: [
             '.circleci',
             '.github/actions/setup/action.yaml',

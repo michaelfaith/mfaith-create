@@ -20,7 +20,7 @@ import { prettier } from './prettier.ts';
 import { prPreviewRelease } from './prPreviewRelease.ts';
 import { releasePlease } from './releasePlease.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { vitest } from './vitest.ts';
 
@@ -255,7 +255,7 @@ export default config;
         blockRemoveDependencies({
           dependencies: ['@babel/cli', '@babel/core', '@babel/preset-typescript', 'babel', 'tsup'],
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: ['.babelrc*', 'babel.config.*', 'dist', 'lib', 'tsup.config.*'],
         }),
         blockRemoveWorkflows({

@@ -9,7 +9,7 @@ import { githubActionsCi } from './githubActionsCi.ts';
 import { intakeFileAsJson } from './intake/intakeFileAsJson.ts';
 import { intakeFileExportObject } from './intake/intakeFileExportObject.ts';
 import { packageJson } from './packageJson.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { blockRemoveWorkflows } from './removeWorkflows.ts';
 import { vscode } from './vscode.ts';
 
@@ -71,7 +71,7 @@ export const knip: BlockWithProps<KnipProps> = base.createBlock({
             devDependencies: getPackageDependencies('knip'),
           },
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: ['.ts-prunerc*'],
         }),
         vscode({
@@ -100,7 +100,7 @@ export default config;
   transition() {
     return {
       extensions: [
-        blockRemoveFiles({
+        removeFiles({
           files: ['.knip*', 'knip.{c,j,m}*', 'knip.json*'],
         }),
         blockRemoveWorkflows({

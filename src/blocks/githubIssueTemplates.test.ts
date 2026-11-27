@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 
 import { githubIssueTemplates } from './githubIssueTemplates.ts';
 import { optionsBase } from './options.fakes.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 describe(githubIssueTemplates, () => {
   test('production', () => {
@@ -166,7 +166,7 @@ describe(githubIssueTemplates, () => {
     });
 
     expect(creation.extensions).toContainEqual(
-      blockRemoveFiles({
+      removeFiles({
         files: [
           '.github/ISSUE_TEMPLATE.md',
           '.github/ISSUE_TEMPLATE/01-bug.yaml',

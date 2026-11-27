@@ -1,6 +1,6 @@
 import { base } from '../base.ts';
 import type { BlockWithoutProps } from './Block.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 
 export const codeOfConduct: BlockWithoutProps = base.createBlock({
   about: {
@@ -151,7 +151,7 @@ Translations are available at
   },
   transition() {
     return {
-      extensions: [blockRemoveFiles({ files: ['CODE_OF_CONDUCT.md'] })],
+      extensions: [removeFiles({ files: ['CODE_OF_CONDUCT.md'] })],
     };
   },
 });

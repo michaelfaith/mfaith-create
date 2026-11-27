@@ -60,7 +60,7 @@ export {
   releasePlease as blockReleasePlease,
   type ReleasePleaseProps as BlockReleasePleaseProps,
   renovate as blockRenovate,
-  type renovateProps as BlockRenovateProps,
+  type RenovateProps as BlockRenovateProps,
   securityDocs as blockSecurityDocs,
   sideEffects as blockSideEffects,
   type SideEffectsProps as BlockSideEffectsProps,

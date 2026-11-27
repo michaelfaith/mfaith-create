@@ -11,7 +11,7 @@ import { packageJson } from './packageJson.ts';
 import { CommandPhase } from './phases.ts';
 import { pnpmWorkspace } from './pnpmWorkspace.ts';
 import { blockRemoveDependencies } from './removeDependencies.ts';
-import { blockRemoveFiles } from './removeFiles.ts';
+import { removeFiles } from './removeFiles.ts';
 import { vscode } from './vscode.ts';
 
 const overrideSchema: z.ZodType<Override> = z.object({
@@ -140,7 +140,7 @@ export default config;
             'pretty-quick',
           ],
         }),
-        blockRemoveFiles({
+        removeFiles({
           files: [
             '.prettierrc',
             '.prettierrc.{c*,js,m*,t*}',
