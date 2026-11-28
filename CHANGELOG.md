@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.11.9](https://github.com/michaelfaith/mfaith-create/compare/v0.11.8...v0.11.9) (2026-11-27)
+
+
+### 🚀 Features
+
+* **Renovate:** add props and intake for `customManagers` and `packageRules` ([#629](https://github.com/michaelfaith/mfaith-create/issues/629)) ([0a985c6](https://github.com/michaelfaith/mfaith-create/commit/0a985c678c32e59e5441e8304d6e4e05a23f1835))
+
+
+### 🩹 Bug Fixes
+
+* **deps:** update bingo monorepo ([#631](https://github.com/michaelfaith/mfaith-create/issues/631)) ([6586c74](https://github.com/michaelfaith/mfaith-create/commit/6586c7454ecdb46a741bfae0affea818611e0a96))
+* **deps:** update dependency input-from-file to ^0.9.0 ([#623](https://github.com/michaelfaith/mfaith-create/issues/623)) ([24c7206](https://github.com/michaelfaith/mfaith-create/commit/24c7206d57daf3b48bdfa5eff374ba99db4c0ea9))
+* **Vitest:** improve development docs ([#632](https://github.com/michaelfaith/mfaith-create/issues/632)) ([bdae387](https://github.com/michaelfaith/mfaith-create/commit/bdae387824815396063395565b7d71c3bd84570f))
+
 ## [0.11.8](https://github.com/michaelfaith/mfaith-create/compare/v0.11.7...v0.11.8) (2026-11-26)
 
 
